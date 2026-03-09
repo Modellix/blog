@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10 PostgreSQL Performance Tips You Should Know — Modellix Blog</title>
+  <meta name="description" content="Practical PostgreSQL optimization techniques covering indexing, query planning, connection pooling, and configuration tuning for production workloads.">
+  <meta name="keywords" content="PostgreSQL, database, performance, indexing, SQL">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  <header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/" class="nav-link">Blog</a>
+      
+        <a href="/blog/archives" class="nav-link">Archives</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/contact" class="btn btn-secondary">Contact Us</a>
+      
+      
+        <a href="/blog/get-started" class="btn btn-primary">Get Started</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    <div class="post-page">
+  <div class="section-container">
+    
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">10 PostgreSQL Performance Tips You Should Know</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Technology/" class="category-tag category-tag--sm">Technology</a>
+          
+        
+      </div>
+      <h1 class="post-title">10 PostgreSQL Performance Tips You Should Know</h1>
+      <div class="post-header-bottom">
+        <time class="post-date">January 28, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/Backend/" class="tag-pill tag-pill--sm">Backend</a>
+            
+              <a href="/blog/tags/PostgreSQL/" class="tag-pill tag-pill--sm">PostgreSQL</a>
+            
+              <a href="/blog/tags/Database/" class="tag-pill tag-pill--sm">Database</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+          <div class="post-cover">
+            <img src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=1200" alt="10 PostgreSQL Performance Tips You Should Know">
+          </div>
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>PostgreSQL is fast out of the box, but production workloads need tuning. Here are ten tips that can dramatically improve your database performance.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <p>PostgreSQL is fast out of the box, but production workloads need tuning. Here are ten tips that can dramatically improve your database performance.</p>
+<h2 id="1-Use-EXPLAIN-ANALYZE"><a href="#1-Use-EXPLAIN-ANALYZE" class="headerlink" title="1. Use EXPLAIN ANALYZE"></a>1. Use EXPLAIN ANALYZE</h2><p>Never guess — let Postgres tell you what is slow:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN ANALYZE <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> orders <span class="keyword">WHERE</span> user_id <span class="operator">=</span> <span class="number">42</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-Index-Foreign-Keys"><a href="#2-Index-Foreign-Keys" class="headerlink" title="2. Index Foreign Keys"></a>2. Index Foreign Keys</h2><p>Every foreign key column should have an index. Without one, JOINs and cascading deletes do full table scans.</p>
+<h2 id="3-Use-Partial-Indexes"><a href="#3-Use-Partial-Indexes" class="headerlink" title="3. Use Partial Indexes"></a>3. Use Partial Indexes</h2><p>If you only query active records, index only those:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> INDEX idx_active_users <span class="keyword">ON</span> users (email) <span class="keyword">WHERE</span> active <span class="operator">=</span> <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-Tune-shared-buffers"><a href="#4-Tune-shared-buffers" class="headerlink" title="4. Tune shared_buffers"></a>4. Tune shared_buffers</h2><p>Set <code>shared_buffers</code> to 25% of available RAM. The default is far too low for production.</p>
+<h2 id="5-Enable-Connection-Pooling"><a href="#5-Enable-Connection-Pooling" class="headerlink" title="5. Enable Connection Pooling"></a>5. Enable Connection Pooling</h2><p>Use PgBouncer or the built-in connection pooler. Opening a new connection per request is expensive.</p>
+<h2 id="6-Avoid-SELECT"><a href="#6-Avoid-SELECT" class="headerlink" title="6. Avoid SELECT *"></a>6. Avoid SELECT *</h2><p>Only fetch the columns you need. This reduces I&#x2F;O and improves cache efficiency.</p>
+<h2 id="7-Use-Batch-Inserts"><a href="#7-Use-Batch-Inserts" class="headerlink" title="7. Use Batch Inserts"></a>7. Use Batch Inserts</h2><p>Instead of inserting rows one at a time, use multi-row inserts or <code>COPY</code>.</p>
+<h2 id="8-Vacuum-Regularly"><a href="#8-Vacuum-Regularly" class="headerlink" title="8. Vacuum Regularly"></a>8. Vacuum Regularly</h2><p>Postgres uses MVCC, which means dead rows accumulate. Autovacuum handles this, but monitor it.</p>
+<h2 id="9-Use-JSONB-Wisely"><a href="#9-Use-JSONB-Wisely" class="headerlink" title="9. Use JSONB Wisely"></a>9. Use JSONB Wisely</h2><p>JSONB is powerful but not a replacement for proper schema design. Index JSONB fields you query frequently with GIN indexes.</p>
+<h2 id="10-Monitor-with-pg-stat-statements"><a href="#10-Monitor-with-pg-stat-statements" class="headerlink" title="10. Monitor with pg_stat_statements"></a>10. Monitor with pg_stat_statements</h2><p>Enable <code>pg_stat_statements</code> to see which queries consume the most time and resources.</p>
+<p>Start with <code>EXPLAIN ANALYZE</code> — it will tell you where to focus your effort.</p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/Backend/" class="tag-pill tag-pill--sm">Backend</a>
+            
+              <a href="/blog/tags/PostgreSQL/" class="tag-pill tag-pill--sm">PostgreSQL</a>
+            
+              <a href="/blog/tags/Database/" class="tag-pill tag-pill--sm">Database</a>
+            
+          
+        </div>
+      </article>
+
+      <aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <div class="post-author-card">
+      
+        <img src="https://www.mintlify.com/blog/authors/ethan.webp" alt="Alen Hu" class="post-author-avatar">
+      
+      <div class="post-author-info">
+        <span class="post-author-name">Alen Hu</span>
+        
+          <span class="post-author-title">Software Engineer</span>
+        
+      </div>
+    </div>
+
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=http://modellix.github.io/blog/blog/technology/postgresql-performance-tips/&text=10%20PostgreSQL%20Performance%20Tips%20You%20Should%20Know" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=http://modellix.github.io/blog/blog/technology/postgresql-performance-tips/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i data-lucide="linkedin"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="http://modellix.github.io/blog/blog/technology/postgresql-performance-tips/"><i data-lucide="link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  <footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i data-lucide="mail"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i data-lucide="github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+</body>
+</html>
