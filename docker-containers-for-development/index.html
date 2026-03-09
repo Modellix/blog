@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why Every Developer Should Use Docker for Local Development — Modellix Blog</title>
+  <meta name="description" content="A practical case for using Docker containers in your local development workflow — from eliminating environment drift to simplifying onboarding.">
+  <meta name="keywords" content="Docker, containers, DevOps, development environment, developer tools">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  <header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/" class="nav-link">Blog</a>
+      
+        <a href="/blog/archives" class="nav-link">Archives</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/contact" class="btn btn-secondary">Contact Us</a>
+      
+      
+        <a href="/blog/get-started" class="btn btn-primary">Get Started</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    <div class="post-page">
+  <div class="section-container">
+    
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Why Every Developer Should Use Docker for Local Development</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/DevOps/" class="category-tag category-tag--sm">DevOps</a>
+          
+        
+      </div>
+      <h1 class="post-title">Why Every Developer Should Use Docker for Local Development</h1>
+      <div class="post-header-bottom">
+        <time class="post-date">January 5, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/Docker/" class="tag-pill tag-pill--sm">Docker</a>
+            
+              <a href="/blog/tags/DevOps/" class="tag-pill tag-pill--sm">DevOps</a>
+            
+              <a href="/blog/tags/Tooling/" class="tag-pill tag-pill--sm">Tooling</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+          <div class="post-cover">
+            <img src="https://images.unsplash.com/photo-1605745341112-85968b19335b?w=1200" alt="Why Every Developer Should Use Docker for Local Development">
+          </div>
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>&#34;Works on my machine&#34; is the oldest excuse in software engineering. Docker eliminates it. Here is why containers deserve a place in every developer&#39;s local workflow.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <p>“Works on my machine” is the oldest excuse in software engineering. Docker eliminates it. Here is why containers deserve a place in every developer’s local workflow.</p>
+<h2 id="The-Problem"><a href="#The-Problem" class="headerlink" title="The Problem"></a>The Problem</h2><p>You clone a repo, follow the README, and spend two hours debugging why PostgreSQL 15 on your machine behaves differently from PostgreSQL 14 in production. Sound familiar?</p>
+<p>Environment drift — subtle differences between development, staging, and production — causes more bugs than most people realize.</p>
+<h2 id="Docker-in-60-Seconds"><a href="#Docker-in-60-Seconds" class="headerlink" title="Docker in 60 Seconds"></a>Docker in 60 Seconds</h2><p>Docker packages an application and all its dependencies into a <strong>container</strong>: an isolated, reproducible unit that runs the same way everywhere.</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> node:<span class="number">20</span>-alpine</span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /app</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> package*.json ./</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> npm ci</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> . .</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">3000</span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;node&quot;</span>, <span class="string">&quot;index.js&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+
+<p>Build it once, run it anywhere.</p>
+<h2 id="Docker-Compose-for-Multi-Service-Setups"><a href="#Docker-Compose-for-Multi-Service-Setups" class="headerlink" title="Docker Compose for Multi-Service Setups"></a>Docker Compose for Multi-Service Setups</h2><p>Most real apps need more than one process. Docker Compose lets you define everything in a single file:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">app:</span></span><br><span class="line">    <span class="attr">build:</span> <span class="string">.</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;3000:3000&quot;</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">db</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">redis</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">db:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">postgres:16-alpine</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">POSTGRES_PASSWORD:</span> <span class="string">devpass</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">pgdata:/var/lib/postgresql/data</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">redis:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">redis:7-alpine</span></span><br><span class="line"></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line">  <span class="attr">pgdata:</span></span><br></pre></td></tr></table></figure>
+
+<p>One command to start everything:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
+
+<h2 id="Benefits-for-Teams"><a href="#Benefits-for-Teams" class="headerlink" title="Benefits for Teams"></a>Benefits for Teams</h2><ul>
+<li><strong>Instant onboarding</strong> — new developers run one command, not a 20-step guide</li>
+<li><strong>Parity</strong> — local, CI, and production share the same base images</li>
+<li><strong>Isolation</strong> — projects with conflicting dependencies never interfere with each other</li>
+<li><strong>Disposability</strong> — blow away a container and recreate it in seconds</li>
+</ul>
+<h2 id="Common-Objections"><a href="#Common-Objections" class="headerlink" title="Common Objections"></a>Common Objections</h2><p><strong>“It’s slow on Mac&#x2F;Windows.”</strong> — Docker Desktop has improved significantly. Tools like OrbStack (on macOS) make it nearly native speed.</p>
+<p><strong>“It adds complexity.”</strong> — A well-written <code>docker-compose.yml</code> is <em>less</em> complex than a multi-page setup guide that goes stale within weeks.</p>
+<h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h2><p>If you have never used Docker, start small: containerize one service in your current project. Once you see the benefits, you will never want to go back.</p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/Docker/" class="tag-pill tag-pill--sm">Docker</a>
+            
+              <a href="/blog/tags/DevOps/" class="tag-pill tag-pill--sm">DevOps</a>
+            
+              <a href="/blog/tags/Tooling/" class="tag-pill tag-pill--sm">Tooling</a>
+            
+          
+        </div>
+      </article>
+
+      <aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <div class="post-author-card">
+      
+        <img src="https://www.mintlify.com/blog/authors/ethan.webp" alt="Alen Hu" class="post-author-avatar">
+      
+      <div class="post-author-info">
+        <span class="post-author-name">Alen Hu</span>
+        
+          <span class="post-author-title">Software Engineer</span>
+        
+      </div>
+    </div>
+
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=http://modellix.github.io/blog/blog/docker-containers-for-development/&text=Why%20Every%20Developer%20Should%20Use%20Docker%20for%20Local%20Development" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=http://modellix.github.io/blog/blog/docker-containers-for-development/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i data-lucide="linkedin"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="http://modellix.github.io/blog/blog/docker-containers-for-development/"><i data-lucide="link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  <footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i data-lucide="mail"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i data-lucide="github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+</body>
+</html>
