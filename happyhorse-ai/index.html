@@ -15,8 +15,8 @@
   <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HappyHorse-1.0 Explained: The Leading Open-Source AI Video Model (2026) — Modellix Blog</title>
-  <meta name="description" content="HappyHorse-1.0 hit #1 on Artificial Analysis with no public team. See the Elo data, confirmed architecture, open-source status, and which AI video models to use now.">
+  <title>HappyHorse-1.0 Explained: Open-Source AI Video, API Access, and 2026 Pricing — Modellix Blog</title>
+  <meta name="description" content="HappyHorse-1.0 leads open-source AI video benchmarks and is now available through production API access. See Elo data, architecture, and updated 720p and 1080p pricing.">
   <meta name="keywords" content="happy horse ai">
   
   <link rel="canonical" href="https://www.modellix.ai/blog/happyhorse-ai/">
@@ -155,9 +155,9 @@
         
 
         <div class="post-content">
-          <p>A new AI video model appeared overnight with no team name, no launch post, and no paper. It beat Seedance 2.0 by <strong>74 Elo points</strong> on the most credible blind-preference leaderboard in the industry. And based on early pricing signals, generation costs are estimated at roughly <mark style="background:#fef08a;padding:0 3px;border-radius:2px;">one-tenth of what Seedance 2.0 currently runs per minute</mark>.</p>
+          <p>A new AI video model appeared overnight with no team name, no launch post, and no paper. It beat Seedance 2.0 by <strong>74 Elo points</strong> on the most credible blind-preference leaderboard in the industry. As of May 13, 2026, HappyHorse production pricing has also become more aggressive: 720p generation dropped from <strong>$0.18&#x2F;s to $0.128&#x2F;s</strong>, and 1080p dropped from <strong>$0.30&#x2F;s to $0.229&#x2F;s</strong>.</p>
 <p>Nobody knew who built it. The AI community spent 48 hours trying to find out.</p>
-<p>HappyHorse-1.0 is that model. It hit <strong>#1 on the Artificial Analysis Video Arena</strong> for both text-to-video and image-to-video within days of appearing. The 15B-parameter open-source model generates video and audio in a single forward pass — a fundamentally different architecture from every staged-pipeline competitor. By April 9, the team behind it was confirmed and the weights were released the same day. This article covers everything verified as of April 10, 2026: the Elo data, the architecture, the team identity, what is actually out, and the practical question every developer is asking — can you use it in production, and what is the right move while you wait?</p>
+<p>HappyHorse-1.0 is that model. It hit <strong>#1 on the Artificial Analysis Video Arena</strong> for both text-to-video and image-to-video within days of appearing. The 15B-parameter open-source model generates video and audio in a single forward pass — a fundamentally different architecture from every staged-pipeline competitor. By April 9, the team behind it was confirmed and the weights were released the same day. This article covers everything verified as of May 13, 2026: the Elo data, the architecture, the team identity, what is actually out, and the practical question every developer is asking — how should you use HappyHorse now that production API pricing is live?</p>
 <hr>
 <h2 id="Why-HappyHorse-1-0-Hit-1-What-the-Elo-Scores-Actually-Tell-You"><a href="#Why-HappyHorse-1-0-Hit-1-What-the-Elo-Scores-Actually-Tell-You" class="headerlink" title="Why HappyHorse-1.0 Hit #1: What the Elo Scores Actually Tell You"></a>Why HappyHorse-1.0 Hit #1: What the Elo Scores Actually Tell You</h2><p>The Artificial Analysis Video Arena is not a self-reported benchmark. Users are shown two videos generated from the same prompt by two different models, without knowing which model made which, and they pick the one they prefer. Those votes feed an Elo rating system (the same math used in competitive chess), where a model’s score rises when users choose it and falls when they don’t.</p>
 <p>As of early April 2026, HappyHorse-1.0 ranked as follows:</p>
@@ -247,8 +247,8 @@
 <td>#1</td>
 <td>HappyHorse-1.0</td>
 <td>1,333 to 1,347</td>
-<td>No production API</td>
-<td>Open-source &#x2F; self-host</td>
+<td>Yes, via API access</td>
+<td>720p: $0.128&#x2F;s; 1080p: $0.229&#x2F;s</td>
 </tr>
 <tr>
 <td>#2</td>
@@ -279,28 +279,28 @@
 <td>$5.40&#x2F;min (as of April 2026)</td>
 </tr>
 </tbody></table>
-<p>Leaderboard quality and practical usability are two different questions. HappyHorse-1.0 holds the highest Elo scores in two of four categories. It does not have a production API with documented pricing, rate limits, or SLAs as of this writing.</p>
-<p>The practical leaderboard for teams building production pipelines starts at position #2. Among API-accessible models, Seedance 2.0 currently delivers the strongest benchmark performance. Kling 3.0 runs native 1080p. SkyReels V4 offers the strongest quality-to-cost ratio at current pricing.</p>
+<p>Leaderboard quality and practical usability are two different questions. HappyHorse-1.0 holds the highest Elo scores in two of four categories, and its production economics are now easier to model because API pricing is documented by resolution. The latest HappyHorse price cut moves 720p from $0.18&#x2F;s to $0.128&#x2F;s and 1080p from $0.30&#x2F;s to $0.229&#x2F;s, both billed in USD per second.</p>
+<p>For teams building production pipelines, HappyHorse is no longer just an open-source model to watch. It is now a practical candidate when you need top-tier video quality and predictable per-second pricing. Seedance 2.0 remains strong for audio-included leaderboard categories, Kling 3.0 runs native 1080p, and SkyReels V4 remains a useful quality-to-cost reference point.</p>
 <blockquote>
 <p><strong>Note on third-party “HappyHorse” sites:</strong> Multiple sites (happyhorse.app, happyhorse.video, and others) are using the HappyHorse name but have not publicly confirmed they run on the HappyHorse-1.0 model that ranked on Artificial Analysis. They are separate products with their own terms and pricing. Treat them independently.</p>
 </blockquote>
 <hr>
-<h2 id="How-to-Integrate-Top-AI-Video-Models-Without-Rewriting-Your-Pipeline"><a href="#How-to-Integrate-Top-AI-Video-Models-Without-Rewriting-Your-Pipeline" class="headerlink" title="How to Integrate Top AI Video Models Without Rewriting Your Pipeline"></a>How to Integrate Top AI Video Models Without Rewriting Your Pipeline</h2><p>The release pattern playing out here (leaderboard debut, open-source announcement, API access to follow) is becoming a predictable cycle in AI video. Wan, HunyuanVideo, and LTX-2 all followed similar trajectories. Builders who waited for each API to be available separately absorbed more switching costs than teams that abstracted the model layer.</p>
-<p>The practical approach: build against a unified API layer that gives you access to Seedance 1.5 Pro, Kling 3.0, Wan 2.6, and other production-ready video models today. When HappyHorse-1.0 releases a stable API (a credible near-term outcome given the open-source announcement and team track record), you change a model parameter, not your integration architecture.</p>
-<p>Modellix provides exactly this: a unified AI media API covering video, image, and audio generation across models, with transparent per-request pricing and no separate account management per provider. Seedance 1.5 Pro and Kling 3.0 are available now. HappyHorse-1.0 will be added as soon as a stable production endpoint is available.</p>
+<h2 id="How-to-Integrate-Top-AI-Video-Models-Without-Rewriting-Your-Pipeline"><a href="#How-to-Integrate-Top-AI-Video-Models-Without-Rewriting-Your-Pipeline" class="headerlink" title="How to Integrate Top AI Video Models Without Rewriting Your Pipeline"></a>How to Integrate Top AI Video Models Without Rewriting Your Pipeline</h2><p>The release pattern playing out here (leaderboard debut, open-source announcement, then API access) is becoming a predictable cycle in AI video. Wan, HunyuanVideo, and LTX-2 all followed similar trajectories. Builders who waited for each API to be available separately absorbed more switching costs than teams that abstracted the model layer.</p>
+<p>The practical approach: build against a unified API layer that gives you access to HappyHorse, Seedance 1.5 Pro, Kling 3.0, Wan 2.6, and other production-ready video models today. When pricing, quality, or latency shifts, you change a model parameter, not your integration architecture.</p>
+<p>Modellix provides exactly this: a unified AI media API covering video, image, and audio generation across models, with transparent per-request pricing and no separate account management per provider. HappyHorse is now available at <strong>$0.128&#x2F;s for 720p</strong> and <strong>$0.229&#x2F;s for 1080p</strong>, after reductions from $0.18&#x2F;s and $0.30&#x2F;s respectively.</p>
 <p><img src="https://img.srcgptbots.com/en/article/modellix-one-unified-platform-for-all-ai-media-generation.png" alt="Modellix — one unified platform for all AI media generation including video, image, and audio models"></p>
-<p><strong>Start generating video with Seedance 1.5 Pro via the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/bytedance/seedance-1-5-pro-t2v">Modellix API</a></strong> — supports audio-visual co-generation, multi-shot narrative, and start&#x2F;end frame control with a single API call.</p>
+<p><strong>Start generating video through the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started/pricing">Modellix API</a></strong> — choose HappyHorse when you want the current open-source benchmark leader, or route to Seedance, Kling, Wan, and other video models from the same integration.</p>
 <hr>
-<h2 id="Frequently-Asked-Questions-About-HappyHorse-1-0-April-2026"><a href="#Frequently-Asked-Questions-About-HappyHorse-1-0-April-2026" class="headerlink" title="Frequently Asked Questions About HappyHorse-1.0 (April 2026)"></a>Frequently Asked Questions About HappyHorse-1.0 (April 2026)</h2><p><strong>Who built HappyHorse-1.0, and when was it confirmed?</strong> The Future Life Lab (ATH-AI Innovation Division) within Alibaba’s Taotian Group, led by Zhang Di (former VP of Kuaishou and technical architect of Kling AI). Team identity was confirmed on April 9, 2026.</p>
+<h2 id="Frequently-Asked-Questions-About-HappyHorse-1-0-May-2026"><a href="#Frequently-Asked-Questions-About-HappyHorse-1-0-May-2026" class="headerlink" title="Frequently Asked Questions About HappyHorse-1.0 (May 2026)"></a>Frequently Asked Questions About HappyHorse-1.0 (May 2026)</h2><p><strong>Who built HappyHorse-1.0, and when was it confirmed?</strong> The Future Life Lab (ATH-AI Innovation Division) within Alibaba’s Taotian Group, led by Zhang Di (former VP of Kuaishou and technical architect of Kling AI). Team identity was confirmed on April 9, 2026.</p>
 <p><strong>What are the current Elo scores on Artificial Analysis?</strong> T2V (no audio): 1,333 to 1,347, ranked #1. I2V (no audio): 1,391 to 1,406, ranked #1. T2V (with audio): 1,205, ranked #2. I2V (with audio): 1,161, ranked #2. These numbers will shift as vote volume grows. Check the live leaderboard for current standings.</p>
 <p><strong>Is HappyHorse-1.0 actually open-source with a commercial license?</strong> The team announced full open-source release on April 9, including model weights, distilled versions, super-resolution module, and inference code. Community verification is in progress. Verify the current status on the official GitHub before deployment.</p>
-<p><strong>Is there a public production API?</strong> No. As of April 10, 2026, no production API with documented pricing, rate limits, or SLAs exists. Third-party sites using the HappyHorse name are separate products.</p>
-<p><strong>How does it compare to Seedance 2.0 in practical terms?</strong> In blind tests without audio, HappyHorse leads Seedance 2.0 by 60 to 74 Elo points in T2V and 48 to 51 points in I2V. With audio, Seedance 2.0 leads by 14 points in T2V and 1 point in I2V. Seedance 2.0 has a production API. HappyHorse does not.</p>
+<p><strong>Is there a public production API?</strong> Yes. As of May 13, 2026, HappyHorse can be used through production API access with resolution-based pricing: $0.128&#x2F;s for 720p and $0.229&#x2F;s for 1080p.</p>
+<p><strong>How does it compare to Seedance 2.0 in practical terms?</strong> In blind tests without audio, HappyHorse leads Seedance 2.0 by 60 to 74 Elo points in T2V and 48 to 51 points in I2V. With audio, Seedance 2.0 leads by 14 points in T2V and 1 point in I2V. Now that HappyHorse has API access and lower per-second pricing, the decision depends on whether your workflow values no-audio visual quality, audio-included performance, or specific latency and resolution requirements.</p>
 <p><strong>What hardware is needed to run it locally?</strong> A single NVIDIA H100 for optimal performance (approximately 38 seconds per 1080p clip, as reported by the team in April 2026). Consumer GPU community versions are in development.</p>
 <p><strong>Is HappyHorse-1.0 related to Alibaba’s Wan 2.7?</strong> No confirmed connection. Both are Alibaba-ecosystem projects but appear to be separate model lines with different architectures. The HappyHorse team’s stated architecture does not match publicly known Wan architecture.</p>
-<p><strong>What is the fastest way to access top AI video models via API today?</strong> Modellix provides a unified API covering <a target="_blank" rel="noopener" href="https://docs.modellix.ai/bytedance/seedance-1-5-pro-t2v">Seedance 1.5 Pro</a>, Kling 3.0, Wan 2.6, and other leading models with a single integration. When HappyHorse-1.0 releases a production endpoint, it will be added to the same layer with no pipeline rewrite required.</p>
+<p><strong>What is the fastest way to access top AI video models via API today?</strong> Modellix provides a unified API covering HappyHorse, <a target="_blank" rel="noopener" href="https://docs.modellix.ai/bytedance/seedance-1-5-pro-t2v">Seedance 1.5 Pro</a>, Kling 3.0, Wan 2.6, and other leading models with a single integration. HappyHorse currently costs $0.128&#x2F;s for 720p and $0.229&#x2F;s for 1080p.</p>
 <hr>
-<p><em>Published April 10, 2026. Leaderboard data sourced from Artificial Analysis Video Arena. Team attribution sourced from official team press release (April 8 to 9, 2026) and wuhu Animation community reporting (April 9, 2026). Pricing data current as of April 2026.</em></p>
+<p><em>Published April 10, 2026. Updated May 13, 2026 with HappyHorse API availability and reduced pricing. Leaderboard data sourced from Artificial Analysis Video Arena. Team attribution sourced from official team press release (April 8 to 9, 2026) and wuhu Animation community reporting (April 9, 2026). Pricing data current as of May 13, 2026.</em></p>
 
         </div>
 
@@ -424,7 +424,7 @@
     <div class="post-share">
       <span class="post-share-label">Share this article</span>
       <div class="post-share-links">
-        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/happyhorse-ai/&text=HappyHorse-1.0%20Explained%3A%20The%20Leading%20Open-Source%20AI%20Video%20Model%20(2026)" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/happyhorse-ai/&text=HappyHorse-1.0%20Explained%3A%20Open-Source%20AI%20Video%2C%20API%20Access%2C%20and%202026%20Pricing" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
         <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/happyhorse-ai/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/happyhorse-ai/"><i class="fa-solid fa-link"></i></button>
       </div>
