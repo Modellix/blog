@@ -1,0 +1,628 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPT Image 2 API: Pricing, All 4 OpenAI Image Models, and Production Setup (2026) — Modellix Blog</title>
+  <meta name="description" content="GPT Image 2 API is live. See pricing for all 4 OpenAI image models, token math, multi-turn editing, 4K output, and production integration with Modellix.">
+  <meta name="keywords" content="gpt image 2 api, openai image generation api, gpt-image-2 api, gpt image 2 pricing, gpt-image-2-edit">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/gpt-image-2-api/">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">GPT Image 2 API: Pricing, all 4 OpenAI image models, and production setup (2026)</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Model-Guides/" class="category-tag category-tag--sm">Model Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">GPT Image 2 API: Pricing, all 4 OpenAI image models, and production setup (2026)</h1>
+      <div class="post-header-bottom">
+        <time class="post-date">May 14, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/OpenAI/" class="tag-pill tag-pill--sm">OpenAI</a>
+            
+              <a href="/blog/tags/AI-Image/" class="tag-pill tag-pill--sm">AI Image</a>
+            
+              <a href="/blog/tags/API/" class="tag-pill tag-pill--sm">API</a>
+            
+              <a href="/blog/tags/Model-Guide/" class="tag-pill tag-pill--sm">Model Guide</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.srcgptbots.com/blog/author/20260409/modellix-blog-author-official@2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>OpenAI shipped GPT Image 2 on April 21, 2026 with 99% text accuracy, 4K output, and multi-turn editing. This guide covers all 4 OpenAI image endpoints (1.5, 1.5-edit, 2, 2-edit), token vs per-image pricing, a 20-line curl walkthrough, and when to call which model in production.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <p>OpenAI shipped GPT Image 2 on April 21, 2026, and opened the API in early May. The model claims roughly 99 percent character-level accuracy across Latin, CJK, Hindi, and Bengali scripts. It runs about 2x faster than GPT Image 1.5 and supports up to 4K (3,840 by 2,160). On the Artificial Analysis Image Arena, it scored 1,512 Elo against Nano Banana Pro’s 1,271, a 241-point lead.</p>
+<p>The bigger question for builders is no longer whether the model is good. It is which of the four OpenAI image endpoints to use, and what each one costs at production scale.</p>
+<p>This guide covers all four OpenAI image endpoints currently available through the Modellix unified API (<code>gpt-image-2</code>, <code>gpt-image-2-edit</code>, <code>gpt-image-1.5</code>, and <code>gpt-image-1.5-edit</code>) with pricing, parameters, and integration patterns confirmed as of May 14, 2026. Every price quoted comes from OpenAI’s official token-based rate card and the per-image translation Modellix passes through, with benchmark data sourced from the model’s official release notes and the Artificial Analysis Image Arena.</p>
+<p>The practical question this article answers: which OpenAI image model should you call in production today, and what does it cost per 1,000 images at the quality level you actually need?</p>
+<picture style="aspect-ratio: 1200 / 900; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-gpt-image-2-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-gpt-image-2-api.png" alt="gpt image 2 api cover" />
+</picture>
+
+<h2 id="What’s-new-in-GPT-Image-2-4-capability-shifts-builders-care-about"><a href="#What’s-new-in-GPT-Image-2-4-capability-shifts-builders-care-about" class="headerlink" title="What’s new in GPT Image 2: 4 capability shifts builders care about"></a>What’s new in GPT Image 2: 4 capability shifts builders care about</h2><p>The jump from GPT Image 1.5 to GPT Image 2 is not a typical version bump. According to OpenAI’s April 21, 2026 announcement, four things changed in ways that affect how teams should think about the API.</p>
+<p><strong>1. Thinking mode joins the image stack.</strong> GPT Image 2 is the first OpenAI image model to apply O-series reasoning before generation. It plans the composition (where the text goes, what the lighting should be, how elements relate) before producing pixels. OpenAI describes this as the industry’s first agentic image model. In practical terms, prompt adherence improves on layouts that previously required two or three regeneration passes.</p>
+<p><strong>2. Text rendering near 99 percent.</strong> OpenAI reports approximately 99 percent character-level accuracy across Latin, CJK, Hindi, and Bengali scripts. For comparison, Nano Banana 2 can still produce gibberish or scribble-like text in dense multi-element compositions. If your output ships into ad creatives, posters, or product banners that contain readable copy, this is the single largest reason to call GPT Image 2 over alternatives.</p>
+<p><strong>3. 4K resolution and 2x speed.</strong> The model supports outputs up to 3,840 by 2,160 (true 4K). OpenAI states generation is approximately 2x faster than GPT Image 1.5. End-to-end latency on a high-quality request lands near 3 seconds in OpenAI’s reported testing.</p>
+<p><strong>4. Multi-turn context-aware editing.</strong> The companion endpoint <code>gpt-image-2-edit</code> accepts one or more reference images plus a natural-language instruction. It preserves the unchanged regions while applying targeted edits. This is the workflow shift that matters most for production teams: you no longer regenerate from scratch for every variant.</p>
+<h2 id="The-4-OpenAI-image-endpoints-on-Modellix-when-to-call-which"><a href="#The-4-OpenAI-image-endpoints-on-Modellix-when-to-call-which" class="headerlink" title="The 4 OpenAI image endpoints on Modellix: when to call which"></a>The 4 OpenAI image endpoints on Modellix: when to call which</h2><p>OpenAI ships four production image endpoints. All four are available through one Modellix integration. You change the <code>model_id</code> parameter, not your architecture.</p>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Best use case</th>
+<th>Max resolution</th>
+<th>Edit input</th>
+<th>Price range (per image, as of May 2026)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>gpt-image-1.5</code></td>
+<td>Fast drafts, social posts, bulk variant exploration</td>
+<td>1,024 x 1,024</td>
+<td>No</td>
+<td>$0.009 to $0.133</td>
+</tr>
+<tr>
+<td><code>gpt-image-1.5-edit</code></td>
+<td>Low-cost edits to existing images</td>
+<td>1,024 x 1,024</td>
+<td>Yes</td>
+<td>$0.030 to $0.090</td>
+</tr>
+<tr>
+<td><code>gpt-image-2</code></td>
+<td>Production hero images, anything with readable text, 4K output</td>
+<td>3,840 x 2,160</td>
+<td>No</td>
+<td>$0.006 to $0.480</td>
+</tr>
+<tr>
+<td><code>gpt-image-2-edit</code></td>
+<td>Multi-turn iteration on a reference image, A&#x2F;B variants</td>
+<td>3,840 x 2,160</td>
+<td>Yes</td>
+<td>$0.030 to $0.660</td>
+</tr>
+</tbody></table>
+<p><strong>Choosing between the two generations.</strong> If your workload tolerates 1,024 x 1,024 output and does not depend on text rendering, GPT Image 1.5 remains the cheaper option per image. According to OpenAI’s December 16, 2025 release notes, GPT Image 1.5 introduced a 20 percent price reduction over GPT Image 1 and matched Imagen 4 Standard’s price while leading it on quality benchmarks. For teams already in production on 1.5, there is no forced migration. For new builds that need text, 4K, or multi-turn editing, start on GPT Image 2.</p>
+<p><strong>Choosing between text-to-image and edit.</strong> Use the base endpoint (<code>gpt-image-2</code>) when generating from scratch. Use the edit endpoint (<code>gpt-image-2-edit</code>) when iterating on an existing asset. The edit endpoint accepts up to several reference images and a prompt describing the change. It returns a new image that preserves the parts you did not ask to modify. This is significantly different from the regenerate-and-pray pattern most diffusion APIs default to.</p>
+<h2 id="GPT-Image-2-API-pricing-token-math-vs-per-image-cost-verified"><a href="#GPT-Image-2-API-pricing-token-math-vs-per-image-cost-verified" class="headerlink" title="GPT Image 2 API pricing: token math vs per-image cost (verified)"></a>GPT Image 2 API pricing: token math vs per-image cost (verified)</h2><p>OpenAI prices GPT Image 2 on a token basis. The Modellix model detail pages express the same cost per image, which is what most teams actually need to budget.</p>
+<p><strong>OpenAI token-based rate card (as of May 2026):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Token type</th>
+<th>Standard rate (per 1M tokens)</th>
+<th>Batch API rate (per 1M tokens)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Image input</td>
+<td>$8.00</td>
+<td>$4.00</td>
+</tr>
+<tr>
+<td>Cached image input</td>
+<td>$2.00</td>
+<td>$1.00</td>
+</tr>
+<tr>
+<td>Image output</td>
+<td>$30.00</td>
+<td>$15.00</td>
+</tr>
+<tr>
+<td>Text input</td>
+<td>$5.00</td>
+<td>$2.50</td>
+</tr>
+<tr>
+<td>Cached text input</td>
+<td>$1.25</td>
+<td>$0.625</td>
+</tr>
+</tbody></table>
+<p><strong>Per-image translation (as of May 2026, per Modellix model detail pages):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Quality</th>
+<th>1k output</th>
+<th>2k output</th>
+<th>4k output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Low</td>
+<td>$0.006</td>
+<td>$0.024</td>
+<td>$0.096</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>$0.053</td>
+<td>$0.120</td>
+<td>$0.240</td>
+</tr>
+<tr>
+<td>High</td>
+<td>$0.130</td>
+<td>$0.260</td>
+<td>$0.480</td>
+</tr>
+</tbody></table>
+<p>Three notes on the math.</p>
+<p>First, low quality is the default and is suitable for fast drafts. Medium is the sweet spot for most thumbnails and social assets. High is what you call when the asset ships to production.</p>
+<p>Second, OpenAI’s Batch API cuts every token category by 50 percent in exchange for asynchronous processing. If you have nightly catalog generation, ad variant pipelines, or any workload where same-second response is not required, batch routing pays for itself quickly. Per the published rate card, the math is straightforward: 1,000 medium-quality 1k images cost $53 standard, $26.50 batch.</p>
+<p>Third, multi-turn edits through <code>gpt-image-2-edit</code> include the input image as token cost. A long editing chain on a 4k reference image will charge meaningfully more than a fresh generation. Plan your asset pipeline to upload once at the lowest resolution that satisfies your edit needs.</p>
+<h2 id="GPT-Image-2-API-quick-start-a-20-line-curl-walkthrough"><a href="#GPT-Image-2-API-quick-start-a-20-line-curl-walkthrough" class="headerlink" title="GPT Image 2 API quick start: a 20-line curl walkthrough"></a>GPT Image 2 API quick start: a 20-line curl walkthrough</h2><p>Calling <code>gpt-image-2</code> through the Modellix unified API requires one POST request. The example below generates a 1024 x 1024 image at medium quality.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST https://api.modellix.ai/v1/openai/gpt-image-2 \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer YOUR_MODELLIX_API_KEY&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;prompt&quot;: &quot;A retro travel poster of Kyoto in autumn, hand-lettered title \&quot;Kyoto 2026\&quot; across the top, warm cinematic lighting, 35mm grain&quot;,</span></span><br><span class="line"><span class="string">    &quot;quality&quot;: &quot;medium&quot;,</span></span><br><span class="line"><span class="string">    &quot;size&quot;: &quot;1024x1024&quot;,</span></span><br><span class="line"><span class="string">    &quot;user&quot;: &quot;client-app-prod-01&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>Required parameters:</p>
+<ul>
+<li><code>prompt</code> (string, up to 32,000 characters). The text description of the image you want.</li>
+<li><code>quality</code> (string, optional). One of <code>low</code>, <code>medium</code>, <code>high</code>. Defaults to <code>low</code>.</li>
+<li><code>size</code> (string, optional). Output dimensions. Defaults to 1024 x 1024. Use <code>1024x1024</code>, <code>2560x1440</code>, or <code>3840x2160</code> for 1k, 2k, and 4k respectively.</li>
+<li><code>user</code> (string, optional but recommended). A stable identifier for the end user calling the model. Used by OpenAI for abuse monitoring and by Modellix for usage analytics.</li>
+</ul>
+<p>The response returns a JSON payload with a signed URL pointing to the rendered image. Cache the URL or download the asset within the TTL window.</p>
+<p>Python users can mirror the same call with the standard SDK:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os, requests</span><br><span class="line"></span><br><span class="line">resp = requests.post(</span><br><span class="line">    <span class="string">&quot;https://api.modellix.ai/v1/openai/gpt-image-2&quot;</span>,</span><br><span class="line">    headers=&#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;os.environ[<span class="string">&#x27;MODELLIX_API_KEY&#x27;</span>]&#125;</span>&quot;</span>&#125;,</span><br><span class="line">    json=&#123;</span><br><span class="line">        <span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;A retro travel poster of Kyoto in autumn, hand-lettered title across the top&quot;</span>,</span><br><span class="line">        <span class="string">&quot;quality&quot;</span>: <span class="string">&quot;high&quot;</span>,</span><br><span class="line">        <span class="string">&quot;size&quot;</span>: <span class="string">&quot;3840x2160&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    timeout=<span class="number">60</span>,</span><br><span class="line">)</span><br><span class="line">image_url = resp.json()[<span class="string">&quot;output&quot;</span>][<span class="string">&quot;url&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<p>GPT Image 2 does not support transparent backgrounds (as of May 2026). If your pipeline needs alpha channel output, route those assets to <code>gpt-image-1.5-edit</code> or a different model entirely.</p>
+<h2 id="Multi-turn-editing-with-gpt-image-2-edit-3-production-patterns"><a href="#Multi-turn-editing-with-gpt-image-2-edit-3-production-patterns" class="headerlink" title="Multi-turn editing with gpt-image-2-edit: 3 production patterns"></a>Multi-turn editing with gpt-image-2-edit: 3 production patterns</h2><p>The <code>gpt-image-2-edit</code> endpoint is the part of the release that affects pipeline design most. Three patterns capture the bulk of real production use.</p>
+<p><strong>Pattern 1: Hero image iteration.</strong> Generate one master image at 4k high quality. Send it as the reference image to <code>gpt-image-2-edit</code> for downstream variants. Each edit costs less than a fresh 4k generation, and the unchanged regions (face, product, background composition) stay consistent.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">resp = requests.post(</span><br><span class="line">    <span class="string">&quot;https://api.modellix.ai/v1/openai/gpt-image-2-edit&quot;</span>,</span><br><span class="line">    headers=&#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;api_key&#125;</span>&quot;</span>&#125;,</span><br><span class="line">    json=&#123;</span><br><span class="line">        <span class="string">&quot;images&quot;</span>: [<span class="string">&quot;https://cdn.example.com/hero-master.png&quot;</span>],</span><br><span class="line">        <span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;Change the background to a sunset sky, keep the product centered&quot;</span>,</span><br><span class="line">        <span class="string">&quot;size&quot;</span>: <span class="string">&quot;3840x2160&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    timeout=<span class="number">120</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Pattern 2: Product catalog variants.</strong> Maintain a single source-of-truth image per SKU. Use the edit endpoint to produce color, angle, or context variants without retraining or restyling from scratch. According to OpenAI’s release notes, the model preserves identity (product shape, label placement, lighting consistency) across edits. This replaces the previous workflow of training a per-SKU embedding or running a separate masking pipeline.</p>
+<p><strong>Pattern 3: A&#x2F;B test creative.</strong> Send the same reference image with different edit prompts to generate copy or style variants. Run the variants through your usual A&#x2F;B framework. Multi-turn editing is significantly faster than regenerating from text alone, and the resulting variants share enough visual DNA to make A&#x2F;B signal cleaner.</p>
+<p>A note on aspect ratios. The edit endpoint auto-detects aspect ratio from the input image if you do not specify one. Pass <code>aspect_ratio</code> explicitly when the output needs to differ from the source (for example, social square crop from a landscape hero).</p>
+<h2 id="When-GPT-Image-2-is-the-right-call-and-when-it-is-not"><a href="#When-GPT-Image-2-is-the-right-call-and-when-it-is-not" class="headerlink" title="When GPT Image 2 is the right call (and when it is not)"></a>When GPT Image 2 is the right call (and when it is not)</h2><p>Not every image workload should route to GPT Image 2. The following decision table reflects the model’s strengths and weaknesses as of May 2026.</p>
+<table>
+<thead>
+<tr>
+<th>Workload</th>
+<th>GPT Image 2 fit</th>
+<th>Better option (if any)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ad creatives with readable text</td>
+<td>Strong</td>
+<td>None close, GPT Image 2 leads on text</td>
+</tr>
+<tr>
+<td>Product banners with brand copy</td>
+<td>Strong</td>
+<td>None close</td>
+</tr>
+<tr>
+<td>UI mockups and dashboard layouts</td>
+<td>Strong</td>
+<td>None close, world knowledge is solid</td>
+</tr>
+<tr>
+<td>Multi-turn iteration on a hero image</td>
+<td>Strong</td>
+<td>None, this is the killer pattern</td>
+</tr>
+<tr>
+<td>Photorealistic portraits, cinematic skin</td>
+<td>Weaker</td>
+<td>Nano Banana Pro Edit for portrait realism</td>
+</tr>
+<tr>
+<td>Outputs needing transparent backgrounds</td>
+<td>Not supported</td>
+<td>Stable Diffusion 3.5, Recraft V3</td>
+</tr>
+<tr>
+<td>Pure artistic &#x2F; illustrative output</td>
+<td>Mixed</td>
+<td>Midjourney v7 still leads on artistic feel</td>
+</tr>
+<tr>
+<td>Bulk low-quality drafts at $0.01 per image</td>
+<td>Acceptable</td>
+<td>Imagen 4 Fast or Z-Image Turbo for thrift</td>
+</tr>
+</tbody></table>
+<p>The strongest claim to make about GPT Image 2 is that it now produces commercially usable output on the first attempt for jobs that previously required two or three regenerations. For ads, banners, posters, and any composition with text, this changes the unit economics meaningfully.</p>
+<p>The honest counterclaim is that GPT Image 2 is not the cheapest. If your workload is bulk volume at low quality (catalog enrichment, thumbnail generation, background variants in the hundreds of thousands), the per-image math favors lighter models such as Imagen 4 Fast, Wan 2.2 T2I, or Z-Image Turbo.</p>
+<h2 id="Production-considerations-rate-limits-latency-and-logging"><a href="#Production-considerations-rate-limits-latency-and-logging" class="headerlink" title="Production considerations: rate limits, latency, and logging"></a>Production considerations: rate limits, latency, and logging</h2><p>Three operational notes for teams moving GPT Image 2 from prototype to production.</p>
+<p><strong>Rate limits.</strong> OpenAI tier-based rate limits apply at the underlying model. Modellix routes traffic transparently, which means your Modellix account tier determines the effective ceiling. Check the Modellix console for current per-model RPM and TPM caps. As of May 2026, Tier 1 accounts see a 4 to 6 second cold start on the first request, then warm latency around 3 seconds for medium quality 1k outputs.</p>
+<p><strong>Latency expectations.</strong> End-to-end latency at standard rate is approximately 3 seconds for medium quality 1k outputs and 6 to 9 seconds for high quality 4k outputs. The thinking mode adds 1 to 2 seconds upfront on complex prompts. If your front-end UX requires sub-second response, do not block on synchronous calls; use the Modellix webhook callback pattern or the Batch API for asynchronous workloads.</p>
+<p><strong>Logging and cost transparency.</strong> Modellix exposes per-image token cost and quality breakdown in the console billing logs. This matters because GPT Image 2 token math compounds quickly across multi-turn edit chains. Reviewing per-call cost weekly catches runaway prompt expansion before it shows up on the invoice. The parent company JG Group is NASDAQ-listed, which gives some teams the audit trail and compliance posture they need when running OpenAI workloads in regulated industries.</p>
+<h2 id="Frequently-asked-questions-about-GPT-Image-2-API-May-2026"><a href="#Frequently-asked-questions-about-GPT-Image-2-API-May-2026" class="headerlink" title="Frequently asked questions about GPT Image 2 API (May 2026)"></a>Frequently asked questions about GPT Image 2 API (May 2026)</h2><p><strong>Q1: Is GPT Image 2 available through an API today?</strong></p>
+<p>Yes. OpenAI opened the <code>gpt-image-2</code> API in early May 2026, following the ChatGPT product launch on April 21. Modellix routes the model through its unified API at <code>https://api.modellix.ai/v1/openai/gpt-image-2</code>. Both the base text-to-image endpoint and the <code>gpt-image-2-edit</code> companion are live as of May 14, 2026.</p>
+<p><strong>Q2: How much does GPT Image 2 cost per image at each quality level?</strong></p>
+<p>As of May 2026, OpenAI’s token-based pricing translates to approximately $0.006 per image at low quality (1k), $0.053 at medium (1k), and $0.130 at high (1k). At 4k, those numbers scale to $0.096, $0.240, and $0.480 respectively. Modellix passes the same per-image cost through with no per-call markup; volume discounts apply at higher tiers.</p>
+<p><strong>Q3: What is the difference between gpt-image-2 and gpt-image-2-edit?</strong></p>
+<p><code>gpt-image-2</code> generates from a text prompt with no reference image. <code>gpt-image-2-edit</code> accepts one or more reference images plus a prompt, and produces an edited result that preserves the unchanged regions. Use the base endpoint for fresh generation, use the edit endpoint when iterating on an existing asset.</p>
+<p><strong>Q4: Does GPT Image 2 support transparent backgrounds?</strong></p>
+<p>No. As of May 2026, neither <code>gpt-image-2</code> nor <code>gpt-image-2-edit</code> supports alpha channel output. If your pipeline requires transparent backgrounds, route those requests to a different model such as Recraft V3 or process the GPT Image 2 output through a downstream masking step.</p>
+<p><strong>Q5: How does GPT Image 2 compare to Nano Banana Pro and Seedream 5.0?</strong></p>
+<p>On text rendering and prompt adherence to complex layouts, GPT Image 2 leads, scoring 1,512 Elo on the Artificial Analysis Image Arena (as of May 2026) against Nano Banana Pro’s 1,271. On photorealistic portraits and cinematic skin rendering, Nano Banana Pro Edit is often preferred. Seedream 5.0 Lite sits between the two on quality and is the lowest-cost option of the three at medium quality. All three are available through one Modellix integration if you want to A&#x2F;B test on the same prompt.</p>
+<p><strong>Q6: Can I migrate from DALL-E 3 to GPT Image 2 without rewriting my code?</strong></p>
+<p>Mostly yes. The Modellix unified API exposes a consistent request shape across DALL-E 3, GPT Image 1.5, GPT Image 2, and other OpenAI image endpoints. Change the model identifier in your request payload from <code>dall-e-3</code> to <code>gpt-image-2</code>, keep the prompt and size parameters, and the call works. Two adjustments are worth making: GPT Image 2 supports <code>quality: high</code> (DALL-E 3 did not), and prompt capacity grew to 32,000 characters, so you can pass more detailed instructions.</p>
+<h2 id="Access-all-4-OpenAI-image-models-via-one-API"><a href="#Access-all-4-OpenAI-image-models-via-one-API" class="headerlink" title="Access all 4 OpenAI image models via one API"></a>Access all 4 OpenAI image models via one API</h2><p>Modellix covers <code>gpt-image-1.5</code>, <code>gpt-image-1.5-edit</code>, <code>gpt-image-2</code>, and <code>gpt-image-2-edit</code> under a single integration, alongside Nano Banana Pro, Seedream 5.0 Lite, Kling V3, Veo 3.1, and 130+ other image and video models. Transparent per-image pricing. No separate OpenAI account management.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Get API Access</h3><p class="view-docs-tag-desc">Sign in to Modellix and start calling GPT Image 2 today.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Sources-and-methodology"><a href="#Sources-and-methodology" class="headerlink" title="Sources and methodology"></a>Sources and methodology</h2><p>All pricing, capability, and benchmark claims in this article are sourced from:</p>
+<ol>
+<li>OpenAI, “Introducing ChatGPT Images 2.0” (April 21, 2026): <a target="_blank" rel="noopener" href="https://openai.com/index/introducing-chatgpt-images-2-0/">https://openai.com/index/introducing-chatgpt-images-2-0/</a></li>
+<li>OpenAI API model documentation, <code>gpt-image-2</code> (accessed May 14, 2026): <a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/models/gpt-image-2">https://developers.openai.com/api/docs/models/gpt-image-2</a></li>
+<li>OpenAI API Pricing page (accessed May 14, 2026): <a target="_blank" rel="noopener" href="https://openai.com/api/pricing/">https://openai.com/api/pricing/</a></li>
+<li>Artificial Analysis Image Arena (accessed May 14, 2026): <a target="_blank" rel="noopener" href="https://artificialanalysis.ai/image-arena">https://artificialanalysis.ai/image-arena</a></li>
+<li>Modellix model detail pages for the four OpenAI endpoints (accessed May 14, 2026)</li>
+</ol>
+<p>Article last updated: May 14, 2026. Pricing and rate limits change frequently. Verify against OpenAI’s official rate card before committing to volume contracts.</p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/OpenAI/" class="tag-pill tag-pill--sm">OpenAI</a>
+            
+              <a href="/blog/tags/AI-Image/" class="tag-pill tag-pill--sm">AI Image</a>
+            
+              <a href="/blog/tags/API/" class="tag-pill tag-pill--sm">API</a>
+            
+              <a href="/blog/tags/Model-Guide/" class="tag-pill tag-pill--sm">Model Guide</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/hailuo-ai-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-hailuo-ai-api.webp" alt="Hailuo AI API: Pricing, Hailuo 02 vs 2.3, Access (2026)" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Model Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Hailuo AI API: Pricing, Hailuo 02 vs 2.3, Access (2026)</h3>
+          <time class="related-article-date">June 1, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/wan-2-7-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-wan-2-7-api.webp" alt="Wan 2.7 API Guide: Pricing, T2V and I2V Access (2026)" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Model Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Wan 2.7 API Guide: Pricing, T2V and I2V Access (2026)</h3>
+          <time class="related-article-date">May 29, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/seedream-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-seedream-api.webp" alt="Seedream API Guide: 4K Images, Pricing, and Variants (2026)" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Model Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Seedream API Guide: 4K Images, Pricing, and Variants (2026)</h3>
+          <time class="related-article-date">April 30, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/gpt-image-2-api/&text=GPT%20Image%202%20API%3A%20Pricing%2C%20All%204%20OpenAI%20Image%20Models%2C%20and%20Production%20Setup%20(2026)" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/gpt-image-2-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/gpt-image-2-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
