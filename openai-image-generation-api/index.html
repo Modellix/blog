@@ -1,0 +1,530 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenAI Image Generation API: The 2026 Developer Guide — Modellix Blog</title>
+  <meta name="description" content="The OpenAI image generation API is GPT Image now — DALL·E is retired and only gpt-image-2 is current. Models, both APIs with code, and per-image cost.">
+  <meta name="keywords" content="openai image generation api, openai image generation, gpt image api, openai image generation models, dalle api, openai image edit api, chatgpt image api">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/openai-image-generation-api/">
+  <meta name="description" content="The OpenAI image generation API is GPT Image now — DALL·E is retired and only gpt-image-2 is current. Models, both APIs with code, and per-image cost.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenAI Image Generation API: The 2026 Developer Guide — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/openai-image-generation-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="The OpenAI image generation API is GPT Image now — DALL·E is retired and only gpt-image-2 is current. Models, both APIs with code, and per-image cost.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-openai-image-generation-api.webp">
+<meta property="article:published_time" content="2026-07-23T03:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-23T03:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Image API">
+<meta property="article:tag" content="Developer Guide">
+<meta property="article:tag" content="OpenAI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-openai-image-generation-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"OpenAI Image Generation API: The 2026 Developer Guide","description":"The OpenAI image generation API is GPT Image now — DALL·E is retired and only gpt-image-2 is current. Models, both APIs with code, and per-image cost.","datePublished":"2026-07-23T03:00:00.000Z","dateModified":"2026-07-23T03:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/openai-image-generation-api/","image":"https://statics.mylandingpages.co/static/modellix/image/cover-openai-image-generation-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">The OpenAI Image Generation API in 2026: Models, Code, and Cost</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">The OpenAI Image Generation API in 2026: Models, Code, and Cost</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-07-23T03:00:00.000Z">July 23, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
+            
+              <a href="/blog/tags/OpenAI/" class="tag-pill tag-pill--sm">OpenAI</a>
+            
+              <a href="/blog/tags/Developer-Guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.srcgptbots.com/blog/author/20260409/modellix-blog-author-official@2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>Most guides to the OpenAI image generation API are quietly out of date — they build on DALL·E 3 (shut down May 2026) or gpt-image-1 (retiring October 2026). Here&#39;s the current picture from OpenAI&#39;s own docs: the image API is the GPT Image family, and only gpt-image-2 isn&#39;t deprecated. This guide covers the live models, both ways to call it with runnable code, per-image cost, and the setup gotchas — so you integrate against something that will still be there next quarter.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <h1 id="The-OpenAI-Image-Generation-API-in-2026-Models-Code-and-Cost"><a href="#The-OpenAI-Image-Generation-API-in-2026-Models-Code-and-Cost" class="headerlink" title="The OpenAI Image Generation API in 2026: Models, Code, and Cost"></a>The OpenAI Image Generation API in 2026: Models, Code, and Cost</h1><picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/cover-openai-image-generation-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/cover-openai-image-generation-api.png" alt="Modellix cover: a glossy code terminal showing an OpenAI images API call, flow lines connecting to generated image thumbnails, headline OpenAI Image Generation API, The 2026 Developer Guide" />
+</picture>
+
+<p>Most guides to the OpenAI image generation API are quietly out of date. They walk you through DALL·E 3 — which OpenAI shut down on May 12, 2026 — or they build on <code>gpt-image-1</code>, which is scheduled to be turned off on October 23. If you’re integrating today, that matters: pick the wrong model and your code stops working within months.</p>
+<p>Here’s the current picture, checked against <a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/guides/image-generation">OpenAI’s own image generation docs</a> in July 2026. The image API is now the <strong>GPT Image</strong> family, and within it there’s really one model you should build on: <strong><a href="https://www.modellix.ai/blog/gpt-image-2-api/"><code>gpt-image-2</code></a></strong>. This guide covers the live model lineup, what the API can do, the two ways to call it (with runnable code), what it costs per image, and the setup gotchas that trip people up — so you integrate against something that will still be there next quarter. (If you’re weighing OpenAI against the broader field, our <a href="https://www.modellix.ai/blog/text-to-image-api-guide/">text-to-image API guide</a> covers the whole category.)</p>
+<h2 id="The-current-OpenAI-image-models"><a href="#The-current-OpenAI-image-models" class="headerlink" title="The current OpenAI image models"></a>The current OpenAI image models</h2><p>OpenAI has consolidated hard. As of July 2026, <strong><code>gpt-image-2</code> is the only image model that isn’t deprecated</strong> — it’s OpenAI’s recommended replacement for everything else. The rest are either gone or on a shutdown schedule:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Status</th>
+<th>Shutdown</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>gpt-image-2</strong></td>
+<td><strong>Current — build on this</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>gpt-image-1.5</td>
+<td>Deprecated</td>
+<td>Dec 1, 2026</td>
+</tr>
+<tr>
+<td>gpt-image-1</td>
+<td>Deprecated</td>
+<td>Oct 23, 2026</td>
+</tr>
+<tr>
+<td>gpt-image-1-mini</td>
+<td>Deprecated</td>
+<td>Dec 1, 2026</td>
+</tr>
+<tr>
+<td>DALL·E 3 &#x2F; DALL·E 2</td>
+<td><strong>Retired</strong></td>
+<td>May 12, 2026</td>
+</tr>
+</tbody></table>
+<picture style="width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/evidence-openai-deprecations.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/evidence-openai-deprecations.png" alt="OpenAI deprecations page showing gpt-image-1.5, gpt-image-1-mini and chatgpt-image-latest shutting down December 1, 2026 with gpt-image-2 as the replacement" />
+</picture>
+
+<p><em>OpenAI’s deprecations page, captured July 23, 2026 — the older GPT Image models are being retired, with gpt-image-2 named as the replacement.</em></p>
+<p>So if you’re reading a tutorial that opens the <code>dall-e-3</code> or <code>gpt-image-1</code> model string, close it — those calls either already fail or will soon. The one exception worth knowing: <code>gpt-image-1.5</code> is still live until December and is the model to reach for if you specifically need transparent backgrounds (more on that below). For everything else, <code>gpt-image-2</code> is the answer.</p>
+<h2 id="What-the-OpenAI-image-API-can-do"><a href="#What-the-OpenAI-image-API-can-do" class="headerlink" title="What the OpenAI image API can do"></a>What the OpenAI image API can do</h2><p>Beyond plain text-to-image, the API covers the operations most products actually need:</p>
+<ul>
+<li><strong>Generation</strong> — a text prompt in, an image out, at 1024×1024, 1024×1536, or 1536×1024.</li>
+<li><strong>Editing and inpainting</strong> — pass a source image plus an optional mask to change part of an image while keeping the rest. An <code>input_fidelity</code> control governs how closely the output preserves the input; <code>gpt-image-2</code> processes inputs at high fidelity automatically. (For a deeper look at edit workflows, see our <a href="https://www.modellix.ai/blog/image-manipulation-api-guide/">image manipulation API guide</a>.)</li>
+<li><strong>Multi-image input</strong> — combine several reference images into one result.</li>
+<li><strong>Moderation control</strong> — a <code>moderation</code> parameter set to <code>auto</code> (standard) or <code>low</code> (less restrictive).</li>
+</ul>
+<p>One real limitation to plan around: <strong><code>gpt-image-2</code> does not support transparent backgrounds.</strong> If you need a cut-out PNG with alpha — product shots, logos, sprites — you’ll want <code>gpt-image-1.5</code>, which natively supports transparency (and can merge up to 16 images), for as long as it’s live. It’s the one place the newest model isn’t the automatic choice.</p>
+<h2 id="How-to-call-the-OpenAI-image-generation-API-two-paths"><a href="#How-to-call-the-OpenAI-image-generation-API-two-paths" class="headerlink" title="How to call the OpenAI image generation API: two paths"></a>How to call the OpenAI image generation API: two paths</h2><p>There are two distinct ways to generate an image, and picking the right one matters more than it sounds.</p>
+<p><strong>The Image API</strong> is the direct, single-purpose endpoint — <code>POST /v1/images/generations</code> and <code>/v1/images/edits</code>. (The old <code>/variations</code> endpoint only ever worked with DALL·E 2 and retired along with it, so there’s no current model behind it.) It returns the image as base64 in <code>data[0].b64_json</code>. This is what you want for a straightforward “prompt in, file out” job:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openai <span class="keyword">import</span> OpenAI</span><br><span class="line">client = OpenAI()</span><br><span class="line"></span><br><span class="line">result = client.images.generate(</span><br><span class="line">    model=<span class="string">&quot;gpt-image-2&quot;</span>,</span><br><span class="line">    prompt=<span class="string">&quot;A children&#x27;s book illustration of a veterinarian&quot;</span>,</span><br><span class="line">    size=<span class="string">&quot;1024x1024&quot;</span>,</span><br><span class="line">    quality=<span class="string">&quot;medium&quot;</span>,           <span class="comment"># low | medium | high | auto</span></span><br><span class="line">    n=<span class="number">1</span>,                        <span class="comment"># number of images to return</span></span><br><span class="line">    output_format=<span class="string">&quot;png&quot;</span>,       <span class="comment"># png (default) | jpeg | webp</span></span><br><span class="line">)</span><br><span class="line">image_b64 = result.data[<span class="number">0</span>].b64_json   <span class="comment"># base64-encoded PNG</span></span><br></pre></td></tr></table></figure>
+
+<p>Editing works the same way — pass a source image and, optionally, a mask marking the region to regenerate:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">edited = client.images.edit(</span><br><span class="line">    model=<span class="string">&quot;gpt-image-2&quot;</span>,</span><br><span class="line">    image=<span class="built_in">open</span>(<span class="string">&quot;room.png&quot;</span>, <span class="string">&quot;rb&quot;</span>),</span><br><span class="line">    mask=<span class="built_in">open</span>(<span class="string">&quot;mask.png&quot;</span>, <span class="string">&quot;rb&quot;</span>),    <span class="comment"># transparent pixels in the mask get repainted</span></span><br><span class="line">    prompt=<span class="string">&quot;Replace the sofa with a green velvet one&quot;</span>,</span><br><span class="line">    input_fidelity=<span class="string">&quot;high&quot;</span>,          <span class="comment"># keep the rest of the room faithful</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>Reach for <code>edits</code> when you’re changing an existing image (product swaps, background replacement, retouching); use <code>generations</code> when you’re creating from scratch.</p>
+<p><strong>The Responses API</strong> invokes image generation as a <em>tool</em> inside a normal model call, which lets the model reason about the request, edit across turns, and stream partial images:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">response = client.responses.create(</span><br><span class="line">    model=<span class="string">&quot;gpt-5.6&quot;</span>,</span><br><span class="line">    <span class="built_in">input</span>=<span class="string">&quot;Generate an image of a gray tabby cat hugging an otter&quot;</span>,</span><br><span class="line">    tools=[&#123;<span class="string">&quot;type&quot;</span>: <span class="string">&quot;image_generation&quot;</span>&#125;],</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>Rule of thumb: use the <strong>Image API</strong> for deterministic, high-volume generation where you just want the file; use the <strong>Responses API</strong> when the image is part of a conversation, needs multi-turn editing, or you want to stream previews (<code>partial_images</code>, 0–3). Both ultimately hand you base64 image data to decode and save — the Image API as <code>data[0].b64_json</code>, the Responses API inside the image-tool output.</p>
+<h2 id="What-it-costs-to-run"><a href="#What-it-costs-to-run" class="headerlink" title="What it costs to run"></a>What it costs to run</h2><p>Pricing is per image, and it’s driven by the model and the quality tier you pick. From OpenAI’s own cost table, for a standard 1024×1024 output:</p>
+<table>
+<thead>
+<tr>
+<th>Model (1024²)</th>
+<th>Low</th>
+<th>Medium</th>
+<th>High</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>gpt-image-2</strong></td>
+<td>$0.006</td>
+<td>$0.053</td>
+<td><strong>$0.211</strong></td>
+</tr>
+<tr>
+<td>gpt-image-1.5</td>
+<td>$0.009</td>
+<td>$0.034</td>
+<td>$0.133</td>
+</tr>
+<tr>
+<td>gpt-image-1-mini</td>
+<td>$0.005</td>
+<td>$0.011</td>
+<td>$0.036</td>
+</tr>
+</tbody></table>
+<picture style="width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/evidence-openai-image-pricing.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/evidence-openai-image-pricing.png" alt="OpenAI image pricing table showing gpt-image-2 at $0.006 low, $0.053 medium, $0.211 high per 1024px image, and gpt-image-1-mini from $0.005" />
+</picture>
+
+<p><em>OpenAI’s per-image pricing, captured July 23, 2026 — gpt-image-2 runs $0.006 (low) to $0.211 (high) at 1024×1024. Rates can change; confirm against the live page.</em></p>
+<p>The spread is enormous — a high-quality <code>gpt-image-2</code> render costs about <strong>35× a low-quality one</strong> — so quality tier, not model choice, is the lever that moves your bill. Under the hood it’s token-metered (gpt-image-2 output tokens run $30 per million), but the per-image figures above are the numbers to budget with. Two things to note before you commit: <strong>there’s no free image tier on the API</strong> — every generation is billed (the free image generation inside the ChatGPT app is a separate consumer product, not API access) — and you’ll likely need to complete <strong>API Organization Verification</strong> in your developer console before GPT Image models will run at all. Build that verification step into your setup, not your launch day. (Wondering how OpenAI stacks up on price across providers? See our <a href="https://www.modellix.ai/blog/cheapest-ai-api/">cheapest AI API breakdown</a>.)</p>
+<h2 id="Getting-started-and-your-access-options"><a href="#Getting-started-and-your-access-options" class="headerlink" title="Getting started, and your access options"></a>Getting started, and your access options</h2><p>The straightforward path is direct: verify your organization, drop in your API key, and call <code>client.images.generate</code> with <code>gpt-image-2</code>. That’s the reference integration and, if OpenAI is the only provider you need, the right one.</p>
+<p>If you’re evaluating OpenAI’s image models alongside others — Google’s <a href="https://www.modellix.ai/blog/nano-banana-price/">Gemini image models</a>, say, or Flux — you can also reach them through an aggregation layer on one key, which is handy while you’re still comparing. <a href="https://www.modellix.ai/series/gpt-image">Modellix</a>, for instance, carries four OpenAI image models — <code>gpt-image-2</code> and <code>gpt-image-1.5</code> plus their edit variants — metered per image ($0.0041–$0.3943 for gpt-image-2), with per-call cost and latency logging. Two honest limits: it carries <strong>only those four</strong> — not <code>gpt-image-1</code>, <code>gpt-image-1-mini</code>, DALL·E, or Sora — so for anything outside GPT Image you’d go direct; and it’s a distribution layer for OpenAI’s models, not a cheaper or exclusive source. What it buys you is one integration across providers while you decide, not a lower unit price.</p>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p><strong>Is DALL·E still available through the API?</strong><br>No. DALL·E 2 and DALL·E 3 were shut down on May 12, 2026. Any <code>dall-e-3</code> API call now fails; <code>gpt-image-2</code> is OpenAI’s replacement.</p>
+<p><strong>Which OpenAI image model should I use in 2026?</strong><br><code>gpt-image-2</code> — it’s the only one not deprecated. The exception is transparent backgrounds, which need <code>gpt-image-1.5</code> (live until December 1, 2026).</p>
+<p><strong>Is the OpenAI image generation API free?</strong><br>No. There’s no free image tier; every generation is billed per image, from about $0.005 (mini, low quality) to $0.211 (gpt-image-2, high quality) at 1024×1024.</p>
+<p><strong>What happened to gpt-image-1 and gpt-image-1-mini?</strong><br>Both are deprecated. <code>gpt-image-1</code> shuts down October 23, 2026 and the <code>-mini</code> on December 1 — OpenAI points all of them to <code>gpt-image-2</code>.</p>
+<p><strong>Can I edit or inpaint images with the API?</strong><br>Yes — the <code>/v1/images/edits</code> endpoint (or the Responses API’s image tool) takes a source image and optional mask, with an <code>input_fidelity</code> control for how much of the original to preserve.</p>
+<p><strong>Do I need anything special to use GPT Image models?</strong><br>Usually API Organization Verification, completed in your developer console. Without it, calls to GPT Image models can be blocked.</p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
+            
+              <a href="/blog/tags/OpenAI/" class="tag-pill tag-pill--sm">OpenAI</a>
+            
+              <a href="/blog/tags/Developer-Guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/pixverse-pricing/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://statics.mylandingpages.co/static/modellix/image/cover-pixverse-pricing.webp" alt="PixVerse Pricing: The Real Per-Second Cost (2026)" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">PixVerse Pricing: The Real Per-Second Cost (2026)</h3>
+          <time class="related-article-date" datetime="2026-07-23T02:00:00.000Z">July 23, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/cheapest-ai-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-cheapest-ai-api.webp" alt="Cheapest AI API for Images and Video (2026)" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Cheapest AI API for Images and Video (2026)</h3>
+          <time class="related-article-date" datetime="2026-07-22T09:00:00.000Z">July 22, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/nano-banana-pro-pricing/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-nano-banana-pro-pricing.webp" alt="Nano Banana Pro Pricing: The Real Per-Image Cost (2026)" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Nano Banana Pro Pricing: The Real Per-Image Cost (2026)</h3>
+          <time class="related-article-date" datetime="2026-07-22T08:00:00.000Z">July 22, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/openai-image-generation-api/&text=OpenAI%20Image%20Generation%20API%3A%20The%202026%20Developer%20Guide" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/openai-image-generation-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/openai-image-generation-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

@@ -104,5 +104,59 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  // Image zoom: click to enlarge images inside post content
+  var postContent = document.querySelector('.post-content');
+  if (postContent) {
+    var zoomableImages = Array.prototype.filter.call(
+      postContent.querySelectorAll('img'),
+      function (img) {
+        return !img.hasAttribute('data-no-zoom') && !img.closest('a, button');
+      }
+    );
+    if (zoomableImages.length > 0) {
+      var lightbox = document.createElement('div');
+      lightbox.className = 'image-lightbox';
+      lightbox.setAttribute('role', 'dialog');
+      lightbox.setAttribute('aria-modal', 'true');
+      lightbox.setAttribute('aria-label', 'Image preview');
+      lightbox.innerHTML =
+        '<button class="image-lightbox-close" aria-label="Close"><i data-lucide="x"></i></button>' +
+        '<img class="image-lightbox-img" alt="">';
+      document.body.appendChild(lightbox);
+
+      var lightboxImg = lightbox.querySelector('.image-lightbox-img');
+      var lightboxClose = lightbox.querySelector('.image-lightbox-close');
+
+      function openLightbox(src, alt) {
+        lightboxImg.src = src;
+        lightboxImg.alt = alt || '';
+        lightbox.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+        lucide.createIcons();
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('is-open');
+        document.body.style.overflow = '';
+        lightboxImg.src = '';
+      }
+
+      zoomableImages.forEach(function (img) {
+        img.classList.add('post-img-zoomable');
+        img.addEventListener('click', function () {
+          openLightbox(img.currentSrc || img.src, img.alt);
+        });
+      });
+
+      lightbox.addEventListener('click', function (e) {
+        if (e.target === lightbox || e.target === lightboxClose) closeLightbox();
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+      });
+    }
+  }
+
   lucide.createIcons();
 });
