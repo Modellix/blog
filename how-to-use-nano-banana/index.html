@@ -1,0 +1,561 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Use Nano Banana: Integration Guide — Modellix Blog</title>
+  <meta name="description" content="How to use Nano Banana, Google&#39;s Gemini image model, from your code: get an API key, POST a prompt, poll the async task, then save the image. Runnable curl.">
+  <meta name="keywords" content="how to use nano banana, nano banana api, nano banana tutorial, nano banana integration, nano banana api example, nano banana code">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/how-to-use-nano-banana/">
+  <meta name="description" content="How to use Nano Banana, Google&#39;s Gemini image model, from your code: get an API key, POST a prompt, poll the async task, then save the image. Runnable curl.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Use Nano Banana: Integration Guide — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/how-to-use-nano-banana/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="How to use Nano Banana, Google&#39;s Gemini image model, from your code: get an API key, POST a prompt, poll the async task, then save the image. Runnable curl.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-how-to-use-nano-banana.webp">
+<meta property="article:published_time" content="2026-07-24T06:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-24T07:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Image API">
+<meta property="article:tag" content="Google">
+<meta property="article:tag" content="Nano Banana">
+<meta property="article:tag" content="Tutorial">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-how-to-use-nano-banana.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"How to Use Nano Banana: Integration Guide","description":"How to use Nano Banana, Google's Gemini image model, from your code: get an API key, POST a prompt, poll the async task, then save the image. Runnable curl.","datePublished":"2026-07-24T06:00:00.000Z","dateModified":"2026-07-24T07:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/how-to-use-nano-banana/","image":"https://img.modellix.ai/en/article/cover-how-to-use-nano-banana.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">How To Use Nano Banana: A Step-by-Step Integration Guide (2026)</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">How To Use Nano Banana: A Step-by-Step Integration Guide (2026)</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-07-24T06:00:00.000Z">July 24, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
+            
+              <a href="/blog/tags/Google/" class="tag-pill tag-pill--sm">Google</a>
+            
+              <a href="/blog/tags/Tutorial/" class="tag-pill tag-pill--sm">Tutorial</a>
+            
+              <a href="/blog/tags/Nano-Banana/" class="tag-pill tag-pill--sm">Nano Banana</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>Nano Banana is Google&#39;s nickname for Gemini&#39;s native image generation — and calling it from your own code is a four-step loop, not a mystery. This guide walks the whole path: get an API key, POST a prompt, poll the asynchronous task, then save the image. Runnable curl for both the official Gemini API and a unified API, with the async wrinkle most tutorials skip made explicit.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <h1 id="How-To-Use-Nano-Banana-A-Step-by-Step-Integration-Guide-2026"><a href="#How-To-Use-Nano-Banana-A-Step-by-Step-Integration-Guide-2026" class="headerlink" title="How To Use Nano Banana: A Step-by-Step Integration Guide (2026)"></a>How To Use Nano Banana: A Step-by-Step Integration Guide (2026)</h1><picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-how-to-use-nano-banana.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-how-to-use-nano-banana.png" alt="Modellix cover illustration for a step-by-step guide on how to use Nano Banana, Google's Gemini image model, from your own code" />
+</picture>
+
+<p>If you want to <strong>use Nano Banana</strong> from your own code, the short version is this: Nano Banana is Google’s name for Gemini’s native image generation, and you reach it one of two ways — Google’s official Gemini API, or a unified API such as Modellix that puts many image models behind one key. Either way the code path is the same shape: get an API key, send a request with your prompt, and get an image back. The one wrinkle most tutorials skip is that image generation is an <em>asynchronous</em> job — you submit a task, then poll for the result — and this guide walks that whole loop end to end.</p>
+<p>Everything below is verified against the providers’ own docs on <strong>July 23, 2026</strong>. Model names and prices move, so treat the numbers as a dated snapshot and re-check the linked pages before you ship.</p>
+<h2 id="What-Nano-Banana-actually-is-30-seconds"><a href="#What-Nano-Banana-actually-is-30-seconds" class="headerlink" title="What Nano Banana actually is (30 seconds)"></a>What Nano Banana actually is (30 seconds)</h2><p>“Nano Banana” is a nickname, not a separate product. In <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/image-generation">Google’s own words</a>, “Nano Banana is the name for Gemini’s native image generation capabilities.” So when you use Nano Banana, you are using a Gemini image model under the hood. Google is the model maker here; the API you call is just how you reach it.</p>
+<p>The <a href="https://www.modellix.ai/series/nano-banana">Nano Banana family</a> maps to concrete Gemini model IDs:</p>
+<table>
+<thead>
+<tr>
+<th>Nano Banana name</th>
+<th>Underlying Gemini model ID</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Nano Banana (base)</td>
+<td><code>gemini-2.5-flash-image</code> (legacy)</td>
+<td>Original fast creative model, superseded by 2</td>
+</tr>
+<tr>
+<td>Nano Banana 2</td>
+<td><code>gemini-3.1-flash-image</code></td>
+<td>Generalist workhorse, fast text-to-image</td>
+</tr>
+<tr>
+<td>Nano Banana 2 Lite</td>
+<td><code>gemini-3.1-flash-lite-image</code></td>
+<td>Cheapest&#x2F;fastest, high-volume drafts</td>
+</tr>
+<tr>
+<td>Nano Banana Pro</td>
+<td><code>gemini-3-pro-image</code></td>
+<td>Highest fidelity, complex compositions</td>
+</tr>
+</tbody></table>
+<p>For most integration work you will call <strong>Nano Banana 2</strong> (<code>gemini-3.1-flash-image</code>), the balanced default. The rest of this guide uses it as the worked example.</p>
+<p><strong>Which family member should you call?</strong> A quick rule of thumb, taken from the models’ own routing notes: default to <strong>Nano Banana 2</strong> for general fast text-to-image; drop to <strong>Nano Banana 2 Lite</strong> when cost and throughput matter more than peak quality (high-volume batches, drafts, thumbnails); step up to <strong>Nano Banana Pro</strong> for high-quality stylized art and complex compositions. For strict, high-end photorealism, none of the Nano Banana models is the ideal tool — the model’s own tips point to Google’s Imagen 4 series, but note Google has <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/pricing">deprecated Imagen 4</a> with a shutdown date of August 17, 2026, so for new work weigh current options like Seedream or GPT Image instead (see our roundup of <a href="https://www.modellix.ai/category/text-to-image/">other text-to-image models</a>). You do not have to commit up front: on a unified API the model is just a string in the URL path, so you can A&#x2F;B two members with the same request body and compare.</p>
+<h2 id="Two-ways-to-use-Nano-Banana-official-API-vs-unified-API"><a href="#Two-ways-to-use-Nano-Banana-official-API-vs-unified-API" class="headerlink" title="Two ways to use Nano Banana: official API vs unified API"></a>Two ways to use Nano Banana: official API vs unified API</h2><p>There are two legitimate access paths, and picking the right one matters more than any single line of code.</p>
+<p><strong>Path A — Google’s official Gemini API.</strong> You call Google directly. The base host is <code>generativelanguage.googleapis.com</code>, you authenticate with a Gemini API key, and you request an <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/image-generation">image model</a> such as <code>gemini-3.1-flash-image</code>. Billing is token-based: for Nano Banana 2, Google <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/pricing">charges</a> about $0.50 per 1M input tokens and $60 per 1M output-image tokens, which works out to roughly $0.045–$0.151 per image depending on resolution.</p>
+<p><strong>Path B — a unified API (Modellix).</strong> Instead of integrating one provider at a time, you call one endpoint with one key and swap the model name in the path — Nano Banana today, a different image or video model tomorrow. Modellix is one such <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started/overview">Model-as-a-Service layer</a>; it is a distribution layer, not the model’s maker. Billing here is quoted per image rather than per token, and the interface is a <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api">uniform async task</a> for every model.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Official Gemini API</th>
+<th>Unified API (Modellix)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>You integrate</td>
+<td>One provider (Google)</td>
+<td>One key across many image&#x2F;video models</td>
+</tr>
+<tr>
+<td>Billing model</td>
+<td>Per token (per-image equivalent)</td>
+<td>Per image</td>
+</tr>
+<tr>
+<td>Interface</td>
+<td>Gemini SDK &#x2F; API</td>
+<td>Uniform submit-and-poll async task</td>
+</tr>
+<tr>
+<td>Best when</td>
+<td>You only need Google’s models and want the source of truth</td>
+<td>You want to compare or mix providers without re-integrating</td>
+</tr>
+</tbody></table>
+<p>Both routes call the same Google model, so image quality is identical; which one is “better” depends only on whether you want a single provider or one key across many models — not on either platform being cheaper or exclusive. The steps below use the unified-API path because its request&#x2F;response is fully documented and easy to reproduce; the same key-to-image logic applies to the official path.</p>
+<h2 id="How-to-use-Nano-Banana-2-via-a-unified-API-—-step-by-step"><a href="#How-to-use-Nano-Banana-2-via-a-unified-API-—-step-by-step" class="headerlink" title="How to use Nano Banana 2 via a unified API — step by step"></a>How to use Nano Banana 2 via a unified API — step by step</h2><p>Here is the full loop, from zero to a saved image.</p>
+<p><strong>Step 1 — Get an API key.</strong> Log in to the <a target="_blank" rel="noopener" href="https://modellix.ai/console/api-key">Modellix console</a> and open “API Key” to create one (on the official Google path, you generate a key from the <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/api-key">Google AI Studio API key page</a> instead). The key is displayed only once after creation, so copy and store it immediately.</p>
+<p><strong>Step 2 — Pick the model and endpoint.</strong> Nano Banana 2 lives at <code>POST /google/nano-banana-2</code>. The full async submit URL is <code>https://api.modellix.ai/api/v1/google/nano-banana-2/async</code>.</p>
+<p><strong>Step 3 — Set your parameters.</strong> Only <code>prompt</code> is required.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>prompt</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Your image description</td>
+</tr>
+<tr>
+<td><code>aspectRatio</code></td>
+<td>string</td>
+<td>No</td>
+<td>14 options: 1:1, 1:4, 1:8, 2:3, 3:2, 3:4, 4:1, 4:3, 4:5, 5:4, 8:1, 9:16, 16:9, 21:9</td>
+</tr>
+<tr>
+<td><code>imageSize</code></td>
+<td>string</td>
+<td>No</td>
+<td>512, 1K, 2K, 4K</td>
+</tr>
+</tbody></table>
+<picture style="width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/nano-banana-2-parameters.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/nano-banana-2-parameters.png" alt="Modellix Nano Banana 2 model page showing price $0.0403 to $0.1248 per image and the prompt, aspectRatio, and imageSize input parameters" />
+</picture>
+
+<p><em>The Nano Banana 2 model page on Modellix: the required <code>prompt</code> field plus optional <code>aspectRatio</code> (1:1 selected) and <code>imageSize</code>, next to the per-image price band $0.0403–$0.1248. Captured July 23, 2026.</em></p>
+<p><strong>Step 4 — Submit the task.</strong> Because generation is asynchronous, a successful POST does not return an image — it returns a <code>task_id</code> and a URL to fetch the result later, with an initial status of <code>pending</code>.</p>
+<p><strong>Step 5 — Poll for the result.</strong> Call <code>GET /api/v1/tasks/{task_id}</code> until the status is <code>success</code>, then read the image URL from <code>data.result.resources[].url</code>. If you would rather not poll, send an <code>X-Webhook-URL</code> header when you submit and Modellix will POST the result to your public HTTPS endpoint when the task finishes.</p>
+<p><strong>Step 6 — Save the image.</strong> Generated results are only kept for 7 days, so download and store the asset promptly.</p>
+<p>Here is the whole loop in curl — submit, then poll:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1) Submit the generation task</span></span><br><span class="line">curl --request POST \</span><br><span class="line">  --url https://api.modellix.ai/api/v1/google/nano-banana-2/async \</span><br><span class="line">  --header <span class="string">&#x27;Authorization: Bearer &lt;YOUR_API_KEY&gt;&#x27;</span> \</span><br><span class="line">  --header <span class="string">&#x27;Content-Type: application/json&#x27;</span> \</span><br><span class="line">  --data <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;prompt&quot;: &quot;A blue fiber-optic spool on a clean white studio backdrop, product photography&quot;,</span></span><br><span class="line"><span class="string">    &quot;aspectRatio&quot;: &quot;1:1&quot;,</span></span><br><span class="line"><span class="string">    &quot;imageSize&quot;: &quot;2K&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Response includes a task_id and a get_result URL:</span></span><br><span class="line"><span class="comment"># &#123;</span></span><br><span class="line"><span class="comment">#   &quot;code&quot;: 0,</span></span><br><span class="line"><span class="comment">#   &quot;message&quot;: &quot;success&quot;,</span></span><br><span class="line"><span class="comment">#   &quot;data&quot;: &#123;</span></span><br><span class="line"><span class="comment">#     &quot;status&quot;: &quot;pending&quot;,</span></span><br><span class="line"><span class="comment">#     &quot;task_id&quot;: &quot;task-abc123&quot;,</span></span><br><span class="line"><span class="comment">#     &quot;get_result&quot;: &#123;</span></span><br><span class="line"><span class="comment">#       &quot;method&quot;: &quot;GET&quot;,</span></span><br><span class="line"><span class="comment">#       &quot;url&quot;: &quot;https://api.modellix.ai/api/v1/tasks/task-abc123&quot;</span></span><br><span class="line"><span class="comment">#     &#125;</span></span><br><span class="line"><span class="comment">#   &#125;</span></span><br><span class="line"><span class="comment"># &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2) Poll the task until status == &quot;success&quot;</span></span><br><span class="line"><span class="comment">#    Replace task-abc123 below with the real task_id from the response above</span></span><br><span class="line">curl --request GET \</span><br><span class="line">  --url https://api.modellix.ai/api/v1/tasks/task-abc123 \</span><br><span class="line">  --header <span class="string">&#x27;Authorization: Bearer &lt;YOUR_API_KEY&gt;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># On success, the image URL is in data.result.resources[].url</span></span><br></pre></td></tr></table></figure>
+
+<picture style="width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/modellix-async-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/modellix-async-api.png" alt="Modellix REST API docs showing a POST to the async endpoint returning a JSON response with status pending and task_id task-abc123" />
+</picture>
+
+<p><em>Modellix’s REST API docs: the <code>POST .../async</code> submit call (top box) returns a <code>task_id</code> — here <code>task-abc123</code> with status <code>pending</code> — exactly the submit-then-poll loop the code above follows. Captured July 23, 2026.</em></p>
+<p>To move this to a real service, wrap the two calls in a loop with exponential backoff on the poll (say 1s → 2s → 4s), or register a webhook and skip polling entirely. Swap <code>nano-banana-2</code> in the path for <code>nano-banana-2-lite</code> or <code>nano-banana-pro</code> and the rest of the code is unchanged — that path-swap is the whole point of a unified API.</p>
+<h2 id="How-much-does-it-cost"><a href="#How-much-does-it-cost" class="headerlink" title="How much does it cost?"></a>How much does it cost?</h2><p>One line, because price deserves its own page. On the unified path, Nano Banana 2 is billed per image: <strong>$0.0403 at 512, $0.0575 at 1K, $0.0851 at 2K, and $0.1248 at 4K</strong>. On Google’s official path the same model is <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/pricing">billed per token</a>, which comes out to roughly $0.045 &#x2F; $0.067 &#x2F; $0.101 &#x2F; $0.151 per image across the same sizes.</p>
+<p>Those are snapshots that drift, and the full breakdown — every family member, batch discounts, size-by-size — belongs in the dedicated price write-ups. For the family overview see the <a href="https://www.modellix.ai/blog/nano-banana-price/">Nano Banana price guide</a>; for the “2” variant’s live per-image band, the <a href="https://www.modellix.ai/models/google/nano-banana-2/">Nano Banana 2 model page</a> is the source of truth.</p>
+<h2 id="Common-gotchas-and-tips"><a href="#Common-gotchas-and-tips" class="headerlink" title="Common gotchas and tips"></a>Common gotchas and tips</h2><ul>
+<li><strong>It’s asynchronous, not instant.</strong> The single most common surprise: your POST returns a <code>task_id</code>, not an image. You must poll the task URL or register a webhook.</li>
+<li><strong>A 400 means your prompt is missing or malformed.</strong> <code>prompt</code> is the only required field; a 400 is a parameter error you fix, not one you retry.</li>
+<li><strong>A 429 means you hit a rate or concurrency limit.</strong> Back off exponentially and check the <code>X-RateLimit-Reset</code> header for when to retry. 500 and 503 are also retryable with backoff; 401 (bad key) and 402 (insufficient balance) are not — fix the cause first.</li>
+<li><strong>Store the key on creation.</strong> It’s shown once. And top up before a batch run so you don’t hit a 402 mid-job.</li>
+<li><strong>Choose aspectRatio before you generate</strong>, so the composition matches its final channel, and iterate at 512 or 1K before spending on 2K&#x2F;4K finals.</li>
+<li><strong>Download within 7 days.</strong> Results are purged after that; treat the returned URL as temporary.</li>
+</ul>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p><strong>Is Nano Banana the same as Gemini?</strong> Effectively yes — Nano Banana is Google’s name for Gemini’s native image generation, so you’re always calling a Gemini image model.</p>
+<p><strong>Do I need Google Cloud to use Nano Banana?</strong> No. You need an API key — either an official Gemini API key from Google, or a key from a unified API like Modellix that fronts the same model.</p>
+<p><strong>Why don’t I get the image back immediately?</strong> Image generation runs as an asynchronous task. The submit call returns a <code>task_id</code>; you then poll <code>GET /tasks/{task_id}</code> or receive a webhook when it’s done.</p>
+<p><strong>What’s the only required parameter?</strong> <code>prompt</code>. Both <code>aspectRatio</code> (14 options) and <code>imageSize</code> (512&#x2F;1K&#x2F;2K&#x2F;4K) are optional.</p>
+<p><strong>How long are generated images kept?</strong> On the unified API, results are stored for 7 days — download and persist them promptly.</p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
+            
+              <a href="/blog/tags/Google/" class="tag-pill tag-pill--sm">Google</a>
+            
+              <a href="/blog/tags/Tutorial/" class="tag-pill tag-pill--sm">Tutorial</a>
+            
+              <a href="/blog/tags/Nano-Banana/" class="tag-pill tag-pill--sm">Nano Banana</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/nano-banana-2-price/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-nano-banana-2-price.webp" alt="Nano Banana 2 Price: Real Per-Image Cost" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Nano Banana 2 Price: Real Per-Image Cost</h3>
+          <time class="related-article-date" datetime="2026-07-24T06:00:00.000Z">July 24, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/openai-pricing-plans/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-openai-pricing-plans.webp" alt="OpenAI Pricing Plans: Every Price in 2026" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">OpenAI Pricing Plans: Every Price in 2026</h3>
+          <time class="related-article-date" datetime="2026-07-24T06:00:00.000Z">July 24, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/openai-image-generation-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-openai-image-generation-api.webp" alt="OpenAI Image Generation API: The 2026 Developer Guide" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">OpenAI Image Generation API: The 2026 Developer Guide</h3>
+          <time class="related-article-date" datetime="2026-07-23T03:00:00.000Z">July 23, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/how-to-use-nano-banana/&text=How%20to%20Use%20Nano%20Banana%3A%20Integration%20Guide" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/how-to-use-nano-banana/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/how-to-use-nano-banana/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
