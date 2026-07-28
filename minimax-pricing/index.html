@@ -1,0 +1,659 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minimax Pricing: Direct vs Aggregator Rates — Modellix Blog</title>
+  <meta name="description" content="MiniMax Hailuo API pricing: $1,000/month prepaid packages vs transparent pay-as-you-go. Per-second math for every Hailuo model, from official docs, July 2026.">
+  <meta name="keywords" content="minimax pricing, minimax api pricing, minimax hailuo pricing, hailuo ai pricing, minimax video api pricing">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/minimax-pricing/">
+  <meta name="description" content="MiniMax Hailuo API pricing: $1,000&#x2F;month prepaid packages vs transparent pay-as-you-go. Per-second math for every Hailuo model, from official docs, July 2026.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Minimax Pricing: Direct vs Aggregator Rates — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/minimax-pricing/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="MiniMax Hailuo API pricing: $1,000&#x2F;month prepaid packages vs transparent pay-as-you-go. Per-second math for every Hailuo model, from official docs, July 2026.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-minimax-pricing-v5.webp">
+<meta property="article:published_time" content="2026-07-28T00:45:00.000Z">
+<meta property="article:modified_time" content="2026-07-28T00:45:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video API">
+<meta property="article:tag" content="Comparison">
+<meta property="article:tag" content="MiniMax">
+<meta property="article:tag" content="Pricing">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-minimax-pricing-v5.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Minimax Pricing: Direct vs Aggregator Rates","description":"MiniMax Hailuo API pricing: $1,000/month prepaid packages vs transparent pay-as-you-go. Per-second math for every Hailuo model, from official docs, July 2026.","datePublished":"2026-07-28T00:45:00.000Z","dateModified":"2026-07-28T00:45:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/minimax-pricing/","image":"https://img.modellix.ai/en/article/cover-minimax-pricing-v5.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Minimax Pricing: Direct vs Aggregator Rates — Official vs Aggregator Pricing, from First-Party Pages (2026)</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Pricing/" class="category-tag category-tag--sm">Pricing</a>
+          
+        
+      </div>
+      <h1 class="post-title">Minimax Pricing: Direct vs Aggregator Rates — Official vs Aggregator Pricing, from First-Party Pages (2026)</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-07-28T00:45:00.000Z">July 28, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/Comparison/" class="tag-pill tag-pill--sm">Comparison</a>
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/MiniMax/" class="tag-pill tag-pill--sm">MiniMax</a>
+            
+              <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>Search for &#39;minimax pricing&#39; and every result on the first page assumes you&#39;re asking about MiniMax&#39;s LLM models — M3, M2.5, token plans, per-million-token rates. That&#39;s a real and valid question, but it&#39;s not the one this article is answering.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-minimax-pricing-v5.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-minimax-pricing-v5.png" alt="Split visual: an opaque prepaid package ($1,000/month) vs a transparent per-second meter — comparing MiniMax official video pricing against aggregator rates" />
+</picture>
+
+<h2 id="The-two-MiniMaxs-—-and-why-“minimax-pricing”-isn’t-one-answer"><a href="#The-two-MiniMaxs-—-and-why-“minimax-pricing”-isn’t-one-answer" class="headerlink" title="The two MiniMaxs — and why “minimax pricing” isn’t one answer"></a>The two MiniMaxs — and why “minimax pricing” isn’t one answer</h2><p>Search for “minimax pricing” and every result on the first page assumes you’re asking about MiniMax’s LLM models — M3, M2.5, token plans, per-million-token rates. That’s a real and valid question, but it’s not the one this article is answering.</p>
+<p>MiniMax sells two separate product lines with completely different pricing models. One is the LLM line (M3, M2.5, coding models), billed per token through pay-as-you-go keys or monthly Token Plans at $20–$120&#x2F;month. The other is the media generation line — video via Hailuo models, image generation, and music — which MiniMax prices through an entirely different system: prepaid “video points” packages starting at $1,000 per month.</p>
+<p>If you got here looking for LLM pricing, <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/guides/pricing-paygo">MiniMax’s own pay-as-you-go page</a> and <a target="_blank" rel="noopener" href="https://openrouter.ai/minimax/minimax-m3">OpenRouter’s MiniMax M3 page</a> have the per-token rates you need. This article is for developers and teams who need MiniMax’s video and image models behind an API — the Hailuo line — and want to understand what they actually cost across different channels.</p>
+<p>One thing you should know up front: we run <a href="https://www.modellix.ai/">Modellix</a>, an aggregator that offers MiniMax’s Hailuo models with pay-as-you-go pricing. We have a commercial interest in this comparison. Every MiniMax figure here was read from <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/pricing/overview">MiniMax’s own pricing docs</a> on July 28, 2026, and every Modellix figure from our own model pages on the same date. Where we couldn’t verify something, we say so.</p>
+<h2 id="What-MiniMax’s-official-video-API-actually-costs"><a href="#What-MiniMax’s-official-video-API-actually-costs" class="headerlink" title="What MiniMax’s official video API actually costs"></a>What MiniMax’s official video API actually costs</h2><p>MiniMax doesn’t sell Hailuo video generation by the second. It sells prepaid packages of “video points,” and the relationship between points and seconds of video depends on which model you call, at what resolution, for how many seconds.</p>
+<p>Here is the official pricing table from MiniMax’s Video Packages page, retrieved July 28, 2026:</p>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Price</th>
+<th>Video Points</th>
+<th>Valid</th>
+<th>RPM</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Standard</td>
+<td>$1,000</td>
+<td>3,760</td>
+<td>1 month</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Pro</td>
+<td>$2,500</td>
+<td>9,920</td>
+<td>1 month</td>
+<td>30</td>
+</tr>
+<tr>
+<td>Scale</td>
+<td>$4,500</td>
+<td>18,900</td>
+<td>1 month</td>
+<td>40</td>
+</tr>
+<tr>
+<td>Business</td>
+<td>$6,000</td>
+<td>26,780</td>
+<td>1 month</td>
+<td>50</td>
+</tr>
+</tbody></table>
+<p><em>Source: <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/guides/pricing-video">MiniMax Video Packages</a>, retrieved July 28, 2026.</em></p>
+<picture style="aspect-ratio: 1280 / 650; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/minimax-video-packages-v2.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/minimax-video-packages-v2.png" alt="MiniMax Video Packages pricing table: Standard $1,000 for 3,760 video points" />
+</picture>
+
+<p><em>MiniMax’s Video Packages pricing page, captured July 28, 2026. The Standard package at $1,000 for 3,760 points is the cheapest production entry point.</em></p>
+<p>That’s the top-line number. The real cost per second depends on the point deduction rate, which MiniMax publishes separately:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Resolution × Duration</th>
+<th>Points Deducted</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Hailuo 2.3 Fast</td>
+<td>768p, 6s</td>
+<td>0.7</td>
+</tr>
+<tr>
+<td>Hailuo 2.3 Fast</td>
+<td>1080p, 6s</td>
+<td>1.3</td>
+</tr>
+<tr>
+<td>Hailuo 2.3</td>
+<td>768p, 6s</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>Hailuo 2.3</td>
+<td>1080p, 6s</td>
+<td>2.0</td>
+</tr>
+<tr>
+<td>Hailuo 02</td>
+<td>512p, 6s</td>
+<td>0.3</td>
+</tr>
+<tr>
+<td>Hailuo 02</td>
+<td>768p, 6s</td>
+<td>1.0</td>
+</tr>
+</tbody></table>
+<p><em>Source: Same page. Hailuo 02 and Hailuo 2.3 share the same deduction rates for 768p&#x2F;1080p.</em></p>
+<picture style="aspect-ratio: 9 / 5; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/minimax-price-comparison-v2.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/minimax-price-comparison-v2.png" alt="Bar chart: MiniMax official per-second video costs vs Modellix pay-as-you-go rates across Hailuo models" />
+</picture>
+
+<p><em>Per-second cost comparison across Hailuo models. MiniMax official uses Standard package ($1,000&#x2F;mo). Hailuo 02 512p and Hailuo 2.3 Fast 1080p not available on Modellix.</em></p>
+<p>Now the math that MiniMax’s pricing page doesn’t show you. At the cheapest entry point — the Standard package at $1,000 for 3,760 points — here is what each second of video actually costs:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Resolution</th>
+<th>Points per 6s</th>
+<th>Effective per-second cost</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Hailuo 02</td>
+<td>512p</td>
+<td>0.3</td>
+<td>$0.0133&#x2F;s</td>
+</tr>
+<tr>
+<td>Hailuo 2.3 Fast</td>
+<td>768p</td>
+<td>0.7</td>
+<td>$0.0310&#x2F;s</td>
+</tr>
+<tr>
+<td>Hailuo 2.3</td>
+<td>768p</td>
+<td>1.0</td>
+<td>$0.0443&#x2F;s</td>
+</tr>
+<tr>
+<td>Hailuo 2.3 Fast</td>
+<td>1080p</td>
+<td>1.3</td>
+<td>$0.0575&#x2F;s</td>
+</tr>
+<tr>
+<td>Hailuo 2.3</td>
+<td>1080p</td>
+<td>2.0</td>
+<td>$0.0887&#x2F;s</td>
+</tr>
+</tbody></table>
+<p>The per-second cost runs from about $0.013&#x2F;s for the cheapest configuration to about $0.089&#x2F;s for Hailuo 2.3 at 1080p. But those numbers only hold if you consume exactly 3,760 points’ worth of video in one month — any unused points expire, and you’ve already paid $1,000 for them.</p>
+<h2 id="What-those-same-models-cost-through-an-aggregator"><a href="#What-those-same-models-cost-through-an-aggregator" class="headerlink" title="What those same models cost through an aggregator"></a>What those same models cost through an aggregator</h2><p>Modellix bills Hailuo models by the second, with no prepaid packages, no points system, and no monthly minimum. Here is the pricing for every MiniMax model available, read from our model pages on July 28, 2026:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Capability</th>
+<th>Modellix Price (per second)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Hailuo 02 I2V</td>
+<td>Image-to-video</td>
+<td>$0.0200–$0.1200</td>
+</tr>
+<tr>
+<td>Hailuo 02 T2V</td>
+<td>Text-to-video</td>
+<td>$0.0540–$0.1200</td>
+</tr>
+<tr>
+<td>Hailuo 02 FL2V</td>
+<td>First-last frame video</td>
+<td>$0.0540–$0.1200</td>
+</tr>
+<tr>
+<td>Hailuo 2.3 I2V</td>
+<td>Image-to-video (flagship)</td>
+<td>$0.0540–$0.1200</td>
+</tr>
+<tr>
+<td>Hailuo 2.3 T2V</td>
+<td>Text-to-video (flagship)</td>
+<td>$0.0540–$0.1200</td>
+</tr>
+<tr>
+<td>Hailuo 2.3 Fast I2V</td>
+<td>Fast image-to-video</td>
+<td>$0.0400–$0.0800</td>
+</tr>
+<tr>
+<td>MiniMax I2V-01-Director</td>
+<td>I2V with camera control</td>
+<td>$0.1000</td>
+</tr>
+<tr>
+<td>MiniMax T2V-01</td>
+<td>Legacy text-to-video</td>
+<td>$0.1000</td>
+</tr>
+<tr>
+<td>MiniMax T2V-01-Director</td>
+<td>T2V with camera control</td>
+<td>$0.1000</td>
+</tr>
+<tr>
+<td>MiniMax S2V-01</td>
+<td>Subject-to-video</td>
+<td>$0.1000</td>
+</tr>
+</tbody></table>
+<p><em>Source: Modellix model pages under &#x2F;models&#x2F;minimax&#x2F;, retrieved July 28, 2026. Prices vary by resolution&#x2F;mode; the range shown covers the lowest to highest tier per model.</em></p>
+<p>Here is the side-by-side that matters. For Hailuo 2.3 at 768p — the most common configuration for development and testing — comparing the cheapest official package against the aggregator’s lower-tier price:</p>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+<th>Hailuo 2.3, 768p, 6s</th>
+<th>Effective per-second</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MiniMax official (Standard, $1,000)</td>
+<td>1.0 point per 6s</td>
+<td>$0.0443&#x2F;s</td>
+</tr>
+<tr>
+<td>Modellix (std mode)</td>
+<td>Billed per second</td>
+<td>$0.0540&#x2F;s</td>
+</tr>
+</tbody></table>
+<p>And at 1080p:</p>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+<th>Hailuo 2.3, 1080p, 6s</th>
+<th>Effective per-second</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MiniMax official (Standard, $1,000)</td>
+<td>2.0 points per 6s</td>
+<td>$0.0887&#x2F;s</td>
+</tr>
+<tr>
+<td>Modellix (pro mode)</td>
+<td>Billed per second</td>
+<td>$0.1200&#x2F;s</td>
+</tr>
+</tbody></table>
+<p>The aggregator price is higher per second in both cases. But that’s not the comparison that matters — the effective cost of the official channel is never just the per-second rate. It’s the per-second rate multiplied by the package you committed to, and the clock starts ticking the moment you pay.</p>
+<h2 id="Why-official-pricing-is-more-expensive-—-and-when-it-still-makes-sense"><a href="#Why-official-pricing-is-more-expensive-—-and-when-it-still-makes-sense" class="headerlink" title="Why official pricing is more expensive — and when it still makes sense"></a>Why official pricing is more expensive — and when it still makes sense</h2><p>The per-second numbers above look competitive for MiniMax direct. But the $1,000 minimum changes the math for most teams. The Standard package gives you 3,760 points. At Hailuo 2.3’s 768p deduction rate of 1 point per 6 seconds, that’s 22,560 seconds of video — about 376 minutes, or just over 6 hours of finished output. To use that up in 30 days, you need to generate roughly 12.5 minutes of video every single day.</p>
+<p>If your actual usage is a tenth of that, you haven’t paid $0.0443 per second. You’ve paid $1,000 for about 37 minutes of video, and your real cost per second is $0.45 — ten times the list rate. The unused points don’t roll over. They’re gone.</p>
+<p>MiniMax direct makes financial sense in exactly one scenario: you reliably consume video generation at high, predictable volumes — enough to fill the package every month, and ideally enough to move up to the Scale or Business tiers, where the effective per-second rate drops further (at Scale, Hailuo 2.3 at 768p works out to about $0.0397&#x2F;s). At that level, the package discount genuinely beats aggregator pricing.</p>
+<p>For everyone else — prototypes, early-stage products, variable workloads, teams evaluating whether Hailuo fits their pipeline — the $1,000 commitment turns MiniMax’s own API into the expensive option. This is the opposite of what you’d expect from buying direct, and it’s the single fact that’s missing from every currently-ranking pricing page.</p>
+<p>There’s also a data residency consideration worth flagging. MiniMax is a Chinese company, and calling its API — whether directly or through an aggregator — sends your requests to infrastructure in China (MiniMax’s docs carry a Chinese ICP license). If your organization can’t send user data to Chinese infrastructure, Hailuo is off the table at any price. Resolve that before you compare per-second rates.</p>
+<h2 id="What-about-MiniMax-image-and-music-generation"><a href="#What-about-MiniMax-image-and-music-generation" class="headerlink" title="What about MiniMax image and music generation?"></a>What about MiniMax image and music generation?</h2><p>If you’re only here for video, the image and music pricing is worth a glance because it flips the narrative in both directions.</p>
+<p><strong>Image generation.</strong> Modellix’s cheapest image model — across all 12 suppliers and 200+ models — is MiniMax’s image-01, at $0.0040 per image. That’s cheaper than any Kling, Alibaba, or Google image model on the platform. MiniMax image-01 supports text-to-image at up to 1440×2560, with a prompt enhancement feature that improves output quality at no extra cost. For context, Kling’s cheapest image model (V1) runs $0.0070&#x2F;img — nearly double — and Nano Banana starts at $0.0080&#x2F;img. So if your primary use case is image generation at volume, MiniMax on a pay-as-you-go aggregator is the budget option that nobody is writing about.</p>
+<p>MiniMax’s official API docs don’t publish a standalone image generation pricing page — it sits within the broader API ecosystem, and its direct pricing isn’t broken out in a way that lets you build a per-image cost estimate without an account. What matters for cost planning: MiniMax offers at least three image models (image-01, image-01-fast, and an image-edit variant), each with different quality&#x2F;speed tradeoffs, and the aggregator pricing reflects those tiers.</p>
+<p><strong>Music and audio.</strong> MiniMax’s Music-3.0 and Music-2.6 models generate audio from text prompts. On the aggregator side, Music-3.0 costs $0.0400 per generation and Music-2.6 costs $0.0200. MiniMax’s own audio subscription starts at $9.90&#x2F;month with usage-based overage, but the specifics depend on generation length and quality settings that aren’t documented without a login. The free tier that does exist — two specific endpoints on Music-3.0 and 2.6 — is covered in our <a href="https://www.modellix.ai/blog/minimax-free-api">MiniMax free API guide</a>.</p>
+<p>Comparing MiniMax’s media pricing against the other Chinese AI API providers tells a useful story. Kling — which most people benchmark MiniMax against for video — starts at $700 for its cheapest production package (5,000 units, 180-day validity). MiniMax’s video entry is $1,000, but Kling’s package lasts six months while MiniMax’s expires in one. Kling’s cheapest per-second rate for 3.0 at 720p is $0.084&#x2F;s; MiniMax’s Hailuo 02 at 512p is $0.013&#x2F;s — six times cheaper, but at a resolution that Kling doesn’t go down to. The useful comparison is Hailuo 2.3 at 1080p ($0.089&#x2F;s) against Kling 3.0 at 1080p ($0.112&#x2F;s): MiniMax is about 20% cheaper on list price, but the one-month expiry erases that advantage for low-volume users. This is the structural problem with prepaid packages: the per-second comparison that looks favorable on a spreadsheet disappears the moment you don’t fill the package.</p>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p><strong>Is MiniMax cheaper through an aggregator or directly?</strong></p>
+<p>Per second of output, MiniMax’s official list rates are lower. At the Standard $1,000 package, Hailuo 2.3 at 768p works out to $0.044&#x2F;s — versus $0.054&#x2F;s through a pay-as-you-go aggregator. But the effective cost is never just the list rate: it’s the list rate multiplied by the package size you committed to, divided by however much of it you actually used. If you use 10% of the package, your real cost is ten times the list rate. For low-to-medium volume, the aggregator’s higher list rate works out cheaper in practice.</p>
+<p><strong>Can I try MiniMax video generation for free?</strong></p>
+<p>MiniMax’s official API doesn’t offer a free tier for video — the cheapest path is the $1,000 Standard package. Modellix provides a free $10–$30 credit for new users, no credit card required, which lets you test every Hailuo model without committing. You can also use the free Music-3.0 and Music-2.6 endpoints for audio generation without paying.</p>
+<p><strong>What’s the difference between Hailuo 02 and Hailuo 2.3?</strong></p>
+<p>Hailuo 02 is the previous-generation model, optimized for speed and cost. Hailuo 2.3 is the current flagship with better motion quality, longer clips (up to 10s vs 6s on some tiers), and higher resolution support. The pricing reflects this: Hailuo 02 at 512p is the cheapest MiniMax video endpoint at $0.013&#x2F;s, while Hailuo 2.3 at 1080p is the most expensive at $0.089&#x2F;s on official pricing. If your application prioritizes cost over quality — drafts, thumbnails, internal testing — Hailuo 02 is the route. If output quality drives your product, Hailuo 2.3 is where the investment goes.</p>
+<p><strong>Do unused MiniMax video points roll over?</strong></p>
+<p>No. Points expire at the end of the package validity period — 30 days for Standard through Business tiers. There is no rollover, no extension, and no refund for unused points. This is the single most important fact about MiniMax’s official pricing, and it’s buried in a tooltip on the pricing page. The 30-day clock means you’re not buying video generation capacity — you’re buying a monthly consumption quota that resets to zero whether you used it or not.</p>
+<p><strong>How does MiniMax pricing compare to Kling?</strong></p>
+<p>For the flagship models at 1080p: MiniMax Hailuo 2.3 is $0.089&#x2F;s, Kling 3.0 is $0.112&#x2F;s — MiniMax is about 20% cheaper on list price. But Kling’s Standard package ($700 for 5,000 units) lasts 180 days versus MiniMax’s 30, and Kling’s catalog is broader (roughly 40 endpoints versus MiniMax’s 15 on an aggregator). The structural issue is the same for both: prepaid packages punish variable usage. If you’re choosing between them, the expiry window — not the per-second rate — is the number that should drive the decision.</p>
+<h2 id="How-to-choose-a-practical-decision-framework"><a href="#How-to-choose-a-practical-decision-framework" class="headerlink" title="How to choose: a practical decision framework"></a>How to choose: a practical decision framework</h2><p>The decision reduces to volume, with two clear thresholds and one override.</p>
+<p><strong>If your monthly video generation is below roughly 6 hours of finished output</strong>, MiniMax’s own API is the expensive option — not because the per-second list rate is higher, but because the $1,000 package will expire with unused points. A pay-as-you-go aggregator gives you the same Hailuo models with no commitment. You can test with a <a href="https://www.modellix.ai/">free $10–$30 Modellix credit</a> — no credit card required — and start paying only when you’re ready to scale. If you’re exploring MiniMax’s free access options first, our <a href="https://www.modellix.ai/blog/minimax-free-api">MiniMax free API guide</a> walks through what’s available without paying. <a href="https://www.modellix.ai/providers/minimax">Our MiniMax model collection</a> has all 15 endpoints with live pricing and a playground to test before you write code.</p>
+<p><strong>If your monthly volume consistently fills the Standard package or beyond</strong>, and you’re comfortable with the 30-day expiry, MiniMax direct starts to make financial sense. At the Scale tier ($4,500 for 18,900 points), the effective per-second cost for Hailuo 2.3 at 768p drops to roughly $0.040&#x2F;s — below the aggregator’s lower-tier pricing. And the Business tier opens up custom pricing with no RPM cap, which aggregators can’t match.</p>
+<p><strong>The override is data residency.</strong> If your organization prohibits sending data to Chinese infrastructure, MiniMax is unavailable through any channel. The alternative is a Western-hosted video model — Veo 3.1 (Google, US-hosted through Google Cloud) or Runway (US-based) — and that comparison is a different article.</p>
+<p><strong>If you need to route between multiple model families</strong> — Hailuo for one type of shot, Veo for another, something cheap for drafts — then per-model pricing stops being the deciding factor. A unified API with one key and one invoice becomes the dominant concern. That’s the scenario aggregation is built for, and it’s also the scenario where <a href="https://www.modellix.ai/">we have a commercial interest</a> in your answer.</p>
+<hr>
+<p><em>All prices retrieved from <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/pricing/overview">MiniMax’s official API docs</a> and <a href="https://www.modellix.ai/providers/minimax">Modellix model pages</a> on July 28, 2026. MiniMax’s pricing changes without notice — verify against the linked pages before making a purchasing decision. Modellix offers MiniMax’s Hailuo models with pay-as-you-go billing; we do not offer MiniMax’s LLM models (M3, M2.5). We have a commercial interest in this comparison.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/Comparison/" class="tag-pill tag-pill--sm">Comparison</a>
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/MiniMax/" class="tag-pill tag-pill--sm">MiniMax</a>
+            
+              <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/grok-imagine-price/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-grok-imagine-price.webp" alt="grok-imagine-price" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Pricing</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">grok-imagine-price</h3>
+          <time class="related-article-date" datetime="2026-07-28T02:00:00.000Z">July 28, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/minimax-pricing/&text=Minimax%20Pricing%3A%20Direct%20vs%20Aggregator%20Rates" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/minimax-pricing/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/minimax-pricing/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
