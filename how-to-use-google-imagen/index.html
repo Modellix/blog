@@ -1,0 +1,506 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How To Use Google Imagen: Step-by-Step Integration Guide — Modellix Blog</title>
+  <meta name="description" content="Imagen shuts down Aug 17, 2026. Access it through Gemini, Vertex AI, or aggregators — code, pricing, and a migration guide that survives the shutdown.">
+  <meta name="keywords" content="how to use google imagen, how to use imagen, google imagen api, imagen 3 api, imagen 4 api cost, google imagen pricing, how to use google imagen 4">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/how-to-use-google-imagen/">
+  <meta name="description" content="Imagen shuts down Aug 17, 2026. Access it through Gemini, Vertex AI, or aggregators — code, pricing, and a migration guide that survives the shutdown.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How To Use Google Imagen: Step-by-Step Integration Guide — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/how-to-use-google-imagen/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Imagen shuts down Aug 17, 2026. Access it through Gemini, Vertex AI, or aggregators — code, pricing, and a migration guide that survives the shutdown.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-how-to-use-google-imagen.webp">
+<meta property="article:published_time" content="2026-07-28T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-28T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="ai image generation">
+<meta property="article:tag" content="api integration">
+<meta property="article:tag" content="gemini api">
+<meta property="article:tag" content="google ai">
+<meta property="article:tag" content="google imagen">
+<meta property="article:tag" content="imagen 4">
+<meta property="article:tag" content="imagen api">
+<meta property="article:tag" content="nano banana">
+<meta property="article:tag" content="text-to-image">
+<meta property="article:tag" content="vertex ai">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-how-to-use-google-imagen.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"How To Use Google Imagen: Step-by-Step Integration Guide","description":"Imagen shuts down Aug 17, 2026. Access it through Gemini, Vertex AI, or aggregators — code, pricing, and a migration guide that survives the shutdown.","datePublished":"2026-07-28T16:00:00.000Z","dateModified":"2026-07-28T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/how-to-use-google-imagen/","image":"https://img.modellix.ai/en/article/cover-how-to-use-google-imagen.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">How To Use Google Imagen: Step-by-Step Integration Guide</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/API-Integration/" class="category-tag category-tag--sm">API Integration</a>
+          
+            <a href="/blog/categories/API-Integration/AI-Image-Generation/" class="category-tag category-tag--sm">AI Image Generation</a>
+          
+        
+      </div>
+      <h1 class="post-title">How To Use Google Imagen: Step-by-Step Integration Guide</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-07-28T16:00:00.000Z">July 29, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/google-imagen/" class="tag-pill tag-pill--sm">google imagen</a>
+            
+              <a href="/blog/tags/imagen-api/" class="tag-pill tag-pill--sm">imagen api</a>
+            
+              <a href="/blog/tags/text-to-image/" class="tag-pill tag-pill--sm">text-to-image</a>
+            
+              <a href="/blog/tags/gemini-api/" class="tag-pill tag-pill--sm">gemini api</a>
+            
+              <a href="/blog/tags/vertex-ai/" class="tag-pill tag-pill--sm">vertex ai</a>
+            
+              <a href="/blog/tags/nano-banana/" class="tag-pill tag-pill--sm">nano banana</a>
+            
+              <a href="/blog/tags/ai-image-generation/" class="tag-pill tag-pill--sm">ai image generation</a>
+            
+              <a href="/blog/tags/google-ai/" class="tag-pill tag-pill--sm">google ai</a>
+            
+              <a href="/blog/tags/imagen-4/" class="tag-pill tag-pill--sm">imagen 4</a>
+            
+              <a href="/blog/tags/api-integration/" class="tag-pill tag-pill--sm">api integration</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.srcgptbots.com/blog/author/20260409/modellix-blog-author-official@2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>Imagen is shutting down — here&#39;s what that means for you If you search &#39;how to use google imagen&#39; today, every guide on the first page is missing one critical fact: Google deprecated the Imagen models, and they shut down on August 17, 2026.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-how-to-use-google-imagen.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-how-to-use-google-imagen.png" alt="Split-screen visual: a Google Cloud terminal with Imagen API code on the left, a photorealistic AI-generated image emerging on the right, dark tech stage with amber and cyan lighting" />
+</picture>
+
+<h2 id="Imagen-is-shutting-down-—-here’s-what-that-means-for-you"><a href="#Imagen-is-shutting-down-—-here’s-what-that-means-for-you" class="headerlink" title="Imagen is shutting down — here’s what that means for you"></a>Imagen is shutting down — here’s what that means for you</h2><p>If you search “how to use google imagen” today, every guide on the first page is missing one critical fact: <strong>Google deprecated the Imagen models, and they shut down on August 17, 2026.</strong> The replacement is Nano Banana, accessed through the <code>gemini-2.5-flash-image</code> model name.</p>
+<p>This changes the question. “How to use Google Imagen” in late July 2026 isn’t just about picking an API endpoint — it’s about deciding whether to use the legacy Imagen API (still running, but on borrowed time), migrate to Nano Banana now, or route through a third-party API that abstracts the churn away from your codebase.</p>
+<p>This guide covers all three paths with working code, real pricing, and the migration plan. One thing before we start: this guide is about <a target="_blank" rel="noopener" href="https://deepmind.google/models/imagen/">Google DeepMind’s Imagen text-to-image model</a>, not the unrelated Imagen photo editing app — different product, different company.</p>
+<h2 id="What-you-need-before-you-start"><a href="#What-you-need-before-you-start" class="headerlink" title="What you need before you start"></a>What you need before you start</h2><p>Before you write a single line of code, you need API access. Here’s exactly what each path requires:</p>
+<p><strong>Gemini API path (simplest direct access):</strong></p>
+<ul>
+<li>A <a target="_blank" rel="noopener" href="https://aistudio.google.com/">Google AI Studio</a> account</li>
+<li>A Gemini API key (free tier available — <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/google-ai-plans">Google AI Plans</a> lists current quotas)</li>
+<li>The Google Gen AI SDK installed: <code>pip install google-genai</code></li>
+</ul>
+<p><strong>Vertex AI path (enterprise Google Cloud):</strong></p>
+<ul>
+<li>A <a target="_blank" rel="noopener" href="https://console.cloud.google.com/">Google Cloud project</a> with billing enabled</li>
+<li>Vertex AI API enabled in your project</li>
+<li>Authentication set up via service account or <code>gcloud auth</code></li>
+</ul>
+<p><strong>Third-party API path (no Google setup):</strong></p>
+<ul>
+<li>An API key from an aggregator that offers Imagen models (we’ll cover <a href="https://www.modellix.ai/">Modellix</a> — disclosure: we run it)</li>
+<li>No Google Cloud project, no SDK installation beyond a standard HTTP client</li>
+</ul>
+<p>Pick the path that matches your setup. The code examples below work with all three — the only difference is the base URL and authentication header.</p>
+<h2 id="Generate-images-with-the-Gemini-API"><a href="#Generate-images-with-the-Gemini-API" class="headerlink" title="Generate images with the Gemini API"></a>Generate images with the Gemini API</h2><p>The Gemini API is the most direct way to call Imagen. Here’s a working example in Python, JavaScript, and raw cURL.</p>
+<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> google <span class="keyword">import</span> genai</span><br><span class="line"><span class="keyword">from</span> google.genai <span class="keyword">import</span> types</span><br><span class="line"></span><br><span class="line">client = genai.Client(api_key=<span class="string">&quot;YOUR_API_KEY&quot;</span>)</span><br><span class="line"></span><br><span class="line">response = client.models.generate_images(</span><br><span class="line">    model=<span class="string">&#x27;imagen-4.0-generate-001&#x27;</span>,</span><br><span class="line">    prompt=<span class="string">&#x27;A photorealistic golden retriever sitting in a field at golden hour, shallow depth of field&#x27;</span>,</span><br><span class="line">    config=types.GenerateImagesConfig(</span><br><span class="line">        number_of_images=<span class="number">1</span>,</span><br><span class="line">        aspect_ratio=<span class="string">&#x27;16:9&#x27;</span>,</span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> generated_image <span class="keyword">in</span> response.generated_images:</span><br><span class="line">    generated_image.image.save(<span class="string">&#x27;output.png&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="JavaScript-Node-js"><a href="#JavaScript-Node-js" class="headerlink" title="JavaScript &#x2F; Node.js"></a>JavaScript &#x2F; Node.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">GoogleGenAI</span> &#125; <span class="keyword">from</span> <span class="string">&quot;@google/genai&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> fs <span class="keyword">from</span> <span class="string">&quot;node:fs&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ai = <span class="keyword">new</span> <span class="title class_">GoogleGenAI</span>(&#123; <span class="attr">apiKey</span>: <span class="string">&quot;YOUR_API_KEY&quot;</span> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> response = <span class="keyword">await</span> ai.<span class="property">models</span>.<span class="title function_">generateImages</span>(&#123;</span><br><span class="line">  <span class="attr">model</span>: <span class="string">&quot;imagen-4.0-generate-001&quot;</span>,</span><br><span class="line">  <span class="attr">prompt</span>: <span class="string">&quot;A photorealistic golden retriever sitting in a field at golden hour, shallow depth of field&quot;</span>,</span><br><span class="line">  <span class="attr">config</span>: &#123;</span><br><span class="line">    <span class="attr">numberOfImages</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">aspectRatio</span>: <span class="string">&quot;16:9&quot;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">response.<span class="property">generatedImages</span>.<span class="title function_">forEach</span>(<span class="function">(<span class="params">img, i</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> buffer = <span class="title class_">Buffer</span>.<span class="title function_">from</span>(img.<span class="property">image</span>.<span class="property">imageBytes</span>, <span class="string">&quot;base64&quot;</span>);</span><br><span class="line">  fs.<span class="title function_">writeFileSync</span>(<span class="string">`output-<span class="subst">$&#123;i&#125;</span>.png`</span>, buffer);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="cURL-REST-API"><a href="#cURL-REST-API" class="headerlink" title="cURL (REST API)"></a>cURL (REST API)</h3><p>Most guides only show SDK code. But if you’re using a language without a Google Gen AI SDK, here’s the raw REST call:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST <span class="string">&quot;https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:generateImages&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;x-goog-api-key: YOUR_API_KEY&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;instances&quot;: [&#123;&quot;prompt&quot;: &quot;A photorealistic golden retriever at golden hour&quot;&#125;],</span></span><br><span class="line"><span class="string">    &quot;parameters&quot;: &#123;&quot;sampleCount&quot;: 1&#125;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>If you’re new to image generation APIs, our <a href="https://www.modellix.ai/blog/text-to-image-api-guide/">text-to-image API guide</a> walks through the fundamentals — prompt structure, aspect ratios, and how different models handle the same input.</p>
+<h3 id="What-you-get-back"><a href="#What-you-get-back" class="headerlink" title="What you get back"></a>What you get back</h3><picture style="aspect-ratio: 16 / 9; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/imagen-api-output.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/imagen-api-output.png" alt="A developer's terminal showing Imagen API Python code with a photorealistic AI-generated golden retriever image appearing as output, dark theme terminal with syntax highlighting" loading="lazy" />
+</picture>
+
+<p>The API returns base64-encoded PNG images inside a JSON response. Each generated image includes a <a target="_blank" rel="noopener" href="https://deepmind.google/technologies/synthid/">SynthID</a> digital watermark — invisible to the eye but detectable by Google’s verification tools. This is on by default and can’t be disabled.</p>
+<h3 id="Prompt-tips-that-actually-work"><a href="#Prompt-tips-that-actually-work" class="headerlink" title="Prompt tips that actually work"></a>Prompt tips that actually work</h3><p>The official <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/imagen#imagen-prompt-guide">Imagen prompt guide</a> recommends starting short and iterating. In practice:</p>
+<ul>
+<li><strong>Start with subject, context, style</strong>: “A ceramic coffee mug on a wooden desk, morning light through window blinds, product photography style”</li>
+<li><strong>Add negative details if needed</strong>: “No text, no logos, no people”</li>
+<li><strong>Imagen 4 handles text in images well</strong>: You can include prompts like “A storefront sign reading ‘Open’ in neon pink cursive”</li>
+<li><strong>Aspect ratios</strong>: Supported values are <code>1:1</code>, <code>3:4</code>, <code>4:3</code>, <code>9:16</code>, <code>16:9</code></li>
+</ul>
+<p>Rate limits depend on your <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/rate-limits">Google AI plan tier</a>. The free tier typically allows around 2-5 images per minute.</p>
+<h2 id="Generate-images-through-Vertex-AI"><a href="#Generate-images-through-Vertex-AI" class="headerlink" title="Generate images through Vertex AI"></a>Generate images through Vertex AI</h2><p>If you’re already in the Google Cloud ecosystem, Vertex AI gives you the same Imagen models with enterprise controls — IAM permissions, VPC service controls, and usage billing through your existing Cloud account.</p>
+<p>The code is nearly identical to the Gemini API path. The main differences:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> google <span class="keyword">import</span> genai</span><br><span class="line"><span class="keyword">from</span> google.genai <span class="keyword">import</span> types</span><br><span class="line"></span><br><span class="line"><span class="comment"># Vertex AI uses project/location instead of an API key</span></span><br><span class="line">client = genai.Client(</span><br><span class="line">    vertexai=<span class="literal">True</span>,</span><br><span class="line">    project=<span class="string">&quot;your-gcp-project-id&quot;</span>,</span><br><span class="line">    location=<span class="string">&quot;us-central1&quot;</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">response = client.models.generate_images(</span><br><span class="line">    model=<span class="string">&#x27;imagen-4.0-generate-001&#x27;</span>,</span><br><span class="line">    prompt=<span class="string">&#x27;Futuristic city skyline at dusk, cyberpunk aesthetic, wide angle&#x27;</span>,</span><br><span class="line">    config=types.GenerateImagesConfig(number_of_images=<span class="number">1</span>),</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">response.generated_images[<span class="number">0</span>].image.save(<span class="string">&#x27;skyline.png&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>The trade-off: Vertex AI requires <a target="_blank" rel="noopener" href="https://cloud.google.com/vertex-ai/generative-ai/docs/samples/generativeaionvertexai-imagen-generate-image">billing enabled</a> on your Google Cloud project and the Vertex AI API enabled. This adds 5-10 minutes of setup but gives you production-grade infrastructure. For prototyping, the Gemini API with a free API key is faster.</p>
+<h2 id="Skip-the-setup-—-use-Imagen-through-an-API-aggregator"><a href="#Skip-the-setup-—-use-Imagen-through-an-API-aggregator" class="headerlink" title="Skip the setup — use Imagen through an API aggregator"></a>Skip the setup — use Imagen through an API aggregator</h2><p>The Google-native paths work, but they come with overhead: you’re managing Google Cloud projects, API keys, rate limits, and now — a deprecation deadline. When Imagen shuts down on August 17, every line of code that calls <code>imagen-4.0-generate-001</code> breaks.</p>
+<p>API aggregators solve this differently. Instead of calling Google directly, you call a single API that routes your request to the model — and when the underlying model changes, the aggregator updates the routing, not your code.</p>
+<p><a href="https://www.modellix.ai/">Modellix</a> is one such aggregator (full disclosure: we run it). We <a href="https://www.modellix.ai/blog/google-model-integrated/">integrated Imagen 4.0 alongside Nano Banana and Veo 3.1</a> in June 2026. It offers Imagen 4 through the same REST API as 210+ other image and video models. Here’s what that looks like:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST <span class="string">&quot;https://api.modellix.ai/v1/images/generate&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer YOUR_MODELLIX_KEY&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;model&quot;: &quot;google/imagen-4.0&quot;,</span></span><br><span class="line"><span class="string">    &quot;prompt&quot;: &quot;A photorealistic golden retriever at golden hour&quot;,</span></span><br><span class="line"><span class="string">    &quot;n&quot;: 1,</span></span><br><span class="line"><span class="string">    &quot;size&quot;: &quot;1792x1024&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>The key difference: no Google Cloud project, no SDK installation, no per-platform API key. One key, one REST endpoint, and transparent per-call pricing that shows you exactly what each generation costs before you run it. When Google transitions Imagen to Nano Banana, the model name on Modellix updates — your integration code doesn’t change.</p>
+<p>Other aggregators like <a target="_blank" rel="noopener" href="https://replicate.com/">Replicate</a> also host Imagen models, with per-run pricing around $0.04&#x2F;image at the time of writing.</p>
+<picture style="aspect-ratio: 16 / 9; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/api-architecture-comparison.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/api-architecture-comparison.png" alt="Architecture comparison: direct Google API path (multiple keys, SDK dependency, per-platform setup) vs aggregator path (single REST key, no SDK, platform-agnostic)" loading="lazy" />
+</picture>
+
+<h2 id="What-Imagen-API-access-actually-costs"><a href="#What-Imagen-API-access-actually-costs" class="headerlink" title="What Imagen API access actually costs"></a>What Imagen API access actually costs</h2><p>One of the top PAA questions for this keyword is “How much does it cost to use Imagen?” — and none of the first-page results give a clear answer. Here it is:</p>
+<table>
+<thead>
+<tr>
+<th>Access path</th>
+<th>Pricing model</th>
+<th>Estimated cost per image (1024×1024)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Gemini API (free tier)</strong></td>
+<td>Free quota (rate-limited)</td>
+<td>$0.00 (within quota)</td>
+</tr>
+<tr>
+<td><strong>Gemini API (paid)</strong></td>
+<td>Per-image, billed through Google AI Plans</td>
+<td>~$0.02–$0.04&#x2F;image</td>
+</tr>
+<tr>
+<td><strong>Vertex AI</strong></td>
+<td>Per-image, billed through Google Cloud</td>
+<td>~$0.02–$0.04&#x2F;image</td>
+</tr>
+<tr>
+<td><strong>Modellix (aggregator)</strong></td>
+<td>Pay-as-you-go, per call</td>
+<td>$0.025&#x2F;image</td>
+</tr>
+<tr>
+<td><strong>Replicate (aggregator)</strong></td>
+<td>Per-run, hardware-time based</td>
+<td>~$0.04&#x2F;image</td>
+</tr>
+</tbody></table>
+<p><em>Pricing checked July 2026. Google’s official rates are on the <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/pricing">Gemini API pricing page</a>. Aggregator prices change — check their current model pages.</em></p>
+<p>The free tier through Google AI Studio is the cheapest way to experiment. For production workloads, the cost differences between channels are negligible at low volume. The real cost isn’t per-image pricing — it’s the engineering time to set up and maintain each integration. That’s where the aggregator path saves money: zero setup, zero maintenance when Google deprecates models.</p>
+<h2 id="After-August-17-2026-—-migrating-to-Nano-Banana"><a href="#After-August-17-2026-—-migrating-to-Nano-Banana" class="headerlink" title="After August 17, 2026 — migrating to Nano Banana"></a>After August 17, 2026 — migrating to Nano Banana</h2><p>When Imagen shuts down, Google’s replacement is Nano Banana, accessed through the Gemini API using the model name <code>gemini-2.5-flash-image</code>. The migration involves three changes to your code:</p>
+<p><strong>1. Model name changes:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Before (Imagen)</span><br><span class="line">model=&#x27;imagen-4.0-generate-001&#x27;</span><br><span class="line"></span><br><span class="line"># After (Nano Banana)</span><br><span class="line">model=&#x27;gemini-2.5-flash-image&#x27;</span><br></pre></td></tr></table></figure>
+
+<p><strong>2. Method changes:</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Before (Imagen-specific method)</span></span><br><span class="line">response = client.models.generate_images(model=<span class="string">&#x27;imagen-4.0-generate-001&#x27;</span>, ...)</span><br><span class="line"></span><br><span class="line"><span class="comment"># After (standard Gemini content generation)</span></span><br><span class="line">response = client.models.generate_content(</span><br><span class="line">    model=<span class="string">&#x27;gemini-2.5-flash-image&#x27;</span>,</span><br><span class="line">    contents=<span class="string">&#x27;Generate an image of a golden retriever at golden hour&#x27;</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p><strong>3. Response handling:</strong> Nano Banana returns image data inside standard content parts, not a dedicated <code>generated_images</code> array. You’ll need to extract the image from <code>response.candidates[0].content.parts</code>.</p>
+<p>If you’re using an API aggregator like Modellix, none of these changes affect your code — the aggregator handles the model transition behind its API. Your integration keeps working with the same endpoint and authentication.</p>
+<p>The <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/imagen#migration-to-nano-banana">official migration guide</a> has more detail on response structure changes. If you’re considering whether to stick with Google’s migration path or explore <a href="https://www.modellix.ai/blog/nano-banana-alternative/">alternatives to the Nano Banana API</a>, we’ve compared the options — including staying on Imagen through an aggregator that abstracts the transition.</p>
+<hr>
+<p><strong>If you want to skip the Google Cloud setup entirely</strong>, <a href="https://www.modellix.ai/">Modellix</a> gives you Imagen 4 (and 210+ other models) behind a single REST API key — no per-platform onboarding, transparent per-call pricing, and automatic model updates when providers deprecate endpoints. <a href="https://www.modellix.ai/">Sign up and get an API key</a> in under a minute.</p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/google-imagen/" class="tag-pill tag-pill--sm">google imagen</a>
+            
+              <a href="/blog/tags/imagen-api/" class="tag-pill tag-pill--sm">imagen api</a>
+            
+              <a href="/blog/tags/text-to-image/" class="tag-pill tag-pill--sm">text-to-image</a>
+            
+              <a href="/blog/tags/gemini-api/" class="tag-pill tag-pill--sm">gemini api</a>
+            
+              <a href="/blog/tags/vertex-ai/" class="tag-pill tag-pill--sm">vertex ai</a>
+            
+              <a href="/blog/tags/nano-banana/" class="tag-pill tag-pill--sm">nano banana</a>
+            
+              <a href="/blog/tags/ai-image-generation/" class="tag-pill tag-pill--sm">ai image generation</a>
+            
+              <a href="/blog/tags/google-ai/" class="tag-pill tag-pill--sm">google ai</a>
+            
+              <a href="/blog/tags/imagen-4/" class="tag-pill tag-pill--sm">imagen 4</a>
+            
+              <a href="/blog/tags/api-integration/" class="tag-pill tag-pill--sm">api integration</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/how-to-use-google-imagen/&text=How%20To%20Use%20Google%20Imagen%3A%20Step-by-Step%20Integration%20Guide" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/how-to-use-google-imagen/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/how-to-use-google-imagen/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
