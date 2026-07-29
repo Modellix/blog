@@ -1,0 +1,596 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grok Imagine API: Integration Guide, Pricing &amp; Code — Modellix Blog</title>
+  <meta name="description" content="The Grok Imagine API guide: authenticate, generate images synchronously and videos asynchronously via polling, plus parameters, rate limits, and code examples.">
+  <meta name="keywords" content="grok imagine api, grok imagine api key, how to use grok imagine api, grok imagine video api, grok imagine api python, grok imagine image generation api, grok imagine api endpoint">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/grok-imagine-api/">
+  <meta name="description" content="The Grok Imagine API guide: authenticate, generate images synchronously and videos asynchronously via polling, plus parameters, rate limits, and code examples.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Grok Imagine API: Integration Guide, Pricing &amp; Code — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/grok-imagine-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="The Grok Imagine API guide: authenticate, generate images synchronously and videos asynchronously via polling, plus parameters, rate limits, and code examples.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-grok-imagine-api-v2.webp">
+<meta property="article:published_time" content="2026-07-28T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-28T02:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Image API">
+<meta property="article:tag" content="AI Video API">
+<meta property="article:tag" content="Grok">
+<meta property="article:tag" content="Integration">
+<meta property="article:tag" content="xAI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-grok-imagine-api-v2.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Grok Imagine API: Integration Guide, Pricing & Code","description":"The Grok Imagine API guide: authenticate, generate images synchronously and videos asynchronously via polling, plus parameters, rate limits, and code examples.","datePublished":"2026-07-28T02:00:00.000Z","dateModified":"2026-07-28T02:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/grok-imagine-api/","image":"https://img.modellix.ai/en/article/cover-grok-imagine-api-v2.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Grok Imagine API: Integration Guide, Pricing &amp; Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Grok Imagine API: Integration Guide, Pricing &amp; Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-07-28T02:00:00.000Z">July 28, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Grok/" class="tag-pill tag-pill--sm">Grok</a>
+            
+              <a href="/blog/tags/xAI/" class="tag-pill tag-pill--sm">xAI</a>
+            
+              <a href="/blog/tags/Integration/" class="tag-pill tag-pill--sm">Integration</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>The Grok Imagine API is xAI&#39;s endpoint for generating images and video from code — it is not the Grok chatbot, and it has nothing to do with the same-named crypto token that shows up in search results.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-grok-imagine-api-v2.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-grok-imagine-api-v2.png" alt="Grok Imagine API integration guide — xAI image and video generation endpoints with code snippets on a dark technological stage with cyan glow and amber lighting" />
+</picture>
+
+<p>The <strong>Grok Imagine API</strong> is xAI’s endpoint for generating images and video from code — it is not the Grok chatbot, and it has nothing to do with the same-named crypto token that shows up in search results. If you have decided to build with Grok Imagine and now need to wire it into a product or script, the one thing to internalize up front is this: Imagine exposes <a target="_blank" rel="noopener" href="https://docs.x.ai/developers/model-capabilities/imagine"><strong>two request patterns</strong></a>. Image generation and editing are <strong>synchronous</strong> — you POST a prompt and get an image URL back in the same response. Video is <strong>asynchronous</strong> — you POST a prompt, get a <code>request_id</code>, and poll a second endpoint until the video is ready. Everything else is just parameters.</p>
+<p>This guide walks the whole path from a single API key to a finished image and a finished video, using only xAI’s first-party documentation (as of July 2026). It covers authentication, the image endpoint, the asynchronous video endpoint and its polling loop, image-to-video, and rate limits. Pricing has its own dedicated breakdown and alternatives have theirs, so both are linked rather than repeated here — this page is about <em>how you call it</em>.</p>
+<h2 id="What-the-Grok-Imagine-API-does"><a href="#What-the-Grok-Imagine-API-does" class="headerlink" title="What the Grok Imagine API does"></a>What the Grok Imagine API does</h2><p>Grok Imagine is xAI’s media-generation product, and its API surface is small and predictable. There are <a target="_blank" rel="noopener" href="https://docs.x.ai/developers/models">two families of models</a>:</p>
+<table>
+<thead>
+<tr>
+<th>Model ID</th>
+<th>Task</th>
+<th>Pattern</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>grok-imagine-image</code></td>
+<td>Text-to-image (standard)</td>
+<td>Synchronous</td>
+</tr>
+<tr>
+<td><code>grok-imagine-image-quality</code></td>
+<td>Text-to-image (higher quality, 2K)</td>
+<td>Synchronous</td>
+</tr>
+<tr>
+<td><code>grok-imagine-video</code></td>
+<td>Text-to-video</td>
+<td>Asynchronous</td>
+</tr>
+<tr>
+<td><code>grok-imagine-video-1.5</code></td>
+<td>Image-to-video, up to 1080p</td>
+<td>Asynchronous</td>
+</tr>
+</tbody></table>
+<p>On top of plain generation, the API also supports <strong>image editing</strong> (modify an image with up to three reference images), <strong>image-to-video</strong> (animate a still), and video workflows like reference-to-video and extending an existing clip. The consumer-facing capability ceiling is up to 2K resolution for images and 15-second videos.</p>
+<p>One clarification that saves debugging time: these are <em>media</em> endpoints, not the Grok chat model. If you have used <code>grok-4.5</code> through <code>/v1/responses</code>, Imagine is a different surface — <code>/v1/images</code> and <code>/v1/videos</code> — even though it lives under the same base URL and uses the same key.</p>
+<h2 id="Grok-Imagine-API-pricing-at-a-glance"><a href="#Grok-Imagine-API-pricing-at-a-glance" class="headerlink" title="Grok Imagine API pricing at a glance"></a>Grok Imagine API pricing at a glance</h2><p>The short version, so you can size a bill before writing any code: the standard image model is <strong>$0.02 per image</strong> (at both 1K and 2K) and standard video starts at <strong>$0.05 per second</strong> at 480p, as of July 2026, with higher tiers for the quality image model and the 1.5 video model. Two constraints matter for architecture: image and video are billed at standard rates even inside the Batch API, and Priority Processing is not offered — so there is no volume-discount lever to pull. For the full per-tier ladder (every model, every resolution), see the <a href="https://www.modellix.ai/providers/xai">full xAI pricing on Modellix’s provider page</a>; this page keeps pricing to a summary on purpose.</p>
+<h2 id="Setting-up-your-API-key-and-base-URL"><a href="#Setting-up-your-API-key-and-base-URL" class="headerlink" title="Setting up: your API key and base URL"></a>Setting up: your API key and base URL</h2><p>Everything authenticates the same way, so this setup applies to every call below.</p>
+<ol>
+<li><p><strong>Create a key.</strong> Generate one on the <a target="_blank" rel="noopener" href="https://docs.x.ai/developers/quickstart">API Keys page</a> in the xAI console, then export it.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> XAI_API_KEY=<span class="string">&quot;your_api_key&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Point at the base URL.</strong> All Imagine requests go to <code>https://api.x.ai/v1</code>, with your key in a Bearer header:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Authorization: Bearer ***</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Pick an SDK, or skip it.</strong> You can install xAI’s native SDK, or reuse the OpenAI SDK since the API is OpenAI-compatible — just re-point the base URL:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install xai-sdk      <span class="comment"># native</span></span><br><span class="line">pip install openai       <span class="comment"># OpenAI-compatible path</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openai <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">client = OpenAI(</span><br><span class="line">    api_key=<span class="string">&quot;&lt;YOUR_XAI_API_KEY_HERE&gt;&quot;</span>,</span><br><span class="line">    base_url=<span class="string">&quot;https://api.x.ai/v1&quot;</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>Because raw HTTP is the common denominator across languages, the examples below use <code>curl</code> (based on xAI’s docs) and Python <code>requests</code>, which mirror the wire format exactly.</p>
+<h2 id="Generating-an-image-with-the-Grok-Imagine-API-synchronous"><a href="#Generating-an-image-with-the-Grok-Imagine-API-synchronous" class="headerlink" title="Generating an image with the Grok Imagine API (synchronous)"></a>Generating an image with the Grok Imagine API (synchronous)</h2><p>Image generation is a single synchronous call to <a target="_blank" rel="noopener" href="https://docs.x.ai/developers/model-capabilities/images/generation"><code>POST /v1/images/generations</code></a>. You send a model and a prompt; the response comes back with the image URL.</p>
+<p>The request body accepts:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>model</code></td>
+<td>string</td>
+<td>Required, e.g. <code>&quot;grok-imagine-image-quality&quot;</code></td>
+</tr>
+<tr>
+<td><code>prompt</code></td>
+<td>string</td>
+<td>Required, the text description</td>
+</tr>
+<tr>
+<td><code>n</code></td>
+<td>integer</td>
+<td>Optional, number of images (batch)</td>
+</tr>
+<tr>
+<td><code>aspect_ratio</code></td>
+<td>string</td>
+<td>Optional, e.g. <code>&quot;16:9&quot;</code>, <code>&quot;1:1&quot;</code>, <code>&quot;auto&quot;</code></td>
+</tr>
+<tr>
+<td><code>resolution</code></td>
+<td>string</td>
+<td>Optional, <code>&quot;1k&quot;</code> or <code>&quot;2k&quot;</code></td>
+</tr>
+<tr>
+<td><code>response_format</code></td>
+<td>string</td>
+<td>Optional, <code>&quot;b64_json&quot;</code> to get base64 instead of a URL</td>
+</tr>
+</tbody></table>
+<p>The minimal call, based on the docs:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST https://api.x.ai/v1/images/generations \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer ***&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;model&quot;: &quot;grok-imagine-image-quality&quot;,</span></span><br><span class="line"><span class="string">    &quot;prompt&quot;: &quot;A collage of London landmarks in a stenciled street-art style&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>The same request in Python:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os, requests</span><br><span class="line"></span><br><span class="line">resp = requests.post(</span><br><span class="line">    <span class="string">&quot;https://api.x.ai/v1/images/generations&quot;</span>,</span><br><span class="line">    headers=&#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;os.environ[<span class="string">&#x27;XAI_API_KEY&#x27;</span>]&#125;</span>&quot;</span>&#125;,</span><br><span class="line">    json=&#123;</span><br><span class="line">        <span class="string">&quot;model&quot;</span>: <span class="string">&quot;grok-imagine-image-quality&quot;</span>,</span><br><span class="line">        <span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;A collage of London landmarks in a stenciled street-art style&quot;</span>,</span><br><span class="line">        <span class="string">&quot;resolution&quot;</span>: <span class="string">&quot;2k&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">)</span><br><span class="line"><span class="built_in">print</span>(resp.json()[<span class="string">&quot;data&quot;</span>][<span class="number">0</span>][<span class="string">&quot;url&quot;</span>])</span><br></pre></td></tr></table></figure>
+
+<p>By default the image comes back as a URL (<code>data[0].url</code>); pass <code>response_format: &quot;b64_json&quot;</code> and you get <code>data[0].b64_json</code> instead. To edit an existing image rather than generate from scratch, use <code>POST /v1/images/edits</code>, which accepts up to three reference images for multi-image editing. Both are synchronous — no polling.</p>
+<h2 id="Generating-a-video-asynchronous-with-polling"><a href="#Generating-a-video-asynchronous-with-polling" class="headerlink" title="Generating a video (asynchronous, with polling)"></a>Generating a video (asynchronous, with polling)</h2><p>Video is where the pattern changes, and it is the single most common integration mistake: you cannot expect the video in the first response. Instead, <a target="_blank" rel="noopener" href="https://docs.x.ai/developers/model-capabilities/video/generation"><code>POST /v1/videos/generations</code></a> returns a <code>request_id</code>, and you poll <code>GET /v1/videos/{request_id}</code> until the <code>status</code> field flips from <code>pending</code> to <code>done</code> (or <code>failed</code> &#x2F; <code>expired</code>).</p>
+<picture style="aspect-ratio: 16 / 9; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/xai-video-async-flow.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/xai-video-async-flow.png" alt="xAI developer docs showing video generation as a two-step process — Step 1 POST /v1/videos/generations returns a request_id, Step 2 GET /v1/videos/{request_id} polls until the video is ready" loading="lazy" />
+</picture>
+
+<p><em>xAI’s own developer docs, captured July 26, 2026 — video generation is a two-step Start&#x2F;Poll process: the POST returns a <code>request_id</code>, then you GET <code>/v1/videos/{request_id}</code> until the video is ready. This is the async contract the whole video path is built on.</em></p>
+<p>The generation request accepts <code>model</code>, <code>prompt</code>, an optional <code>duration</code> (1–15 seconds), an <code>aspect_ratio</code> (<code>1:1</code>, <code>16:9</code>, <code>9:16</code>, <code>4:3</code>, <code>3:4</code>, <code>3:2</code>, <code>2:3</code>), and a <code>resolution</code> (<code>480p</code> default, <code>720p</code>, or <code>1080p</code>).</p>
+<p>The two steps in <code>curl</code>, based on the docs:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">REQUEST_ID=$(curl -s -X POST https://api.x.ai/v1/videos/generations \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer ***&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;&quot;model&quot;:&quot;grok-imagine-video&quot;,&quot;prompt&quot;:&quot;...&quot;,&quot;duration&quot;:10&#125;&#x27;</span> \</span><br><span class="line">  | jq -r <span class="string">&#x27;.request_id&#x27;</span>)</span><br><span class="line"></span><br><span class="line">curl -s https://api.x.ai/v1/videos/<span class="variable">$REQUEST_ID</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer ***&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>When the job finishes, the poll returns the video URL:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;done&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;video&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://vidgen.x.ai/.../video.mp4&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;duration&quot;</span><span class="punctuation">:</span> <span class="number">8</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;respect_moderation&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;model&quot;</span><span class="punctuation">:</span> <span class="string">&quot;grok-imagine-video&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>A complete Python polling loop looks like this:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os, time, requests</span><br><span class="line"></span><br><span class="line">headers = &#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;os.environ[<span class="string">&#x27;XAI_API_KEY&#x27;</span>]&#125;</span>&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line">start = requests.post(</span><br><span class="line">    <span class="string">&quot;https://api.x.ai/v1/videos/generations&quot;</span>,</span><br><span class="line">    headers=headers,</span><br><span class="line">    json=&#123;<span class="string">&quot;model&quot;</span>: <span class="string">&quot;grok-imagine-video&quot;</span>, <span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;...&quot;</span>, <span class="string">&quot;duration&quot;</span>: <span class="number">10</span>&#125;,</span><br><span class="line">)</span><br><span class="line">request_id = start.json()[<span class="string">&quot;request_id&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    result = requests.get(</span><br><span class="line">        <span class="string">f&quot;https://api.x.ai/v1/videos/<span class="subst">&#123;request_id&#125;</span>&quot;</span>, headers=headers</span><br><span class="line">    ).json()</span><br><span class="line">    <span class="keyword">if</span> result[<span class="string">&quot;status&quot;</span>] <span class="keyword">in</span> (<span class="string">&quot;done&quot;</span>, <span class="string">&quot;failed&quot;</span>, <span class="string">&quot;expired&quot;</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    time.sleep(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(result[<span class="string">&quot;video&quot;</span>][<span class="string">&quot;url&quot;</span>])</span><br></pre></td></tr></table></figure>
+
+<p>If you use xAI’s SDK, the <code>generate()</code> and <code>extend()</code> methods hide this loop entirely — they submit the request, poll, and return the completed video. Drop to <code>start()</code> and <code>get()</code> when you want to manage polling yourself.</p>
+<h2 id="Image-to-video-editing-and-reference-inputs"><a href="#Image-to-video-editing-and-reference-inputs" class="headerlink" title="Image-to-video, editing, and reference inputs"></a>Image-to-video, editing, and reference inputs</h2><p>Animating a still image runs through the same <code>POST /v1/videos/generations</code> endpoint and the same polling loop; the difference is that you supply an <a target="_blank" rel="noopener" href="https://docs.x.ai/developers/model-capabilities/video/image-to-video">input image</a>, and you choose a model that supports it (<code>grok-imagine-video-1.5</code> also unlocks 1080p output). The API accepts an input image in three forms: a public URL, a base64-encoded data URI (e.g. <code>data:image/jpeg;base64,...</code>), or a <code>file_id</code> from the Files API.</p>
+<p>If you are on the Vercel AI SDK, the <code>prompt</code> parameter takes an object with <code>image</code> and <code>text</code> fields, where the image can be a URL, a base64 string, a <code>Uint8Array</code>, an <code>ArrayBuffer</code>, or a <code>Buffer</code>. Because reference-to-video and video extension reuse the same asynchronous contract, once you have the polling loop above, adding these workflows is a matter of swapping the model and payload — not learning a new endpoint.</p>
+<h2 id="Rate-limits-and-error-handling"><a href="#Rate-limits-and-error-handling" class="headerlink" title="Rate limits and error handling"></a>Rate limits and error handling</h2><p>Imagine models are throttled by <strong>requests per second</strong>, not tokens per minute. As of July 2026, the <a target="_blank" rel="noopener" href="https://docs.x.ai/developers/rate-limits">published limits</a> are:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Limit</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>grok-imagine-image</code></td>
+<td>5 RPS</td>
+</tr>
+<tr>
+<td><code>grok-imagine-image-quality</code></td>
+<td>5 RPS</td>
+</tr>
+<tr>
+<td><code>grok-imagine-video</code></td>
+<td>10 RPS</td>
+</tr>
+<tr>
+<td><code>grok-imagine-video-1.5</code></td>
+<td>10 RPS</td>
+</tr>
+</tbody></table>
+<picture style="aspect-ratio: 16 / 9; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/xai-grok-imagine-rps.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/xai-grok-imagine-rps.png" alt="xAI rate-limit docs table showing grok-imagine-image and grok-imagine-image-quality at 5 requests per second and grok-imagine-video and grok-imagine-video-1.5 at 10 requests per second, all tiers" loading="lazy" />
+</picture>
+
+<p><em>xAI’s rate-limit docs, captured July 26, 2026 — Imagine image models are capped at 5 requests per second and video models at 10, across all tiers, confirming the throttle is RPS-based rather than token-based.</em></p>
+<p>Exceed them and you get an HTTP <code>429</code>; the recommended response is to catch the rate-limit error and back off exponentially before retrying:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time, requests</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">with_backoff</span>(<span class="params">call, retries=<span class="number">5</span></span>):</span><br><span class="line">    <span class="keyword">for</span> attempt <span class="keyword">in</span> <span class="built_in">range</span>(retries):</span><br><span class="line">        resp = call()</span><br><span class="line">        <span class="keyword">if</span> resp.status_code != <span class="number">429</span>:</span><br><span class="line">            <span class="keyword">return</span> resp</span><br><span class="line">        time.sleep(<span class="number">2</span> ** attempt)   <span class="comment"># 1s, 2s, 4s, 8s, ...</span></span><br><span class="line">    <span class="keyword">return</span> resp</span><br></pre></td></tr></table></figure>
+
+<p>One important note if you are planning for scale: rate-limit tier upgrades apply to text and embedding models, but increases to <strong>Imagine limits are handled by contacting <a href="mailto:&#115;&#97;&#108;&#101;&#115;&#x40;&#x78;&#x2e;&#x61;&#x69;">sales@x.ai</a></strong>, not through automatic tier bumps. Combined with the absence of Batch or Priority discounts on image and video, that means capacity and cost for high-volume Imagine workloads are worth confirming with xAI before you commit.</p>
+<h2 id="Access-Grok-Imagine-and-other-models-through-one-API-key"><a href="#Access-Grok-Imagine-and-other-models-through-one-API-key" class="headerlink" title="Access Grok Imagine (and other models) through one API key"></a>Access Grok Imagine (and other models) through one API key</h2><p>If Grok Imagine is one of several models you are calling, you may not want a separate integration for each provider. Modellix is an aggregation layer that carries the full Grok Imagine family (ten Imagine models in all — this guide details the four workhorse IDs above) behind one API key, using a <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api">single asynchronous contract</a>: <code>POST /api/v1/xai/&lt;model&gt;/async</code> returns a <code>task_id</code>, and <code>GET /api/v1/tasks/{task_id}</code> retrieves the result. The same key and the same submit-poll lifecycle reach image and <a href="https://www.modellix.ai/collections/ai-video-generator">video models</a> from other providers too, and every call is logged with its per-request cost, which makes running the same prompt across models an apples-to-apples comparison.</p>
+<p>To be straight about the trade-off: <strong>this is not a claim that routing Grok Imagine through Modellix is cheaper.</strong> Its per-tier markup means the direct xAI API is the lower-cost path if Grok is all you need — the standard image tier is roughly $0.023 versus xAI’s $0.02, and standard video roughly $0.0575 versus $0.05. The aggregator earns its keep only when you want one key across many image and video models plus per-call cost logs, not when you are optimizing a single-provider bill. If you are still deciding which model to build on at all, the honest <a href="https://www.modellix.ai/blog/grok-imagine-alternative/">Grok Imagine alternatives comparison</a> covers the strongest image and video substitutes.</p>
+<h2 id="Frequently-Asked-Questions-about-the-Grok-Imagine-API"><a href="#Frequently-Asked-Questions-about-the-Grok-Imagine-API" class="headerlink" title="Frequently Asked Questions about the Grok Imagine API"></a>Frequently Asked Questions about the Grok Imagine API</h2><p><strong>How do I get a Grok Imagine API key?</strong> Create a key on the API Keys page in the xAI console, then set it as the <code>XAI_API_KEY</code> environment variable. The same key works for both image and video endpoints.</p>
+<p><strong>What is the Grok Imagine API endpoint?</strong> There are two: images go to <code>POST https://api.x.ai/v1/images/generations</code> and videos to <code>POST https://api.x.ai/v1/videos/generations</code>, both under the base URL <code>https://api.x.ai/v1</code>. Video results are retrieved from <code>GET /v1/videos/{request_id}</code>.</p>
+<p><strong>Is the image API synchronous and the video API asynchronous?</strong> Yes. Image generation and editing return the result in the same response. Video generation returns a <code>request_id</code> that you poll until <code>status</code> is <code>done</code>. Building around that difference is the main thing to get right.</p>
+<p><strong>How much does the Grok Imagine API cost?</strong> It is usage-based — priced per image and per second of video, with higher tiers for the quality and 1.5 models, and no Batch or Priority discount. The full per-resolution ladder is on the <a href="https://www.modellix.ai/providers/xai">Modellix xAI provider page</a>.</p>
+<p><strong>Can I generate video from an image?</strong> Yes. Image-to-video uses the same <code>/v1/videos/generations</code> endpoint and polling loop; you pass the input image as a public URL, a base64 data URI, or a Files API <code>file_id</code>, and use a model that supports it (<code>grok-imagine-video-1.5</code> also reaches 1080p).</p>
+<p><strong>What are the rate limits?</strong> Image models are capped at 5 requests per second and video models at 10, as of July 2026. Exceeding them returns HTTP 429; retry with exponential backoff, and contact <a href="mailto:&#115;&#97;&#x6c;&#x65;&#x73;&#64;&#x78;&#x2e;&#x61;&#x69;">sales@x.ai</a> for higher Imagine limits.</p>
+<p><strong>Can I use the OpenAI SDK with it?</strong> Yes. The API is OpenAI-compatible, so you can point the OpenAI client at <code>https://api.x.ai/v1</code> and pass your <code>XAI_API_KEY</code>, or use xAI’s native <code>xai-sdk</code>.</p>
+<p><strong>Is the Grok Imagine API the same as the crypto token or the Grok chatbot?</strong> No. The crypto token that shares the name is unrelated to xAI’s product. And Grok Imagine is a media-generation API on <code>/v1/images</code> and <code>/v1/videos</code> — separate from the <code>grok-4.5</code> chat model on <code>/v1/responses</code>.</p>
+<hr>
+<p><em>Endpoint behavior, model IDs, rate limits, and pricing reflect xAI’s public documentation as of July 2026 and change frequently. Validate against the live docs before shipping. Access image and video models, including the leading Chinese models, through a single API key at <a target="_blank" rel="noopener" href="https://modellix.ai/">modellix.ai</a>.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Grok/" class="tag-pill tag-pill--sm">Grok</a>
+            
+              <a href="/blog/tags/xAI/" class="tag-pill tag-pill--sm">xAI</a>
+            
+              <a href="/blog/tags/Integration/" class="tag-pill tag-pill--sm">Integration</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/openai-image-generation-api1/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-openai-image-generation-api-v2.webp" alt="OpenAI Image Generation API: Pricing, Models &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">OpenAI Image Generation API: Pricing, Models &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-07-28T02:00:00.000Z">July 28, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/nano-banana-api-key/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-nano-banana-api-key.webp" alt="Nano Banana API Key: How to Get One &amp; Use It" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Nano Banana API Key: How to Get One &amp; Use It</h3>
+          <time class="related-article-date" datetime="2026-07-27T06:00:00.000Z">July 27, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/nano-banana-pro-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-nano-banana-pro-api.webp" alt="Nano Banana Pro API: Integration Guide &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Nano Banana Pro API: Integration Guide &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-07-27T06:00:00.000Z">July 27, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/grok-imagine-api/&text=Grok%20Imagine%20API%3A%20Integration%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/grok-imagine-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/grok-imagine-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
