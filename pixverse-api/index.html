@@ -1,0 +1,640 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PixVerse API: Integration Guide for Developers (2026) — Modellix Blog</title>
+  <meta name="description" content="Complete PixVerse API integration guide: get a key, write your first video generation call in Python and cURL, compare pricing, and choose the right model.">
+  <meta name="keywords" content="pixverse api, pixverse api key, pixverse api documentation, pixverse api pricing, pixverse v6 api, text to video api, image to video api">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/pixverse-api/">
+  <meta name="description" content="Complete PixVerse API integration guide: get a key, write your first video generation call in Python and cURL, compare pricing, and choose the right model.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PixVerse API: Integration Guide for Developers (2026) — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/pixverse-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Complete PixVerse API integration guide: get a key, write your first video generation call in Python and cURL, compare pricing, and choose the right model.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-pixverse-api.webp">
+<meta property="article:published_time" content="2026-07-29T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-29T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="API">
+<meta property="article:tag" content="PixVerse">
+<meta property="article:tag" content="developer-guide">
+<meta property="article:tag" content="image-to-video">
+<meta property="article:tag" content="integration">
+<meta property="article:tag" content="text-to-video">
+<meta property="article:tag" content="video-generation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-pixverse-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"PixVerse API: Integration Guide for Developers (2026)","description":"Complete PixVerse API integration guide: get a key, write your first video generation call in Python and cURL, compare pricing, and choose the right model.","datePublished":"2026-07-29T16:00:00.000Z","dateModified":"2026-07-29T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/pixverse-api/","image":"https://img.modellix.ai/en/article/cover-pixverse-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">PixVerse API: Integration Guide for Developers (2026)</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/api-guides/" class="category-tag category-tag--sm">api-guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">PixVerse API: Integration Guide for Developers (2026)</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-07-29T16:00:00.000Z">July 30, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/API/" class="tag-pill tag-pill--sm">API</a>
+            
+              <a href="/blog/tags/PixVerse/" class="tag-pill tag-pill--sm">PixVerse</a>
+            
+              <a href="/blog/tags/video-generation/" class="tag-pill tag-pill--sm">video-generation</a>
+            
+              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">developer-guide</a>
+            
+              <a href="/blog/tags/text-to-video/" class="tag-pill tag-pill--sm">text-to-video</a>
+            
+              <a href="/blog/tags/image-to-video/" class="tag-pill tag-pill--sm">image-to-video</a>
+            
+              <a href="/blog/tags/integration/" class="tag-pill tag-pill--sm">integration</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>What the PixVerse API actually does and doesn&#39;t do If you search &#39;pixverse api&#39; the top results are PixVerse&#39;s own product pages — feature lists, model showcases, a GitHub MCP repo.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-pixverse-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-pixverse-api.png" alt="Dark photorealistic 3D stage with ◆MODELLIX cyan wordmark. Bold white title PixVerse API. Floating video frames with amber key light and cyan rim highlights, shallow depth of field." />
+</picture>
+
+<h2 id="What-the-PixVerse-API-actually-does-and-doesn’t-do"><a href="#What-the-PixVerse-API-actually-does-and-doesn’t-do" class="headerlink" title="What the PixVerse API actually does (and doesn’t do)"></a>What the PixVerse API actually does (and doesn’t do)</h2><p>If you search “pixverse api” the top results are PixVerse’s own product pages — feature lists, model showcases, a GitHub MCP repo. What you won’t find is a developer guide that walks you from zero to a working video generation pipeline with real code and real pricing.</p>
+<p>Here’s the short version of what the API gives you:</p>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Models</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Text-to-video</strong></td>
+<td>V5, V6</td>
+<td>Generate video from a text prompt. 5s or 8s output.</td>
+</tr>
+<tr>
+<td><strong>Image-to-video</strong></td>
+<td>V5, V6</td>
+<td>Animate a still image. Add motion, camera movement, effects.</td>
+</tr>
+<tr>
+<td><strong>Video reference (V6 only)</strong></td>
+<td>V6</td>
+<td>Feed in a reference video and the model follows its motion, composition, and style.</td>
+</tr>
+<tr>
+<td><strong>Multi-shot video</strong></td>
+<td>C1</td>
+<td>Turn storyboards or multi-image sequences into coherent clips with scene transitions.</td>
+</tr>
+<tr>
+<td><strong>Lip sync</strong></td>
+<td>V6</td>
+<td>Sync mouth movements to an audio track. Combine with TTS for talking-head video.</td>
+</tr>
+<tr>
+<td><strong>Video extension</strong></td>
+<td>V5, V6</td>
+<td>Extend an existing clip beyond its original length.</td>
+</tr>
+<tr>
+<td><strong>Motion control</strong></td>
+<td>V6</td>
+<td>Specify camera movement direction, speed, and focal point.</td>
+</tr>
+<tr>
+<td><strong>Sound effects</strong></td>
+<td>V6</td>
+<td>Generate audio synchronized to video content — footsteps, ambient noise, action sounds.</td>
+</tr>
+</tbody></table>
+<p>Resolution goes up to 1080p across all models. Aspect ratios cover 16:9, 9:16, 1:1, and several in-between — so the same prompt can produce a YouTube landscape clip, a TikTok vertical, or a square Instagram post without reformatting.</p>
+<p>What the API <strong>doesn’t</strong> do: generate still images (it’s video-only), handle real-time streaming (it’s async batch generation), or output 4K. It also doesn’t generate audio from scratch — the sound effects feature syncs audio to video content but doesn’t do standalone audio generation.</p>
+<picture style="aspect-ratio: 16 / 9; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/pixverse-model-matrix.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/pixverse-model-matrix.png" alt="PixVerse model capabilities comparison matrix showing V5, V6, C1, and R1 features side by side" loading="lazy" />
+</picture>
+
+<p><em>PixVerse model lineup across V5, V6, C1, and R1 — each optimized for different video generation tasks. V6 is the current flagship with video reference and sound effects. C1 handles multi-shot storyboard sequences.</em></p>
+<p>If you’re evaluating PixVerse alongside other video APIs for your product, you’re probably asking three things: how do I get a key, what’s the cheapest way to run it, and which model should I actually use. The rest of this guide answers those in order.</p>
+<p>One disclosure before we get into code: we run <a href="https://www.modellix.ai/">Modellix</a>, an API aggregator that offers PixVerse models alongside 210+ other image and video models through a single API key. We have a commercial interest. Every fact here about PixVerse’s own API comes from <a target="_blank" rel="noopener" href="https://platform.pixverse.ai/">their public platform docs</a> and <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/">API documentation</a>, verified July 30, 2026. Where we couldn’t verify something independently, we say so.</p>
+<h2 id="Getting-your-PixVerse-API-key-—-the-three-paths"><a href="#Getting-your-PixVerse-API-key-—-the-three-paths" class="headerlink" title="Getting your PixVerse API key — the three paths"></a>Getting your PixVerse API key — the three paths</h2><p>There are three ways to get programmatic access to PixVerse models. The path you pick depends on whether you need PixVerse exclusively or want PixVerse as part of a broader model stack.</p>
+<h3 id="Path-1-PixVerse-official-platform"><a href="#Path-1-PixVerse-official-platform" class="headerlink" title="Path 1: PixVerse official platform"></a>Path 1: PixVerse official platform</h3><p>Go to <a target="_blank" rel="noopener" href="https://platform.pixverse.ai/">platform.pixverse.ai</a> and sign up for a developer account. You get an API key from the dashboard. PixVerse’s API uses credit-based billing — you buy credit packs, and each generation consumes credits based on model, resolution, duration, and whether you’re using video reference (which doubles the credit cost).</p>
+<p>The official API gives you the deepest feature access — lip sync, sound effects, video reference, and motion control are all available. The tradeoff is billing complexity: credits are not dollars, and the credit-per-second math changes across models and resolutions.</p>
+<h3 id="Path-2-Modellix-unified-API-key"><a href="#Path-2-Modellix-unified-API-key" class="headerlink" title="Path 2: Modellix unified API key"></a>Path 2: Modellix unified API key</h3><p>If you’re already using other AI models in your stack — image generation, other video models, or planning to switch between Kling, Seedance, Hailuo, and PixVerse for different use cases — Modellix gives you one API key that covers all of them. No credit packs to buy, no per-model key management, no separate billing dashboards. You can browse the <a href="https://www.modellix.ai/providers/pixverse">full PixVerse model catalog on Modellix</a> to see which models are available, including V6 text-to-video, V6 image-to-video, video reference, lip sync, and more.</p>
+<p>Pricing is per-second, not per-credit, and every call is logged with input, output, cost, and latency — useful when you’re comparing model performance across providers. <a href="https://www.modellix.ai/pricing">Modellix pricing</a> is public and searchable by model and resolution.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Modellix: one key for PixVerse + 210+ other models</span></span><br><span class="line">curl -X POST https://api.modellix.ai/v1/pixverse/v6-t2v/async \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$MODELLIX_KEY</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;&quot;prompt&quot;: &quot;a cat walking through a neon-lit Tokyo alley at night&quot;, &quot;duration&quot;: 5&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Path-3-PixVerse-MCP-server-for-AI-agent-workflows"><a href="#Path-3-PixVerse-MCP-server-for-AI-agent-workflows" class="headerlink" title="Path 3: PixVerse MCP server (for AI agent workflows)"></a>Path 3: PixVerse MCP server (for AI agent workflows)</h3><p>PixVerse maintains an <a target="_blank" rel="noopener" href="https://github.com/PixVerseAI/PixVerse-MCP">official MCP server on GitHub</a>. If you’re building AI agents that need video generation — Claude Code plugins, Cursor extensions, custom agent pipelines — the MCP server gives you PixVerse API access through natural language prompts.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Clone and configure the MCP server</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/PixVerseAI/PixVerse-MCP</span><br><span class="line"><span class="built_in">cd</span> PixVerse-MCP</span><br><span class="line"><span class="comment"># Add your API key to the MCP client config</span></span><br></pre></td></tr></table></figure>
+
+<p>The MCP path still requires API credits purchased separately — it’s an interface layer, not a free tier.</p>
+<p><strong>Which path should you pick?</strong> Official if PixVerse is your only model and you’re comfortable with credit-based billing. MCP if you’re building agent workflows. Modellix if you need PixVerse alongside other models with transparent per-second billing and don’t want to manage multiple API keys. The code examples in the next section work with any of the three — just swap the endpoint and auth header.</p>
+<h2 id="Your-first-PixVerse-API-call-—-authentication-request-and-polling"><a href="#Your-first-PixVerse-API-call-—-authentication-request-and-polling" class="headerlink" title="Your first PixVerse API call — authentication, request, and polling"></a>Your first PixVerse API call — authentication, request, and polling</h2><p>PixVerse video generation is asynchronous. You submit a job, get a task ID, poll for completion, then retrieve the video URL. Here’s the full lifecycle in three languages.</p>
+<h3 id="Step-1-Submit-the-generation-request"><a href="#Step-1-Submit-the-generation-request" class="headerlink" title="Step 1: Submit the generation request"></a>Step 1: Submit the generation request</h3><p>The Modellix endpoint shown below is one access path — the pattern is identical whether you’re calling PixVerse directly or through an aggregator. Here’s the Modellix version first, then a PixVerse-direct example for comparison.</p>
+<p><strong>Via Modellix (cURL):</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST https://api.modellix.ai/v1/pixverse/v6-t2v/async \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$MODELLIX_API_KEY</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;prompt&quot;: &quot;drone shot flying over a misty mountain lake at sunrise, cinematic lighting&quot;,</span></span><br><span class="line"><span class="string">    &quot;duration&quot;: 5,</span></span><br><span class="line"><span class="string">    &quot;aspect_ratio&quot;: &quot;16:9&quot;,</span></span><br><span class="line"><span class="string">    &quot;resolution&quot;: &quot;1080p&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>Response:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;task_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pixv_8f3a2b1c&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;processing&quot;</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Python:</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">response = requests.post(</span><br><span class="line">    <span class="string">&quot;https://api.modellix.ai/v1/pixverse/v6-t2v/async&quot;</span>,</span><br><span class="line">    headers=&#123;</span><br><span class="line">        <span class="string">&quot;Authorization&quot;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;MODELLIX_API_KEY&#125;</span>&quot;</span>,</span><br><span class="line">        <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    json=&#123;</span><br><span class="line">        <span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;drone shot flying over a misty mountain lake at sunrise, cinematic lighting&quot;</span>,</span><br><span class="line">        <span class="string">&quot;duration&quot;</span>: <span class="number">5</span>,</span><br><span class="line">        <span class="string">&quot;aspect_ratio&quot;</span>: <span class="string">&quot;16:9&quot;</span>,</span><br><span class="line">        <span class="string">&quot;resolution&quot;</span>: <span class="string">&quot;1080p&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">task = response.json()</span><br><span class="line">task_id = task[<span class="string">&quot;task_id&quot;</span>]   <span class="comment"># e.g., &quot;pixv_8f3a2b1c&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Node.js:</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> response = <span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="string">&quot;https://api.modellix.ai/v1/pixverse/v6-t2v/async&quot;</span>, &#123;</span><br><span class="line">  <span class="attr">method</span>: <span class="string">&quot;POST&quot;</span>,</span><br><span class="line">  <span class="attr">headers</span>: &#123;</span><br><span class="line">    <span class="string">&quot;Authorization&quot;</span>: <span class="string">`Bearer <span class="subst">$&#123;MODELLIX_API_KEY&#125;</span>`</span>,</span><br><span class="line">    <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">body</span>: <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(&#123;</span><br><span class="line">    <span class="attr">prompt</span>: <span class="string">&quot;drone shot flying over a misty mountain lake at sunrise, cinematic lighting&quot;</span>,</span><br><span class="line">    <span class="attr">duration</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="attr">aspect_ratio</span>: <span class="string">&quot;16:9&quot;</span>,</span><br><span class="line">    <span class="attr">resolution</span>: <span class="string">&quot;1080p&quot;</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> &#123; task_id &#125; = <span class="keyword">await</span> response.<span class="title function_">json</span>();</span><br></pre></td></tr></table></figure>
+
+<h3 id="Step-2-Poll-for-completion"><a href="#Step-2-Poll-for-completion" class="headerlink" title="Step 2: Poll for completion"></a>Step 2: Poll for completion</h3><p>Video generation takes 30 seconds to 2 minutes depending on resolution, duration, and queue depth. Poll the task endpoint every 5-10 seconds.</p>
+<p><strong>Via PixVerse directly (Python):</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time, requests</span><br><span class="line"></span><br><span class="line"><span class="comment"># PixVerse direct API — replace with your own key</span></span><br><span class="line">PIXVERSE_KEY = <span class="string">&quot;your-pixverse-api-key&quot;</span></span><br><span class="line">PIXVERSE_BASE = <span class="string">&quot;https://api.pixverse.ai/openapi/v2&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Submit</span></span><br><span class="line">resp = requests.post(</span><br><span class="line">    <span class="string">f&quot;<span class="subst">&#123;PIXVERSE_BASE&#125;</span>/video/t2v/generate&quot;</span>,</span><br><span class="line">    headers=&#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;PIXVERSE_KEY&#125;</span>&quot;</span>, <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>&#125;,</span><br><span class="line">    json=&#123;<span class="string">&quot;model&quot;</span>: <span class="string">&quot;v6&quot;</span>, <span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;drone shot flying over a misty mountain lake at sunrise&quot;</span>, <span class="string">&quot;duration&quot;</span>: <span class="number">5</span>, <span class="string">&quot;resolution&quot;</span>: <span class="string">&quot;1080p&quot;</span>&#125;</span><br><span class="line">)</span><br><span class="line">task_id = resp.json()[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;video_id&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Poll</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    status = requests.get(</span><br><span class="line">        <span class="string">f&quot;<span class="subst">&#123;PIXVERSE_BASE&#125;</span>/video/status&quot;</span>,</span><br><span class="line">        headers=&#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;PIXVERSE_KEY&#125;</span>&quot;</span>&#125;,</span><br><span class="line">        params=&#123;<span class="string">&quot;video_id&quot;</span>: task_id&#125;</span><br><span class="line">    ).json()</span><br><span class="line">    <span class="keyword">if</span> status[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;status&quot;</span>] == <span class="string">&quot;completed&quot;</span>:</span><br><span class="line">        video_url = status[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;video_url&quot;</span>]</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">elif</span> status[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;status&quot;</span>] <span class="keyword">in</span> (<span class="string">&quot;failed&quot;</span>, <span class="string">&quot;review_failed&quot;</span>):</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">f&quot;Generation failed: <span class="subst">&#123;status[<span class="string">&#x27;data&#x27;</span>].get(<span class="string">&#x27;error&#x27;</span>)&#125;</span>&quot;</span>)</span><br><span class="line">    time.sleep(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Via Modellix (Python):</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    status_resp = requests.get(</span><br><span class="line">        <span class="string">f&quot;https://api.modellix.ai/v1/tasks/<span class="subst">&#123;task_id&#125;</span>&quot;</span>,</span><br><span class="line">        headers=&#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;MODELLIX_API_KEY&#125;</span>&quot;</span>&#125;</span><br><span class="line">    )</span><br><span class="line">    status = status_resp.json()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> status[<span class="string">&quot;status&quot;</span>] == <span class="string">&quot;completed&quot;</span>:</span><br><span class="line">        video_url = status[<span class="string">&quot;output&quot;</span>][<span class="string">&quot;video_url&quot;</span>]</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">elif</span> status[<span class="string">&quot;status&quot;</span>] == <span class="string">&quot;failed&quot;</span>:</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">f&quot;Generation failed: <span class="subst">&#123;status.get(<span class="string">&#x27;error&#x27;</span>)&#125;</span>&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    time.sleep(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Step-3-Use-the-video"><a href="#Step-3-Use-the-video" class="headerlink" title="Step 3: Use the video"></a>Step 3: Use the video</h3><p>The <code>video_url</code> is a signed URL valid for 7 days. Download it immediately if you need persistent storage:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -O <span class="string">&quot;<span class="variable">$VIDEO_URL</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<picture style="aspect-ratio: 16 / 9; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/api-request-lifecycle.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/api-request-lifecycle.png" alt="API request lifecycle: submit generation → receive task_id → poll status endpoint → completed → download video URL" loading="lazy" />
+</picture>
+
+<p><em>The PixVerse API lifecycle: submit a generation job, poll for completion with exponential backoff, retrieve the signed video URL on success. Videos are available for 7 days — download immediately for persistent storage.</em></p>
+<h3 id="Image-to-video-same-pattern-different-input"><a href="#Image-to-video-same-pattern-different-input" class="headerlink" title="Image-to-video: same pattern, different input"></a>Image-to-video: same pattern, different input</h3><p>For image-to-video, upload your source image first, then reference it in the generation request:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Step 1: Upload image</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;input_frame.png&quot;</span>, <span class="string">&quot;rb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    upload_resp = requests.post(</span><br><span class="line">        <span class="string">&quot;https://api.modellix.ai/v1/media/files&quot;</span>,</span><br><span class="line">        headers=&#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;MODELLIX_API_KEY&#125;</span>&quot;</span>&#125;,</span><br><span class="line">        files=&#123;<span class="string">&quot;file&quot;</span>: f&#125;</span><br><span class="line">    )</span><br><span class="line">image_id = upload_resp.json()[<span class="string">&quot;file_id&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Step 2: Generate video from image</span></span><br><span class="line">response = requests.post(</span><br><span class="line">    <span class="string">&quot;https://api.modellix.ai/v1/pixverse/v6-i2v/async&quot;</span>,</span><br><span class="line">    headers=&#123;</span><br><span class="line">        <span class="string">&quot;Authorization&quot;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;MODELLIX_API_KEY&#125;</span>&quot;</span>,</span><br><span class="line">        <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    json=&#123;</span><br><span class="line">        <span class="string">&quot;image_id&quot;</span>: image_id,</span><br><span class="line">        <span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;gentle camera pan right, subtle motion in the water&quot;</span>,</span><br><span class="line">        <span class="string">&quot;duration&quot;</span>: <span class="number">5</span></span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line"><span class="comment"># Then poll as above</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="PixVerse-API-pricing-—-what-you-actually-pay-per-video"><a href="#PixVerse-API-pricing-—-what-you-actually-pay-per-video" class="headerlink" title="PixVerse API pricing — what you actually pay per video"></a>PixVerse API pricing — what you actually pay per video</h2><p>The #1 question in the “People Also Ask” box for “pixverse api” is “How much does the PixVerse API cost?” The answer depends entirely on which access path you use. We have a <a href="https://www.modellix.ai/blog/pixverse-pricing/">full breakdown of PixVerse’s credit system and real per-second costs</a> if you want the complete cross-provider comparison — but here’s the short version:</p>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Billing unit</th>
+<th>5s 1080p video</th>
+<th>8s 1080p video</th>
+<th>Monthly minimum</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>PixVerse official</strong></td>
+<td>Credits</td>
+<td>~$0.75–$1.25 (estimated)</td>
+<td>~$1.20–$2.00</td>
+<td>None (credit packs)</td>
+<td>Credit cost varies by model and features; video reference doubles credits</td>
+</tr>
+<tr>
+<td><strong>Together AI</strong></td>
+<td>Per video</td>
+<td>$0.30</td>
+<td>N&#x2F;A (V5 only, 5s max)</td>
+<td>None</td>
+<td>Fastest and cheapest; only V5, no video reference or lip sync</td>
+</tr>
+<tr>
+<td><strong>Atlas Cloud</strong></td>
+<td>Per second</td>
+<td>~$0.125</td>
+<td>~$0.20</td>
+<td>None</td>
+<td>Good model coverage; per-second pricing</td>
+</tr>
+<tr>
+<td><strong>Modellix</strong></td>
+<td>Per second</td>
+<td>See <a href="https://www.modellix.ai/pricing">pricing page</a></td>
+<td>Same rate</td>
+<td>None</td>
+<td>All PixVerse models; pricing shown per model&#x2F;resolution on pricing page</td>
+</tr>
+</tbody></table>
+<p>PixVerse’s official credit system makes apples-to-apples comparison difficult because credit consumption varies: 1080p costs more than 720p, video reference doubles credits, and different models have different base rates. The aggregator paths (Together AI, Atlas Cloud, Modellix) all use per-video or per-second pricing, which is more predictable.</p>
+<p>If you’re generating hundreds of videos per month, the aggregator per-second model usually comes out ahead — no credit math, no leftover credits expiring, no surprise bills when you enable video reference on a 1080p render.</p>
+<picture style="aspect-ratio: 16 / 9; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/pixverse-pricing-comparison.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/pixverse-pricing-comparison.png" alt="PixVerse API pricing comparison across official credits, Together AI, Atlas Cloud, and Modellix — per-video cost estimates for different resolutions and durations" loading="lazy" />
+</picture>
+
+<p><em>PixVerse API pricing across access paths. Official credits are model-and-resolution-dependent. Aggregator paths use per-second or per-video pricing. Actual Modellix rates are on the <a href="https://www.modellix.ai/pricing">public pricing page</a> — check the current per-second rate for pixverse&#x2F;v6-t2v at your target resolution.</em></p>
+<p><strong>Is there a free tier?</strong> PixVerse’s consumer web app offers 3 free trial generations. For the API specifically, PixVerse does not publish a free tier. Some aggregators offer trial credits — check each platform’s current new-user terms. Modellix offers a <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started/top-up">top-up discount</a> on first deposit rather than free generations. Note that PixVerse’s consumer web app adds a watermark to free-tier videos, and some aggregator paths may include watermarking at lower pricing tiers — check each provider’s terms if watermark-free output matters for your use case.</p>
+<h2 id="V5-vs-V6-vs-C1-—-which-PixVerse-model-should-you-use"><a href="#V5-vs-V6-vs-C1-—-which-PixVerse-model-should-you-use" class="headerlink" title="V5 vs V6 vs C1 — which PixVerse model should you use?"></a>V5 vs V6 vs C1 — which PixVerse model should you use?</h2><p>If you’re building a product, you don’t want to call the wrong model and burn budget on features you don’t need. Here’s the decision logic:</p>
+<p><strong>Use V6 for most new projects.</strong> It’s the current flagship: text-to-video, image-to-video, video reference, lip sync, motion control, and sound effects in one model. If your product needs any of these — especially video reference (feeding in a reference clip and having V6 match its motion and composition) — V6 is the only option.</p>
+<p><strong>Use V5 if you need the lowest per-video cost and don’t need V6’s advanced features.</strong> V5 does text-to-video and image-to-video at lower credit&#x2F;per-second rates. If you’re generating high volumes of straightforward clips at 720p, V5 will be cheaper per video. Together AI only offers V5 for this reason — it’s the cost-optimized path.</p>
+<p><strong>Use C1 for multi-shot storyboard sequences.</strong> If you have a series of images (storyboard frames, product angles, scene progression) and want them turned into one coherent video with transitions, C1 is purpose-built for this. It’s not a general-purpose model — don’t use it for single-prompt text-to-video.</p>
+<p><strong>R1</strong> is PixVerse’s newest model (launched June 2026). It’s positioned as a reasoning-enhanced video model that handles complex, multi-step prompts. As of July 2026, R1 availability through third-party aggregators is still rolling out — check the <a href="https://www.modellix.ai/models/pixverse/">Modellix model catalog</a> for current availability.</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Best for</th>
+<th>Tradeoff</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>V6</strong></td>
+<td>General-purpose video gen with advanced features (video reference, lip sync, motion control)</td>
+<td>Higher cost per second than V5</td>
+</tr>
+<tr>
+<td><strong>V5</strong></td>
+<td>High-volume straightforward text-to-video at lower cost</td>
+<td>No video reference, no lip sync, no sound effects</td>
+</tr>
+<tr>
+<td><strong>C1</strong></td>
+<td>Storyboard-to-video, multi-shot sequences</td>
+<td>Not for single-prompt generation</td>
+</tr>
+<tr>
+<td><strong>R1</strong></td>
+<td>Complex multi-step prompts, reasoning-heavy generation</td>
+<td>Newest model; aggregator availability varies</td>
+</tr>
+</tbody></table>
+<h2 id="Production-deployment-—-async-jobs-webhooks-and-error-handling"><a href="#Production-deployment-—-async-jobs-webhooks-and-error-handling" class="headerlink" title="Production deployment — async jobs, webhooks, and error handling"></a>Production deployment — async jobs, webhooks, and error handling</h2><p>The polling loop from the “first API call” section works for development, but here’s what changes when you go to production:</p>
+<h3 id="Use-webhooks-instead-of-polling"><a href="#Use-webhooks-instead-of-polling" class="headerlink" title="Use webhooks instead of polling"></a>Use webhooks instead of polling</h3><p>Polling burns requests and adds latency. PixVerse’s API and most aggregator endpoints support webhook callbacks — you pass a <code>webhook_url</code> in the generation request, and the platform POSTs the result to your endpoint when the video is ready.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">response = requests.post(</span><br><span class="line">    <span class="string">&quot;https://api.modellix.ai/v1/pixverse/v6-t2v/async&quot;</span>,</span><br><span class="line">    headers=&#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;MODELLIX_API_KEY&#125;</span>&quot;</span>&#125;,</span><br><span class="line">    json=&#123;</span><br><span class="line">        <span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;...&quot;</span>,</span><br><span class="line">        <span class="string">&quot;duration&quot;</span>: <span class="number">5</span>,</span><br><span class="line">        <span class="string">&quot;webhook_url&quot;</span>: <span class="string">&quot;https://your-app.com/api/video-callback&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>Your webhook endpoint receives a POST with the <code>task_id</code>, <code>status</code>, and <code>output.video_url</code> — no polling needed.</p>
+<h3 id="Handle-rate-limits-and-concurrency"><a href="#Handle-rate-limits-and-concurrency" class="headerlink" title="Handle rate limits and concurrency"></a>Handle rate limits and concurrency</h3><p>PixVerse official and aggregator APIs have rate limits and concurrency caps. At Modellix, your concurrent task limit and requests-per-minute scale with your <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started/entitlements">top-up tier</a> — from 10 concurrent tasks at the $10 tier up to 100 at $1,000. If you hit the limit, you get a <code>429 Too Many Requests</code>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tenacity <span class="keyword">import</span> retry, wait_exponential</span><br><span class="line"></span><br><span class="line"><span class="meta">@retry(<span class="params">wait=wait_exponential(<span class="params">multiplier=<span class="number">2</span>, <span class="built_in">min</span>=<span class="number">5</span>, <span class="built_in">max</span>=<span class="number">60</span></span>)</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">generate_video</span>(<span class="params">prompt</span>):</span><br><span class="line">    response = requests.post(...)</span><br><span class="line">    <span class="keyword">if</span> response.status_code == <span class="number">429</span>:</span><br><span class="line">        <span class="keyword">raise</span> RateLimitError(<span class="string">&quot;Back off and retry&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> response.json()[<span class="string">&quot;task_id&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="Track-costs-per-generation"><a href="#Track-costs-per-generation" class="headerlink" title="Track costs per generation"></a>Track costs per generation</h3><p>Every Modellix API call returns cost data in the response headers and the task status endpoint. Log this per-generation so you can track which prompts, models, and resolutions are driving your bill:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -s -H <span class="string">&quot;Authorization: Bearer <span class="variable">$MODELLIX_KEY</span>&quot;</span> \</span><br><span class="line">  <span class="string">&quot;https://api.modellix.ai/v1/tasks/<span class="variable">$TASK_ID</span>&quot;</span> | jq <span class="string">&#x27;&#123;status, cost, duration, model&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Handle-batch-generation"><a href="#Handle-batch-generation" class="headerlink" title="Handle batch generation"></a>Handle batch generation</h3><p>If you need to generate dozens or hundreds of videos — for A&#x2F;B testing creative variants, localizing a single video into multiple languages, or processing a queue of user-submitted prompts — you’ll hit concurrency limits quickly. Structure your worker to respect your tier’s <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started/entitlements">concurrent task cap</a>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">from</span> concurrent.futures <span class="keyword">import</span> ThreadPoolExecutor</span><br><span class="line"></span><br><span class="line">MAX_CONCURRENT = <span class="number">10</span>  <span class="comment"># match your tier</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">generate_one</span>(<span class="params">prompt</span>):</span><br><span class="line">    resp = requests.post(<span class="string">&quot;https://api.modellix.ai/v1/pixverse/v6-t2v/async&quot;</span>, ...)</span><br><span class="line">    <span class="keyword">return</span> resp.json()[<span class="string">&quot;task_id&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> ThreadPoolExecutor(max_workers=MAX_CONCURRENT) <span class="keyword">as</span> executor:</span><br><span class="line">    task_ids = <span class="built_in">list</span>(executor.<span class="built_in">map</span>(generate_one, prompts))</span><br><span class="line"><span class="comment"># Then poll all task_ids in a single batch loop</span></span><br></pre></td></tr></table></figure>
+
+<p>For very high volumes (thousands of videos per day), add a queue system (Redis, RabbitMQ, or SQS) with backpressure — submit at your concurrency cap, poll completed tasks, and feed new work as slots open.</p>
+<h3 id="Error-handling-what-to-expect"><a href="#Error-handling-what-to-expect" class="headerlink" title="Error handling: what to expect"></a>Error handling: what to expect</h3><p>Common failure modes and how to handle them:</p>
+<ul>
+<li><strong>Content moderation rejection (HTTP 400):</strong> The prompt or image triggered a safety filter. Log the prompt for review; don’t retry with the same input.</li>
+<li><strong>Server-side failure (HTTP 500):</strong> The model failed to render. Retry once — transient GPU errors happen. If it fails twice, the prompt may be malformed.</li>
+<li><strong>Timeout (no response in 5 minutes):</strong> Check the task status once, then alert your ops channel. Long queues during peak hours are rare but happen.</li>
+</ul>
+<p>For the full error code reference, see the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api">Modellix API docs</a> — every error code includes a description, the scenario that triggers it, and whether it’s safe to retry.</p>
+<h2 id="Modellix-vs-direct-PixVerse-API-—-when-to-use-which"><a href="#Modellix-vs-direct-PixVerse-API-—-when-to-use-which" class="headerlink" title="Modellix vs direct PixVerse API — when to use which"></a>Modellix vs direct PixVerse API — when to use which</h2><p>You’ve now seen both paths working. Here’s when each makes sense:</p>
+<p><strong>Use PixVerse’s official API directly when:</strong></p>
+<ul>
+<li>PixVerse is the only AI model in your stack</li>
+<li>You need the absolute latest features on day one (new model launches, beta features)</li>
+<li>You’re comfortable with credit-based billing and per-model key management</li>
+</ul>
+<p><strong>Use Modellix when:</strong></p>
+<ul>
+<li>You use multiple AI video or image models and want one API key, one integration, one bill</li>
+<li>You want per-second pricing with per-call cost logging — transparent and auditable</li>
+<li>You want to A&#x2F;B test PixVerse against Kling, Seedance, Hailuo, or other models without rewriting integration code for each provider — our <a href="https://www.modellix.ai/blog/pixverse-alternative/">PixVerse alternatives comparison</a> covers how PixVerse stacks up against these models feature-by-feature</li>
+<li>You need observability: every call logged with input, output, cost, and latency</li>
+</ul>
+<p>The integration code you write for one path ports to the other with minimal changes — the API patterns (async submit → poll → retrieve) are structurally identical. The real difference is operational overhead: one key and one pricing model for your entire media generation stack, versus managing separate keys, billing systems, and error-handling logic for each model provider.</p>
+<p>If you’re evaluating PixVerse alongside other video APIs and want to run a fair comparison, the Modellix unified endpoint makes that straightforward — same prompt, same resolution, same code, different model name in the URL path.</p>
+<hr>
+<p><em>Pricing and model availability verified July 30, 2026. AI video generation pricing changes frequently — check each provider’s current pricing page before committing to a volume integration. PixVerse model features and capabilities from <a target="_blank" rel="noopener" href="https://platform.pixverse.ai/">PixVerse Platform docs</a> and <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/">developer documentation</a>.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/API/" class="tag-pill tag-pill--sm">API</a>
+            
+              <a href="/blog/tags/PixVerse/" class="tag-pill tag-pill--sm">PixVerse</a>
+            
+              <a href="/blog/tags/video-generation/" class="tag-pill tag-pill--sm">video-generation</a>
+            
+              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">developer-guide</a>
+            
+              <a href="/blog/tags/text-to-video/" class="tag-pill tag-pill--sm">text-to-video</a>
+            
+              <a href="/blog/tags/image-to-video/" class="tag-pill tag-pill--sm">image-to-video</a>
+            
+              <a href="/blog/tags/integration/" class="tag-pill tag-pill--sm">integration</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/minimax-free-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-minimax-free-api.webp" alt="Minimax Free API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">api-guides</span>
+              
+                <span class="category-tag category-tag--sm">ai-models</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Minimax Free API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-07-28T16:00:00.000Z">July 29, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/pixverse-api/&text=PixVerse%20API%3A%20Integration%20Guide%20for%20Developers%20(2026)" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/pixverse-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/pixverse-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
