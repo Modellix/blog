@@ -1,0 +1,621 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image to Video API: Integration Guide, Pricing &amp; Code — Modellix Blog</title>
+  <meta name="description" content="I2V API guide with cURL and Python code for Veo, Kling, Seedance, Wan, and Grok. Compare per-second pricing and get single-key access to multiple models.">
+  <meta name="keywords" content="image to video api, image to video api pricing, image to video api documentation, i2v api, ai image to video api, image to video api python">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/image-to-video-api/">
+  <meta name="description" content="I2V API guide with cURL and Python code for Veo, Kling, Seedance, Wan, and Grok. Compare per-second pricing and get single-key access to multiple models.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Image to Video API: Integration Guide, Pricing &amp; Code — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/image-to-video-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="I2V API guide with cURL and Python code for Veo, Kling, Seedance, Wan, and Grok. Compare per-second pricing and get single-key access to multiple models.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-image-to-video-api.webp">
+<meta property="article:published_time" content="2026-07-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-30T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="API">
+<meta property="article:tag" content="Kling">
+<meta property="article:tag" content="Seedance">
+<meta property="article:tag" content="Veo">
+<meta property="article:tag" content="developer-guide">
+<meta property="article:tag" content="image-to-video">
+<meta property="article:tag" content="integration">
+<meta property="article:tag" content="video-generation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-image-to-video-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Image to Video API: Integration Guide, Pricing & Code","description":"I2V API guide with cURL and Python code for Veo, Kling, Seedance, Wan, and Grok. Compare per-second pricing and get single-key access to multiple models.","datePublished":"2026-07-30T16:00:00.000Z","dateModified":"2026-07-30T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/image-to-video-api/","image":"https://img.modellix.ai/en/article/cover-image-to-video-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Image to Video API: Integration Guide, Pricing &amp; Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/api-guides/" class="category-tag category-tag--sm">api-guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Image to Video API: Integration Guide, Pricing &amp; Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-07-30T16:00:00.000Z">July 31, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/API/" class="tag-pill tag-pill--sm">API</a>
+            
+              <a href="/blog/tags/Seedance/" class="tag-pill tag-pill--sm">Seedance</a>
+            
+              <a href="/blog/tags/Kling/" class="tag-pill tag-pill--sm">Kling</a>
+            
+              <a href="/blog/tags/image-to-video/" class="tag-pill tag-pill--sm">image-to-video</a>
+            
+              <a href="/blog/tags/video-generation/" class="tag-pill tag-pill--sm">video-generation</a>
+            
+              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">developer-guide</a>
+            
+              <a href="/blog/tags/integration/" class="tag-pill tag-pill--sm">integration</a>
+            
+              <a href="/blog/tags/Veo/" class="tag-pill tag-pill--sm">Veo</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>What an image-to-video API actually gives you If you search &#39;image to video api&#39; you&#39;ll find Google&#39;s Gemini docs, Leonardo&#39;s product page, xAI&#39;s Imagine API reference, and a Reddit thread from someone asking the same question you have.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-image-to-video-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-image-to-video-api.png" alt="◆MODELLIX image-to-video API concept: a source still transforming into a cinematic motion frame, lit with amber and cyan on a dark 3D stage." />
+</picture>
+
+<h2 id="What-an-image-to-video-API-actually-gives-you"><a href="#What-an-image-to-video-API-actually-gives-you" class="headerlink" title="What an image-to-video API actually gives you"></a>What an image-to-video API actually gives you</h2><p>If you search “image to video api” you’ll find Google’s Gemini docs, Leonardo’s product page, xAI’s Imagine API reference, and a Reddit thread from someone asking the same question you have. What’s missing is a single resource that compares major endpoint categories, what a second can cost, and the integration patterns developers need to adapt to each current provider API.</p>
+<p>An image-to-video (I2V) API takes a still image — a product photo, a character design, a storyboard frame — and returns a short video clip, driven by a text prompt that describes the motion. The standard lifecycle across every provider: upload your source image, submit a generation request with parameters, poll for completion, then download the MP4.</p>
+<p>What these APIs don’t do is equally important: no real-time generation (expect 30 seconds to several minutes per video) and no standalone audio generation. Resolution depends on the model and configuration: 1080p is the common API tier, while select offerings, including the 4K rows in the pricing table below, support higher output. Some providers sync audio to video in the same generation call, but that’s a separate capability from generating audio from scratch.</p>
+<h2 id="The-I2V-API-landscape-who-offers-what"><a href="#The-I2V-API-landscape-who-offers-what" class="headerlink" title="The I2V API landscape: who offers what"></a>The I2V API landscape: who offers what</h2><p>As of July 2026, here are the image-to-video API options worth evaluating:</p>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Key I2V Models</th>
+<th>What They’re Known For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Google</td>
+<td>Veo 3.1, Veo 3.1 Lite, Veo 3.1 Fast</td>
+<td>Cinematic realism, multimodal input</td>
+</tr>
+<tr>
+<td>xAI</td>
+<td>Grok Imagine Video 1.5, Grok Imagine Video</td>
+<td>Fast turnaround, clean API design</td>
+</tr>
+<tr>
+<td>ByteDance</td>
+<td>Seedance 2.0, Seedance 1.5 Pro</td>
+<td>Multi-shot storytelling, start&#x2F;end frame control</td>
+</tr>
+<tr>
+<td>Kuaishou &#x2F; Kling</td>
+<td>Kling V2.6, Kling V3 T2V</td>
+<td>Motion quality, Chinese-market depth</td>
+</tr>
+<tr>
+<td>Alibaba</td>
+<td>Wan 2.7 I2V, Wan 2.2 I2V Flash</td>
+<td>Speed, aggressive pricing, wide resolution support</td>
+</tr>
+<tr>
+<td>MiniMax</td>
+<td>Hailuo 2.3 I2V, Hailuo 02 I2V</td>
+<td>Physical realism, cost-effective at scale</td>
+</tr>
+<tr>
+<td>PixVerse</td>
+<td>V6 I2V, C1 I2V</td>
+<td>Consumer-friendly defaults, creative style transfer</td>
+</tr>
+<tr>
+<td>OpenAI</td>
+<td>Sora (video generation API)</td>
+<td>Brand recognition, no public I2V-only endpoint</td>
+</tr>
+<tr>
+<td>Leonardo</td>
+<td>Leonardo Video (API)</td>
+<td>Visual-first tooling, credit-based pricing</td>
+</tr>
+</tbody></table>
+<p>Several of these providers — Kling, Seedance, Wan, and MiniMax — have significant I2V offerings that don’t appear in any TOP10 SERP result for this keyword. If you’re only evaluating the vendors you find on page one, you’re missing half the market. For the text-to-video side of the equation, our <a href="/blog/text-to-video-api">text-to-video API guide</a> covers the T2V equivalents of every provider listed here.</p>
+<picture style="aspect-ratio: 16 / 9; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/i2v-api-workflow.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/i2v-api-workflow.png" alt="Image-to-video API workflow: upload source image, get media ID, submit generation request with parameters, poll for completion, download result" loading="lazy" />
+</picture>
+
+<p><em>Every major I2V API follows this four-step async pattern. The differences are in pricing, latency, and parameter control.</em></p>
+<p>OpenAI’s Sora API covers video generation broadly but doesn’t expose a dedicated image-to-video endpoint — you pass an image reference alongside a text prompt. For the purposes of this guide, we’re focusing on providers with explicit I2V endpoints that accept an image as the primary input.</p>
+<h2 id="How-image-to-video-APIs-work-the-standard-workflow"><a href="#How-image-to-video-APIs-work-the-standard-workflow" class="headerlink" title="How image-to-video APIs work: the standard workflow"></a>How image-to-video APIs work: the standard workflow</h2><p>Every I2V API covered here follows the same async pattern. Once you understand it for one provider, the mental model transfers:</p>
+<p><strong>Step 1: Upload your source image.</strong> Most providers have a dedicated media upload endpoint. You POST your image file, get back a media ID or URL. File format is typically PNG or JPEG. Some APIs accept WebP.</p>
+<p><strong>Step 2: Submit the generation request.</strong> You POST to the generation endpoint with your media ID, a text prompt describing the motion you want, and parameters like duration and resolution. The API returns a task ID immediately — generation happens asynchronously.</p>
+<p><strong>Step 3: Poll for completion.</strong> You GET the task status endpoint with your task ID. Status values follow a standard progression: <code>pending</code> → <code>processing</code> → <code>completed</code> (or <code>failed</code>). Most providers return an estimated time to completion.</p>
+<p><strong>Step 4: Download the result.</strong> The completed task response includes a video URL — typically an MP4 with H.264 encoding. URLs are temporary (usually valid for hours to days), so download and store the file in your own infrastructure.</p>
+<p>Some providers also support webhooks — you provide a callback URL and they POST the result when generation completes, eliminating the polling loop. Check each provider’s docs for webhook support before building your integration.</p>
+<h2 id="Image-to-video-API-pricing-what-a-second-actually-costs"><a href="#Image-to-video-API-pricing-what-a-second-actually-costs" class="headerlink" title="Image-to-video API pricing: what a second actually costs"></a>Image-to-video API pricing: what a second actually costs</h2><p>This table is a catalog snapshot, not a direct-provider rate card. Each linked range is the Modellix catalog price observed on 2026-07-31 for the named I2V model; duration, resolution, audio, region, and provider changes can alter the effective rate. Open the linked model page before budgeting or comparing a production configuration.</p>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Model</th>
+<th>Catalog price (per second, checked 2026-07-31)</th>
+<th>Resolution options</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Alibaba</td>
+<td>Wan 2.2 I2V Flash</td>
+<td><a href="https://www.modellix.ai/models/alibaba/wan2.2-i2v-flash">$0.0015–$0.0300</a></td>
+<td>up to 1080p</td>
+</tr>
+<tr>
+<td>Google</td>
+<td>Veo 3.1 Lite I2V</td>
+<td><a href="https://www.modellix.ai/models/google/veo-3.1-lite-i2v">$0.0420–$0.0672</a></td>
+<td>up to 1080p</td>
+</tr>
+<tr>
+<td>Alibaba</td>
+<td>Wan 2.7 I2V</td>
+<td><a href="https://www.modellix.ai/models/alibaba/wan2.7-i2v">$0.0650–$0.0950</a></td>
+<td>up to 1080p</td>
+</tr>
+<tr>
+<td>xAI</td>
+<td>Grok Imagine Video I2V</td>
+<td><a href="https://www.modellix.ai/models/xai/grok-imagine-video-i2v">$0.0690–$0.0920</a></td>
+<td>up to 1080p</td>
+</tr>
+<tr>
+<td>MiniMax</td>
+<td>Hailuo 02 I2V</td>
+<td><a href="https://www.modellix.ai/models/minimax/hailuo-02-i2v">$0.0200–$0.1200</a></td>
+<td>up to 1080p</td>
+</tr>
+<tr>
+<td>PixVerse</td>
+<td>V6 I2V</td>
+<td><a href="https://www.modellix.ai/models/pixverse/v6-i2v">$0.0575–$0.2645</a></td>
+<td>up to 1080p</td>
+</tr>
+<tr>
+<td>Kling</td>
+<td>Kling V2.6 I2V</td>
+<td><a href="https://www.modellix.ai/models/kling/kling-v2.6-i2v">$0.0500–$0.1900</a></td>
+<td>up to 1080p</td>
+</tr>
+<tr>
+<td>ByteDance</td>
+<td>Seedance 2.0 I2V</td>
+<td><a href="https://www.modellix.ai/models/bytedance/seedance-2.0-i2v">$0.0805–$0.8970</a></td>
+<td>up to 4K</td>
+</tr>
+<tr>
+<td>Google</td>
+<td>Veo 3.1 I2V</td>
+<td><a href="https://www.modellix.ai/models/google/veo-3.1-i2v">$0.3360–$0.5000</a></td>
+<td>up to 4K</td>
+</tr>
+</tbody></table>
+<picture style="aspect-ratio: 16 / 9; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/i2v-pricing-comparison.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/i2v-pricing-comparison.png" alt="Per-second I2V API pricing comparison across 7 major providers, showing low-end and high-end cost ranges at common resolution tiers" loading="lazy" />
+</picture>
+
+<p><em>I2V catalog-price snapshot checked 2026-07-31. Ranges vary by configuration; use each linked model page for the current rate and supported parameters.</em></p>
+<p>A few things the raw numbers don’t tell you:</p>
+<p>The low end of Wan 2.2 I2V Flash is materially lower than the high end of Veo 3.1 I2V, but those endpoints are not like-for-like products. Configuration, quality, duration, resolution, and provider terms all affect the effective cost. For a prototype or internal tool generating hundreds of videos, the Wan-Hailuo tier can make sense. For a customer-facing product where visual quality is the product, Veo or Seedance can justify a higher rate. You can browse every available model with live per-second pricing in <a href="https://www.modellix.ai/category/text-to-video">Modellix’s text-to-video model catalog</a>.</p>
+<p>Some providers use credit-based pricing (Leonardo) or token-based billing rather than per-second rates. These systems make direct comparison harder — you need to translate credits into actual video seconds based on your specific parameters. When evaluating credit-based APIs, run a test generation with your target resolution and duration to determine the real per-second cost before committing.</p>
+<p>Additionally, <a target="_blank" rel="noopener" href="https://ai.google.dev/pricing">Google’s Gemini API pricing</a> shows that list prices can vary by region and usage tier. Always check the provider’s current pricing page before budgeting.</p>
+<h2 id="Integration-patterns-cURL-and-Python-for-major-I2V-endpoints"><a href="#Integration-patterns-cURL-and-Python-for-major-I2V-endpoints" class="headerlink" title="Integration patterns: cURL and Python for major I2V endpoints"></a>Integration patterns: cURL and Python for major I2V endpoints</h2><p>The following are illustrative request patterns, not execution-verified copy-paste integrations. Provider model IDs, upload mechanics, task schemas, response payloads, and supported parameters change frequently: confirm the current official documentation, run a non-production test, and add error&#x2F;backoff handling before using any pattern in production.</p>
+<h3 id="Google-Gemini-API-—-image-to-video-request-pattern"><a href="#Google-Gemini-API-—-image-to-video-request-pattern" class="headerlink" title="Google Gemini API — image-to-video request pattern"></a>Google Gemini API — image-to-video request pattern</h3><p>Google’s <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/video">Gemini API video generation docs</a> document the current supported video models and request flow. The pattern below shows an inline-image request shape; replace <code>VIDEO_MODEL_ID</code> with a currently documented video-capable model and follow the current long-running-operation flow where the docs require it.</p>
+<p><strong>cURL:</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">API_KEY=<span class="string">&quot;your-gemini-api-key&quot;</span></span><br><span class="line">BASE=<span class="string">&quot;https://generativelanguage.googleapis.com/v1beta&quot;</span></span><br><span class="line">VIDEO_MODEL_ID=<span class="string">&quot;replace-with-current-Google-video-model&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Step 1: Upload image (Gemini accepts inline base64)</span></span><br><span class="line">IMAGE_B64=$(<span class="built_in">base64</span> -w0 your-image.jpg)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Step 2: Submit generation</span></span><br><span class="line">curl -s <span class="string">&quot;<span class="variable">$BASE</span>/models/<span class="variable">$VIDEO_MODEL_ID</span>:generateContent?key=<span class="variable">$API_KEY</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&quot;&#123;</span></span><br><span class="line"><span class="string">    \&quot;contents\&quot;: [&#123;</span></span><br><span class="line"><span class="string">      \&quot;parts\&quot;: [</span></span><br><span class="line"><span class="string">        &#123;\&quot;inlineData\&quot;: &#123;\&quot;mimeType\&quot;: \&quot;image/jpeg\&quot;, \&quot;data\&quot;: \&quot;<span class="variable">$IMAGE_B64</span>\&quot;&#125;&#125;,</span></span><br><span class="line"><span class="string">        &#123;\&quot;text\&quot;: \&quot;Slow camera pan across the scene, gentle motion only\&quot;&#125;</span></span><br><span class="line"><span class="string">      ]</span></span><br><span class="line"><span class="string">    &#125;],</span></span><br><span class="line"><span class="string">    \&quot;generationConfig\&quot;: &#123;\&quot;responseModalities\&quot;: [\&quot;VIDEO\&quot;]&#125;</span></span><br><span class="line"><span class="string">  &#125;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Python:</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> google.generativeai <span class="keyword">as</span> genai</span><br><span class="line"><span class="keyword">from</span> google.generativeai <span class="keyword">import</span> types</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line">genai.configure(api_key=<span class="string">&quot;your-gemini-api-key&quot;</span>)</span><br><span class="line"><span class="comment"># Replace with a current video-capable model from Google&#x27;s documentation.</span></span><br><span class="line">model = genai.GenerativeModel(<span class="string">&quot;replace-with-current-Google-video-model&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;your-image.jpg&quot;</span>, <span class="string">&quot;rb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    image_data = base64.b64encode(f.read()).decode()</span><br><span class="line"></span><br><span class="line">response = model.generate_content([</span><br><span class="line">    types.Part.from_bytes(data=base64.b64decode(image_data), mime_type=<span class="string">&quot;image/jpeg&quot;</span>),</span><br><span class="line">    <span class="string">&quot;Slow camera pan across the scene, gentle motion only&quot;</span></span><br><span class="line">], generation_config=&#123;<span class="string">&quot;response_modalities&quot;</span>: [<span class="string">&quot;VIDEO&quot;</span>]&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Download the generated video</span></span><br><span class="line"><span class="keyword">for</span> part <span class="keyword">in</span> response.candidates[<span class="number">0</span>].content.parts:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">hasattr</span>(part, <span class="string">&#x27;inline_data&#x27;</span>) <span class="keyword">and</span> part.inline_data.mime_type.startswith(<span class="string">&#x27;video/&#x27;</span>):</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;output.mp4&quot;</span>, <span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">            f.write(part.inline_data.data)</span><br></pre></td></tr></table></figure>
+
+<h3 id="xAI-Imagine-Video-—-image-to-video"><a href="#xAI-Imagine-Video-—-image-to-video" class="headerlink" title="xAI Imagine Video — image-to-video"></a>xAI Imagine Video — image-to-video</h3><p>xAI’s <a target="_blank" rel="noopener" href="https://docs.x.ai/docs/api-reference">Imagine API</a> supports dedicated image-to-video through its <code>/v1/video/generate</code> endpoint. The API accepts an image URL or multipart upload:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">API_KEY=<span class="string">&quot;your-xai-api-key&quot;</span></span><br><span class="line">BASE=<span class="string">&quot;https://api.x.ai/v1&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Step 1: Upload image</span></span><br><span class="line">UPLOAD_RESP=$(curl -s <span class="string">&quot;<span class="variable">$BASE</span>/files&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$API_KEY</span>&quot;</span> \</span><br><span class="line">  -F <span class="string">&quot;file=@your-image.jpg&quot;</span> \</span><br><span class="line">  -F <span class="string">&quot;purpose=video_generation&quot;</span>)</span><br><span class="line">FILE_ID=$(<span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$UPLOAD_RESP</span>&quot;</span> | jq -r <span class="string">&#x27;.id&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Step 2: Submit I2V generation</span></span><br><span class="line">TASK_RESP=$(curl -s <span class="string">&quot;<span class="variable">$BASE</span>/video/generate&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$API_KEY</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&quot;&#123;</span></span><br><span class="line"><span class="string">    \&quot;model\&quot;: \&quot;grok-imagine-video-1.5\&quot;,</span></span><br><span class="line"><span class="string">    \&quot;input_image\&quot;: \&quot;<span class="variable">$FILE_ID</span>\&quot;,</span></span><br><span class="line"><span class="string">    \&quot;prompt\&quot;: \&quot;Subtle dolly zoom with soft lighting\&quot;,</span></span><br><span class="line"><span class="string">    \&quot;duration\&quot;: 5</span></span><br><span class="line"><span class="string">  &#125;&quot;</span>)</span><br><span class="line">TASK_ID=$(<span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$TASK_RESP</span>&quot;</span> | jq -r <span class="string">&#x27;.id&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Step 3: Poll until complete</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span></span><br><span class="line">  STATUS=$(curl -s <span class="string">&quot;<span class="variable">$BASE</span>/video/generate/<span class="variable">$TASK_ID</span>&quot;</span> \</span><br><span class="line">    -H <span class="string">&quot;Authorization: Bearer <span class="variable">$API_KEY</span>&quot;</span>)</span><br><span class="line">  STATE=$(<span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$STATUS</span>&quot;</span> | jq -r <span class="string">&#x27;.status&#x27;</span>)</span><br><span class="line">  <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$STATE</span>&quot;</span> = <span class="string">&quot;completed&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$STATUS</span>&quot;</span> | jq -r <span class="string">&#x27;.video_url&#x27;</span></span><br><span class="line">    <span class="built_in">break</span></span><br><span class="line">  <span class="keyword">elif</span> [ <span class="string">&quot;<span class="variable">$STATE</span>&quot;</span> = <span class="string">&quot;failed&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Generation failed&quot;</span></span><br><span class="line">    <span class="built_in">break</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">  <span class="built_in">sleep</span> 5</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Replicate-—-Wan-2-2-I2V"><a href="#Replicate-—-Wan-2-2-I2V" class="headerlink" title="Replicate — Wan 2.2 I2V"></a>Replicate — Wan 2.2 I2V</h3><p>For providers available through model marketplaces, <a target="_blank" rel="noopener" href="https://replicate.com/docs">Replicate’s API</a> provides a unified interface:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">API_TOKEN=<span class="string">&quot;your-replicate-token&quot;</span></span><br><span class="line"></span><br><span class="line">curl -s -X POST https://api.replicate.com/v1/predictions \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Token <span class="variable">$API_TOKEN</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&quot;&#123;</span></span><br><span class="line"><span class="string">    \&quot;version\&quot;: \&quot;tencentarc/wan-2.2-i2v-flash\&quot;,</span></span><br><span class="line"><span class="string">    \&quot;input\&quot;: &#123;</span></span><br><span class="line"><span class="string">      \&quot;image\&quot;: \&quot;https://your-cdn.com/input.jpg\&quot;,</span></span><br><span class="line"><span class="string">      \&quot;prompt\&quot;: \&quot;Gentle breeze through the scene\&quot;,</span></span><br><span class="line"><span class="string">      \&quot;duration\&quot;: 5</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Python (Replicate SDK):</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> replicate</span><br><span class="line"></span><br><span class="line">output = replicate.run(</span><br><span class="line">    <span class="string">&quot;tencentarc/wan-2.2-i2v-flash&quot;</span>,</span><br><span class="line">    <span class="built_in">input</span>=&#123;</span><br><span class="line">        <span class="string">&quot;image&quot;</span>: <span class="built_in">open</span>(<span class="string">&quot;your-image.jpg&quot;</span>, <span class="string">&quot;rb&quot;</span>),</span><br><span class="line">        <span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;Gentle breeze through the scene&quot;</span>,</span><br><span class="line">        <span class="string">&quot;duration&quot;</span>: <span class="number">5</span>,</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;output.mp4&quot;</span>, <span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(output.read())</span><br></pre></td></tr></table></figure>
+
+<h2 id="How-to-choose-an-image-to-video-API"><a href="#How-to-choose-an-image-to-video-API" class="headerlink" title="How to choose an image-to-video API"></a>How to choose an image-to-video API</h2><p>The right I2V API depends on what you’re building, not on which provider has the best marketing page. Here’s a decision framework based on real trade-offs:</p>
+<p><strong>You’re prototyping or building an internal tool:</strong> Start with Wan 2.2 I2V Flash or Hailuo 02 I2V. At $0.0015–$0.02&#x2F;sec, you can run hundreds of test generations without worrying about the bill. The output quality is sufficient for validation and internal demos.</p>
+<p><strong>You’re building a customer-facing product where visual quality matters:</strong> Veo 3.1 Lite ($0.042–$0.067&#x2F;sec) or Seedance 2.0 ($0.0805–$0.897&#x2F;sec). The quality jump is real — especially on human faces and complex scenes — and at production scale the per-second cost is amortized across users.</p>
+<p><strong>You need the absolute best motion quality:</strong> Veo 3.1 or Kling V2.6. Veo leads on cinematic realism; Kling excels at complex camera movement and object permanence across longer clips.</p>
+<p><strong>You’re generating at high volume (thousands of videos&#x2F;day):</strong> Wan 2.2 I2V Flash or Hailuo 02 I2V win on pure cost. At 5 seconds per video and the lowest tier, you’re looking at under $0.01 per video on Wan Flash.</p>
+<p><strong>A pragmatic consideration:</strong> Most teams evaluating I2V APIs end up wanting to test 3-4 providers before committing. Setting up separate accounts, managing API keys, and monitoring usage across vendors adds engineering overhead that has nothing to do with video quality. This is where a single-key API access layer becomes practical — you get one endpoint, one billing relationship, and the ability to switch models by changing a parameter.</p>
+<p><a href="https://www.modellix.ai/pricing">Modellix</a> provides exactly this: one API key gives you access to all the I2V models covered in this guide — Veo, Kling, Seedance, Wan, MiniMax, PixVerse, Grok Imagine Video, and more — with per-second pricing that’s transparent on every model page. Full disclosure: Modellix is our platform and we built it specifically to solve the multi-provider integration problem this article describes.</p>
+<p>If you’re evaluating I2V APIs, you can test multiple models through a single integration before committing to any provider’s direct API. Start with the <a href="https://www.modellix.ai/pricing">Modellix pricing page</a> to see current per-second rates for every available model, or read the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/">API documentation</a> for endpoint reference and code examples.</p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/API/" class="tag-pill tag-pill--sm">API</a>
+            
+              <a href="/blog/tags/Seedance/" class="tag-pill tag-pill--sm">Seedance</a>
+            
+              <a href="/blog/tags/Kling/" class="tag-pill tag-pill--sm">Kling</a>
+            
+              <a href="/blog/tags/image-to-video/" class="tag-pill tag-pill--sm">image-to-video</a>
+            
+              <a href="/blog/tags/video-generation/" class="tag-pill tag-pill--sm">video-generation</a>
+            
+              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">developer-guide</a>
+            
+              <a href="/blog/tags/integration/" class="tag-pill tag-pill--sm">integration</a>
+            
+              <a href="/blog/tags/Veo/" class="tag-pill tag-pill--sm">Veo</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/pixverse-text-to-video/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-pixverse-text-to-video.webp" alt="PixVerse Text to Video: API Guide &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">api-guides</span>
+              
+                <span class="category-tag category-tag--sm">model-deep-dives</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">PixVerse Text to Video: API Guide &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-07-30T16:00:00.000Z">July 31, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/text-to-video-api1/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-text-to-video-api-3aeccfc6.webp" alt="Text to Video API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">api-guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Text to Video API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-07-30T16:00:00.000Z">July 31, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/pixverse-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-pixverse-api.webp" alt="PixVerse API: Integration Guide for Developers (2026)" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">api-guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">PixVerse API: Integration Guide for Developers (2026)</h3>
+          <time class="related-article-date" datetime="2026-07-29T16:00:00.000Z">July 30, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/image-to-video-api/&text=Image%20to%20Video%20API%3A%20Integration%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/image-to-video-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/image-to-video-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
