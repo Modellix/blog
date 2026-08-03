@@ -1,0 +1,562 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PixVerse Video Reference API: V6 Fusion Integration Guide — Modellix Blog</title>
+  <meta name="description" content="Integrate the PixVerse V6 Fusion video reference API: upload clips, submit video_references with omni mode, then poll and price with the credits x2 table.">
+  <meta name="keywords" content="pixverse video reference api, pixverse reference to video, reference to video AI, video reference api, pixverse v6 fusion, v6 omni, pixverse video_references, pixverse v6 r2v">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/pixverse-video-reference-api/">
+  <meta name="description" content="Integrate the PixVerse V6 Fusion video reference API: upload clips, submit video_references with omni mode, then poll and price with the credits x2 table.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PixVerse Video Reference API: V6 Fusion Integration Guide — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/pixverse-video-reference-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Integrate the PixVerse V6 Fusion video reference API: upload clips, submit video_references with omni mode, then poll and price with the credits x2 table.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-pixverse-video-reference-api-v2.webp">
+<meta property="article:published_time" content="2026-08-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-02T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="API Integration">
+<meta property="article:tag" content="PixVerse">
+<meta property="article:tag" content="V6 Fusion">
+<meta property="article:tag" content="Video Reference API">
+<meta property="article:tag" content="developer-guide">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-pixverse-video-reference-api-v2.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"PixVerse Video Reference API: V6 Fusion Integration Guide","description":"Integrate the PixVerse V6 Fusion video reference API: upload clips, submit video_references with omni mode, then poll and price with the credits x2 table.","datePublished":"2026-08-02T16:00:00.000Z","dateModified":"2026-08-02T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/pixverse-video-reference-api/","image":"https://img.modellix.ai/en/article/cover-pixverse-video-reference-api-v2.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">PixVerse Video Reference API: V6 Fusion Integration Guide</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/api-guides/" class="category-tag category-tag--sm">api-guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">PixVerse Video Reference API: V6 Fusion Integration Guide</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-02T16:00:00.000Z">August 3, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">developer-guide</a>
+            
+              <a href="/blog/tags/PixVerse/" class="tag-pill tag-pill--sm">PixVerse</a>
+            
+              <a href="/blog/tags/Video-Reference-API/" class="tag-pill tag-pill--sm">Video Reference API</a>
+            
+              <a href="/blog/tags/V6-Fusion/" class="tag-pill tag-pill--sm">V6 Fusion</a>
+            
+              <a href="/blog/tags/API-Integration/" class="tag-pill tag-pill--sm">API Integration</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>Searching for &#39;pixverse video reference api&#39; mostly returns pages about reference images: upload up to seven tagged photos, cite them with @ref_name, and get a consistent-subject video.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-pixverse-video-reference-api-v2.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-pixverse-video-reference-api-v2.png" alt="Editorial Modellix cover for the PixVerse V6 Fusion video reference API guide, showing reference video clips flowing into a fusion engine with a cyan-lit technical backdrop" />
+</picture>
+
+<p>Searching for “pixverse video reference api” mostly returns pages about reference <strong>images</strong>: upload up to seven tagged photos, cite them with <code>@ref_name</code>, and get a consistent-subject video. That is real PixVerse functionality, but it is not the API this guide covers. PixVerse V6 also accepts reference <strong>videos</strong> through its Fusion path — you upload a clip, the model reads its subjects, motion, scene, camera movement, and visual style, and you can re-create or modify that motion with a prompt.</p>
+<p>This guide walks the complete video-reference integration: upload the reference video, submit a V6 Fusion request with <code>video_references</code>, poll the job to a terminal state, and price it against the official credits ×2 table. The workflow facts below were read from PixVerse’s official platform documentation on August 3, 2026. Modellix is an API aggregator with a commercial interest in this topic; the guide describes the official PixVerse Platform path as the neutral baseline and shows where a Modellix route fits — without claiming the aggregator is cheaper.</p>
+<h2 id="What-the-PixVerse-video-reference-API-does"><a href="#What-the-PixVerse-video-reference-API-does" class="headerlink" title="What the PixVerse video reference API does"></a>What the PixVerse video reference API does</h2><p>The official V6 Fusion documentation states that V6 “can understand and reference subjects, actions, scenes, camera movements, and visual styles from input videos,” and that prompts can drive effects such as subject replacement, video recreation, and motion imitation. <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/fusion-reference-to-video-v6-video-reference-integration-guide-2269890m0">The official Fusion integration guide</a> is the authoritative source for the field-level contract used in this article.</p>
+<p>The distinction from image-reference mode matters for product design. The standard <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/fusionreference-to-video-1339253m0">Fusion reference-to-video guide</a> builds a video from up to several reference <strong>images</strong> (subjects and backgrounds composed via prompt); the V6 video-reference path instead accepts reference <strong>video</strong> clips. An image reference pins appearance; a video reference additionally pins <strong>motion, timing, and camera behavior</strong>. If your use case is “make this character do a different action with the same look,” image references may be enough. If it is “match this camera move and this actor’s motion,” you need the video-reference path.</p>
+<p>That combination maps to concrete jobs: e-commerce teams reuse a product shot’s motion and camera for multiple ad variants, brand and IP teams keep a character’s movement consistent across scenes, and film teams use reference footage for pre-visualization and action matching. The rest of this guide stays API-first, but those are the workflows the video-reference input was built for.</p>
+<p>This API belongs to PixVerse Platform, not to consumer-facing products. It is also distinct from PixVerse Growth Studio, which is a separate marketing-video workflow on <a target="_blank" rel="noopener" href="https://pixverse.ai/en/growth-studio">PixVerse’s own site</a> and is not part of the reference-to-video API surface. Treat the two as different products when you read pricing or documentation.</p>
+<h2 id="V6-is-the-only-model-that-accepts-video-references"><a href="#V6-is-the-only-model-that-accepts-video-references" class="headerlink" title="V6 is the only model that accepts video references"></a>V6 is the only model that accepts video references</h2><p>The single most decision-relevant fact in this topic: <strong>video references are supported only by the V6 model, and only when <code>reference_mode</code> is set to <code>omni</code></strong>. The official guide states this explicitly. C1, V5, V4.5, and older generations do not accept <code>video_references</code>, even though their pages often rank for “pixverse video reference api” queries.</p>
+<p>That explains the version confusion in current search results: aggregator model cards for V3.5, V4.5, and V5 rank alongside the official V6 documentation, and several describe “reference-to-video” as image-reference-only. If your integration must accept a reference video as input, the model field in your request must be <code>v6</code> — the <a href="https://www.modellix.ai/models/pixverse/v6-r2v">PixVerse V6 reference-to-video model</a> page on Modellix is a convenient place to compare the V6 route’s documented input fields at a glance.</p>
+<h2 id="The-V6-Fusion-request-contract-for-video-references"><a href="#The-V6-Fusion-request-contract-for-video-references" class="headerlink" title="The V6 Fusion request contract for video references"></a>The V6 Fusion request contract for video references</h2><p>A video-reference request combines the standard V6 Fusion fields with <code>video_references</code>. The official constraints are not optional tuning; the platform rejects requests that violate them.</p>
+<table>
+<thead>
+<tr>
+<th>Constraint</th>
+<th>Official rule</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Model</td>
+<td><code>v6</code> only; <code>reference_mode</code> must be <code>&quot;omni&quot;</code></td>
+</tr>
+<tr>
+<td>Reference videos per request</td>
+<td>Maximum <strong>2</strong></td>
+</tr>
+<tr>
+<td>Total reference duration</td>
+<td>Maximum <strong>15 seconds</strong> across all reference videos</td>
+</tr>
+<tr>
+<td><code>duration</code> field</td>
+<td>Must be <strong><code>0</code></strong> when using video references; output duration auto-matches the longest reference video</td>
+</tr>
+<tr>
+<td>Omni reference budget</td>
+<td>Up to <strong>10 reference images + 2 reference videos</strong> per request</td>
+</tr>
+<tr>
+<td><code>aspect_ratio</code></td>
+<td>Omni supports <code>&quot;auto&quot;</code> to retain the source composition</td>
+</tr>
+</tbody></table>
+<p>A minimal request body follows this shape (field names per the current official guide):</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;model&quot;</span><span class="punctuation">:</span> <span class="string">&quot;v6&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;reference_mode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;omni&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;video_references&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span> <span class="attr">&quot;media_id&quot;</span><span class="punctuation">:</span> <span class="number">123456789</span> <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;duration&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;aspect_ratio&quot;</span><span class="punctuation">:</span> <span class="string">&quot;auto&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;prompt&quot;</span><span class="punctuation">:</span> <span class="string">&quot;the character from the reference video walks toward the camera, same motion&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;quality&quot;</span><span class="punctuation">:</span> <span class="string">&quot;720p&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>The <code>media_id</code> values are not invented by you: they are returned by the media upload operation, described next. Do not hard-code endpoints or response field names from this article — copy the current request contract from the official guide before production. For the broader request surface (authentication, endpoints, general parameters), our <a href="https://www.modellix.ai/blog/pixverse-api/">PixVerse API integration guide</a> covers the complete developer workflow.</p>
+<h2 id="Step-by-step-upload-submit-poll"><a href="#Step-by-step-upload-submit-poll" class="headerlink" title="Step by step: upload, submit, poll"></a>Step by step: upload, submit, poll</h2><p>The documented video-reference workflow has three stages, matching the general PixVerse async pattern (submit → poll → retrieve).</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/pixverse-video-reference-workflow.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/pixverse-video-reference-workflow.png" alt="Three-stage PixVerse video reference workflow: upload reference video with media_id, submit to V6 Fusion with reference_mode omni, poll status until the generated video is ready" loading="lazy" />
+</picture>
+
+<p><em>The verified video-reference call sequence: upload returns <code>media_id</code>; the Fusion request carries it in <code>video_references</code>; polling the returned <code>video_id</code> moves the job from status 5 to 1. Illustrative Modellix diagram, August 3, 2026.</em></p>
+<h3 id="1-Upload-the-reference-video-and-keep-the-media-id"><a href="#1-Upload-the-reference-video-and-keep-the-media-id" class="headerlink" title="1. Upload the reference video and keep the media_id"></a>1. Upload the reference video and keep the media_id</h3><p>Send the reference video to the media upload operation. On success, PixVerse returns a <code>media_id</code> (plus <code>media_type</code> and a <code>url</code>). Persist that ID; it is the reference you pass in <code>video_references</code>. The official guide shows the upload response shape as <code>ErrCode: 0</code>, <code>ErrMsg: &quot;success&quot;</code>, and <code>Resp.media_id</code>.</p>
+<p>Validate before uploading: enforce the two-video and 15-second combined limits in your own service so users get an immediate, actionable error instead of a provider rejection. Also enforce the format and size limits documented for media upload — they are part of the same official contract.</p>
+<h3 id="2-Submit-the-Fusion-generation"><a href="#2-Submit-the-Fusion-generation" class="headerlink" title="2. Submit the Fusion generation"></a>2. Submit the Fusion generation</h3><p>Send the request body from the previous section with your uploaded <code>media_id</code> values in <code>video_references</code>. Authentication follows the standard Platform rules: every request carries your API key in the header, and each unique request needs its own <code>Ai-trace-id</code> — the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/how-does-the-api-work-882967m0">API overview</a> notes that reusing the same <code>Ai-trace-id</code> does not generate a new video.</p>
+<p>A successful submission returns a <code>video_id</code>. Treat generation as asynchronous: return your own internal job ID to the caller and let a worker poll, rather than holding an HTTP request open.</p>
+<h3 id="3-Poll-status-until-terminal"><a href="#3-Poll-status-until-terminal" class="headerlink" title="3. Poll status until terminal"></a>3. Poll status until terminal</h3><p>Poll the video status endpoint with the returned <code>video_id</code> until <code>status</code> changes from <code>5</code> (waiting for generation) to <code>1</code> (success), then retrieve the generated video from the returned <code>url</code>. The <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/get-video-generation-status-882972m0">official status contract</a> defines 1 &#x3D; generation successful, 5 &#x3D; waiting for generation, 7 &#x3D; content moderation failure, and 8 &#x3D; generation failed; it recommends polling at intervals of 3–5 seconds while a job is in status 5. Use exponential backoff, a maximum attempt count, and explicit handling for failure and moderation outcomes — a status that never reaches <code>1</code> is not “still running” forever.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">poll_until_terminal</span>(<span class="params">video_id, max_attempts=<span class="number">30</span>, base_delay=<span class="number">2</span></span>):</span><br><span class="line">    <span class="keyword">for</span> attempt <span class="keyword">in</span> <span class="built_in">range</span>(max_attempts):</span><br><span class="line">        state = pixverse.get_status(video_id)</span><br><span class="line">        <span class="keyword">if</span> state[<span class="string">&quot;status&quot;</span>] == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> state[<span class="string">&quot;url&quot;</span>]</span><br><span class="line">        <span class="keyword">if</span> state[<span class="string">&quot;status&quot;</span>] <span class="keyword">in</span> (<span class="number">7</span>, <span class="number">8</span>):  <span class="comment"># content moderation failure / generation failed</span></span><br><span class="line">            <span class="keyword">raise</span> GenerationError(state)</span><br><span class="line">        time.sleep(base_delay * <span class="number">2</span> ** <span class="built_in">min</span>(attempt, <span class="number">4</span>))</span><br><span class="line">    <span class="keyword">raise</span> TimeoutError(<span class="string">&quot;job did not reach a terminal state&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="What-video-references-cost-the-credits-×2-rule"><a href="#What-video-references-cost-the-credits-×2-rule" class="headerlink" title="What video references cost: the credits ×2 rule"></a>What video references cost: the credits ×2 rule</h2><p>PixVerse Platform bills video generation in credits per second. Using video references changes the rate: the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/pricing-796039m0">official pricing page</a> publishes separate tables for Fusion requests with and without <code>video_references</code>, and the with-video-reference rates are exactly double the image-reference rates at every quality tier. The official page also gives a unit anchor: $1 &#x3D; 5 videos (v6, 720p, 5s, no audio, with Starter pack) — use that only as a sanity check, because package, membership, and audio options change the effective rate.</p>
+<table>
+<thead>
+<tr>
+<th>Quality</th>
+<th>Fusion, no video_references (per second, no audio &#x2F; with audio)</th>
+<th>Fusion, with video_references (per second, no audio &#x2F; with audio)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>360p</td>
+<td>5 &#x2F; 7 credits</td>
+<td>10 &#x2F; 14 credits</td>
+</tr>
+<tr>
+<td>540p</td>
+<td>7 &#x2F; 9 credits</td>
+<td>14 &#x2F; 18 credits</td>
+</tr>
+<tr>
+<td>720p</td>
+<td>9 &#x2F; 12 credits</td>
+<td>18 &#x2F; 24 credits</td>
+</tr>
+<tr>
+<td>1080p</td>
+<td>18 &#x2F; 23 credits</td>
+<td>36 &#x2F; 46 credits</td>
+</tr>
+</tbody></table>
+<p><em>Source: PixVerse Platform official pricing and Fusion documentation, accessed August 3, 2026. Rates are PixVerse Platform credits per second, not Modellix USD pricing.</em></p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/pixverse-fusion-docs-credits.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/pixverse-fusion-docs-credits.png" alt="PixVerse Fusion official documentation showing video reference constraints and the credits x2 billing tables with and without video_references" loading="lazy" />
+</picture>
+
+<p><em>PixVerse’s official V6 Fusion reference-to-video guide, captured August 3, 2026: the left column lists the video_references constraints; the tables show billing per second without and with video references.</em></p>
+<p>Two billing cautions. First, these are <strong>Platform credits</strong>, not a dollar amount you can compare directly with any aggregator’s USD price — a credit-to-dollar conversion depends on the active package. Second, audio adds a meaningful premium at every tier — roughly +28–40% per the table above — and with 1080p + audio + video references you are at 46 credits per second. For budget controls, compute an estimate from the current official table and display its assumptions next to it. Our <a href="https://www.modellix.ai/blog/pixverse-pricing/">PixVerse credit pricing breakdown</a> goes deeper into how credits convert to effective per-second costs across plans.</p>
+<h2 id="Direct-Platform-access-versus-an-aggregator-route"><a href="#Direct-Platform-access-versus-an-aggregator-route" class="headerlink" title="Direct Platform access versus an aggregator route"></a>Direct Platform access versus an aggregator route</h2><p>Use <a target="_blank" rel="noopener" href="https://platform.pixverse.ai/">PixVerse Platform</a> directly when you need the official product surface — the console, the media upload flow, and the exact <code>video_references</code> contract — and you are willing to track a credit balance and per-request <code>Ai-trace-id</code> yourself.</p>
+<p>An aggregator route makes sense when your product deliberately integrates multiple media providers behind one account, one key, and one billing surface. <a href="https://www.modellix.ai/providers/pixverse">Modellix’s PixVerse provider page</a> lists its PixVerse model catalog; the v6-r2v model page documents reference-image inputs (1–7 items with <code>subject</code>&#x2F;<code>background</code> roles and <code>ref_name</code>) and per-second USD pricing, with a separate <a href="https://www.modellix.ai/models/pixverse/c1-r2v">c1-r2v page</a> for the C1 variant. Modellix displays these routes billed per second in USD, e.g. v6-r2v at $0.0575&#x2F;s (360p, no audio) up to $0.2645&#x2F;s (1080p, with audio), as shown on the model page on August 3, 2026.</p>
+<p>That description is deliberately narrow. The Modellix model page documents image-reference input; the official video-reference (<code>video_references</code>) workflow lives in PixVerse’s Platform documentation. If your integration requires reference-video input specifically, verify the current Modellix model page and API documentation for whether that route accepts video input before committing — do not assume either way. This is not a claim that Modellix is cheaper: Platform credits and aggregator USD are different billing units, and the honest comparison requires matching model, quality, audio, and duration on both sides.</p>
+<h2 id="Common-errors-when-integrating-video-references"><a href="#Common-errors-when-integrating-video-references" class="headerlink" title="Common errors when integrating video references"></a>Common errors when integrating video references</h2><ul>
+<li><strong>More than two reference videos.</strong> The platform caps <code>video_references</code> at two entries per request. Validate the count client-side.</li>
+<li><strong>Reference videos totaling more than 15 seconds.</strong> Combined duration is capped at 15 seconds; trim or re-encode before upload.</li>
+<li><strong><code>duration</code> set to anything other than 0.</strong> With video references, <code>duration</code> must be 0; the output length follows the longest reference video. A fixed-duration request will be rejected.</li>
+<li><strong><code>reference_mode</code> missing or not <code>omni</code>.</strong> The video-reference path requires omni mode; older or default modes do not accept video input.</li>
+<li><strong>Wrong model.</strong> C1 and older generations reject <code>video_references</code>. Route video-reference jobs to <code>v6</code>.</li>
+<li><strong>Reused <code>Ai-trace-id</code>.</strong> The same trace ID does not produce a new video — generate a unique ID per request.</li>
+<li><strong>Status stuck at 5 or ending in 7&#x2F;8.</strong> The official status contract defines 1 &#x3D; generation successful, 5 &#x3D; waiting, 7 &#x3D; content moderation failure, and 8 &#x3D; generation failed, with 3–5 second polling recommended while a job is at 5. Poll with backoff and a timeout; statuses 7 and 8 need operator handling, not infinite polling.</li>
+</ul>
+<h2 id="Frequently-asked-questions-about-the-PixVerse-video-reference-API"><a href="#Frequently-asked-questions-about-the-PixVerse-video-reference-API" class="headerlink" title="Frequently asked questions about the PixVerse video reference API"></a>Frequently asked questions about the PixVerse video reference API</h2><p><strong>What is the PixVerse video reference API?</strong></p>
+<p>It is the V6 Fusion path that accepts reference videos as input. The model reads subjects, actions, scenes, camera movement, and visual style from uploaded clips, then generates a new video that reuses them under prompt control — for subject replacement, video recreation, or motion imitation.</p>
+<p><strong>Which PixVerse model supports video references?</strong></p>
+<p>Only V6, and only with <code>reference_mode: &quot;omni&quot;</code>. C1, V5, and older models do not accept <code>video_references</code>, even though their model pages sometimes rank for video-reference queries.</p>
+<p><strong>How do I pass a reference video to the PixVerse API?</strong></p>
+<p>Upload the video through the media upload operation and keep the returned <code>media_id</code>. Then include it in the Fusion request as <code>video_references: [{&quot;media_id&quot;: ...}]</code> with <code>model: &quot;v6&quot;</code>, <code>reference_mode: &quot;omni&quot;</code>, and <code>duration: 0</code>.</p>
+<p><strong>Why must <code>duration</code> be 0 for video references?</strong></p>
+<p>The official contract requires it. Output duration auto-matches the longest reference video, so the model derives length from your input rather than a fixed value.</p>
+<p><strong>How many reference videos can I use, and how long can they be?</strong></p>
+<p>Up to two reference videos per request, with a combined duration of 15 seconds or less. Omni mode also allows up to 10 reference images alongside the two videos.</p>
+<p><strong>How much does a video-reference generation cost?</strong></p>
+<p>In Platform credits per second, Fusion with video references costs 10&#x2F;14&#x2F;18&#x2F;36 credits at 360p&#x2F;540p&#x2F;720p&#x2F;1080p without audio, and 14&#x2F;18&#x2F;24&#x2F;46 with audio — double the image-reference rate at each tier. The effective dollar cost depends on your credit package; see the official pricing page.</p>
+<p><strong>Can I use video references through Modellix?</strong></p>
+<p>Check the current Modellix model page and API documentation for the exact input contract of the route you need. Modellix’s v6-r2v page documents image-reference input with per-second USD pricing; the official <code>video_references</code> workflow is documented on PixVerse Platform. Verify before relying on either path.</p>
+<p><strong>Does the PixVerse video reference API work with Growth Studio?</strong></p>
+<p>No. Growth Studio is a separate PixVerse marketing-video workflow with its own product and API surface. The reference-to-video API described here is part of PixVerse Platform’s V6 Fusion offering.</p>
+<hr>
+<p><em>PixVerse capability and pricing details reflect official documentation accessed August 3, 2026 and change frequently. Validate against the live provider documentation and billing pages before committing volume or budget. Modellix is an API aggregator for image and video models, not the PixVerse vendor; this guide is not a claim that the aggregator route is cheaper or that it accepts every official parameter.</em></p>
+<p><em>Cover image: illustrative Modellix artwork; it is not a PixVerse product screenshot or source evidence.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">developer-guide</a>
+            
+              <a href="/blog/tags/PixVerse/" class="tag-pill tag-pill--sm">PixVerse</a>
+            
+              <a href="/blog/tags/Video-Reference-API/" class="tag-pill tag-pill--sm">Video Reference API</a>
+            
+              <a href="/blog/tags/V6-Fusion/" class="tag-pill tag-pill--sm">V6 Fusion</a>
+            
+              <a href="/blog/tags/API-Integration/" class="tag-pill tag-pill--sm">API Integration</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/pixverse-lip-sync/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-pixverse-lip-sync-v2.webp" alt="PixVerse Lip Sync API Guide: Talking Video &amp; TTS" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">api-guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">PixVerse Lip Sync API Guide: Talking Video &amp; TTS</h3>
+          <time class="related-article-date" datetime="2026-08-02T16:00:00.000Z">August 3, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/image-to-video-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-image-to-video-api.webp" alt="Image to Video API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">api-guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Image to Video API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-07-30T16:00:00.000Z">July 31, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/pixverse-text-to-video/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-pixverse-text-to-video.webp" alt="PixVerse Text to Video: API Guide &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">api-guides</span>
+              
+                <span class="category-tag category-tag--sm">model-deep-dives</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">PixVerse Text to Video: API Guide &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-07-30T16:00:00.000Z">July 31, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/pixverse-video-reference-api/&text=PixVerse%20Video%20Reference%20API%3A%20V6%20Fusion%20Integration%20Guide" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/pixverse-video-reference-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/pixverse-video-reference-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
