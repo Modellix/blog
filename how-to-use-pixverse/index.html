@@ -1,0 +1,572 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Use PixVerse: Setup, Prompts &amp; API — Modellix Blog</title>
+  <meta name="description" content="How to use PixVerse in 2026: web app setup steps, prompt tips, the submit-poll-retrieve API workflow, credits and free trial, and fixes for common failures.">
+  <meta name="keywords" content="how to use pixverse, pixverse prompts, pixverse tutorial, pixverse how to use, pixverse api, is pixverse free, pixverse image to video, pixverse v6">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/how-to-use-pixverse/">
+  <meta name="description" content="How to use PixVerse in 2026: web app setup steps, prompt tips, the submit-poll-retrieve API workflow, credits and free trial, and fixes for common failures.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Use PixVerse: Setup, Prompts &amp; API — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/how-to-use-pixverse/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="How to use PixVerse in 2026: web app setup steps, prompt tips, the submit-poll-retrieve API workflow, credits and free trial, and fixes for common failures.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-how-to-use-pixverse.webp">
+<meta property="article:published_time" content="2026-08-04T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-04T02:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video API">
+<meta property="article:tag" content="How-to">
+<meta property="article:tag" content="PixVerse">
+<meta property="article:tag" content="Tutorial">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-how-to-use-pixverse.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"How to Use PixVerse: Setup, Prompts & API","description":"How to use PixVerse in 2026: web app setup steps, prompt tips, the submit-poll-retrieve API workflow, credits and free trial, and fixes for common failures.","datePublished":"2026-08-04T02:00:00.000Z","dateModified":"2026-08-04T02:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/how-to-use-pixverse/","image":"https://img.modellix.ai/en/article/cover-how-to-use-pixverse.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">How to Use PixVerse: Setup, Prompts &amp; API</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">How to Use PixVerse: Setup, Prompts &amp; API</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-04T02:00:00.000Z">August 4, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Tutorial/" class="tag-pill tag-pill--sm">Tutorial</a>
+            
+              <a href="/blog/tags/PixVerse/" class="tag-pill tag-pill--sm">PixVerse</a>
+            
+              <a href="/blog/tags/How-to/" class="tag-pill tag-pill--sm">How-to</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>The first question &#39;how to use PixVerse&#39; usually answers is not about prompts — it is about which PixVerse you mean. PixVerse is a web app for creators, an API platform for developers, and a terminal CLI for automation.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-how-to-use-pixverse.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-how-to-use-pixverse.png" alt="Dark amber editorial cover for a PixVerse tutorial with the MODELLIX wordmark, the two-line title How to Use PixVerse, and a WEB, API, CLI workflow capsule" />
+</picture>
+
+<p>The first question “how to use PixVerse” usually answers is not about prompts — it is about which PixVerse you mean. PixVerse is a web app for creators, an API platform for developers, and a terminal CLI for automation. All three share the same generation loop: describe what you want, pick a model, set resolution and duration, generate, and iterate. As of August 2026, the default model on the web app is V6, with C1 and R1 alongside it, and the free tier starts with a limited trial balance.</p>
+<p>This tutorial covers the paths in that order: the web app for your first video, prompts that reliably produce usable clips, the API workflow for programmatic use, and the failure cases that cost people the most time. Prices and credit costs below were read from official PixVerse pages on August 4, 2026 — PixVerse iterates quickly, so treat anything version-specific as current as of that date.</p>
+<h2 id="How-to-use-PixVerse-on-the-web-app"><a href="#How-to-use-PixVerse-on-the-web-app" class="headerlink" title="How to use PixVerse on the web app"></a>How to use PixVerse on the web app</h2><p>The web app at <a target="_blank" rel="noopener" href="https://app.pixverse.ai/">app.pixverse.ai</a> is the fastest path to a first video. You do not need to install anything: it runs in the browser, and PixVerse publishes official <a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.pixverseai.pixverse">Android</a> and iOS apps linked from the PixVerse homepage for phone use.</p>
+<p><strong>Step 1 — Create an account and check your trial balance.</strong> Sign in with an email or social account. The app shows a free trial counter (“3 Free Trial Left” was visible in the current UI) — PixVerse does not publish a universal free-tier policy on its public pages, so the exact number of free generations depends on what your account sees. Generate a first clip before paying to confirm the workflow works for your use case.</p>
+<p><strong>Step 2 — Pick a model.</strong> The current app defaults to PixVerse V6. V6 is the flagship text&#x2F;image-to-video model; C1 is PixVerse’s newer cinematic full-stack model; R1 is the real-time interactive model. For a first test, keep the default. The <a target="_blank" rel="noopener" href="https://pixverse.ai/">official PixVerse homepage</a> describes the lineup as V6, C1, and R1, so anything you read that is anchored to V5 is describing an older product generation. On PixVerse’s own ELO comparison, V6 is positioned against Veo, Kling, and Sora-class models — useful context, but not a ranking you need to trust before your first clip.</p>
+<p><strong>Step 3 — Write a prompt or upload an image.</strong> Text-to-video takes a prompt; image-to-video takes an image plus a prompt that describes motion. The official API guide recommends keeping prompts between 25–200 words, and that range is a good guideline for the app too — short prompts produce generic motion, and prompts longer than 200 words are harder for the model to hold together. Structure a prompt as: subject, action, environment, camera, and lighting. Example: “A red sports car drifting on a wet mountain road at dusk, camera slowly orbiting the car, cinematic lighting, reflections on the asphalt.”</p>
+<p><strong>Step 4 — Set resolution, aspect ratio, and duration.</strong> The current web UI exposes resolution from 360p to 1080p, aspect ratios including 16:9, 9:16, and 21:9, and durations of roughly 1–15 seconds. Higher resolution and longer clips cost more credits, so for iteration use 720p or lower and a short duration; render the final at full quality once the prompt is right.</p>
+<p><strong>Step 5 — Generate and iterate.</strong> Submit the task, wait for the render, and treat the first output as a draft. The fastest workflow is: generate, look at what failed (motion, subject fidelity, lighting), adjust the prompt in one dimension at a time, and regenerate. Off-peak mode and seed controls are available in the current UI when you want cheaper batches or reproducible results.</p>
+<p><strong>Step 6 — Extend, upscale, or lip-sync when needed.</strong> Beyond plain generation, PixVerse offers effects such as extend, restyle, swap, and lip sync from the same interface, plus a character feature for keeping a consistent character across clips. Lip sync takes an existing video plus an audio track and syncs the mouth to the audio — that is an input feature, not audio generation. For a tour of the full generator surface, our <a href="https://www.modellix.ai/blog/pixverse-video-generator/">PixVerse video generator walkthrough</a> covers text-to-video, image-to-video, and the effect workflows in one place.</p>
+<h2 id="PixVerse-prompts-that-actually-work"><a href="#PixVerse-prompts-that-actually-work" class="headerlink" title="PixVerse prompts that actually work"></a>PixVerse prompts that actually work</h2><p>The single highest-leverage skill in PixVerse is prompt construction, and the “pixverse prompts” search intent is served mostly by prompt galleries rather than by a usable method. The method is simple: the official <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/text-to-video-882970m0">text-to-video API guide</a> recommends keeping prompts between 25–200 words, and the generation request accepts a <code>negative_prompt</code> field, which most app users never touch.</p>
+<p>A working prompt template for PixVerse V6:</p>
+<table>
+<thead>
+<tr>
+<th>Prompt part</th>
+<th>What to write</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Subject</td>
+<td>What is in frame, specific</td>
+<td>“a woman in a red coat”</td>
+</tr>
+<tr>
+<td>Action</td>
+<td>What moves and how</td>
+<td>“walking toward camera, coat blowing in wind”</td>
+</tr>
+<tr>
+<td>Environment</td>
+<td>Where it happens</td>
+<td>“empty train station at night”</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td>Shot and movement</td>
+<td>“slow dolly-in, shallow depth of field”</td>
+</tr>
+<tr>
+<td>Lighting &#x2F; mood</td>
+<td>Look and feel</td>
+<td>“neon signs reflecting on wet floor, moody”</td>
+</tr>
+</tbody></table>
+<p>Full example: <em>“A woman in a red coat walking toward camera through an empty train station at night, slow dolly-in, shallow depth of field, neon signs reflecting on wet floor, moody cinematic lighting.”</em></p>
+<p>Two practical rules: describe motion explicitly (static descriptions produce static video), and use the negative prompt for things you do not want — blur, extra limbs, unwanted text. PixVerse’s V6 is built for “cinematic control and physics simulation” per the official product page, so prompts that describe realistic motion and camera behavior get more of that budget than prompts that just list objects.</p>
+<h2 id="How-to-use-PixVerse-API-the-submit–poll–retrieve-loop"><a href="#How-to-use-PixVerse-API-the-submit–poll–retrieve-loop" class="headerlink" title="How to use PixVerse API: the submit–poll–retrieve loop"></a>How to use PixVerse API: the submit–poll–retrieve loop</h2><p>For developers, “how to use PixVerse” means the API, and the API has one consistent pattern: <strong>submit a generation task, poll its status, retrieve the finished video</strong>. The official docs describe exactly this workflow, and the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/">API documentation</a> is the authoritative source for parameters and limits.</p>
+<p><strong>Step 1 — Get an API key.</strong> The official <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/how-to-get-api-key-882968m0">how-to-get-an-API-key guide</a> walks through: log in to the platform, open the API key management page, create a key with a descriptive name, and copy it — the key is shown only once. The key goes in the <code>API-KEY</code> header, and every request needs a unique <code>Ai-trace-id</code>; reusing the same trace id does not generate a new video.</p>
+<p><strong>Step 2 — Submit a generation request.</strong> The text-to-video endpoint is <code>POST https://app-api.pixverse.ai/openapi/v2/video/text/generate</code>. A minimal request body looks like this:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;aspect_ratio&quot;</span><span class="punctuation">:</span> <span class="string">&quot;16:9&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;duration&quot;</span><span class="punctuation">:</span> <span class="number">5</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;model&quot;</span><span class="punctuation">:</span> <span class="string">&quot;v6&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;prompt&quot;</span><span class="punctuation">:</span> <span class="string">&quot;A red sports car drifting on a wet mountain road at dusk&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;quality&quot;</span><span class="punctuation">:</span> <span class="string">&quot;720p&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;seed&quot;</span><span class="punctuation">:</span> <span class="number">0</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>The response returns a <code>video_id</code>. Generation is asynchronous — the video does not exist yet at this point.</p>
+<p><strong>Step 3 — Poll the status endpoint.</strong> Use the <code>video_id</code> to query generation status. Per the official docs, while a video is processing (status <code>5</code>), poll at intervals of 3–5 seconds. Status <code>1</code> means the video is ready, and the response then contains the <code>url</code> to download or stream it. Status <code>7</code> means the request failed review and <code>8</code> means generation failed.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/pixverse-api-workflow.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/pixverse-api-workflow.png" alt="PixVerse API workflow diagram showing the submit-response-poll-result loop with the text-to-video endpoint, video_id, and status codes" loading="lazy" />
+</picture>
+
+<p><em>Figure 1: The PixVerse API generation loop — submit a task, receive a video_id, poll status until it reaches 1, then download the finished video. Diagram generated from the official API workflow documented on August 4, 2026.</em></p>
+<p><strong>Step 4 — Handle credits and limits.</strong> The API runs on PixVerse Platform credits, not on Modellix pricing — the two are separate billing systems and should not be mixed up. The <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/pricing-796039m0">official pricing page</a> lists V6 costs in credits per second: for example 720p with audio is 12 credits per second, 1080p with audio is 23 credits per second. When a Fusion request includes video references, those rates double (24 and 46 respectively) per the official integration guide. Check your account balance via the balance endpoint before long batch runs.</p>
+<p><strong>Step 5 — Use the result in your product.</strong> The returned URL is a direct download link; download it or stream it into your pipeline. For production workloads, PixVerse supports webhook integration to avoid polling, and a rate-limit policy applies to API keys.</p>
+<p>Modellix is an API aggregator and has a commercial interest in this comparison. We host PixVerse models such as <code>pixverse/v6-r2v</code> behind our unified API with per-second USD pricing — but the point of this section is clarity, not a claim that any single route is cheapest. If you want endpoint-level detail, our <a href="https://www.modellix.ai/blog/pixverse-api/">PixVerse API integration guide</a> covers authentication, polling, error codes, and production patterns end to end; live per-second rates for the models we carry are on the <a href="https://www.modellix.ai/models/pixverse/v6-r2v">V6 R2V model page</a>.</p>
+<h2 id="Web-app-API-CLI-or-aggregator-which-path-fits"><a href="#Web-app-API-CLI-or-aggregator-which-path-fits" class="headerlink" title="Web app, API, CLI, or aggregator: which path fits?"></a>Web app, API, CLI, or aggregator: which path fits?</h2><p>PixVerse is not one product, and picking the right path matters more than prompt skill for most teams:</p>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Best for</th>
+<th>Watch out for</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Web app</td>
+<td>Creators, one-off videos, testing prompts visually</td>
+<td>Manual; no programmatic control; per-generation credits</td>
+</tr>
+<tr>
+<td>API (direct)</td>
+<td>Products that need video inside their own UI</td>
+<td>You manage keys, trace ids, polling, quotas, and review failures</td>
+</tr>
+<tr>
+<td>CLI</td>
+<td>Local automation, batch jobs, agent workflows</td>
+<td>Requires Node.js 20+ and a subscription; terminal-first</td>
+</tr>
+<tr>
+<td>Aggregator API (e.g. Modellix)</td>
+<td>Teams already using several model providers</td>
+<td>Pricing and model coverage differ per provider; check the model page</td>
+</tr>
+</tbody></table>
+<p>The CLI is PixVerse’s own terminal tool (npm package, OAuth login, commands such as <code>pixverse create video --prompt &quot;A sunset over ocean waves&quot; --model v6 --quality 720p --duration 5</code> per the <a target="_blank" rel="noopener" href="https://pixverse.ai/en/blog/pixverse-cli-generate-ai-videos-images-from-terminal">official CLI announcement</a>). It suits developers who want generation inside their existing tooling — check <code>pixverse create &lt;mode&gt; --help</code> for the current flags, since the CLI updates continuously.</p>
+<p>For teams that already call other image and video models through one API key, an aggregator removes a second integration surface. Modellix carries PixVerse models alongside 210+ other image&#x2F;video models from 12 providers behind a single REST API, with per-call pricing — see the <a href="https://www.modellix.ai/providers/pixverse">PixVerse provider page</a> for the current catalog. That convenience is real, but it is a routing decision, not a quality claim: the model that runs is PixVerse’s model either way.</p>
+<h2 id="When-PixVerse-is-not-working-common-failures"><a href="#When-PixVerse-is-not-working-common-failures" class="headerlink" title="When PixVerse is not working: common failures"></a>When PixVerse is not working: common failures</h2><p>The most common “PixVerse is not working” reports fall into a few repeatable buckets:</p>
+<ul>
+<li><strong>Video stuck in “Generating” or processing.</strong> Generation is genuinely slow at high resolutions; on the API, a status of <code>5</code> is normal processing and you should poll at 3–5 second intervals rather than hammering the endpoint. The official FAQ treats requests stuck in generating as something to check systematically (request identifier, concurrency limits, account balance) rather than resubmit blindly.</li>
+<li><strong>Request failed review.</strong> Both the app and the API apply content moderation. Status <code>7</code> on the API means the request failed review, and the official docs confirm failed-review requests get their credits refunded. Adjust the prompt and resubmit.</li>
+<li><strong>Generation failed outright.</strong> API status <code>8</code> is a generation failure. The official error-code list covers the specific causes; common ones relate to invalid parameters (bad model name, unsupported resolution, missing required field).</li>
+<li><strong>Credits deducted but no video.</strong> With asynchronous APIs, a generation can fail after billing. PixVerse’s API documentation states that review-failed requests are refunded automatically — check your balance history before assuming you were charged for nothing.</li>
+<li><strong>Session or login problems on mobile.</strong> Use the official Android&#x2F;iOS apps rather than a mobile browser wrapper. The balance is displayed per account, so make sure you are signed into the same account you used on the web app.</li>
+</ul>
+<p>For API users, the official <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/faq-796042m0">FAQ</a> and error-code pages are the first place to check — they cover the exact error strings, which generic tutorials cannot.</p>
+<h2 id="Is-PixVerse-free-Credits-and-what-things-cost"><a href="#Is-PixVerse-free-Credits-and-what-things-cost" class="headerlink" title="Is PixVerse free? Credits and what things cost"></a>Is PixVerse free? Credits and what things cost</h2><p>“Is PixVerse free” is the question every PixVerse tutorial skips. The honest answer as of August 2026: PixVerse offers a limited free trial on the app, and everything beyond that runs on credits. The app shows a trial counter before any payment; PixVerse does not publish a single public “free tier” policy on the pages we could verify, so treat the trial as promotional rather than as an ongoing free allowance.</p>
+<p>After the trial, generation consumes credits. The <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/pricing-796039m0">official PixVerse pricing page</a> prices per second for V6:</p>
+<table>
+<thead>
+<tr>
+<th>Quality</th>
+<th align="right">V6 credits&#x2F;sec (no audio)</th>
+<th align="right">V6 credits&#x2F;sec (with audio)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>360p</td>
+<td align="right">5</td>
+<td align="right">7</td>
+</tr>
+<tr>
+<td>540p</td>
+<td align="right">7</td>
+<td align="right">9</td>
+</tr>
+<tr>
+<td>720p</td>
+<td align="right">9</td>
+<td align="right">12</td>
+</tr>
+<tr>
+<td>1080p</td>
+<td align="right">18</td>
+<td align="right">23</td>
+</tr>
+</tbody></table>
+<p>These are <strong>PixVerse Platform credits</strong>, not Modellix USD — the two systems are not interchangeable. The table above is the standard text&#x2F;image-to-video rate; when a Fusion request includes video references, the same qualities cost exactly 2× (10&#x2F;14, 14&#x2F;18, 18&#x2F;24, 36&#x2F;46 credits per second), which matches the “doubles the per-second rate” rule in the official integration guide. Older models (V5.6, V5.5, V5) use per-clip credit tables instead; the pricing page shows those separately. Lip sync costs 4 credits per second of output, sound effects 2 credits per second. PixVerse also sells API subscription plans, and promotional pricing (for example, 2K MiniMax H3 clips at 50% off appeared in the August 2026 app) changes the effective cost week to week.</p>
+<p>If you are comparing costs, our <a href="https://www.modellix.ai/blog/pixverse-pricing/">PixVerse pricing breakdown</a> walks through the official credit system and the per-second API rates side by side. The short version: read the price off the page for the exact model, resolution, and duration you plan to use, and re-check it on the day you commit budget — PixVerse pricing has moved multiple times this year.</p>
+<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>Is PixVerse free to use?</strong> PixVerse offers a limited free trial on the app (the current UI shows a trial counter such as “3 Free Trial Left”). There is no publicly documented ongoing free tier on the pages we verified; after the trial, generation consumes credits. The API always requires a paid subscription or credit balance.</p>
+<p><strong>How do I use PixVerse on my phone?</strong> Download the official PixVerse app — <a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.pixverseai.pixverse">Android on Google Play</a> and iOS via the app link on the PixVerse homepage — and sign in with the same account you use on the web app.</p>
+<p><strong>Can I use the PixVerse API without a subscription?</strong> No — the API requires an API key and a subscribed plan or credit balance. The free trial lives on the app side. The official <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/">API documentation</a> lists the prerequisites for each endpoint.</p>
+<p><strong>Why is PixVerse not working &#x2F; stuck on generating?</strong> For web-app renders stuck for many minutes, check systematically before resubmitting — request identifier, concurrency limits, and account balance (see the failure section above). For API tasks, status <code>5</code> is normal processing — poll at 3–5 second intervals; status <code>7</code> means the request failed content review (adjust the prompt); status <code>8</code> means generation failed (check the official error-code list).</p>
+<p><strong>Does PixVerse add a watermark to free videos?</strong> PixVerse does not publish a clear public statement about watermarking on free-tier output on the pages we could verify. The API request body includes a <code>water_mark</code> boolean field, which suggests watermark behavior is configurable per request — check your account’s plan details in the app for the exact behavior.</p>
+<p><strong>How much does the PixVerse API cost?</strong> The API runs on Platform credits. Official V6 standard rates are 5–23 credits per second depending on quality and audio (10–46 when a Fusion request includes video references), and PixVerse also sells API subscription plans. Always confirm the current number on the official pricing page.</p>
+<p><strong>What is the difference between PixVerse V6, C1, and R1?</strong> V6 is the flagship generation model and the current web-app default; C1 is PixVerse’s cinematic full-stack model; R1 is the real-time interactive model. For text&#x2F;image-to-video work in mid-2026, V6 is the safe default. Our <a href="https://www.modellix.ai/blog/pixverse-v6/">PixVerse V6 guide</a> covers what changed in V6 in more detail.</p>
+<p><em>Provider details and pricing reflect public information as of August 2026 and change frequently. Validate against each provider’s live pricing before committing. Access image and video models, including the leading Chinese models, through a single API key at <a href="https://www.modellix.ai/">modellix.ai</a>.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Tutorial/" class="tag-pill tag-pill--sm">Tutorial</a>
+            
+              <a href="/blog/tags/PixVerse/" class="tag-pill tag-pill--sm">PixVerse</a>
+            
+              <a href="/blog/tags/How-to/" class="tag-pill tag-pill--sm">How-to</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/pixverse-coupon/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-pixverse-coupon.webp" alt="PixVerse Coupon &amp; Promo Codes: Referral, Discounts (2026)" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">PixVerse Coupon &amp; Promo Codes: Referral, Discounts (2026)</h3>
+          <time class="related-article-date" datetime="2026-08-04T02:00:00.000Z">August 4, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/reference-to-video-ai/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-reference-to-video-ai-v2.webp" alt="Reference to Video AI: How R2V / Fusion Models Work" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Reference to Video AI: How R2V / Fusion Models Work</h3>
+          <time class="related-article-date" datetime="2026-08-02T16:00:00.000Z">August 3, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/nano-banana-2-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-nano-banana-2-api.webp" alt="Nano Banana 2 API: Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Nano Banana 2 API: Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-07-28T16:00:00.000Z">July 29, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/how-to-use-pixverse/&text=How%20to%20Use%20PixVerse%3A%20Setup%2C%20Prompts%20%26%20API" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/how-to-use-pixverse/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/how-to-use-pixverse/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

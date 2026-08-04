@@ -1,0 +1,597 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talking Avatar API: Integration Guide, Pricing &amp; Code — Modellix Blog</title>
+  <meta name="description" content="Talking avatar APIs split into three input families: photo-to-video, video lip-sync, and real-time streaming. Compare current pricing, code, and failure modes.">
+  <meta name="keywords" content="talking avatar api, ai talking avatar api, avatar api, lip sync talking avatar, pixverse lipsync talking avatar, lip sync api, text to speech avatar">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/talking-avatar-api/">
+  <meta name="description" content="Talking avatar APIs split into three input families: photo-to-video, video lip-sync, and real-time streaming. Compare current pricing, code, and failure modes.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Talking Avatar API: Integration Guide, Pricing &amp; Code — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/talking-avatar-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Talking avatar APIs split into three input families: photo-to-video, video lip-sync, and real-time streaming. Compare current pricing, code, and failure modes.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-talking-avatar-api.webp">
+<meta property="article:published_time" content="2026-08-03T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-03T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video API">
+<meta property="article:tag" content="Digital Human">
+<meta property="article:tag" content="Kling">
+<meta property="article:tag" content="PixVerse">
+<meta property="article:tag" content="Talking Avatar">
+<meta property="article:tag" content="developer-guide">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-talking-avatar-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Talking Avatar API: Integration Guide, Pricing & Code","description":"Talking avatar APIs split into three input families: photo-to-video, video lip-sync, and real-time streaming. Compare current pricing, code, and failure modes.","datePublished":"2026-08-03T16:00:00.000Z","dateModified":"2026-08-03T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/talking-avatar-api/","image":"https://img.modellix.ai/en/article/cover-talking-avatar-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Talking Avatar API: Integration Guide, Pricing &amp; Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/api-guides/" class="category-tag category-tag--sm">api-guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Talking Avatar API: Integration Guide, Pricing &amp; Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-03T16:00:00.000Z">August 4, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/PixVerse/" class="tag-pill tag-pill--sm">PixVerse</a>
+            
+              <a href="/blog/tags/Kling/" class="tag-pill tag-pill--sm">Kling</a>
+            
+              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">developer-guide</a>
+            
+              <a href="/blog/tags/Talking-Avatar/" class="tag-pill tag-pill--sm">Talking Avatar</a>
+            
+              <a href="/blog/tags/Digital-Human/" class="tag-pill tag-pill--sm">Digital Human</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>Search for &#39;talking avatar api&#39; and you get a wall of vendor pages: Akool&#39;s API docs at the top, then ElevenLabs, Microsoft&#39;s Azure TTS avatar, Creatify, Synthesia — each explaining its own endpoint as if it were the only one that exists.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-talking-avatar-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-talking-avatar-api.png" alt="Editorial Modellix cover for the talking avatar API guide, showing three digital-human input routes feeding a lip-synced presenter, with amber key and cyan rim lighting" />
+</picture>
+
+<p>Search for “talking avatar api” and you get a wall of vendor pages: Akool’s API docs at the top, then ElevenLabs, Microsoft’s Azure TTS avatar, Creatify, Synthesia — each explaining its own endpoint as if it were the only one that exists. None of them tells you the part that decides your whole integration: <strong>a talking avatar API is not one product but three families defined by their input contract.</strong> Photo-to-video APIs animate a portrait image into a talking presenter. Video lip-sync APIs re-time the lips of a video you already have. Real-time streaming APIs run a live conversational avatar. The same three words — talking avatar API — map to completely different fields, limits, and billing units depending on the family.</p>
+<p>This guide separates the three families, matches their pricing units instead of comparing them blindly, and walks a working request with the failure modes that cost money. Modellix is an API aggregator with a commercial interest in this topic; vendor documentation is the neutral baseline here, and the Modellix route appears as one integration option among several — not as a claim that the aggregator is cheaper. Contract and pricing facts were read from the vendors’ official pages on August 4, 2026.</p>
+<h2 id="What-a-talking-avatar-API-actually-takes-as-input"><a href="#What-a-talking-avatar-API-actually-takes-as-input" class="headerlink" title="What a talking avatar API actually takes as input"></a>What a talking avatar API actually takes as input</h2><p>The input contract is the fastest way to classify any talking avatar API, because it tells you what you must already have before you call it. Three families cover almost everything in this space:</p>
+<table>
+<thead>
+<tr>
+<th>Family</th>
+<th>Input you must supply</th>
+<th>Output</th>
+<th>Typical providers</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Photo-to-video (image avatar)</td>
+<td>A portrait image + a voice source (audio file or TTS script)</td>
+<td>A new video of that person speaking</td>
+<td>PixVerse Image Avatar, Kling Avatar, Skywork Single-Actor Avatar, Synthesia personal avatars, D-ID</td>
+</tr>
+<tr>
+<td>Video lip-sync (retiming)</td>
+<td>An existing talking video + an audio track or TTS script</td>
+<td>The same video with re-synced lips</td>
+<td>PixVerse Speech (LipSync), Skywork Sky-Lipsync, Vidu lip-sync</td>
+</tr>
+<tr>
+<td>Real-time streaming (live avatar)</td>
+<td>A live text&#x2F;audio stream to a conversational avatar</td>
+<td>A low-latency avatar responding in real time</td>
+<td>HeyGen LiveAvatar, Azure real-time synthesis</td>
+</tr>
+</tbody></table>
+<p>The boundary matters because the capabilities are not interchangeable. Photo-to-video is the family most search results actually mean when they say “AI avatar generator”: <a target="_blank" rel="noopener" href="https://www.synthesia.io/features/avatars">Synthesia describes personal avatars</a> turned into talking presenters from a single photo, and <a target="_blank" rel="noopener" href="https://www.d-id.com/api/">D-ID’s API</a> generates talking videos from image and audio inputs. Video lip-sync is a different job — you already have footage and you want the mouth to match new audio, which is what PixVerse’s Speech (LipSync) service and SkyReels lip sync do. Real-time streaming is a third architecture entirely: <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/ai-services/speech-service/text-to-speech-avatar/what-is-text-to-speech-avatar">Microsoft’s text to speech avatar page</a> documents both asynchronous batch synthesis and real-time synthesis, the latter for interactive avatar conversations.</p>
+<p>If your use case is “turn a headshot into a presenter,” you need a photo-to-video API. If your use case is “re-voice a video I already recorded,” you need video lip-sync. Choosing the wrong family means fighting the wrong input fields and the wrong limits from the first request.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/talking-avatar-api-families.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/talking-avatar-api-families.png" alt="Three talking avatar API families: photo-to-video, video lip-sync, and real-time streaming" loading="lazy" />
+</picture>
+
+<p><em>The three talking avatar API families defined by input contract: photo-to-video, video lip-sync, and real-time streaming. Illustrative Modellix artwork for this guide; the request shapes in this article follow the vendors’ official API references.</em></p>
+<h2 id="Talking-avatar-API-pricing-with-units-matched"><a href="#Talking-avatar-API-pricing-with-units-matched" class="headerlink" title="Talking avatar API pricing, with units matched"></a>Talking avatar API pricing, with units matched</h2><p>Pricing is where talking avatar API comparisons go wrong, because every page quotes a different unit. The same capability family is billed per second of output, per credit, per character of TTS text, or per video, depending on the route. Read each figure with its unit, accessed August 4, 2026:</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Stated price</th>
+<th>Unit</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PixVerse Platform — Lip sync</td>
+<td>4 credits</td>
+<td>per second of audio (round up), or per 15 bytes of TTS text after UTF-8 encoding</td>
+</tr>
+<tr>
+<td>PixVerse Platform — Image Avatar</td>
+<td>5 &#x2F; 10 &#x2F; 15 &#x2F; 20 credits</td>
+<td>per second at 360p &#x2F; 540p &#x2F; 720p &#x2F; 1080p</td>
+</tr>
+<tr>
+<td>Modellix <code>pixverse/lipsync</code></td>
+<td>$0.0460</td>
+<td>per second</td>
+</tr>
+<tr>
+<td>Modellix <code>kling/kling-avatar</code></td>
+<td>$0.0386 (std) &#x2F; $0.0773 (pro)</td>
+<td>per second</td>
+</tr>
+<tr>
+<td>Modellix <code>skywork/single-actor-avatar</code></td>
+<td>$0.0460 (std) &#x2F; $0.0690 (pro)</td>
+<td>per second</td>
+</tr>
+<tr>
+<td>Modellix <code>skywork/sky-lipsync</code></td>
+<td>$0.0115</td>
+<td>per second</td>
+</tr>
+</tbody></table>
+<p>Sources: <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/pricing-796039m0">PixVerse Platform pricing</a> and the <a href="https://www.modellix.ai/models/pixverse/lipsync">Modellix model pages for pixverse&#x2F;lipsync</a>, <a href="https://www.modellix.ai/models/kling/kling-avatar">kling-avatar</a>, <a href="https://www.modellix.ai/models/skywork/single-actor-avatar">single-actor-avatar</a>, and <a href="https://www.modellix.ai/models/skywork/sky-lipsync">sky-lipsync</a>, all accessed August 4, 2026.</p>
+<p>These numbers are not directly comparable, and saying so is the point. PixVerse Platform bills in <strong>credits</strong> — a package currency whose dollar value depends on the credit pack you bought; its own pricing page shows the credit cost per second, not a dollar rate. Modellix bills in dollars per second of output. A 10-second talking clip on Modellix’s <code>pixverse/lipsync</code> route costs 10 × $0.0460 &#x3D; $0.46 as displayed; the same job on PixVerse Platform costs 10 × 4 &#x3D; 40 credits under the per-second rule, whose dollar value depends on your pack. Convert both to the same output specification and the same billing conditions before comparing — never divide credits by a dollar guess you invented.</p>
+<p>Note that pricing drifts: PixVerse’s July 2026 product briefing recorded Image Avatar at 3&#x2F;6&#x2F;9&#x2F;12 credits per second, but the live pricing page on August 4, 2026 shows 5&#x2F;10&#x2F;15&#x2F;20 at 360p&#x2F;540p&#x2F;720p&#x2F;1080p. This is a normal example of why every figure in this article carries an access date. Our <a href="https://www.modellix.ai/blog/pixverse-pricing/">PixVerse pricing guide</a> keeps the full API’s unit distinctions explicit.</p>
+<h2 id="A-working-talking-avatar-API-call"><a href="#A-working-talking-avatar-API-call" class="headerlink" title="A working talking avatar API call"></a>A working talking avatar API call</h2><p>The photo-to-video family is the most common starting point, so here is a minimal working flow against Modellix’s <code>kling/kling-avatar</code> route, whose documented input is a portrait image plus exactly one audio source (an audio file URL, or an <code>audio_id</code> from a TTS API). The snippet follows the model page’s documented request shape; it has not been executed against a live account.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create a talking avatar video from a portrait + audio</span></span><br><span class="line">curl -X POST <span class="string">&quot;https://api.modellix.ai/api/v1/kling/kling-avatar&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$MODELLIX_API_KEY</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;input&quot;: &#123;</span></span><br><span class="line"><span class="string">      &quot;image&quot;: &quot;https://your-cdn.example.com/presenter.jpg&quot;,</span></span><br><span class="line"><span class="string">      &quot;sound_file&quot;: &quot;https://your-cdn.example.com/voiceover.mp3&quot;,</span></span><br><span class="line"><span class="string">      &quot;prompt&quot;: &quot;The presenter speaks naturally to camera with a calm expression&quot;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br><span class="line"><span class="comment"># → task_id; poll GET /api/v1/tasks/&#123;task_id&#125; until it completes</span></span><br></pre></td></tr></table></figure>
+
+<p>The video lip-sync family differs in one decisive way: it requires a source video, not an image. On Modellix’s <code>pixverse/lipsync</code> route the documented contract is an existing talking-video URL plus <strong>either</strong> an <code>audio_url</code> <strong>or</strong> a <code>speaker_id</code> + <code>tts_content</code> pair (max 140 characters) — never both, never neither. <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/speechlip-sync-1268530m0">PixVerse Platform’s official Speech (LipSync) documentation</a> expresses the same choice as <code>audio_media_id</code> vs <code>lip_sync_tts_speaker_id</code> + <code>lip_sync_tts_content</code>, with video up to 60 seconds and TTS scripts up to 200 characters. The sibling <a href="https://www.modellix.ai/blog/pixverse-lip-sync/">PixVerse lip sync API guide</a> walks that contract field by field, including the upload limits and the exact endpoint.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Python skeleton for a pixverse/lipsync-style request (illustrative)</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">r = requests.post(</span><br><span class="line">    <span class="string">&quot;https://api.modellix.ai/api/v1/pixverse/lipsync&quot;</span>,</span><br><span class="line">    headers=&#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">&quot;Bearer &lt;YOUR_KEY&gt;&quot;</span>&#125;,</span><br><span class="line">    json=&#123;</span><br><span class="line">        <span class="string">&quot;input&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;video&quot;</span>: <span class="string">&quot;https://your-cdn.example.com/speaker_clip.mp4&quot;</span>,</span><br><span class="line">            <span class="string">&quot;audio_url&quot;</span>: <span class="string">&quot;https://your-cdn.example.com/voiceover.mp3&quot;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">)</span><br><span class="line">task_id = r.json()[<span class="string">&quot;task_id&quot;</span>]   <span class="comment"># then poll GET /api/v1/tasks/&#123;task_id&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>Every talking avatar API in this space follows the same submit-then-poll lifecycle: create a task, poll its status, fetch the result when it reaches the terminal state. The <a href="https://www.modellix.ai/blog/pixverse-api/">PixVerse API overview</a> walks the full request lifecycle and authentication surface. For real-time families the request pattern is different — Azure’s text to speech avatar documents a <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/ai-services/speech-service/text-to-speech-avatar/what-is-text-to-speech-avatar">batch synthesis API and a real-time synthesis path</a> rather than a single generate-and-poll task, so confirm the lifecycle before you build your queue around it.</p>
+<h2 id="Status-codes-and-the-failure-modes-that-cost-money"><a href="#Status-codes-and-the-failure-modes-that-cost-money" class="headerlink" title="Status codes and the failure modes that cost money"></a>Status codes and the failure modes that cost money</h2><p>Asynchronous video generation fails in two financially distinct ways. Using PixVerse’s official status contract as the reference (1 &#x3D; success, 5 &#x3D; generating, 7 &#x3D; content moderation failure, 8 &#x3D; generation failed): the platform’s FAQ documents automatic credit refunds for generation failure, for generations that exceed two hours, and for content moderation rejection — so a status 7 rejection costs time, not credits, and a status 8 failure is also documented as refundable under the current FAQ. Refund terms change, so confirm the current policy before assuming any failed job is billable or refundable.</p>
+<p>The input-contract errors are where most integrations waste their first day:</p>
+<table>
+<thead>
+<tr>
+<th>Error pattern</th>
+<th>Family it hits</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Both audio paths sent, or neither</td>
+<td>Lip sync &#x2F; photo-to-video</td>
+<td>Pick exactly one voice source — <code>audio_url</code> XOR <code>speaker_id</code> + <code>tts_content</code></td>
+</tr>
+<tr>
+<td>Image file too large or wrong format</td>
+<td>Photo-to-video</td>
+<td>Kling avatar documents JPG&#x2F;JPEG&#x2F;PNG up to 10 MB; Skywork accepts portrait URLs in jpg&#x2F;jpeg&#x2F;png&#x2F;gif&#x2F;bmp</td>
+</tr>
+<tr>
+<td>Audio outside duration limits</td>
+<td>Both</td>
+<td>Kling avatar documents 2–300 seconds; Skywork Single-Actor Avatar up to 200 seconds; PixVerse lip-sync up to 60 seconds</td>
+</tr>
+<tr>
+<td>TTS script over the character cap</td>
+<td>Lip sync &#x2F; photo-to-video</td>
+<td>Modellix <code>pixverse/lipsync</code> caps <code>tts_content</code> at 140 chars; PixVerse Platform documents 200 for Speech (LipSync)</td>
+</tr>
+<tr>
+<td>Source media missing from the URL</td>
+<td>Both</td>
+<td>The endpoint fetches from public URLs — the URL must be reachable by the provider, not just by your browser</td>
+</tr>
+</tbody></table>
+<p>One more gotcha is documented repeatedly across this space: reusing the same request trace ID. PixVerse’s official troubleshooting notes a reused <code>Ai-Trace-Id</code> as the most common cause of jobs stuck in “Generating” — generate a unique trace ID per request. Vendor docs are the reference for their own codes; Akool’s <a target="_blank" rel="noopener" href="https://docs.akool.com/ai-tools-suite/talking-avatar">Talking Avatar API documentation</a>, for example, documents a callback-or-poll pattern with resource links valid for 7 days, which matters if you queue long-running jobs.</p>
+<h2 id="What-Modellix’s-talking-avatar-routes-are-—-and-are-not"><a href="#What-Modellix’s-talking-avatar-routes-are-—-and-are-not" class="headerlink" title="What Modellix’s talking avatar routes are — and are not"></a>What Modellix’s talking avatar routes are — and are not</h2><p>Modellix is an API aggregator: one key and one billing account across image and video models from multiple providers. The four talking-avatar-relevant routes covered in this guide, all billed per second as of August 4, 2026, are two photo-to-video routes (Kling Avatar, Skywork Single-Actor Avatar) and two video lip-sync routes (PixVerse Lip Sync, Skywork Sky-Lipsync). The catalog also lists adjacent routes such as Vidu’s lip-sync and digital-human models; this guide scopes its pricing comparison to the four routes above.</p>
+<p>It is <strong>not</strong> several things that look similar in search results:</p>
+<ul>
+<li><strong>Not PixVerse Image Avatar.</strong> PixVerse Platform’s <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/avatar-2266777m0">Image Avatar API</a> generates a talking video from a still portrait (<code>img_id</code>) plus a voice source — a photo-to-digital-human pipeline with its own 5&#x2F;10&#x2F;15&#x2F;20 credits-per-second billing. Modellix does not carry <strong>PixVerse Platform’s</strong> Image Avatar API; its <code>pixverse/lipsync</code> requires an existing video. (Photo-to-video on Modellix is covered by the Kling Avatar and Skywork routes above, and the catalog also lists Vidu digital-human models.)</li>
+<li><strong>Not arbitrary voice cloning.</strong> PixVerse Platform lets you upload a short sample and create a custom <code>speaker_id</code>. Modellix’s <code>pixverse/lipsync</code> accepts preset speaker codes for TTS — no clone upload.</li>
+<li><strong>Not audio generation.</strong> Talking avatar APIs consume audio as input (a track or a TTS script); neither the vendors nor this article claim audio-generation capability.</li>
+<li><strong>Not Growth Studio.</strong> PixVerse’s marketing-video workspace is a separate PixVerse product, not an aggregator capability.</li>
+</ul>
+<p>None of this asserts that Modellix is the cheapest talking avatar route — the unit mismatch alone makes that claim easy to fake and hard to make real. The honest framing is narrower: official vendors give you the newest model surface and their own billing; an aggregator gives you several of these routes behind one key, billed in dollars per second, alongside the rest of an image-and-video API catalog. That is a workflow argument, not a price argument.</p>
+<h2 id="How-to-choose-a-talking-avatar-API"><a href="#How-to-choose-a-talking-avatar-API" class="headerlink" title="How to choose a talking avatar API"></a>How to choose a talking avatar API</h2><p>Start with the input you can actually produce at scale, then match the family:</p>
+<ul>
+<li><strong>You have portraits, not footage</strong> → photo-to-video. Compare Kling Avatar and Skywork Single-Actor Avatar on per-second price, resolution (Skywork <code>mode=pro</code> outputs 1080p), and audio limits; Synthesia and D-ID are the consumer-grade studio alternatives with their own API tiers.</li>
+<li><strong>You have recorded talking video and want to re-voice or localize it</strong> → video lip-sync. Within the four routes covered here, <code>skywork/sky-lipsync</code> at $0.0115&#x2F;second is the cheapest displayed per-second route; PixVerse Lip Sync adds a TTS path. Our <a href="https://www.modellix.ai/blog/pixverse-alternative/">PixVerse alternatives guide</a> compares the surrounding video-API ecosystem.</li>
+<li><strong>You need a live conversational avatar</strong> → real-time streaming. This is a different architecture (<a target="_blank" rel="noopener" href="https://www.heygen.com/">HeyGen’s live avatar line</a> and <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/ai-services/speech-service/text-to-speech-avatar/what-is-text-to-speech-avatar">Azure’s real-time synthesis</a>); evaluate latency and session billing, not per-second video pricing.</li>
+<li><strong>You want several of these behind one integration</strong> → an aggregator route makes sense as a workflow choice: one key, one bill, consistent submit-poll semantics. It is not automatically cheaper per unit — verify the specific model and output spec.</li>
+</ul>
+<p>Before committing, price a representative task on the exact route: same model, same resolution, same duration, same billing condition. Then check the free-trial path — most vendors in this space offer a free tier or credits, which is how you validate lip-sync quality on your own faces before paying.</p>
+<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>What is a talking avatar API?</strong></p>
+<p>A talking avatar API turns a voice source into video of a person speaking: it can animate a portrait photo (photo-to-video), re-sync the lips of an existing video to new audio (video lip-sync), or drive a live conversational avatar in real time. The three families have different input fields, limits, and billing units.</p>
+<p><strong>What is the difference between a talking avatar API and lip-sync?</strong></p>
+<p>Lip-sync is one of the three families. A talking avatar API is the general category; photo-to-video APIs create new talking videos from images, while video lip-sync APIs only re-time the mouth of footage you already have. Choosing the wrong one means supplying the wrong input (an image instead of a video, or vice versa).</p>
+<p><strong>How much does a talking avatar API cost?</strong></p>
+<p>As of August 4, 2026, for the four routes covered in this guide: PixVerse Platform bills Lip sync at 4 credits per second and Image Avatar at 5&#x2F;10&#x2F;15&#x2F;20 credits per second by resolution; Modellix displays per-second dollar prices from $0.0115 (sky-lipsync) to $0.0773 (kling-avatar pro). Credits and dollars are not directly comparable without knowing your credit pack’s value.</p>
+<p><strong>What inputs do I need for a photo-to-video talking avatar API?</strong></p>
+<p>A portrait image plus exactly one voice source — an audio file or a TTS script with a selected voice. Kling Avatar documents JPG&#x2F;JPEG&#x2F;PNG images up to 10 MB with audio of 2–300 seconds; Skywork Single-Actor Avatar takes a portrait URL plus one audio segment up to 200 seconds.</p>
+<p><strong>Can I use a talking avatar API with just text?</strong></p>
+<p>Yes — through the TTS path. Both photo-to-video and lip-sync families accept a script plus a speaker ID and synthesize the speech before animating. Modellix’s <code>pixverse/lipsync</code> caps the script at 140 characters; PixVerse Platform’s Speech (LipSync) documents 200. If you need arbitrary voice cloning rather than preset voices, that is a separate capability on the vendor platform.</p>
+<p><strong>Which talking avatar API is the cheapest?</strong></p>
+<p>There is no honest single answer, because credits, per-second dollars, resolution, and output length are different units. Within the four routes covered in this guide, <code>skywork/sky-lipsync</code> at $0.0115&#x2F;second is the lowest displayed per-second price, but it only re-times existing video at fixed 720p. Price the exact task on the exact route before deciding.</p>
+<p><strong>Does Modellix support PixVerse Image Avatar or voice cloning?</strong></p>
+<p>No. Modellix’s <code>pixverse/lipsync</code> requires an existing talking video plus <code>audio_url</code> or <code>speaker_id</code>+<code>tts_content</code>; it does not generate a talking video from a photo (that is PixVerse Platform’s Image Avatar API) and does not accept arbitrary voice-clone uploads.</p>
+<hr>
+<p><em>Talking avatar API details and pricing reflect public documentation and model pages accessed August 4, 2026, and change frequently. Validate against each provider’s live pricing and docs before committing volume or budget. Modellix is an API aggregator for image and video models; this guide is not a claim that the aggregator route is cheaper or that it accepts every vendor parameter.</em></p>
+<p><em>Cover image: illustrative Modellix artwork; it is not a vendor product screenshot or source evidence.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/PixVerse/" class="tag-pill tag-pill--sm">PixVerse</a>
+            
+              <a href="/blog/tags/Kling/" class="tag-pill tag-pill--sm">Kling</a>
+            
+              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">developer-guide</a>
+            
+              <a href="/blog/tags/Talking-Avatar/" class="tag-pill tag-pill--sm">Talking Avatar</a>
+            
+              <a href="/blog/tags/Digital-Human/" class="tag-pill tag-pill--sm">Digital Human</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/pixverse-video-reference-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-pixverse-video-reference-api-v2.webp" alt="PixVerse Video Reference API: V6 Fusion Integration Guide" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">api-guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">PixVerse Video Reference API: V6 Fusion Integration Guide</h3>
+          <time class="related-article-date" datetime="2026-08-02T16:00:00.000Z">August 3, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/pixverse-lip-sync/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-pixverse-lip-sync-v2.webp" alt="PixVerse Lip Sync API Guide: Talking Video &amp; TTS" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">api-guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">PixVerse Lip Sync API Guide: Talking Video &amp; TTS</h3>
+          <time class="related-article-date" datetime="2026-08-02T16:00:00.000Z">August 3, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/image-to-video-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-image-to-video-api.webp" alt="Image to Video API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">api-guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Image to Video API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-07-30T16:00:00.000Z">July 31, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/talking-avatar-api/&text=Talking%20Avatar%20API%3A%20Integration%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/talking-avatar-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/talking-avatar-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
