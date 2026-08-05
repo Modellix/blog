@@ -1,0 +1,586 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PixVerse Video Upscale API: Guide, Pricing &amp; Code — Modellix Blog</title>
+  <meta name="description" content="PixVerse video upscale API: endpoint parameters, source_video_id vs video_media_id, credit cost per second, code samples, and direct vs aggregator routing.">
+  <meta name="keywords" content="pixverse video upscale api, pixverse upscale api, pixverse video upscaler, ai video upscaler api, pixverse video upscale, pixverse upscale video">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/pixverse-video-upscale-api/">
+  <meta name="description" content="PixVerse video upscale API: endpoint parameters, source_video_id vs video_media_id, credit cost per second, code samples, and direct vs aggregator routing.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PixVerse Video Upscale API: Guide, Pricing &amp; Code — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/pixverse-video-upscale-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="PixVerse video upscale API: endpoint parameters, source_video_id vs video_media_id, credit cost per second, code samples, and direct vs aggregator routing.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-pixverse-video-upscale-api.webp">
+<meta property="article:published_time" content="2026-08-05T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-05T02:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video API">
+<meta property="article:tag" content="API Guide">
+<meta property="article:tag" content="PixVerse">
+<meta property="article:tag" content="Tutorial">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-pixverse-video-upscale-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"PixVerse Video Upscale API: Guide, Pricing & Code","description":"PixVerse video upscale API: endpoint parameters, source_video_id vs video_media_id, credit cost per second, code samples, and direct vs aggregator routing.","datePublished":"2026-08-05T02:00:00.000Z","dateModified":"2026-08-05T02:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/pixverse-video-upscale-api/","image":"https://img.modellix.ai/en/article/cover-pixverse-video-upscale-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">PixVerse Video Upscale API: Guide, Pricing &amp; Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">PixVerse Video Upscale API: Guide, Pricing &amp; Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-05T02:00:00.000Z">August 5, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Tutorial/" class="tag-pill tag-pill--sm">Tutorial</a>
+            
+              <a href="/blog/tags/PixVerse/" class="tag-pill tag-pill--sm">PixVerse</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>The PixVerse video upscale API is one endpoint — POST /openapi/v2/video/upscale/generate on app-api.pixverse.ai — that takes an existing video and returns a sharper, higher-resolution version of it.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-pixverse-video-upscale-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-pixverse-video-upscale-api.png" alt="PixVerse video upscale API editorial cover with the MODELLIX wordmark, a two-line title, and a video upscaling workflow capsule" />
+</picture>
+
+<p>The PixVerse video upscale API is one endpoint — <code>POST /openapi/v2/video/upscale/generate</code> on <code>app-api.pixverse.ai</code> — that takes an existing video and returns a sharper, higher-resolution version of it. It is billed at <strong>5 credits per second</strong> of source video on the official pricing page, which works out to about <strong>$0.05&#x2F;second</strong> if you buy credits at the $10 &#x2F; 1,000-credit tier. That math, the two input paths, and the code below are the parts the current documentation page does not spell out for you.</p>
+<p>Upscale is a post-processing effect, not a generator: it increases resolution and clarity while preserving the content, style, and motion of the source clip. It is PixVerse’s own model running behind the API, so the same effect you can trigger in the web app is what this endpoint does programmatically. One warning up front: the official upscale documentation does <strong>not</strong> promise a specific output resolution such as 4K — <a target="_blank" rel="noopener" href="https://www.eachlabs.ai/pixverse/pixverse-features/pixverse-4k-video-upscale">a reseller’s model page</a> advertises “4K” output while noting its own spec is indicative rather than guaranteed, so budget a test clip before you promise resolution in your product. All figures in this guide were read from official PixVerse pages on August 5, 2026.</p>
+<h2 id="What-the-PixVerse-video-upscale-API-does-—-and-what-it-costs"><a href="#What-the-PixVerse-video-upscale-API-does-—-and-what-it-costs" class="headerlink" title="What the PixVerse video upscale API does — and what it costs"></a>What the PixVerse video upscale API does — and what it costs</h2><p>The official <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/upscale-video-37938008e0">Upscale Video API documentation</a> defines one asynchronous task. You submit a video, receive a new <code>video_id</code>, poll the status endpoint until it finishes, and download the result. The submit response returns both the new task’s <code>video_id</code> and the <code>credit</code> cost that was charged:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;ErrCode&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;ErrMsg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Success&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;Resp&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;video_id&quot;</span><span class="punctuation">:</span> <span class="number">987654</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;credit&quot;</span><span class="punctuation">:</span> <span class="number">50</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>The request body accepts exactly one of two source fields, which we unpack in the next section: <code>source_video_id</code> for a video PixVerse already generated, or <code>video_media_id</code> for a clip you uploaded to your account.</p>
+<p>On cost, the official <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/pricing-796039m0">PixVerse pricing page</a> lists Upscale under its effect pricing at <strong>5 credits per second</strong> (billing rule: credits per 1s, rounded up). Credits are purchased in packs — $10 buys 1,000 credits, and larger packs exist up to $5,000 &#x2F; 500,000 credits. At the smallest pack that is <strong>$0.05 per second of source video</strong>, before any rounding. That is the number to put in a budget spreadsheet; the pricing page’s separate “$1 &#x3D; 5 videos (v6, 720p, 5s, no audio)” example is a different calculation for generated clips and does not apply to upscaling.</p>
+<p>Two things the pricing page does not tell you, so we will: credits are <strong>PixVerse Platform credits</strong>, not a dollar balance — you buy them in packs and spend them per second. And the API has no free tier: every upscale request consumes credits, so the “pixverse video upscale api free” searches you will see around this topic have a short answer — free trials live on the consumer app, not the API. Our <a href="https://www.modellix.ai/blog/how-to-use-pixverse/">PixVerse tutorial</a> walks through the app-side trial if that is the path you actually need.</p>
+<h2 id="Two-input-paths-PixVerse-generated-or-uploaded-video"><a href="#Two-input-paths-PixVerse-generated-or-uploaded-video" class="headerlink" title="Two input paths: PixVerse-generated or uploaded video"></a>Two input paths: PixVerse-generated or uploaded video</h2><p>The upscale endpoint takes one of two identifiers, and which one you send depends on where the video lives:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Use when</th>
+<th>Where the ID comes from</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>source_video_id</code></td>
+<td>The clip was produced by PixVerse</td>
+<td>The <code>video_id</code> returned by any generation task (text-to-video, image-to-video, extend, fusion, and so on)</td>
+</tr>
+<tr>
+<td><code>video_media_id</code></td>
+<td>The clip is your own footage</td>
+<td>The <code>media_id</code> returned by the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/upload-videoaudio-19094401e0">media upload endpoint</a></td>
+</tr>
+</tbody></table>
+<p>The second path is the one most integrations miss. To upscale footage that PixVerse never generated, you first upload it:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl --location <span class="string">&#x27;https://app-api.pixverse.ai/openapi/v2/media/upload&#x27;</span> \</span><br><span class="line">  --header <span class="string">&#x27;API-KEY: YOUR_API_KEY&#x27;</span> \</span><br><span class="line">  --header <span class="string">&#x27;Ai-trace-id: your-unique-trace-id&#x27;</span> \</span><br><span class="line">  --form <span class="string">&#x27;file=@clip.mp4&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>The upload response returns a <code>media_id</code> plus a hosted <code>url</code>; you then send that <code>media_id</code> as <code>video_media_id</code> in the upscale request. For upscaling, the upload documentation caps input at <strong>100MB and 30 seconds of video</strong>, and all video inputs are limited to <strong>1920px on the longest side</strong> (width or height). Supported containers are MP4, MOV, and WebM. If your pipeline produces longer or larger clips, split them before uploading — the 30-second ceiling is the practical constraint on what one upscale task can process.</p>
+<p>Practical routing rule: if the video came out of a generation task this session, pass <code>source_video_id</code> directly and skip the upload entirely. If it is an asset your users bring in, upload once, keep the <code>media_id</code>, and reuse it for every upscale request — you pay for uploads in storage&#x2F;limits, not per upsert.</p>
+<h2 id="Calling-the-endpoint-submit-poll-retrieve"><a href="#Calling-the-endpoint-submit-poll-retrieve" class="headerlink" title="Calling the endpoint: submit, poll, retrieve"></a>Calling the endpoint: submit, poll, retrieve</h2><p>Before any request you need an API key — the official <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/how-to-get-api-key-882968m0">API key guide</a> has you create a key on the platform (it is shown once), send it in the <code>API-KEY</code> header, and use a <strong>unique <code>Ai-trace-id</code> per request</strong>. Reusing a trace id is a common source of “nothing happened” reports: PixVerse deduplicates on it.</p>
+<p>A minimal upscale submission:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">curl --location <span class="string">&#x27;https://app-api.pixverse.ai/openapi/v2/video/upscale/generate&#x27;</span> \</span><br><span class="line">  --header <span class="string">&#x27;API-KEY: YOUR_API_KEY&#x27;</span> \</span><br><span class="line">  --header <span class="string">&#x27;Ai-trace-id: your-unique-trace-id&#x27;</span> \</span><br><span class="line">  --header <span class="string">&#x27;Content-Type: application/json&#x27;</span> \</span><br><span class="line">  --data <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;source_video_id&quot;: 123456</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>The response gives you the new task’s <code>video_id</code>. Upscaling is asynchronous — the finished clip does not exist yet. Poll the status endpoint with that id:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl --location <span class="string">&#x27;https://app-api.pixverse.ai/openapi/v2/video/result/987654&#x27;</span> \</span><br><span class="line">  --header <span class="string">&#x27;API-KEY: YOUR_API_KEY&#x27;</span> \</span><br><span class="line">  --header <span class="string">&#x27;Ai-trace-id: another-unique-trace-id&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>The official <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/get-video-generation-status-882972m0">video generation status guide</a> defines the status codes: <strong>1 &#x3D; success</strong> (the response includes the <code>url</code> to download), <strong>5 &#x3D; waiting for generation</strong> (poll every 3–5 seconds), <strong>7 &#x3D; content moderation failure</strong>, <strong>8 &#x3D; generation failed</strong>. Polling faster than 3 seconds gains nothing; the docs recommend the 3–5 second interval while status is 5.</p>
+<p>Here is the whole loop in Python, which is the pattern you will ship:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> uuid</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">API_KEY = <span class="string">&quot;YOUR_API_KEY&quot;</span></span><br><span class="line">BASE = <span class="string">&quot;https://app-api.pixverse.ai/openapi/v2&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">upscale_video</span>(<span class="params">source_video_id=<span class="literal">None</span>, video_media_id=<span class="literal">None</span></span>):</span><br><span class="line">    body = &#123;&#125;</span><br><span class="line">    <span class="keyword">if</span> source_video_id <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        body[<span class="string">&quot;source_video_id&quot;</span>] = source_video_id</span><br><span class="line">    <span class="keyword">if</span> video_media_id <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        body[<span class="string">&quot;video_media_id&quot;</span>] = video_media_id</span><br><span class="line">    resp = requests.post(</span><br><span class="line">        <span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/video/upscale/generate&quot;</span>,</span><br><span class="line">        headers=&#123;</span><br><span class="line">            <span class="string">&quot;API-KEY&quot;</span>: API_KEY,</span><br><span class="line">            <span class="string">&quot;Ai-trace-id&quot;</span>: <span class="built_in">str</span>(uuid.uuid4()),</span><br><span class="line">            <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        json=body,</span><br><span class="line">        timeout=<span class="number">30</span>,</span><br><span class="line">    )</span><br><span class="line">    resp.raise_for_status()</span><br><span class="line">    data = resp.json()</span><br><span class="line">    <span class="keyword">if</span> data[<span class="string">&quot;ErrCode&quot;</span>] != <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">raise</span> RuntimeError(<span class="string">f&quot;<span class="subst">&#123;data[<span class="string">&#x27;ErrCode&#x27;</span>]&#125;</span>: <span class="subst">&#123;data[<span class="string">&#x27;ErrMsg&#x27;</span>]&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> data[<span class="string">&quot;Resp&quot;</span>][<span class="string">&quot;video_id&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">wait_for_video</span>(<span class="params">video_id, interval=<span class="number">4</span>, timeout=<span class="number">600</span></span>):</span><br><span class="line">    started = time.time()</span><br><span class="line">    <span class="keyword">while</span> time.time() - started &lt; timeout:</span><br><span class="line">        resp = requests.get(</span><br><span class="line">            <span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/video/result/<span class="subst">&#123;video_id&#125;</span>&quot;</span>,</span><br><span class="line">            headers=&#123;<span class="string">&quot;API-KEY&quot;</span>: API_KEY, <span class="string">&quot;Ai-trace-id&quot;</span>: <span class="built_in">str</span>(uuid.uuid4())&#125;,</span><br><span class="line">            timeout=<span class="number">30</span>,</span><br><span class="line">        )</span><br><span class="line">        result = resp.json()[<span class="string">&quot;Resp&quot;</span>]</span><br><span class="line">        <span class="keyword">if</span> result[<span class="string">&quot;status&quot;</span>] == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> result[<span class="string">&quot;url&quot;</span>]</span><br><span class="line">        <span class="keyword">if</span> result[<span class="string">&quot;status&quot;</span>] <span class="keyword">in</span> (<span class="number">7</span>, <span class="number">8</span>):</span><br><span class="line">            <span class="keyword">raise</span> RuntimeError(<span class="string">f&quot;task failed with status <span class="subst">&#123;result[<span class="string">&#x27;status&#x27;</span>]&#125;</span>&quot;</span>)</span><br><span class="line">        time.sleep(interval)</span><br><span class="line">    <span class="keyword">raise</span> TimeoutError(<span class="string">&quot;upscale task did not finish in time&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># usage</span></span><br><span class="line">task_id = upscale_video(source_video_id=<span class="number">123456</span>)</span><br><span class="line">download_url = wait_for_video(task_id)</span><br></pre></td></tr></table></figure>
+
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/pixverse-upscale-api-workflow.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/pixverse-upscale-api-workflow.png" alt="PixVerse upscale API workflow diagram: source_video_id or video_media_id into the upscale generate endpoint, then poll the result endpoint until status 1 returns the download URL" loading="lazy" />
+</picture>
+
+<p><em>Figure 1: The PixVerse video upscale API loop — submit with one of the two input identifiers, poll status until 1, then download from the returned URL. Reconstructed from the official API documentation on August 5, 2026.</em></p>
+<p>For teams that already call several PixVerse endpoints, our <a href="https://www.modellix.ai/blog/pixverse-api/">PixVerse API integration guide</a> covers authentication, polling, error codes, and production patterns across the whole platform — upscale is one of the effects in that same loop.</p>
+<h2 id="Credit-cost-limits-and-production-options"><a href="#Credit-cost-limits-and-production-options" class="headerlink" title="Credit cost, limits, and production options"></a>Credit cost, limits, and production options</h2><p>Upscale is charged per second of source video, rounded up, at <strong>5 credits&#x2F;second</strong>. A 10-second clip costs 50 credits, which is $0.50 at the $10 &#x2F; 1,000-credit pack price:</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/pixverse-upscale-credit-cost.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/pixverse-upscale-credit-cost.png" alt="PixVerse upscale credit cost schematic: 5 credits per second multiplied by clip duration, deducted from a purchased credit pack, about 0.05 USD per second at the 10-dollar pack" loading="lazy" />
+</picture>
+
+<p><em>Figure 2: Credit math for the PixVerse video upscale API from the official pricing page, August 5, 2026: 5 credits per second × duration, rounded up; at $10 per 1,000 credits that is about $0.05 per second. Not a total-task price for other effects.</em></p>
+<p>Budgeting checks before a batch run:</p>
+<ul>
+<li><strong>Check balance first.</strong> The platform exposes a credit-balance endpoint; a batch of upscale jobs can clear a small pack quickly, and the error path for an empty balance is a failed task, not a warning.</li>
+<li><strong>Watch concurrency.</strong> The error-code list includes “reached the limit for concurrent generations” — queue long batches instead of firing them all at once.</li>
+<li><strong>Input caps.</strong> 100MB &#x2F; 30s &#x2F; 1920px per upscale upload (see the input section). Plan chunking in the pipeline, not in the error handler.</li>
+<li><strong>Webhooks beat polling in production.</strong> The official <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/webhook-integration-1905378m0">webhook integration guide</a> lists the upscale endpoint as webhook-supported, with signed deliveries to verify. If you run many tasks, webhooks remove the polling loop entirely.</li>
+</ul>
+<p>For a full walkthrough of the credit system and the per-second API rates across PixVerse’s other effects, our <a href="https://www.modellix.ai/blog/pixverse-pricing/">PixVerse pricing breakdown</a> compares the official tables side by side.</p>
+<h2 id="Errors-and-troubleshooting"><a href="#Errors-and-troubleshooting" class="headerlink" title="Errors and troubleshooting"></a>Errors and troubleshooting</h2><p>Upscale failures fall into a small set of repeatable codes. The upscale endpoint documentation names two directly, and the platform’s <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/error-codes-796041m0">error-code reference</a> covers the rest:</p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>400017</code></td>
+<td>File limit exceeded (upscale doc wording) &#x2F; invalid parameter (general list)</td>
+<td>Check the input file against the 100MB &#x2F; 30s &#x2F; 1920px caps</td>
+</tr>
+<tr>
+<td><code>500047</code></td>
+<td>Invalid video ID</td>
+<td>Confirm <code>source_video_id</code> &#x2F; <code>video_media_id</code> is real and belongs to your account</td>
+</tr>
+<tr>
+<td><code>500008</code></td>
+<td>Requested data not found</td>
+<td>The task id is wrong or the result was cleaned up; re-check your stored ids</td>
+</tr>
+<tr>
+<td><code>500090</code></td>
+<td>Insufficient balance</td>
+<td>Top up credits, then resubmit</td>
+</tr>
+<tr>
+<td><code>500063</code></td>
+<td>Content moderation failure</td>
+<td>The input video failed review; replace the clip</td>
+</tr>
+<tr>
+<td><code>500069</code></td>
+<td>System high load</td>
+<td>Retry after a short backoff</td>
+</tr>
+<tr>
+<td><code>500044</code></td>
+<td>Concurrent generation limit reached</td>
+<td>Add a queue to your pipeline</td>
+</tr>
+</tbody></table>
+<p>Two behaviors are worth designing around. First, a status of <strong>7 (content moderation failure)</strong> means the <em>input</em> clip was rejected — the official FAQ addresses whether credits are refunded for failed generations, so confirm the current policy on that page before you build an automatic retry loop that assumes a refund. Second, failures happen <strong>after</strong> the submit response, which is why the credit field in that response exists: you can log the charged amount per task and reconcile it against your balance history instead of discovering a discrepancy at month end.</p>
+<h2 id="Direct-PixVerse-API-vs-an-aggregator-route"><a href="#Direct-PixVerse-API-vs-an-aggregator-route" class="headerlink" title="Direct PixVerse API vs an aggregator route"></a>Direct PixVerse API vs an aggregator route</h2><p>Once the workflow works, the remaining decision is where to run it: the official PixVerse platform directly, or an aggregator that resells the same model. Both run PixVerse’s upscaler — this is a routing decision, not a quality claim.</p>
+<table>
+<thead>
+<tr>
+<th>Consideration</th>
+<th>Direct PixVerse</th>
+<th>Aggregator route</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Billing unit</td>
+<td>Platform credits, bought in packs</td>
+<td>USD per second, pay-as-you-go</td>
+</tr>
+<tr>
+<td>Auth surface</td>
+<td>PixVerse API key + per-request trace ids</td>
+<td>One key for many providers</td>
+</tr>
+<tr>
+<td>Upscale rate</td>
+<td>5 credits&#x2F;sec ≈ $0.05&#x2F;sec at the $10 pack</td>
+<td><code>pixverse/upscale-video</code> displayed at $0.0575&#x2F;sec</td>
+</tr>
+<tr>
+<td>Extra surface</td>
+<td>Manage credits, packs, limits yourself</td>
+<td>One dashboard&#x2F;billing for all models you call</td>
+</tr>
+</tbody></table>
+<p>Modellix is an API aggregator and has a commercial interest in this comparison. We carry the PixVerse upscaler as <a href="https://www.modellix.ai/models/pixverse/upscale-video">pixverse&#x2F;upscale-video</a> at $0.0575&#x2F;second, alongside 210+ other image and video models behind one REST API — see the <a href="https://www.modellix.ai/providers/pixverse">PixVerse provider page</a> for the current catalog. None of that makes the aggregator “cheaper”: at the smallest official credit pack the direct rate is nominally lower per second, and the two billing systems (credit packs vs USD usage) are not directly interchangeable. The honest reasons to pick an aggregator are operational — one key, one invoice, no credit-pack commitment — not a blanket price claim. If you already call several model providers, <a href="https://www.modellix.ai/">try the Modellix API</a> with the upscaler as one route among many; if PixVerse is your only provider, the direct route with a credit pack is simpler to reason about.</p>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p><strong>Is the PixVerse video upscale API free?</strong></p>
+<p>No. The API runs on PixVerse Platform credits — the pricing page lists Upscale at 5 credits per second. The free trial counter lives on the consumer web app, not the API.</p>
+<p><strong>Can I upscale any video with the PixVerse video upscale API?</strong></p>
+<p>Through the API you can upscale two kinds of input: videos PixVerse generated (<code>source_video_id</code>) and videos you upload (<code>video_media_id</code>). Uploads are capped at 100MB, 30 seconds, and 1920px on the longest side per the upload documentation.</p>
+<p><strong>Does PixVerse upscale to 4K?</strong></p>
+<p>The official upscale documentation does not commit to an output resolution. One reseller page advertises “4K” while noting its own spec is indicative rather than guaranteed. Test the exact source resolution you plan to ship before promising 4K to your users.</p>
+<p><strong>How much does the PixVerse video upscale API cost?</strong></p>
+<p>5 credits per second of source video, rounded up, per the official pricing page. At the $10 &#x2F; 1,000-credit pack that is about $0.05 per second (as of August 5, 2026); larger packs change the effective rate. Re-check the live page before committing budget.</p>
+<p><strong>Is there an official PixVerse upscale GitHub wrapper?</strong></p>
+<p>PixVerse does not publish an official GitHub SDK for upscaling on the pages we verified; the authoritative references are the REST API docs. Third-party wrappers exist on GitHub but are not maintained by PixVerse — evaluate them like any unofficial dependency.</p>
+<p><strong>Direct PixVerse or an aggregator for video upscaling?</strong></p>
+<p>Both run the same PixVerse model. Direct gives you the official credit pricing and full control; an aggregator gives you one key and one bill across providers. Pick on operational needs, and compare the exact rate on the day you commit — pricing on both sides changes.</p>
+<hr>
+<p><em>Sources accessed August 5, 2026: the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/upscale-video-37938008e0">official Upscale Video API documentation</a>, the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/pricing-796039m0">PixVerse pricing page</a>, the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/upload-videoaudio-19094401e0">media upload guide</a>, the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/get-video-generation-status-882972m0">video generation status guide</a>, the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/webhook-integration-1905378m0">webhook integration guide</a>, the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/error-codes-796041m0">error-code reference</a>, and the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/how-to-get-api-key-882968m0">API key guide</a>. PixVerse pricing, limits, and endpoints change without notice; treat everything version-specific as current as of that date. Modellix is an aggregator and has a commercial interest in the comparison above. Cover image is illustrative artwork, not a PixVerse product screenshot.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Tutorial/" class="tag-pill tag-pill--sm">Tutorial</a>
+            
+              <a href="/blog/tags/PixVerse/" class="tag-pill tag-pill--sm">PixVerse</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/how-to-use-pixverse/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-how-to-use-pixverse.webp" alt="How to Use PixVerse: Setup, Prompts &amp; API" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">How to Use PixVerse: Setup, Prompts &amp; API</h3>
+          <time class="related-article-date" datetime="2026-08-04T02:00:00.000Z">August 4, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/pixverse-coupon/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-pixverse-coupon.webp" alt="PixVerse Coupon &amp; Promo Codes: Referral, Discounts (2026)" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">PixVerse Coupon &amp; Promo Codes: Referral, Discounts (2026)</h3>
+          <time class="related-article-date" datetime="2026-08-04T02:00:00.000Z">August 4, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/reference-to-video-ai/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-reference-to-video-ai-v2.webp" alt="Reference to Video AI: How R2V / Fusion Models Work" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Reference to Video AI: How R2V / Fusion Models Work</h3>
+          <time class="related-article-date" datetime="2026-08-02T16:00:00.000Z">August 3, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/pixverse-video-upscale-api/&text=PixVerse%20Video%20Upscale%20API%3A%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/pixverse-video-upscale-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/pixverse-video-upscale-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

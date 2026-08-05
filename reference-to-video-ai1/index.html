@@ -1,0 +1,529 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PixVerse Motion Control API: Integration Guide &amp; Pricing — Modellix Blog</title>
+  <meta name="description" content="Use the PixVerse motion control API (Mimic) to transfer motion from a reference video onto a subject image: endpoint, credits pricing, and Python code.">
+  <meta name="keywords" content="pixverse motion control api, pixverse motion control, pixverse mimic api, motion control video api, pixverse api pricing, pixverse v6 motion control, pixverse api camera control">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/reference-to-video-ai1/">
+  <meta name="description" content="Use the PixVerse motion control API (Mimic) to transfer motion from a reference video onto a subject image: endpoint, credits pricing, and Python code.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PixVerse Motion Control API: Integration Guide &amp; Pricing — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/reference-to-video-ai1/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Use the PixVerse motion control API (Mimic) to transfer motion from a reference video onto a subject image: endpoint, credits pricing, and Python code.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-pixverse-motion-control-api.webp">
+<meta property="article:published_time" content="2026-08-05T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-05T02:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video API">
+<meta property="article:tag" content="Integration Guide">
+<meta property="article:tag" content="PixVerse">
+<meta property="article:tag" content="Pricing">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-pixverse-motion-control-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"PixVerse Motion Control API: Integration Guide & Pricing","description":"Use the PixVerse motion control API (Mimic) to transfer motion from a reference video onto a subject image: endpoint, credits pricing, and Python code.","datePublished":"2026-08-05T02:00:00.000Z","dateModified":"2026-08-05T02:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/reference-to-video-ai1/","image":"https://img.modellix.ai/en/article/cover-pixverse-motion-control-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">PixVerse Motion Control API: Integration Guide &amp; Pricing</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/API-Guides/" class="category-tag category-tag--sm">API Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">PixVerse Motion Control API: Integration Guide &amp; Pricing</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-05T02:00:00.000Z">August 5, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+              <a href="/blog/tags/Integration-Guide/" class="tag-pill tag-pill--sm">Integration Guide</a>
+            
+              <a href="/blog/tags/PixVerse/" class="tag-pill tag-pill--sm">PixVerse</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>&#39;PixVerse motion control API&#39; is the search phrase, but PixVerse&#39;s own documentation calls this feature Motion Control Mimic.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-pixverse-motion-control-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-pixverse-motion-control-api.png" alt="Dark amber editorial cover with the MODELLIX wordmark, the two-line title PixVerse Motion Control API, and a motion-transfer pipeline graphic" />
+</picture>
+
+<p>“PixVerse motion control API” is the search phrase, but PixVerse’s own documentation calls this feature <strong>Motion Control (Mimic)</strong>. It is a motion-transfer API: you provide a reference video of someone moving and a still image of a character, and PixVerse generates a new video in which the character reproduces the reference motion. There is no prompt field, no 1080p output, and the billing unit is credits per second of output — three facts that most how-to content gets wrong or skips.</p>
+<p>This guide covers the official endpoint end to end: what the API can and cannot do, what it actually costs in credits and dollars, a complete Python flow (upload → generate → poll → download), the request fields and status codes, and the errors that waste the most debugging time. Everything version-specific was read from official PixVerse documentation and provider pages on August 5, 2026. Modellix, where this article lives, is an AI media API aggregator and has a commercial interest in the route comparison at the end — the numbers are presented so you can check them yourself.</p>
+<h2 id="What-the-PixVerse-motion-control-API-actually-is"><a href="#What-the-PixVerse-motion-control-API-actually-is" class="headerlink" title="What the PixVerse motion control API actually is"></a>What the PixVerse motion control API actually is</h2><p>Motion Control (Mimic) transfers motion from a reference video onto a target character image. PixVerse’s <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/motion-controlmimic-1982936m0">official Motion Control guide</a> describes it as motion extraction and reconstruction: the API analyzes the motion sequence in the reference clip and rebuilds it on the provided character, with frame-consistent rendering and pose alignment. It is designed for motion imitation, choreography replication, character animation, and reusable motion templates — a dance clip can drive a character illustration, or a spokesperson’s gestures can drive a brand mascot.</p>
+<p>The name is where most confusion starts. “Motion control” in the PixVerse ecosystem does <strong>not</strong> mean:</p>
+<ul>
+<li><strong>Camera control.</strong> PixVerse V6 markets “over 20 cinematic camera controls” (focal length, aperture, depth of field, and similar parameters). That is camera behavior inside generation, a separate capability from Motion Control — our <a href="https://www.modellix.ai/blog/pixverse-v6/">PixVerse V6 breakdown</a> covers that feature in detail.</li>
+<li><strong>Motion brush.</strong> Some other video tools use “motion brush” for painting per-region motion. PixVerse’s API documentation has no such field; its motion transfer path is Mimic.</li>
+<li><strong>A generic “camera movement” generator.</strong> Third-party tools use “motion control video generator” for camera-path control. Those are different products with different APIs.</li>
+</ul>
+<p>When developers search for “pixverse motion control api” or “motion control video api,” they are usually after the Mimic-style motion transfer. The rest of this guide assumes that feature. For the wider PixVerse API surface — text-to-video, image-to-video, reference-to-video, and the effect family — our <a href="https://www.modellix.ai/blog/pixverse-api/">PixVerse API integration guide</a> is the better starting point.</p>
+<p>Two hard constraints shape everything else: the subject image must contain a clear person or animal, and the reference video must have a person as the primary focus performing the motion. If either fails validation, the request is rejected before generation starts. Output duration always matches the reference video’s duration, and the motion comes entirely from the reference clip — there is no prompt to steer it.</p>
+<h2 id="PixVerse-motion-control-API-pricing-credits-per-second"><a href="#PixVerse-motion-control-API-pricing-credits-per-second" class="headerlink" title="PixVerse motion control API pricing: credits per second"></a>PixVerse motion control API pricing: credits per second</h2><p>PixVerse bills Motion Control in credits per second of output, not per request. The official <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/pricing-796039m0">Pricing page</a> lists three quality tiers for Mimic — <strong>1080p is not offered</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Quality</th>
+<th align="right">Billing rule</th>
+<th align="right">Credits per 1s of output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>360p</td>
+<td align="right">per second</td>
+<td align="right">9</td>
+</tr>
+<tr>
+<td>540p</td>
+<td align="right">per second</td>
+<td align="right">10</td>
+</tr>
+<tr>
+<td>720p</td>
+<td align="right">per second</td>
+<td align="right">12</td>
+</tr>
+</tbody></table>
+<p>Credits convert to dollars through the buy rate on the <a target="_blank" rel="noopener" href="https://platform.pixverse.ai/billing">PixVerse billing page</a>: <strong>$10 buys 1,000 credits ($0.01&#x2F;credit)</strong>, with the same rate at higher amounts up to $5,000. At that rate, Motion Control costs <strong>$0.09 per second at 360p, $0.10 at 540p, and $0.12 at 720p</strong>. A 5-second 720p clip costs 60 credits, or $0.60. PixVerse also sells monthly membership plans (from $100&#x2F;month with 15,000 credits) that lower the effective cost per credit — check the current <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/subscribe-api-plans-882969m0">API plans page</a> before budgeting.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/pixverse-motion-control-cost-chart.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/pixverse-motion-control-cost-chart.png" alt="Bar chart of PixVerse motion control API per-second cost by quality tier: 360p $0.09, 540p $0.10, 720p $0.12 at the official credit buy rate" loading="lazy" />
+</picture>
+
+<p><em>Per-second cost converted from official Mimic credit rates at the $0.01&#x2F;credit buy rate, accessed August 5, 2026. Membership plans change the effective rate; this chart is the pay-as-you-go baseline.</em></p>
+<p>Two pricing details that surprise integrators: the credit deduction is per second of <strong>output</strong>, so a 10-second reference video costs roughly twice a 5-second one at the same quality; and a failed generation that passes content moderation filters (status 7) has its credits <strong>refunded automatically</strong> — but a request rejected before generation (validation errors) never deducts anything.</p>
+<h2 id="Step-by-step-upload-generate-poll-download"><a href="#Step-by-step-upload-generate-poll-download" class="headerlink" title="Step-by-step: upload, generate, poll, download"></a>Step-by-step: upload, generate, poll, download</h2><p>The official flow has four stages: upload the reference video, upload the subject image, submit the Mimic generation request, then poll the video status until it reaches a terminal state. All requests hit <code>https://app-api.pixverse.ai/openapi/v2/</code> with two headers: <code>API-KEY</code> (create it under <strong>API Keys</strong> in the PixVerse platform, following the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/how-to-get-api-key-882968m0">official API key guide</a>) and <code>Ai-Trace-Id</code>, which must be <strong>unique for every request</strong> — reusing one is the most common cause of jobs hanging in “Generating.”</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/pixverse-motion-control-pipeline.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/pixverse-motion-control-pipeline.png" alt="Pipeline diagram showing a subject image and reference video flowing through the PixVerse motion control API into a generated video, with upload, generate, poll, and download stages" loading="lazy" />
+</picture>
+
+<p><em>The PixVerse motion control API flow: two uploads, one generation request, status polling, and download. Illustration for this guide; not an official PixVerse diagram.</em></p>
+<p>The upload endpoints accept multipart form data. The <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/upload-videoaudio-19094401e0">media upload reference</a> caps Motion Control reference videos at <strong>mp4&#x2F;mov, 100 MB, 30 seconds, up to 1920px</strong> on the longest edge; the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/upload-image-13016631e0">image upload reference</a> accepts <strong>png&#x2F;webp&#x2F;jpeg&#x2F;jpg under 20 MB</strong>. A complete Python flow against the official endpoint:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> uuid</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">API_BASE = <span class="string">&quot;https://app-api.pixverse.ai/openapi/v2&quot;</span></span><br><span class="line">API_KEY = os.environ[<span class="string">&quot;PIXVERSE_API_KEY&quot;</span>]  <span class="comment"># keep server-side</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">_headers</span>():</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="string">&quot;API-KEY&quot;</span>: API_KEY,</span><br><span class="line">        <span class="string">&quot;Ai-Trace-Id&quot;</span>: uuid.uuid4().<span class="built_in">hex</span>,  <span class="comment"># new UUID per request</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">upload_video</span>(<span class="params">path: <span class="built_in">str</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(path, <span class="string">&quot;rb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        r = requests.post(</span><br><span class="line">            <span class="string">f&quot;<span class="subst">&#123;API_BASE&#125;</span>/media/upload&quot;</span>,</span><br><span class="line">            headers=_headers(),</span><br><span class="line">            files=&#123;<span class="string">&quot;file&quot;</span>: f&#125;,</span><br><span class="line">        )</span><br><span class="line">    r.raise_for_status()</span><br><span class="line">    <span class="keyword">return</span> r.json()[<span class="string">&quot;Resp&quot;</span>][<span class="string">&quot;media_id&quot;</span>]  <span class="comment"># media_type == &quot;video&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">upload_image</span>(<span class="params">path: <span class="built_in">str</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(path, <span class="string">&quot;rb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        r = requests.post(</span><br><span class="line">            <span class="string">f&quot;<span class="subst">&#123;API_BASE&#125;</span>/image/upload&quot;</span>,</span><br><span class="line">            headers=_headers(),</span><br><span class="line">            files=&#123;<span class="string">&quot;image&quot;</span>: f&#125;,</span><br><span class="line">        )</span><br><span class="line">    r.raise_for_status()</span><br><span class="line">    <span class="keyword">return</span> r.json()[<span class="string">&quot;Resp&quot;</span>][<span class="string">&quot;img_id&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">submit_mimic</span>(<span class="params">video_media_id: <span class="built_in">int</span>, img_id: <span class="built_in">int</span>, quality: <span class="built_in">str</span> = <span class="string">&quot;720p&quot;</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">    r = requests.post(</span><br><span class="line">        <span class="string">f&quot;<span class="subst">&#123;API_BASE&#125;</span>/video/mimic/generate&quot;</span>,</span><br><span class="line">        headers=_headers(),</span><br><span class="line">        json=&#123;</span><br><span class="line">            <span class="string">&quot;video_media_id&quot;</span>: video_media_id,</span><br><span class="line">            <span class="string">&quot;img_id&quot;</span>: img_id,</span><br><span class="line">            <span class="string">&quot;quality&quot;</span>: quality,  <span class="comment"># &quot;360p&quot; | &quot;540p&quot; | &quot;720p&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">    )</span><br><span class="line">    r.raise_for_status()</span><br><span class="line">    <span class="keyword">return</span> r.json()[<span class="string">&quot;Resp&quot;</span>][<span class="string">&quot;video_id&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">wait_for_video</span>(<span class="params">video_id: <span class="built_in">int</span>, timeout: <span class="built_in">int</span> = <span class="number">600</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    start = time.time()</span><br><span class="line">    <span class="keyword">while</span> time.time() - start &lt; timeout:</span><br><span class="line">        r = requests.get(</span><br><span class="line">            <span class="string">f&quot;<span class="subst">&#123;API_BASE&#125;</span>/video/result/<span class="subst">&#123;video_id&#125;</span>&quot;</span>,</span><br><span class="line">            headers=_headers(),</span><br><span class="line">        )</span><br><span class="line">        status = r.json()[<span class="string">&quot;Resp&quot;</span>][<span class="string">&quot;status&quot;</span>]</span><br><span class="line">        <span class="keyword">if</span> status == <span class="number">1</span>:      <span class="comment"># success</span></span><br><span class="line">            <span class="keyword">return</span> r.json()[<span class="string">&quot;Resp&quot;</span>][<span class="string">&quot;url&quot;</span>]</span><br><span class="line">        <span class="keyword">if</span> status <span class="keyword">in</span> (<span class="number">7</span>, <span class="number">8</span>): <span class="comment"># moderation failure / generation failed</span></span><br><span class="line">            <span class="keyword">raise</span> RuntimeError(<span class="string">f&quot;generation failed, status=<span class="subst">&#123;status&#125;</span>&quot;</span>)</span><br><span class="line">        time.sleep(<span class="number">5</span>)        <span class="comment"># docs recommend 3-5s between polls</span></span><br><span class="line">    <span class="keyword">raise</span> TimeoutError(<span class="string">&quot;generation did not finish in time&quot;</span>)</span><br><span class="line"></span><br><span class="line">video_id = upload_video(<span class="string">&quot;dance_ref.mp4&quot;</span>)</span><br><span class="line">img_id = upload_image(<span class="string">&quot;character.png&quot;</span>)</span><br><span class="line">job = submit_mimic(video_id, img_id, quality=<span class="string">&quot;720p&quot;</span>)</span><br><span class="line">url = wait_for_video(job)</span><br><span class="line"><span class="built_in">print</span>(url)</span><br></pre></td></tr></table></figure>
+
+<p>One field difference matters when your reference video was already generated by the PixVerse API: the official Motion Control guide says to pass <code>source_video_id</code> instead of <code>video_media_id</code> for that case, reusing the generation’s <code>video_id</code> rather than uploading the file again.</p>
+<h2 id="Motion-Control-request-fields-and-status-codes"><a href="#Motion-Control-request-fields-and-status-codes" class="headerlink" title="Motion Control request fields and status codes"></a>Motion Control request fields and status codes</h2><p>The <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/mimic-generation-28748523e0">official API reference</a> defines the generation request body with three fields, plus the two required headers:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>video_media_id</code></td>
+<td>int</td>
+<td>Reference video <code>media_id</code> from upload (or <code>source_video_id</code> for a video produced by PixVerse API)</td>
+</tr>
+<tr>
+<td><code>img_id</code></td>
+<td>int</td>
+<td>Subject image <code>img_id</code> from image upload</td>
+</tr>
+<tr>
+<td><code>quality</code></td>
+<td>string</td>
+<td><code>&quot;360p&quot;</code>, <code>&quot;540p&quot;</code>, or <code>&quot;720p&quot;</code></td>
+</tr>
+</tbody></table>
+<p>The response returns <code>video_id</code> and the <code>credit</code> the job will consume. Status polling uses <code>GET /openapi/v2/video/result/{video_id}</code>, which the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/get-video-generation-status-882972m0">status guide</a> documents with four codes:</p>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>5</td>
+<td>Waiting for generation (poll every 3–5 seconds)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Generation successful — <code>url</code> holds the video</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Content moderation failure — credits are refunded automatically</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Generation failed</td>
+</tr>
+</tbody></table>
+<p>Hard limits recap: reference video mp4&#x2F;mov, ≤100 MB, ≤30 s, ≤1920px; subject image ≤20 MB; output resolution only 360p&#x2F;540p&#x2F;720p; output duration equals the reference video length. The API rejects requests that violate validation (image without a clear subject, video without a person) before any credit is charged.</p>
+<h2 id="Common-errors-and-how-to-debug-them"><a href="#Common-errors-and-how-to-debug-them" class="headerlink" title="Common errors and how to debug them"></a>Common errors and how to debug them</h2><p>The errors that stall real integrations come from a short list. The official <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/common-errors-and-solutions-882978m0">common errors and solutions</a> page covers the full set (error-code definitions live in the docs’ error-codes reference); the ones specific to Motion Control are:</p>
+<ul>
+<li><strong>701002 &#x2F; 701003 — validation rejects your inputs.</strong> 701002 means the uploaded image has no clear person&#x2F;animal subject; 701003 means the reference video has no person as primary focus. Fix the asset, not the request. Aggregator layers surface this as a 422 on submission.</li>
+<li><strong>Job stuck in “Generating” (status 5) for a long time.</strong> The most common cause is a reused <code>Ai-Trace-Id</code> across requests. Generate a fresh UUID per request and retry; the official Motion Control guide calls this out explicitly.</li>
+<li><strong>500044 — concurrent generation limit reached.</strong> PixVerse caps parallel jobs per account. Queue submissions server-side or wait for an existing job to finish.</li>
+<li><strong>400013 &#x2F; 400017 — invalid parameters.</strong> A wrong field type, an unknown <code>quality</code> value, or a missing <code>img_id</code>&#x2F;<code>video_media_id</code>. Validate the request body against the reference before submitting.</li>
+<li><strong>Status 7 — content moderation failure.</strong> The output was filtered; credits are refunded automatically. Adjust the subject image or reference content and resubmit.</li>
+</ul>
+<p>The practical pattern: normalize provider states into your own enum (<code>queued</code>, <code>running</code>, <code>succeeded</code>, <code>failed</code>), store the <code>video_id</code> plus your internal request ID, and treat <code>Ai-Trace-Id</code> as a first-class field in your logging. That turns “why is this job stuck” into a two-line lookup.</p>
+<h2 id="Motion-control-API-through-an-aggregator-when-it-makes-sense"><a href="#Motion-control-API-through-an-aggregator-when-it-makes-sense" class="headerlink" title="Motion control API through an aggregator: when it makes sense"></a>Motion control API through an aggregator: when it makes sense</h2><p>Calling the official endpoint directly is straightforward once the flow above is in place. The aggregator question is about the rest of your stack, not about this one call. If your product already calls several media-model APIs, a route such as Modellix’s <a href="https://www.modellix.ai/providers/pixverse"><code>pixverse/motion-control</code></a> gives you one API key, one bill, and one request lifecycle across providers instead of per-vendor accounts and credit balances.</p>
+<p>Disclosure first, because the numbers matter: Modellix currently displays the motion-control route at <strong>$0.1035–$0.1380 per second</strong>, which is above the official buy-credit equivalent ($0.09–$0.12) for the same quality tiers. On this specific route, the aggregator is not the cheaper unit price — that is a fact, not a framing. The value of the aggregator path is operational: one key and one invoice across many models, pay-as-you-go billing without prepaid credit balances, and no China-account friction for providers that require it. If your only workload is PixVerse motion transfer at volume, the official credits route is likely the cheaper and simpler choice; if you route multiple video and image models through one integration, the trade-off flips. Compare routes only when model, quality, duration, and billing conditions match — a per-second range on an aggregator page and a credits table on the official pricing page are not the same unit until you convert both.</p>
+<p>For the rest of the PixVerse effect family and their costs, our <a href="https://www.modellix.ai/blog/pixverse-pricing/">PixVerse pricing breakdown</a> and the <a href="https://www.modellix.ai/blog/how-to-use-pixverse/">how to use PixVerse tutorial</a> cover the surrounding pieces, and the <a href="https://www.modellix.ai/blog/pixverse-video-reference-api/">PixVerse video reference API guide</a> explains the sibling reference-to-video workflow.</p>
+<div style="display:flex; gap:12px; flex-wrap:wrap; margin:24px 0;">
+  <a href="https://modellix.ai/console/api-key" class="btn btn-primary" target="_blank" rel="noopener" style="color:#ffffff; text-decoration:none;">Run a Multi-Model Test</a>
+  <a href="https://docs.modellix.ai/get-started/pricing" class="btn btn-secondary" target="_blank" rel="noopener" style="color:#1a1a2e; text-decoration:none;">Compare Live Pricing</a>
+</div>
+
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p><strong>What is the PixVerse motion control API?</strong></p>
+<p>PixVerse Motion Control (officially “Mimic”) is a motion-transfer API: it takes a reference video and a still character image, and generates a new video where the character reproduces the reference motion. It requires an API key from platform.pixverse.ai and prepaid credits.</p>
+<p><strong>Is PixVerse motion control free?</strong></p>
+<p>There is no dedicated free tier for the API. New accounts may see promotional trial credits in the web app, but API access is credit-based: Motion Control costs 9–12 credits per second of output depending on quality, and credits are purchased on the PixVerse billing page.</p>
+<p><strong>What does the PixVerse motion control API cost?</strong></p>
+<p>At the $0.01&#x2F;credit buy rate, 360p costs $0.09 per second, 540p $0.10, and 720p $0.12. A 5-second 720p clip is 60 credits (~$0.60). Membership plans with monthly credits lower the effective rate; aggregator routes display their own per-second prices and should only be compared with matching model, quality, and duration.</p>
+<p><strong>Does PixVerse motion control support 1080p?</strong></p>
+<p>No. The official pricing page lists only 360p, 540p, and 720p for Mimic. Plan output around those tiers; the quality field on the official endpoint accepts exactly those three values.</p>
+<p><strong>Do I need a prompt for PixVerse motion control?</strong></p>
+<p>No. Motion comes entirely from the reference video; the generation request body has no prompt field. The subject image and reference video are the only content inputs, alongside the quality setting.</p>
+<p><strong>Can a video I generated with PixVerse be the motion source?</strong></p>
+<p>Yes — and you should reuse it directly: pass the previous generation’s <code>video_id</code> as <code>source_video_id</code> instead of uploading the file again via <code>video_media_id</code>.</p>
+<p><strong>Is Modellix cheaper than calling PixVerse directly?</strong></p>
+<p>Not for this route. As of August 5, 2026, Modellix displays pixverse&#x2F;motion-control at $0.1035–$0.1380 per second, above the official buy-credit equivalent of $0.09–$0.12. The aggregator’s case here is a single key and bill across many providers, not a lower unit price.</p>
+<hr>
+<p><em>PixVerse details, credit rates, and prices reflect public information as of August 2026 and change frequently. Validate against the official PixVerse pricing and billing pages before committing budget. Access image and video models, including the leading Chinese models, through a single API key at <a target="_blank" rel="noopener" href="https://modellix.ai/">modellix.ai</a>.</em></p>
+<p><em>Cover image: illustrative Modellix artwork; it is not a PixVerse product screenshot or source evidence.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+              <a href="/blog/tags/Integration-Guide/" class="tag-pill tag-pill--sm">Integration Guide</a>
+            
+              <a href="/blog/tags/PixVerse/" class="tag-pill tag-pill--sm">PixVerse</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/gpt-image-1-5-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-gpt-image-1-5-api.webp" alt="GPT Image 1.5 API: Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">API Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">GPT Image 1.5 API: Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-07-29T16:00:00.000Z">July 30, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/reference-to-video-ai1/&text=PixVerse%20Motion%20Control%20API%3A%20Integration%20Guide%20%26%20Pricing" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/reference-to-video-ai1/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/reference-to-video-ai1/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

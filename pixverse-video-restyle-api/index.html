@@ -1,0 +1,640 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PixVerse Restyle API: Integration Guide, Pricing &amp; Code — Modellix Blog</title>
+  <meta name="description" content="PixVerse Restyle API guide: current restyle/generate endpoint, restyle_id presets, 10 credits/sec pricing, working code, and honest route cost checks.">
+  <meta name="keywords" content="pixverse restyle api, pixverse restyle, pixverse video restyle, pixverse restyle prompt, pixverse restyle credits, pixverse restyle api pricing, pixverse restyle free, video restyle api, pixverse style transfer api">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/pixverse-video-restyle-api/">
+  <meta name="description" content="PixVerse Restyle API guide: current restyle&#x2F;generate endpoint, restyle_id presets, 10 credits&#x2F;sec pricing, working code, and honest route cost checks.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PixVerse Restyle API: Integration Guide, Pricing &amp; Code — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/pixverse-video-restyle-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="PixVerse Restyle API guide: current restyle&#x2F;generate endpoint, restyle_id presets, 10 credits&#x2F;sec pricing, working code, and honest route cost checks.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-pixverse-video-restyle-api.webp">
+<meta property="article:published_time" content="2026-08-05T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-05T02:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video API">
+<meta property="article:tag" content="Integration Guide">
+<meta property="article:tag" content="PixVerse">
+<meta property="article:tag" content="Video-to-Video">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-pixverse-video-restyle-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"PixVerse Restyle API: Integration Guide, Pricing & Code","description":"PixVerse Restyle API guide: current restyle/generate endpoint, restyle_id presets, 10 credits/sec pricing, working code, and honest route cost checks.","datePublished":"2026-08-05T02:00:00.000Z","dateModified":"2026-08-05T02:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/pixverse-video-restyle-api/","image":"https://img.modellix.ai/en/article/cover-pixverse-video-restyle-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">PixVerse Restyle API: Integration Guide, Pricing &amp; Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/API-Guides/" class="category-tag category-tag--sm">API-Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">PixVerse Restyle API: Integration Guide, Pricing &amp; Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-05T02:00:00.000Z">August 5, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Integration-Guide/" class="tag-pill tag-pill--sm">Integration Guide</a>
+            
+              <a href="/blog/tags/PixVerse/" class="tag-pill tag-pill--sm">PixVerse</a>
+            
+              <a href="/blog/tags/Video-to-Video/" class="tag-pill tag-pill--sm">Video-to-Video</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>The PixVerse Restyle API in one paragraph PixVerse Restyle is a video-to-video API that re-renders an existing clip into a new visual style — anime, 3D, cinematic, painterly, or a brand look — while keeping the original motion and compositi.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-pixverse-video-restyle-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-pixverse-video-restyle-api.png" alt="Dark amber editorial cover for the PixVerse Restyle API guide: MODELLIX wordmark, two-line title, and a VIDEO TO VIDEO · ONE API capsule" />
+</picture>
+
+<h2 id="The-PixVerse-Restyle-API-in-one-paragraph"><a href="#The-PixVerse-Restyle-API-in-one-paragraph" class="headerlink" title="The PixVerse Restyle API in one paragraph"></a>The PixVerse Restyle API in one paragraph</h2><p>PixVerse Restyle is a video-to-video API that re-renders an existing clip into a new visual style — anime, 3D, cinematic, painterly, or a brand look — while keeping the original motion and composition. You send an input video plus a style choice, and PixVerse returns a restyled copy of the same clip. As of August 5, 2026, the current endpoint is <code>POST https://app-api.pixverse.ai/openapi/v2/video/restyle/generate</code>, billing is <strong>10 credits per second</strong> on the official pricing page, and a style is chosen either with a preset <code>restyle_id</code> or a free-text <code>restyle_prompt</code> — never both. That combination of facts is exactly what most pages ranking for “pixverse restyle api” get wrong or leave out: several third-party guides still document a v5-era restyle endpoint that its own host now marks as no longer available, while the official docs’ parameter section links to the wrong page.</p>
+<p>What you will not find in this guide is a promise that one access route is cheapest. Restyle pricing has two honest currencies — official PixVerse credits and aggregator USD-per-second rates — and comparing them requires matching the exact clip duration and the exact route. We are an API aggregator with a commercial interest, so the direct-versus-aggregator section states our position and lets you check the numbers yourself.</p>
+<h2 id="What-Restyle-can-and-can’t-do"><a href="#What-Restyle-can-and-can’t-do" class="headerlink" title="What Restyle can and can’t do"></a>What Restyle can and can’t do</h2><p>Restyle is a <strong>style re-render, not a video editor</strong>. The official docs describe it as instantly transforming clips into new visual styles, and the API reference positions it as the “Scene Style Transfer” member of the Modify family, alongside Swap, Add, and Edit. The practical consequences:</p>
+<table>
+<thead>
+<tr>
+<th>Restyle does</th>
+<th>Restyle does not</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Re-render the visual style of every frame consistently</td>
+<td>Change content, subjects, or motion</td>
+</tr>
+<tr>
+<td>Preserve the original movement and composition</td>
+<td>Add new scenes or objects</td>
+</tr>
+<tr>
+<td>Apply a preset style or a text-described custom style</td>
+<td>Generate video from a text prompt alone</td>
+</tr>
+<tr>
+<td>Accept clips up to 16 seconds</td>
+<td>Accept video longer than 16 seconds (for now)</td>
+</tr>
+</tbody></table>
+<p>The motion-preservation point is the reason teams pick it over frame-by-frame image filters: the model keeps the same camera movement and subject behavior, so the result reads as “the same shot, redrawn” rather than a jittery filter pass. If what you actually need is to swap a person, add an object, or change a scene, that is the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/modify-2082369m0">Modify API</a>, not Restyle. And if your target is a single still image, the adjacent concept is image style transfer — our <a href="https://www.modellix.ai/blog/ai-style-transfer/">AI style transfer guide</a> covers that family separately.</p>
+<p>One more boundary worth naming: restyle needs a video input, so the restyle prompt describes the <strong>look</strong> of the output, not the scene. “A rainy cyberpunk street with neon” restyles the existing footage into that look; it does not film a new street.</p>
+<h2 id="Prerequisites-key-trace-ID-and-credits"><a href="#Prerequisites-key-trace-ID-and-credits" class="headerlink" title="Prerequisites: key, trace ID, and credits"></a>Prerequisites: key, trace ID, and credits</h2><p>Restyle follows the same authentication pattern as every PixVerse API endpoint:</p>
+<ul>
+<li><strong>API key</strong> — created in the PixVerse Platform dashboard. The official <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/how-to-get-api-key-882968m0">how to get an API key guide</a> walks through account setup and key creation. The key is sent in the <code>API-KEY</code> header.</li>
+<li><strong>Unique <code>Ai-trace-id</code> per request</strong> — every request needs its own trace ID. Reusing one is the single most common cause of tasks that hang in “Generating”, per the official troubleshooting notes.</li>
+<li><strong>An active subscription or purchased API credits</strong> — the API does not run on the web app’s promotional trial; it requires a paid balance.</li>
+</ul>
+<p>You can check your balance before a long batch run with the credit balance endpoint documented in the official API reference.</p>
+<h2 id="Input-video-video-id-or-an-uploaded-file"><a href="#Input-video-video-id-or-an-uploaded-file" class="headerlink" title="Input video: video_id or an uploaded file"></a>Input video: video_id or an uploaded file</h2><p>Restyle accepts input in two ways, and the request field depends on which you use:</p>
+<ol>
+<li><strong>A video already generated through the PixVerse API.</strong> You keep the <code>video_id</code> from the original generation response and pass it as <code>source_video_id</code> in the restyle request. The docs cap this path at 16 seconds of source video.</li>
+<li><strong>An external video you upload.</strong> Upload an <code>.mp4</code> or <code>.mov</code> file (max resolution 1920, max size 50 MB, max duration 16 seconds) through the upload API. The upload returns a <code>media_id</code> with <code>media_type: &quot;video&quot;</code>, and you pass that as <code>video_media_id</code> in the restyle request.</li>
+</ol>
+<p>The upload response shape, per the official guide:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;ErrCode&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;ErrMsg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;success&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;Resp&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;media_id&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;media_type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;video&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://media.pixverse.ai/111111.mp4&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>Two error messages in the official docs exist specifically for getting these fields wrong: <code>couldn&#39;t find a matching source_video_id</code> and <code>couldn&#39;t find a matching video_media_id</code>. Both mean the ID you passed does not correspond to a valid video resource — regenerate or re-upload, then retry.</p>
+<h2 id="Calling-the-PixVerse-restyle-API"><a href="#Calling-the-PixVerse-restyle-API" class="headerlink" title="Calling the PixVerse restyle API"></a>Calling the PixVerse restyle API</h2><p>The generation endpoint is:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">POST https://app-api.pixverse.ai/openapi/v2/video/restyle/generate</span><br></pre></td></tr></table></figure>
+
+<p>Every request must provide exactly one style selector:</p>
+<ul>
+<li><strong><code>restyle_id</code></strong> — a preset style code from the official restyle list. The current list returned by <code>GET /openapi/v2/video/restyle/list</code> contains eight presets (codes verified August 2026):</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>restyle_id</th>
+<th>Look</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>felted-art</code></td>
+<td>Soft wool-felt texture</td>
+</tr>
+<tr>
+<td><code>origami</code></td>
+<td>Folded-paper geometry</td>
+</tr>
+<tr>
+<td><code>ukiyo-e</code></td>
+<td>Japanese woodblock print</td>
+</tr>
+<tr>
+<td><code>cyberpunk</code></td>
+<td>Neon, rain, high-tech grunge</td>
+</tr>
+<tr>
+<td><code>clay</code></td>
+<td>Stop-motion clay look</td>
+</tr>
+<tr>
+<td><code>baroque</code></td>
+<td>Ornate classical painting</td>
+</tr>
+<tr>
+<td><code>van-gogh</code></td>
+<td>Thick brushstrokes, expressive color</td>
+</tr>
+<tr>
+<td><code>animal-world</code></td>
+<td>Anthropomorphic animal styling</td>
+</tr>
+</tbody></table>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/pixverse-restyle-preset-swatches.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/pixverse-restyle-preset-swatches.png" alt="Four restyle presets applied to the same street scene: origami paper geometry, ukiyo-e woodblock print, cyberpunk neon, and clay stop-motion" loading="lazy" />
+</picture>
+
+<p><em>The same footage restyled through four preset codes — the motion and composition stay identical, the visual language changes. Illustration of preset behavior, not a specific model output.</em></p>
+<ul>
+<li><strong><code>restyle_prompt</code></strong> — a free-text style description, up to 2,048 characters. Use it when none of the presets matches, or when you want a precise hybrid (“watercolor with origami edges”).</li>
+</ul>
+<p>The API rejects requests that provide both or neither: <code>Either &quot;restyle_id&quot; or &quot;restyle_prompt&quot; must be provided</code>. An optional <code>seed</code> value makes restyles reproducible.</p>
+<p>A minimal request with a preset style:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST https://app-api.pixverse.ai/openapi/v2/video/restyle/generate \</span><br><span class="line">  -H <span class="string">&quot;API-KEY: <span class="variable">$PIXVERSE_API_KEY</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Ai-trace-id: <span class="subst">$(uuidgen)</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;source_video_id&quot;: &quot;1234567890&quot;,</span></span><br><span class="line"><span class="string">    &quot;restyle_id&quot;: &quot;cyberpunk&quot;,</span></span><br><span class="line"><span class="string">    &quot;seed&quot;: 42</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>A custom-style request with an uploaded video:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST https://app-api.pixverse.ai/openapi/v2/video/restyle/generate \</span><br><span class="line">  -H <span class="string">&quot;API-KEY: <span class="variable">$PIXVERSE_API_KEY</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Ai-trace-id: <span class="subst">$(uuidgen)</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;video_media_id&quot;: &quot;9876543210&quot;,</span></span><br><span class="line"><span class="string">    &quot;restyle_prompt&quot;: &quot;Ghibli-inspired watercolor, soft light, painterly clouds, 2D animation look&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>A successful submission returns a <code>video_id</code> inside the standard response envelope:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;ErrCode&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;ErrMsg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;success&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;Resp&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;video_id&quot;</span><span class="punctuation">:</span> <span class="number">0</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>If your API plan exposes a different parameter surface than the fields above, the official <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/restyle-1624871m0">Restyle guide</a> and its API reference page for <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/restyle-video-generation-21992681e0">Restyle video generation</a> are the authoritative parameter list; the docs update faster than third-party summaries.</p>
+<h2 id="Polling-status-and-downloading-the-result"><a href="#Polling-status-and-downloading-the-result" class="headerlink" title="Polling status and downloading the result"></a>Polling status and downloading the result</h2><p>Generation is asynchronous. Query the status endpoint with the <code>video_id</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET https://app-api.pixverse.ai/openapi/v2/video/result/&#123;id&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The status lifecycle:</p>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>5</code></td>
+<td>Generating</td>
+<td>Keep polling — the docs recommend intervals of roughly 3–5 seconds</td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td>Successful</td>
+<td>Read the <code>url</code> field and download the restyled video</td>
+</tr>
+<tr>
+<td><code>7</code></td>
+<td>Content moderation failure</td>
+<td>Adjust the prompt or preset and resubmit; credits are auto-refunded</td>
+</tr>
+<tr>
+<td><code>8</code></td>
+<td>Generation failed</td>
+<td>Check parameters and the official error-code list</td>
+</tr>
+</tbody></table>
+<p>A complete submit → poll → download loop in Python:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> uuid</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">API_KEY = <span class="string">&quot;YOUR_API_KEY&quot;</span></span><br><span class="line">BASE = <span class="string">&quot;https://app-api.pixverse.ai/openapi/v2&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">headers</span>():</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="string">&quot;API-KEY&quot;</span>: API_KEY,</span><br><span class="line">        <span class="string">&quot;Ai-trace-id&quot;</span>: <span class="built_in">str</span>(uuid.uuid4()),  <span class="comment"># fresh ID per request</span></span><br><span class="line">        <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">restyle</span>(<span class="params">source_video_id, restyle_id</span>):</span><br><span class="line">    r = requests.post(</span><br><span class="line">        <span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/video/restyle/generate&quot;</span>,</span><br><span class="line">        headers=headers(),</span><br><span class="line">        json=&#123;<span class="string">&quot;source_video_id&quot;</span>: source_video_id, <span class="string">&quot;restyle_id&quot;</span>: restyle_id&#125;,</span><br><span class="line">    )</span><br><span class="line">    r.raise_for_status()</span><br><span class="line">    <span class="keyword">return</span> r.json()[<span class="string">&quot;Resp&quot;</span>][<span class="string">&quot;video_id&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">wait_for_video</span>(<span class="params">video_id, timeout=<span class="number">600</span></span>):</span><br><span class="line">    deadline = time.time() + timeout</span><br><span class="line">    <span class="keyword">while</span> time.time() &lt; deadline:</span><br><span class="line">        r = requests.get(<span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/video/result/<span class="subst">&#123;video_id&#125;</span>&quot;</span>, headers=headers())</span><br><span class="line">        data = r.json()[<span class="string">&quot;Resp&quot;</span>]</span><br><span class="line">        <span class="keyword">if</span> data[<span class="string">&quot;status&quot;</span>] == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> data[<span class="string">&quot;url&quot;</span>]</span><br><span class="line">        <span class="keyword">if</span> data[<span class="string">&quot;status&quot;</span>] <span class="keyword">in</span> (<span class="number">7</span>, <span class="number">8</span>):</span><br><span class="line">            <span class="keyword">raise</span> RuntimeError(<span class="string">f&quot;restyle failed with status <span class="subst">&#123;data[<span class="string">&#x27;status&#x27;</span>]&#125;</span>&quot;</span>)</span><br><span class="line">        time.sleep(<span class="number">5</span>)</span><br><span class="line">    <span class="keyword">raise</span> TimeoutError(<span class="string">&quot;restyle did not finish in time&quot;</span>)</span><br><span class="line"></span><br><span class="line">video_id = restyle(<span class="string">&quot;1234567890&quot;</span>, <span class="string">&quot;van-gogh&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(wait_for_video(video_id))  <span class="comment"># download or stream this URL</span></span><br></pre></td></tr></table></figure>
+
+<p>For production workloads, PixVerse also documents webhook integration so you do not have to poll. The status response carries useful inspection fields — <code>prompt</code>, <code>negative_prompt</code>, <code>style</code>, <code>seed</code>, output dimensions — so you can log exactly what produced a given output.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/pixverse-restyle-workflow.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/pixverse-restyle-workflow.png" alt="PixVerse restyle API workflow: input video and style go to restyle/generate, poll video/result/{id} until status 1, then download" loading="lazy" />
+</picture>
+
+<p><em>The restyle API loop: submit a source video plus one style selector, receive a video_id, poll the status endpoint until status 1, then download the restyled clip.</em></p>
+<h2 id="Pricing-10-credits-per-second-in-context"><a href="#Pricing-10-credits-per-second-in-context" class="headerlink" title="Pricing: 10 credits per second in context"></a>Pricing: 10 credits per second in context</h2><p>The official pricing page lists Restyle at <strong>10 credits per second</strong> — that is the billing rule for the feature, not a per-clip price, because the clip length is your input length. A 5-second clip costs 50 credits; a 10-second clip costs 100 credits. Two things to pin down before you forecast:</p>
+<ol>
+<li><strong>Credits are not dollars.</strong> The USD value of a credit depends on the credit pack or subscription plan you buy and any promotional pricing active that day. The honest calculation is <code>clip_seconds × 10 credits × (pack price ÷ credits in pack)</code>, with the pack terms read at purchase time.</li>
+<li><strong>The rate can move.</strong> PixVerse has changed pricing multiple times this year, so treat any number in this article as current as of August 5, 2026, and re-check the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/pricing-796039m0">official pricing page</a> before committing budget.</li>
+</ol>
+<p>A worked comparison for one 5-second restyle, using both billing currencies:</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th align="right">Calculation</th>
+<th align="right">Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PixVerse official (credits)</td>
+<td align="right">5 s × 10 credits&#x2F;s</td>
+<td align="right">50 credits — USD value depends on the pack you buy</td>
+</tr>
+<tr>
+<td>Modellix (USD, per-second route)</td>
+<td align="right">5 s × $0.1150&#x2F;s</td>
+<td align="right">$0.575 per 5-second clip</td>
+</tr>
+</tbody></table>
+<p>The per-second figure comes from the <a href="https://www.modellix.ai/models/pixverse/video-restyle">pixverse&#x2F;video-restyle model page</a>, which currently lists $0.1150 per second, video-to-video. This is a like-for-like per-second comparison on one clip length — it is not a claim that one route is cheaper for every workload, and it does not convert official credits to USD. If you want the full credit system explained, our <a href="https://www.modellix.ai/blog/pixverse-pricing/">PixVerse pricing breakdown</a> walks through the official tiers and per-second rates side by side.</p>
+<h2 id="PixVerse-direct-vs-an-aggregator-route"><a href="#PixVerse-direct-vs-an-aggregator-route" class="headerlink" title="PixVerse direct vs an aggregator route"></a>PixVerse direct vs an aggregator route</h2><p>You can call the restyle endpoint directly with a PixVerse platform key, or through an aggregator that re-exposes the model with USD billing. The model that runs is the same either way — an aggregator is a routing and billing decision, not a quality difference.</p>
+<table>
+<thead>
+<tr>
+<th>Consideration</th>
+<th>PixVerse direct</th>
+<th>Aggregator (e.g. Modellix)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Billing</td>
+<td>Credits; pack&#x2F;subscription terms apply</td>
+<td>USD per second per call</td>
+</tr>
+<tr>
+<td>Key management</td>
+<td>One PixVerse key</td>
+<td>One key across many providers</td>
+</tr>
+<tr>
+<td>Billing units across models</td>
+<td>Credits per model&#x2F;feature differ</td>
+<td>Consistent per-second USD for video</td>
+</tr>
+<tr>
+<td>Feature access</td>
+<td>Full official surface (webhook, balance API, etc.)</td>
+<td>Surface depends on which routes are exposed</td>
+</tr>
+<tr>
+<td>Multi-provider pipeline</td>
+<td>You integrate PixVerse separately</td>
+<td>One integration if you already call other video models</td>
+</tr>
+</tbody></table>
+<p>Modellix is an aggregator and benefits if you pick this route; the appropriate takeaway is narrower than “aggregators are cheaper.” Use an aggregator when you already call several image and video models through one API key and want a consistent billing unit — see the <a href="https://www.modellix.ai/providers/pixverse">PixVerse provider page</a> for the current catalog. Use the official platform when you need the deepest feature access and are comfortable managing credits. For the broader PixVerse API surface — keys, polling, error codes, production patterns — our <a href="https://www.modellix.ai/blog/pixverse-api/">PixVerse API integration guide</a> covers the full workflow.</p>
+<h2 id="Common-errors-and-how-to-fix-them"><a href="#Common-errors-and-how-to-fix-them" class="headerlink" title="Common errors and how to fix them"></a>Common errors and how to fix them</h2><p>The official docs list a small set of restyle-specific failure modes. Map them before you build retry logic:</p>
+<table>
+<thead>
+<tr>
+<th>Error &#x2F; symptom</th>
+<th>Cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>400013</code> — incorrect parameter type or value</td>
+<td>Malformed request body</td>
+<td>Validate types against the API reference schema</td>
+</tr>
+<tr>
+<td><code>400017</code> — invalid parameter</td>
+<td>Unknown or unsupported field&#x2F;value</td>
+<td>Check field names and enum values (e.g. restyle_id spelling)</td>
+</tr>
+<tr>
+<td><code>couldn&#39;t find a matching source_video_id</code></td>
+<td>video_id is stale or from another account</td>
+<td>Regenerate the source video and retry</td>
+</tr>
+<tr>
+<td><code>couldn&#39;t find a matching video_media_id</code></td>
+<td>Upload ID is wrong or expired</td>
+<td>Re-upload and pass the fresh media_id</td>
+</tr>
+<tr>
+<td><code>Invalid media_type: not a video resource</code></td>
+<td>Uploaded asset is not a video</td>
+<td>Upload an mp4&#x2F;mov file</td>
+</tr>
+<tr>
+<td><code>Either &quot;restyle_id&quot; or &quot;restyle_prompt&quot; must be provided</code></td>
+<td>Both or neither style field sent</td>
+<td>Send exactly one style selector</td>
+</tr>
+<tr>
+<td><code>500044</code> — concurrent generation limit reached</td>
+<td>Too many parallel jobs</td>
+<td>Queue tasks or raise the plan’s concurrency limit</td>
+</tr>
+<tr>
+<td>Stuck in “Generating”</td>
+<td>Reused <code>Ai-trace-id</code></td>
+<td>Send a fresh trace ID per request</td>
+</tr>
+</tbody></table>
+<p>Two behavior notes from the official docs: a status <code>7</code> moderation failure <strong>refunds the credits automatically</strong>, so check balance history before assuming you were charged twice; and status <code>8</code> means the generation itself failed — the official <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/error-codes-796041m0">error codes page</a> is where the exact strings live.</p>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p><strong>Is the PixVerse restyle API free?</strong> No — the API requires an API key, an active subscription, or purchased credits. The free trial shown in the web app does not apply to API calls, and PixVerse does not publish a free API tier for restyle.</p>
+<p><strong>Can I restyle a video longer than 16 seconds?</strong> Not through the current restyle endpoint — both input paths cap at 16 seconds of source video. Trim the clip first, or check the official docs for updates, since limits change.</p>
+<p><strong>What is the difference between PixVerse Restyle and Modify?</strong> Restyle re-renders the visual style of the whole video. Modify is the broader family — swap, add, edit, and restyle as its Scene Style Transfer member — for changing content and elements.</p>
+<p><strong>How much does a restyle cost?</strong> The official billing rule is 10 credits per second of output; the USD value depends on the credit pack you buy. An aggregator route prices the same task in USD per second (Modellix currently lists $0.1150&#x2F;s for its video-restyle route).</p>
+<p><strong>Which restyle preset should I use?</strong> The current preset list has eight codes — felted-art, origami, ukiyo-e, cyberpunk, clay, baroque, van-gogh, animal-world. For anything else, describe the look in <code>restyle_prompt</code> (up to 2,048 characters). Call the restyle list endpoint to see the live set.</p>
+<p><strong>Why do other guides show a different restyle endpoint?</strong> Several third-party pages document an older v5-era endpoint that its own host now marks as unavailable. The current endpoint is <code>POST /openapi/v2/video/restyle/generate</code> — always confirm against the official docs, and you can cross-check usage patterns in our <a href="https://www.modellix.ai/blog/how-to-use-pixverse/">PixVerse how-to guide</a>.</p>
+<hr>
+<p><em>Sources verified August 5, 2026: <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/restyle-1624871m0">PixVerse Restyle documentation</a>, <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/pricing-796039m0">PixVerse pricing</a>, <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/modify-2082369m0">PixVerse Modify documentation</a>, the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/how-to-get-api-key-882968m0">PixVerse API key guide</a>, and the <a target="_blank" rel="noopener" href="https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-restyle-v4">useapi.net restyle endpoint page</a> (which marks the older v5 endpoint as no longer available). PixVerse can change endpoints, limits, and pricing without notice. Modellix is an API aggregator and has a commercial interest in the route comparison above. Access image and video models, including PixVerse, through a single API key at <a href="https://www.modellix.ai/">modellix.ai</a>.</em></p>
+<p><em>Cover image: illustrative Modellix artwork; it is not a PixVerse product screenshot or source evidence.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Integration-Guide/" class="tag-pill tag-pill--sm">Integration Guide</a>
+            
+              <a href="/blog/tags/PixVerse/" class="tag-pill tag-pill--sm">PixVerse</a>
+            
+              <a href="/blog/tags/Video-to-Video/" class="tag-pill tag-pill--sm">Video-to-Video</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/pixverse-video-restyle-api/&text=PixVerse%20Restyle%20API%3A%20Integration%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/pixverse-video-restyle-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/pixverse-video-restyle-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

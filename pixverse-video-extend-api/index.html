@@ -1,0 +1,660 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PixVerse Video Extend API: Integration Guide, Pricing &amp; Code — Modellix Blog</title>
+  <meta name="description" content="PixVerse video extend API guide: the extend/generate endpoint, request parameters, official credit pricing, working code, and direct vs aggregator routes.">
+  <meta name="keywords" content="pixverse video extend api, video extend api, extend ai video api, pixverse video extend, ai video extend api">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/pixverse-video-extend-api/">
+  <meta name="description" content="PixVerse video extend API guide: the extend&#x2F;generate endpoint, request parameters, official credit pricing, working code, and direct vs aggregator routes.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PixVerse Video Extend API: Integration Guide, Pricing &amp; Code — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/pixverse-video-extend-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="PixVerse video extend API guide: the extend&#x2F;generate endpoint, request parameters, official credit pricing, working code, and direct vs aggregator routes.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-pixverse-video-extend-api.webp">
+<meta property="article:published_time" content="2026-08-05T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-05T02:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video API">
+<meta property="article:tag" content="API Guide">
+<meta property="article:tag" content="PixVerse">
+<meta property="article:tag" content="Video-to-Video">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-pixverse-video-extend-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"PixVerse Video Extend API: Integration Guide, Pricing & Code","description":"PixVerse video extend API guide: the extend/generate endpoint, request parameters, official credit pricing, working code, and direct vs aggregator routes.","datePublished":"2026-08-05T02:00:00.000Z","dateModified":"2026-08-05T02:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/pixverse-video-extend-api/","image":"https://img.modellix.ai/en/article/cover-pixverse-video-extend-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">PixVerse Video Extend API: Integration Guide, Pricing &amp; Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/API-Integration/" class="category-tag category-tag--sm">API Integration</a>
+          
+        
+      </div>
+      <h1 class="post-title">PixVerse Video Extend API: Integration Guide, Pricing &amp; Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-05T02:00:00.000Z">August 5, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/PixVerse/" class="tag-pill tag-pill--sm">PixVerse</a>
+            
+              <a href="/blog/tags/Video-to-Video/" class="tag-pill tag-pill--sm">Video-to-Video</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>The short answer: PixVerse extends video through one endpoint The PixVerse video extend API is a single asynchronous endpoint: POST /openapi/v2/video/extend/generate.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-pixverse-video-extend-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-pixverse-video-extend-api.png" alt="Dark amber editorial cover with the MODELLIX wordmark, the two-line title PixVerse Video Extend API / Integration, Pricing & Code, and a top-right spec capsule showing the extend endpoint" />
+</picture>
+
+<h2 id="The-short-answer-PixVerse-extends-video-through-one-endpoint"><a href="#The-short-answer-PixVerse-extends-video-through-one-endpoint" class="headerlink" title="The short answer: PixVerse extends video through one endpoint"></a>The short answer: PixVerse extends video through one endpoint</h2><p>The PixVerse video extend API is a single asynchronous endpoint: <code>POST /openapi/v2/video/extend/generate</code>. You send it a video — either a <code>video_id</code> produced earlier by a PixVerse generation call, or a file you upload to PixVerse’s media storage — plus a prompt describing how the story should continue, and the API returns a new <code>video_id</code> you poll until it reaches status <code>1</code>. It is the same submit–poll–retrieve loop PixVerse already uses for text-to-video and image-to-video, with one extra input step.</p>
+<p>So the answers to the two questions this query usually starts with are: yes, PixVerse can extend video, and yes, you can do it without the web app. The endpoint and its parameters are documented in the official <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/extend-1268531m0">Extend guide</a> and the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/extend-generation-19094393e0">Extend generation API reference</a>. Everything in this guide was read from those pages and the official <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/pricing-796039m0">pricing page</a> on August 5, 2026 — PixVerse iterates on parameters and prices quickly, so treat anything model- or price-specific as current as of that date.</p>
+<h2 id="What-you-need-before-you-call-it"><a href="#What-you-need-before-you-call-it" class="headerlink" title="What you need before you call it"></a>What you need before you call it</h2><p>The prerequisites are the same as for any PixVerse generation endpoint:</p>
+<ul>
+<li><strong>A valid API key.</strong> Create it in the PixVerse Platform, and send it in the <code>API-KEY</code> header.</li>
+<li><strong>A unique <code>Ai-Trace-Id</code> per request.</strong> The official docs flag reusing the same trace id across requests as the most common cause of tasks stuck in “Generating”.</li>
+<li><strong>An active subscription with API credits.</strong> The API does not run on the web app’s free trial; it bills against your Platform credit balance.</li>
+<li><strong>An input video</strong>, in one of two forms (mutually exclusive):<ul>
+<li><code>source_video_id</code> — the <code>video_id</code> from a video you already generated through the PixVerse API;</li>
+<li><code>video_media_id</code> — an uploaded file. Upload via <code>POST /openapi/v2/media/upload</code> with a <code>file</code> or <code>file_url</code> form field. For the extend feature the official limits are <strong>mp4 or mov, up to 1920px, up to 50MB, up to 30 seconds</strong> (the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/upload-videoaudio-19094401e0">upload documentation</a> lists the per-feature limits table).</li>
+</ul>
+</li>
+</ul>
+<p>The two input modes matter for your pipeline design: extending your own generation output is a zero-upload call (you already have the <code>video_id</code>), while extending external footage means adding an upload step and storing the returned <code>media_id</code> (with <code>media_type: &quot;video&quot;</code>).</p>
+<h2 id="Calling-the-PixVerse-video-extend-API-parameters-and-code"><a href="#Calling-the-PixVerse-video-extend-API-parameters-and-code" class="headerlink" title="Calling the PixVerse video extend API: parameters and code"></a>Calling the PixVerse video extend API: parameters and code</h2><p>The request goes to <code>https://app-api.pixverse.ai/openapi/v2/video/extend/generate</code> with <code>API-KEY</code> and <code>Ai-Trace-Id</code> headers and a JSON body. The official parameter set:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>source_video_id</code> &#x2F; <code>video_media_id</code></td>
+<td>one of the two</td>
+<td>Mutually exclusive; never send both</td>
+</tr>
+<tr>
+<td><code>model</code></td>
+<td>Yes</td>
+<td><code>v3.5</code>, <code>v4</code>, or <code>v4.5</code> per the Extend guide; the pricing page also lists extend rates for V5, V5.5, and V5.6 (see the pricing section)</td>
+</tr>
+<tr>
+<td><code>prompt</code></td>
+<td>Yes</td>
+<td>≤ 2048 characters; describes how the video continues</td>
+</tr>
+<tr>
+<td><code>negative_prompt</code></td>
+<td>Optional</td>
+<td>≤ 2048 characters</td>
+</tr>
+<tr>
+<td><code>duration</code></td>
+<td>Yes</td>
+<td><code>5</code> or <code>8</code> seconds per the guide, which notes 1080p does not support 8 (the pricing page lists 8-second 1080p rates for V5&#x2F;V5.5&#x2F;V5.6 — the two pages diverge)</td>
+</tr>
+<tr>
+<td><code>quality</code></td>
+<td>Yes</td>
+<td><code>360p</code> (Turbo), <code>540p</code>, <code>720p</code>, <code>1080p</code></td>
+</tr>
+<tr>
+<td><code>motion_mode</code></td>
+<td>Optional</td>
+<td><code>normal</code> (default) or <code>fast</code>; fast only allows 5-second duration and no 1080p</td>
+</tr>
+<tr>
+<td><code>style</code></td>
+<td>Optional</td>
+<td><code>anime</code>, <code>3d_animation</code>, <code>day</code>, <code>cyberpunk</code>, <code>comic</code></td>
+</tr>
+<tr>
+<td><code>seed</code></td>
+<td>Optional</td>
+<td>int32, 0–2147483647</td>
+</tr>
+<tr>
+<td><code>img_id</code></td>
+<td>Optional</td>
+<td>For image-to-video generation, per the docs (marked required for that variant)</td>
+</tr>
+</tbody></table>
+<p>A minimal curl call, following the official example structure:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">curl --location <span class="string">&#x27;https://app-api.pixverse.ai/openapi/v2/video/extend/generate&#x27;</span> \</span><br><span class="line">  --header <span class="string">&#x27;Ai-Trace-Id: &#x27;</span><span class="string">&quot;<span class="subst">$(uuidgen)</span>&quot;</span> \</span><br><span class="line">  --header <span class="string">&#x27;API-KEY: YOUR_PIXVERSE_API_KEY&#x27;</span> \</span><br><span class="line">  --header <span class="string">&#x27;Content-Type: application/json&#x27;</span> \</span><br><span class="line">  --data <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;source_video_id&quot;: 123456789,</span></span><br><span class="line"><span class="string">    &quot;prompt&quot;: &quot;The drone keeps flying over the canyon, camera slowly rising as the sun sets&quot;,</span></span><br><span class="line"><span class="string">    &quot;quality&quot;: &quot;720p&quot;,</span></span><br><span class="line"><span class="string">    &quot;duration&quot;: 5,</span></span><br><span class="line"><span class="string">    &quot;model&quot;: &quot;v4.5&quot;,</span></span><br><span class="line"><span class="string">    &quot;motion_mode&quot;: &quot;normal&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>The equivalent in Python with the standard library:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> uuid</span><br><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">extend_video</span>(<span class="params">source_video_id, prompt, api_key, quality=<span class="string">&quot;720p&quot;</span>, duration=<span class="number">5</span>, model=<span class="string">&quot;v4.5&quot;</span></span>):</span><br><span class="line">    body = json.dumps(&#123;</span><br><span class="line">        <span class="string">&quot;source_video_id&quot;</span>: source_video_id,</span><br><span class="line">        <span class="string">&quot;prompt&quot;</span>: prompt,</span><br><span class="line">        <span class="string">&quot;quality&quot;</span>: quality,</span><br><span class="line">        <span class="string">&quot;duration&quot;</span>: duration,</span><br><span class="line">        <span class="string">&quot;model&quot;</span>: model,</span><br><span class="line">        <span class="string">&quot;motion_mode&quot;</span>: <span class="string">&quot;normal&quot;</span>,</span><br><span class="line">    &#125;).encode()</span><br><span class="line">    req = urllib.request.Request(</span><br><span class="line">        <span class="string">&quot;https://app-api.pixverse.ai/openapi/v2/video/extend/generate&quot;</span>,</span><br><span class="line">        data=body,</span><br><span class="line">        headers=&#123;</span><br><span class="line">            <span class="string">&quot;API-KEY&quot;</span>: api_key,</span><br><span class="line">            <span class="string">&quot;Ai-Trace-Id&quot;</span>: <span class="built_in">str</span>(uuid.uuid4()),</span><br><span class="line">            <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">with</span> urllib.request.urlopen(req) <span class="keyword">as</span> resp:</span><br><span class="line">        <span class="keyword">return</span> json.load(resp)  <span class="comment"># &#123;&quot;ErrCode&quot;: 0, &quot;Resp&quot;: &#123;&quot;video_id&quot;: ...&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>Both examples assume the video already exists as a <code>source_video_id</code>. For external footage, replace <code>source_video_id</code> with <code>video_media_id</code> from the upload step. The response contains the new task’s <code>video_id</code> — generation is asynchronous, so no video exists yet at this point.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/pixverse-extend-workflow.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/pixverse-extend-workflow.png" alt="PixVerse video extend API workflow showing the upload or source_video_id input, the extend/generate request, video_id response, status polling, and final download" loading="lazy" />
+</picture>
+
+<p><em>Figure 1: The PixVerse video extend flow — pick an input (uploaded media or a PixVerse video_id), call extend&#x2F;generate, poll status until it reaches 1, then download. Diagram generated from the official Extend documentation on August 5, 2026.</em></p>
+<p>If you are new to the loop itself — key, trace id, and the general poll pattern — our <a href="https://www.modellix.ai/blog/pixverse-api/">PixVerse API integration guide</a> walks through authentication and polling end to end, and the <a href="https://www.modellix.ai/blog/how-to-use-pixverse/">how-to-use-PixVerse tutorial</a> covers the same submit–poll–retrieve flow with the web app side included.</p>
+<h2 id="Polling-for-the-result-and-handling-failures"><a href="#Polling-for-the-result-and-handling-failures" class="headerlink" title="Polling for the result and handling failures"></a>Polling for the result and handling failures</h2><p>Query the video status endpoint with the returned <code>video_id</code> until it leaves processing:</p>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>5</code></td>
+<td>Waiting for generation — poll at 3–5 second intervals rather than hammering the endpoint</td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td>Generation successful — the response contains the <code>url</code> of the finished video</td>
+</tr>
+<tr>
+<td><code>7</code></td>
+<td>Failed content moderation — adjust parameters and retry; official docs state credits for filtered videos are refunded automatically</td>
+</tr>
+<tr>
+<td><code>8</code></td>
+<td>Generation failed — check the official error-code list for the specific cause</td>
+</tr>
+</tbody></table>
+<p>The official <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/get-video-generation-status-882972m0">Get Video Generation Status</a> guide documents the response shape, and the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/faq-796042m0">FAQ</a> is the first place to check for stuck tasks. The failure cases that cost people the most time:</p>
+<ul>
+<li><strong>Video stuck in “Generating”.</strong> The docs’ own troubleshooting points at a reused <code>Ai-Trace-Id</code> as the most common cause. If you batch multiple requests, generate a fresh trace id per call.</li>
+<li><strong><code>400013</code> Invalid binding request</strong> — wrong parameter type or value. <strong><code>400017</code> Invalid parameter</strong> — an out-of-range value, for example duration 8 at 1080p.</li>
+<li><strong>“Couldn’t find a matching source_video_id &#x2F; video_media_id”</strong> — the ID does not exist or the media type is not a video resource; re-upload and retry.</li>
+<li><strong><code>500044</code> Reached the limit for concurrent generations</strong> — your account has a concurrency cap; queue tasks instead of firing them all at once.</li>
+</ul>
+<p>Status <code>7</code> is the one that surprises API users: billing happens at submission, so a moderation failure can look like a charge for nothing. Per the official docs the refund is automatic — verify it in your balance history before contacting support.</p>
+<h2 id="What-the-PixVerse-video-extend-API-costs"><a href="#What-the-PixVerse-video-extend-API-costs" class="headerlink" title="What the PixVerse video extend API costs"></a>What the PixVerse video extend API costs</h2><p>Extend is billed in <strong>PixVerse Platform credits</strong>, and the pricing page splits it across four per-clip model families (V5.6, V5.5, V5, and V4.5&#x2F;V4&#x2F;V3.5) plus the per-second V6 family — this is where most cost estimates go wrong. The per-clip no-audio rates, read from the official pricing page on August 5, 2026:</p>
+<table>
+<thead>
+<tr>
+<th>Model family</th>
+<th align="right">Quality</th>
+<th align="right">5s</th>
+<th align="right">8s</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>V5.6</td>
+<td align="right">360p</td>
+<td align="right">35</td>
+<td align="right">70</td>
+</tr>
+<tr>
+<td>V5.6</td>
+<td align="right">540p</td>
+<td align="right">35</td>
+<td align="right">70</td>
+</tr>
+<tr>
+<td>V5.6</td>
+<td align="right">720p</td>
+<td align="right">45</td>
+<td align="right">90</td>
+</tr>
+<tr>
+<td>V5.6</td>
+<td align="right">1080p</td>
+<td align="right">75</td>
+<td align="right">150</td>
+</tr>
+<tr>
+<td>V5.5</td>
+<td align="right">360p</td>
+<td align="right">45</td>
+<td align="right">90</td>
+</tr>
+<tr>
+<td>V5.5</td>
+<td align="right">540p</td>
+<td align="right">45</td>
+<td align="right">90</td>
+</tr>
+<tr>
+<td>V5.5</td>
+<td align="right">720p</td>
+<td align="right">60</td>
+<td align="right">120</td>
+</tr>
+<tr>
+<td>V5.5</td>
+<td align="right">1080p</td>
+<td align="right">120</td>
+<td align="right">240</td>
+</tr>
+<tr>
+<td>V5</td>
+<td align="right">360p (Turbo)</td>
+<td align="right">45</td>
+<td align="right">90</td>
+</tr>
+<tr>
+<td>V5</td>
+<td align="right">540p</td>
+<td align="right">45</td>
+<td align="right">90</td>
+</tr>
+<tr>
+<td>V5</td>
+<td align="right">720p</td>
+<td align="right">60</td>
+<td align="right">120</td>
+</tr>
+<tr>
+<td>V5</td>
+<td align="right">1080p</td>
+<td align="right">120</td>
+<td align="right">240</td>
+</tr>
+<tr>
+<td>V4.5 &#x2F; V4 &#x2F; V3.5</td>
+<td align="right">360p (Turbo)</td>
+<td align="right">45</td>
+<td align="right">90</td>
+</tr>
+<tr>
+<td>V4.5 &#x2F; V4 &#x2F; V3.5</td>
+<td align="right">540p</td>
+<td align="right">45</td>
+<td align="right">90</td>
+</tr>
+<tr>
+<td>V4.5 &#x2F; V4 &#x2F; V3.5</td>
+<td align="right">720p</td>
+<td align="right">60</td>
+<td align="right">120</td>
+</tr>
+<tr>
+<td>V4.5 &#x2F; V4 &#x2F; V3.5</td>
+<td align="right">1080p</td>
+<td align="right">120</td>
+<td align="right">—</td>
+</tr>
+</tbody></table>
+<p><em>Credits are per extend task (per clip), no audio. The pricing page’s audio columns add a separate surcharge that varies by family and quality — roughly +10 credits on the V5.5 rows, more on V5.6 — so quote with-audio budgets from the exact row. V5.5&#x2F;V5.6 also list 10-second rows (77–172 credits), V4.5&#x2F;V4&#x2F;V3.5 lists a <code>fast</code> motion mode (5s at 90–120 credits), and no 1080p 8-second row exists for V4.5&#x2F;V4&#x2F;V3.5. The two official pages are not fully in sync: the Extend guide’s parameter table accepts <code>model</code> values v3.5&#x2F;v4&#x2F;v4.5 and says 1080p does not support 8-second duration, while the pricing page also lists extend rates for V5, V5.5, and V5.6 — including 8-second 1080p rows for V5&#x2F;V5.5&#x2F;V5.6. Use the guide for accepted request values, the pricing page for rates, and recheck both before committing budget.</em></p>
+<ul>
+<li><strong>V6</strong> — the pricing page groups Extend with text-to-video &#x2F; image-to-video at <strong>5–23 credits per second</strong> (360p 5, 540p 7, 720p 9, 1080p 18 without audio; 7&#x2F;9&#x2F;12&#x2F;23 with audio), and the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/v6-2056814m0">V6 model overview</a> lists extend durations of 1–15 seconds. So a 5-second 720p V6 extend is 45 credits — cheaper than the V4.5-family per-clip rate for the same length.</li>
+</ul>
+<p>Worked example, with the assumptions stated: a 5-second 720p extend on V4.5&#x2F;V4&#x2F;V3.5 costs <strong>60 credits</strong>. The pricing page’s own reference line is “$1 &#x3D; 5 videos (v6, 720p, 5s, no audio, with Starter pack)” — that implies roughly 225 credits per dollar at the Starter-pack rate, which would put 60 credits around $0.27. That conversion is package- and promotion-dependent; do not treat it as a universal exchange rate. The correct calculation for your budget is: divide the price of the credit package you actually buy by its credit count, then multiply by the per-task credits in the table above. And check the balance endpoint before long batch runs.</p>
+<p>For a full walkthrough of how the credit system and per-second rates fit together, our <a href="https://www.modellix.ai/blog/pixverse-pricing/">PixVerse pricing breakdown</a> covers the official tables and the subscription plans side by side.</p>
+<h2 id="Direct-API-vs-an-aggregator-route"><a href="#Direct-API-vs-an-aggregator-route" class="headerlink" title="Direct API vs an aggregator route"></a>Direct API vs an aggregator route</h2><p>The PixVerse video extend API is available directly, and it is also resold by aggregators — fal, useapi, kie, wavespeed, and others rank for this query with model cards for a PixVerse extend route. Before comparing any two numbers, line up the billing units: direct PixVerse bills in <strong>credits</strong> (per clip for the older model families — V5.6, V5.5, V5, and V4.5&#x2F;V4&#x2F;V3.5 — and per second for V6), while aggregators bill in <strong>USD per second</strong> with their own model routing. A credit price and a dollar price are not the same unit, and “the cheapest” changes with the credit package you would have bought anyway.</p>
+<p>Modellix is an API aggregator and has a commercial interest in this comparison. We carry a PixVerse extend route, <code>pixverse/v6-video-extend</code>, behind our unified API; its <a href="https://www.modellix.ai/models/pixverse/v6-video-extend">model page</a> showed the following per-second prices on August 5, 2026:</p>
+<table>
+<thead>
+<tr>
+<th>Quality</th>
+<th align="right">Modellix price</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>360p</td>
+<td align="right">$0.0575&#x2F;sec</td>
+</tr>
+<tr>
+<td>540p</td>
+<td align="right">$0.0805&#x2F;sec</td>
+</tr>
+<tr>
+<td>720p</td>
+<td align="right">$0.1035&#x2F;sec</td>
+</tr>
+<tr>
+<td>1080p</td>
+<td align="right">$0.2070&#x2F;sec</td>
+</tr>
+</tbody></table>
+<p>Two differences matter more than the price number. First, the integration surface: the Modellix route takes a <strong>public video URL</strong> plus a prompt and duration (1–15 seconds), instead of PixVerse’s <code>source_video_id</code> &#x2F; upload workflow — if your footage is already behind a URL, that is one less upload-and-store step. Second, billing: USD per second is predictable without a credit package, but you give up PixVerse’s per-clip pricing on the older model family, which can be cheaper for short clips. The honest comparison is: price a representative task in both units using your actual credit package, then add the operational cost of the integration path. For the current catalog of PixVerse routes we carry, the <a href="https://www.modellix.ai/providers/pixverse">PixVerse provider page</a> lists everything with live prices.</p>
+<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>Can PixVerse extend video?</strong> Yes. The web app has an extend effect, and the API exposes the same capability through <code>POST /openapi/v2/video/extend/generate</code>. You provide an existing video (a <code>source_video_id</code> from a previous generation, or an uploaded <code>video_media_id</code>) plus a prompt, and the API returns a continuation.</p>
+<p><strong>How long can a video be on PixVerse?</strong> For the extend input, the official limit is 30 seconds per uploaded video. Each extend call adds a fixed chunk — 5 or 8 seconds on the V4.5&#x2F;V4&#x2F;V3.5 family (1080p caps at 5), or 1–15 seconds on V6. The docs describe chaining calls to keep a story going (“infinitely expand”), but each call re-enters the queue and bills separately.</p>
+<p><strong>How do I extend my AI video?</strong> Call the extend endpoint with the original video’s <code>video_id</code> as <code>source_video_id</code>, a continuation prompt, duration, quality, and model; poll the returned <code>video_id</code> until status <code>1</code>; download the result from the <code>url</code> field. The code in the “Parameters and code” section above is copy-paste ready.</p>
+<p><strong>Is there a free way to use the PixVerse video extend API?</strong> Not on the API side — it requires an API key and an active subscription with credits. The web app’s free trial applies to the consumer app, not the API. The one automatic refund is for moderation failures (status <code>7</code>), per the official docs.</p>
+<p><strong>Why is my extend request stuck in “Generating”?</strong> The official troubleshooting names the most common cause: reusing the same <code>Ai-Trace-Id</code> across requests. Generate a fresh trace id per call. Otherwise check the concurrency cap (<code>500044</code>), the account balance, and the request parameters in that order.</p>
+<hr>
+<p><em>All PixVerse facts, parameter tables, and credit prices above were read from the official <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/extend-1268531m0">Extend guide</a>, <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/extend-generation-19094393e0">Extend API reference</a>, <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/upload-videoaudio-19094401e0">upload documentation</a>, <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/pricing-796039m0">pricing page</a>, and <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/v6-2056814m0">V6 model overview</a> on August 5, 2026; the price table for the Modellix route was read from the <a href="https://www.modellix.ai/models/pixverse/v6-video-extend">v6-video-extend model page</a> the same day. Pricing and parameters change frequently — validate against the live pages before committing budget. Access image and video models from 12 providers, including PixVerse, through a single API key at <a href="https://www.modellix.ai/">modellix.ai</a>.</em></p>
+<p><em>Cover image: illustrative Modellix artwork; it is not a PixVerse product screenshot or source evidence.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/PixVerse/" class="tag-pill tag-pill--sm">PixVerse</a>
+            
+              <a href="/blog/tags/Video-to-Video/" class="tag-pill tag-pill--sm">Video-to-Video</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/how-to-use-google-imagen/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-how-to-use-google-imagen.webp" alt="How To Use Google Imagen: Step-by-Step Integration Guide" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">API Integration</span>
+              
+                <span class="category-tag category-tag--sm">AI Image Generation</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">How To Use Google Imagen: Step-by-Step Integration Guide</h3>
+          <time class="related-article-date" datetime="2026-07-28T16:00:00.000Z">July 29, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/pixverse-video-extend-api/&text=PixVerse%20Video%20Extend%20API%3A%20Integration%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/pixverse-video-extend-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/pixverse-video-extend-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
