@@ -127,7 +127,7 @@
         <a href="/blog/video-extend-api/" class="article-card">
           
             <div class="article-card-cover">
-              <img src="https://statics.mylandingpages.co/static/modellix/image/cover-video-extend-api.webp" alt="Video Extend API: Lengthen AI Video via Multi-Provider APIs" loading="lazy">
+              <img src="https://img.modellix.ai/en/article/cover-video-extend-api.webp" alt="Video Extend API: Lengthen AI Video via Multi-Provider APIs" loading="lazy">
             </div>
           
           <div class="article-card-body">
@@ -299,6 +299,35 @@
 
             var source = extractCodeText(replaceTarget);
             if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
+  if (!looksLikeMermaid(source)) return;
 
             var mermaidPre = document.createElement('pre');
             mermaidPre.className = 'mermaid';

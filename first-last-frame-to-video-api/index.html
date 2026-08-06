@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="Modellix Blog">
 <meta property="og:description" content="FL2V API guide: how first-last-frame-to-video works, which providers support start and end frame input, the async request pattern, code, and real pricing.">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-first-last-frame-to-video-api.webp">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-first-last-frame-to-video-api.webp">
 <meta property="article:published_time" content="2026-08-06T02:00:00.000Z">
 <meta property="article:modified_time" content="2026-08-06T02:00:00.000Z">
 <meta property="article:author" content="Alen Hu">
@@ -36,10 +36,10 @@
 <meta property="article:tag" content="FL2V">
 <meta property="article:tag" content="Image-to-Video">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-first-last-frame-to-video-api.webp">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-first-last-frame-to-video-api.webp">
   
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"First Last Frame to Video API: FL2V Integration Guide","description":"FL2V API guide: how first-last-frame-to-video works, which providers support start and end frame input, the async request pattern, code, and real pricing.","datePublished":"2026-08-06T02:00:00.000Z","dateModified":"2026-08-06T02:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/first-last-frame-to-video-api/","image":"https://statics.mylandingpages.co/static/modellix/image/cover-first-last-frame-to-video-api.webp"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"First Last Frame to Video API: FL2V Integration Guide","description":"FL2V API guide: how first-last-frame-to-video works, which providers support start and end frame input, the async request pattern, code, and real pricing.","datePublished":"2026-08-06T02:00:00.000Z","dateModified":"2026-08-06T02:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/first-last-frame-to-video-api/","image":"https://img.modellix.ai/en/article/cover-first-last-frame-to-video-api.webp"}]}</script>
 
   <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -170,8 +170,8 @@
 
         <div class="post-content">
           <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
-  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/cover-first-last-frame-to-video-api.webp" />
-  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/cover-first-last-frame-to-video-api.png" alt="Dark amber editorial cover with the MODELLIX wordmark, the two-line title First Last Frame to Video API / FL2V Integration Guide, and a two-frame-to-video transition graphic" />
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-first-last-frame-to-video-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-first-last-frame-to-video-api.png" alt="Dark amber editorial cover with the MODELLIX wordmark, the two-line title First Last Frame to Video API / FL2V Integration Guide, and a two-frame-to-video transition graphic" />
 </picture>
 
 <h2 id="The-short-answer-FL2V-is-a-two-image-video-API-pattern"><a href="#The-short-answer-FL2V-is-a-two-image-video-API-pattern" class="headerlink" title="The short answer: FL2V is a two-image video API pattern"></a>The short answer: FL2V is a two-image video API pattern</h2><p>“First last frame to video” (FL2V, also written FLF2V, first-and-last-frame-to-video, or “start and end frames”) describes one API pattern: you send a model <strong>two images</strong> — the frame the video starts on and the frame it ends on — plus a text prompt, and it returns a video that transitions smoothly from the first image to the last. The prompt describes the motion in between: a building changing from day to night, a product morphing into its next version, a character walking from one pose into another.</p>
@@ -226,8 +226,8 @@
 <p><strong>The boundary with image-to-video (I2V) matters.</strong> A single-image I2V call animates one starting image and lets the model invent the ending. FL2V constrains both ends, which is what makes it useful for shots where the ending is the point: before&#x2F;after comparisons, product morphs, reveal-style ad hooks, storyboard completion, time-lapse transitions. If you only have one image, you want I2V, not FL2V — most FL2V routes reject single-image input.</p>
 <p>One practical constraint applies across providers: <strong>the two frames should be visually consistent.</strong> <a target="_blank" rel="noopener" href="https://kling.ai/quickstart/ai-video-start-end-frames">Kling’s official guide</a> warns that large differences between the start and end frames cause a “lens switch” — the model cuts rather than transitions. Keep the subject, composition, and lighting comparable, and match the frame dimensions.</p>
 <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
-  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/fl2v-workflow.webp" />
-  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/fl2v-workflow.png" alt="FL2V workflow: a start frame and an end frame plus a transition prompt enter the model, which returns a transition video through an async submit, poll, download loop" loading="lazy" />
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/fl2v-workflow.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/fl2v-workflow.png" alt="FL2V workflow: a start frame and an end frame plus a transition prompt enter the model, which returns a transition video through an async submit, poll, download loop" loading="lazy" />
 </picture>
 
 <p><em>Figure 1: The first-last-frame-to-video pattern — two images plus a prompt become a transition video; the API is asynchronous (submit → poll → download).</em></p>
@@ -347,8 +347,8 @@
 <p><em>Rates per second, without audio, from the <a href="https://www.modellix.ai/models/pixverse/v6-fl2v">Modellix model pages</a> on August 6, 2026. Hailuo 02 bills by duration&#x2F;resolution pairs — 6s or 10s at 768P or 1080P ($0.0672&#x2F;s at 10s&#x2F;768P, $0.1200&#x2F;s at 10s&#x2F;1080P; 10s caps at 768P, 1080P caps at 6s) — so its row shows the 6s rates; PixVerse routes add an audio surcharge (~$0.023–$0.0575&#x2F;s depending on quality).</em></p>
 <p>A worked example with the assumptions stated: a 5-second 720p clip on <code>pixverse/v6-fl2v</code> is 5 × $0.1035 &#x3D; <strong>$0.5175</strong>; the same clip on <code>vidu/viduq3-turbo-fl2v</code> is 5 × $0.0506 &#x3D; <strong>$0.2530</strong>. Both are real task costs you can reproduce from the tables above — no credit-package conversion required.</p>
 <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
-  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/fl2v-720p-cost-comparison.webp" />
-  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/fl2v-720p-cost-comparison.png" alt="Bar chart comparing per-second FL2V prices at 720p across Vidu Q3 Turbo, Vidu Q3 Pro, Hailuo 02, PixVerse v6, and PixVerse c1" loading="lazy" />
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/fl2v-720p-cost-comparison.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/fl2v-720p-cost-comparison.png" alt="Bar chart comparing per-second FL2V prices at 720p across Vidu Q3 Turbo, Vidu Q3 Pro, Hailuo 02, PixVerse v6, and PixVerse c1" loading="lazy" />
 </picture>
 
 <p><em>Figure 2: 720p per-second rates across the Modellix FL2V routes, read from live model pages on August 6, 2026.</em></p>
