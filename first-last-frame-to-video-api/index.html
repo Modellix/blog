@@ -1,0 +1,643 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>First Last Frame to Video API: FL2V Integration Guide — Modellix Blog</title>
+  <meta name="description" content="FL2V API guide: how first-last-frame-to-video works, which providers support start and end frame input, the async request pattern, code, and real pricing.">
+  <meta name="keywords" content="first last frame to video api, fl2v api, start end frame video api, first and last frame video generation api, first last frame video ai, first last frame to video api python, first last frame to video api free, fl2v api tutorial, first and last frame extractor">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/first-last-frame-to-video-api/">
+  <meta name="description" content="FL2V API guide: how first-last-frame-to-video works, which providers support start and end frame input, the async request pattern, code, and real pricing.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="First Last Frame to Video API: FL2V Integration Guide — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/first-last-frame-to-video-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="FL2V API guide: how first-last-frame-to-video works, which providers support start and end frame input, the async request pattern, code, and real pricing.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-first-last-frame-to-video-api.webp">
+<meta property="article:published_time" content="2026-08-06T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-06T02:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video API">
+<meta property="article:tag" content="API Guide">
+<meta property="article:tag" content="FL2V">
+<meta property="article:tag" content="Image-to-Video">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-first-last-frame-to-video-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"First Last Frame to Video API: FL2V Integration Guide","description":"FL2V API guide: how first-last-frame-to-video works, which providers support start and end frame input, the async request pattern, code, and real pricing.","datePublished":"2026-08-06T02:00:00.000Z","dateModified":"2026-08-06T02:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/first-last-frame-to-video-api/","image":"https://statics.mylandingpages.co/static/modellix/image/cover-first-last-frame-to-video-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">First Last Frame to Video API: FL2V Integration Guide</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/API-Guides/" class="category-tag category-tag--sm">API Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">First Last Frame to Video API: FL2V Integration Guide</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-06T02:00:00.000Z">August 6, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/FL2V/" class="tag-pill tag-pill--sm">FL2V</a>
+            
+              <a href="/blog/tags/Image-to-Video/" class="tag-pill tag-pill--sm">Image-to-Video</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>The short answer: FL2V is a two-image video API pattern &#39;First last frame to video&#39; FL2V, also written FLF2V, first-and-last-frame-to-video, or &#39;start and end frames&#39; describes one API pattern: you send a model two images — the frame the vi.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/cover-first-last-frame-to-video-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/cover-first-last-frame-to-video-api.png" alt="Dark amber editorial cover with the MODELLIX wordmark, the two-line title First Last Frame to Video API / FL2V Integration Guide, and a two-frame-to-video transition graphic" />
+</picture>
+
+<h2 id="The-short-answer-FL2V-is-a-two-image-video-API-pattern"><a href="#The-short-answer-FL2V-is-a-two-image-video-API-pattern" class="headerlink" title="The short answer: FL2V is a two-image video API pattern"></a>The short answer: FL2V is a two-image video API pattern</h2><p>“First last frame to video” (FL2V, also written FLF2V, first-and-last-frame-to-video, or “start and end frames”) describes one API pattern: you send a model <strong>two images</strong> — the frame the video starts on and the frame it ends on — plus a text prompt, and it returns a video that transitions smoothly from the first image to the last. The prompt describes the motion in between: a building changing from day to night, a product morphing into its next version, a character walking from one pose into another.</p>
+<p>This is not one vendor’s feature. Alibaba’s Wan models expose it as the <code>kf2v</code> family, Google’s Veo documentation covers it as first-and-last-frame generation, <a target="_blank" rel="noopener" href="https://kling.ai/quickstart/ai-video-start-end-frames">Kling</a> ships it as a start&#x2F;end frames mode, and MiniMax, PixVerse, and Vidu all have dedicated FL2V model routes. If you integrate through an aggregator, one request shape covers several of them.</p>
+<p>Two things to know before the details. First, every FL2V API is <strong>asynchronous</strong>: submit a task, poll for its status, download the finished video — there is no synchronous “give me a video now” call. Second, prices and model availability change fast; everything model- or price-specific in this guide was read from the cited pages on August 6, 2026. Modellix, where this article lives, is an AI media API aggregator and has a commercial interest in the route comparison later in this guide — the numbers are presented so you can check them yourself.</p>
+<h2 id="What-an-FL2V-API-takes-in-and-returns"><a href="#What-an-FL2V-API-takes-in-and-returns" class="headerlink" title="What an FL2V API takes in and returns"></a>What an FL2V API takes in and returns</h2><p>The request surface is small and consistent across providers. A typical FL2V request body:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>What it is</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>first_frame_image</code></td>
+<td>Start frame — the first frame of the output video</td>
+<td>Public URL or base64 data URI</td>
+</tr>
+<tr>
+<td><code>last_frame_image</code></td>
+<td>End frame — the final frame of the output video</td>
+<td>Same format; most providers require both</td>
+</tr>
+<tr>
+<td><code>prompt</code></td>
+<td>Description of the transition &#x2F; motion</td>
+<td>Optional on some routes (Hailuo 02), required on others</td>
+</tr>
+<tr>
+<td><code>duration</code></td>
+<td>Output length in seconds</td>
+<td>e.g. 5–8s on Veo, 5s fixed on Wan 2.2, up to 15s on PixVerse v6</td>
+</tr>
+<tr>
+<td><code>resolution</code> &#x2F; <code>quality</code></td>
+<td>Output tier</td>
+<td>360p–1080p typically; Veo 3.1 adds 4K</td>
+</tr>
+<tr>
+<td><code>generate_audio_switch</code></td>
+<td>Optional audio synthesis</td>
+<td>PixVerse v6&#x2F;c1 routes</td>
+</tr>
+<tr>
+<td><code>seed</code></td>
+<td>Reproducibility</td>
+<td>Optional on most routes</td>
+</tr>
+</tbody></table>
+<p>The output is a video URL (plus resolution and duration metadata), delivered through a task result endpoint. The images themselves need to be reachable by the API — a public URL is the default, and several routes also accept base64 data URIs so you do not need to host the frames.</p>
+<p><strong>The boundary with image-to-video (I2V) matters.</strong> A single-image I2V call animates one starting image and lets the model invent the ending. FL2V constrains both ends, which is what makes it useful for shots where the ending is the point: before&#x2F;after comparisons, product morphs, reveal-style ad hooks, storyboard completion, time-lapse transitions. If you only have one image, you want I2V, not FL2V — most FL2V routes reject single-image input.</p>
+<p>One practical constraint applies across providers: <strong>the two frames should be visually consistent.</strong> <a target="_blank" rel="noopener" href="https://kling.ai/quickstart/ai-video-start-end-frames">Kling’s official guide</a> warns that large differences between the start and end frames cause a “lens switch” — the model cuts rather than transitions. Keep the subject, composition, and lighting comparable, and match the frame dimensions.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/fl2v-workflow.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/fl2v-workflow.png" alt="FL2V workflow: a start frame and an end frame plus a transition prompt enter the model, which returns a transition video through an async submit, poll, download loop" loading="lazy" />
+</picture>
+
+<p><em>Figure 1: The first-last-frame-to-video pattern — two images plus a prompt become a transition video; the API is asynchronous (submit → poll → download).</em></p>
+<h2 id="Which-models-and-providers-support-first-last-frame-video"><a href="#Which-models-and-providers-support-first-last-frame-video" class="headerlink" title="Which models and providers support first-last-frame video"></a>Which models and providers support first-last-frame video</h2><p>The table below maps the FL2V-capable routes you are most likely to evaluate. Vendor docs are primary sources; the Modellix routes are what the aggregator actually exposes through its unified API.</p>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Model &#x2F; route</th>
+<th>How it is exposed</th>
+<th>Key facts (as of 2026-08-06)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Alibaba</td>
+<td>Wan 2.1&#x2F;2.2 <code>kf2v</code> family</td>
+<td><a target="_blank" rel="noopener" href="https://www.alibabacloud.com/help/en/model-studio/legacy-image-to-video-by-first-and-last-frame-api-reference">Official Model Studio API</a></td>
+<td><code>wan2.2-kf2v-flash</code> &#x2F; <code>wan2.1-kf2v-plus</code>; fixed 5s duration; 480P–1080P; region-locked endpoints; 24h task&#x2F;URL validity; billed per second</td>
+</tr>
+<tr>
+<td>Google</td>
+<td>Veo 2 &#x2F; Veo 3.1</td>
+<td><a target="_blank" rel="noopener" href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/video/generate-videos-from-first-and-last-frames">Official docs</a></td>
+<td>4&#x2F;6&#x2F;8s durations; 720p&#x2F;1080p&#x2F;4K; also available through aggregators such as fal.ai</td>
+</tr>
+<tr>
+<td>Kling</td>
+<td>Start &amp; End Frames mode</td>
+<td>Consumer feature; API via aggregators</td>
+<td>Official guide stresses similar frames; no first-party API doc as of this writing</td>
+</tr>
+<tr>
+<td>MiniMax</td>
+<td>Hailuo 02 FL2V</td>
+<td>Official FL2V task API + <a href="https://www.modellix.ai/models/minimax/hailuo-02-fl2v">Modellix route</a></td>
+<td>6s or 10s; 768P&#x2F;1080P; optional first frame (last-frame-only mode); 15 camera-control instructions</td>
+</tr>
+<tr>
+<td>PixVerse</td>
+<td>v6-fl2v &#x2F; c1-fl2v</td>
+<td>Official docs + <a href="https://www.modellix.ai/models/pixverse/c1-fl2v">Modellix routes</a></td>
+<td>Up to 15s; 360p–1080p; optional audio; see our dedicated <a href="https://www.modellix.ai/blog/pixverse-first-last-frame-api/">PixVerse first-last-frame (FL2V) guide</a> for the endpoint deep dive</td>
+</tr>
+<tr>
+<td>Vidu</td>
+<td>Q3 Pro FL2V &#x2F; Q3 Turbo FL2V</td>
+<td><a href="https://www.modellix.ai/models/vidu/viduq3-pro-fl2v">Modellix routes</a></td>
+<td>540p–1080p; Turbo trades detail for speed</td>
+</tr>
+<tr>
+<td>Alibaba (multimodal)</td>
+<td>Wan 2.7 I2V</td>
+<td><a href="https://www.modellix.ai/models/alibaba/wan2.7-i2v">Modellix wan2.7-i2v route</a></td>
+<td><code>first_frame</code> + <code>last_frame</code> task mode alongside audio&#x2F;clip modes</td>
+</tr>
+</tbody></table>
+<p>Two observations before you pick. First, the naming is a mess — the same technique is called FL2V, FLF2V, first-and-last-frame, first&#x2F;last frame, and start&#x2F;end frames, and Alibaba’s own model id is the less obvious <code>kf2v</code> — a naming-consistency trap worth knowing. When you read a model card, match it by the <strong>parameter shape</strong> (two image fields + prompt), not the acronym. Second, aggregators widen the catalog: fal.ai, Segmind, and Modellix all resell FL2V routes from several vendors behind one API — <a target="_blank" rel="noopener" href="https://fal.ai/models/fal-ai/kling-video/o1/image-to-video">fal.ai’s Kling O1 page</a> is one example — which is how you get to “one request shape, many models” without maintaining several vendor SDKs.</p>
+<h2 id="How-the-FL2V-API-call-works-submit-poll-retrieve"><a href="#How-the-FL2V-API-call-works-submit-poll-retrieve" class="headerlink" title="How the FL2V API call works: submit, poll, retrieve"></a>How the FL2V API call works: submit, poll, retrieve</h2><p>All FL2V APIs share the same lifecycle. You authenticate, submit a task with the two frames and the prompt, receive a <code>task_id</code>, poll the task endpoint until the status is terminal, and download the video from the result URL. The differences between providers are the endpoint paths, the field names, and the billing unit — not the shape of the flow.</p>
+<p>A concrete example against the Modellix unified API, using the <code>pixverse/v6-fl2v</code> route:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">curl --request POST \</span><br><span class="line">  --url https://api.modellix.ai/api/v1/pixverse/v6-fl2v \</span><br><span class="line">  --header <span class="string">&#x27;Authorization: Bearer YOUR_MODELLIX_API_KEY&#x27;</span> \</span><br><span class="line">  --header <span class="string">&#x27;Content-Type: application/json&#x27;</span> \</span><br><span class="line">  --data <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;first_frame_image&quot;: &quot;https://example.com/start.png&quot;,</span></span><br><span class="line"><span class="string">    &quot;last_frame_image&quot;: &quot;https://example.com/end.png&quot;,</span></span><br><span class="line"><span class="string">    &quot;prompt&quot;: &quot;The building lights come on one by one as dusk settles&quot;,</span></span><br><span class="line"><span class="string">    &quot;duration&quot;: 5,</span></span><br><span class="line"><span class="string">    &quot;quality&quot;: &quot;720p&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>The response contains the task handle — note there is no video in it yet:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;success&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pending&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;task_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;task-pixverse-fl2v-001&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;model_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pixverse/v6-fl2v&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;get_result&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;method&quot;</span><span class="punctuation">:</span> <span class="string">&quot;GET&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.modellix.ai/api/v1/tasks/task-pixverse-fl2v-001&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>Poll that <code>get_result.url</code> until the status leaves <code>pending</code>&#x2F;<code>processing</code>. A minimal Python flow:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"></span><br><span class="line">API = <span class="string">&quot;https://api.modellix.ai/api/v1&quot;</span></span><br><span class="line">KEY = <span class="string">&quot;YOUR_MODELLIX_API_KEY&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">submit_fl2v</span>(<span class="params">first_frame, last_frame, prompt, duration=<span class="number">5</span>, quality=<span class="string">&quot;720p&quot;</span></span>):</span><br><span class="line">    body = json.dumps(&#123;</span><br><span class="line">        <span class="string">&quot;first_frame_image&quot;</span>: first_frame,</span><br><span class="line">        <span class="string">&quot;last_frame_image&quot;</span>: last_frame,</span><br><span class="line">        <span class="string">&quot;prompt&quot;</span>: prompt,</span><br><span class="line">        <span class="string">&quot;duration&quot;</span>: duration,</span><br><span class="line">        <span class="string">&quot;quality&quot;</span>: quality,</span><br><span class="line">    &#125;).encode()</span><br><span class="line">    req = urllib.request.Request(</span><br><span class="line">        <span class="string">f&quot;<span class="subst">&#123;API&#125;</span>/pixverse/v6-fl2v&quot;</span>, data=body,</span><br><span class="line">        headers=&#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;KEY&#125;</span>&quot;</span>, <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>&#125;,</span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">with</span> urllib.request.urlopen(req) <span class="keyword">as</span> resp:</span><br><span class="line">        <span class="keyword">return</span> json.load(resp)[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;task_id&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">wait_for_video</span>(<span class="params">task_id, timeout=<span class="number">180</span></span>):</span><br><span class="line">    url = <span class="string">f&quot;<span class="subst">&#123;API&#125;</span>/tasks/<span class="subst">&#123;task_id&#125;</span>&quot;</span></span><br><span class="line">    req = urllib.request.Request(url, headers=&#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;KEY&#125;</span>&quot;</span>&#125;)</span><br><span class="line">    deadline = time.time() + timeout</span><br><span class="line">    <span class="keyword">while</span> time.time() &lt; deadline:</span><br><span class="line">        <span class="keyword">with</span> urllib.request.urlopen(req) <span class="keyword">as</span> resp:</span><br><span class="line">            data = json.load(resp)[<span class="string">&quot;data&quot;</span>]</span><br><span class="line">        <span class="keyword">if</span> data[<span class="string">&quot;status&quot;</span>] == <span class="string">&quot;success&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> data[<span class="string">&quot;result&quot;</span>][<span class="string">&quot;resources&quot;</span>][<span class="number">0</span>][<span class="string">&quot;url&quot;</span>]</span><br><span class="line">        <span class="keyword">if</span> data[<span class="string">&quot;status&quot;</span>] <span class="keyword">in</span> (<span class="string">&quot;failed&quot;</span>, <span class="string">&quot;cancelled&quot;</span>):</span><br><span class="line">            <span class="keyword">raise</span> RuntimeError(<span class="string">f&quot;task <span class="subst">&#123;task_id&#125;</span> <span class="subst">&#123;data[<span class="string">&#x27;status&#x27;</span>]&#125;</span>&quot;</span>)</span><br><span class="line">        time.sleep(<span class="number">3</span>)</span><br><span class="line">    <span class="keyword">raise</span> TimeoutError(task_id)</span><br></pre></td></tr></table></figure>
+
+<p>The same two functions work for every Modellix route — swap the path to <code>/minimax/hailuo-02-fl2v</code> or <code>/vidu/viduq3-turbo-fl2v</code> and keep the field names that route documents.</p>
+<p>Three operational details save debugging time:</p>
+<ul>
+<li><strong>Results expire.</strong> Modellix stores generated results for <strong>7 days</strong> (the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api.md">REST API guide</a> states this explicitly); Alibaba’s Wan reference gives task ids and video URLs a 24-hour validity. Download to your own storage promptly.</li>
+<li><strong>Errors are structured.</strong> The unified API returns <code>{&quot;code&quot;: &lt;http status&gt;, &quot;message&quot;: &quot;&lt;category&gt;: &lt;detail&gt;&quot;}</code>. <code>400</code> means fix the parameters, <code>401</code> a bad key, <code>402</code> insufficient balance, <code>404</code> a missing task or model, <code>429</code> a rate limit (respect <code>X-RateLimit-Reset</code>), and <code>500</code>&#x2F;<code>503</code> are retryable with exponential backoff.</li>
+<li><strong>Webhooks are available.</strong> If you would rather not poll, configure a webhook URL and receive the task result asynchronously — the submit call stays the same.</li>
+</ul>
+<p>For the input-prep side of the pipeline: if your source is an existing video and you need its first and last frames, a two-line <code>ffmpeg</code> invocation extracts them — <code>ffmpeg -i input.mp4 -vf &quot;select=eq(n\,0)&quot; -frames:v 1 start.png</code> and <code>ffmpeg -sseof -0.1 -i input.mp4 -frames:v 1 end.png</code> — which covers most “first and last frame extractor” cases without extra tooling.</p>
+<h2 id="What-first-last-frame-video-costs"><a href="#What-first-last-frame-video-costs" class="headerlink" title="What first-last-frame video costs"></a>What first-last-frame video costs</h2><p>FL2V is billed per second of output on most routes, with the rate tiered by resolution. That makes the unit cost predictable — but only if you compare the same duration and the same quality tier. The prices below were read from the live Modellix model pages on August 6, 2026; they change, so treat them as a snapshot, not a quote.</p>
+<table>
+<thead>
+<tr>
+<th>Route (Modellix)</th>
+<th align="right">540p</th>
+<th align="right">720p</th>
+<th align="right">1080p</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>vidu/viduq3-turbo-fl2v</code></td>
+<td align="right">$0.0322&#x2F;s</td>
+<td align="right">$0.0506&#x2F;s</td>
+<td align="right">$0.0598&#x2F;s</td>
+</tr>
+<tr>
+<td><code>vidu/viduq3-pro-fl2v</code></td>
+<td align="right">$0.0414&#x2F;s</td>
+<td align="right">$0.0920&#x2F;s</td>
+<td align="right">$0.1104&#x2F;s</td>
+</tr>
+<tr>
+<td><code>minimax/hailuo-02-fl2v</code></td>
+<td align="right">—</td>
+<td align="right">$0.0540&#x2F;s (768P, 6s)</td>
+<td align="right">$0.1060&#x2F;s (1080P, 6s)</td>
+</tr>
+<tr>
+<td><code>pixverse/v6-fl2v</code></td>
+<td align="right">$0.0805&#x2F;s</td>
+<td align="right">$0.1035&#x2F;s</td>
+<td align="right">$0.2070&#x2F;s</td>
+</tr>
+<tr>
+<td><code>pixverse/c1-fl2v</code></td>
+<td align="right">$0.0920&#x2F;s</td>
+<td align="right">$0.1150&#x2F;s</td>
+<td align="right">$0.2185&#x2F;s</td>
+</tr>
+</tbody></table>
+<p><em>Rates per second, without audio, from the <a href="https://www.modellix.ai/models/pixverse/v6-fl2v">Modellix model pages</a> on August 6, 2026. Hailuo 02 bills by duration&#x2F;resolution pairs — 6s or 10s at 768P or 1080P ($0.0672&#x2F;s at 10s&#x2F;768P, $0.1200&#x2F;s at 10s&#x2F;1080P; 10s caps at 768P, 1080P caps at 6s) — so its row shows the 6s rates; PixVerse routes add an audio surcharge (~$0.023–$0.0575&#x2F;s depending on quality).</em></p>
+<p>A worked example with the assumptions stated: a 5-second 720p clip on <code>pixverse/v6-fl2v</code> is 5 × $0.1035 &#x3D; <strong>$0.5175</strong>; the same clip on <code>vidu/viduq3-turbo-fl2v</code> is 5 × $0.0506 &#x3D; <strong>$0.2530</strong>. Both are real task costs you can reproduce from the tables above — no credit-package conversion required.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/fl2v-720p-cost-comparison.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/fl2v-720p-cost-comparison.png" alt="Bar chart comparing per-second FL2V prices at 720p across Vidu Q3 Turbo, Vidu Q3 Pro, Hailuo 02, PixVerse v6, and PixVerse c1" loading="lazy" />
+</picture>
+
+<p><em>Figure 2: 720p per-second rates across the Modellix FL2V routes, read from live model pages on August 6, 2026.</em></p>
+<p>Two honesty notes on pricing. First, <strong>billing units differ across providers</strong> — Wan direct is per-second credits, aggregator model cards sometimes show a flat “from $0.4” figure that hides the duration, and credit packages on vendor platforms convert at package-dependent rates. A “cheaper” number only means something when the duration, resolution, and billing unit match. Second, the “free” search intent around FL2V mostly points at consumer tools (domoai, vidy, similar) that run free tiers on the web app; on the API side there is no free FL2V generation — the free angles are trial credits on vendor platforms and aggregator onboarding credits, both of which you should verify on the live console before relying on them.</p>
+<h2 id="Choosing-an-FL2V-route-quality-speed-and-integration"><a href="#Choosing-an-FL2V-route-quality-speed-and-integration" class="headerlink" title="Choosing an FL2V route: quality, speed, and integration"></a>Choosing an FL2V route: quality, speed, and integration</h2><p>The right route depends on what your output has to be:</p>
+<ul>
+<li><strong>Fastest and cheapest:</strong> Vidu Q3 Turbo FL2V. Its <a href="https://www.modellix.ai/models/vidu/viduq3-turbo-fl2v">model page</a> positions it for quick morphs and rapid storyboard filling — good for preview loops where you regenerate often.</li>
+<li><strong>Cinematic quality:</strong> Vidu Q3 Pro FL2V or PixVerse v6 at 1080p. Pro is described as the premium tier for commercial transitions; PixVerse adds optional audio and up to 15s of output, which matters when a scene needs more than 8 seconds.</li>
+<li><strong>Camera control and end-frame-only input:</strong> Hailuo 02 FL2V accepts 15 camera-control instructions in <code>[Pan left]</code>-style prompt syntax, and — uniquely among these routes — treats the first frame as optional, auto-generating it when you only supply a last frame (a live user need, per the <a target="_blank" rel="noopener" href="https://discuss.ai.google.dev/t/support-for-last-frame-usage-without-a-required-first-frame/121565">Google forum thread</a> that ranks for this query).</li>
+<li><strong>Vendor-direct vs aggregator:</strong> Alibaba and Google document their FL2V APIs directly but with vendor-specific constraints (Wan’s region-locked endpoints and 24h URL validity, Veo’s platform requirements). Through an aggregator you trade vendor SDKs for one REST pattern, USD per-second billing, and — for Modellix specifically — access to the Chinese model families without needing a Chinese account. That last point is a real workflow difference, not a claim that any route is universally cheapest.</li>
+</ul>
+<p>Modellix exposes all five dedicated FL2V routes above plus the Wan 2.7 <code>first_frame + last_frame</code> mode through one API key and one billing model. If you are evaluating routes for a product integration, the honest way to choose is: price your exact duration and resolution on the routes you qualify for, then weigh the operational cost of the integration path — which is precisely what the model pages and the <a href="https://www.modellix.ai/providers/pixverse">providers directory</a> let you do side by side.</p>
+<h2 id="FL2V-vs-the-adjacent-video-APIs"><a href="#FL2V-vs-the-adjacent-video-APIs" class="headerlink" title="FL2V vs the adjacent video APIs"></a>FL2V vs the adjacent video APIs</h2><p>FL2V sits in a family of video-generation APIs that get confused with each other. The decision rule is which inputs you actually have:</p>
+<table>
+<thead>
+<tr>
+<th>You have</th>
+<th>API to use</th>
+<th>What it returns</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>One image + prompt</td>
+<td>Image-to-video (I2V)</td>
+<td>Video animating from that image; the ending is the model’s choice</td>
+</tr>
+<tr>
+<td>Two images (start + end) + prompt</td>
+<td><strong>FL2V (this guide)</strong></td>
+<td>Video interpolating a transition between the two frames</td>
+</tr>
+<tr>
+<td>A video + prompt</td>
+<td>Video extend</td>
+<td>Continuation of the existing clip</td>
+</tr>
+<tr>
+<td>Character&#x2F;subject reference images + prompt</td>
+<td>Reference-to-video (R2V)</td>
+<td>New video preserving the reference subject(s)</td>
+</tr>
+</tbody></table>
+<p>The frequent real-world mistake is calling FL2V with a single image, or expecting FL2V to continue an existing clip — it does neither. For single-image animation, our <a href="https://www.modellix.ai/blog/image-to-video-api/">image-to-video API guide</a> covers the one-image pattern end to end; for continuation, the <a href="https://www.modellix.ai/blog/pixverse-video-extend-api/">PixVerse video extend API guide</a> walks through extending a clip rather than transitioning between frames.</p>
+<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>What is a first last frame video API?</strong></p>
+<p>A first-last-frame video API (FL2V, also FLF2V or start&#x2F;end frames) takes two images — the start frame and the end frame — plus a text prompt, and generates a video that transitions from the first image to the last. The prompt controls the motion in between; the API is asynchronous (submit, poll, download).</p>
+<p><strong>Is FL2V the same as image-to-video?</strong></p>
+<p>No. Image-to-video animates a single starting image and lets the model decide the ending. FL2V constrains both the first and last frames, which makes it the right tool when the ending is part of the brief (before&#x2F;after transitions, morphs, storyboard completion). Most FL2V routes require exactly two images.</p>
+<p><strong>Which AI video APIs support first and last frames?</strong></p>
+<p>As of August 2026: Alibaba Wan 2.1&#x2F;2.2 (<code>kf2v</code> family) and Wan 2.7 (first-frame + last-frame mode), Google Veo 2 &#x2F; Veo 3.1, Kling’s start &amp; end frames mode, MiniMax Hailuo 02 FL2V, PixVerse v6&#x2F;c1 FL2V, and Vidu Q3 Pro&#x2F;Turbo FL2V. Aggregators (fal.ai, Segmind, Modellix) resell most of these behind one API.</p>
+<p><strong>Can I generate a video from only a last frame?</strong></p>
+<p>On most routes, no — both frames are required. MiniMax’s Hailuo 02 FL2V is the exception: its Modellix route treats the first frame as optional and auto-generates one when only a last frame is supplied. Last-frame-only conditioning is also a requested feature on Google’s side, where it is not yet supported.</p>
+<p><strong>How much does first-last-frame video cost?</strong></p>
+<p>FL2V is billed per second of output, tiered by resolution. On Modellix’s routes (2026-08-06), 720p ranges from $0.0506&#x2F;s (Vidu Q3 Turbo) to $0.1150&#x2F;s (PixVerse c1); 1080p ranges from $0.0598&#x2F;s to $0.2185&#x2F;s. A 5-second 720p clip costs roughly $0.25–$0.58 depending on the route.</p>
+<p><strong>Do the first and last frames need to be similar?</strong></p>
+<p>They need to be visually consistent — same subject, comparable composition and lighting, matching dimensions. Kling’s guide warns that large differences cause a visible “lens switch” instead of a smooth transition. The model interpolates; it does not rewrite the scene.</p>
+<p><strong>Is there a free FL2V API tier?</strong></p>
+<p>No mainstream FL2V API offers free generation. Consumer tools run free tiers on their web apps; API access is paid, with trial credits on some vendor platforms and aggregator onboarding credits — verify the current policy on the live console before building a workflow on it.</p>
+<hr>
+<p><em>Provider details and pricing reflect public information as of August 2026 and change frequently. Validate against each provider’s live pricing before committing. Access image and video models from multiple providers, including Wan, Hailuo, PixVerse, and Vidu, through a single API key at <a href="https://www.modellix.ai/">modellix.ai</a>.</em></p>
+<p><em>Cover image: illustrative Modellix artwork; it is not a product screenshot or source evidence.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/FL2V/" class="tag-pill tag-pill--sm">FL2V</a>
+            
+              <a href="/blog/tags/Image-to-Video/" class="tag-pill tag-pill--sm">Image-to-Video</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/reference-to-video-ai1/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-pixverse-motion-control-api.webp" alt="PixVerse Motion Control API: Integration Guide &amp; Pricing" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">API Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">PixVerse Motion Control API: Integration Guide &amp; Pricing</h3>
+          <time class="related-article-date" datetime="2026-08-05T02:00:00.000Z">August 5, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/gpt-image-1-5-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-gpt-image-1-5-api.webp" alt="GPT Image 1.5 API: Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">API Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">GPT Image 1.5 API: Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-07-29T16:00:00.000Z">July 30, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/first-last-frame-to-video-api/&text=First%20Last%20Frame%20to%20Video%20API%3A%20FL2V%20Integration%20Guide" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/first-last-frame-to-video-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/first-last-frame-to-video-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

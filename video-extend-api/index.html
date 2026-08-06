@@ -1,0 +1,596 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Extend API: Lengthen AI Video via Multi-Provider APIs — Modellix Blog</title>
+  <meta name="description" content="A video extend API appends footage to an existing clip. Compare OpenAI, xAI, and PixVerse extend endpoints, learn the async pattern, see live Modellix pricing.">
+  <meta name="keywords" content="video extend api, video extend api, extend video api, ai video continuation api, video extend api free, video extend api python, video extend api javascript, video extend api python example, video extend api python github, ai video continuation api free, ai video continuation api python, extend video length ai, video extension api, ai video extension api, extend ai video api, video continuation api, veo 3.1 extend api, grok video extend api, openai video extend api, kling video extend api, pixverse video extend api, runway video extend api, how to extend ai video">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/video-extend-api/">
+  <meta name="description" content="A video extend API appends footage to an existing clip. Compare OpenAI, xAI, and PixVerse extend endpoints, learn the async pattern, see live Modellix pricing.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Video Extend API: Lengthen AI Video via Multi-Provider APIs — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/video-extend-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="A video extend API appends footage to an existing clip. Compare OpenAI, xAI, and PixVerse extend endpoints, learn the async pattern, see live Modellix pricing.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-video-extend-api.webp">
+<meta property="article:published_time" content="2026-08-06T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-06T02:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="API">
+<meta property="article:tag" content="developer-guide">
+<meta property="article:tag" content="integration">
+<meta property="article:tag" content="video-extend">
+<meta property="article:tag" content="video-generation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-video-extend-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Video Extend API: Lengthen AI Video via Multi-Provider APIs","description":"A video extend API appends footage to an existing clip. Compare OpenAI, xAI, and PixVerse extend endpoints, learn the async pattern, see live Modellix pricing.","datePublished":"2026-08-06T02:00:00.000Z","dateModified":"2026-08-06T02:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/video-extend-api/","image":"https://statics.mylandingpages.co/static/modellix/image/cover-video-extend-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Video Extend API: Lengthen AI Video via Multi-Provider APIs</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/api-guides/" class="category-tag category-tag--sm">api-guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Video Extend API: Lengthen AI Video via Multi-Provider APIs</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-06T02:00:00.000Z">August 6, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/API/" class="tag-pill tag-pill--sm">API</a>
+            
+              <a href="/blog/tags/video-generation/" class="tag-pill tag-pill--sm">video-generation</a>
+            
+              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">developer-guide</a>
+            
+              <a href="/blog/tags/integration/" class="tag-pill tag-pill--sm">integration</a>
+            
+              <a href="/blog/tags/video-extend/" class="tag-pill tag-pill--sm">video-extend</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>The short answer: a video extend API appends footage to the end of a clip A video extend API takes a source video and a continuation prompt, then generates additional footage that continues from the last frame.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/cover-video-extend-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/cover-video-extend-api.png" alt="Dark amber editorial cover with the MODELLIX wordmark, the two-line title Video Extend API / Lengthen AI Video via Multi-Provider APIs, and a top-right spec capsule" />
+</picture>
+
+<h2 id="The-short-answer-a-video-extend-API-appends-footage-to-the-end-of-a-clip"><a href="#The-short-answer-a-video-extend-API-appends-footage-to-the-end-of-a-clip" class="headerlink" title="The short answer: a video extend API appends footage to the end of a clip"></a>The short answer: a video extend API appends footage to the end of a clip</h2><p>A video extend API takes a source video and a continuation prompt, then generates additional footage that continues from the last frame. The output is a longer video, not a new one: the scene, subject, and motion pick up where the input ended. OpenAI, Google, xAI, and PixVerse all ship extension as a distinct API operation from text-to-video or image-to-video generation, and aggregators resell those routes behind a single key.</p>
+<p>As of August 6, 2026, Modellix carries two extend-capable models: <code>pixverse/v6-video-extend</code> and <code>xai/grok-imagine-video-extend</code>. Both work through the same asynchronous submit–poll–retrieve contract, which is the pattern this guide walks through end to end. Modellix is an AI model API aggregator and has a commercial interest in this comparison — the prices below are unit rates read from live model pages today, not a claim that an aggregator route is always the cheapest.</p>
+<h2 id="What-video-extension-is-—-and-what-it-is-not"><a href="#What-video-extension-is-—-and-what-it-is-not" class="headerlink" title="What video extension is — and what it is not"></a>What video extension is — and what it is not</h2><p>The operation is narrower than most “make my video longer” queries imply. Extension is <strong>video-to-video continuation</strong>: an existing clip goes in, the model generates the next segment, and the two are joined. The term shows up as “video extend”, “video extension”, and “video continuation” across vendors — same operation, different labels.</p>
+<p>Four adjacent operations are regularly confused with it:</p>
+<ul>
+<li><strong>Regeneration from text</strong> — a text-to-video call has no source video and cannot preserve the subject or scene of an existing clip. If your text-to-video API returns a different 8-second clip every call, extending is the way to keep one consistent video growing. See our <a href="https://www.modellix.ai/blog/text-to-video-api/">text-to-video API guide</a> for how that generation path differs.</li>
+<li><strong>Upscaling</strong> — increases resolution; the content and length stay the same.</li>
+<li><strong>Restyling</strong> — changes the appearance of the existing footage (style transfer, replacement of the subject).</li>
+<li><strong>Outpainting</strong> — expands the frame outward beyond the edges, filling new spatial context. Outpainting extends the canvas; video extension extends the timeline.</li>
+</ul>
+<p>That last distinction is the one search engines blur most: an “extend video” query surfaces outpainting tools, which answer a different question. A video extend API answers “what happens next?”, not “what is outside the frame?”.</p>
+<h2 id="Which-providers-offer-video-extend-APIs"><a href="#Which-providers-offer-video-extend-APIs" class="headerlink" title="Which providers offer video extend APIs"></a>Which providers offer video extend APIs</h2><p>The vendor landscape is young but concrete. The following operations were verified against official documentation on August 6, 2026:</p>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Extend operation</th>
+<th>Added duration per call</th>
+<th>Input</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>OpenAI (Sora)</td>
+<td><code>POST /videos/extensions</code></td>
+<td>4–20 seconds in 4s steps</td>
+<td><code>video.id</code> of a completed video</td>
+<td><a target="_blank" rel="noopener" href="https://developers.openai.com/api/reference/resources/videos/methods/extend/">API reference</a></td>
+</tr>
+<tr>
+<td>xAI (Grok Imagine)</td>
+<td><code>POST /v1/videos/extensions</code></td>
+<td><code>duration</code> &#x3D; appended segment only</td>
+<td>public video URL, base64, or Files API <code>file_id</code></td>
+<td><a target="_blank" rel="noopener" href="https://docs.x.ai/developers/model-capabilities/video/extension">Video Extension docs</a></td>
+</tr>
+<tr>
+<td>Google (Veo 3.1)</td>
+<td>Video extension documented in the Gemini API</td>
+<td>per-model, per the Veo 3.1 capability set</td>
+<td>video input via the Gemini API</td>
+<td><a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/video">Gemini video docs</a></td>
+</tr>
+<tr>
+<td>PixVerse (V6 &#x2F; V4.5 family)</td>
+<td><code>POST /openapi/v2/video/extend/generate</code></td>
+<td>5 or 8s on the older family; 1–15s on V6</td>
+<td><code>source_video_id</code> or uploaded media</td>
+<td><a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/extend-1268531m0">PixVerse Extend guide</a></td>
+</tr>
+<tr>
+<td>Runway</td>
+<td>Extend endpoint exposed by aggregators</td>
+<td>per-route</td>
+<td>video reference</td>
+<td><a target="_blank" rel="noopener" href="https://docs.kie.ai/runway-api/extend-ai-video">Kie AI Runway extend docs</a></td>
+</tr>
+</tbody></table>
+<p>Kling also documents a video-extension API on its developer portal, and its docs rank in the SERP for this query; it is left out of the table only because we could not verify a stable documentation URL on the day of writing.</p>
+<p>On Modellix specifically, the extend routes live today are the <a href="https://www.modellix.ai/models/pixverse/v6-video-extend">PixVerse V6 extend model</a> and the <a href="https://www.modellix.ai/models/xai/grok-imagine-video-extend">Grok Imagine Video Extend model</a> — the same two providers’ capabilities behind one API key. The catalog changes as vendors ship new versions, so treat the two-route snapshot as current only as of the date above and check the model list before you commit.</p>
+<h2 id="The-extend-API-pattern-one-video-in-longer-video-out"><a href="#The-extend-API-pattern-one-video-in-longer-video-out" class="headerlink" title="The extend API pattern: one video in, longer video out"></a>The extend API pattern: one video in, longer video out</h2><p>Every extend API on the list above follows the same lifecycle: <strong>submit</strong> the job with the source video reference and a continuation prompt, <strong>poll</strong> a task identifier until it reaches a terminal state, then <strong>download</strong> the result. Video jobs take longer than image calls, so none of them are synchronous — if the submit–poll loop is new to you, our <a href="https://www.modellix.ai/blog/pixverse-api/">PixVerse API guide</a> walks through it end to end.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/video-extend-workflow.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/video-extend-workflow.png" alt="Video extend workflow timeline: original clip plus an appended continuation segment equals a longer video, with the duration parameter controlling only the appended part" loading="lazy" />
+</picture>
+
+<p><em>Figure 1: What a video extend API call does. The input clip is preserved; the model generates the appended segment. The duration parameter controls the size of that segment, not the total length of the output.</em></p>
+<p>That last sentence is the most common integration error. xAI’s documentation is explicit: if your input video is 10 seconds and you set <code>duration</code> to 5, the returned video is 15 seconds — the parameter controls the <strong>extended portion only</strong>. OpenAI’s reference page takes the same shape with fixed increments (4, 8, 12, 16, or 20 seconds). PixVerse documents per-call chunks (5 or 8 seconds on the older model family, 1–15 seconds on V6) and describes chaining calls to keep a story going. If you design your pipeline around “duration &#x3D; total output length”, every job comes back shorter than expected.</p>
+<p>The input contract matters just as much as the duration semantics:</p>
+<ul>
+<li><strong>Public URL</strong> — the simplest path; the API fetches the clip itself. Both Modellix extend routes take a publicly accessible video URL.</li>
+<li><strong>Uploaded media</strong> — PixVerse’s extend endpoint accepts a <code>video_media_id</code> from its upload API, which adds a storage step to your pipeline.</li>
+<li><strong>Previously generated video ID</strong> — PixVerse accepts a <code>source_video_id</code> from an earlier generation call (zero-upload if the clip came from the same account); OpenAI takes the <code>video.id</code> of a completed video.</li>
+</ul>
+<p>Whatever the input form, the value proposition is the same: continuity. The model preserves the subject, scene, and motion of the input, so the extended clip does not look like a cut to a different video. A shared caveat is storage: extended results are held temporarily — Modellix keeps generated results for 7 days, Kie AI’s Runway extend route documents 14-day retention, and OpenAI exposes an <code>expires_at</code> on the video object — so download promptly.</p>
+<h2 id="Video-extend-API-pricing-compared"><a href="#Video-extend-API-pricing-compared" class="headerlink" title="Video extend API pricing compared"></a>Video extend API pricing compared</h2><p>Pricing for extension is quoted per unit of output, but the units are not the same across vendors. PixVerse direct billing is in <strong>credits per clip</strong> on the older model family (the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/pricing-796039m0">official pricing page</a> breaks out per-clip credit rows by model, quality, and duration) and per-second credits on V6; xAI and the aggregator routes bill <strong>USD per second</strong>. A credit price and a dollar price are not comparable until you convert through the credit package you actually buy.</p>
+<p>The Modellix extend routes, read from the live model pages on August 6, 2026:</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th align="right">Quality</th>
+<th align="right">Price (USD)</th>
+<th>Per-call duration</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>pixverse/v6-video-extend</code></td>
+<td align="right">360p</td>
+<td align="right">$0.0575 &#x2F; second</td>
+<td>1–15 seconds</td>
+</tr>
+<tr>
+<td><code>pixverse/v6-video-extend</code></td>
+<td align="right">540p</td>
+<td align="right">$0.0805 &#x2F; second</td>
+<td>1–15 seconds</td>
+</tr>
+<tr>
+<td><code>pixverse/v6-video-extend</code></td>
+<td align="right">720p</td>
+<td align="right">$0.1035 &#x2F; second</td>
+<td>1–15 seconds</td>
+</tr>
+<tr>
+<td><code>pixverse/v6-video-extend</code></td>
+<td align="right">1080p</td>
+<td align="right">$0.2070 &#x2F; second</td>
+<td>1–15 seconds</td>
+</tr>
+<tr>
+<td><code>xai/grok-imagine-video-extend</code></td>
+<td align="right">single tier</td>
+<td align="right">$0.1725 &#x2F; second</td>
+<td>2–10 seconds appended</td>
+</tr>
+</tbody></table>
+<p>Worked arithmetic, with the assumptions stated: one minute of 720p extension through the PixVerse route is $0.1035 × 60 ≈ <strong>$6.21</strong>; the same minute through the Grok Imagine route is $0.1725 × 60 ≈ <strong>$10.35</strong>; a single 15-second 1080p PixVerse call is ≈ <strong>$3.11</strong>. These are unit-rate calculations for budget sizing, not quotes — the actual cost of a task depends on the duration you request, the quality tier, and any per-call rules the provider applies.</p>
+<p>Two facts keep this table honest. First, a per-second rate is not a per-task rate: a 5-second extend and a 15-second extend differ threefold on the same route. Second, “cheapest” depends on the billing unit you would have used anyway — a PixVerse credit package bought for other workloads can make the per-clip route cheaper for short clips than a per-second route, and the reverse is true for long ones. Price a representative task in one unit before comparing.</p>
+<h2 id="Extend-a-video-through-one-API-working-code"><a href="#Extend-a-video-through-one-API-working-code" class="headerlink" title="Extend a video through one API: working code"></a>Extend a video through one API: working code</h2><p>The Modellix unified API wraps both extend routes in the same asynchronous contract: <code>POST https://api.modellix.ai/api/v1/&lt;provider&gt;/&lt;model&gt;/async</code> returns a <code>task_id</code>, and <code>GET https://api.modellix.ai/api/v1/tasks/{task_id}</code> retrieves the result. The request body is the model’s parameter set — for <code>pixverse/v6-video-extend</code> that is <code>video</code> (a public URL), <code>prompt</code>, <code>duration</code>, and <code>quality</code>. The <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api">API documentation</a> is the canonical contract; the example below follows it.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> MODELLIX_API_KEY=<span class="string">&quot;your_api_key&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. Submit the extend task</span></span><br><span class="line">curl --request POST \</span><br><span class="line">  --url https://api.modellix.ai/api/v1/pixverse/v6-video-extend/async \</span><br><span class="line">  --header <span class="string">&quot;Authorization: Bearer <span class="variable">$MODELLIX_API_KEY</span>&quot;</span> \</span><br><span class="line">  --header <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  --data <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;video&quot;: &quot;https://your-bucket.example.com/clip.mp4&quot;,</span></span><br><span class="line"><span class="string">    &quot;prompt&quot;: &quot;The drone keeps flying over the canyon as the sun sets, camera slowly rising&quot;,</span></span><br><span class="line"><span class="string">    &quot;duration&quot;: 5,</span></span><br><span class="line"><span class="string">    &quot;quality&quot;: &quot;720p&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br><span class="line"><span class="comment"># → &#123;&quot;code&quot;:0,&quot;data&quot;:&#123;&quot;status&quot;:&quot;pending&quot;,&quot;task_id&quot;:&quot;task-abc123&quot;, ...&#125;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. Poll the task until it reaches a terminal state</span></span><br><span class="line">curl --request GET \</span><br><span class="line">  --url https://api.modellix.ai/api/v1/tasks/task-abc123 \</span><br><span class="line">  --header <span class="string">&quot;Authorization: Bearer <span class="variable">$MODELLIX_API_KEY</span>&quot;</span></span><br><span class="line"><span class="comment"># → &#123;&quot;code&quot;:0,&quot;data&quot;:&#123;&quot;status&quot;:&quot;success&quot;,&quot;result&quot;:&#123;&quot;resources&quot;:[&#123;&quot;url&quot;:&quot;https://cdn.../extended.mp4&quot;, ...&#125;]&#125;&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>The same flow in Python, with polling and error handling:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">API_KEY = os.environ[<span class="string">&quot;MODELLIX_API_KEY&quot;</span>]</span><br><span class="line">BASE = <span class="string">&quot;https://api.modellix.ai/api/v1&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">extend_video</span>(<span class="params">video_url, prompt, duration=<span class="number">5</span>, quality=<span class="string">&quot;720p&quot;</span></span>):</span><br><span class="line">    headers = &#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;API_KEY&#125;</span>&quot;</span>&#125;</span><br><span class="line">    body = &#123;</span><br><span class="line">        <span class="string">&quot;video&quot;</span>: video_url,</span><br><span class="line">        <span class="string">&quot;prompt&quot;</span>: prompt,</span><br><span class="line">        <span class="string">&quot;duration&quot;</span>: duration,</span><br><span class="line">        <span class="string">&quot;quality&quot;</span>: quality,</span><br><span class="line">    &#125;</span><br><span class="line">    resp = requests.post(</span><br><span class="line">        <span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/pixverse/v6-video-extend/async&quot;</span>,</span><br><span class="line">        headers=headers,</span><br><span class="line">        json=body,</span><br><span class="line">        timeout=<span class="number">30</span>,</span><br><span class="line">    )</span><br><span class="line">    resp.raise_for_status()</span><br><span class="line">    task_id = resp.json()[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;task_id&quot;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        poll = requests.get(<span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/tasks/<span class="subst">&#123;task_id&#125;</span>&quot;</span>, headers=headers, timeout=<span class="number">30</span>)</span><br><span class="line">        poll.raise_for_status()</span><br><span class="line">        data = poll.json()[<span class="string">&quot;data&quot;</span>]</span><br><span class="line">        status = data[<span class="string">&quot;status&quot;</span>]</span><br><span class="line">        <span class="keyword">if</span> status == <span class="string">&quot;success&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> data[<span class="string">&quot;result&quot;</span>][<span class="string">&quot;resources&quot;</span>][<span class="number">0</span>][<span class="string">&quot;url&quot;</span>]</span><br><span class="line">        <span class="keyword">if</span> status <span class="keyword">in</span> (<span class="string">&quot;failed&quot;</span>, <span class="string">&quot;canceled&quot;</span>):</span><br><span class="line">            <span class="keyword">raise</span> RuntimeError(<span class="string">f&quot;extend task <span class="subst">&#123;task_id&#125;</span> ended with status <span class="subst">&#123;status&#125;</span>: <span class="subst">&#123;data.get(<span class="string">&#x27;error&#x27;</span>)&#125;</span>&quot;</span>)</span><br><span class="line">        time.sleep(<span class="number">3</span>)  <span class="comment"># video jobs take seconds to minutes; back off before hammering</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># extended_url = extend_video(</span></span><br><span class="line"><span class="comment">#     &quot;https://your-bucket.example.com/clip.mp4&quot;,</span></span><br><span class="line"><span class="comment">#     &quot;The drone keeps flying over the canyon as the sun sets&quot;,</span></span><br><span class="line"><span class="comment"># )</span></span><br></pre></td></tr></table></figure>
+
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/video-extend-async-lifecycle.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/video-extend-async-lifecycle.png" alt="Unified API lifecycle: one API key submits extend tasks to multiple providers, polls a task id, and downloads the result" loading="lazy" />
+</picture>
+
+<p><em>Figure 2: The submit–poll–retrieve lifecycle behind one key. The same loop reaches both extend models and the rest of the Modellix catalog.</em></p>
+<p>Three details will save you debugging time. <strong>Errors are retryable or not, and the distinction is documented</strong>: HTTP 400&#x2F;401&#x2F;402&#x2F;404 mean fix the request, while 429, 500, and 503 are safe to retry with exponential backoff (1s → 2s → 4s); on 429, the <code>X-RateLimit-Reset</code> header tells you when to retry. <strong>Results expire</strong>: generated assets are kept for 7 days, so download them into your own storage. <strong>Webhooks exist</strong>: pass an <code>X-Webhook-URL</code> header and the API POSTs the task result (including the billed amount per task) instead of making you poll.</p>
+<h2 id="Direct-provider-API-or-an-aggregator-route"><a href="#Direct-provider-API-or-an-aggregator-route" class="headerlink" title="Direct provider API or an aggregator route?"></a>Direct provider API or an aggregator route?</h2><p>The direct APIs are the reference implementation, and for a single-model workload they can be the lower-cost path: you pay the provider’s own rate, use its native SDK, and skip an intermediary. The trade-off is that you now maintain a separate integration per provider — distinct auth, distinct parameter names, distinct polling semantics, distinct billing units (PixVerse credits vs xAI per-second USD).</p>
+<p>An aggregator route trades that unit price for integration surface. Behind one key and one billing relationship, Modellix exposes both extend models through the same submit–poll contract, logs each task with its cost, and lets you switch models without rewriting the loop. To be clear about the trade-off: this is not a claim that routing through an aggregator is cheaper — it is a claim about consolidation. If extending video is one of several generation tasks your product does, one integration and one bill can be worth more than the per-second delta.</p>
+<p>For a PixVerse-specific walkthrough — the extend endpoint, parameter table, credit pricing, and error codes for <code>source_video_id</code> vs upload workflows — see our <a href="https://www.modellix.ai/blog/pixverse-video-extend-api/">PixVerse video extend API guide</a>, which documents that provider in depth.</p>
+<h2 id="Choosing-a-video-extend-API-what-to-check"><a href="#Choosing-a-video-extend-API-what-to-check" class="headerlink" title="Choosing a video extend API: what to check"></a>Choosing a video extend API: what to check</h2><p>Before you pick a route, run this checklist against the model card and the docs:</p>
+<ul>
+<li><strong>What does <code>duration</code> control?</strong> If it sizes the appended segment rather than the total, your length math changes.</li>
+<li><strong>How much can you add per call?</strong> Per-call caps range from 2–10 seconds (the Modellix Grok route) to 4–20 seconds (OpenAI) to 1–15 seconds (PixVerse V6). Chaining calls is documented on some providers and bills per call.</li>
+<li><strong>What input does it accept?</strong> Public URL is zero-setup; upload and generated-ID inputs add storage steps to your pipeline.</li>
+<li><strong>How long are results retained?</strong> 7 days on Modellix, 14 days on Kie AI’s Runway route, <code>expires_at</code> on OpenAI — schedule downloads accordingly.</li>
+<li><strong>What are the error semantics?</strong> Retryable vs non-retryable statuses, rate-limit headers, and concurrency caps determine whether your batch loop survives production.</li>
+<li><strong>Is audio handled?</strong> Some providers generate or preserve audio (Veo 3.1 documents native audio); others are video-only. Check the model card for the exact route.</li>
+<li><strong>What is the billing unit?</strong> Per-second USD, per-clip credits, and package rates are not interchangeable; compute a representative per-minute cost in the unit you will actually be billed in.</li>
+</ul>
+<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>What is a video extend API?</strong></p>
+<p>A video extend API takes a source video and a text prompt, then generates additional footage that continues from the last frame of the input. The output is the original clip plus an appended segment, preserving subject, scene, and motion instead of generating a fresh video.</p>
+<p><strong>How do I extend an AI video via API?</strong></p>
+<p>Submit the source video reference and a continuation prompt to the provider’s extend endpoint, poll the returned task ID until it reaches a terminal state, then download the result. The working Python example in this guide follows that flow against the Modellix unified API.</p>
+<p><strong>Does the <code>duration</code> parameter set the total video length?</strong></p>
+<p>No. On every extend API surveyed, <code>duration</code> controls the length of the appended segment. xAI’s documentation gives the example directly: a 10-second input with <code>duration</code> set to 5 returns a 15-second video. Build your length math on “input + extension”, not on the parameter value alone.</p>
+<p><strong>Which AI video APIs support extending video?</strong></p>
+<p>OpenAI (Sora) exposes <code>POST /videos/extensions</code>; xAI (Grok Imagine) exposes <code>POST /v1/videos/extensions</code>; PixVerse exposes <code>POST /openapi/v2/video/extend/generate</code>; Google documents video extension as a Veo 3.1 capability in the Gemini API; Runway’s extend is resold by aggregators. On Modellix, the extend routes are <code>pixverse/v6-video-extend</code> and <code>xai/grok-imagine-video-extend</code> (as of August 6, 2026).</p>
+<p><strong>How much does a video extend API cost?</strong></p>
+<p>It depends on the billing unit: PixVerse direct billing uses credits per clip (or per second on V6), while xAI and aggregator routes bill USD per second. As of August 6, 2026, the Modellix PixVerse V6 route ranges $0.0575–$0.2070 per second by quality, and the Grok Imagine route is $0.1725 per second — roughly $6.21 per minute of 720p extension on the PixVerse route and $10.35 per minute on the Grok route. Recheck the live model page before budgeting.</p>
+<p><strong>How long can an extended video get?</strong></p>
+<p>Per-call, providers cap the added segment: 2–10 seconds on the Modellix Grok route, 1–15 seconds on PixVerse V6, 4–20 seconds in fixed steps on OpenAI. Chaining extend calls is documented by some providers, but each call re-enters the queue and bills separately — there is no single universal maximum, so size your pipeline from the route’s per-call cap.</p>
+<p><strong>Is there a free video extend API?</strong></p>
+<p>Not among the API routes surveyed: extend endpoints bill against an account balance or credit package in every case we verified. Platforms sometimes offer trial credits on signup — check the current terms — but there is no free tier on the extend endpoints themselves.</p>
+<p><strong>What is the difference between video extension and outpainting?</strong></p>
+<p>Extension continues the timeline: new footage is appended after the last frame. Outpainting expands the frame outward, filling new spatial context beyond the visible edges. One answers “what happens next”, the other “what is outside the frame”.</p>
+<hr>
+<p><em>Provider details, endpoint shapes, and pricing reflect public information as of August 6, 2026, and change frequently. Validate against each provider’s live docs and model pages before committing. Access image and video models, including the leading Chinese models, through a single API key at <a href="https://www.modellix.ai/">modellix.ai</a>.</em></p>
+<p><em>Cover image: illustrative Modellix artwork; it is not a product screenshot or source evidence.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/API/" class="tag-pill tag-pill--sm">API</a>
+            
+              <a href="/blog/tags/video-generation/" class="tag-pill tag-pill--sm">video-generation</a>
+            
+              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">developer-guide</a>
+            
+              <a href="/blog/tags/integration/" class="tag-pill tag-pill--sm">integration</a>
+            
+              <a href="/blog/tags/video-extend/" class="tag-pill tag-pill--sm">video-extend</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/talking-avatar-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-talking-avatar-api.webp" alt="Talking Avatar API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">api-guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Talking Avatar API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-08-03T16:00:00.000Z">August 4, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/pixverse-video-reference-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-pixverse-video-reference-api-v2.webp" alt="PixVerse Video Reference API: V6 Fusion Integration Guide" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">api-guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">PixVerse Video Reference API: V6 Fusion Integration Guide</h3>
+          <time class="related-article-date" datetime="2026-08-02T16:00:00.000Z">August 3, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/pixverse-lip-sync/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-pixverse-lip-sync-v2.webp" alt="PixVerse Lip Sync API Guide: Talking Video &amp; TTS" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">api-guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">PixVerse Lip Sync API Guide: Talking Video &amp; TTS</h3>
+          <time class="related-article-date" datetime="2026-08-02T16:00:00.000Z">August 3, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/video-extend-api/&text=Video%20Extend%20API%3A%20Lengthen%20AI%20Video%20via%20Multi-Provider%20APIs" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/video-extend-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/video-extend-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

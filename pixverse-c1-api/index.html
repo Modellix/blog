@@ -1,0 +1,646 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PixVerse C1 API: Models, Pricing &amp; Integration Guide — Modellix Blog</title>
+  <meta name="description" content="PixVerse C1 API explained: c1-t2v, c1-i2v and c1-r2v endpoints, official per-second credit pricing, C1 vs V6 differences, plus copy-paste Python skeletons">
+  <meta name="keywords" content="pixverse c1 api, pixverse c1, pixverse c1 vs v6, pixverse c1 api pricing, pixverse c1 text to video, pixverse/c1-t2v, c1-i2v, c1-r2v, c1 text to video api, pixverse c1 video generation api, pixverse c1 model, pixverse c1 api free, pixverse c1 api review">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/pixverse-c1-api/">
+  <meta name="description" content="PixVerse C1 API explained: c1-t2v, c1-i2v and c1-r2v endpoints, official per-second credit pricing, C1 vs V6 differences, plus copy-paste Python skeletons">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PixVerse C1 API: Models, Pricing &amp; Integration Guide — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/pixverse-c1-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="PixVerse C1 API explained: c1-t2v, c1-i2v and c1-r2v endpoints, official per-second credit pricing, C1 vs V6 differences, plus copy-paste Python skeletons">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-pixverse-c1-api.webp">
+<meta property="article:published_time" content="2026-08-05T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-05T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video">
+<meta property="article:tag" content="API">
+<meta property="article:tag" content="C1">
+<meta property="article:tag" content="PixVerse">
+<meta property="article:tag" content="Video Generation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-pixverse-c1-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"PixVerse C1 API: Models, Pricing & Integration Guide","description":"PixVerse C1 API explained: c1-t2v, c1-i2v and c1-r2v endpoints, official per-second credit pricing, C1 vs V6 differences, plus copy-paste Python skeletons","datePublished":"2026-08-05T16:00:00.000Z","dateModified":"2026-08-05T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/pixverse-c1-api/","image":"https://statics.mylandingpages.co/static/modellix/image/cover-pixverse-c1-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">PixVerse C1 API: Models, Pricing &amp; Integration Guide</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/AI-Video/" class="category-tag category-tag--sm">AI-Video</a>
+          
+        
+      </div>
+      <h1 class="post-title">PixVerse C1 API: Models, Pricing &amp; Integration Guide</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-05T16:00:00.000Z">August 6, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Video/" class="tag-pill tag-pill--sm">AI Video</a>
+            
+              <a href="/blog/tags/API/" class="tag-pill tag-pill--sm">API</a>
+            
+              <a href="/blog/tags/Video-Generation/" class="tag-pill tag-pill--sm">Video Generation</a>
+            
+              <a href="/blog/tags/PixVerse/" class="tag-pill tag-pill--sm">PixVerse</a>
+            
+              <a href="/blog/tags/C1/" class="tag-pill tag-pill--sm">C1</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>PixVerse C1 is the cinema-quality video model released April 7, 2026, callable through text/generate, img/generate, transition/generate, and fusion/generate with model=c1. This guide covers the official capability matrix and per-second credit pricing, per-second USD rates on Modellix, and copy-paste Python skeletons for c1-t2v, c1-i2v, and c1-r2v.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/cover-pixverse-c1-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/cover-pixverse-c1-api.png" alt="Editorial Modellix cover for the PixVerse C1 API guide, showing glass film frames flowing through a server pipeline with a MODELLIX wordmark and T2V · I2V · R2V spec capsule on a dark amber background" />
+</picture>
+
+<p>Search for “pixverse c1 api” and the results split into two kinds of pages: PixVerse’s own documentation, whose request examples still call <code>&quot;model&quot;: &quot;v6&quot;</code>, and a row of aggregator model pages, each quoting its own price with no shared baseline. Almost none of them walk through C1 itself — the model PixVerse released on April 7, 2026 as its cinema-quality generation tier.</p>
+<p>This guide assembles what those pages leave out: the official C1 capability matrix and per-second credit table, per-second USD rates on Modellix, copy-paste Python skeletons for the three C1 endpoints you will actually call (c1-t2v, c1-i2v, c1-r2v), a C1-versus-V6 decision, and the failure modes that waste credits. The facts below were read from PixVerse’s platform documentation on August 6, 2026. Modellix is an API aggregator that resells PixVerse models, so we have a commercial interest in this topic; the official platform path is described as the neutral baseline, and where a Modellix route appears it is priced on its own — without claiming either route is cheaper.</p>
+<h2 id="What-Is-the-PixVerse-C1-Model-and-How-It-Differs-from-V6"><a href="#What-Is-the-PixVerse-C1-Model-and-How-It-Differs-from-V6" class="headerlink" title="What Is the PixVerse C1 Model (and How It Differs from V6)"></a>What Is the PixVerse C1 Model (and How It Differs from V6)</h2><p>PixVerse positions C1 as “a cinema-quality video generation model” in its <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/c1-2067883m0">official model documentation</a>: near cinematic-quality visuals, physically accurate character motion, high-impact combat sequences, an aesthetic VFX system, and multi-panel storyboarding — reference-based generation can turn a multi-panel storyboard image into a video in one request. C1 launched on <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/changelogs-906383m0">April 7, 2026</a>, about a week after V6.</p>
+<p>What matters for an API integration is the capability surface, which the official <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/capability-matrix-2144288m0">capability matrix</a> states plainly:</p>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>C1</th>
+<th>V6</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Text-to-video</td>
+<td>Supported</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>Image-to-video</td>
+<td>Supported</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>Transition (first&#x2F;last frame)</td>
+<td>Supported</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>Reference-to-video (Fusion)</td>
+<td>Supported</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>Video extension</td>
+<td><strong>Not supported</strong></td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>Inline multi-clip</td>
+<td>Supported with prompt</td>
+<td>Supported with parameters</td>
+</tr>
+<tr>
+<td>Inline audio</td>
+<td>Supported</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>Max duration</td>
+<td>15 seconds</td>
+<td>15 seconds</td>
+</tr>
+<tr>
+<td>Max resolution</td>
+<td>1080p</td>
+<td>1080p</td>
+</tr>
+<tr>
+<td>Pricing</td>
+<td>Per second</td>
+<td>Per second</td>
+</tr>
+</tbody></table>
+<p>Two rows drive most integration decisions. First, <strong>C1 does not support video extension</strong> — if your product needs an extend workflow, V6 is the model. We covered what changed in V6 and how to call it in our <a href="https://www.modellix.ai/blog/pixverse-v6/">PixVerse V6 guide</a>. Second, the models differ in how multi-clip works: the official matrix marks C1’s inline multi-clip as “supported with prompt” while V6 supports it “with parameters” (the <code>generate_multi_clip_switch</code> field). On the Modellix surface, the C1 model cards do not expose a multi-clip parameter at all — if multi-clip output is a hard requirement, validate against the exact route you plan to use before committing.</p>
+<p>The rest of the generation surface is shared: all four C1 endpoints take <code>&quot;model&quot;: &quot;c1&quot;</code>, a prompt of up to 5,000 characters, a duration from 1 to 15 seconds, a quality from <code>360p</code> to <code>1080p</code>, and the optional <code>generate_audio_switch</code> field. C1 is not a V6 replacement — it is a sibling aimed at film-style single-clip production, with the storyboard and combat&#x2F;VFX strengths its launch documentation emphasizes.</p>
+<h2 id="PixVerse-C1-API-Pricing-Official-Credits-and-Per-Second-USD"><a href="#PixVerse-C1-API-Pricing-Official-Credits-and-Per-Second-USD" class="headerlink" title="PixVerse C1 API Pricing: Official Credits and Per-Second USD"></a>PixVerse C1 API Pricing: Official Credits and Per-Second USD</h2><p>C1 is billed <strong>per second</strong>, exactly like V6. The official <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/pricing-796039m0">pricing page</a> lists C1’s credit consumption (credits per second, no audio &#x2F; with audio):</p>
+<table>
+<thead>
+<tr>
+<th>Quality</th>
+<th align="right">C1, no audio</th>
+<th align="right">C1, with audio</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>360p</td>
+<td align="right">6</td>
+<td align="right">8</td>
+</tr>
+<tr>
+<td>540p</td>
+<td align="right">8</td>
+<td align="right">10</td>
+</tr>
+<tr>
+<td>720p</td>
+<td align="right">10</td>
+<td align="right">13</td>
+</tr>
+<tr>
+<td>1080p</td>
+<td align="right">19</td>
+<td align="right">24</td>
+</tr>
+</tbody></table>
+<p>The same page anchors the whole system: <strong>$1 &#x3D; 5 videos (V6, 720p, 5 seconds, no audio, with the Starter pack)</strong>. For comparison, V6 runs 5&#x2F;7, 7&#x2F;9, 9&#x2F;12, and 18&#x2F;23 credits per second at the same quality tiers — <strong>C1 costs exactly one credit per second more than V6 at every tier</strong>. A 5-second 720p clip is 50 C1 credits versus 45 V6 credits; at 15 seconds the gap is 15 credits. It is a modest premium, not a different price class.</p>
+<p>PixVerse credits are a prepaid system: you buy packs on the <a target="_blank" rel="noopener" href="https://platform.pixverse.ai/billing">PixVerse platform billing page</a> and consume them per generation. The effective per-video cost depends on your pack tier, clip length, and quality — the $1 &#x3D; 5-videos anchor is explicitly qualified “with Starter pack.”</p>
+<p>If you would rather not track credit packs, Modellix carries the C1 family over a unified REST API with pay-as-you-go <strong>per-second USD pricing</strong> (same rate card for all three models, live August 6, 2026):</p>
+<table>
+<thead>
+<tr>
+<th>Quality</th>
+<th align="right">Modellix C1, no audio</th>
+<th align="right">Modellix C1, with audio</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>360p</td>
+<td align="right">$0.0690&#x2F;sec</td>
+<td align="right">$0.0920&#x2F;sec</td>
+</tr>
+<tr>
+<td>540p</td>
+<td align="right">$0.0920&#x2F;sec</td>
+<td align="right">$0.1150&#x2F;sec</td>
+</tr>
+<tr>
+<td>720p</td>
+<td align="right">$0.1150&#x2F;sec</td>
+<td align="right">$0.1495&#x2F;sec</td>
+</tr>
+<tr>
+<td>1080p</td>
+<td align="right">$0.2185&#x2F;sec</td>
+<td align="right">$0.2760&#x2F;sec</td>
+</tr>
+</tbody></table>
+<p>Rates verified on the <a href="https://www.modellix.ai/models/pixverse/c1-t2v">c1-t2v</a>, <a href="https://www.modellix.ai/models/pixverse/c1-i2v">c1-i2v</a>, and <a href="https://www.modellix.ai/models/pixverse/c1-r2v">c1-r2v</a> model pages. At the listed rate, a 5-second 720p clip without audio is 5 × $0.1150 &#x3D; $0.575.</p>
+<blockquote>
+<p>These are <strong>two separate billing systems</strong> — PixVerse Platform credits and Modellix USD — and PixVerse does not publish a conversion rate between them. We are not converting one into the other, and listing both is not a claim that either route is cheaper. Your real cost per clip depends on your credit pack, clip length, and quality on one side, and the exact model, resolution, and duration on the other. For the full pricing picture across the PixVerse family, see our <a href="https://www.modellix.ai/blog/pixverse-pricing/">PixVerse pricing guide</a>.</p>
+</blockquote>
+<h2 id="How-to-Call-the-PixVerse-C1-API-c1-t2v-Text-to-Video"><a href="#How-to-Call-the-PixVerse-C1-API-c1-t2v-Text-to-Video" class="headerlink" title="How to Call the PixVerse C1 API: c1-t2v Text-to-Video"></a>How to Call the PixVerse C1 API: c1-t2v Text-to-Video</h2><p>C1 exposes four generation endpoints, all documented with <code>&quot;model&quot;: &quot;c1&quot;</code> in the official C1 model documentation (linked above):</p>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Capability</th>
+<th>C1-specific inputs</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>text/generate</code></td>
+<td>Text-to-video</td>
+<td><code>aspect_ratio</code> supported</td>
+</tr>
+<tr>
+<td><code>img/generate</code></td>
+<td>Image-to-video</td>
+<td><code>img_id</code>; <strong>no</strong> <code>aspect_ratio</code></td>
+</tr>
+<tr>
+<td><code>transition/generate</code></td>
+<td>First&#x2F;last-frame transition</td>
+<td><code>first_frame_img</code>, <code>last_frame_img</code>; <strong>no</strong> <code>aspect_ratio</code></td>
+</tr>
+<tr>
+<td><code>fusion/generate</code></td>
+<td>Reference-to-video (Fusion)</td>
+<td><code>image_references</code>; <code>aspect_ratio</code> supported</td>
+</tr>
+</tbody></table>
+<p>One path detail before the code: all four generation endpoints are namespaced under <code>/video/</code> — the full URLs are <code>{BASE}/video/text/generate</code>, <code>{BASE}/video/img/generate</code>, <code>{BASE}/video/transition/generate</code>, and <code>{BASE}/video/fusion/generate</code>; only media upload lives at the base root (<code>{BASE}/image/upload</code>). Polling uses the documented result route <code>{BASE}/video/result/{video_id}</code> (<a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/get-video-generation-status-13016632e0">API reference</a>).</p>
+<p>Authentication follows the standard PixVerse pattern from the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/quick-start-796052m0">quick start</a>: every request carries your API key in the <code>API-KEY</code> header, and <strong>each unique request needs its own <code>Ai-trace-id</code></strong> — reuse the same trace ID and the platform will not generate a new video. The base URL is <code>https://app-api.pixverse.ai/openapi/v2</code>.</p>
+<p>The lifecycle is asynchronous: submit a generation, receive a <code>video_id</code>, poll the result endpoint until it returns <code>1</code> (success), then download from the returned <code>url</code>. Status <code>5</code> means still generating, <code>7</code> is a content-moderation failure, and <code>8</code> is a generation failure. A minimal c1-t2v skeleton:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests, time, uuid</span><br><span class="line"></span><br><span class="line">BASE = <span class="string">&quot;https://app-api.pixverse.ai/openapi/v2&quot;</span></span><br><span class="line">HEADERS = &#123;</span><br><span class="line">    <span class="string">&quot;API-KEY&quot;</span>: <span class="string">&quot;YOUR_API_KEY&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Ai-trace-id&quot;</span>: <span class="built_in">str</span>(uuid.uuid4()),   <span class="comment"># new UUID for every request</span></span><br><span class="line">    <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">body = &#123;</span><br><span class="line">    <span class="string">&quot;model&quot;</span>: <span class="string">&quot;c1&quot;</span>,</span><br><span class="line">    <span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;a neon-lit city street at night, rain on glass, cinematic tracking shot&quot;</span>,</span><br><span class="line">    <span class="string">&quot;duration&quot;</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">&quot;quality&quot;</span>: <span class="string">&quot;720p&quot;</span>,</span><br><span class="line">    <span class="string">&quot;aspect_ratio&quot;</span>: <span class="string">&quot;16:9&quot;</span>,             <span class="comment"># t2v and fusion only</span></span><br><span class="line">    <span class="string">&quot;generate_audio_switch&quot;</span>: <span class="literal">False</span>,</span><br><span class="line">&#125;</span><br><span class="line">gen = requests.post(<span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/video/text/generate&quot;</span>, headers=HEADERS, json=body).json()</span><br><span class="line">video_id = gen[<span class="string">&quot;Resp&quot;</span>][<span class="string">&quot;video_id&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    st = requests.get(<span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/video/result/<span class="subst">&#123;video_id&#125;</span>&quot;</span>,</span><br><span class="line">                      headers=HEADERS).json()[<span class="string">&quot;Resp&quot;</span>]</span><br><span class="line">    <span class="keyword">if</span> st[<span class="string">&quot;status&quot;</span>] == <span class="number">1</span>:</span><br><span class="line">        <span class="built_in">print</span>(st[<span class="string">&quot;url&quot;</span>])                <span class="comment"># final video URL</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span> st[<span class="string">&quot;status&quot;</span>] <span class="keyword">in</span> (<span class="number">7</span>, <span class="number">8</span>):          <span class="comment"># moderation failure / generation failed</span></span><br><span class="line">        <span class="keyword">raise</span> RuntimeError(<span class="string">f&quot;generation ended with status <span class="subst">&#123;st[<span class="string">&#x27;status&#x27;</span>]&#125;</span>&quot;</span>)</span><br><span class="line">    time.sleep(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/c1-api-flow.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/c1-api-flow.png" alt="Flow diagram of the PixVerse C1 API: submit a generation with an API key and unique trace id, receive a video id, then poll status 5 to 1 until the video url is returned" loading="lazy" />
+</picture>
+
+<p><em>The C1 API lifecycle — submit, poll status 5 → 1, download. Illustrative Modellix diagram, August 2026.</em></p>
+<p>Poll at 3–5 second intervals and set a maximum attempt count — a job in status <code>5</code> is not “still running” forever. This skeleton mirrors the request shape in the official guides; confirm the endpoint domain and response field names against the current documentation before production. For the complete developer workflow — keys, endpoints, rate limits — our <a href="https://www.modellix.ai/blog/pixverse-api/">PixVerse API integration guide</a> covers the full surface.</p>
+<h2 id="c1-i2v-Image-to-Video-with-C1"><a href="#c1-i2v-Image-to-Video-with-C1" class="headerlink" title="c1-i2v: Image-to-Video with C1"></a>c1-i2v: Image-to-Video with C1</h2><p>Image-to-video follows the same pattern with one extra stage: upload the starting image to get an <code>img_id</code>, then pass it to <code>img/generate</code>. Per the official C1 documentation, the i2v endpoint does <strong>not</strong> accept <code>aspect_ratio</code> — the output follows the source image’s composition, so do not send the field.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;start-frame.png&quot;</span>, <span class="string">&quot;rb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    up = requests.post(<span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/image/upload&quot;</span>,</span><br><span class="line">                       headers=&#123;<span class="string">&quot;API-KEY&quot;</span>: HEADERS[<span class="string">&quot;API-KEY&quot;</span>],</span><br><span class="line">                                <span class="string">&quot;Ai-trace-id&quot;</span>: <span class="built_in">str</span>(uuid.uuid4())&#125;,</span><br><span class="line">                       files=&#123;<span class="string">&quot;image&quot;</span>: f&#125;).json()</span><br><span class="line">img_id = up[<span class="string">&quot;Resp&quot;</span>][<span class="string">&quot;img_id&quot;</span>]</span><br><span class="line"></span><br><span class="line">body = &#123;</span><br><span class="line">    <span class="string">&quot;model&quot;</span>: <span class="string">&quot;c1&quot;</span>,</span><br><span class="line">    <span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;the castle slowly transforms into a glass palace, golden light&quot;</span>,</span><br><span class="line">    <span class="string">&quot;duration&quot;</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">&quot;quality&quot;</span>: <span class="string">&quot;720p&quot;</span>,</span><br><span class="line">    <span class="string">&quot;img_id&quot;</span>: img_id,</span><br><span class="line">    <span class="string">&quot;generate_audio_switch&quot;</span>: <span class="literal">False</span>,</span><br><span class="line">&#125;</span><br><span class="line">gen = requests.post(<span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/video/img/generate&quot;</span>, headers=HEADERS, json=body).json()</span><br></pre></td></tr></table></figure>
+
+<p>Then poll with the returned <code>video_id</code> exactly as in the c1-t2v example. Two practical notes: keep the uploaded <code>img_id</code> if you plan to reuse the same still across variants, and validate the image format and size limits documented for the upload endpoint in your own service so users get an actionable error instead of a provider rejection. On the Modellix side, c1-i2v skips the upload step — it takes a publicly accessible image URL as the <code>image</code> input, with optional <code>template_id</code> for PixVerse Effect Center presets.</p>
+<h2 id="c1-r2v-Reference-to-Video-Fusion-with-C1"><a href="#c1-r2v-Reference-to-Video-Fusion-with-C1" class="headerlink" title="c1-r2v: Reference-to-Video (Fusion) with C1"></a>c1-r2v: Reference-to-Video (Fusion) with C1</h2><p>Reference-to-video is C1’s most distinctive endpoint: you supply 1–7 reference images (per the current Modellix c1-r2v model card; the official Fusion guide requires a non-empty array), tag each as <code>subject</code> or <code>background</code>, optionally name it with <code>ref_name</code>, and reference it in the prompt with <code>@name</code>. The official <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/fusionreference-to-video-1339253m0">Fusion guide</a> uses this for e-commerce, brand advertising, and narrative workflows; the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/fusionreference-to-video-generation-19884194e0">Fusion API reference</a> documents the exact request body. Since the May 21, 2026 update, <code>ref_name</code> and <code>type</code> are optional — but named references give you precise multi-subject control (“@dog plays at @room” composes two named subjects into one scene).</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/c1-input-routing.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/c1-input-routing.png" alt="Input routing diagram for the PixVerse C1 model: text to t2v, a single image to i2v, two frames to fl2v, and one to seven reference images to r2v, converging into a central C1 core" loading="lazy" />
+</picture>
+
+<p><em>Which C1 endpoint takes which input: text → t2v, one image → i2v, two frames → fl2v, 1–7 reference images → r2v. Illustrative Modellix diagram, August 2026.</em></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Upload each reference image (see the c1-i2v upload snippet) and collect img_ids.</span></span><br><span class="line">dog_id, room_id = <span class="number">111111111</span>, <span class="number">222222222</span>   <span class="comment"># values returned by /image/upload</span></span><br><span class="line"></span><br><span class="line">body = &#123;</span><br><span class="line">    <span class="string">&quot;model&quot;</span>: <span class="string">&quot;c1&quot;</span>,</span><br><span class="line">    <span class="string">&quot;image_references&quot;</span>: [</span><br><span class="line">        &#123;<span class="string">&quot;type&quot;</span>: <span class="string">&quot;subject&quot;</span>,    <span class="string">&quot;img_id&quot;</span>: dog_id,  <span class="string">&quot;ref_name&quot;</span>: <span class="string">&quot;dog&quot;</span>&#125;,</span><br><span class="line">        &#123;<span class="string">&quot;type&quot;</span>: <span class="string">&quot;background&quot;</span>, <span class="string">&quot;img_id&quot;</span>: room_id, <span class="string">&quot;ref_name&quot;</span>: <span class="string">&quot;room&quot;</span>&#125;,</span><br><span class="line">    ],</span><br><span class="line">    <span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;@dog plays at @room, cinematic lighting&quot;</span>,</span><br><span class="line">    <span class="string">&quot;duration&quot;</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">&quot;quality&quot;</span>: <span class="string">&quot;720p&quot;</span>,</span><br><span class="line">    <span class="string">&quot;aspect_ratio&quot;</span>: <span class="string">&quot;16:9&quot;</span>,</span><br><span class="line">&#125;</span><br><span class="line">gen = requests.post(<span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/video/fusion/generate&quot;</span>, headers=HEADERS, json=body).json()</span><br></pre></td></tr></table></figure>
+
+<p>The <code>@name</code> in the prompt must exactly match a <code>ref_name</code> in <code>image_references</code>, and the array must be non-empty — the official guide notes each item needs valid <code>img_id</code>&#x2F;<code>ref_name</code>&#x2F;<code>type</code> fields. The current Modellix c1-r2v model card documents <strong>1–7 reference images</strong> per request, each a public image URL with optional <code>type</code> and <code>ref_name</code> fields.</p>
+<p>One boundary matters if you came here from V6 material: <strong>C1’s Fusion accepts reference images only — not reference videos.</strong> Video references (<code>reference_mode: &quot;omni&quot;</code>, <code>video_references</code>) are a V6-only capability added on July 26, 2026; sending them with <code>&quot;model&quot;: &quot;c1&quot;</code> will not behave as intended. If your input is footage rather than stills, the <a href="https://www.modellix.ai/blog/pixverse-video-reference-api/">V6 video-reference API guide</a> is the right integration to read.</p>
+<h2 id="C1-vs-V6-Which-PixVerse-Model-Should-You-Integrate"><a href="#C1-vs-V6-Which-PixVerse-Model-Should-You-Integrate" class="headerlink" title="C1 vs V6: Which PixVerse Model Should You Integrate?"></a>C1 vs V6: Which PixVerse Model Should You Integrate?</h2><table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>C1</th>
+<th>V6</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Positioning</td>
+<td>Cinema-quality, storyboard-oriented</td>
+<td>General-purpose flagship</td>
+</tr>
+<tr>
+<td>Released</td>
+<td>April 7, 2026</td>
+<td>March 29, 2026</td>
+</tr>
+<tr>
+<td>Video extension</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Multi-clip</td>
+<td>With prompt (per official matrix)</td>
+<td>With parameters</td>
+</tr>
+<tr>
+<td>Reference videos (omni)</td>
+<td>No</td>
+<td>Yes (since July 26, 2026)</td>
+</tr>
+<tr>
+<td>Per-second credits, 720p no audio</td>
+<td>10</td>
+<td>9</td>
+</tr>
+<tr>
+<td>Modellix routes</td>
+<td>c1-t2v, c1-i2v, c1-r2v, c1-fl2v</td>
+<td>v6-r2v</td>
+</tr>
+</tbody></table>
+<p>Pick <strong>V6</strong> when your product needs video extension, video-reference input, or parameter-driven multi-clip — it is also one credit per second cheaper. Pick <strong>C1</strong> when you want the film-style tier: single-clip cinematic output, storyboard-to-video, character and VFX work, and you do not need extension. Many integrations carry both and route by task — the API surface is identical (same async pattern, same status codes), so the marginal cost of supporting both is small. If you need extension as a pipeline step, our <a href="https://www.modellix.ai/blog/pixverse-video-extend-api/">PixVerse video extend guide</a> shows that endpoint in isolation. PixVerse also markets an R1 model tier; this guide deliberately scopes to C1 and V6, the two generation models compared in the official capability matrix.</p>
+<h2 id="Common-PixVerse-C1-API-Mistakes-and-How-to-Fix-Them"><a href="#Common-PixVerse-C1-API-Mistakes-and-How-to-Fix-Them" class="headerlink" title="Common PixVerse C1 API Mistakes and How to Fix Them"></a>Common PixVerse C1 API Mistakes and How to Fix Them</h2><p><strong>Reusing the same <code>Ai-trace-id</code> across requests.</strong> This is the documented number-one cause of jobs stuck in “Generating” — the platform simply does not create a new video. Generate a fresh UUID per request, especially for every generation call.</p>
+<p><strong>Sending <code>aspect_ratio</code> on c1-i2v or transition.</strong> The official C1 parameter table lists <code>aspect_ratio</code> for text-to-video and fusion only. On i2v and transition, drop the field and let the output follow the source frames.</p>
+<p><strong>Treating status <code>5</code> as progress forever.</strong> <code>5</code> means waiting for generation, <code>1</code> means success, <code>7</code> is content-moderation failure, and <code>8</code> is generation failure. Poll with a max-attempt budget and handle <code>7</code>&#x2F;<code>8</code> explicitly — the official docs note that credits used for moderation-filtered videos are automatically refunded, so surface the outcome to the user rather than looping.</p>
+<p><strong>Passing <code>video_references</code> to <code>&quot;model&quot;: &quot;c1&quot;</code>.</strong> Video references are V6-only. For C1, Fusion takes <code>image_references</code> — an array of uploaded image IDs.</p>
+<p><strong>Comparing PixVerse credits to Modellix USD as if they were the same unit.</strong> They are two billing systems with no published conversion rate. Compare cost per output for your exact clip length and quality on each route, not the raw numbers.</p>
+<p><strong>Ignoring the documented error codes.</strong> The official docs list <code>400013</code> (invalid binding request — incorrect parameter type or value), <code>400017</code> (invalid parameter), and <code>500044</code> (reached the concurrent-generation limit). Map these to user-facing messages in your integration; <code>500044</code> in particular suggests adding a client-side concurrency cap.</p>
+<h2 id="Frequently-Asked-Questions-About-the-PixVerse-C1-API"><a href="#Frequently-Asked-Questions-About-the-PixVerse-C1-API" class="headerlink" title="Frequently Asked Questions About the PixVerse C1 API"></a>Frequently Asked Questions About the PixVerse C1 API</h2><p><strong>What is the PixVerse C1 API?</strong><br>C1 is the cinema-quality PixVerse model released April 7, 2026, callable through four endpoints — <code>text/generate</code>, <code>img/generate</code>, <code>transition/generate</code>, and <code>fusion/generate</code> — with <code>&quot;model&quot;: &quot;c1&quot;</code>. It supports up to 15 seconds at 1080p with optional native audio, and does not support video extension.</p>
+<p><strong>How much does the PixVerse C1 API cost?</strong><br>On the official platform, C1 consumes 6–24 credits per second depending on quality (360p–1080p) and whether audio is enabled, with $1 ≈ 5 videos (V6, 720p, 5s, no audio, Starter pack) as the anchor. On Modellix, C1 models are billed per second in USD at $0.0690–$0.2760&#x2F;sec. The two systems are separate; see the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/pricing-796039m0">official pricing page</a> for credit packs and the Modellix model pages for current USD rates.</p>
+<p><strong>PixVerse C1 vs V6 — which should I use?</strong><br>C1 is one credit per second more expensive, has no video extension, and no video-reference (omni) support. It is positioned for film-style, storyboard-driven single-clip generation. V6 is the general-purpose default with extension, parameter-driven multi-clip, and video references. If you need extension or footage-driven reference, choose V6.</p>
+<p><strong>Does C1 support multi-clip generation?</strong><br>The official capability matrix marks C1’s inline multi-clip as “supported with prompt” and V6’s as “supported with parameters.” The official C1 model documentation does not expose a multi-clip parameter, and Modellix’s C1 model cards do not include one — if you need parameter-driven multi-clip, validate against V6.</p>
+<p><strong>Can I use the PixVerse C1 API through Modellix?</strong><br>Yes — Modellix carries c1-t2v, c1-i2v, c1-r2v, and c1-fl2v with pay-as-you-go per-second USD billing and a single API key. New accounts get a free trial credit allowance on signup, which is one way to test C1 before committing budget; the official platform sells credit packs on its <a target="_blank" rel="noopener" href="https://platform.pixverse.ai/billing">billing page</a>.</p>
+<p><strong>What is the maximum video length and resolution for C1?</strong><br>15 seconds at up to 1080p, across all four generation endpoints.</p>
+<p><strong>Does the C1 API generate audio?</strong><br>Yes — all four C1 endpoints accept <code>generate_audio_switch</code>; enabling audio raises the per-second credit cost by 2–5 credits (or $0.0230–$0.0575&#x2F;sec on Modellix) depending on quality. Note the boundary on the Modellix side: audio is accepted as input (for example, in lip-sync workflows), but Modellix does not offer audio generation models.</p>
+<p><strong>Where can I see honest hands-on verdicts on C1 output quality?</strong><br>This guide is an API contract and pricing reference, not a quality review — we have not run a C1 output benchmark here. The official C1 launch post and model documentation describe the model’s strengths, and independent reviews of the PixVerse platform are the better source for output-quality judgment.</p>
+<hr>
+<p><em>Provider details and pricing reflect public information as of August 6, 2026 and change frequently. Validate against each provider’s live pricing before committing. Access image and video models, including the leading Chinese models, through a single API key at <a target="_blank" rel="noopener" href="https://modellix.ai/">modellix.ai</a>.</em></p>
+<div style="display:flex; gap:12px; flex-wrap:wrap; margin:24px 0;">
+  <a href="https://modellix.ai/console/api-key" class="btn btn-primary" target="_blank" rel="noopener" style="color:#ffffff; text-decoration:none;">Run a Multi-Model Test</a>
+  <a href="https://docs.modellix.ai/get-started/pricing" class="btn btn-secondary" target="_blank" rel="noopener" style="color:#1a1a2e; text-decoration:none;">Compare Live Pricing</a>
+</div>
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Video/" class="tag-pill tag-pill--sm">AI Video</a>
+            
+              <a href="/blog/tags/API/" class="tag-pill tag-pill--sm">API</a>
+            
+              <a href="/blog/tags/Video-Generation/" class="tag-pill tag-pill--sm">Video Generation</a>
+            
+              <a href="/blog/tags/PixVerse/" class="tag-pill tag-pill--sm">PixVerse</a>
+            
+              <a href="/blog/tags/C1/" class="tag-pill tag-pill--sm">C1</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/pixverse-v6/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-pixverse-v6-v2.webp" alt="PixVerse V6: What Changed and How to Use It via API" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">AI-Video</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">PixVerse V6: What Changed and How to Use It via API</h3>
+          <time class="related-article-date" datetime="2026-08-02T16:00:00.000Z">August 3, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/pixverse-c1-api/&text=PixVerse%20C1%20API%3A%20Models%2C%20Pricing%20%26%20Integration%20Guide" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/pixverse-c1-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/pixverse-c1-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
