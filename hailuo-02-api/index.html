@@ -1,0 +1,653 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hailuo 02 API: MiniMax Video Integration Guide — Modellix Blog</title>
+  <meta name="description" content="Hailuo 02 API integration: official model names, per-video vs per-second pricing, Python and curl examples, key parameters, common errors, and route choice.">
+  <meta name="keywords" content="hailuo 02 api, minimax hailuo 02 api, hailuo api, hailuo 02 api python, hailuo 2.3 api, hailuo 02 api pricing">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/hailuo-02-api/">
+  <meta name="description" content="Hailuo 02 API integration: official model names, per-video vs per-second pricing, Python and curl examples, key parameters, common errors, and route choice.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hailuo 02 API: MiniMax Video Integration Guide — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/hailuo-02-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Hailuo 02 API integration: official model names, per-video vs per-second pricing, Python and curl examples, key parameters, common errors, and route choice.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-hailuo-02-api.webp">
+<meta property="article:published_time" content="2026-08-07T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-07T02:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video API">
+<meta property="article:tag" content="Integration Guide">
+<meta property="article:tag" content="MiniMax">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-hailuo-02-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Hailuo 02 API: MiniMax Video Integration Guide","description":"Hailuo 02 API integration: official model names, per-video vs per-second pricing, Python and curl examples, key parameters, common errors, and route choice.","datePublished":"2026-08-07T02:00:00.000Z","dateModified":"2026-08-07T02:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/hailuo-02-api/","image":"https://img.modellix.ai/en/article/cover-hailuo-02-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Hailuo 02 API: MiniMax Video Integration Guide</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Hailuo 02 API: MiniMax Video Integration Guide</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-07T02:00:00.000Z">August 7, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Integration-Guide/" class="tag-pill tag-pill--sm">Integration Guide</a>
+            
+              <a href="/blog/tags/MiniMax/" class="tag-pill tag-pill--sm">MiniMax</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>The short answer: the Hailuo 02 API is real, but not one API &#39;Hailuo 02 API&#39; is a search term for a model that ships under different names, endpoints, and billing units depending on where you call it.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-hailuo-02-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-hailuo-02-api.png" alt="Editorial Modellix cover reading Hailuo 02 API on two bold lines over a dark amber technical architecture with an amber key and cyan rim light" />
+</picture>
+
+<h2 id="The-short-answer-the-Hailuo-02-API-is-real-but-not-one-API"><a href="#The-short-answer-the-Hailuo-02-API-is-real-but-not-one-API" class="headerlink" title="The short answer: the Hailuo 02 API is real, but not one API"></a>The short answer: the Hailuo 02 API is real, but not one API</h2><p>“Hailuo 02 API” is a search term for a model that ships under different names, endpoints, and billing units depending on where you call it. MiniMax’s own pay-as-you-go page still lists <code>MiniMax-Hailuo-02</code> and still charges for it as of August 7, 2026. Aggregators expose the same underlying model as <code>minimax/hailuo-02</code>, <code>fal-ai/minimax/hailuo-02/standard/image-to-video</code>, or <code>minimax-hailuo-02</code> — and they bill per second, per 10 seconds, or per completed video. The first step of any integration is therefore not writing code; it is deciding which route you mean.</p>
+<p>This guide walks through the model identity, the pricing units, Python and curl examples, the parameters that matter, the errors you will actually hit, and how to choose between MiniMax direct and an aggregator route. Every price below was read from the live source page on August 7, 2026, and every figure carries its source.</p>
+<p>Modellix is an aggregator and has a commercial interest in this comparison: we offer Hailuo 02 routes on our own per-second pricing. None of the numbers below support a blanket “one route is cheapest” conclusion — the winner changes by cell, and the route terms differ. Compare the same model name, resolution, duration, and billing unit before you pick.</p>
+<h2 id="Which-model-are-you-actually-calling-Hailuo-02-vs-2-3-vs-H3"><a href="#Which-model-are-you-actually-calling-Hailuo-02-vs-2-3-vs-H3" class="headerlink" title="Which model are you actually calling? Hailuo 02 vs 2.3 vs H3"></a>Which model are you actually calling? Hailuo 02 vs 2.3 vs H3</h2><p>MiniMax now documents video generation around its newer <strong>MiniMax H3</strong> model, and its model table lists Hailuo 02 under <strong>legacy video models</strong> alongside Hailuo 2.3 and 2.3 Fast. “Legacy” here does not mean removed: the official pay-as-you-go page still prices Hailuo 02, and every major aggregator still serves it. It means the model is stable, documented, and not the current marketing headline.</p>
+<p>The API-style name is <code>MiniMax-Hailuo-02</code>. Model cards that summarize MiniMax’s model table — like <a target="_blank" rel="noopener" href="https://minimax-ai.chat/models/minimax-hailuo-02/">this Hailuo 02 reference</a> — describe text-to-video output at 768P or 1080P and image-to-video at 512P, 768P, or 1080P, at 24 fps, with 6- or 10-second clips, plus a First &amp; Last Frame workflow documented specifically for this model. You will also see the model called “Hailuo 2” and “Hailuo AI 02” — same model, different labels.</p>
+<p>The practical confusion is between 02 and 2.3. Both are built on the same architecture and priced identically on the official page; 2.3 is retuned for human motion, micro-expressions, and stylized art, while 02 is the physics-and-motion pick with longer 1080p takes and the Hailuo variant with a first&#x2F;last-frame transition workflow. If you are choosing between them for a pipeline, our <a href="https://www.modellix.ai/blog/hailuo-ai-api/">Hailuo AI API guide</a> covers that decision in depth. This article assumes you have already chosen Hailuo 02 and need to integrate it.</p>
+<h2 id="Hailuo-02-API-pricing-match-the-billing-unit-before-comparing"><a href="#Hailuo-02-API-pricing-match-the-billing-unit-before-comparing" class="headerlink" title="Hailuo 02 API pricing: match the billing unit before comparing"></a>Hailuo 02 API pricing: match the billing unit before comparing</h2><p>Pricing for Hailuo 02 is published in at least three units. MiniMax direct charges a flat rate per completed video. fal.ai charges per second. AIMLAPI charges per 10 seconds. Modellix charges per second. All of these can describe the same 6-second clip, and none of them is directly comparable until you normalize.</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Published unit</th>
+<th>768P, 6s</th>
+<th>768P, 10s</th>
+<th>1080P, 6s</th>
+<th>Billing note</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MiniMax direct (<code>MiniMax-Hailuo-02</code>)</td>
+<td>per video</td>
+<td>$0.28</td>
+<td>$0.56</td>
+<td>$0.49</td>
+<td>Flat per completed video; read from the official page</td>
+</tr>
+<tr>
+<td>fal.ai Standard &#x2F; Pro</td>
+<td>per second</td>
+<td>$0.045&#x2F;s → $0.27</td>
+<td>—</td>
+<td>$0.08&#x2F;s → $0.48</td>
+<td>fal’s docs cap Standard at 6s output</td>
+</tr>
+<tr>
+<td>AIMLAPI</td>
+<td>per 10 seconds</td>
+<td>$0.4368</td>
+<td>$0.728</td>
+<td>—</td>
+<td>Listed as “$0.728 &#x2F; 10 sec tokens”, resolution not stated; 6s cell prorated from the 10s rate</td>
+</tr>
+<tr>
+<td>Modellix (<code>hailuo-02-t2v</code> &#x2F; <code>i2v</code>)</td>
+<td>per second</td>
+<td>$0.054&#x2F;s → $0.324</td>
+<td>$0.0672&#x2F;s → $0.672</td>
+<td>$0.106&#x2F;s → $0.636</td>
+<td>Per-second meter, resolution-dependent</td>
+</tr>
+</tbody></table>
+<p><em>Sources, all accessed August 7, 2026: <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/guides/pricing-paygo">MiniMax Pay as You Go</a>, <a target="_blank" rel="noopener" href="https://fal.ai/models/fal-ai/minimax/hailuo-02/standard/image-to-video">fal.ai Hailuo 02 model page</a>, <a target="_blank" rel="noopener" href="https://aimlapi.com/models/hailuo-02">AIMLAPI Hailuo 02 model page</a>, and the Modellix Hailuo 02 T2V model page. Cells marked “→” are derived arithmetic, not published prices: the fal and Modellix rows multiply the published per-second rate by the clip length, and the AIMLAPI 6s cell prorates its per-10-seconds rate (0.6 × $0.728).</em></p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/modellix-hailuo-02-pricing.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/modellix-hailuo-02-pricing.png" alt="Modellix model page for minimax/hailuo-02-i2v showing the six parameters and a per-second pricing table by resolution and duration" loading="lazy" />
+</picture>
+
+<p><em>Modellix model page for <code>minimax/hailuo-02-i2v</code>, captured from modellix.ai on August 7, 2026. It publishes per-second pricing by resolution and duration — one of the billing units used across Hailuo 02 routes.</em></p>
+<p>Three consequences follow from this table:</p>
+<ol>
+<li><strong>Normalize before you compare.</strong> A “price” without its unit is noise. Divide per-10s prices by 10, multiply per-second prices by your clip length, and keep per-video prices as-is.</li>
+<li><strong>The winner changes by cell.</strong> On 768P 6s, fal’s list price is the lowest of the four published figures; on 1080P 6s, MiniMax direct is. There is no consistent cheapest route in the current public data.</li>
+<li><strong>Terms differ beyond price.</strong> fal documents a 6-second output cap for Standard, MiniMax direct is per-video at fixed combos, and Modellix’s own Hailuo guide notes that 10-second jobs run at 768P while 1080P caps at 6 seconds — its live pricing table also shows a 10s&#x2F;1080P cell, so confirm the exact combination against the live page before budgeting.</li>
+</ol>
+<p>For a fuller treatment of how MiniMax’s billing surfaces fit together — pay-as-you-go, credits, and video packages — see our <a href="https://www.modellix.ai/blog/minimax-pricing/">MiniMax pricing breakdown</a>.</p>
+<h2 id="Quick-start-generate-a-video-with-the-Hailuo-02-API"><a href="#Quick-start-generate-a-video-with-the-Hailuo-02-API" class="headerlink" title="Quick start: generate a video with the Hailuo 02 API"></a>Quick start: generate a video with the Hailuo 02 API</h2><p>The fastest path to a working Hailuo 02 integration is the async submit-and-poll pattern. MiniMax’s official workflow is: create a generation task and receive a <code>task_id</code>, poll the task, then download the video from the returned URL. Aggregator routes follow the same shape with their own endpoints and keys.</p>
+<p>Below is a Python example against Modellix’s documented Hailuo 02 text-to-video endpoint, using only the standard library plus <code>requests</code>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">API_BASE = <span class="string">&quot;https://api.modellix.ai/api/v1&quot;</span></span><br><span class="line">API_KEY = <span class="string">&quot;YOUR_MODELLIX_API_KEY&quot;</span>  <span class="comment"># create one in the console</span></span><br><span class="line"></span><br><span class="line">headers = &#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;API_KEY&#125;</span>&quot;</span>, <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. Submit the job</span></span><br><span class="line">resp = requests.post(</span><br><span class="line">    <span class="string">f&quot;<span class="subst">&#123;API_BASE&#125;</span>/minimax/hailuo-02-t2v/async&quot;</span>,</span><br><span class="line">    headers=headers,</span><br><span class="line">    json=&#123;</span><br><span class="line">        <span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;A cinematic slow aerial drift over a sea of golden clouds at sunrise, gentle motion, warm volumetric light&quot;</span>,</span><br><span class="line">        <span class="string">&quot;duration&quot;</span>: <span class="number">6</span>,</span><br><span class="line">        <span class="string">&quot;resolution&quot;</span>: <span class="string">&quot;1080P&quot;</span>,</span><br><span class="line">        <span class="string">&quot;prompt_optimizer&quot;</span>: <span class="literal">True</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">)</span><br><span class="line">resp.raise_for_status()</span><br><span class="line">task = resp.json()[<span class="string">&quot;data&quot;</span>]</span><br><span class="line">task_id = task[<span class="string">&quot;task_id&quot;</span>]</span><br><span class="line">poll_url = task[<span class="string">&quot;get_result&quot;</span>][<span class="string">&quot;url&quot;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;submitted:&quot;</span>, task_id)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. Poll with backoff: first check at 15s, then 5s up to 30s, max 12 attempts</span></span><br><span class="line">attempt, wait = <span class="number">0</span>, <span class="number">15</span></span><br><span class="line"><span class="keyword">while</span> attempt &lt; <span class="number">12</span>:</span><br><span class="line">    time.sleep(wait)</span><br><span class="line">    status = requests.get(poll_url, headers=headers).json()[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;status&quot;</span>]</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;attempt <span class="subst">&#123;attempt + <span class="number">1</span>&#125;</span>: <span class="subst">&#123;status&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> status <span class="keyword">in</span> (<span class="string">&quot;success&quot;</span>, <span class="string">&quot;failed&quot;</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    attempt += <span class="number">1</span></span><br><span class="line">    wait = <span class="built_in">min</span>(<span class="number">30</span>, <span class="number">5</span> * <span class="number">2</span>**attempt)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. On success the output video lives at data.result.resources[].url —</span></span><br><span class="line"><span class="comment">#    each resource carries type/url/width/height/format/role; take the video one.</span></span><br><span class="line"><span class="keyword">if</span> status == <span class="string">&quot;success&quot;</span>:</span><br><span class="line">    data = requests.get(poll_url, headers=headers).json()[<span class="string">&quot;data&quot;</span>]</span><br><span class="line">    video_url = <span class="built_in">next</span>(</span><br><span class="line">        r[<span class="string">&quot;url&quot;</span>] <span class="keyword">for</span> r <span class="keyword">in</span> data[<span class="string">&quot;result&quot;</span>][<span class="string">&quot;resources&quot;</span>] <span class="keyword">if</span> r.get(<span class="string">&quot;type&quot;</span>) == <span class="string">&quot;video&quot;</span></span><br><span class="line">    )</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;video:&quot;</span>, video_url)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">raise</span> RuntimeError(<span class="string">f&quot;Hailuo 02 job ended in state: <span class="subst">&#123;status&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>The same flow with curl, against the same endpoint:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. Submit the job</span></span><br><span class="line">curl --request POST \</span><br><span class="line">  --url https://api.modellix.ai/api/v1/minimax/hailuo-02-t2v/async \</span><br><span class="line">  --header <span class="string">&#x27;Authorization: Bearer YOUR_MODELLIX_API_KEY&#x27;</span> \</span><br><span class="line">  --header <span class="string">&#x27;Content-Type: application/json&#x27;</span> \</span><br><span class="line">  --data <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;prompt&quot;: &quot;A cinematic slow aerial drift over a sea of golden clouds at sunrise&quot;,</span></span><br><span class="line"><span class="string">    &quot;duration&quot;: 6,</span></span><br><span class="line"><span class="string">    &quot;resolution&quot;: &quot;1080P&quot;,</span></span><br><span class="line"><span class="string">    &quot;prompt_optimizer&quot;: true</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. Poll the result URL returned in step 1 (data.get_result.url)</span></span><br><span class="line">curl --request GET \</span><br><span class="line">  --url https://api.modellix.ai/api/v1/tasks/&#123;task_id&#125; \</span><br><span class="line">  --header <span class="string">&#x27;Authorization: Bearer YOUR_MODELLIX_API_KEY&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>For image-to-video, switch the endpoint to <code>/minimax/hailuo-02-i2v/async</code> and add the reference image:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">resp = requests.post(</span><br><span class="line">    <span class="string">f&quot;<span class="subst">&#123;API_BASE&#125;</span>/minimax/hailuo-02-i2v/async&quot;</span>,</span><br><span class="line">    headers=headers,</span><br><span class="line">    json=&#123;</span><br><span class="line">        <span class="string">&quot;first_frame_image&quot;</span>: <span class="string">&quot;https://your-cdn.example.com/product-shot.jpg&quot;</span>,</span><br><span class="line">        <span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;The camera orbits the product slowly, soft studio lighting&quot;</span>,</span><br><span class="line">        <span class="string">&quot;duration&quot;</span>: <span class="number">6</span>,</span><br><span class="line">        <span class="string">&quot;resolution&quot;</span>: <span class="string">&quot;1080P&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>The same pattern — submit, poll <code>get_result.url</code>, collect the terminal state — is the documented Modellix contract for Hailuo 02, and it mirrors the official MiniMax workflow of create-task, poll, and download. The <a href="https://www.modellix.ai/models/minimax/hailuo-02-t2v">Modellix Hailuo 02 T2V model page</a> lists the current parameters and per-second rates if you are reading this after the figures above have moved.</p>
+<p>If you are calling MiniMax directly instead, the workflow is the same three steps against platform.minimax.io with a standard Open Platform API key; MiniMax’s <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/guides/video-generation">video generation guide</a> is the current reference. Note that this page now documents MiniMax H3 as the primary model — another sign that Hailuo 02 is the stable legacy option, not the moving target.</p>
+<h2 id="Parameters-that-actually-change-your-output"><a href="#Parameters-that-actually-change-your-output" class="headerlink" title="Parameters that actually change your output"></a>Parameters that actually change your output</h2><p>Hailuo 02’s parameter set is small, and most of the leverage is in three fields.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>What it does</th>
+<th>Route notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>prompt</code></td>
+<td>string</td>
+<td>Video content description; camera-control instructions work</td>
+<td>Required on every route</td>
+</tr>
+<tr>
+<td><code>first_frame_image</code> &#x2F; <code>image</code></td>
+<td>image URL or Base64</td>
+<td>Starting frame for image-to-video; without it the call is text-to-video</td>
+<td>Required for I2V on Modellix and fal; AIMLAPI supports both modalities</td>
+</tr>
+<tr>
+<td><code>duration</code></td>
+<td>integer</td>
+<td>Clip length in seconds</td>
+<td><code>6</code> or <code>10</code> on MiniMax&#x2F;Modellix&#x2F;vmodel; fal documents up to 6s</td>
+</tr>
+<tr>
+<td><code>resolution</code></td>
+<td>string</td>
+<td>Output resolution</td>
+<td><code>512P</code>&#x2F;<code>768P</code>&#x2F;<code>1080P</code> on Modellix I2V; T2V starts at 768P; check the combination with duration</td>
+</tr>
+<tr>
+<td><code>prompt_optimizer</code></td>
+<td>boolean</td>
+<td>Rewrites thin prompts into more directable ones</td>
+<td>Default <code>true</code> on Modellix; <code>promptOptimizer</code> on Pollo</td>
+</tr>
+<tr>
+<td><code>fast_pretreatment</code></td>
+<td>boolean</td>
+<td>Fast pretreatment, only effective with <code>prompt_optimizer=true</code></td>
+<td>Modellix-specific</td>
+</tr>
+</tbody></table>
+<p>Two route-specific constraints are worth checking before you send an image: fal documents input aspect ratio between 2:5 and 5:2, a minimum of 300px on the shorter side, and a 20MB file limit; Pollo’s reference additionally exposes an <code>imageTail</code> (last-frame) input alongside the first frame. The same model can have different input rules on different routes, so treat the route’s own docs as the contract. <a target="_blank" rel="noopener" href="https://docs.pollo.ai/m/hailuo/hailuo-02">Pollo’s Hailuo 02 reference</a> and the <a target="_blank" rel="noopener" href="https://fal.ai/models/fal-ai/minimax/hailuo-02/standard/image-to-video">fal model page</a> are the two most explicit parameter references currently ranking for this query.</p>
+<p>The <a href="https://www.modellix.ai/models/minimax/hailuo-02-i2v">Modellix Hailuo 02 I2V model page</a> shows the same parameter set with the live per-second pricing table for each resolution and duration cell.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/pollo-hailuo-02-api-reference.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/pollo-hailuo-02-api-reference.png" alt="Pollo Hailuo 02 API reference showing the POST endpoint, the input object with image, imageTail, prompt, promptOptimizer, resolution, and length fields" loading="lazy" />
+</picture>
+
+<p><em>Pollo’s Hailuo 02 API reference, captured from docs.pollo.ai on August 7, 2026. It documents the endpoint and the input object, including the <code>imageTail</code> last-frame field that most routes do not expose.</em></p>
+<h2 id="Async-lifecycle-errors-and-the-failure-modes-nobody-documents"><a href="#Async-lifecycle-errors-and-the-failure-modes-nobody-documents" class="headerlink" title="Async lifecycle, errors, and the failure modes nobody documents"></a>Async lifecycle, errors, and the failure modes nobody documents</h2><p>Video generation is asynchronous on every route: submit a job, poll for a terminal state, retrieve the output URL. The part that trips up integrations is not the happy path — it is sorting responses into the right buckets and stopping at the right time.</p>
+<p>Sort every poll response into three buckets, as Modellix’s Hailuo guide documents:</p>
+<table>
+<thead>
+<tr>
+<th>Bucket</th>
+<th>Status examples</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>In progress</td>
+<td><code>pending</code>, <code>processing</code></td>
+<td>Back off and re-poll with exponential backoff plus jitter</td>
+</tr>
+<tr>
+<td>Blocked</td>
+<td><code>invalid_input</code>, <code>content_policy</code></td>
+<td>Fix the input; do <strong>not</strong> retry as-is</td>
+</tr>
+<tr>
+<td>Terminal</td>
+<td><code>success</code>, <code>failed</code></td>
+<td>Collect the result or surface the error; stop polling</td>
+</tr>
+</tbody></table>
+<p>A workable cadence: first check at 15 seconds, then exponential backoff from 5s capped at 30s, with a maximum of 12 attempts, and roughly 20% jitter when running concurrent jobs. The example in the previous section implements exactly that loop.</p>
+<p>The errors you will actually meet, in rough order of frequency:</p>
+<ul>
+<li><strong>401 &#x2F; invalid key</strong> — you are hitting the wrong route’s auth scheme. Official MiniMax uses standard Open Platform keys; fal uses <code>FAL_KEY</code>; Pollo uses an <code>x-api-key</code> header. An aggregator key does not work on another aggregator’s endpoint.</li>
+<li><strong>Invalid model name</strong> — <code>MiniMax-Hailuo-02</code> (official), <code>minimax/hailuo-02</code> (AIMLAPI-style), <code>fal-ai/minimax/hailuo-02/standard/image-to-video</code> (fal), and <code>minimax-hailuo-02</code> (Pollo) are all real, and none is interchangeable. Pasting the wrong slug returns a model-not-found error that looks like a typo and is actually a route mismatch.</li>
+<li><strong>Duration or resolution out of enum</strong> — <code>duration</code> accepts 6 or 10 (6 on some routes), and a 1080P + 10s combination is rejected by at least one documented route. Validate locally before submitting; a rejected render still costs a polling cycle.</li>
+<li><strong>Image errors</strong> — oversized files, wrong aspect ratio, or a reference URL that does not resolve. Preflight the image URL with a HEAD request before submission.</li>
+<li><strong>Rate limits</strong> — most routes publish no public RPM for Hailuo 02; treat the 429 you eventually get as a backoff signal, not a bug.</li>
+</ul>
+<p>None of the currently ranking model pages documents these failure modes — the closest is a generic try&#x2F;catch on the fal page. If you are building a production queue, log at minimum the <code>task_id</code>, your correlation ID, the input hash, the output URL, and the elapsed time, and pin the model version by name so a future model update cannot silently change your output style or your cost slope.</p>
+<h2 id="Direct-MiniMax-vs-aggregators-how-to-choose-a-route"><a href="#Direct-MiniMax-vs-aggregators-how-to-choose-a-route" class="headerlink" title="Direct MiniMax vs aggregators: how to choose a route"></a>Direct MiniMax vs aggregators: how to choose a route</h2><p>The decision is not “MiniMax vs everyone else”; it is which contract fits your integration. The route table below is the same model viewed through four contracts, with the verified-as-of date in each row’s source.</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Model ID</th>
+<th>Billing unit</th>
+<th>Key&#x2F;auth</th>
+<th>Best when</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MiniMax direct</td>
+<td><code>MiniMax-Hailuo-02</code></td>
+<td>per video</td>
+<td>Open Platform API key</td>
+<td>You already run MiniMax direct for other models and want the single-vendor source of truth</td>
+</tr>
+<tr>
+<td>fal.ai</td>
+<td><code>fal-ai/minimax/hailuo-02/standard/image-to-video</code></td>
+<td>per second</td>
+<td><code>FAL_KEY</code></td>
+<td>You are already on fal’s queue API and want their storage&#x2F;webhook tooling</td>
+</tr>
+<tr>
+<td>AIMLAPI</td>
+<td><code>minimax/hailuo-02</code></td>
+<td>per 10 seconds</td>
+<td>Bearer key</td>
+<td>You want an OpenAI-compatible base URL and one key across many models</td>
+</tr>
+<tr>
+<td>Modellix</td>
+<td><code>minimax/hailuo-02-t2v</code> &#x2F; <code>-i2v</code> &#x2F; <code>-fl2v</code></td>
+<td>per second</td>
+<td>Bearer key</td>
+<td>You want the same submit-poll contract across Hailuo, Kling, Wan, Seedance and the rest, with per-job cost logging</td>
+</tr>
+</tbody></table>
+<p>Aggregators earn their keep on the workflow axis, not on a universal price advantage: one key, one billing dashboard, and consistent async patterns across models. The <a href="https://www.modellix.ai/providers/minimax">Modellix MiniMax provider page</a> lists the current routes, and our <a href="https://www.modellix.ai/blog/minimax-free-api/">MiniMax free API guide</a> separates documented free endpoints from paid video access if your budget case depends on it.</p>
+<p>The honest boundary: if your only requirement is a single Hailuo 02 price sheet and you have no other model needs, MiniMax direct is the simplest source of truth. The moment your product spans several video or image models, the per-vendor accounts, keys, response schemas, and polling logic multiply — that is the workflow cost an aggregator removes. Choose the route that minimizes the workflow surface for <em>your</em> product, then verify its live price cell.</p>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p><strong>Is the Hailuo 02 API still available, or has it been deprecated?</strong></p>
+<p>As of August 7, 2026, <code>MiniMax-Hailuo-02</code> is still listed and priced on MiniMax’s official pay-as-you-go page, and major aggregators still serve it. MiniMax’s model table classifies it as a legacy video model — stable and documented, but no longer the marketing headline, which is now MiniMax H3. “Legacy” does not mean shut down; verify the live page before you plan around it.</p>
+<p><strong>What is the difference between the Hailuo 02 API and the Hailuo 2.3 API?</strong></p>
+<p>They share the same architecture and the same official per-video prices. Hailuo 2.3 is retuned for human motion, micro-expressions, and stylized art; Hailuo 02 is the physics-and-motion pick with longer 1080p takes and the first&#x2F;last-frame transition workflow. There is also a cheaper 2.3 Fast tier on the official page. Our Hailuo AI API guide compares the two in depth.</p>
+<p><strong>How much does one Hailuo 02 video cost?</strong></p>
+<p>On MiniMax direct, $0.28 for 768P 6s, $0.56 for 768P 10s, and $0.49 for 1080P 6s (as of August 7, 2026). Per-second routes price the same clip differently: fal lists $0.045&#x2F;s (Standard, 768P) and $0.08&#x2F;s (Pro, 1080P), and Modellix lists $0.054–$0.106&#x2F;s depending on resolution and duration. Normalize the unit, then compare.</p>
+<p><strong>Can I use the Hailuo 02 API for free?</strong></p>
+<p>There is no documented free tier for Hailuo 02 on MiniMax’s official pay-as-you-go page as of August 7, 2026. Some aggregators pair new accounts with a small starter credit that is enough for one or two test clips — AIMLAPI advertises a free-credit start on its signup page, and Modellix’s terms are worth checking on its own signup page. Treat any credit as a test budget, not a production cost baseline.</p>
+<p><strong>Does the Hailuo 02 API support image-to-video?</strong></p>
+<p>Yes. Image-to-video takes a first-frame image plus a prompt, and MiniMax documents a First &amp; Last Frame workflow for this model specifically. On aggregator routes the parameter is <code>first_frame_image</code> (Modellix), <code>image</code> (Pollo), or <code>image_url</code> (fal), and the endpoint slug usually contains <code>i2v</code> or a variant.</p>
+<p><strong>What does the model name “MiniMax-Hailuo-02” mean?</strong></p>
+<p>It is the official API-style model name on MiniMax’s platform. Aggregators expose the same model under their own IDs — <code>minimax/hailuo-02</code> on AIMLAPI, <code>fal-ai/minimax/hailuo-02/standard/image-to-video</code> on fal, <code>minimax-hailuo-02</code> on Pollo. The names are not interchangeable; the model ID is part of the route contract.</p>
+<p><strong>Is Modellix cheaper than calling MiniMax directly?</strong></p>
+<p>Not as a blanket statement, and the current data does not support it. On the 768P 6s cell, fal’s list price is the lowest of the published figures; on 1080P 6s, MiniMax direct is. Modellix’s argument is workflow, not a universal price floor: one key, one billing surface, and the same async contract across many models, with per-job cost logging. Compare your exact cell before deciding.</p>
+<p><strong>Where can I find a Hailuo 02 API example in Python?</strong></p>
+<p>The quick-start section of this guide is a complete <code>requests</code> implementation of the submit-and-poll pattern, written against the documented API response contract. The official MiniMax workflow (create task, poll, download) is described in MiniMax’s <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/guides/video-generation">video generation guide</a>, and the <a target="_blank" rel="noopener" href="https://aimlapi.com/models/hailuo-02">AIMLAPI model page</a> and <a target="_blank" rel="noopener" href="https://docs.pollo.ai/m/hailuo/hailuo-02">Pollo reference</a> both carry Python examples against their own endpoints.</p>
+<p><strong>Where can I find Hailuo 02 API examples on GitHub?</strong></p>
+<p>GitHub is where most working Hailuo 02 API code lives, but treat any repository as a starting point: model IDs, endpoints, and response fields differ by route. MiniMax’s official <a target="_blank" rel="noopener" href="https://github.com/MiniMax-AI/cli">CLI repository</a> generates video through the MiniMax API from the terminal (<code>mmx video generate</code>) and is a first-party reference for the async video flow. Community SDKs and example repos also surface under “hailuo-02” or “minimax” searches; verify the endpoint and response contract against the provider’s own docs before wiring one into production.</p>
+<hr>
+<p><em>Provider details and pricing reflect public information as of August 7, 2026 and change frequently. Validate against each provider’s live pricing before committing. Access image and video models, including the leading Chinese models, through a single API key at <a href="https://www.modellix.ai/">www.modellix.ai</a>.</em></p>
+<p><em>Cover image: illustrative Modellix artwork; it is not a MiniMax product screenshot or source evidence.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Integration-Guide/" class="tag-pill tag-pill--sm">Integration Guide</a>
+            
+              <a href="/blog/tags/MiniMax/" class="tag-pill tag-pill--sm">MiniMax</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/wan-2-2-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-wan-2-2-api.webp" alt="Wan 2.2 API: Alibaba Video Models on a Unified Key" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Wan 2.2 API: Alibaba Video Models on a Unified Key</h3>
+          <time class="related-article-date" datetime="2026-08-06T16:00:00.000Z">August 7, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/pixverse-video-upscale-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-pixverse-video-upscale-api.webp" alt="PixVerse Video Upscale API: Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">PixVerse Video Upscale API: Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-08-05T02:00:00.000Z">August 5, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/how-to-use-pixverse/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-how-to-use-pixverse.webp" alt="How to Use PixVerse: Setup, Prompts &amp; API" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">How to Use PixVerse: Setup, Prompts &amp; API</h3>
+          <time class="related-article-date" datetime="2026-08-04T02:00:00.000Z">August 4, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/hailuo-02-api/&text=Hailuo%2002%20API%3A%20MiniMax%20Video%20Integration%20Guide" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/hailuo-02-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/hailuo-02-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

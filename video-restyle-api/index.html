@@ -1,0 +1,659 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Restyle API: Restyle Existing Video via API — Modellix Blog</title>
+  <meta name="description" content="Restyle existing video via API: what a video restyle API is, how motion preservation works, the model landscape, async integration, and honest cost math.">
+  <meta name="keywords" content="video restyle api, ai video restyle api, video style transfer, video restyle ai, restyle video ai, ai video restyle, video to video restyle ai">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/video-restyle-api/">
+  <meta name="description" content="Restyle existing video via API: what a video restyle API is, how motion preservation works, the model landscape, async integration, and honest cost math.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Video Restyle API: Restyle Existing Video via API — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/video-restyle-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Restyle existing video via API: what a video restyle API is, how motion preservation works, the model landscape, async integration, and honest cost math.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-video-restyle-api.webp">
+<meta property="article:published_time" content="2026-08-07T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-07T02:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video API">
+<meta property="article:tag" content="API Guide">
+<meta property="article:tag" content="Video-to-Video">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-video-restyle-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Video Restyle API: Restyle Existing Video via API","description":"Restyle existing video via API: what a video restyle API is, how motion preservation works, the model landscape, async integration, and honest cost math.","datePublished":"2026-08-07T02:00:00.000Z","dateModified":"2026-08-07T02:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/video-restyle-api/","image":"https://img.modellix.ai/en/article/cover-video-restyle-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Video Restyle API: Restyle Existing Video via API</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/API-Guides/" class="category-tag category-tag--sm">API Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Video Restyle API: Restyle Existing Video via API</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-07T02:00:00.000Z">August 7, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
+            
+              <a href="/blog/tags/Video-to-Video/" class="tag-pill tag-pill--sm">Video-to-Video</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>A video restyle API is a programmatic service that takes an existing video plus a style signal — a preset, a free-text prompt, or a reference image — and returns a new version of the same clip re-rendered in that style, while preserving the.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-video-restyle-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-video-restyle-api.png" alt="Dark amber editorial cover for the video restyle API guide with MODELLIX wordmark, two-line title, and a style pipeline diagram" />
+</picture>
+
+<p>A <strong>video restyle API</strong> is a programmatic service that takes an existing video plus a style signal — a preset, a free-text prompt, or a reference image — and returns a new version of the same clip re-rendered in that style, while preserving the original motion and composition. It is the API version of what consumer tools like DomoAI or Krea advertise as “video-to-video”: the same shot, redrawn, not reshot.</p>
+<p>That distinction matters because most of the page-one results for “video restyle api” are either a single vendor’s changelog or a consumer landing page with no API at all. This guide covers the category instead: what restyle can and cannot do, how motion preservation actually works, the current model landscape, a working async integration pattern, and how to estimate cost without comparing incompatible billing units.</p>
+<p>Modellix is an API aggregator and has a commercial interest in this topic. The comparison below states our position and gives you the primary sources so you can verify the numbers yourself.</p>
+<h2 id="What-a-video-restyle-API-does-and-what-it-isn’t"><a href="#What-a-video-restyle-API-does-and-what-it-isn’t" class="headerlink" title="What a video restyle API does (and what it isn’t)"></a>What a video restyle API does (and what it isn’t)</h2><p>A restyle request looks like this: you send a source video (usually as a URL or an uploaded file) and one style selector, and the API returns a re-rendered copy. The same capability is marketed under several names — an AI video restyle API, <strong>video style transfer</strong>, video-to-video restyle — but the request shape is identical. Video style transfer is the older academic term for the same task: re-rendering each frame under a new visual style while preserving the source motion. The style selector is typically one of three forms:</p>
+<ul>
+<li><strong>A preset style ID</strong> — for example SkyReels Restyle accepts a <code>style_name</code> from a fixed list (Simpsons, Lego, paper-cutting, Van Gogh, pixel art), and PixVerse Restyle accepts a preset <code>restyle_id</code>.</li>
+<li><strong>A free-text prompt</strong> — PixVerse also accepts a <code>restyle_prompt</code> (up to 2,048 characters) describing the target look; Luma’s Modify Video API guides modification with a <code>prompt</code> plus optional <code>first_frame</code> guidance.</li>
+<li><strong>A reference image</strong> — Decart’s Video Restyling API accepts a JPEG&#x2F;PNG&#x2F;WebP image as a style anchor, which works for art styles and palettes that are hard to describe in words.</li>
+</ul>
+<p>Restyle is a <strong>style re-render, not a video editor</strong>, and not a generator:</p>
+<table>
+<thead>
+<tr>
+<th>Restyle does</th>
+<th>Restyle does not</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Re-render the visual style of every frame consistently</td>
+<td>Change content, subjects, or motion</td>
+</tr>
+<tr>
+<td>Accept preset styles, free-text prompts, or reference images</td>
+<td>Generate video from text or an image alone</td>
+</tr>
+<tr>
+<td>Preserve the source clip’s action, camera movement, and timing</td>
+<td>Add scenes, swap characters, or alter what happens</td>
+</tr>
+</tbody></table>
+<p>The boundary questions follow from that table. If you need to swap a person or add an object, that is a video edit or swap task, not restyle. If your target is a still image, the adjacent concept is image style transfer — our <a href="https://www.modellix.ai/blog/ai-style-transfer/">AI style transfer guide</a> covers that family, including which models fit image versus video sources. If you need a video from scratch, that is text-to-video or image-to-video, which we cover separately in the <a href="https://www.modellix.ai/blog/best-ai-video-generation-apis-2026/">AI video generation API roundup</a>.</p>
+<h2 id="How-video-restyle-works-the-motion-versus-style-tradeoff"><a href="#How-video-restyle-works-the-motion-versus-style-tradeoff" class="headerlink" title="How video restyle works: the motion-versus-style tradeoff"></a>How video restyle works: the motion-versus-style tradeoff</h2><p>A restyle model re-renders each frame of your clip under a new visual language — different color, texture, lighting, and illustration technique — while a temporal constraint keeps the frames consistent with each other and with the source motion. That temporal consistency is the hard part. Frame-by-frame image filters produce the jittery, flickering output you have probably seen; a restyle model is specifically trained to keep consecutive frames coherent.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/restyle-motion-diagram.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/restyle-motion-diagram.png" alt="Diagram of how a video restyle API works: source video plus a style signal enters the restyle model, which applies a temporal consistency constraint and outputs the same motion in the new visual style" loading="lazy" />
+</picture>
+
+<p><em>How a restyle API works: the model re-renders frames under a style signal while a temporal constraint preserves motion and frame coherence. The output is the same shot, redrawn.</em></p>
+<p>Academic work on video style transfer has dealt with this flicker problem since the early days of the field — <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1604.08610">Ruder et al.’s 2016 paper on artistic style transfer for videos</a> introduced temporal constraints precisely to stop per-frame style transfer from shimmering. Modern generative restyle models inherit that goal, but the tradeoff is real: the further the output moves from the source look, the more room the model has to drift from the original motion.</p>
+<p>Vendors encode this tradeoff as a strength control. Luma’s Modify Video API exposes three mode categories — <strong>Adhere</strong> (subtle retexturing while preserving structure), <strong>Flex</strong> (significant stylistic change with recognizable elements), and <strong>Reimagine</strong> (maximum transformation, including world and character changes). A style strength parameter on other APIs is the same dial under a different name.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/restyle-style-strength-spectrum.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/restyle-style-strength-spectrum.png" alt="Spectrum chart of motion fidelity versus style change positioning the Adhere, Flex, and Reimagine restyle modes along the axis" loading="lazy" />
+</picture>
+
+<p><em>The motion-versus-style tradeoff in one picture: Adhere keeps the source structure, Flex allows significant stylistic change with recognizable elements, Reimagine pushes toward maximum transformation. Pick the tier that matches how much motion drift your output tolerates.</em></p>
+<p>The practical consequence: “keeps your motion perfectly intact” is a marketing claim until you verify it on your own clip. Test at the style strength you intend to ship, and inspect the full clip — not a poster frame — for flicker and subject drift. This is the single most important quality check in a restyle workflow, and it is exactly what most vendor marketing pages omit.</p>
+<h2 id="The-video-restyle-API-landscape-in-2026"><a href="#The-video-restyle-API-landscape-in-2026" class="headerlink" title="The video restyle API landscape in 2026"></a>The video restyle API landscape in 2026</h2><p>Three kinds of routes exist today. The first is <strong>direct vendor APIs</strong>: Luma’s <a target="_blank" rel="noopener" href="https://lumalabs.ai/changelog/modify-video-api-release">Modify Video API</a>, built on Ray2, accepts video and image inputs with prompt guidance; Decart’s <a target="_blank" rel="noopener" href="https://docs.platform.decart.ai/models/realtime/video-restyling">Video Restyling Realtime API</a> is a different animal — a WebRTC streaming pipeline that restyles a live video stream at 25fps with a style that can be changed mid-stream.</p>
+<p>The second is <strong>model routes</strong>: restyle-capable video models that you call through a model hub or an aggregator. This is where most of the current activity is, and the list moves fast — as of early August 2026 the relevant entries are SkyReels Restyle (preset styles, input up to 30 seconds), PixVerse Restyle (preset or prompt), Seedance 2.0 V2V (mixed text&#x2F;image&#x2F;video&#x2F;audio references, multi-shot outputs up to 15 seconds), Wan 2.7 VideoEdit, Kling V3 Omni V2V (reference-faithful restyle), Gemini Omni Flash Video Edit, and Grok Imagine Video Edit.</p>
+<p>The third is <strong>consumer tools</strong> (DomoAI, Scenario, Pollo, and similar). Most of them do not offer APIs at all; if your requirement is a programmatic pipeline, they are not a route, just the UI versions of the same models. They are also what the “restyle video AI free” searches are looking for — the capability exists, but without an API it cannot be automated or run at volume. And they are the typical route for short-form social restyling — TikTok, Reels, Shorts clips; an API is the option when that same look needs to be produced at volume or inside your own product.</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Representative model &#x2F; API</th>
+<th>Style input</th>
+<th>Output constraints</th>
+<th>Billing unit</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Direct vendor API</td>
+<td>Luma Modify Video (Ray2)</td>
+<td>prompt + optional first frame</td>
+<td>≤10s, ≤100MB, 24fps</td>
+<td>per million pixels</td>
+</tr>
+<tr>
+<td>Direct vendor API (realtime)</td>
+<td>Decart Video Restyling (lucy-restyle-2)</td>
+<td>prompt or reference image, changeable live</td>
+<td>25fps, 1280×704, streaming</td>
+<td>per usage</td>
+</tr>
+<tr>
+<td>Model route</td>
+<td>SkyReels Restyle</td>
+<td>preset <code>style_name</code></td>
+<td>≤30s input, 720p output</td>
+<td>per second</td>
+</tr>
+<tr>
+<td>Model route</td>
+<td>PixVerse Restyle</td>
+<td><code>restyle_id</code> or <code>restyle_prompt</code></td>
+<td>≤16s input</td>
+<td>per second</td>
+</tr>
+<tr>
+<td>Model route</td>
+<td>Seedance 2.0 V2V</td>
+<td>prompt + image&#x2F;video&#x2F;audio refs</td>
+<td>≤15s, multi-shot</td>
+<td>per second</td>
+</tr>
+<tr>
+<td>Model route</td>
+<td>Wan 2.7 VideoEdit</td>
+<td>instruction prompt</td>
+<td>varies by route</td>
+<td>per second</td>
+</tr>
+<tr>
+<td>Model route</td>
+<td>Kling V3 Omni V2V</td>
+<td>prompt + optional refs</td>
+<td>source-fidelity focus</td>
+<td>per second</td>
+</tr>
+<tr>
+<td>Model route</td>
+<td>Gemini Omni Flash Video Edit</td>
+<td>instruction prompt</td>
+<td>3–10s input, preserves length&#x2F;ratio</td>
+<td>per second</td>
+</tr>
+<tr>
+<td>Aggregator</td>
+<td>one key across many of the above</td>
+<td>per route</td>
+<td>per route</td>
+<td>per second, pay-as-you-go</td>
+</tr>
+</tbody></table>
+<p><em>Sources: <a target="_blank" rel="noopener" href="https://lumalabs.ai/changelog/modify-video-api-release">Luma Modify Video release notes</a> and <a target="_blank" rel="noopener" href="https://docs.platform.decart.ai/models/realtime/video-restyling">Decart Video Restyling docs</a>, accessed August 7, 2026. Model-route details come from the Modellix <a href="https://www.modellix.ai/category/video-to-video">video-to-video model catalog</a> and the linked model pages; output limits change as models are updated.</em></p>
+<p>Billing units are <strong>not</strong> interchangeable across these rows. Luma bills per million pixels; most model routes bill per second of output; PixVerse sells per-second credits. Comparing a per-pixel rate with a per-second rate without converting is meaningless. A provider-agnostic note: the aggregator row is how we (Modellix) fit into this landscape — one API key across most of the model routes above, pay-as-you-go, with per-call cost logs. It is a workflow option, not a blanket “cheaper” claim; per-route prices differ and change.</p>
+<p>For a deep dive on the PixVerse route specifically — endpoints, parameter contracts, and preset lists — see our <a href="https://www.modellix.ai/blog/pixverse-video-restyle-api/">PixVerse Restyle API guide</a> and the <a href="https://www.modellix.ai/models/pixverse/video-restyle">PixVerse Restyle model page</a>.</p>
+<h2 id="What-to-check-before-you-integrate-limits-latency-and-cost"><a href="#What-to-check-before-you-integrate-limits-latency-and-cost" class="headerlink" title="What to check before you integrate: limits, latency, and cost"></a>What to check before you integrate: limits, latency, and cost</h2><p>Before writing a line of code, pin down four facts about the route you are evaluating.</p>
+<p><strong>Duration and file limits.</strong> Restyle models are short-form by design. Luma caps output at 10 seconds and input files at 100MB; SkyReels Restyle takes inputs up to 30 seconds; Seedance 2.0 V2V outputs up to 15 seconds; Gemini Omni Flash Video Edit wants 3–10 second sources. If your workflow needs longer outputs, restyle is the wrong single step — you chain it with <a href="https://www.modellix.ai/blog/video-extend-api/">video extension APIs</a> instead.</p>
+<p><strong>Latency model.</strong> Decide whether you need realtime. Decart’s streaming API is built for live use cases (avatars, live production); everything else in the table is batch: submit a job and wait seconds to minutes. Realtime and batch are different integrations — WebRTC client code versus a submit-and-poll loop — so pick before you build.</p>
+<p><strong>Billing unit and how to estimate.</strong> Convert everything to one unit before comparing routes. Luma publishes the conversion directly: <a target="_blank" rel="noopener" href="https://lumalabs.ai/api/pricing">$0.01582 per million pixels</a>, with a worked example of 720p, 5 seconds, 16:9 at <strong>$1.75</strong>. The general method for per-pixel routes: width × height × fps × duration &#x3D; total pixels, × per-million-pixel rate. For per-second routes: output duration × per-second rate — and check whether the rate applies to output duration or input duration, because the two differ when a provider trims or pads your clip. PixVerse’s credit system is documented on its official pricing page: the billing rule is 10 credits per second, but credits are not dollars — the USD value depends on the credit pack you buy, so you cannot convert a per-second deduction straight into a price; our PixVerse Restyle guide walks through the current contract.</p>
+<p><strong>Free credit and rate limits.</strong> There is no free unlimited restyle API that we are aware of — compute per second is real money. The normal evaluation path is trial credit: most direct vendors and aggregators issue a few dollars of credit to test with, and free credit tiers are exactly what the “video restyle api free” searches are looking for. Check the route’s rate limits and queue behavior at the same time; batch pipelines live or die on them, and no vendor advertises them prominently.</p>
+<h2 id="Calling-a-video-restyle-API-a-working-async-pattern"><a href="#Calling-a-video-restyle-API-a-working-async-pattern" class="headerlink" title="Calling a video restyle API: a working async pattern"></a>Calling a video restyle API: a working async pattern</h2><p>Every video API in this category is asynchronous: you submit a job, then poll or receive a webhook, then download the result. The pattern below is vendor-agnostic — it is the shape of the integration on Luma, PixVerse, SkyReels, and the aggregator routes:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">BASE_URL = <span class="string">&quot;https://api.example.com/v1&quot;</span>   <span class="comment"># replace with your provider&#x27;s base URL</span></span><br><span class="line">HEADERS = &#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">&quot;Bearer YOUR_API_KEY&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. Submit the restyle job</span></span><br><span class="line">resp = requests.post(</span><br><span class="line">    <span class="string">f&quot;<span class="subst">&#123;BASE_URL&#125;</span>/video/restyle&quot;</span>,</span><br><span class="line">    headers=HEADERS,</span><br><span class="line">    json=&#123;</span><br><span class="line">        <span class="string">&quot;video_url&quot;</span>: <span class="string">&quot;https://your-bucket.example.com/clip.mp4&quot;</span>,</span><br><span class="line">        <span class="string">&quot;style_prompt&quot;</span>: <span class="string">&quot;cyberpunk neon, cinematic grade&quot;</span>,</span><br><span class="line">        <span class="string">&quot;style_strength&quot;</span>: <span class="number">0.7</span>,            <span class="comment"># how far the look moves from the source</span></span><br><span class="line">        <span class="string">&quot;resolution&quot;</span>: <span class="string">&quot;720p&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    timeout=<span class="number">30</span>,</span><br><span class="line">)</span><br><span class="line">resp.raise_for_status()</span><br><span class="line">task_id = resp.json()[<span class="string">&quot;task_id&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. Poll until done (or register a webhook and skip the loop)</span></span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">120</span>):                      <span class="comment"># 120 × 2s = 4 min ceiling</span></span><br><span class="line">    status = requests.get(</span><br><span class="line">        <span class="string">f&quot;<span class="subst">&#123;BASE_URL&#125;</span>/video/restyle/<span class="subst">&#123;task_id&#125;</span>&quot;</span>, headers=HEADERS, timeout=<span class="number">30</span></span><br><span class="line">    ).json()</span><br><span class="line">    <span class="keyword">if</span> status[<span class="string">&quot;status&quot;</span>] == <span class="string">&quot;succeeded&quot;</span>:</span><br><span class="line">        <span class="built_in">print</span>(status[<span class="string">&quot;output&quot;</span>][<span class="string">&quot;video_url&quot;</span>])</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span> status[<span class="string">&quot;status&quot;</span>] == <span class="string">&quot;failed&quot;</span>:</span><br><span class="line">        <span class="keyword">raise</span> RuntimeError(status.get(<span class="string">&quot;error&quot;</span>, <span class="string">&quot;restyle job failed&quot;</span>))</span><br><span class="line">    time.sleep(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<p>The parameter contract differs per vendor, so read the target API’s reference before adapting this — <a target="_blank" rel="noopener" href="https://docs.lumalabs.ai/docs/modify-video">Luma’s Modify Video docs</a> and <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/modify-2082369m0">PixVerse’s Modify API docs</a> are both first-party and current. The fields that vary most:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>What it controls</th>
+<th>Typical values</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>input video</td>
+<td>Source clip</td>
+<td>mp4 URL or upload; 3–30s depending on provider</td>
+</tr>
+<tr>
+<td>style prompt</td>
+<td>Target look</td>
+<td>“anime”, “van Gogh oil painting”, free text</td>
+</tr>
+<tr>
+<td>reference image</td>
+<td>Visual style anchor</td>
+<td>JPEG&#x2F;PNG&#x2F;WebP URL</td>
+</tr>
+<tr>
+<td>style strength &#x2F; mode</td>
+<td>How far the output moves from source</td>
+<td>0–1, or tiers like Adhere &#x2F; Flex &#x2F; Reimagine</td>
+</tr>
+<tr>
+<td>resolution &#x2F; fps</td>
+<td>Output spec</td>
+<td>720p &#x2F; 1080p; 24–25fps</td>
+</tr>
+</tbody></table>
+<p>Two engineering notes. First, upload once and reuse the media ID if the API supports it — re-uploading the same clip per job wastes time and quota. Second, treat retries as mandatory: transient 429s and timeouts are normal on video queues, and a backoff-and-retry wrapper around the poll loop is the difference between a pipeline that finishes and one that dies at 2am.</p>
+<h2 id="Direct-APIs-model-hubs-or-aggregators-how-to-choose"><a href="#Direct-APIs-model-hubs-or-aggregators-how-to-choose" class="headerlink" title="Direct APIs, model hubs, or aggregators: how to choose"></a>Direct APIs, model hubs, or aggregators: how to choose</h2><p>The three access routes map to three different operational profiles:</p>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Direct vendor API</th>
+<th>Model hub</th>
+<th>Aggregator</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Do you want first-party docs and latest features?</td>
+<td>Yes — you get them first</td>
+<td>Per model, sometimes lagging</td>
+<td>Per route, via provider docs</td>
+</tr>
+<tr>
+<td>Do you need several models behind one integration?</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Do you want one bill and per-call cost logs?</td>
+<td>One vendor only</td>
+<td>Per model billing</td>
+<td>Yes, unified</td>
+</tr>
+<tr>
+<td>Do you need cross-vendor redundancy?</td>
+<td>No</td>
+<td>Per model</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Do you need realtime streaming?</td>
+<td>Only if the vendor offers it</td>
+<td>Rarely</td>
+<td>Rarely</td>
+</tr>
+</tbody></table>
+<p>A decision checklist, in order:</p>
+<ol>
+<li><strong>Fix the output spec first.</strong> Duration, resolution, fps, aspect ratio. It eliminates most routes immediately — a 30-second clip rules out every 10–15 second model.</li>
+<li><strong>Decide the style control you need.</strong> Preset-only (SkyReels) is cheapest to integrate; free prompt (PixVerse, Luma) is flexible; reference-image control (Decart, Seedance) is best for brand-locked aesthetics.</li>
+<li><strong>Run the same clip through two or three routes.</strong> Motion fidelity is empirical; compare outputs on your footage at your intended strength, not on vendor demos. This is the <a href="https://www.modellix.ai/blog/ai-style-transfer/">style transfer workflow</a> principle applied to video: review subject preservation before judging style appeal.</li>
+<li><strong>Match billing units before comparing prices.</strong> Per-second, per-pixel, and per-credit numbers are not directly comparable.</li>
+<li><strong>Check rate limits and rights.</strong> Batch volume needs queue headroom; and restyling footage you do not own does not transfer the rights to that footage — check the source license and the model’s commercial-use terms before shipping.</li>
+</ol>
+<p>Where an aggregator fits: Modellix sits in that column — one key across the <a href="https://www.modellix.ai/category/video-to-video">video-to-video catalog</a>, pay-as-you-go billing, per-call cost logs, and a $10–30 trial credit that requires no card. It is a fit when multi-model access, unified billing, or redundancy matter to you; it is not a substitute for checking the per-route price and contract on the model page, which is why the table above lists them.</p>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p><strong>Is there a free video restyle API?</strong></p>
+<p>Not a free unlimited one, as far as we know — restyle compute is billed per second or per pixel, and it is genuinely expensive. What exists is trial credit: direct vendors and aggregators issue small credit balances to test with (Modellix currently offers $10–30 without a card). Treat trial credit as the evaluation path, not a production budget.</p>
+<p><strong>Can I download a video restyle API?</strong></p>
+<p>No — an API is a hosted service you call over HTTP with a key, so there is nothing to install or download. The “download” version of this search is consumer intent: the consumer tools in the SERP (DomoAI, Krea, and similar) let you restyle a clip and save the file. If you need restyling inside a product or an automated pipeline, the API route replaces the app — you call an endpoint instead of downloading software.</p>
+<p><strong>Is restyle the same as video-to-video?</strong></p>
+<p>Restyle is the style-focused subset of video-to-video — when people search for “video to video restyle AI”, they usually mean exactly this style-focused subset. The V2V family also includes motion transfer (Vidu Motion Sync, PixVerse Motion Control), lip sync, extension, and object or scene editing — those change what happens in the clip; restyle only changes how it looks.</p>
+<p><strong>Does restyle change the motion of my video?</strong></p>
+<p>It is designed not to — preserving the source motion is the defining property of a restyle model. But fidelity is not guaranteed at every style strength. Higher strength gives more dramatic looks and more motion drift; inspect the full clip for flicker and subject drift before you trust it in production.</p>
+<p><strong>Can I restyle videos in batch?</strong></p>
+<p>Yes, and the async pattern above is what batch pipelines are built on: submit many jobs, poll or webhook, collect results. The real constraints are the provider’s rate limits and queue depth, so validate those with a load test on a handful of clips before committing to a large run.</p>
+<p><strong>Can I use restyled video commercially?</strong></p>
+<p>Only if both the source footage and the model’s license permit it. Restyling someone else’s video does not give you rights to it, and model licenses differ — check the license on the model page you are calling, especially for open models.</p>
+<p><strong>Start with your output spec, then spend trial credit on a real comparison.</strong> Fix duration, resolution, and billing unit first — it eliminates most routes immediately. Then run one clip through two or three restyle models at the strength you intend to ship, and compare motion fidelity on the full output, not a poster frame. The Modellix <a href="https://www.modellix.ai/category/video-to-video">video-to-video catalog</a> lists the routes above with parameter-level pricing, and the $10–30 no-card trial credit is enough to fund that comparison. We are an aggregator, so double-check the per-route numbers on the model pages before you commit — but the evaluation itself is free.</p>
+<hr>
+<p><em>Primary sources accessed August 7, 2026: <a target="_blank" rel="noopener" href="https://lumalabs.ai/changelog/modify-video-api-release">Luma Modify Video API release notes</a>, <a target="_blank" rel="noopener" href="https://docs.lumalabs.ai/docs/modify-video">Luma Modify Video docs</a>, <a target="_blank" rel="noopener" href="https://lumalabs.ai/api/pricing">Luma API pricing</a>, <a target="_blank" rel="noopener" href="https://docs.platform.decart.ai/models/realtime/video-restyling">Decart Video Restyling docs</a>, <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/modify-2082369m0">PixVerse Modify API docs</a>, and <a target="_blank" rel="noopener" href="https://replicate.com/collections/text-to-video">Replicate’s video model collection</a>. Model availability, limits, and prices change; verify against the live provider page before committing budget. Modellix is an aggregator and has a commercial interest in this topic.</em></p>
+<p><em>Cover image: illustrative Modellix artwork; it is not a vendor screenshot or source evidence.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
+            
+              <a href="/blog/tags/Video-to-Video/" class="tag-pill tag-pill--sm">Video-to-Video</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/first-last-frame-to-video-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-first-last-frame-to-video-api.webp" alt="First Last Frame to Video API: FL2V Integration Guide" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">API Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">First Last Frame to Video API: FL2V Integration Guide</h3>
+          <time class="related-article-date" datetime="2026-08-06T02:00:00.000Z">August 6, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/reference-to-video-ai1/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-pixverse-motion-control-api.webp" alt="PixVerse Motion Control API: Integration Guide &amp; Pricing" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">API Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">PixVerse Motion Control API: Integration Guide &amp; Pricing</h3>
+          <time class="related-article-date" datetime="2026-08-05T02:00:00.000Z">August 5, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/gpt-image-1-5-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-gpt-image-1-5-api.webp" alt="GPT Image 1.5 API: Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">API Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">GPT Image 1.5 API: Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-07-29T16:00:00.000Z">July 30, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/video-restyle-api/&text=Video%20Restyle%20API%3A%20Restyle%20Existing%20Video%20via%20API" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/video-restyle-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/video-restyle-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

@@ -1,0 +1,649 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wan 2.2 API: Alibaba Video Models on a Unified Key — Modellix Blog</title>
+  <meta name="description" content="Wan 2.2 API explained with live 2026 pricing: which model ID to call, t2v vs i2v routes, per-second costs, the async task lifecycle, and one key for the family.">
+  <meta name="keywords" content="wan 2.2 api, wan 2.2 api pricing, wan2.2-i2v-flash, wan 2.2 t2v api, wan 2.2 i2v api, wan 2.2 text to video api, wan 2.2 image to video api">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/wan-2-2-api/">
+  <meta name="description" content="Wan 2.2 API explained with live 2026 pricing: which model ID to call, t2v vs i2v routes, per-second costs, the async task lifecycle, and one key for the family.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wan 2.2 API: Alibaba Video Models on a Unified Key — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/wan-2-2-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Wan 2.2 API explained with live 2026 pricing: which model ID to call, t2v vs i2v routes, per-second costs, the async task lifecycle, and one key for the family.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-wan-2-2-api.webp">
+<meta property="article:published_time" content="2026-08-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-06T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video API">
+<meta property="article:tag" content="Alibaba">
+<meta property="article:tag" content="Integration">
+<meta property="article:tag" content="Pricing">
+<meta property="article:tag" content="Wan">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-wan-2-2-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Wan 2.2 API: Alibaba Video Models on a Unified Key","description":"Wan 2.2 API explained with live 2026 pricing: which model ID to call, t2v vs i2v routes, per-second costs, the async task lifecycle, and one key for the family.","datePublished":"2026-08-06T16:00:00.000Z","dateModified":"2026-08-06T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/wan-2-2-api/","image":"https://img.modellix.ai/en/article/cover-wan-2-2-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Wan 2.2 API: Alibaba Video Models on a Unified Key</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Wan 2.2 API: Alibaba Video Models on a Unified Key</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-06T16:00:00.000Z">August 7, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+              <a href="/blog/tags/Integration/" class="tag-pill tag-pill--sm">Integration</a>
+            
+              <a href="/blog/tags/Alibaba/" class="tag-pill tag-pill--sm">Alibaba</a>
+            
+              <a href="/blog/tags/Wan/" class="tag-pill tag-pill--sm">Wan</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>If you searched for the &#39;wan 2.2 api&#39; because a colleague sent you a demo clip and you now need to know how to call it, the first thing to unlearn is that there is one API to find. Wan 2.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-wan-2-2-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-wan-2-2-api.png" alt="Dark amber and cyan Wan 2.2 API cover: Alibaba video model family flowing through one unified key into an async task pipeline" />
+</picture>
+
+<p>If you searched for the “wan 2.2 api” because a colleague sent you a demo clip and you now need to know how to call it, the first thing to unlearn is that there is one API to find. Wan 2.2 is Alibaba’s open-source video-generation model family — an asynchronous REST service that handles text-to-video (T2V), image-to-video (I2V), and speech-to-video (S2V) jobs — and it is served by many providers, each with its own model IDs, billing units, and request shapes. What you call depends on which route you pick.</p>
+<p>This guide is current as of August 7, 2026. It maps the model family to the API names you will actually type, compares per-second pricing across routes in one unit, shows a working <code>wan2.2-i2v-flash</code> request with the full submit–poll–retrieve lifecycle, and covers the mistakes that cost real budget. We run Modellix, an API aggregator that carries the Wan 2.2 family next to 210+ other image and video models behind one key, so we disclose the commercial interest up front — and the pricing below comes from the live pages, not from a brochure.</p>
+<h2 id="What-“Wan-2-2-API”-actually-refers-to"><a href="#What-“Wan-2-2-API”-actually-refers-to" class="headerlink" title="What “Wan 2.2 API” actually refers to"></a>What “Wan 2.2 API” actually refers to</h2><p>Wan 2.2 is a family of open-weights video models released by Alibaba’s Tongyi Lab (the Wan-AI team) on July 28, 2025, per the <a target="_blank" rel="noopener" href="https://github.com/Wan-Video/Wan2.2">official Wan 2.2 repository</a> and the <a target="_blank" rel="noopener" href="https://wan.video/blog/wan2.2">release announcement</a>. The architecture is a Mixture-of-Experts (MoE) design: 27 billion total parameters with roughly 14 billion active per denoising step, which is why the models stay competitive on cost. The announcement highlights three changes over Wan 2.1 — the MoE routing, curated cinematic-style training data, and a +65.6% larger image set and +83.2% larger video set for training — and benchmarks the family on its own Wan-Bench 2.0 evaluation against leading closed models.</p>
+<p>Two facts shape every integration decision:</p>
+<ol>
+<li><strong>The weights are open, not the API.</strong> The models are downloadable from Hugging Face under an Apache 2.0 license, but “the Wan 2.2 API” is never one official endpoint. Alibaba Cloud serves the models through Model Studio, and independent providers (Together AI, fal.ai, Replicate, KIE.ai, Modellix, and others) host their own endpoints with their own pricing.</li>
+<li><strong>The job is asynchronous.</strong> Video generation runs in seconds to minutes, so every provider uses the same submit-a-task, poll-for-status, retrieve-the-result pattern. The differences are in the details: which fields are required, how you poll, and what the billable unit is.</li>
+</ol>
+<p>Because of that, “wan 2.2 api” is really a family of questions — which model variant, which provider, which price, which request schema. The rest of this guide answers them in that order.</p>
+<h2 id="The-Wan-2-2-model-family-mapping-names-to-routes"><a href="#The-Wan-2-2-model-family-mapping-names-to-routes" class="headerlink" title="The Wan 2.2 model family: mapping names to routes"></a>The Wan 2.2 model family: mapping names to routes</h2><p>The family has five open-weights members plus a fast API tier, and each one appears under a different name depending on where you call it. This table is the mapping you need, built from the official repository’s model list and the <a target="_blank" rel="noopener" href="https://huggingface.co/Wan-AI/Wan2.2-T2V-A14B">Hugging Face model pages</a>:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Open-weights name</th>
+<th>What it does</th>
+<th>Typical API route name</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>T2V A14B</td>
+<td><code>Wan2.2-T2V-A14B</code></td>
+<td>Text-to-video, 480P&#x2F;720P</td>
+<td><code>Wan-AI/Wan2.2-T2V-A14B</code> (Together), <code>wan2.2-t2v-plus</code> (Modellix)</td>
+</tr>
+<tr>
+<td>I2V A14B</td>
+<td><code>Wan2.2-I2V-A14B</code></td>
+<td>Image-to-video, 480P&#x2F;720P</td>
+<td><code>Wan-AI/Wan2.2-I2V-A14B</code>, <code>wan2.2-i2v-plus</code></td>
+</tr>
+<tr>
+<td>TI2V 5B</td>
+<td><code>Wan2.2-TI2V-5B</code></td>
+<td>T2V + I2V in one model, 720P@24fps, 16×16×4 VAE compression, runs on consumer GPUs</td>
+<td>often a self-host or ComfyUI path</td>
+</tr>
+<tr>
+<td>S2V 14B</td>
+<td><code>Wan2.2-S2V-14B</code></td>
+<td>Speech-to-video (audio-driven, added Aug 26, 2025)</td>
+<td><code>wan2.2-s2v</code> variants</td>
+</tr>
+<tr>
+<td>Animate 14B</td>
+<td><code>Wan2.2-Animate-14B</code></td>
+<td>Character animation and replacement (added Sep 19, 2025)</td>
+<td><code>wan2.2-animate-*</code></td>
+</tr>
+<tr>
+<td>Flash tier</td>
+<td>not open-weights</td>
+<td>Fast, cheap API generation (Alibaba Cloud Model Studio’s <code>wan2.2-t2v-flash</code> &#x2F; <code>wan2.2-i2v-flash</code>)</td>
+<td><code>wan2.2-i2v-flash</code> (Modellix)</td>
+</tr>
+</tbody></table>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/wan-2-2-model-family.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/wan-2-2-model-family.png" alt="Wan 2.2 model family diagram: five open-weights members and the Flash API tier feeding through hosted routes into one unified key" loading="lazy" />
+</picture>
+
+<p><em>Wan 2.2 as of August 7, 2026: the open-weights family (T2V-A14B, I2V-A14B, TI2V-5B, S2V-14B, Animate-14B) plus the Flash API tier, each reachable through multiple hosted routes — or through one unified key.</em></p>
+<p>Two naming traps follow from this table. First, the open-weights name (<code>Wan2.2-T2V-A14B</code>) is not a valid API model ID on most platforms — you usually need the platform’s own route name. Second, the Flash tier is a distinct product from the open-weights models: it is Alibaba Cloud’s optimized API generation tier (billed cheaply per second), not another set of downloadable weights. When a provider page says “Wan 2.2 Fast” or “Flash,” it is serving this tier, and the <a target="_blank" rel="noopener" href="https://www.alibabacloud.com/help/en/model-studio/model-pricing">Alibaba Cloud Model Studio pricing page</a> is the reference for the hosted tier’s own rates. On the capability side, the A14B models respond to explicit camera-movement language in prompts and preserve a source image’s style on I2V routes — the combination that made the family a default for brand-consistent animation. On the spec side, the TI2V-5B member pairs 720P output at 24fps with 16×16×4 VAE compression and runs on consumer GPUs — the numbers on the model card that made it the self-host path of choice. If you prefer to run the weights yourself instead of calling an API, the community path is ComfyUI, whose official Wan 2.2 workflows are linked from the repository.</p>
+<p>If you are deciding between generations rather than within them, note that the family has moved on: <a href="https://www.modellix.ai/blog/wan-2-7-api/">Wan 2.7</a> is the current flagship with thinking mode and native audio, and Wan 2.2 remains the cheaper, faster baseline for short clips. The model IDs in this guide stay valid and maintained for backward compatibility, but they are no longer recommended for new integrations — on Modellix’s live model pages and API reference, the Wan 2.2 Flash and Plus routes carry a legacy label, and the routing note points new projects to Wan 2.7.</p>
+<blockquote>
+<p><strong>Wan 2.2 or Wan 2.7?</strong> If you are starting a new project, choose <a href="https://www.modellix.ai/blog/wan-2-7-api/">Wan 2.7</a> — it is the flagship, and it is where the legacy labels point new integrations. Choose Wan 2.2 if you are on a tight budget, only need short clips, or are maintaining an existing Wan 2.2 pipeline: budget-conscious Wan 2.2 AI video generation is exactly what this guide covers, and the model IDs and prices below stay accurate for it.</p>
+</blockquote>
+<h2 id="What-Wan-2-2-API-calls-actually-cost"><a href="#What-Wan-2-2-API-calls-actually-cost" class="headerlink" title="What Wan 2.2 API calls actually cost"></a>What Wan 2.2 API calls actually cost</h2><p>Prices move, so treat every number here as a snapshot taken from the live pages on August 7, 2026. If your search was specifically about wan 2.2 api pricing, the table is the direct answer — but read the billing-unit warning right after it, because that is where most budget forecasts go wrong. The single most important habit is to compare the <strong>same billing unit</strong>. On the Modellix routes the unit is per second; on Together AI’s page it is per video; on some packages it is per point or per task. A “cheaper” headline number often just means a different unit.</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Model</th>
+<th>Billing unit</th>
+<th>Price (Aug 7, 2026)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Modellix</td>
+<td><code>wan2.2-i2v-flash</code></td>
+<td>per second</td>
+<td>$0.0008 (480P) · $0.0216 (720P&#x2F;1080P)</td>
+</tr>
+<tr>
+<td>Modellix</td>
+<td><code>wan2.2-t2v-plus</code></td>
+<td>per second</td>
+<td>$0.0116 (832×480-class) · $0.0583 (1080p-class)</td>
+</tr>
+<tr>
+<td>Together AI</td>
+<td><code>Wan-AI/Wan2.2-T2V-A14B</code></td>
+<td>per video</td>
+<td>$0.66 per video (model page)</td>
+</tr>
+</tbody></table>
+<p><em>Sources: <a href="https://www.modellix.ai/models/alibaba/wan2.2-i2v-flash">Modellix Wan 2.2 I2V Flash model page</a>, <a href="https://www.modellix.ai/models/alibaba/wan2.2-t2v-plus">Modellix Wan 2.2 T2V Plus model page</a>, and <a target="_blank" rel="noopener" href="https://www.together.ai/models/wan-2-2-t2v">Together AI’s Wan 2.2 T2V page</a>, all accessed August 7, 2026. Route availability and prices change; re-check before budgeting.</em></p>
+<p>Reading this table correctly takes two extra steps. First, convert units before comparing: a 5-second clip on the flash route at 720P costs about $0.108 on Modellix, while Together’s per-video number already bundles duration — you can only compare once both are expressed the same way. Second, resolution is the biggest lever in the per-second world. On <code>wan2.2-i2v-flash</code> the tiers line up like this:</p>
+<table>
+<thead>
+<tr>
+<th>Resolution</th>
+<th>$&#x2F;sec</th>
+<th>What it is for</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>480P</td>
+<td>$0.0008</td>
+<td>Thumbnails, storyboards, draft tests</td>
+</tr>
+<tr>
+<td>720P</td>
+<td>$0.0216</td>
+<td>Standard social clips — a 27× jump from 480P</td>
+</tr>
+<tr>
+<td>1080P</td>
+<td>$0.0216</td>
+<td>Same price as 720P on this route — only if you can measure the difference</td>
+</tr>
+</tbody></table>
+<p>If your use case is thumbnails or storyboarding, price the 480P tier before assuming you need full resolution. And note the 1080P tier costs the same as 720P on this route — pay for it only if you can measure the quality difference in your own outputs, because resolution is the largest single line item on a video API bill.</p>
+<p>For a cross-model view of where Wan 2.2 sits in the market, our <a href="https://www.modellix.ai/blog/best-ai-video-generation-apis-2026/">2026 video API benchmark batch</a> tested generation speed and price across providers; within the Wan family, Wan 2.2 is the budget workhorse and Wan 2.7 the premium step up.</p>
+<h2 id="Provider-specific-APIs-vs-one-unified-key"><a href="#Provider-specific-APIs-vs-one-unified-key" class="headerlink" title="Provider-specific APIs vs one unified key"></a>Provider-specific APIs vs one unified key</h2><p>Once you know the model and the price, the routing decision is: call a single provider directly, or call an aggregator that fronts many providers behind one key.</p>
+<p><strong>Direct provider route.</strong> You pick one host (Alibaba Cloud Model Studio, Together AI, fal.ai, or another), read its docs, and call its endpoint with its key. You get one API contract to learn, and you can negotiate or optimize with that vendor. The cost is fragmentation: the next model you want (Seedance, Kling, Veo, a different Wan version) lives on a different provider with a different key, a different billing system, and a different async schema. A team building a video pipeline that mixes models ends up maintaining several integrations side by side.</p>
+<p><strong>Unified key route.</strong> An aggregator such as Modellix exposes the same Wan 2.2 routes — and 210+ other image and video models — behind one API key, one billing relationship, and one submit–poll–retrieve contract. Your integration code no longer changes when you swap <code>wan2.2-i2v-flash</code> for <code>seedance-2-0</code> or for a newer Wan version; only the model ID in the request body changes. Some aggregators also serve OpenAI-compatible endpoints, which lets you reuse existing HTTP clients.</p>
+<p>The trade-off is real: you depend on the aggregator’s availability and markup, and you should verify that the exact model, resolution, and billing unit you need exist before committing. This is not a claim that Modellix is the cheapest way to call Wan 2.2 — on specific tiers and resolutions a direct route can undercut us, and the honest way to choose is to price your exact workload on both paths.</p>
+<p>For teams already comparing across the Chinese video-model ecosystem, the same argument applies to other Alibaba models: <a href="https://www.modellix.ai/blog/seedance-2-0-api/">Seedance 2.0 API</a> and the broader image-to-video API landscape sit behind the same unified key.</p>
+<h2 id="Calling-wan2-2-i2v-flash-through-the-Modellix-API"><a href="#Calling-wan2-2-i2v-flash-through-the-Modellix-API" class="headerlink" title="Calling wan2.2-i2v-flash through the Modellix API"></a>Calling wan2.2-i2v-flash through the Modellix API</h2><p>One disclosure before the code, because it decides which route you should call. As of August 2026, Modellix and Alibaba Cloud maintain <code>wan2.2-i2v-flash</code> and <code>wan2.2-t2v-plus</code> for backward compatibility, and both are labeled legacy on the live model pages: the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/alibaba/wan-2-2-i2v-flash">Wan 2.2 I2V Flash API reference</a> explicitly says “Do NOT use this for new creations” and routes new integrations to <a target="_blank" rel="noopener" href="https://docs.modellix.ai/alibaba/wan-2-7-i2v">Wan 2.7 I2V</a>. If you are starting a new project, use the <a href="https://www.modellix.ai/blog/wan-2-7-api/">Wan 2.7 guide</a> instead; if you maintain an existing Wan 2.2 pipeline, this contract is exactly what you need.</p>
+<p>The Flash tier is the cheap, fast image-to-video route and the exact model ID from the planning long-tails — for existing Wan 2.2 integrations, it is the one most readers will call first. If you came here for the wan 2.2 i2v api or the wan 2.2 t2v api specifically, both live under the same endpoint pattern: the i2v route requires a first-frame image, the t2v route needs only a prompt. Here is the complete flow against the Modellix API, verified from the API reference on August 7, 2026.</p>
+<p><strong>Step 1 — submit the job.</strong> POST to the async endpoint with your image URL. <code>img_url</code> is the only required field:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">curl --request POST \</span><br><span class="line">  --url https://api.modellix.ai/api/v1/alibaba/wan2.2-i2v-flash \</span><br><span class="line">  --header <span class="string">&#x27;Authorization: Bearer $MODELIX_API_KEY&#x27;</span> \</span><br><span class="line">  --header <span class="string">&#x27;Content-Type: application/json&#x27;</span> \</span><br><span class="line">  --data <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;img_url&quot;: &quot;https://example.com/first-frame.jpg&quot;,</span></span><br><span class="line"><span class="string">    &quot;prompt&quot;: &quot;A white cat in sunglasses surfing, slow tracking shot, golden hour&quot;,</span></span><br><span class="line"><span class="string">    &quot;resolution&quot;: &quot;720P&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>The response returns a task reference, not the video:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;success&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pending&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;task_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;task-abc123&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;model_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;model-123&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;get_result&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;method&quot;</span><span class="punctuation">:</span> <span class="string">&quot;GET&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.modellix.ai/api/v1/tasks/task-abc123&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Step 2 — poll until the task completes.</strong> The <code>get_result.url</code> is your polling endpoint. Poll it with the same bearer token; a completed task returns the video URL in the result payload.</p>
+<p><strong>Step 3 — retrieve the output.</strong> Download the returned video URL and verify the duration and resolution against what you paid for.</p>
+<p>The text-to-video sibling carries the same legacy label and works identically: <code>wan2.2-t2v-plus</code> accepts a <code>prompt</code> (required), <code>negative_prompt</code>, <code>prompt_extend</code>, <code>seed</code>, and <code>size</code>, and the T2V Plus API reference documents the same async response shape — its routing note likewise points new integrations to <a target="_blank" rel="noopener" href="https://docs.modellix.ai/alibaba/wan-2-7-t2v">Wan 2.7 T2V</a>. Full parameter contract for the I2V Flash route:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>img_url</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>First frame; HTTP&#x2F;HTTPS URL or base64</td>
+</tr>
+<tr>
+<td><code>prompt</code></td>
+<td>string</td>
+<td>No</td>
+<td>Motion and style guidance</td>
+</tr>
+<tr>
+<td><code>negative_prompt</code></td>
+<td>string</td>
+<td>No</td>
+<td>What to avoid in output</td>
+</tr>
+<tr>
+<td><code>prompt_extend</code></td>
+<td>boolean</td>
+<td>No</td>
+<td>Auto-enhance the prompt (default <code>false</code>)</td>
+</tr>
+<tr>
+<td><code>resolution</code></td>
+<td>string</td>
+<td>No</td>
+<td><code>480P</code>, <code>720P</code>, or <code>1080P</code></td>
+</tr>
+<tr>
+<td><code>seed</code></td>
+<td>integer</td>
+<td>No</td>
+<td>Reproducibility; <code>-1</code> for random</td>
+</tr>
+</tbody></table>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/wan-2-2-api-lifecycle.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/wan-2-2-api-lifecycle.png" alt="Async task lifecycle diagram: POST /async returns task_id, then polling the get_result URL until status completes, then retrieving the video URL" loading="lazy" />
+</picture>
+
+<p><em>The submit–poll–retrieve lifecycle every Wan 2.2 provider uses. On Modellix the polling URL is returned in the submit response, so no path guessing is required.</em></p>
+<p>Because the lifecycle is identical across the family, switching from I2V Flash to T2V Plus or to another provider’s Wan route is a change to the endpoint and body fields — not to your polling logic. That stability is the practical value of a unified key: one polling loop, many models.</p>
+<h2 id="Integration-mistakes-that-cost-time-and-budget"><a href="#Integration-mistakes-that-cost-time-and-budget" class="headerlink" title="Integration mistakes that cost time and budget"></a>Integration mistakes that cost time and budget</h2><p>These are the errors that show up repeatedly in real integrations, and all of them are avoidable once you know the shape of the API.</p>
+<ul>
+<li><strong>Using the open-weights name as the API model ID.</strong> <code>Wan2.2-I2V-A14B</code> is a Hugging Face repo name, not a valid model ID on most hosts. Check the platform’s route list first; Modellix uses names like <code>wan2.2-i2v-flash</code>.</li>
+<li><strong>Assuming a synchronous response.</strong> Video jobs take seconds to minutes. If your client times out on the POST, the job may still be running server-side — poll the task endpoint instead of retrying the submit blindly, or you will pay for duplicate generations.</li>
+<li><strong>Comparing prices without converting the unit.</strong> Per-second, per-video, and per-point figures are not comparable directly. Convert everything to cost-per-minute or cost-per-usable-clip for your own workload.</li>
+<li><strong>Ignoring the resolution multiplier.</strong> On <code>wan2.2-i2v-flash</code>, 720P costs 27× the 480P rate. Defaulting to 720P for draft work is the fastest way to inflate a bill.</li>
+<li><strong>Expecting a free tier.</strong> Wan 2.2 video generation is paid on every major host; “free” offers from third parties are trial credits with quotas. Budget for the pay-as-you-go rate from day one.</li>
+<li><strong>Forgetting <code>prompt_extend</code> is opt-in.</strong> It defaults to <code>false</code>. If a prompt comes back more literal than you expected, that flag — not the model — is usually the cause.</li>
+</ul>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p><strong>What is the Wan 2.2 API?</strong></p>
+<p>It is the asynchronous REST service that exposes Alibaba’s Wan 2.2 video model family — text-to-video, image-to-video, and speech-to-video jobs submitted over HTTP and polled to completion. There is no single official endpoint: the open-weights models are hosted by Alibaba Cloud Model Studio and many independent providers, each with its own API.</p>
+<p><strong>How much does the Wan 2.2 API cost?</strong></p>
+<p>As of August 7, 2026, Modellix lists <code>wan2.2-i2v-flash</code> at $0.0008&#x2F;sec for 480P and $0.0216&#x2F;sec for 720P&#x2F;1080P, and <code>wan2.2-t2v-plus</code> at $0.0116–$0.0583&#x2F;sec depending on output size. Together AI lists its T2V A14B endpoint at $0.66 per video. Compare per-second, per-video, and per-point figures only after converting to the same unit.</p>
+<p><strong>What is wan2.2-i2v-flash?</strong></p>
+<p>It is the image-to-video model ID of Wan 2.2’s Flash tier — Alibaba Cloud’s fast, low-cost API generation variant. On Modellix the route is <code>alibaba/wan2.2-i2v-flash</code>, billed per second, taking a first-frame image URL plus an optional prompt. As of August 2026 it is a legacy model: the live model page and API reference label it for backward compatibility only and route new integrations to Wan 2.7 I2V, so use it for existing Wan 2.2 pipelines and start new projects with the <a href="https://www.modellix.ai/blog/wan-2-7-api/">Wan 2.7 guide</a> instead.</p>
+<p><strong>Is Wan 2.2 open source?</strong></p>
+<p>The Wan 2.2 open-weights models (T2V-A14B, I2V-A14B, TI2V-5B, S2V-14B, Animate-14B) are released under the Apache 2.0 license on Hugging Face. The Flash tier is a hosted API product, not a set of downloadable weights.</p>
+<p><strong>How long does a Wan 2.2 video take?</strong></p>
+<p>Generation time depends on model and resolution — the 5B model runs on consumer GPUs in minutes, while A14B-class generation is faster on hosted infrastructure. Through an API you submit asynchronously and poll; there is no blocking wait.</p>
+<p><strong>Is the Wan 2.2 API free?</strong></p>
+<p>No. Wan 2.2 video generation is paid on every major host as of August 2026; “free” offers from third parties are trial credits with quotas. Budget for the pay-as-you-go rate from day one.</p>
+<p><strong>Can I use Wan 2.2 Animate through an API?</strong></p>
+<p>Yes — Wan 2.2 Animate (character animation and replacement, released September 2025) is available through providers that host it; on Modellix the <code>wan2.2-animate-*</code> routes are listed under the Alibaba provider. Note it is a character animation and replacement model, not a text-to-video one.</p>
+<p><em>Provider details and pricing reflect public information as of August 7, 2026, and change frequently. Validate against each provider’s live pricing before committing budget. Access image and video models, including the leading Chinese models, through a single API key at <a href="https://www.modellix.ai/">modellix.ai</a> — and check the <a href="https://www.modellix.ai/providers/alibaba">Alibaba provider hub</a> for the full Wan route list.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+              <a href="/blog/tags/Integration/" class="tag-pill tag-pill--sm">Integration</a>
+            
+              <a href="/blog/tags/Alibaba/" class="tag-pill tag-pill--sm">Alibaba</a>
+            
+              <a href="/blog/tags/Wan/" class="tag-pill tag-pill--sm">Wan</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/hailuo-02-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-hailuo-02-api.webp" alt="Hailuo 02 API: MiniMax Video Integration Guide" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Hailuo 02 API: MiniMax Video Integration Guide</h3>
+          <time class="related-article-date" datetime="2026-08-07T02:00:00.000Z">August 7, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/pixverse-video-upscale-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-pixverse-video-upscale-api.webp" alt="PixVerse Video Upscale API: Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">PixVerse Video Upscale API: Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-08-05T02:00:00.000Z">August 5, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/how-to-use-pixverse/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-how-to-use-pixverse.webp" alt="How to Use PixVerse: Setup, Prompts &amp; API" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">How to Use PixVerse: Setup, Prompts &amp; API</h3>
+          <time class="related-article-date" datetime="2026-08-04T02:00:00.000Z">August 4, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/wan-2-2-api/&text=Wan%202.2%20API%3A%20Alibaba%20Video%20Models%20on%20a%20Unified%20Key" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/wan-2-2-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/wan-2-2-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

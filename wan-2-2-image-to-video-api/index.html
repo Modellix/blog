@@ -1,0 +1,561 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wan 2.2 Image to Video API: I2V Pricing &amp; Code — Modellix Blog</title>
+  <meta name="description" content="Wan 2.2 image to video api: live per-second pricing for i2v-plus and i2v-flash, async submit-poll-retrieve code in Python and cURL, and when to use Wan 2.7.">
+  <meta name="keywords" content="wan 2.2 image to video api, wan i2v api, alibaba image to video api, wan 2.2 image to video api python, wan 2.2 image to video api javascript, wan 2.2 image to video api key, wan 2.2 image to video api free, wan 2.2 image to video api github, wan api pricing">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/wan-2-2-image-to-video-api/">
+  <meta name="description" content="Wan 2.2 image to video api: live per-second pricing for i2v-plus and i2v-flash, async submit-poll-retrieve code in Python and cURL, and when to use Wan 2.7.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wan 2.2 Image to Video API: I2V Pricing &amp; Code — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/wan-2-2-image-to-video-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Wan 2.2 image to video api: live per-second pricing for i2v-plus and i2v-flash, async submit-poll-retrieve code in Python and cURL, and when to use Wan 2.7.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-wan-2-2-image-to-video-api.webp">
+<meta property="article:published_time" content="2026-08-07T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-07T02:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="API">
+<meta property="article:tag" content="developer-guide">
+<meta property="article:tag" content="image-to-video">
+<meta property="article:tag" content="video-generation">
+<meta property="article:tag" content="wan">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-wan-2-2-image-to-video-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Wan 2.2 Image to Video API: I2V Pricing & Code","description":"Wan 2.2 image to video api: live per-second pricing for i2v-plus and i2v-flash, async submit-poll-retrieve code in Python and cURL, and when to use Wan 2.7.","datePublished":"2026-08-07T02:00:00.000Z","dateModified":"2026-08-07T02:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/wan-2-2-image-to-video-api/","image":"https://img.modellix.ai/en/article/cover-wan-2-2-image-to-video-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Wan 2.2 Image to Video API: I2V Pricing &amp; Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/api-guides/" class="category-tag category-tag--sm">api-guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Wan 2.2 Image to Video API: I2V Pricing &amp; Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-07T02:00:00.000Z">August 7, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/API/" class="tag-pill tag-pill--sm">API</a>
+            
+              <a href="/blog/tags/image-to-video/" class="tag-pill tag-pill--sm">image-to-video</a>
+            
+              <a href="/blog/tags/video-generation/" class="tag-pill tag-pill--sm">video-generation</a>
+            
+              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">developer-guide</a>
+            
+              <a href="/blog/tags/wan/" class="tag-pill tag-pill--sm">wan</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>The short answer: a Wan 2.2 image-to-video API call is an async job A Wan 2.2 image-to-video API takes a first-frame image plus a motion prompt, submits an asynchronous generation task, and returns a short generated clip when it finishes.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-wan-2-2-image-to-video-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-wan-2-2-image-to-video-api.png" alt="Dark amber editorial cover with the MODELLIX wordmark, the two-line title Wan 2.2 Image to Video API / I2V Pricing & Code, and a top-right spec capsule" />
+</picture>
+
+<h2 id="The-short-answer-a-Wan-2-2-image-to-video-API-call-is-an-async-job"><a href="#The-short-answer-a-Wan-2-2-image-to-video-API-call-is-an-async-job" class="headerlink" title="The short answer: a Wan 2.2 image-to-video API call is an async job"></a>The short answer: a Wan 2.2 image-to-video API call is an async job</h2><p>A Wan 2.2 image-to-video API takes a first-frame image plus a motion prompt, submits an asynchronous generation task, and returns a short generated clip when it finishes. You never hold a synchronous response: you send the job, poll a task identifier until it reaches a terminal state, then download the result. Alibaba’s official Model Studio documents this as the first-frame image-to-video contract, and every hosting platform and aggregator that carries Wan 2.2 I2V wraps the same submit–poll–retrieve shape behind its own endpoint.</p>
+<p>The more important question is the one the SERP does not answer: <strong>Wan 2.2 is no longer Alibaba’s current I2V model.</strong> Wan 2.7 shipped in April 2026, and the <code>wan2.2-i2v-plus</code> model page itself describes it as “an older generation image-to-video model… maintained for backward compatibility” and advises against using it for new creations. The pricing and code below are therefore framed as an integration-and-migration guide: how to call Wan 2.2 I2V if you must, what it costs, and when you should move to Wan 2.7 instead. Modellix is an AI model API aggregator and has a commercial interest in this comparison — the rates shown are a same-day snapshot, not a claim that any route is always the cheapest.</p>
+<h2 id="What-Wan-2-2-I2V-is-—-and-why-it-is-already-the-“older-generation”"><a href="#What-Wan-2-2-I2V-is-—-and-why-it-is-already-the-“older-generation”" class="headerlink" title="What Wan 2.2 I2V is — and why it is already the “older generation”"></a>What Wan 2.2 I2V is — and why it is already the “older generation”</h2><p>Wan 2.2 is the second-generation family of open-weight video models from Alibaba’s Tongyi Lab. The family spans several variants, and the ones that matter for image-to-video are:</p>
+<ul>
+<li><strong>Wan2.2-I2V-A14B</strong> — the 14B image-to-video MoE model, supporting 480P and 720P output. This is the model the official <a target="_blank" rel="noopener" href="https://github.com/Wan-Video/Wan2.2">Wan2.2 GitHub repository</a> documents for I2V inference, with weights on <a target="_blank" rel="noopener" href="https://huggingface.co/Wan-AI/Wan2.2-I2V-A14B">Hugging Face</a>.</li>
+<li><strong>Wan2.2-TI2V-5B</strong> — the hybrid text-image-to-video 5B model, 720P at 24 FPS, designed to run on consumer GPUs.</li>
+</ul>
+<p>The family uses a Mixture-of-Experts architecture that routes the denoising process across specialized experts, which is how a 14B model stays cost-competitive with smaller dense models. The weights are open (Apache 2.0, per the <a target="_blank" rel="noopener" href="https://docs.comfy.org/tutorials/video/wan/wan2_2">ComfyUI Wan 2.2 tutorial</a>), so you have three realistic execution paths: self-hosting the weights, calling Alibaba’s hosted Model Studio API, or calling the model through an aggregator like Modellix. Self-hosting the A14B I2V model is the “free” option in the strict sense — you only pay for GPUs — but it needs roughly 80 GB of VRAM for single-GPU inference, which is why most teams end up calling an API instead.</p>
+<p>The “older generation” label is not editorializing. The <code>wan2.2-i2v-plus</code> model page states it is a legacy model “maintained for backward compatibility,” and the platform’s Wan 2.7 API guide documents the current-generation suite with native audio and longer clips. If you are starting a new integration today, the version decision in the last section of this guide matters more than any parameter below.</p>
+<p>The version line matters for a second reason: 2.2 sits between two generations of integration habits. The 2.1 era established the first-frame contract, 2.2 refined it with the MoE architecture and better motion handling, and 2.7 added thinking-mode prompt planning, longer clips, and native audio. Code written against 2.2’s first-frame contract transfers forward more easily than code written against 2.1-era assumptions — which is one of the few genuinely good reasons a legacy route stays in production catalogs: the request shape is stable, documented, and widely mirrored across hosting platforms.</p>
+<h2 id="Wan-2-2-I2V-API-pricing-per-second-rates-as-of-August-7-2026"><a href="#Wan-2-2-I2V-API-pricing-per-second-rates-as-of-August-7-2026" class="headerlink" title="Wan 2.2 I2V API pricing: per-second rates as of August 7, 2026"></a>Wan 2.2 I2V API pricing: per-second rates as of August 7, 2026</h2><p>Wan 2.2 I2V is billed per second of generated video, not per clip. The practical cost of a job is the per-second rate multiplied by the clip length the platform produces at the resolution you requested. The following rates were read from the live model pages on August 7, 2026:</p>
+<table>
+<thead>
+<tr>
+<th>Model route</th>
+<th align="right">480P</th>
+<th align="right">720P</th>
+<th align="right">1080P</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://www.modellix.ai/models/alibaba/wan2.2-i2v-plus">wan2.2-i2v-plus</a></td>
+<td align="right">$0.0122&#x2F;sec</td>
+<td align="right">$0.0122&#x2F;sec</td>
+<td align="right">$0.0611&#x2F;sec</td>
+</tr>
+<tr>
+<td><a href="https://www.modellix.ai/models/alibaba/wan2.2-i2v-flash">wan2.2-i2v-flash</a></td>
+<td align="right">$0.0008&#x2F;sec</td>
+<td align="right">$0.0216&#x2F;sec</td>
+<td align="right">$0.0216&#x2F;sec</td>
+</tr>
+</tbody></table>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/wan22-i2v-pricing-modellix.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/wan22-i2v-pricing-modellix.png" alt="Wan 2.2 I2V pricing on Modellix: unit price per second with resolution dimensions 1080P at 0.0611, 480P at 0.0122, and 720P at 0.0122 for the wan2.2-i2v-plus route" loading="lazy" />
+</picture>
+
+<p><em>Figure 1: Live pricing section of the <code>wan2.2-i2v-plus</code> model page, captured from the live page on August 7, 2026. Unit is USD per second of generated video, by output resolution.</em></p>
+<p>Two things worth noting before you compare these numbers with anything else. First, a 5-second 720P clip on <code>i2v-plus</code> costs about $0.06, while the same clip on <code>i2v-flash</code> costs about $0.11 — the flash tier is cheaper at 480P and 1080P, but not at 720P, so “which route is cheaper” has no answer without pinning the resolution. Second, Alibaba publishes its own per-second rates on the <a target="_blank" rel="noopener" href="https://www.alibabacloud.com/help/en/model-studio/use-video-generation">Model Studio billing pages</a>; the official route and aggregator routes can differ, and only a like-for-like comparison of model, resolution, and clip length means anything. The rates here are a snapshot for integration planning, not a price guarantee — validate against live pages before committing budget.</p>
+<p>For a sense of real-world spend: at 480P, the flash route produces a 5-second clip for about $0.004 — cheap enough for high-volume storyboard testing — while the plus route at 1080P costs about $0.31 for the same 5 seconds. That spread is the whole pricing story in miniature: Wan 2.2 I2V is a per-second product with an order-of-magnitude price range depending on which variant and resolution you pin, and the cheapest combination is not the one the model names suggest. Pin resolution and variant in code, then forecast against the rate row that matches, not against the headline model name.</p>
+<h2 id="How-to-call-the-Wan-2-2-I2V-API-submit–poll–retrieve-in-cURL-Python-and-JavaScript"><a href="#How-to-call-the-Wan-2-2-I2V-API-submit–poll–retrieve-in-cURL-Python-and-JavaScript" class="headerlink" title="How to call the Wan 2.2 I2V API: submit–poll–retrieve in cURL, Python, and JavaScript"></a>How to call the Wan 2.2 I2V API: submit–poll–retrieve in cURL, Python, and JavaScript</h2><p>Every hosted Wan 2.2 I2V API follows the same lifecycle. The input is a first-frame image URL and a prompt describing the motion; the output is a task that you poll until it completes.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/wan22-i2v-async-lifecycle.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/wan22-i2v-async-lifecycle.png" alt="Wan 2.2 I2V async job lifecycle: submit a first-frame image and prompt, poll the task id, then retrieve the rendered video clip" loading="lazy" />
+</picture>
+
+<p><em>Figure 2: The submit–poll–retrieve lifecycle of the Wan 2.2 image-to-video API. The image and prompt go in, the platform returns a task id, and the finished video comes out only after the task reaches a terminal state.</em></p>
+<p>The exact request shape varies by provider, but the pattern is identical across <a target="_blank" rel="noopener" href="https://www.alibabacloud.com/help/en/model-studio/legacy-image-to-video-api-reference/">Alibaba Cloud Model Studio’s official first-frame API reference</a> and the aggregator routes built on it — Modellix documents the full request and response contract at <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api">docs.modellix.ai&#x2F;ways-to-use&#x2F;api</a>. In cURL, a submit looks like this:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST <span class="string">&quot;https://api.modellix.ai/api/v1/alibaba/wan2.2-i2v-plus/async&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer ***&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;img_url&quot;: &quot;https://your-cdn.example.com/first-frame.jpg&quot;,</span></span><br><span class="line"><span class="string">    &quot;prompt&quot;: &quot;The subject turns slowly toward the camera, soft focus, cinematic lighting&quot;,</span></span><br><span class="line"><span class="string">    &quot;resolution&quot;: &quot;720P&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>The response contains a task id rather than a video. Poll it until the status becomes terminal:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -s <span class="string">&quot;https://api.modellix.ai/api/v1/tasks/<span class="variable">$TASK_ID</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer ***&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>The same lifecycle in Python, with a polling loop, is what you will actually ship:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">API_KEY = <span class="string">&quot;YOUR_MODELLIX_API_KEY&quot;</span></span><br><span class="line">BASE = <span class="string">&quot;https://api.modellix.ai/api/v1&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">generate_i2v</span>(<span class="params">img_url: <span class="built_in">str</span>, prompt: <span class="built_in">str</span>, resolution: <span class="built_in">str</span> = <span class="string">&quot;720P&quot;</span></span>) -&gt; <span class="built_in">dict</span>:</span><br><span class="line">    submit = requests.post(</span><br><span class="line">        <span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/alibaba/wan2.2-i2v-plus/async&quot;</span>,</span><br><span class="line">        headers=&#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;API_KEY&#125;</span>&quot;</span>&#125;,</span><br><span class="line">        json=&#123;<span class="string">&quot;img_url&quot;</span>: img_url, <span class="string">&quot;prompt&quot;</span>: prompt, <span class="string">&quot;resolution&quot;</span>: resolution&#125;,</span><br><span class="line">        timeout=<span class="number">30</span>,</span><br><span class="line">    )</span><br><span class="line">    submit.raise_for_status()</span><br><span class="line">    task_id = submit.json()[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;task_id&quot;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        status = requests.get(</span><br><span class="line">            <span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/tasks/<span class="subst">&#123;task_id&#125;</span>&quot;</span>,</span><br><span class="line">            headers=&#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;API_KEY&#125;</span>&quot;</span>&#125;,</span><br><span class="line">            timeout=<span class="number">30</span>,</span><br><span class="line">        ).json()</span><br><span class="line">        <span class="keyword">if</span> status[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;status&quot;</span>] <span class="keyword">in</span> (<span class="string">&quot;success&quot;</span>, <span class="string">&quot;failed&quot;</span>):</span><br><span class="line">            <span class="keyword">return</span> status[<span class="string">&quot;data&quot;</span>]</span><br><span class="line">        time.sleep(<span class="number">5</span>)  <span class="comment"># poll interval; check the provider docs for rate limits</span></span><br><span class="line"></span><br><span class="line">result = generate_i2v(</span><br><span class="line">    <span class="string">&quot;https://your-cdn.example.com/first-frame.jpg&quot;</span>,</span><br><span class="line">    <span class="string">&quot;The subject turns slowly toward the camera, soft focus, cinematic lighting&quot;</span>,</span><br><span class="line">)</span><br><span class="line">video_url = result[<span class="string">&quot;result&quot;</span>][<span class="string">&quot;resources&quot;</span>][<span class="number">0</span>][<span class="string">&quot;url&quot;</span>] <span class="keyword">if</span> result[<span class="string">&quot;status&quot;</span>] == <span class="string">&quot;success&quot;</span> <span class="keyword">else</span> <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+
+<p>The <code>img_url</code> field accepts HTTP&#x2F;HTTPS URLs or base64 data; a publicly reachable first-frame URL is the least error-prone input. If the async contract is new to you, our <a href="https://www.modellix.ai/blog/image-to-video-api/">image-to-video API guide</a> walks through the provider-by-provider differences in lifecycle and polling behavior in more depth.</p>
+<p>The same two calls work from JavaScript — here is the equivalent loop in Node.js’s built-in <code>fetch()</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable constant_">API_KEY</span> = process.<span class="property">env</span>.<span class="property">MODELLIX_API_KEY</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">SUBMIT_URL</span> = <span class="string">&quot;https://api.modellix.ai/api/v1/alibaba/wan2.2-i2v-plus/async&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">generateI2V</span>(<span class="params">imgUrl, prompt, resolution = <span class="string">&quot;720P&quot;</span></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> submit = <span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="variable constant_">SUBMIT_URL</span>, &#123;</span><br><span class="line">    <span class="attr">method</span>: <span class="string">&quot;POST&quot;</span>,</span><br><span class="line">    <span class="attr">headers</span>: &#123; <span class="title class_">Authorization</span>: <span class="string">`Bearer <span class="subst">$&#123;API_KEY&#125;</span>`</span>, <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span> &#125;,</span><br><span class="line">    <span class="attr">body</span>: <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(&#123; <span class="attr">img_url</span>: imgUrl, prompt, resolution &#125;),</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">const</span> taskId = (<span class="keyword">await</span> submit.<span class="title function_">json</span>()).<span class="property">data</span>.<span class="property">task_id</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> <span class="built_in">setTimeout</span>(resolve, <span class="number">5000</span>));</span><br><span class="line">    <span class="keyword">const</span> poll = <span class="title function_">await</span> (<span class="keyword">await</span> <span class="title function_">fetch</span>(</span><br><span class="line">      <span class="string">`https://api.modellix.ai/api/v1/tasks/<span class="subst">$&#123;taskId&#125;</span>`</span>,</span><br><span class="line">      &#123; <span class="attr">headers</span>: &#123; <span class="title class_">Authorization</span>: <span class="string">`Bearer <span class="subst">$&#123;API_KEY&#125;</span>`</span> &#125; &#125;</span><br><span class="line">    )).<span class="title function_">json</span>();</span><br><span class="line">    <span class="keyword">if</span> (poll.<span class="property">data</span>.<span class="property">status</span> === <span class="string">&quot;success&quot;</span>) <span class="keyword">return</span> poll.<span class="property">data</span>.<span class="property">result</span>.<span class="property">resources</span>[<span class="number">0</span>].<span class="property">url</span>;</span><br><span class="line">    <span class="keyword">if</span> (poll.<span class="property">data</span>.<span class="property">status</span> === <span class="string">&quot;failed&quot;</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(poll.<span class="property">data</span>.<span class="property">error</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Two additions make this loop production-safe. First, treat every non-2xx response from the submit call as a hard failure and retry with backoff — a transient 429 or 5xx at submission is far cheaper to retry than a task that fails five minutes later. Second, store the full task-status response on every poll: the output URL, the error message if any, and the timestamps. When a video job fails after two minutes of polling, the status payload is the only evidence you have about why, and most providers return a structured error field you can log directly.</p>
+<h2 id="Parameters-that-actually-matter"><a href="#Parameters-that-actually-matter" class="headerlink" title="Parameters that actually matter"></a>Parameters that actually matter</h2><p>Beyond <code>img_url</code> and <code>prompt</code>, the Wan 2.2 I2V request surface is small. The parameters below are documented on the model page and align with the official reference:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>img_url</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>First-frame image; accepts HTTP&#x2F;HTTPS URLs or base64</td>
+</tr>
+<tr>
+<td><code>prompt</code></td>
+<td>string</td>
+<td>No</td>
+<td>Describes the motion and camera movement to add</td>
+</tr>
+<tr>
+<td><code>negative_prompt</code></td>
+<td>string</td>
+<td>No</td>
+<td>Describes what to avoid in the output</td>
+</tr>
+<tr>
+<td><code>prompt_extend</code></td>
+<td>boolean</td>
+<td>No</td>
+<td>Automatically expands a short prompt into a fuller one</td>
+</tr>
+<tr>
+<td><code>resolution</code></td>
+<td>string</td>
+<td>No</td>
+<td><code>480P</code>, <code>720P</code>, or <code>1080P</code></td>
+</tr>
+<tr>
+<td><code>seed</code></td>
+<td>integer</td>
+<td>No</td>
+<td><code>-1</code> for random; a fixed value for reproducible results</td>
+</tr>
+</tbody></table>
+<p>Two practical notes. First, <code>prompt_extend</code> exists because Wan 2.2 quality is prompt-sensitive — the official ecosystem recommends extending prompts before generation, and the model can even generate motion from the image alone if you leave the prompt empty. Second, <code>resolution</code> drives cost directly through the per-second rates in the pricing table, so pin it explicitly in code instead of relying on a platform default that may change.</p>
+<h2 id="Common-errors-and-how-to-debug-them"><a href="#Common-errors-and-how-to-debug-them" class="headerlink" title="Common errors and how to debug them"></a>Common errors and how to debug them</h2><p>The failure modes of a Wan 2.2 I2V integration are mostly infrastructure, not model behavior:</p>
+<ul>
+<li><strong>Polling forever.</strong> Video generation takes tens of seconds to minutes. If your loop never sees a terminal state, check that you are polling the right task id and that your timeout budget covers a full job, not a single request.</li>
+<li><strong><code>img_url</code> not reachable.</strong> The platform fetches your first frame from the URL you provide. A private host, an expiring signed URL, or a redirect that the fetcher does not follow produces a submission error or a failed task. Serve the image from a public URL and test it with a plain <code>curl -I</code> first.</li>
+<li><strong>Resolution not supported.</strong> The A14B I2V model’s documented range is 480P–720P; requesting 1080P can fail on routes that do not expose the upscaled tier even though the aggregator catalog lists it. Check the model page’s live parameter enums.</li>
+<li><strong>Rate limits on polling.</strong> Polling every second burns quota and can trip per-minute limits. Use the documented poll interval (commonly 5 seconds or more) and back off on non-terminal states.</li>
+</ul>
+<p>If a task fails, the provider’s task-status response should include an error message — surface it in your logs rather than collapsing it into a generic “generation failed.”</p>
+<h2 id="Wan-2-2-vs-Wan-2-7-which-image-to-video-endpoint-should-your-pipeline-call"><a href="#Wan-2-2-vs-Wan-2-7-which-image-to-video-endpoint-should-your-pipeline-call" class="headerlink" title="Wan 2.2 vs Wan 2.7: which image-to-video endpoint should your pipeline call?"></a>Wan 2.2 vs Wan 2.7: which image-to-video endpoint should your pipeline call?</h2><p>This is the decision the top search results skip. Wan 2.2 I2V is a stable, documented, widely mirrored model — which is precisely its argument. If your pipeline has been running it in production for months, the code and pricing in this guide apply unchanged, and there is no emergency to migrate. Legacy compatibility is a feature when the alternative is re-testing outputs and re-validating quality on a new model.</p>
+<p>But for a new integration, the comparison is not close. Wan 2.7, covered in our <a href="https://www.modellix.ai/blog/wan-2-7-api/">Wan 2.7 API guide</a>, adds thinking-mode prompt planning, native synchronized audio, and clips up to 15 seconds at 1080p under the same Apache 2.0 lineage — and the catalog guidance is explicit that new creations should use Wan 2.7 I2V. If you are evaluating both, run the same first frame and prompt through each model and compare three things: output quality at your target resolution, per-second cost at that resolution, and clip length limits. Our <a href="https://www.modellix.ai/blog/best-ai-video-generation-apis-2026/">best AI video generation APIs roundup</a> includes this exact kind of batch comparison across the current catalog.</p>
+<p>One honest caveat from the platform side: choosing Wan 2.7 means the model pages, pricing, and parameter docs you read today are newer and subject to faster change. Choosing Wan 2.2 means you are on a model the vendor itself labels legacy — support will not improve, and pricing pressure comes only from hosting competition, not from the vendor.</p>
+<h2 id="Frequently-asked-questions-about-the-Wan-2-2-image-to-video-API"><a href="#Frequently-asked-questions-about-the-Wan-2-2-image-to-video-API" class="headerlink" title="Frequently asked questions about the Wan 2.2 image-to-video API"></a>Frequently asked questions about the Wan 2.2 image-to-video API</h2><p><strong>Do I need a Wan 2.2 image-to-video API key?</strong> Yes. Every hosted route — Alibaba Cloud Model Studio, hosting platforms, and aggregators — requires an API key for authentication. On Modellix, one key covers all models in the catalog, so the same key that calls <code>wan2.2-i2v-plus</code> also calls every other image and video model.</p>
+<p><strong>Is there a free way to use Wan 2.2 image-to-video?</strong> The only genuinely free path is self-hosting the open weights — the model itself costs nothing under Apache 2.0, but you pay for GPU time (roughly 80 GB VRAM for single-GPU A14B inference). Hosted APIs may offer limited free credits at signup; check each platform’s current terms, because credit amounts change frequently and the official Model Studio route and aggregator routes have different policies.</p>
+<p><strong>How long does a Wan 2.2 I2V API job take?</strong> It depends on resolution, clip length, and the platform’s queue. Expect tens of seconds to a few minutes per job. The API is asynchronous precisely because generation does not fit a synchronous request budget.</p>
+<p><strong>What is the difference between Wan 2.2 image-to-video and text-to-video?</strong> Image-to-video animates a provided first frame; text-to-video generates the scene from the prompt alone. If you need a specific subject, product, or composition, I2V is the correct call. For the text-first path, see our <a href="https://www.modellix.ai/blog/text-to-video-api/">text-to-video API guide</a>.</p>
+<p><strong>Which resolutions does the Wan 2.2 I2V API support?</strong> The documented I2V range is 480P and 720P on the A14B model; some routes expose an upscaled 1080P tier at a higher per-second rate. Check the live model page for the current enum.</p>
+<p><strong>Should I use Wan 2.2 or Wan 2.7 for image-to-video?</strong> For new integrations, Wan 2.7. For existing production pipelines already validated on Wan 2.2, staying on it is defensible — the code and pricing in this guide apply unchanged, and migration should be driven by a measured quality-and-cost comparison, not by version number.</p>
+<hr>
+<p><em>Provider details and pricing reflect public information as of August 2026 and change frequently. Validate against each provider’s live pricing before committing. Access image and video models, including the leading Chinese models, through a single API key at <a target="_blank" rel="noopener" href="https://modellix.ai/">modellix.ai</a>.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/API/" class="tag-pill tag-pill--sm">API</a>
+            
+              <a href="/blog/tags/image-to-video/" class="tag-pill tag-pill--sm">image-to-video</a>
+            
+              <a href="/blog/tags/video-generation/" class="tag-pill tag-pill--sm">video-generation</a>
+            
+              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">developer-guide</a>
+            
+              <a href="/blog/tags/wan/" class="tag-pill tag-pill--sm">wan</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/video-extend-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-video-extend-api.webp" alt="Video Extend API: Lengthen AI Video via Multi-Provider APIs" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">api-guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Video Extend API: Lengthen AI Video via Multi-Provider APIs</h3>
+          <time class="related-article-date" datetime="2026-08-06T02:00:00.000Z">August 6, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/talking-avatar-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-talking-avatar-api.webp" alt="Talking Avatar API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">api-guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Talking Avatar API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-08-03T16:00:00.000Z">August 4, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/pixverse-lip-sync/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-pixverse-lip-sync-v2.webp" alt="PixVerse Lip Sync API Guide: Talking Video &amp; TTS" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">api-guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">PixVerse Lip Sync API Guide: Talking Video &amp; TTS</h3>
+          <time class="related-article-date" datetime="2026-08-02T16:00:00.000Z">August 3, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/wan-2-2-image-to-video-api/&text=Wan%202.2%20Image%20to%20Video%20API%3A%20I2V%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/wan-2-2-image-to-video-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/wan-2-2-image-to-video-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
