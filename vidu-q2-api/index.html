@@ -1,0 +1,685 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vidu Q2 API: Integration Guide, Pricing &amp; Code — Modellix Blog</title>
+  <meta name="description" content="Vidu Q2 API integration: official endpoints, Token auth, curl and Python examples, per-second credit pricing, off-peak rates, and how the routes compare.">
+  <meta name="keywords" content="vidu q2 api, vidu api, vidu q2, vidu q2 api pricing, how to use vidu api, vidu q2 api tutorial">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/vidu-q2-api/">
+  <meta name="description" content="Vidu Q2 API integration: official endpoints, Token auth, curl and Python examples, per-second credit pricing, off-peak rates, and how the routes compare.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vidu Q2 API: Integration Guide, Pricing &amp; Code — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/vidu-q2-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Vidu Q2 API integration: official endpoints, Token auth, curl and Python examples, per-second credit pricing, off-peak rates, and how the routes compare.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-vidu-q2-api.webp">
+<meta property="article:published_time" content="2026-08-10T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-10T02:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video API">
+<meta property="article:tag" content="Integration Guide">
+<meta property="article:tag" content="Vidu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-vidu-q2-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Vidu Q2 API: Integration Guide, Pricing & Code","description":"Vidu Q2 API integration: official endpoints, Token auth, curl and Python examples, per-second credit pricing, off-peak rates, and how the routes compare.","datePublished":"2026-08-10T02:00:00.000Z","dateModified":"2026-08-10T02:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/vidu-q2-api/","image":"https://statics.mylandingpages.co/static/modellix/image/cover-vidu-q2-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Vidu Q2 API: Integration Guide, Pricing &amp; Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Vidu Q2 API: Integration Guide, Pricing &amp; Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-10T02:00:00.000Z">August 10, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Integration-Guide/" class="tag-pill tag-pill--sm">Integration Guide</a>
+            
+              <a href="/blog/tags/Vidu/" class="tag-pill tag-pill--sm">Vidu</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.srcgptbots.com/blog/author/20260409/modellix-blog-author-official@2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>The short answer: the Vidu Q2 API is real, credit-metered, and asynchronous The Vidu Q2 API is ShengShu&#39;s official programmatic interface to its Q2 video-generation family — text-to-video, image-to-video, start-end first/last frame, and ref.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/cover-vidu-q2-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/cover-vidu-q2-api.png" alt="Editorial Modellix cover reading Vidu Q2 API on two bold lines over a dark amber technical architecture with an amber key and cyan rim light" />
+</picture>
+
+<h2 id="The-short-answer-the-Vidu-Q2-API-is-real-credit-metered-and-asynchronous"><a href="#The-short-answer-the-Vidu-Q2-API-is-real-credit-metered-and-asynchronous" class="headerlink" title="The short answer: the Vidu Q2 API is real, credit-metered, and asynchronous"></a>The short answer: the Vidu Q2 API is real, credit-metered, and asynchronous</h2><p>The Vidu Q2 API is ShengShu’s official programmatic interface to its Q2 video-generation family — text-to-video, image-to-video, start-end (first&#x2F;last frame), and reference-to-video, billed per second of output through a credit system. As of August 10, 2026, it is fully operational on <a target="_blank" rel="noopener" href="https://platform.vidu.com/docs/quick-start">platform.vidu.com</a>, requires a <code>Token</code>-style API key, and every generation is an async task: you submit, poll, and download.</p>
+<p>This guide covers the official contract first — model names, endpoints, auth, code that runs, and the exact credit-per-second pricing — then compares it with aggregator routes, including Modellix’s. Modellix is an aggregator and has a commercial interest in this comparison: we resell Vidu Q2 routes on our own per-second pricing. None of the numbers below support a blanket “one route is cheapest” conclusion; the winner changes by model, resolution, and duration, and the pricing structures are not directly comparable until you normalize them.</p>
+<h2 id="Which-Vidu-Q2-model-are-you-actually-calling"><a href="#Which-Vidu-Q2-model-are-you-actually-calling" class="headerlink" title="Which Vidu Q2 model are you actually calling?"></a>Which Vidu Q2 model are you actually calling?</h2><p>“Vidu Q2” is a family, not one model ID. On the official API, the <code>model</code> parameter accepts five Q2-era names across the video endpoints, and they are priced differently:</p>
+<table>
+<thead>
+<tr>
+<th>Model name</th>
+<th>Where it appears</th>
+<th>Positioning (official docs)</th>
+<th>Resolution options</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>viduq2</code></td>
+<td>text2video, reference2video</td>
+<td>The base Q2 model</td>
+<td>540p &#x2F; 720p &#x2F; 1080p</td>
+</tr>
+<tr>
+<td><code>viduq2-pro</code></td>
+<td>img2video, start-end2video, reference2video</td>
+<td>“New model with excellent performance” — quality tier</td>
+<td>540p &#x2F; 720p &#x2F; 1080p</td>
+</tr>
+<tr>
+<td><code>viduq2-turbo</code></td>
+<td>img2video, start-end2video</td>
+<td>“New model with good effect, fast generation” — speed tier</td>
+<td>540p &#x2F; 720p &#x2F; 1080p</td>
+</tr>
+<tr>
+<td><code>viduq2-pro-fast</code></td>
+<td>img2video, start-end2video</td>
+<td>“Fast speed, low price, stable quality” — cost tier</td>
+<td>720p &#x2F; 1080p</td>
+</tr>
+<tr>
+<td><code>viduq2-image</code></td>
+<td>reference-to-image</td>
+<td>Image generation, up to 4K</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<p>The pragmatic split: <strong><code>viduq2-pro</code> is the quality pick, <code>viduq2-turbo</code> is the speed pick, and <code>viduq2-pro-fast</code> is the budget pick</strong> for image-to-video. Text-to-video only exposes the base <code>viduq2</code>. Vidu Q1 and Q2 both remain live, and the official docs have moved their examples to the newer Q3 family — which matters for one decision only: if you are starting a fresh integration today and have no dependency on Q2 output characteristics, the Q3 routes are where the vendor’s own attention (and its newest pricing tiers) now sits. Q2 remains fully documented, cheaper per second at several cells, and is the safer choice when you need the Q2 look or the <code>viduq2-pro-fast</code> price point. The Q2 family is also where Vidu’s subject-consistency pitch lives: reference-to-video keeps a character or object stable across clips, which is the main reason teams still pick Q2 over the newer generation for character-driven work. For the per-second rates and input rules of one specific variant, the <a href="https://www.modellix.ai/models/vidu/viduq2-pro-multi-frame">Vidu Q2 Pro Multi Frame model page</a> shows the same family under an aggregator’s model ID.</p>
+<p>All Q2 video models generate <strong>1–10 second clips (default 5s)</strong> on text2video and img2video, and <strong>1–8 seconds</strong> on start-end2video. Resolution is 540p&#x2F;720p&#x2F;1080p (720p&#x2F;1080p for <code>viduq2-pro-fast</code>), and 3:4 and 4:3 aspect ratios are supported only on Q2 and Q3 text-to-video.</p>
+<h2 id="Getting-a-key-and-credits-on-the-official-Vidu-API-platform"><a href="#Getting-a-key-and-credits-on-the-official-Vidu-API-platform" class="headerlink" title="Getting a key and credits on the official Vidu API platform"></a>Getting a key and credits on the official Vidu API platform</h2><p>Registration is Google-based: sign in at <a target="_blank" rel="noopener" href="https://platform.vidu.com/">platform.vidu.com</a>, then open the <strong>API Keys</strong> tab to create a key (each account can hold up to 10 active keys). The API does not bill per request — it bills credits, and every call consumes credits at the rate in the next section.</p>
+<p>Credits are purchased in the <strong>Billing</strong> tab: the standard rate is <strong>$0.005 per credit</strong>, single top-ups run from <strong>$10 to $10,000</strong>, and higher-volume packages lower the effective rate (the first-time pack works out to $0.003&#x2F;credit). There is no free tier; the cheapest way to test is a $10 top-up, which buys roughly 2,000 credits — enough for over a hundred 5-second 540p clips.</p>
+<p>Two platform limits matter before you build: <strong>concurrency is capped at 5 concurrent tasks on every standard plan</strong> (excess tasks queue in submission order), and per-organization rate limits apply regardless of how many keys you create. Usage and credit consumption are visible under the <strong>Usage</strong> tab, recorded in UTC+0.</p>
+<h2 id="The-endpoints-and-the-async-lifecycle"><a href="#The-endpoints-and-the-async-lifecycle" class="headerlink" title="The endpoints and the async lifecycle"></a>The endpoints and the async lifecycle</h2><p>All Vidu API calls share one host, one auth header, and one async pattern. The base URL is <code>https://api.vidu.com/ent/v2/</code>, and every request carries:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Content-Type: application/json</span><br><span class="line">Authorization: Token &#123;your_api_key&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Endpoint</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Image-to-video</td>
+<td><code>POST /ent/v2/img2video</code></td>
+</tr>
+<tr>
+<td>Text-to-video</td>
+<td><code>POST /ent/v2/text2video</code></td>
+</tr>
+<tr>
+<td>Start-end (first&#x2F;last frame)</td>
+<td><code>POST /ent/v2/start-end2video</code></td>
+</tr>
+<tr>
+<td>Reference-to-video</td>
+<td><code>POST /ent/v2/reference2video</code></td>
+</tr>
+<tr>
+<td>Query a task</td>
+<td><code>GET /ent/v2/tasks/{id}/creations</code></td>
+</tr>
+</tbody></table>
+<p>A generation is a task with a lifecycle: <code>created</code> → <code>queueing</code> → <code>processing</code> → <code>success</code> or <code>failed</code>. The submit call returns a <code>task_id</code> immediately; you poll the task endpoint until the state is terminal, then download the video from the returned URL. Optionally, pass <code>callback_url</code> and Vidu will POST status updates to you (retrying up to three times, with a signature header you can verify — documented in the <a target="_blank" rel="noopener" href="https://platform.vidu.com/docs/error-code">callback signature reference</a>). There is no synchronous mode. If the submit-and-poll pattern is new to your team, our <a href="https://www.modellix.ai/blog/image-to-video-api/">Image to Video API guide</a> walks through the same async lifecycle with generic examples.</p>
+<h2 id="Quick-start-generate-your-first-Vidu-Q2-video"><a href="#Quick-start-generate-your-first-Vidu-Q2-video" class="headerlink" title="Quick start: generate your first Vidu Q2 video"></a>Quick start: generate your first Vidu Q2 video</h2><p>The shortest path is one POST and a polling loop. This curl submits a 5-second 720p image-to-video job with <code>viduq2-pro-fast</code> (the cheapest Q2 video model):</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST <span class="string">&quot;https://api.vidu.com/ent/v2/img2video&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Token YOUR_VIDU_API_KEY&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;model&quot;: &quot;viduq2-pro-fast&quot;,</span></span><br><span class="line"><span class="string">    &quot;images&quot;: [&quot;https://your-cdn.example.com/frame-1.jpg&quot;],</span></span><br><span class="line"><span class="string">    &quot;prompt&quot;: &quot;A drone slowly orbits a modern glass building at dusk, warm light&quot;,</span></span><br><span class="line"><span class="string">    &quot;duration&quot;: 5,</span></span><br><span class="line"><span class="string">    &quot;resolution&quot;: &quot;720p&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>The response returns <code>task_id</code> and <code>state: created</code> (plus the <code>credits</code> the job will consume). Poll the task endpoint until it reaches <code>success</code>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -X GET <span class="string">&quot;https://api.vidu.com/ent/v2/tasks/&#123;task_id&#125;/creations&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Token YOUR_VIDU_API_KEY&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>The same flow in Python, using only the standard library plus <code>requests</code>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">API = <span class="string">&quot;https://api.vidu.com/ent/v2&quot;</span></span><br><span class="line">HEADERS = &#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">&quot;Token YOUR_VIDU_API_KEY&quot;</span>, <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line">resp = requests.post(</span><br><span class="line">    <span class="string">f&quot;<span class="subst">&#123;API&#125;</span>/img2video&quot;</span>,</span><br><span class="line">    headers=HEADERS,</span><br><span class="line">    json=&#123;</span><br><span class="line">        <span class="string">&quot;model&quot;</span>: <span class="string">&quot;viduq2-pro-fast&quot;</span>,</span><br><span class="line">        <span class="string">&quot;images&quot;</span>: [<span class="string">&quot;https://your-cdn.example.com/frame-1.jpg&quot;</span>],</span><br><span class="line">        <span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;A drone slowly orbits a modern glass building at dusk, warm light&quot;</span>,</span><br><span class="line">        <span class="string">&quot;duration&quot;</span>: <span class="number">5</span>,</span><br><span class="line">        <span class="string">&quot;resolution&quot;</span>: <span class="string">&quot;720p&quot;</span>,</span><br><span class="line">        <span class="string">&quot;seed&quot;</span>: <span class="number">42</span>,  <span class="comment"># fixed seed = reproducible frames across retries</span></span><br><span class="line">    &#125;,</span><br><span class="line">)</span><br><span class="line">resp.raise_for_status()</span><br><span class="line">task_id = resp.json()[<span class="string">&quot;task_id&quot;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;submitted:&quot;</span>, task_id)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Poll with backoff: first check at 10s, then 5s up to 30s, max 15 attempts</span></span><br><span class="line">attempt, wait = <span class="number">0</span>, <span class="number">10</span></span><br><span class="line"><span class="keyword">while</span> attempt &lt; <span class="number">15</span>:</span><br><span class="line">    time.sleep(wait)</span><br><span class="line">    data = requests.get(<span class="string">f&quot;<span class="subst">&#123;API&#125;</span>/tasks/<span class="subst">&#123;task_id&#125;</span>/creations&quot;</span>, headers=HEADERS).json()</span><br><span class="line">    state = data[<span class="string">&quot;state&quot;</span>]</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;attempt <span class="subst">&#123;attempt + <span class="number">1</span>&#125;</span>: <span class="subst">&#123;state&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> state <span class="keyword">in</span> (<span class="string">&quot;success&quot;</span>, <span class="string">&quot;failed&quot;</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    attempt += <span class="number">1</span></span><br><span class="line">    wait = <span class="built_in">min</span>(<span class="number">30</span>, <span class="number">5</span> * <span class="number">2</span> ** attempt)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> state == <span class="string">&quot;success&quot;</span>:</span><br><span class="line">    <span class="comment"># The video URL lives in the task result; save it immediately —</span></span><br><span class="line">    <span class="comment"># generated results are not retained indefinitely on the platform.</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;video ready:&quot;</span>, data.get(<span class="string">&quot;result_url&quot;</span>))</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">raise</span> RuntimeError(<span class="string">f&quot;Vidu Q2 job ended in state: <span class="subst">&#123;state&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Image constraints are worth preflighting before you send anything: <strong>one image per job (two for start-end), max 50MB each, PNG&#x2F;JPEG&#x2F;WEBP only, aspect ratio must be under 1:4 or 4:1, and the HTTP body — including Base64 images — must stay under 20MB</strong>. Upload files to your own CDN and pass URLs where possible; it keeps the request body small and avoids hitting the 20MB ceiling. Two parameters the docs list are worth knowing even though they do little on Q2: <code>seed</code> (pass a fixed value to make retries reproducible — the example above uses one) and <code>movement_amplitude</code> (documented, but the official reference notes it does not take effect on Q2 and Q3 models).</p>
+<h2 id="Vidu-Q2-API-pricing-per-second-credits-resolution-multipliers-and-off-peak"><a href="#Vidu-Q2-API-pricing-per-second-credits-resolution-multipliers-and-off-peak" class="headerlink" title="Vidu Q2 API pricing: per-second credits, resolution multipliers, and off-peak"></a>Vidu Q2 API pricing: per-second credits, resolution multipliers, and off-peak</h2><p>Vidu publishes credit consumption per second of output, at <strong>$0.005&#x2F;credit</strong>. The table below normalizes the official credit schedule to USD per second (start cost + per-second increment, as published on the <a target="_blank" rel="noopener" href="https://platform.vidu.com/docs/pricing">official pricing page</a> on August 10, 2026):</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>540p</th>
+<th>720p</th>
+<th>1080p</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>viduq2-pro-fast</code> (I2V &#x2F; start-end)</td>
+<td>—</td>
+<td>$0.04 + $0.01&#x2F;s</td>
+<td>$0.08 + $0.02&#x2F;s</td>
+</tr>
+<tr>
+<td><code>viduq2-turbo</code> (I2V &#x2F; start-end)</td>
+<td>$0.03 + $0.01&#x2F;s</td>
+<td>$0.04 + $0.05&#x2F;s (2s: $0.05)</td>
+<td>$0.175 + $0.05&#x2F;s</td>
+</tr>
+<tr>
+<td><code>viduq2-pro</code> (I2V &#x2F; start-end)</td>
+<td>$0.04 + $0.025&#x2F;s</td>
+<td>$0.075 + $0.05&#x2F;s</td>
+<td>$0.275 + $0.075&#x2F;s</td>
+</tr>
+<tr>
+<td><code>viduq2</code> (text-to-video)</td>
+<td>$0.05 + $0.01&#x2F;s</td>
+<td>$0.075 + $0.025&#x2F;s</td>
+<td>$0.10 + $0.05&#x2F;s</td>
+</tr>
+<tr>
+<td><code>viduq2</code> (reference-to-video)</td>
+<td>$0.075 + $0.025&#x2F;s</td>
+<td>$0.125 + $0.025&#x2F;s</td>
+<td>$0.375 + $0.05&#x2F;s</td>
+</tr>
+<tr>
+<td><code>viduq2-pro</code> (reference-to-video)</td>
+<td>$0.10 + $0.025&#x2F;s</td>
+<td>$0.15 + $0.025&#x2F;s</td>
+<td>$0.425 + $0.05&#x2F;s</td>
+</tr>
+</tbody></table>
+<p>Two adders change the bill: <strong>audio on image-to-video or reference-to-video adds 15 credits per task</strong> (voice_id + audio), and the recommended-prompt feature (<code>is_rec</code>) adds 10 credits per task. Off-peak mode — jobs that may complete within 48 hours instead of immediately — runs at <strong>half price</strong> on the standard tiers. The Q2 audio splitter (<code>audio_type</code>) is a Q2&#x2F;Q1&#x2F;2.0 feature; the Q3 family handles audio differently.</p>
+<p>A useful rule of thumb: a 5-second 720p <code>viduq2-pro-fast</code> clip costs <strong>$0.04 + 5 × $0.01 &#x3D; $0.09</strong>; the same clip on <code>viduq2-turbo</code> costs <strong>$0.04 + 5 × $0.05 &#x3D; $0.29</strong>; on <code>viduq2-pro</code> it is <strong>$0.075 + 5 × $0.05 &#x3D; $0.325</strong>. The gap between the budget and quality tiers is real and mostly visible in motion fidelity, not resolution.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/vidu-official-q2-pricing.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/vidu-official-q2-pricing.png" alt="Vidu official Q2 credit pricing table on platform.vidu.com showing per-second credit costs by model and resolution" loading="lazy" />
+</picture>
+
+<p><em>Vidu’s official Q2 credit consumption table, captured from platform.vidu.com&#x2F;docs&#x2F;pricing on August 10, 2026. Prices are quoted in credits; this guide converts them at the published $0.005&#x2F;credit rate.</em></p>
+<h2 id="What-a-batch-costs-a-worked-example"><a href="#What-a-batch-costs-a-worked-example" class="headerlink" title="What a batch costs: a worked example"></a>What a batch costs: a worked example</h2><p>To make the unit comparison concrete, here is one workload — 1,000 five-second 720p image-to-video clips, no audio — priced through three routes with verified rates (all read on August 10, 2026):</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Unit</th>
+<th>Price per clip</th>
+<th>1,000 clips</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Official Vidu, <code>viduq2-pro-fast</code></td>
+<td>per second (credits)</td>
+<td>$0.04 + 5 × $0.01 &#x3D; $0.09</td>
+<td><strong>$90</strong></td>
+</tr>
+<tr>
+<td>Official Vidu, <code>viduq2-pro</code></td>
+<td>per second (credits)</td>
+<td>$0.075 + 5 × $0.05 &#x3D; $0.325</td>
+<td><strong>$325</strong></td>
+</tr>
+<tr>
+<td>Modellix, <code>vidu/viduq2-turbo-multi-frame</code> 720p</td>
+<td>per second</td>
+<td>$0.0322&#x2F;s × 5 &#x3D; $0.161</td>
+<td><strong>$161</strong></td>
+</tr>
+<tr>
+<td>Modellix, <code>vidu/viduq2-pro-multi-frame</code> 720p</td>
+<td>per second</td>
+<td>$0.0690&#x2F;s × 5 &#x3D; $0.345</td>
+<td><strong>$345</strong></td>
+</tr>
+</tbody></table>
+<p>Do not read this as a ranking — read it as a demonstration that <strong>the same “5s 720p video” spans $0.09 to $0.345 depending on model tier and route</strong>. The honest comparison for your budget is: pick the model tier your quality bar needs, then compare the same cell across routes. The official <code>viduq2-pro-fast</code> cell is hard to beat on price; the multi-frame routes on aggregators are priced for a different capability (keyframe-driven animation), not as a generic I2V substitute. Our <a href="https://www.modellix.ai/pricing">pricing page</a> publishes the full per-second schedule per model if you want to re-run this arithmetic for your own volumes.</p>
+<h2 id="Official-Vidu-API-vs-aggregator-routes-how-to-choose"><a href="#Official-Vidu-API-vs-aggregator-routes-how-to-choose" class="headerlink" title="Official Vidu API vs aggregator routes: how to choose"></a>Official Vidu API vs aggregator routes: how to choose</h2><p>The decision is not “official vs aggregators” as a single axis — it is which contract matches your integration. The table below compares the same Vidu Q2 capability family across the routes that actually rank for this query (each row’s source verified on August 10, 2026):</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Model IDs</th>
+<th>Billing unit</th>
+<th>Auth</th>
+<th>Best when</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Vidu official (<a target="_blank" rel="noopener" href="https://platform.vidu.com/docs/image-to-video">platform.vidu.com</a>)</td>
+<td><code>viduq2</code>, <code>-pro</code>, <code>-turbo</code>, <code>-pro-fast</code></td>
+<td>credits ($0.005 each), per second</td>
+<td><code>Token</code> header</td>
+<td>You want the vendor’s own contract, the cheapest <code>pro-fast</code> cell, and off-peak half-price mode</td>
+</tr>
+<tr>
+<td>Pollo AI (<a target="_blank" rel="noopener" href="https://docs.pollo.ai/m/vidu/viduq2-pro">Vidu Q2 Pro docs</a>)</td>
+<td><code>viduq2-pro</code>, <code>viduq2-turbo</code>, …</td>
+<td>per video (package credits)</td>
+<td>API key</td>
+<td>You want a consumer-grade dashboard plus an API, and are already on Pollo’s ecosystem</td>
+</tr>
+<tr>
+<td>Runware (<a target="_blank" rel="noopener" href="https://runware.ai/creators/vidu">Vidu catalog</a>)</td>
+<td><code>vidu/*</code> routes</td>
+<td>per second</td>
+<td>API key</td>
+<td>You want Runware’s queue tooling and storage around Vidu</td>
+</tr>
+<tr>
+<td>AtlasCloud (<a target="_blank" rel="noopener" href="https://www.atlascloud.ai/models/vidu/q2/text-to-video">Vidu Q2 catalog</a>)</td>
+<td><code>vidu/q2/*</code> routes</td>
+<td>per video &#x2F; per second</td>
+<td>API key</td>
+<td>You want an OpenAI-style SDK across many models with per-route pricing pages</td>
+</tr>
+<tr>
+<td>Modellix (<a href="https://www.modellix.ai/providers/vidu">Vidu provider page</a>)</td>
+<td><code>vidu/viduq2-pro-multi-frame</code>, <code>-turbo-multi-frame</code>, <code>-pro-digital-human</code>, <code>-turbo-digital-human</code></td>
+<td>per second</td>
+<td><code>Bearer</code> key</td>
+<td>You want one key and one submit-poll contract across Vidu, Kling, Wan, Hailuo, and the rest, with per-job cost logs</td>
+</tr>
+</tbody></table>
+<p>Aggregators earn their place on the workflow axis, not on a universal price advantage: one key, one billing surface, and consistent async patterns across many models. Modellix’s argument is exactly that — one API key for 12 providers, parameter-level transparent pricing, and per-call logs — not that every Vidu cell is the cheapest. If your only requirement is a single Vidu Q2 price sheet, the official platform is the simplest source of truth; the moment your product spans several video and image models, the per-vendor keys, schemas, and polling loops multiply, and that workflow cost is what an aggregator removes.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/modellix-viduq2-multi-frame-pricing.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/modellix-viduq2-multi-frame-pricing.png" alt="Model page for vidu/viduq2-pro-multi-frame showing per-second pricing by resolution" loading="lazy" />
+</picture>
+
+<p><em>Modellix model page for <code>vidu/viduq2-pro-multi-frame</code>, captured from modellix.ai on August 10, 2026. Aggregator routes price Vidu Q2 per second by resolution, with per-call cost logging on every job.</em></p>
+<h2 id="Errors-limits-and-the-failure-modes-nobody-documents"><a href="#Errors-limits-and-the-failure-modes-nobody-documents" class="headerlink" title="Errors, limits, and the failure modes nobody documents"></a>Errors, limits, and the failure modes nobody documents</h2><p>The Vidu API returns structured error codes, not HTTP status soup. The ones you will actually meet, per the <a target="_blank" rel="noopener" href="https://platform.vidu.com/docs/error-code">official error-code reference</a>:</p>
+<ul>
+<li><strong><code>FieldLacking</code> &#x2F; <code>FieldUnwanted</code></strong> — a required field is missing or an unknown field was sent. The message names the exact field; fix locally, do not retry as-is.</li>
+<li><strong><code>ImageDownloadFailure</code></strong> — your image URL is not reachable or not valid. Preflight image URLs with a HEAD request before submitting.</li>
+<li><strong><code>FieldItemCountOutOfRange</code> &#x2F; <code>PageSizeOutOfRange</code></strong> — wrong array length (one image for I2V, two for start-end) or oversized pagination.</li>
+<li><strong><code>OperationInProcess</code></strong> — a conflicting operation is already running; back off and retry.</li>
+<li><strong><code>ImageFormatInvalid</code></strong> — format or size outside PNG&#x2F;JPEG&#x2F;WEBP and 50MB.</li>
+</ul>
+<p>Beyond errors, three constraints shape production designs: <strong>concurrency is 5 on all standard plans</strong> (queue instead of failing, but budget queue latency), <strong>off-peak jobs may take up to 48 hours</strong> (fine for batch, wrong for interactive), and <strong>generated results are not guaranteed to persist indefinitely</strong> — the platform documentation tells you to retrieve outputs promptly, so download and store every result at <code>success</code> time. If you are polling, use exponential backoff with a cap (the quick-start loop above implements one), log the <code>task_id</code> and state transitions, and pin the model name in your config so a future model update cannot silently change your cost slope.</p>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p><strong>Is the Vidu Q2 API still available in 2026?</strong></p>
+<p>Yes. As of August 10, 2026, <code>viduq2</code>, <code>viduq2-pro</code>, <code>viduq2-turbo</code>, and <code>viduq2-pro-fast</code> are all live on the official platform and priced on the official pricing page. The docs now lead with the Q3 family, but Q2 is documented, priced, and served — it is the previous generation, not a retired one.</p>
+<p><strong>How much does one Vidu Q2 video cost?</strong></p>
+<p>At the official $0.005&#x2F;credit rate: a 5-second 720p <code>viduq2-pro-fast</code> image-to-video clip is $0.09; <code>viduq2-turbo</code> is $0.29; <code>viduq2-pro</code> is $0.325. Text-to-video on base <code>viduq2</code> is $0.20 for 5s at 720p. Off-peak mode halves the credit cost. Audio adds 15 credits per image-to-video task.</p>
+<p><strong>Is there a free way to try the Vidu Q2 API?</strong></p>
+<p>No free tier is published. The minimum top-up is $10 (~2,000 credits at the standard rate, or 5,000 credits in the first-time pack at $0.003&#x2F;credit), which covers over a hundred short test clips. Some aggregators pair new accounts with starter credits — treat any credit as a test budget, not a production baseline.</p>
+<p><strong>Does the Vidu Q2 API support image-to-video?</strong></p>
+<p>Yes — <code>img2video</code> takes one start-frame image plus a prompt, and <code>start-end2video</code> takes a first and last frame. <code>viduq2-pro-fast</code> is the cheapest image-to-video tier; <code>viduq2-pro</code> is the quality tier.</p>
+<p><strong>What is the difference between Vidu Q2 and Vidu Q3?</strong></p>
+<p>Q3 is the newer family with audio-video synchronization and shot segmentation, and it is now the vendor’s headline. Q2 is cheaper at several resolution cells (notably <code>viduq2-pro-fast</code> at 720p&#x2F;1080p) and remains the better pick when you need Q2 output characteristics or the budget tier. The official pricing page lists both; compare the same model, resolution, and duration before choosing.</p>
+<p><strong>Which is cheaper: Vidu official or an aggregator?</strong></p>
+<p>There is no blanket answer in the current public data. On the 5s&#x2F;720p I2V cell, official <code>viduq2-pro-fast</code> ($0.09) is the lowest of the verified figures; Modellix’s <code>viduq2-turbo-multi-frame</code> ($0.161 for 5s) is priced for a different capability — keyframe-driven multi-frame animation — and its digital-human routes serve a different use case. Compare the exact cell for your workload; an aggregator’s argument is workflow (one key across 12 providers, per-call logs), not a universal price floor.</p>
+<p><strong>Where can I find Vidu Q2 API code examples?</strong></p>
+<p>The official docs include curl, Python, TypeScript, Go, Java, and PHP examples on every endpoint page, and Vidu maintains the <a target="_blank" rel="noopener" href="https://github.com/viduhq/api-docs">viduhq&#x2F;api-docs GitHub repository</a> for the full reference. The quick-start section of this guide is a complete submit-and-poll implementation against the documented contract.</p>
+<p><strong>Is “Vidu Q2 API download” a thing?</strong></p>
+<p>The Q2 generation API has no downloadable SDK you must install — it is a REST API you call with any HTTP client, and the “download” intent is usually one of two things: retrieving your generated video URL (poll until <code>success</code>, then download), or cloning the official docs repository from GitHub. If you were looking for a consumer app, that is vidu.com, not the API platform.</p>
+<hr>
+<p><em>Vidu API details and pricing reflect public information as of August 10, 2026 and change frequently; Vidu’s own pricing page is the current reference. Validate against each route’s live pricing before committing. Access image and video models — including Vidu, Kling, Wan, and Hailuo — through a single API key at <a href="https://www.modellix.ai/">www.modellix.ai</a>.</em></p>
+<p><em>Cover image: illustrative Modellix artwork; it is not a Vidu product screenshot or source evidence.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Integration-Guide/" class="tag-pill tag-pill--sm">Integration Guide</a>
+            
+              <a href="/blog/tags/Vidu/" class="tag-pill tag-pill--sm">Vidu</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/hailuo-02-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-hailuo-02-api.webp" alt="Hailuo 02 API: MiniMax Video Integration Guide" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Hailuo 02 API: MiniMax Video Integration Guide</h3>
+          <time class="related-article-date" datetime="2026-08-07T02:00:00.000Z">August 7, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/wan-2-2-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-wan-2-2-api.webp" alt="Wan 2.2 API: Alibaba Video Models on a Unified Key" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Wan 2.2 API: Alibaba Video Models on a Unified Key</h3>
+          <time class="related-article-date" datetime="2026-08-06T16:00:00.000Z">August 7, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/pixverse-video-upscale-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-pixverse-video-upscale-api.webp" alt="PixVerse Video Upscale API: Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">PixVerse Video Upscale API: Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-08-05T02:00:00.000Z">August 5, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/vidu-q2-api/&text=Vidu%20Q2%20API%3A%20Integration%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/vidu-q2-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/vidu-q2-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

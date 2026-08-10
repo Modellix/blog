@@ -1,0 +1,617 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vidu Reference to Video: R2V API Guide — Modellix Blog</title>
+  <meta name="description" content="Integrate the Vidu reference to video (R2V) API: what it does, which Q3 model to call, the reference_images request contract, and its per-second pricing.">
+  <meta name="keywords" content="vidu reference to video, vidu r2v, vidu reference to video api, vidu q3 r2v, vidu q2 r2v, vidu reference to video 2.0, reference to video ai, vidu api">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/vidu-reference-to-video/">
+  <meta name="description" content="Integrate the Vidu reference to video (R2V) API: what it does, which Q3 model to call, the reference_images request contract, and its per-second pricing.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vidu Reference to Video: R2V API Guide — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/vidu-reference-to-video/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Integrate the Vidu reference to video (R2V) API: what it does, which Q3 model to call, the reference_images request contract, and its per-second pricing.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-vidu-reference-to-video.webp">
+<meta property="article:published_time" content="2026-08-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-09T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="API Integration">
+<meta property="article:tag" content="R2V">
+<meta property="article:tag" content="Reference to Video">
+<meta property="article:tag" content="Video API">
+<meta property="article:tag" content="Vidu">
+<meta property="article:tag" content="developer-guide">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-vidu-reference-to-video.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Vidu Reference to Video: R2V API Guide","description":"Integrate the Vidu reference to video (R2V) API: what it does, which Q3 model to call, the reference_images request contract, and its per-second pricing.","datePublished":"2026-08-09T16:00:00.000Z","dateModified":"2026-08-09T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/vidu-reference-to-video/","image":"https://statics.mylandingpages.co/static/modellix/image/cover-vidu-reference-to-video.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Vidu Reference to Video: R2V API Guide</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/api-guides/" class="category-tag category-tag--sm">api-guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Vidu Reference to Video: R2V API Guide</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-09T16:00:00.000Z">August 10, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">developer-guide</a>
+            
+              <a href="/blog/tags/API-Integration/" class="tag-pill tag-pill--sm">API Integration</a>
+            
+              <a href="/blog/tags/R2V/" class="tag-pill tag-pill--sm">R2V</a>
+            
+              <a href="/blog/tags/Vidu/" class="tag-pill tag-pill--sm">Vidu</a>
+            
+              <a href="/blog/tags/Reference-to-Video/" class="tag-pill tag-pill--sm">Reference to Video</a>
+            
+              <a href="/blog/tags/Video-API/" class="tag-pill tag-pill--sm">Video API</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.srcgptbots.com/blog/author/20260409/modellix-blog-author-official@2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>Search &#39;vidu reference to video&#39; and you mostly get product pages: Vidu&#39;s official feature page, a few aggregator model cards, some social clips.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/cover-vidu-reference-to-video.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/cover-vidu-reference-to-video.png" alt="Editorial Modellix cover for the Vidu reference-to-video R2V API guide, showing reference images flowing into a video generation pipeline with amber and cyan technical lighting" />
+</picture>
+
+<p>Search “vidu reference to video” and you mostly get product pages: Vidu’s official feature page, a few aggregator model cards, some social clips. Almost none of them tell an engineer what the R2V API actually accepts, which model to call, or what it costs per second. This guide fills that gap.</p>
+<p>R2V (reference-to-video) is the Vidu capability that generates a new video from one or more reference images — or reference videos — plus a text prompt, while keeping the referenced subject recognizable. It is not a single product: the same capability ships as a consumer feature on vidu.com, as an enterprise API on Vidu’s platform, and through third-party aggregators, each with its own request contract and billing. All API details below were read from the cited official documentation and model pages on August 10, 2026. Modellix is an API aggregator with a commercial interest in this topic; the guide treats Vidu’s own surfaces as the neutral baseline and does not claim the aggregator route is cheaper.</p>
+<h2 id="What-Vidu-reference-to-video-R2V-actually-does"><a href="#What-Vidu-reference-to-video-R2V-actually-does" class="headerlink" title="What Vidu reference to video (R2V) actually does"></a>What Vidu reference to video (R2V) actually does</h2><p><a target="_blank" rel="noopener" href="https://www.vidu.com/ai-reference-to-video">Vidu’s official reference-to-video page</a> describes the mechanism precisely: you upload one or more characters, objects, or scenes as references, add a text prompt describing what should happen, and Vidu generates a multi-shot video in which the referenced subjects stay consistent across scenes. A reference can capture character, style, composition, camera movement, scene, and effects. The consumer product supports up to seven references per generation, optionally drawing from Vidu’s RefHub library of pre-made references.</p>
+<p>The distinction from image-to-video (I2V) matters when you design a feature. I2V animates a single start frame; R2V keeps a subject consistent while placing it in a <em>new</em> scene defined by the prompt. The official page frames it as: use R2V for storytelling, ads, and multi-scene workflows; use I2V when you just want to animate one image. The same boundary shows up in the API: an R2V request takes <code>reference_images</code> (plural, up to seven) rather than a single image, and the prompt drives the scene rather than describing a motion on top of a fixed frame.</p>
+<p>That maps to concrete jobs: character-driven short films where an actor must stay recognizable, brand mascot and spokesperson videos, e-commerce teams reusing a product’s look across ad variants, and pre-visualization where a fixed subject performs new actions. If you are evaluating R2V generically, our <a href="https://www.modellix.ai/blog/reference-to-video-ai/">reference-to-video AI overview</a> covers the wider field of R2V models and vendors; the rest of this guide stays API-first on Vidu.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/vidu-r2v-workflow.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/vidu-r2v-workflow.png" alt="Vidu R2V mechanism diagram: up to seven reference images plus a text prompt flow into the video generation pipeline and produce a character-consistent video" loading="lazy" />
+</picture>
+
+<p><em>The R2V input contract: reference images (1–7) and a prompt in, a subject-consistent video out. Illustrative Modellix diagram, August 10, 2026.</em></p>
+<h2 id="Which-Vidu-model-is-the-R2V-model-Q1-Q2-or-Q3"><a href="#Which-Vidu-model-is-the-R2V-model-Q1-Q2-or-Q3" class="headerlink" title="Which Vidu model is the R2V model? Q1, Q2, or Q3"></a>Which Vidu model is the R2V model? Q1, Q2, or Q3</h2><p>The most confusing part of this topic is that “the R2V model” does not exist — R2V is a capability that ships in successive Vidu generations, and each generation has its own routing, parameters, and price.</p>
+<table>
+<thead>
+<tr>
+<th>Generation</th>
+<th>R2V status</th>
+<th>Evidence (accessed 2026-08-10)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Q1</td>
+<td>Introduced R2V; up to 7 image references</td>
+<td><a target="_blank" rel="noopener" href="https://civitai.com/articles/16740/vidu-q1-reference-to-video-r2v-launch-new-pricing">Civitai launch post</a> for Vidu Q1 R2V, with pricing</td>
+</tr>
+<tr>
+<td>Q2 &#x2F; Q2 Pro</td>
+<td>Q2 Pro R2V node; accepts images <strong>and reference videos</strong></td>
+<td><a target="_blank" rel="noopener" href="https://docs.gmicloud.ai/gmi-studio/nodes/video/vidu-q2-pro-r2v">GMI Cloud node documentation</a></td>
+</tr>
+<tr>
+<td>Q3</td>
+<td>Current line: standard, Turbo, and Mix R2V</td>
+<td><a href="https://www.modellix.ai/providers/vidu">Modellix Vidu provider catalog</a></td>
+</tr>
+</tbody></table>
+<p>The Q2 generation is the one that quietly supports video references: the GMI Cloud node contract for Vidu Q2 Pro R2V documents <code>image_urls</code> (up to seven images) plus <code>video_urls</code> — one reference video of 8 seconds, or two videos of 5 seconds each — with duration from 1–8 seconds and a 2,000-character prompt cap. That matters if your use case is “match this character’s motion from a clip,” not just “keep this character’s face.”</p>
+<p>The Q3 line is the current generation, exposed on Modellix with three R2V routes: <a href="https://www.modellix.ai/models/vidu/viduq3-r2v">vidu&#x2F;viduq3-r2v</a> (standard, cinematic), vidu&#x2F;viduq3-turbo-r2v (faster, lower price), and vidu&#x2F;viduq3-mix-r2v (blends features from multiple references, up to seven, for mixed-style consistency). Q3 R2V generates 3–16 second videos at 16:9, 9:16, or 1:1, at 540p&#x2F;720p&#x2F;1080p. If a model card says “reference to video 2.0” without a generation name, verify which generation it wraps — the parameters and the price both differ across Q1, Q2, and Q3.</p>
+<h2 id="What-the-R2V-API-request-looks-like"><a href="#What-the-R2V-API-request-looks-like" class="headerlink" title="What the R2V API request looks like"></a>What the R2V API request looks like</h2><p>The request contract is small. A Vidu R2V call is: upload or reference images → submit an async job with a prompt → poll until the video is ready. The exact field names differ per route; the table below is the Vidu Q3 R2V contract from the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/vidu/viduq3-r2v">API documentation</a> and model page, which is representative of the family.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Constraints</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>prompt</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>1–5,000 characters</td>
+</tr>
+<tr>
+<td><code>reference_images</code></td>
+<td>string[]</td>
+<td>Yes</td>
+<td>1–7 items; URLs or base64 data URIs</td>
+</tr>
+<tr>
+<td><code>duration</code></td>
+<td>integer</td>
+<td>No</td>
+<td>Minimum 3 seconds</td>
+</tr>
+<tr>
+<td><code>aspect_ratio</code></td>
+<td>string</td>
+<td>No</td>
+<td><code>16:9</code>, <code>9:16</code>, <code>1:1</code></td>
+</tr>
+<tr>
+<td><code>resolution</code></td>
+<td>string</td>
+<td>No</td>
+<td><code>540p</code>, <code>720p</code>, <code>1080p</code></td>
+</tr>
+<tr>
+<td><code>seed</code></td>
+<td>integer</td>
+<td>No</td>
+<td>Reproducibility</td>
+</tr>
+</tbody></table>
+<p>A minimal request body:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;prompt&quot;</span><span class="punctuation">:</span> <span class="string">&quot;the character from the reference image walks toward the camera in a rainy city street&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;reference_images&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;https://cdn.example.com/character.jpg&quot;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;duration&quot;</span><span class="punctuation">:</span> <span class="number">8</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;aspect_ratio&quot;</span><span class="punctuation">:</span> <span class="string">&quot;16:9&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;resolution&quot;</span><span class="punctuation">:</span> <span class="string">&quot;720p&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>Submission is asynchronous: POST to <code>https://api.modellix.ai/api/v1/vidu/viduq3-r2v</code> with a Bearer API key, and the response returns a <code>task_id</code> plus a <code>get_result</code> URL to poll until the task reaches a terminal state. The same submit-and-poll shape applies to most Vidu R2V routes; our <a href="https://www.modellix.ai/blog/image-to-video-api/">image-to-video API guide</a> walks the general async pattern in more depth.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests, time</span><br><span class="line"></span><br><span class="line">API_KEY = <span class="string">&quot;your-modellix-api-key&quot;</span>          <span class="comment"># create one in the console</span></span><br><span class="line">BASE = <span class="string">&quot;https://api.modellix.ai/api/v1&quot;</span></span><br><span class="line">HEADERS = &#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;API_KEY&#125;</span>&quot;</span>, <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line">resp = requests.post(</span><br><span class="line">    <span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/vidu/viduq3-r2v&quot;</span>,</span><br><span class="line">    headers=HEADERS,</span><br><span class="line">    json=&#123;</span><br><span class="line">        <span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;the character walks toward the camera in a rainy city street&quot;</span>,</span><br><span class="line">        <span class="string">&quot;reference_images&quot;</span>: [<span class="string">&quot;https://cdn.example.com/character.jpg&quot;</span>],</span><br><span class="line">        <span class="string">&quot;duration&quot;</span>: <span class="number">8</span>,</span><br><span class="line">        <span class="string">&quot;aspect_ratio&quot;</span>: <span class="string">&quot;16:9&quot;</span>,</span><br><span class="line">        <span class="string">&quot;resolution&quot;</span>: <span class="string">&quot;720p&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">)</span><br><span class="line">resp.raise_for_status()</span><br><span class="line">task_id = resp.json()[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;task_id&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">60</span>):                       <span class="comment"># poll with backoff in production</span></span><br><span class="line">    state = requests.get(<span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/tasks/<span class="subst">&#123;task_id&#125;</span>&quot;</span>, headers=HEADERS).json()[<span class="string">&quot;data&quot;</span>]</span><br><span class="line">    <span class="keyword">if</span> state[<span class="string">&quot;status&quot;</span>] == <span class="string">&quot;success&quot;</span>:</span><br><span class="line">        <span class="built_in">print</span>(state[<span class="string">&quot;output&quot;</span>][<span class="string">&quot;url&quot;</span>])     <span class="comment"># generated video</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    time.sleep(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/vidu-q3-r2v-model-page.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/vidu-q3-r2v-model-page.png" alt="Modellix model page for vidu/viduq3-r2v showing the reference_images input contract and per-second pricing table" loading="lazy" />
+</picture>
+
+<p><em>The vidu&#x2F;viduq3-r2v model page on Modellix (captured August 10, 2026): the <code>reference_images</code> parameter accepts 1–7 portrait or subject images, and pricing is billed per second by resolution.</em></p>
+<h2 id="R2V-pricing-per-second-not-per-video"><a href="#R2V-pricing-per-second-not-per-video" class="headerlink" title="R2V pricing: per second, not per video"></a>R2V pricing: per second, not per video</h2><p>Vidu R2V is billed per second of output, and the per-second rate scales with resolution. The table below is the live pricing on the Vidu Q3 R2V model pages, read on August 10, 2026.</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>540p</th>
+<th>720p</th>
+<th>1080p</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>vidu&#x2F;viduq3-r2v</td>
+<td>$0.0322&#x2F;s</td>
+<td>$0.0552&#x2F;s</td>
+<td>$0.0690&#x2F;s</td>
+</tr>
+<tr>
+<td>vidu&#x2F;viduq3-turbo-r2v</td>
+<td>$0.0184&#x2F;s</td>
+<td>$0.0460&#x2F;s</td>
+<td>$0.0598&#x2F;s</td>
+</tr>
+<tr>
+<td>vidu&#x2F;viduq3-mix-r2v</td>
+<td>—</td>
+<td>$0.1104&#x2F;s</td>
+<td>$0.1219&#x2F;s</td>
+</tr>
+</tbody></table>
+<p>To estimate a job: pick the route and resolution, multiply by duration. A 5-second, 720p clip on the standard route is 5 × $0.0552 &#x3D; $0.28. The same clip at 1080p on the Mix route — the premium multi-reference option — is 5 × $0.1219 &#x3D; $0.61. Turbo at 720p drops a 5-second clip to $0.23, which is why it is the default choice for iteration loops.</p>
+<p>For context, other aggregators price Vidu R2V per run rather than per second: fal’s model page quotes $0.40 for a 4-second video (<a target="_blank" rel="noopener" href="https://fal.ai/models/fal-ai/vidu/reference-to-video">fal-ai&#x2F;vidu&#x2F;reference-to-video</a>, ≈$0.10&#x2F;s), and Atlas Cloud lists $0.20 per run for its <a target="_blank" rel="noopener" href="https://www.atlascloud.ai/models/vidu/reference-to-video-2.0">Vidu Reference-to-Video 2.0</a>. Those fixed prices bundle whatever resolution and duration the provider exposes, so they are not directly comparable to a per-second table — match route, duration, and resolution on both sides before comparing. For the mechanics of converting per-second prices into budgets, our <a href="https://www.modellix.ai/blog/pixverse-pricing/">PixVerse credit pricing breakdown</a> shows the same analysis for another video vendor.</p>
+<h2 id="Official-Platform-an-aggregator-or-Modellix-which-route"><a href="#Official-Platform-an-aggregator-or-Modellix-which-route" class="headerlink" title="Official Platform, an aggregator, or Modellix: which route?"></a>Official Platform, an aggregator, or Modellix: which route?</h2><p>Three integration paths exist, and the right one depends on how many providers your product must support.</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>What you get</th>
+<th>What you manage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Vidu API Platform (<a target="_blank" rel="noopener" href="https://platform.vidu.com/">platform.vidu.com</a>)</td>
+<td>Official console, upload flow, first-party contract and support</td>
+<td>Vidu credit&#x2F;balance, one vendor’s API, per-request key handling</td>
+</tr>
+<tr>
+<td>Aggregator model pages (fal, Atlas Cloud, GMI Cloud, …)</td>
+<td>Pay-per-run pricing, existing SDKs, one vendor’s Vidu models</td>
+<td>One more vendor account; per-vendor request shapes and billing</td>
+</tr>
+<tr>
+<td>Modellix</td>
+<td>One API key across 12 providers, per-second pricing per model page, per-call logs with cost</td>
+<td>One account, one billing surface</td>
+</tr>
+</tbody></table>
+<p>Choose the official platform when Vidu is your only video vendor and you want the first-party product surface. Choose an aggregator route when you are already on that platform. The Modellix case is different in one specific way: it exists to serve products that integrate <em>multiple</em> media providers — one key, one billing surface, and per-model pricing pages you can read before you commit. Its Vidu provider page lists the current Q3 R2V routes with parameter-level per-second pricing, and the catalog-wide video price starts at $0.0008 per second across providers. That last number is a catalog-wide starting point, not a Vidu R2V price — the R2V table in the previous section is the one to budget against.</p>
+<p>Disclosure: Modellix is an API aggregator, and this section describes its own product. We are not claiming the aggregator route is cheaper or that it accepts every official parameter — verify the current model page and API documentation for the exact contract of the route you need before committing.</p>
+<h2 id="Common-mistakes-when-integrating-Vidu-R2V"><a href="#Common-mistakes-when-integrating-Vidu-R2V" class="headerlink" title="Common mistakes when integrating Vidu R2V"></a>Common mistakes when integrating Vidu R2V</h2><ul>
+<li><strong>Treating R2V as I2V.</strong> R2V creates a new scene from the prompt while preserving the subject; if you only want to animate a start frame, an I2V route is cheaper and faster.</li>
+<li><strong>Passing more than seven references.</strong> The contract caps <code>reference_images</code> at seven (some routes, like Atlas Cloud’s, cap lower). Validate the count client-side so users get an immediate error instead of a provider rejection.</li>
+<li><strong>Ignoring the duration floor.</strong> Q3 R2V requires a minimum of 3 seconds; a 2-second request is invalid.</li>
+<li><strong>Picking the generation blindly.</strong> Q1, Q2, and Q3 R2V have different parameters, durations, and prices. Match the generation to the route you integrate — “reference to video 2.0” on one platform is not the same model as Q3 R2V on another.</li>
+<li><strong>Not polling to a terminal state.</strong> Every R2V route is asynchronous. Treat <code>pending</code> as non-final, poll with backoff, set a timeout, and handle failure states explicitly — a job that never reaches success is not “still running” forever.</li>
+<li><strong>Budgeting from a per-run price.</strong> Fixed per-run prices hide the resolution and duration assumptions. Compute per-second where available, or state the assumptions next to the number.</li>
+</ul>
+<h2 id="Frequently-asked-questions-about-the-Vidu-R2V-API"><a href="#Frequently-asked-questions-about-the-Vidu-R2V-API" class="headerlink" title="Frequently asked questions about the Vidu R2V API"></a>Frequently asked questions about the Vidu R2V API</h2><p><strong>What is Vidu reference to video?</strong></p>
+<p>R2V is the Vidu capability that generates a new video from one or more reference images (or reference videos) plus a text prompt, preserving the referenced subject’s identity — character, style, objects, scenes — across shots.</p>
+<p><strong>Can Vidu R2V take reference videos, or only images?</strong></p>
+<p>Both, depending on the generation. Q2 Pro R2V documents <code>video_urls</code> (one 8-second video or two 5-second videos) alongside image references. The consumer page also accepts reference videos. The Q3 R2V routes document image references; check the route’s contract for video input.</p>
+<p><strong>Which Vidu model should I call for reference to video?</strong></p>
+<p>For current-generation routing, the Q3 line: <code>vidu/viduq3-r2v</code> for standard quality, <code>vidu/viduq3-turbo-r2v</code> for faster and cheaper iteration, and <code>vidu/viduq3-mix-r2v</code> when blending features from multiple references. Older Q1&#x2F;Q2 R2V routes still exist on some platforms.</p>
+<p><strong>How much does Vidu R2V cost?</strong></p>
+<p>Per second of output, by resolution. On the per-second routes (August 10, 2026): standard Q3 R2V at $0.0322&#x2F;s (540p), $0.0552&#x2F;s (720p), $0.0690&#x2F;s (1080p); Turbo cheaper; Mix premium. Some aggregators bill per run instead — fal quotes $0.40 per 4-second video, Atlas Cloud $0.20 per run.</p>
+<p><strong>How do I pass reference images to the API?</strong></p>
+<p>Submit them as <code>reference_images</code> in the request body — up to seven, as URLs or base64 data URIs — together with a <code>prompt</code>, then poll the returned task until the video is ready.</p>
+<p><strong>Is Vidu free to use?</strong></p>
+<p>Vidu’s consumer site offers free-to-create credits; the API routes are paid per generation or per second. Vidu is developed by Shengshu Technology, a Chinese AI company, which is a relevant due-diligence data point for teams with data-residency requirements.</p>
+<p><strong>How do I get started with the R2V API?</strong></p>
+<p>Pick a route, read its model page for the exact contract and per-second pricing, then run one request. On Modellix, registration takes about 30 minutes to first output, with $10–30 of free credit and no card required.</p>
+<hr>
+<p><em>Vidu capability, generation, and pricing details reflect official documentation and model pages accessed August 10, 2026 and change frequently — Vidu ships new generations often. Validate against the live provider documentation and billing pages before committing volume or budget. Modellix is an API aggregator for image and video models, not the Vidu vendor; this guide is not a claim that the aggregator route is cheaper or that it accepts every official parameter.</em></p>
+<p><em>Cover image: illustrative Modellix artwork; it is not a Vidu product screenshot or source evidence.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">developer-guide</a>
+            
+              <a href="/blog/tags/API-Integration/" class="tag-pill tag-pill--sm">API Integration</a>
+            
+              <a href="/blog/tags/R2V/" class="tag-pill tag-pill--sm">R2V</a>
+            
+              <a href="/blog/tags/Vidu/" class="tag-pill tag-pill--sm">Vidu</a>
+            
+              <a href="/blog/tags/Reference-to-Video/" class="tag-pill tag-pill--sm">Reference to Video</a>
+            
+              <a href="/blog/tags/Video-API/" class="tag-pill tag-pill--sm">Video API</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/wan-2-2-image-to-video-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-wan-2-2-image-to-video-api.webp" alt="Wan 2.2 Image to Video API: I2V Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">api-guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Wan 2.2 Image to Video API: I2V Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-08-07T02:00:00.000Z">August 7, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/video-extend-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-video-extend-api.webp" alt="Video Extend API: Lengthen AI Video via Multi-Provider APIs" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">api-guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Video Extend API: Lengthen AI Video via Multi-Provider APIs</h3>
+          <time class="related-article-date" datetime="2026-08-06T02:00:00.000Z">August 6, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/talking-avatar-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-talking-avatar-api.webp" alt="Talking Avatar API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">api-guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Talking Avatar API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-08-03T16:00:00.000Z">August 4, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/vidu-reference-to-video/&text=Vidu%20Reference%20to%20Video%3A%20R2V%20API%20Guide" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/vidu-reference-to-video/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/vidu-reference-to-video/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

@@ -1,0 +1,634 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seedance Pro API: ByteDance Video Integration Guide — Modellix Blog</title>
+  <meta name="description" content="How to call ByteDance&#39;s Seedance Pro API: official BytePlus ModelArk endpoint vs aggregators, request shape, async polling, and token vs per-second pricing.">
+  <meta name="keywords" content="seedance pro api, bytedance seedance api, seedance 1.0 pro, seedance 1.5 pro api, seedance api pricing, seedance 2.0 api">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/seedance-pro-api/">
+  <meta name="description" content="How to call ByteDance&#39;s Seedance Pro API: official BytePlus ModelArk endpoint vs aggregators, request shape, async polling, and token vs per-second pricing.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Seedance Pro API: ByteDance Video Integration Guide — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/seedance-pro-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="How to call ByteDance&#39;s Seedance Pro API: official BytePlus ModelArk endpoint vs aggregators, request shape, async polling, and token vs per-second pricing.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-seedance-pro-api.webp">
+<meta property="article:published_time" content="2026-08-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-09T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="API Guide">
+<meta property="article:tag" content="API Integration">
+<meta property="article:tag" content="ByteDance">
+<meta property="article:tag" content="Developer Guide">
+<meta property="article:tag" content="Seedance">
+<meta property="article:tag" content="Video Generation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-seedance-pro-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Seedance Pro API: ByteDance Video Integration Guide","description":"How to call ByteDance's Seedance Pro API: official BytePlus ModelArk endpoint vs aggregators, request shape, async polling, and token vs per-second pricing.","datePublished":"2026-08-09T16:00:00.000Z","dateModified":"2026-08-09T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/seedance-pro-api/","image":"https://statics.mylandingpages.co/static/modellix/image/cover-seedance-pro-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Seedance Pro API: ByteDance Video Integration Guide</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/API-Guides/" class="category-tag category-tag--sm">API-Guides</a>
+          
+            <a href="/blog/categories/API-Guides/Model-Guides/" class="category-tag category-tag--sm">Model-Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Seedance Pro API: ByteDance Video Integration Guide</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-09T16:00:00.000Z">August 10, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
+            
+              <a href="/blog/tags/Video-Generation/" class="tag-pill tag-pill--sm">Video Generation</a>
+            
+              <a href="/blog/tags/Seedance/" class="tag-pill tag-pill--sm">Seedance</a>
+            
+              <a href="/blog/tags/Developer-Guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
+            
+              <a href="/blog/tags/API-Integration/" class="tag-pill tag-pill--sm">API Integration</a>
+            
+              <a href="/blog/tags/ByteDance/" class="tag-pill tag-pill--sm">ByteDance</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.srcgptbots.com/blog/author/20260409/modellix-blog-author-official@2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>Search for &#39;seedance pro api&#39; and you&#39;ll get eleven model pages from eleven platforms, each showing its own parameters and its own price per second.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/cover-seedance-pro-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/cover-seedance-pro-api.png" alt="Seedance Pro API integration guide cover: ByteDance video model endpoints and per-second pricing on a dark copper technical layout" />
+</picture>
+
+<p>Search for “seedance pro api” and you’ll get eleven model pages from eleven platforms, each showing its own parameters and its own price per second. What none of them tell you is that there are two fundamentally different ways to reach ByteDance’s Seedance Pro models — the official cloud (Volcengine Ark domestically, BytePlus ModelArk internationally) and aggregator platforms — and they don’t share a billing unit, an activation process, or an endpoint shape. The official route charges per token and asks you to activate models; aggregators charge per second of output and hand you a key in minutes. This guide gives you both paths with real endpoints, real code, and a side-by-side cost comparison, current as of August 2026.</p>
+<h2 id="What-“Pro”-Means-in-ByteDance’s-Seedance-Lineup"><a href="#What-“Pro”-Means-in-ByteDance’s-Seedance-Lineup" class="headerlink" title="What “Pro” Means in ByteDance’s Seedance Lineup"></a>What “Pro” Means in ByteDance’s Seedance Lineup</h2><p>Seedance Pro is not one model — it’s a tier inside a family. ByteDance’s official naming breaks down as:</p>
+<ul>
+<li><strong>Seedance 1.0 Pro</strong> — the multi-shot generation model that made Seedance a name: text-to-video and image-to-video (including first-and-last-frame control), up to 1080p, with strong prompt adherence and multi-shot scene consistency.</li>
+<li><strong>Seedance 1.5 Pro</strong> — a joint audio-video model. It generates synchronized audio (speech, sound effects, ambient) in the same call as the video, which is the single biggest practical difference from 1.0 Pro.</li>
+<li><strong>Seedance 2.0 series</strong> (and 2.5) — the newer multimodal-reference generation, supporting up to 9 reference images, reference videos and audio, and up to 15s multi-shot output. We covered its integration separately in our <a href="https://www.modellix.ai/blog/seedance-2-0-api/">Seedance 2.0 API guide</a>; this article stays on the Pro tier.</li>
+</ul>
+<p>One naming trap before we go further: some aggregator platforms list a model called “Seedance 2.0 Pro” (for example <a target="_blank" rel="noopener" href="https://empiriolabs.ai/models/seedance-2-0-pro">EmpirioLabs</a> sells a <code>seedance-2-0-pro</code> endpoint). That’s a marketplace label for the 2.0 architecture, not an official ByteDance model name. On the official platform the 2.0 series is <code>seedance-2.0-*</code>, and the Pro tier is 1.0 Pro and 1.5 Pro. Keep that distinction in mind when comparing listings.</p>
+<p>Also note the versioning scheme: official model IDs carry a date suffix (e.g. <code>seedance-1-5-pro-251215</code>, <code>seedance-1-0-pro-250528</code>, <code>seedance-1-0-pro-fast-251015</code>). ByteDance rotates these when a model is updated, so your integration should read the model ID from configuration, not hard-code it. The Seedance <a target="_blank" rel="noopener" href="https://seed.bytedance.com/en/seedance">official product page</a> and the BytePlus <a target="_blank" rel="noopener" href="https://docs.byteplus.com/en/docs/ModelArk/1330310">model list</a> are the two places to check current IDs.</p>
+<h2 id="Two-Routes-to-the-Seedance-Pro-API-Official-Cloud-vs-Aggregator"><a href="#Two-Routes-to-the-Seedance-Pro-API-Official-Cloud-vs-Aggregator" class="headerlink" title="Two Routes to the Seedance Pro API: Official Cloud vs Aggregator"></a>Two Routes to the Seedance Pro API: Official Cloud vs Aggregator</h2><p>Every way to call Seedance Pro is one of two architectures, and the choice matters more than any parameter:</p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Official: BytePlus ModelArk &#x2F; Volcengine Ark</th>
+<th>Aggregator (e.g. <a href="https://www.modellix.ai/providers/bytedance">Modellix</a>, fal, Replicate, kie)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Billing unit</td>
+<td>Per token (est. tokens from resolution × duration)</td>
+<td>Per second of generated video</td>
+</tr>
+<tr>
+<td>Activation</td>
+<td>Model activation in console; 2.x models need balance &gt; $30 or a resource pack</td>
+<td>None — key works immediately</td>
+</tr>
+<tr>
+<td>Account setup</td>
+<td>Cloud account, API key management, model activation</td>
+<td>Sign-up + API key</td>
+</tr>
+<tr>
+<td>Endpoint</td>
+<td><code>https://ark.ap-southeast.bytepluses.com/api/v3/contents/generations/tasks</code></td>
+<td>Platform-specific unified endpoint (Modellix: <code>https://api.modellix.ai/api/v1/bytedance/seedance-1.5-pro-t2v/async</code>)</td>
+</tr>
+<tr>
+<td>Auth</td>
+<td>Bearer API key (console-generated)</td>
+<td>Bearer API key</td>
+</tr>
+<tr>
+<td>Regional access</td>
+<td>Volcengine (CN) vs BytePlus (international) — separate accounts and keys</td>
+<td>One account, no regional split</td>
+</tr>
+<tr>
+<td>Other models</td>
+<td>Only ByteDance&#x2F;Volcengine models</td>
+<td>Multiple providers behind one key</td>
+</tr>
+</tbody></table>
+<p>Both routes reach the same underlying models — ByteDance’s Dreamina Seedance 1.5 Pro and 1.0 Pro are served through ModelArk, and aggregators license access to the same models. The difference is the layer around them: billing convention, activation friction, and how many vendors you manage.</p>
+<p>A bias disclosure that matters: Modellix is an aggregator and we sell access to Seedance Pro, so we have a commercial interest in the aggregator route looking good. The numbers and code below are taken from live sources on both sides so you can verify — and if your use case genuinely fits the official route, say so without hesitation. The framework we’re giving you is the same one we’d use to evaluate a competitor’s product.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/seedance-pro-api-two-routes.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/seedance-pro-api-two-routes.png" alt="Two routes to the Seedance Pro API: official BytePlus ModelArk cloud vs aggregator platforms with one API key" loading="lazy" />
+</picture>
+*Figure: the two architectures that serve ByteDance's Seedance Pro models — official cloud and aggregator — differ in billing, activation, and endpoint shape.*
+
+<h2 id="Getting-an-API-Key-Official-Activation-vs-Aggregator-Free-Credit"><a href="#Getting-an-API-Key-Official-Activation-vs-Aggregator-Free-Credit" class="headerlink" title="Getting an API Key: Official Activation vs Aggregator Free Credit"></a>Getting an API Key: Official Activation vs Aggregator Free Credit</h2><p><strong>Official route (BytePlus ModelArk).</strong> Create a BytePlus account, then generate a long-term API key on the <a target="_blank" rel="noopener" href="https://ai.byteplus.com/ark/region:ap-southeast-1/apiKey">API key management page</a>. The step people underestimate is <strong>model activation</strong>: video models are not callable by default. Per the official docs, before enabling Dreamina Seedance 2.0&#x2F;2.5 you need a BytePlus account balance above USD 30, or a purchased Seedance resource pack with available quota. The 1.0 Pro &#x2F; 1.5 Pro models also require activation through the console’s model management before you can query their model IDs. Budget for this step — it’s where “five minutes to first request” dies. If your infrastructure is in mainland China, the domestic route is Volcengine Ark (see the <a target="_blank" rel="noopener" href="https://www.volcengine.com/docs/82379/2291680">Volcengine Seedance quickstart</a>); the BytePlus path is the international one and needs no China-region account.</p>
+<p><strong>Aggregator route.</strong> Sign up, create an API key, and the key works on every model the platform carries. Modellix, for instance, offers $10–30 of free credit without a credit card, which is enough to run several dozen Seedance Pro jobs before paying anything — <a href="https://www.modellix.ai/console">create a Modellix account and API key</a>. The trade-off is the reverse of the official route’s: zero activation friction, but you’re paying per second through a middle layer rather than per token to ByteDance directly.</p>
+<p>If you’re deciding between the two, the honest rule of thumb: the official route wins when you’re all-in on ByteDance models at serious volume (the per-token economics reward scale), need direct vendor support, or have compliance reasons to hold the vendor relationship yourself. Aggregators win when you’re evaluating models, need multiple vendors behind one key, or want to move from signup to first output in minutes.</p>
+<h2 id="Seedance-Pro-Request-Shape-Endpoint-Auth-and-Parameters"><a href="#Seedance-Pro-Request-Shape-Endpoint-Auth-and-Parameters" class="headerlink" title="Seedance Pro Request Shape: Endpoint, Auth, and Parameters"></a>Seedance Pro Request Shape: Endpoint, Auth, and Parameters</h2><p>The official API is the reference shape, so start there. Creating a video generation task on BytePlus ModelArk:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">POST https://ark.ap-southeast.bytepluses.com/api/v3/contents/generations/tasks</span><br><span class="line">Authorization: Bearer YOUR_BYTEPLUS_API_KEY</span><br><span class="line">Content-Type: application/json</span><br></pre></td></tr></table></figure>
+
+<p>Request body (text-to-video):</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;model&quot;</span><span class="punctuation">:</span> <span class="string">&quot;seedance-1-5-pro-251215&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;content&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;text&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;text&quot;</span><span class="punctuation">:</span> <span class="string">&quot;The kitten is yawning at the camera.&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;resolution&quot;</span><span class="punctuation">:</span> <span class="string">&quot;720p&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;ratio&quot;</span><span class="punctuation">:</span> <span class="string">&quot;16:9&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;duration&quot;</span><span class="punctuation">:</span> <span class="number">5</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;seed&quot;</span><span class="punctuation">:</span> <span class="number">11</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;camera_fixed&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;watermark&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>Key details from the <a target="_blank" rel="noopener" href="https://docs.byteplus.com/en/docs/ModelArk/1520757">official API reference</a>:</p>
+<ul>
+<li><strong><code>content</code> is an array</strong>, and each entry declares its type: <code>text</code>, <code>image_url</code>, <code>video_url</code>, <code>audio_url</code>, or <code>draft_task</code> (1.5 Pro supports a draft-then-final two-step mode). Image-to-video passes one or two <code>image_url</code> entries with <code>role: &quot;first_frame&quot;</code> &#x2F; <code>&quot;last_frame&quot;</code>.</li>
+<li><strong>Image constraints</strong>: single image &lt; 30 MB, width&#x2F;height 300–6000 px, aspect ratio 0.4–2.5, formats jpeg&#x2F;png&#x2F;webp&#x2F;bmp&#x2F;tiff&#x2F;gif (1.5 Pro also accepts heic&#x2F;heif). Request body max 64 MB — don’t Base64 large files.</li>
+<li><strong>Prompt</strong>: recommended ≤ 1,000 English words. Longer prompts scatter the model’s attention and produce missing elements.</li>
+<li>Parameters can also be appended to the prompt text (<code>--rs 720p --rt 16:9 --dur 5</code>), but the docs recommend passing them in the body — the body path validates strictly and returns errors for invalid values; the prompt-append path silently ignores them.</li>
+</ul>
+<p><strong>Aggregator shape (Modellix).</strong> The same call through Modellix uses a flat, per-model endpoint and mirrors most of these fields:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">POST https://api.modellix.ai/api/v1/bytedance/seedance-1.5-pro-t2v/async</span><br><span class="line">Authorization: Bearer YOUR_MODELLIX_API_KEY</span><br><span class="line">Content-Type: application/json</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;prompt&quot;</span><span class="punctuation">:</span> <span class="string">&quot;The kitten is yawning at the camera.&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;ratio&quot;</span><span class="punctuation">:</span> <span class="string">&quot;16:9&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;resolution&quot;</span><span class="punctuation">:</span> <span class="string">&quot;720p&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;duration&quot;</span><span class="punctuation">:</span> <span class="number">5</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;generate_audio&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;seed&quot;</span><span class="punctuation">:</span> <span class="number">11</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>The 1.5 Pro schema adds <code>generate_audio</code> (default true, 1.5 Pro exclusive), <code>service_tier</code> (<code>default</code>&#x2F;<code>flex</code>), and <code>return_last_frame</code>. The per-model schema is published at each model page (e.g. the <a href="https://www.modellix.ai/models/bytedance/seedance-1.5-pro-t2v">Seedance 1.5 Pro T2V model page</a>) on the site. Whatever route you pick, the submit&#x2F;poll pattern is the same — which is exactly what the next section covers.</p>
+<h2 id="Code-Submit-a-Text-to-Video-Job-cURL-Python"><a href="#Code-Submit-a-Text-to-Video-Job-cURL-Python" class="headerlink" title="Code: Submit a Text-to-Video Job (cURL + Python)"></a>Code: Submit a Text-to-Video Job (cURL + Python)</h2><p>A complete text-to-video job on the official BytePlus route:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">curl --request POST \</span><br><span class="line">  --url https://ark.ap-southeast.bytepluses.com/api/v3/contents/generations/tasks \</span><br><span class="line">  --header <span class="string">&quot;Authorization: Bearer <span class="variable">$BYTEPLUS_API_KEY</span>&quot;</span> \</span><br><span class="line">  --header <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  --data <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;model&quot;: &quot;seedance-1-5-pro-251215&quot;,</span></span><br><span class="line"><span class="string">    &quot;content&quot;: [&#123;&quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;A swift over rooftops at golden hour, cinematic long-take&quot;&#125;],</span></span><br><span class="line"><span class="string">    &quot;resolution&quot;: &quot;720p&quot;,</span></span><br><span class="line"><span class="string">    &quot;ratio&quot;: &quot;16:9&quot;,</span></span><br><span class="line"><span class="string">    &quot;duration&quot;: 5,</span></span><br><span class="line"><span class="string">    &quot;camera_fixed&quot;: false</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>The response returns a task ID synchronously — the video itself is generated asynchronously:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;task-xxxxxxxx&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;model&quot;</span><span class="punctuation">:</span> <span class="string">&quot;seedance-1-5-pro-251215&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;queued&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>Poll with <code>GET https://ark.ap-southeast.bytepluses.com/api/v3/contents/generations/tasks/{id}</code> until <code>status</code> is <code>succeeded</code> or <code>failed</code>. The same flow through Modellix — submission returns <code>data.task_id</code> plus a ready-to-call <code>data.get_result.url</code> you can poll directly.</p>
+<p>Python, official route, with polling and a 24-hour URL warning:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">BASE = <span class="string">&quot;https://ark.ap-southeast.bytepluses.com/api/v3/contents/generations/tasks&quot;</span></span><br><span class="line">HEADERS = &#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">&quot;Bearer YOUR_BYTEPLUS_API_KEY&quot;</span>, <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line">payload = &#123;</span><br><span class="line">    <span class="string">&quot;model&quot;</span>: <span class="string">&quot;seedance-1-5-pro-251215&quot;</span>,</span><br><span class="line">    <span class="string">&quot;content&quot;</span>: [&#123;<span class="string">&quot;type&quot;</span>: <span class="string">&quot;text&quot;</span>, <span class="string">&quot;text&quot;</span>: <span class="string">&quot;A swift over rooftops at golden hour&quot;</span>&#125;],</span><br><span class="line">    <span class="string">&quot;resolution&quot;</span>: <span class="string">&quot;720p&quot;</span>,</span><br><span class="line">    <span class="string">&quot;ratio&quot;</span>: <span class="string">&quot;16:9&quot;</span>,</span><br><span class="line">    <span class="string">&quot;duration&quot;</span>: <span class="number">5</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">resp = requests.post(BASE, headers=HEADERS, json=payload)</span><br><span class="line">task_id = resp.json()[<span class="string">&quot;id&quot;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;submitted:&quot;</span>, task_id)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">60</span>):</span><br><span class="line">    status = requests.get(<span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/<span class="subst">&#123;task_id&#125;</span>&quot;</span>, headers=HEADERS).json()</span><br><span class="line">    <span class="keyword">if</span> status[<span class="string">&quot;status&quot;</span>] <span class="keyword">in</span> (<span class="string">&quot;succeeded&quot;</span>, <span class="string">&quot;failed&quot;</span>, <span class="string">&quot;cancelled&quot;</span>, <span class="string">&quot;expired&quot;</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    time.sleep(<span class="number">5</span>)  <span class="comment"># fixed interval for demo only — use exponential backoff (start 5s, cap 30s) in production</span></span><br><span class="line"></span><br><span class="line">video_url = status.get(<span class="string">&quot;content&quot;</span>, &#123;&#125;).get(<span class="string">&quot;video_url&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;status:&quot;</span>, status[<span class="string">&quot;status&quot;</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;video_url (valid 24h — download it):&quot;</span>, video_url)</span><br></pre></td></tr></table></figure>
+
+<p>Same pattern on Modellix, swapping the base URL and response fields:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">BASE = <span class="string">&quot;https://api.modellix.ai/api/v1&quot;</span></span><br><span class="line">HEADERS = &#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">&quot;Bearer YOUR_MODELLIX_API_KEY&quot;</span>, <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line">payload = &#123;</span><br><span class="line">    <span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;A swift over rooftops at golden hour&quot;</span>,</span><br><span class="line">    <span class="string">&quot;resolution&quot;</span>: <span class="string">&quot;720p&quot;</span>,</span><br><span class="line">    <span class="string">&quot;ratio&quot;</span>: <span class="string">&quot;16:9&quot;</span>,</span><br><span class="line">    <span class="string">&quot;duration&quot;</span>: <span class="number">5</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">resp = requests.post(<span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/bytedance/seedance-1.5-pro-t2v/async&quot;</span>, headers=HEADERS, json=payload)</span><br><span class="line">data = resp.json()[<span class="string">&quot;data&quot;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;submitted:&quot;</span>, data[<span class="string">&quot;task_id&quot;</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">60</span>):</span><br><span class="line">    result = requests.get(data[<span class="string">&quot;get_result&quot;</span>][<span class="string">&quot;url&quot;</span>], headers=HEADERS).json()</span><br><span class="line">    <span class="keyword">if</span> result[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;status&quot;</span>] <span class="keyword">in</span> (<span class="string">&quot;success&quot;</span>, <span class="string">&quot;failed&quot;</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    time.sleep(<span class="number">5</span>)  <span class="comment"># fixed interval for demo only — use exponential backoff (start 5s, cap 30s) in production</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;status:&quot;</span>, result[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;status&quot;</span>])</span><br></pre></td></tr></table></figure>
+
+<p>Treat both snippets as a starting skeleton, not a copy-paste production module — verify the response field names against the current docs for the model ID you actually use.</p>
+<h2 id="The-Async-Lifecycle-Polling-Status-Codes-and-URL-Expiry"><a href="#The-Async-Lifecycle-Polling-Status-Codes-and-URL-Expiry" class="headerlink" title="The Async Lifecycle: Polling, Status Codes, and URL Expiry"></a>The Async Lifecycle: Polling, Status Codes, and URL Expiry</h2><p>Video generation is a batch job, not a request&#x2F;response call. Both routes follow the same lifecycle, and the official status vocabulary is worth memorizing:</p>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Your action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>queued</code></td>
+<td>Accepted, waiting for compute</td>
+<td>Back off and poll again</td>
+</tr>
+<tr>
+<td><code>running</code></td>
+<td>Generating</td>
+<td>Poll with exponential backoff (start 5s, cap 30s)</td>
+</tr>
+<tr>
+<td><code>succeeded</code></td>
+<td>Done — <code>content.video_url</code> available</td>
+<td><strong>Download immediately</strong></td>
+</tr>
+<tr>
+<td><code>failed</code></td>
+<td>Generation error</td>
+<td>Read the error, fix input, resubmit</td>
+</tr>
+<tr>
+<td><code>cancelled</code> &#x2F; <code>expired</code></td>
+<td>Cancelled, or task&#x2F;URL expired</td>
+<td>Treat as terminal; don’t retry as-is</td>
+</tr>
+</tbody></table>
+<p>Two expiry rules that bite people in production, straight from the <a target="_blank" rel="noopener" href="https://docs.byteplus.com/en/docs/ModelArk/1521309">task retrieval docs</a>:</p>
+<ul>
+<li><strong>Output video URLs are valid for 24 hours.</strong> Download or transfer the result before the URL expires — build a storage step into your pipeline, don’t leave URLs in a database.</li>
+<li><strong>Task records are queryable for 7 days only</strong> (query window <code>[T-7 days, T)</code>). Log the task ID and the output together, or you lose the audit trail.</li>
+</ul>
+<p>The same constraints apply through aggregators (Modellix’s async tasks behave identically, and it logs per-call status, cost, and output retention in the console). If you’re chaining generations — 1.5 Pro’s draft mode works this way — keep the intermediate task IDs around, because the final-video call references the draft’s task ID.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/seedance-pro-api-task-lifecycle.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/seedance-pro-api-task-lifecycle.png" alt="Seedance Pro API async task lifecycle: submit, queued, running, succeeded or failed, with 24-hour output URL expiry" loading="lazy" />
+</picture>
+*Figure: the submit → poll → retrieve state machine shared by both the official BytePlus ModelArk API and aggregator endpoints.*
+
+<h2 id="Seedance-Pro-Pricing-Token-Billing-vs-Per-Second-Rates"><a href="#Seedance-Pro-Pricing-Token-Billing-vs-Per-Second-Rates" class="headerlink" title="Seedance Pro Pricing: Token Billing vs Per-Second Rates"></a>Seedance Pro Pricing: Token Billing vs Per-Second Rates</h2><p>Here’s where most comparisons go wrong, and why you can’t just compare two price cards. The official route bills in <strong>tokens</strong>; aggregators bill in <strong>dollars per second of generated video</strong>. Those units don’t convert by a fixed ratio — token consumption depends on resolution, duration, and (for 1.5 Pro) whether audio is generated.</p>
+<p><strong>Official token pricing</strong> (from the <a target="_blank" rel="noopener" href="https://docs.byteplus.com/en/docs/ModelArk/1544106">BytePlus billing page</a>, current as of August 2026):</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Unit price (per token, two tiers listed)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>seedance-1-5-pro-251215</code></td>
+<td>Video <strong>with audio: 2.4</strong> &#x2F; without audio: 1.2; lower tier: 1.2 &#x2F; 0.6</td>
+</tr>
+<tr>
+<td><code>seedance-1-0-pro-250528</code></td>
+<td>2.5 &#x2F; 1.25</td>
+</tr>
+<tr>
+<td><code>seedance-1-0-pro-fast-251015</code></td>
+<td>1 &#x2F; 0.5</td>
+</tr>
+</tbody></table>
+<p>The pricing page’s conversion formula: <em>estimated token consumption &#x3D; (input video duration + output video duration) × output width × output height × output frame rate &#x2F; 1024</em>, and estimated price &#x3D; unit price × token consumption. You’re only charged for successfully generated videos — content-moderation failures cost nothing. Draft mode (1.5 Pro) charges a reduced conversion factor (0.7 silent &#x2F; 0.6 with audio).</p>
+<p>The structural point to notice: <strong>1.5 Pro with audio is priced at 2× the silent rate</strong>. If your pipeline doesn’t need generated audio, <code>generate_audio: false</code> halves your official-route unit cost — that’s the cheapest optimization in this article. The audio tier difference is a detail most Seedance comparisons omit entirely — our <a href="https://www.modellix.ai/blog/seedance-vs-kling/">Seedance vs Kling price comparison</a> covers the same trap on the audio dimension.</p>
+<p><strong>Aggregator per-second pricing</strong> (Modellix, captured live from model pages on August 10, 2026):</p>
+<table>
+<thead>
+<tr>
+<th>Model (Modellix endpoint)</th>
+<th>480p</th>
+<th>720p</th>
+<th>1080p</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>bytedance/seedance-1.0-pro-t2v</code></td>
+<td>$0.0345&#x2F;s</td>
+<td>$0.0690&#x2F;s</td>
+<td>$0.1380&#x2F;s</td>
+</tr>
+<tr>
+<td><code>bytedance/seedance-1.0-pro-fast-t2v</code></td>
+<td>$0.0124&#x2F;s</td>
+<td>$0.0248&#x2F;s</td>
+<td>$0.0497&#x2F;s</td>
+</tr>
+<tr>
+<td><code>bytedance/seedance-1.5-pro-t2v</code></td>
+<td>$0.0276&#x2F;s</td>
+<td>$0.0598&#x2F;s</td>
+<td>$0.1196&#x2F;s</td>
+</tr>
+<tr>
+<td><code>bytedance/seedance-1.5-pro-i2v</code></td>
+<td>$0.0276&#x2F;s</td>
+<td>$0.0598&#x2F;s</td>
+<td>$0.1196&#x2F;s</td>
+</tr>
+</tbody></table>
+<p>(1.0 Pro I2V mirrors its T2V pricing; full catalog at <a href="https://www.modellix.ai/models">modellix.ai&#x2F;models</a>.)</p>
+<p><strong>Cost example.</strong> A 5-second, 720p, silent text-to-video job on 1.5 Pro:</p>
+<ul>
+<li><strong>Modellix</strong>: 5 s × $0.0598&#x2F;s &#x3D; <strong>$0.299 per job</strong> (flat, predictable).</li>
+<li><strong>Official</strong>: token estimate ≈ (0 + 5) × 1280 × 720 × 24 &#x2F; 1024 ≈ 108,000 tokens, × 1.2 (silent, upper tier) ≈ 129,600 → priced in their token billing; the exact dollar figure depends on the tier mapping on the <a target="_blank" rel="noopener" href="https://docs.byteplus.com/en/docs/ModelArk/1544106">billing page</a>.</li>
+</ul>
+<p>Honest caveat: we’re not going to declare a flat “which is cheaper” winner, because the official token math depends on the tier mapping and your input mix, and it rewards volume in ways a per-second card can’t show. What we can say: aggregator pricing is predictable per job and includes no activation barrier; official pricing can beat it at scale if you’re generating constantly, especially for silent 480p&#x2F;720p work. Model both against your actual duration mix before committing — and re-check the billing pages, because ByteDance rotates pricing (the 2.0 mini&#x2F;fast models are on limited-time discounts as of August 2026).</p>
+<h2 id="Seedance-1-0-Pro-vs-1-5-Pro-Which-to-Integrate"><a href="#Seedance-1-0-Pro-vs-1-5-Pro-Which-to-Integrate" class="headerlink" title="Seedance 1.0 Pro vs 1.5 Pro: Which to Integrate"></a>Seedance 1.0 Pro vs 1.5 Pro: Which to Integrate</h2><p>Three questions decide it:</p>
+<ol>
+<li><strong>Do you need generated audio?</strong> If the output must include speech, effects, or ambient sound, 1.5 Pro is the only Pro-tier answer — it’s the joint audio-video model. If you handle audio separately (TTS, music beds), 1.0 Pro keeps the pipeline simpler — there’s no audio branch to manage — but it isn’t the cheaper pick: at comparable settings, 1.5 Pro silent is cheaper on both routes (official silent unit price 1.2 vs 1.0 Pro’s 1.25; on Modellix, 1.5 Pro T2V at 480p is $0.0276&#x2F;s vs 1.0 Pro’s $0.0345&#x2F;s).</li>
+<li><strong>Is this high-volume, quality-tolerant work?</strong> The <code>fast</code> variants (1.0 Pro fast) exist exactly for this: $0.0124&#x2F;s at 480p on Modellix, roughly a third of the standard rate. Draft passes, batch testing, and throwaway storyboards belong here.</li>
+<li><strong>Do you need multi-shot or multimodal reference inputs?</strong> Neither 1.0 Pro nor 1.5 Pro does what Seedance 2.0 does with 1–9 reference images and reference video&#x2F;audio. If multi-shot narrative consistency is the requirement, that’s the 2.0 series, not Pro — choosing the right generation avoids re-architecting later (the guide linked above covers it in detail).</li>
+</ol>
+<p>For most text-to-video and image-to-video production pipelines, 1.5 Pro is the default pick (native audio, strong prompt adherence, draft mode for cheap iteration), with 1.0 Pro fast as the cost tier and 2.0 as the multimodal tier.</p>
+<h2 id="Integration-Pitfalls-and-Error-Handling"><a href="#Integration-Pitfalls-and-Error-Handling" class="headerlink" title="Integration Pitfalls and Error Handling"></a>Integration Pitfalls and Error Handling</h2><ul>
+<li><strong>Validate inputs locally before submitting.</strong> The official API is strict on image dimensions (300–6000 px, aspect 0.4–2.5, &lt; 30 MB) and prompt length (≤ 1,000 words). A preflight check on your side turns “failed generation after 2 minutes” into an instant local error.</li>
+<li><strong>Separate retry buckets.</strong> Transient failures (5xx, timeouts before ack) deserve backoff retries; permanent ones (<code>invalid_input</code>, content-policy rejections, expired URLs) must be surfaced, not retried — retrying a policy rejection burns money and time identically.</li>
+<li><strong>Don’t hard-code model IDs.</strong> <code>seedance-1-5-pro-251215</code> will be replaced when ByteDance ships an update; keep the ID in config and watch the model list.</li>
+<li><strong>Download outputs immediately.</strong> 24-hour URL validity is not a suggestion. Attach a storage sink (TOS bucket, S3, or local) to the poll loop.</li>
+<li><strong>Know what you pay for on failure.</strong> Official route: only successful generations are billed; moderation failures cost nothing. Aggregator behavior differs by platform — Modellix’s per-call logs show cost per attempt so you can see discard-rate economics directly.</li>
+</ul>
+<h2 id="Frequently-Asked-Questions-About-the-Seedance-Pro-API"><a href="#Frequently-Asked-Questions-About-the-Seedance-Pro-API" class="headerlink" title="Frequently Asked Questions About the Seedance Pro API"></a>Frequently Asked Questions About the Seedance Pro API</h2><p><strong>Is there a free way to try the Seedance Pro API?</strong><br>Aggregators are the practical free path: Modellix gives $10–30 free credit without a credit card, enough for dozens of 5-second jobs. BytePlus’s official route requires an account balance above $30 (or a resource pack) to activate the 2.x models; the 1.0&#x2F;1.5 Pro models need console activation.</p>
+<p><strong>What is the difference between the official API and aggregator APIs?</strong><br>Billing unit (tokens vs per second), activation (model activation + balance threshold vs instant key), and scope (ByteDance-only vs multi-provider). The underlying models are the same; see the comparison table above.</p>
+<p><strong>How much does the Seedance Pro API cost?</strong><br>Official route: token-based, 1.5 Pro listed at 2.4&#x2F;1.2 (with&#x2F;without audio, upper tier) and 1.2&#x2F;0.6 (lower tier), 1.0 Pro at 2.5&#x2F;1.25, fast at 1&#x2F;0.5. Aggregators: per second — e.g. Modellix 1.5 Pro T2V at $0.0276 (480p) to $0.1196 (1080p) per second. Both change over time; check the live billing pages.</p>
+<p><strong>Is Seedance Pro the same as Seedance 2.0?</strong><br>No. Pro is the 1.0 Pro &#x2F; 1.5 Pro tier (multi-shot, audio on 1.5 Pro). Seedance 2.0&#x2F;2.5 is the newer multimodal-reference generation. Some marketplaces label 2.0 endpoints “Pro” — official naming uses <code>seedance-2.0-*</code> for that series.</p>
+<p><strong>Does the Seedance Pro API support image-to-video?</strong><br>Yes — both 1.0 Pro and 1.5 Pro support image-to-video with first-frame (and first-and-last-frame) control, passing <code>image_url</code> entries in the <code>content</code> array with <code>role</code> set to <code>first_frame</code>&#x2F;<code>last_frame</code>.</p>
+<p><strong>What are the output limits?</strong><br>Video URLs expire after 24 hours and task records are queryable for 7 days. Image inputs max out at 30 MB each and the request body at 64 MB. Check the <a target="_blank" rel="noopener" href="https://docs.byteplus.com/en/docs/ModelArk/1520757">official API reference</a> for the model-specific limits on your model ID.</p>
+<hr>
+<p>Whichever route you pick, the first step is the same: run one real job before you architect around it. Start with a <a href="https://www.modellix.ai/console">Modellix account</a> and its free credit, or a BytePlus API key and a single text-to-video call — then model your actual duration mix against both billing pages before you commit. The model you choose matters less than knowing which layer you’re buying.</p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
+            
+              <a href="/blog/tags/Video-Generation/" class="tag-pill tag-pill--sm">Video Generation</a>
+            
+              <a href="/blog/tags/Seedance/" class="tag-pill tag-pill--sm">Seedance</a>
+            
+              <a href="/blog/tags/Developer-Guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
+            
+              <a href="/blog/tags/API-Integration/" class="tag-pill tag-pill--sm">API Integration</a>
+            
+              <a href="/blog/tags/ByteDance/" class="tag-pill tag-pill--sm">ByteDance</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/pixverse-video-restyle-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-pixverse-video-restyle-api.webp" alt="PixVerse Restyle API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">API-Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">PixVerse Restyle API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-08-05T02:00:00.000Z">August 5, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/seedance-pro-api/&text=Seedance%20Pro%20API%3A%20ByteDance%20Video%20Integration%20Guide" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/seedance-pro-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/seedance-pro-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

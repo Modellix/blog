@@ -1,0 +1,655 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hailuo 02 Pricing: Per-Second Costs &amp; How to Call It — Modellix Blog</title>
+  <meta name="description" content="Hailuo 02 pricing in four units: per-second, per-video, per-10s, and subscription credits. Normalized route comparison, per-clip math, and a working API call.">
+  <meta name="keywords" content="hailuo 02 pricing, minimax hailuo 02 pricing, minimax hailuo price, hailuo 02 price, hailuo 02 cost, hailuo ai pricing">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/hailuo-02-pricing/">
+  <meta name="description" content="Hailuo 02 pricing in four units: per-second, per-video, per-10s, and subscription credits. Normalized route comparison, per-clip math, and a working API call.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hailuo 02 Pricing: Per-Second Costs &amp; How to Call It — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/hailuo-02-pricing/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Hailuo 02 pricing in four units: per-second, per-video, per-10s, and subscription credits. Normalized route comparison, per-clip math, and a working API call.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-hailuo-02-pricing.webp">
+<meta property="article:published_time" content="2026-08-10T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-10T02:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video API">
+<meta property="article:tag" content="Hailuo 02">
+<meta property="article:tag" content="MiniMax">
+<meta property="article:tag" content="Pricing">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-hailuo-02-pricing.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Hailuo 02 Pricing: Per-Second Costs & How to Call It","description":"Hailuo 02 pricing in four units: per-second, per-video, per-10s, and subscription credits. Normalized route comparison, per-clip math, and a working API call.","datePublished":"2026-08-10T02:00:00.000Z","dateModified":"2026-08-10T02:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/hailuo-02-pricing/","image":"https://statics.mylandingpages.co/static/modellix/image/cover-hailuo-02-pricing.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Hailuo 02 Pricing: Per-Second Costs &amp; How to Call It</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Pricing/" class="category-tag category-tag--sm">Pricing</a>
+          
+        
+      </div>
+      <h1 class="post-title">Hailuo 02 Pricing: Per-Second Costs &amp; How to Call It</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-10T02:00:00.000Z">August 10, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+              <a href="/blog/tags/MiniMax/" class="tag-pill tag-pill--sm">MiniMax</a>
+            
+              <a href="/blog/tags/Hailuo-02/" class="tag-pill tag-pill--sm">Hailuo 02</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.srcgptbots.com/blog/author/20260409/modellix-blog-author-official@2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>The short answer: Hailuo 02 pricing is four different numbers &#39;Hailuo 02 pricing&#39; has no single answer because the same model is sold in four billing units: subscription credits per month the consumer Hailuo AI product, per completed video .</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/cover-hailuo-02-pricing.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/cover-hailuo-02-pricing.png" alt="Editorial Modellix cover reading Hailuo 02 Pricing on two bold lines over a dark amber technical architecture with an amber key and cyan rim light" />
+</picture>
+
+<h2 id="The-short-answer-Hailuo-02-pricing-is-four-different-numbers"><a href="#The-short-answer-Hailuo-02-pricing-is-four-different-numbers" class="headerlink" title="The short answer: Hailuo 02 pricing is four different numbers"></a>The short answer: Hailuo 02 pricing is four different numbers</h2><p>“Hailuo 02 pricing” has no single answer because the same model is sold in four billing units: <strong>subscription credits per month</strong> (the consumer Hailuo AI product), <strong>per completed video</strong> (MiniMax’s API and Replicate), <strong>per 10 seconds</strong> (AIMLAPI), and <strong>per second</strong> (fal.ai, kie.ai, Modellix). As of August 10, 2026, a 6-second 768P Hailuo 02 video costs about <strong>$0.27–$0.324 across the per-second and per-video routes</strong>, a 6-second 1080P video costs <strong>$0.29–$0.64</strong>, and no single route is cheapest on every cell — the winner changes by resolution, duration, and billing contract.</p>
+<p>This article is from Modellix, an AI media-model API aggregator that resells Hailuo 02 on per-second pricing, so we have a commercial interest in this comparison. Every figure below was read from the listed source on August 10, 2026, and where sources conflict we say so instead of picking a side.</p>
+<p>The practical rule: <strong>normalize every quote to per-second and per-clip before comparing, then pick a route by your volume and workflow</strong> — that is what the tables and worked examples below do.</p>
+<h2 id="Why-“Hailuo-02-pricing”-has-no-single-answer-four-billing-units"><a href="#Why-“Hailuo-02-pricing”-has-no-single-answer-four-billing-units" class="headerlink" title="Why “Hailuo 02 pricing” has no single answer: four billing units"></a>Why “Hailuo 02 pricing” has no single answer: four billing units</h2><p>MiniMax sells the same underlying model through two product lines, and aggregators resell it under their own contracts. Each contract publishes the price in a different unit, which makes naive comparison worse than useless — it is actively misleading.</p>
+<table>
+<thead>
+<tr>
+<th>Billing unit</th>
+<th>Who bills this way</th>
+<th>Example quote (as of Aug 10, 2026)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Subscription credits &#x2F; month</td>
+<td>MiniMax consumer product (hailuoai.video)</td>
+<td>$14.99–$199.99 per month for 1,000–20,000 credits</td>
+</tr>
+<tr>
+<td>Per completed video</td>
+<td>MiniMax developer API, Replicate</td>
+<td>$0.28 for 768P 6s (MiniMax); $0.27 for 768P 6s (Replicate)</td>
+</tr>
+<tr>
+<td>Per 10 seconds</td>
+<td>AIMLAPI</td>
+<td>$0.728 per 10-second output</td>
+</tr>
+<tr>
+<td>Per second</td>
+<td>fal.ai, kie.ai, Modellix</td>
+<td>$0.045&#x2F;s (fal, 768P); $0.0475&#x2F;s (kie, 1080P); $0.0540&#x2F;s (Modellix, 768P 6s)</td>
+</tr>
+</tbody></table>
+<p>Two warnings before you use any of these numbers:</p>
+<ol>
+<li><strong>Sources disagree, and the freshest one is not necessarily the official one.</strong> MiniMax’s own <a target="_blank" rel="noopener" href="https://hailuoai.video/doc/payment-policy.html">payment-policy document</a> (last updated July 14, 2025) lists the Standard subscription at $14.99&#x2F;month for 1,000 credits, while the <a target="_blank" rel="noopener" href="https://www.imagine.art/blogs/hailuo-ai-pricing">ImagineArt Hailuo pricing guide</a> (updated March 25, 2026) lists it at $9.99&#x2F;month for the same credits. We are not going to resolve that conflict for you — check the live pricing UI in the app before you commit. The same discipline applies to every cell in this article: each price carries the date it was read.</li>
+<li><strong>“Hailuo 02 pricing” also surfaces prices for other models.</strong> Several ranking pages quote Hailuo 2.3 or even Video-01 while ranking for “hailuo 02.” Always confirm the model name, resolution, and duration in the same sentence as the price.</li>
+</ol>
+<p>For the wider MiniMax billing picture — pay-as-you-go, video packages, and point expiry — our MiniMax pricing breakdown covers the full surface.</p>
+<h2 id="Hailuo-02-API-pricing-across-routes-normalized-to-per-second"><a href="#Hailuo-02-API-pricing-across-routes-normalized-to-per-second" class="headerlink" title="Hailuo 02 API pricing across routes, normalized to per-second"></a>Hailuo 02 API pricing across routes, normalized to per-second</h2><p>The table below puts every route on the same two yardsticks: <strong>normalized per-second rate</strong> and <strong>cost of one 6-second clip</strong>. All prices are list prices read from the cited source on August 10, 2026. Cells marked “—“ mean the route does not publish that combination.</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Billing unit</th>
+<th>Normalized per-second</th>
+<th>768P 6s clip</th>
+<th>1080P 6s clip</th>
+<th>Read date</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MiniMax direct (<code>MiniMax-Hailuo-02</code>)</td>
+<td>per video</td>
+<td>$0.0467 (768P)</td>
+<td>$0.28</td>
+<td>$0.49</td>
+<td>2026-08-10</td>
+</tr>
+<tr>
+<td>MiniMax Video Packs (prepaid points)</td>
+<td>per video point</td>
+<td>≈ $0.044–$0.089 (Standard pack, 768P–1080P)</td>
+<td>≈ $0.27–$0.53</td>
+<td>≈ $0.53–$1.06</td>
+<td>2026-08-10</td>
+</tr>
+<tr>
+<td>fal.ai (Standard 768P &#x2F; Pro 1080P)</td>
+<td>per second</td>
+<td>$0.045 &#x2F; $0.08</td>
+<td>$0.27</td>
+<td>$0.48</td>
+<td>2026-08-10</td>
+</tr>
+<tr>
+<td>Replicate</td>
+<td>per video</td>
+<td>$0.045 (768P)</td>
+<td>$0.27</td>
+<td>$0.48</td>
+<td>2026-08-10</td>
+</tr>
+<tr>
+<td>AIMLAPI</td>
+<td>per 10 seconds</td>
+<td>$0.0728</td>
+<td>—</td>
+<td>—</td>
+<td>2026-08-10</td>
+</tr>
+<tr>
+<td>kie.ai (Hailuo 02 Pro)</td>
+<td>per second (credits)</td>
+<td>$0.0475</td>
+<td>—</td>
+<td>$0.285</td>
+<td>2026-08-10</td>
+</tr>
+<tr>
+<td>Modellix (<code>minimax/hailuo-02-t2v</code>)</td>
+<td>per second</td>
+<td>$0.0540–$0.1200</td>
+<td>$0.324</td>
+<td>$0.636</td>
+<td>2026-08-10</td>
+</tr>
+</tbody></table>
+<p><em>Sources, accessed August 10, 2026: <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/guides/pricing-paygo">MiniMax Pay as You Go</a> (per-video rows), <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/guides/pricing-video">MiniMax Video Packages</a> (points packs and deduction table), <a target="_blank" rel="noopener" href="https://fal.ai/models/fal-ai/minimax/hailuo-02/standard/image-to-video">fal.ai Hailuo 02 model page</a>, <a target="_blank" rel="noopener" href="https://replicate.com/minimax/hailuo-02">Replicate Hailuo 02</a>, <a target="_blank" rel="noopener" href="https://aimlapi.com/models/hailuo-02">AIMLAPI Hailuo 02</a>, <a target="_blank" rel="noopener" href="https://kie.ai/hailuo-api">kie.ai Hailuo API</a>, and the <a href="https://www.modellix.ai/models/minimax/hailuo-02-t2v">Modellix Hailuo 02 T2V model page</a>. Cells marked “≈” are derived arithmetic, not published prices: per-second rates multiplied by clip length, and video-point rows converted at the Standard pack rate ($1,000 ÷ 3,760 points). AIMLAPI states “$0.728 per 10-second output” without a resolution, so its per-second equivalent is not resolution-comparable.</em></p>
+<p>Three honest conclusions follow:</p>
+<ol>
+<li><strong>On 768P 6s, four routes cluster at $0.27–$0.28 per clip</strong> (MiniMax direct, fal, Replicate, and the Video Packs effective rate). Modellix’s $0.324 is higher on this cell.</li>
+<li><strong>On 1080P 6s, kie.ai’s $0.285 is the lowest published figure</strong>, followed by fal and Replicate at $0.48. Modellix’s $0.636 is the highest in this group.</li>
+<li><strong>The winner changes by cell, and the contracts differ beyond price</strong> — per-video routes cap at fixed combinations, fal documents a 6-second output cap on Standard, prepaid packs expire after a month, and per-second routes meter exactly what you generate. Compare the same model, resolution, duration, and unit before you pick.</li>
+</ol>
+<p>The Modellix model page for the same model, captured on August 10, 2026, shows how a per-second route publishes its full rate table:</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/modellix-hailuo-02-t2v-pricing.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/modellix-hailuo-02-t2v-pricing.png" alt="Modellix model page for minimax/hailuo-02-t2v showing the pricing table with per-second rates for 6s and 10s at 768P and 1080P" loading="lazy" />
+</picture>
+
+<p><em>Modellix model page for <code>minimax/hailuo-02-t2v</code>, captured from modellix.ai on August 10, 2026. Per-second pricing is published per dimension: duration 6 or 10 seconds × resolution 768P or 1080P.</em></p>
+<h2 id="What-moves-the-price-resolution-duration-and-mode"><a href="#What-moves-the-price-resolution-duration-and-mode" class="headerlink" title="What moves the price: resolution, duration, and mode"></a>What moves the price: resolution, duration, and mode</h2><p>Within a route, the number you pay per clip is the product of three knobs. Lock these down before you estimate anything, because the same model can span a 6× price range.</p>
+<table>
+<thead>
+<tr>
+<th>Knob</th>
+<th>Options (Hailuo 02)</th>
+<th>Effect on price</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Resolution</td>
+<td>512P &#x2F; 768P &#x2F; 1080P</td>
+<td>Biggest lever. On Modellix I2V, 512P is $0.0200&#x2F;s vs $0.1060&#x2F;s at 1080P 6s — more than 5×</td>
+</tr>
+<tr>
+<td>Duration</td>
+<td>6s &#x2F; 10s</td>
+<td>Linear on per-second routes; per-video routes charge fixed tiers (e.g. $0.28 vs $0.56 at 768P on MiniMax direct)</td>
+</tr>
+<tr>
+<td>Mode</td>
+<td>T2V &#x2F; I2V &#x2F; FL2V</td>
+<td>Same base rate on MiniMax direct; Modellix publishes I2V from $0.0200&#x2F;s (512P) and T2V&#x2F;FL2V from $0.0540&#x2F;s</td>
+</tr>
+</tbody></table>
+<p>MiniMax’s prepaid Video Packages make the resolution&#x2F;duration math explicit in <strong>video points</strong>: one 768P 6s Hailuo 02 video deducts 1 point, a 768P 10s deducts 2, a 1080P 6s deducts 2, and 512P clips deduct 0.3–0.5. At the Standard pack ($1,000 for 3,760 points, one-month validity), that works out to roughly $0.27 per 768P 6s clip and $0.53 per 1080P 6s clip — comparable to the per-video list prices, before you account for the $1,000 minimum and the expiry clock. The official <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/guides/pricing-video">Video Packages page</a> is the source for both the pack table and the deduction table; note it also says MiniMax H3 is not supported by these packages yet.</p>
+<p>The same knob logic applies to the Modellix I2V route: the <a href="https://www.modellix.ai/models/minimax/hailuo-02-i2v">Hailuo 02 I2V model page</a> publishes a per-dimension table (512P&#x2F;768P&#x2F;1080P × 6s&#x2F;10s) so the exact cell you intend to run is the exact cell you are quoted.</p>
+<h2 id="Estimate-your-bill-worked-examples-not-a-calculator"><a href="#Estimate-your-bill-worked-examples-not-a-calculator" class="headerlink" title="Estimate your bill: worked examples, not a calculator"></a>Estimate your bill: worked examples, not a calculator</h2><p>Related searches for this topic include “Hailuo 02 pricing calculator” — nobody currently ranks a page that does the arithmetic. This section is that arithmetic, for the two most common production cells.</p>
+<p><strong>Scenario: 100 × 6-second clips per month at 1080P</strong> (list prices, August 10, 2026):</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th align="right">Per clip</th>
+<th align="right">Monthly cost (100 clips)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>kie.ai (Pro)</td>
+<td align="right">$0.285</td>
+<td align="right">$28.50</td>
+</tr>
+<tr>
+<td>fal.ai (Pro)</td>
+<td align="right">$0.48</td>
+<td align="right">$48.00</td>
+</tr>
+<tr>
+<td>Replicate</td>
+<td align="right">$0.48</td>
+<td align="right">$48.00</td>
+</tr>
+<tr>
+<td>MiniMax direct</td>
+<td align="right">$0.49</td>
+<td align="right">$49.00</td>
+</tr>
+<tr>
+<td>MiniMax Video Packs (Standard)</td>
+<td align="right">≈ $0.53</td>
+<td align="right">≈ $53.20</td>
+</tr>
+<tr>
+<td>Modellix</td>
+<td align="right">$0.636</td>
+<td align="right">$63.60</td>
+</tr>
+</tbody></table>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/hailuo-02-100-clip-monthly-cost.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/hailuo-02-100-clip-monthly-cost.png" alt="Bar chart of monthly cost for 100 six-second 1080P Hailuo 02 clips by route, from $28.50 (kie) to $63.60 (Modellix)" loading="lazy" />
+</picture>
+
+<p><em>Monthly list-price cost of 100 × 6-second 1080P Hailuo 02 clips by route, computed from the per-clip figures in the normalized table (August 10, 2026). kie.ai is lowest on this cell; Modellix is not, and we are not going to pretend otherwise.</em></p>
+<p><strong>Scenario: subscription vs API.</strong> The consumer subscription is a different budget line. At the official $14.99&#x2F;month for 1,000 credits, and using the third-party estimate of 160 credits per 768P 6-second Hailuo 02 generation from the <a target="_blank" rel="noopener" href="https://www.imagine.art/blogs/hailuo-ai-pricing">ImagineArt guide</a>, one month of subscription covers roughly 6 clips — about $2.50 per clip, or 8–9× the API list price for the same output. That is a third-party conversion, not an official MiniMax exchange rate; treat it as a sanity check on scale, not a published number. The structural point stands: subscriptions price consumer volume, per-second APIs price production volume.</p>
+<p>If you want per-job certainty instead of spreadsheet estimates, log the billed amount per task from the API response — see the next section.</p>
+<h2 id="How-to-call-Hailuo-02-and-meter-the-per-call-cost"><a href="#How-to-call-Hailuo-02-and-meter-the-per-call-cost" class="headerlink" title="How to call Hailuo 02 and meter the per-call cost"></a>How to call Hailuo 02 and meter the per-call cost</h2><p>Calling Hailuo 02 through an API is a submit-and-poll pattern: create a generation task, poll for a terminal state, download the output URL. The contract differs by route (model ID, key, response shape), so this example uses Modellix’s documented Hailuo 02 text-to-video endpoint, which is verified against the live Modellix model page:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">API_BASE = <span class="string">&quot;https://api.modellix.ai/api/v1&quot;</span></span><br><span class="line">API_KEY = <span class="string">&quot;YOUR_MODELLIX_API_KEY&quot;</span></span><br><span class="line"></span><br><span class="line">headers = &#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;API_KEY&#125;</span>&quot;</span>, <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. Submit — the response includes a task_id and a poll URL</span></span><br><span class="line">resp = requests.post(</span><br><span class="line">    <span class="string">f&quot;<span class="subst">&#123;API_BASE&#125;</span>/minimax/hailuo-02-t2v/async&quot;</span>,</span><br><span class="line">    headers=headers,</span><br><span class="line">    json=&#123;</span><br><span class="line">        <span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;A cinematic slow aerial drift over golden clouds at sunrise&quot;</span>,</span><br><span class="line">        <span class="string">&quot;duration&quot;</span>: <span class="number">6</span>,</span><br><span class="line">        <span class="string">&quot;resolution&quot;</span>: <span class="string">&quot;1080P&quot;</span>,</span><br><span class="line">        <span class="string">&quot;prompt_optimizer&quot;</span>: <span class="literal">True</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">)</span><br><span class="line">resp.raise_for_status()</span><br><span class="line">task = resp.json()[<span class="string">&quot;data&quot;</span>]</span><br><span class="line">poll_url = task[<span class="string">&quot;get_result&quot;</span>][<span class="string">&quot;url&quot;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;submitted:&quot;</span>, task[<span class="string">&quot;task_id&quot;</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. Poll with backoff until a terminal state</span></span><br><span class="line">wait = <span class="number">15</span></span><br><span class="line"><span class="keyword">for</span> attempt <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">12</span>):</span><br><span class="line">    time.sleep(wait)</span><br><span class="line">    status = requests.get(poll_url, headers=headers).json()[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;status&quot;</span>]</span><br><span class="line">    <span class="keyword">if</span> status <span class="keyword">in</span> (<span class="string">&quot;success&quot;</span>, <span class="string">&quot;failed&quot;</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    wait = <span class="built_in">min</span>(<span class="number">30</span>, <span class="number">5</span> * <span class="number">2</span>**attempt)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. On success, the video URL and the billed amount are in the response</span></span><br><span class="line">data = requests.get(poll_url, headers=headers).json()[<span class="string">&quot;data&quot;</span>]</span><br><span class="line">video_url = <span class="built_in">next</span>(</span><br><span class="line">    r[<span class="string">&quot;url&quot;</span>] <span class="keyword">for</span> r <span class="keyword">in</span> data[<span class="string">&quot;result&quot;</span>][<span class="string">&quot;resources&quot;</span>] <span class="keyword">if</span> r.get(<span class="string">&quot;type&quot;</span>) == <span class="string">&quot;video&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;video:&quot;</span>, video_url)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;billed amount:&quot;</span>, data.get(<span class="string">&quot;billing&quot;</span>, &#123;&#125;).get(<span class="string">&quot;amount&quot;</span>))</span><br></pre></td></tr></table></figure>
+
+<p>Two billing-relevant details: the response carries the billed amount for the job (that is how you build per-call cost logs), and the price is metered by the duration and resolution you submitted — a 1080P 6s job bills at the 1080P 6s cell of the rate table, not at the headline minimum. If you call MiniMax directly instead, the workflow is the same three steps against platform.minimax.io with an Open Platform key; MiniMax’s <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/guides/video-generation">video generation guide</a> is the current reference. For the full parameter set, error handling, and route-specific model IDs, our <a href="https://www.modellix.ai/blog/hailuo-02-api/">Hailuo 02 API integration guide</a> walks through the details.</p>
+<h2 id="Direct-MiniMax-or-an-aggregator-how-to-choose"><a href="#Direct-MiniMax-or-an-aggregator-how-to-choose" class="headerlink" title="Direct MiniMax or an aggregator: how to choose"></a>Direct MiniMax or an aggregator: how to choose</h2><p>Use a route table like the one above as the input, then apply a decision rule that has nothing to do with price:</p>
+<ul>
+<li><strong>Pick MiniMax direct when</strong> Hailuo is your only video model, you already run MiniMax’s platform for other models, and you are comfortable with per-video billing and prepaid packs. Direct is also where new model announcements land first — Hailuo 02 is currently labeled a legacy model there, with MiniMax H3 as the current headline, so check the model table if you are starting fresh.</li>
+<li><strong>Pick an aggregator when</strong> your product spans several video and image models. The cost that matters is not per-second price but per-vendor workflow: accounts, keys, response schemas, and polling logic multiply with every vendor. An aggregator like Modellix trades that surface for one key and one billing dashboard, with per-second pricing and per-call cost logs across Hailuo, Kling, Wan, Seedance, and the rest. Our <a href="https://www.modellix.ai/providers/minimax">MiniMax provider page</a> lists the current routes, and the <a href="https://www.modellix.ai/blog/minimax-free-api/">MiniMax free API guide</a> separates documented free endpoints from paid video access.</li>
+<li><strong>Watch the traps either way:</strong> pack validity (one month), per-route duration caps (fal’s Standard stops at 6s), resolution availability at 10s (1080P 10s is not available on every route), and the standing source conflicts we flagged above. Re-read the live price cell for your exact combination before you commit — every number in this article is dated August 10, 2026, and pricing moves.</li>
+</ul>
+<p>The honest boundary: if you need one price sheet for one model, MiniMax direct is the simplest source of truth. If you are comparing routes because your product needs several models, the aggregator’s value is the workflow axis, not a universal price floor — on the 1080P 6s cell above, kie.ai’s list price is the lowest, and Modellix does not dispute that.</p>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p><strong>How much does Hailuo AI cost?</strong></p>
+<p>The consumer subscription product lists plans from about $14.99&#x2F;month for 1,000 credits up to $199.99&#x2F;month for 20,000 credits in MiniMax’s <a target="_blank" rel="noopener" href="https://hailuoai.video/doc/payment-policy.html">payment-policy document</a> (July 14, 2025). A fresher third-party guide lists the entry plan lower; the official live pricing UI is the arbiter. On the API side, Hailuo 02 is billed per video or per second depending on route (see the normalized table above).</p>
+<p><strong>How much does one Hailuo 02 video cost?</strong></p>
+<p>As of August 10, 2026: $0.28 for 768P 6s and $0.49 for 1080P 6s on MiniMax direct (per video); $0.27 and $0.48 on fal.ai and Replicate; $0.324 and $0.636 on Modellix; about $0.285 for 1080P 6s on kie.ai. Normalize the unit, then compare.</p>
+<p><strong>Is Hailuo 02 pricing per second or per video?</strong></p>
+<p>Both, depending on the route. MiniMax direct and Replicate bill per completed video; AIMLAPI bills per 10 seconds; fal.ai, kie.ai, and Modellix bill per second. The billing unit is part of the route contract — match it before comparing.</p>
+<p><strong>Is Hailuo AI free?</strong></p>
+<p>There is no documented permanent free API tier for Hailuo 02. The consumer product offers free credits for new users (the official site advertises signup credits), and some aggregators pair new accounts with starter credit — treat any credit as a test budget, not a production cost baseline. MiniMax’s official Pay as You Go page is the reference for what is actually billed.</p>
+<p><strong>Is Hailuo 02 deprecated?</strong></p>
+<p>MiniMax’s model documentation labels Hailuo 02 a legacy video model — stable, documented, and still priced and callable, but no longer the marketing headline (MiniMax H3 is). “Legacy” does not mean shut down; verify the live model table before planning around it.</p>
+<p><strong>What is the difference between Hailuo 02 and Hailuo 2.3 pricing?</strong></p>
+<p>On MiniMax direct they are priced identically ($0.28 &#x2F; $0.56 &#x2F; $0.49 for 768P 6s &#x2F; 768P 10s &#x2F; 1080P 6s), and there is a cheaper Hailuo 2.3 Fast tier ($0.19–$0.33 per video). Hailuo 2.3 is retuned for human motion and stylized art; Hailuo 02 is the physics-and-motion pick with 1080P 10s support and a first&#x2F;last-frame workflow.</p>
+<p><strong>How much does MiniMax AI cost?</strong></p>
+<p>It depends on the product line: media generation (Hailuo 02, Hailuo 2.3, image models) is billed per video, per second, or per image; MiniMax’s LLMs (MiniMax-M3) are billed per million tokens. The official Pay as You Go page carries both, and our <a href="https://www.modellix.ai/blog/minimax-pricing/">MiniMax pricing breakdown</a> explains the package side.</p>
+<p><strong>Which is cheaper: the Hailuo AI subscription or the API?</strong></p>
+<p>For consumer-scale use, the subscription’s monthly credit balance is simpler and includes the app experience. For production volume, per-second and per-video API routes are typically an order of magnitude cheaper per clip (roughly $0.27–$0.64 per 6-second clip vs the subscription’s third-party-estimated ~$2.50 per clip). They are different products priced for different buyers — compare per clip, per month, at your actual volume.</p>
+<hr>
+<p><em>Provider details and pricing reflect public information as of August 10, 2026 and change frequently; the official payment-policy and pricing sources cited above conflict on some figures, so validate against live pricing before committing. Access image and video models, including the leading Chinese models, through a single API key at <a href="https://www.modellix.ai/">www.modellix.ai</a>.</em></p>
+<p><em>Cover image: illustrative Modellix artwork; it is not a MiniMax product screenshot or source evidence.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+              <a href="/blog/tags/MiniMax/" class="tag-pill tag-pill--sm">MiniMax</a>
+            
+              <a href="/blog/tags/Hailuo-02/" class="tag-pill tag-pill--sm">Hailuo 02</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/kling-3-0-cost/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-kling-3-0-cost.webp" alt="Kling 3.0 Cost: Full Pricing Breakdown (2026)" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Pricing</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Kling 3.0 Cost: Full Pricing Breakdown (2026)</h3>
+          <time class="related-article-date" datetime="2026-07-28T16:00:00.000Z">July 29, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/grok-imagine-price/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-grok-imagine-price.webp" alt="Grok Imagine Price: Full Pricing Breakdown (2026)" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Pricing</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Grok Imagine Price: Full Pricing Breakdown (2026)</h3>
+          <time class="related-article-date" datetime="2026-07-28T02:00:00.000Z">July 28, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/minimax-pricing/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-minimax-pricing-v5.webp" alt="Minimax Pricing: Direct vs Aggregator Rates" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Pricing</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Minimax Pricing: Direct vs Aggregator Rates</h3>
+          <time class="related-article-date" datetime="2026-07-28T00:45:00.000Z">July 28, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/hailuo-02-pricing/&text=Hailuo%2002%20Pricing%3A%20Per-Second%20Costs%20%26%20How%20to%20Call%20It" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/hailuo-02-pricing/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/hailuo-02-pricing/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
