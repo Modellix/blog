@@ -1,0 +1,602 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flux Kontext API: Integration Guide, Pricing &amp; Code — Modellix Blog</title>
+  <meta name="description" content="Flux Kontext API pricing and code: official BFL rates at $0.04/image, fal.ai and Replicate routes, async polling, multiref editing, and the FLUX.2 question.">
+  <meta name="keywords" content="flux kontext api, flux kontext pro api, flux kontext max api, flux kontext pricing, black forest flux api, flux api kontext">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/flux-kontext-api/">
+  <meta name="description" content="Flux Kontext API pricing and code: official BFL rates at $0.04&#x2F;image, fal.ai and Replicate routes, async polling, multiref editing, and the FLUX.2 question.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flux Kontext API: Integration Guide, Pricing &amp; Code — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/flux-kontext-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Flux Kontext API pricing and code: official BFL rates at $0.04&#x2F;image, fal.ai and Replicate routes, async polling, multiref editing, and the FLUX.2 question.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-flux-kontext-api.webp">
+<meta property="article:published_time" content="2026-08-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-10T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="API Guide">
+<meta property="article:tag" content="Black Forest Labs">
+<meta property="article:tag" content="FLUX">
+<meta property="article:tag" content="Image Editing API">
+<meta property="article:tag" content="Pricing">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-flux-kontext-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Flux Kontext API: Integration Guide, Pricing & Code","description":"Flux Kontext API pricing and code: official BFL rates at $0.04/image, fal.ai and Replicate routes, async polling, multiref editing, and the FLUX.2 question.","datePublished":"2026-08-10T16:00:00.000Z","dateModified":"2026-08-10T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/flux-kontext-api/","image":"https://img.modellix.ai/en/article/cover-flux-kontext-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Flux Kontext API: Integration Guide, Pricing &amp; Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/API-Guides/" class="category-tag category-tag--sm">API-Guides</a>
+          
+            <a href="/blog/categories/API-Guides/Model-Guides/" class="category-tag category-tag--sm">Model-Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Flux Kontext API: Integration Guide, Pricing &amp; Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-10T16:00:00.000Z">August 11, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+              <a href="/blog/tags/FLUX/" class="tag-pill tag-pill--sm">FLUX</a>
+            
+              <a href="/blog/tags/Image-Editing-API/" class="tag-pill tag-pill--sm">Image Editing API</a>
+            
+              <a href="/blog/tags/Black-Forest-Labs/" class="tag-pill tag-pill--sm">Black Forest Labs</a>
+            
+              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>What the Flux Kontext API is — and what it isn&#39;t The Flux Kontext API is Black Forest Labs&#39; hosted endpoint for FLUX.1 Kontext, a model family that takes text plus one or more reference images and produces an edited or generated image.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-flux-kontext-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-flux-kontext-api.png" alt="Flux Kontext API guide cover: reference images and a text instruction flowing through an amber-lit API pipeline into an edited image" />
+</picture>
+
+<h2 id="What-the-Flux-Kontext-API-is-—-and-what-it-isn’t"><a href="#What-the-Flux-Kontext-API-is-—-and-what-it-isn’t" class="headerlink" title="What the Flux Kontext API is — and what it isn’t"></a>What the Flux Kontext API is — and what it isn’t</h2><p>The Flux Kontext API is Black Forest Labs’ hosted endpoint for FLUX.1 Kontext, a model family that takes <strong>text plus one or more reference images</strong> and produces an edited or generated image. Where classic text-to-image models only accept a prompt, Kontext reads the content of your input images and applies instructions to them: change a car’s color, keep a character identical across scenes, swap a style, or rewrite text inside a picture.</p>
+<p>It is not a plain text-to-image model, and it is not a free service. Three variants matter for integration:</p>
+<ul>
+<li><strong>FLUX.1 Kontext [pro]</strong> — the hosted editing and generation model behind <code>POST /v1/flux-kontext-pro</code>. This is what most integrations call, and what provider docs mean by the flux kontext pro api.</li>
+<li><strong>FLUX.1 Kontext [max]</strong> — a hosted variant with higher output quality, billed at twice the pro rate.</li>
+<li><strong>FLUX.1 Kontext [dev]</strong> — a 12B-parameter open-weight release under a non-commercial license, run locally or through inference providers such as Replicate and fal.ai.</li>
+</ul>
+<p>The API is asynchronous: you submit a task, get a task ID, then poll for the result (or receive a webhook). <a target="_blank" rel="noopener" href="https://bfl.ai/blog/flux-1-kontext">Black Forest Labs’ announcement</a> describes the model family and its capabilities; the <a target="_blank" rel="noopener" href="https://docs.bfl.ai/">official API docs</a> define the current request contract. If you are evaluating the Black Forest Labs flux API as a whole, Kontext is the editing family and FLUX.2 is the generation line — the last section of this guide covers the trade-off.</p>
+<h2 id="Flux-Kontext-API-pricing-what-each-route-actually-costs"><a href="#Flux-Kontext-API-pricing-what-each-route-actually-costs" class="headerlink" title="Flux Kontext API pricing: what each route actually costs"></a>Flux Kontext API pricing: what each route actually costs</h2><p>Pricing is per output image, and the unit is not the same everywhere. BFL sells credits (1 credit &#x3D; $0.01) and deducts a fixed number per image; fal.ai and Replicate bill in dollars per image. The table below was checked against the live pages on <strong>August 11, 2026</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Model</th>
+<th>Price per image</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BFL official</td>
+<td>FLUX.1 Kontext [pro]</td>
+<td>$0.04 (4 credits)</td>
+<td>Pay-as-you-go credits, no free tier</td>
+</tr>
+<tr>
+<td>BFL official</td>
+<td>FLUX.1 Kontext [max]</td>
+<td>$0.08 (8 credits)</td>
+<td>Higher quality, double the pro rate</td>
+</tr>
+<tr>
+<td>fal.ai</td>
+<td>fal-ai&#x2F;flux-pro&#x2F;kontext</td>
+<td>$0.04</td>
+<td>Fixed per-image edit cost</td>
+</tr>
+<tr>
+<td>Replicate</td>
+<td>black-forest-labs&#x2F;flux-kontext-pro</td>
+<td>$0.04</td>
+<td>Priced per output image</td>
+</tr>
+</tbody></table>
+<p><em>Sources: <a target="_blank" rel="noopener" href="https://docs.bfl.ai/pricing">BFL pricing page</a>, <a target="_blank" rel="noopener" href="https://fal.ai/models/fal-ai/flux-pro/kontext/api">fal.ai Kontext API docs</a>, and the <a target="_blank" rel="noopener" href="https://replicate.com/black-forest-labs/flux-kontext-pro/api">Replicate flux-kontext-pro page</a>, all accessed August 11, 2026.</em></p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/bfl-flux-kontext-model-page.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/bfl-flux-kontext-model-page.png" alt="Official FLUX.1 Kontext model page on bfl.ai showing the in-context editing headline, tagline, and contextual understanding, character consistency, and typography capability sections" loading="lazy" />
+</picture>
+
+<p><em>The official FLUX.1 Kontext model page, captured from the live site on August 11, 2026. The capability sections (contextual understanding, character consistency, typography) are what you are paying for per image.</em></p>
+<p>Together AI also serves FLUX.1 Kontext [pro] as a serverless endpoint (<code>black-forest-labs/FLUX.1-kontext-pro</code>), but its <a target="_blank" rel="noopener" href="https://www.together.ai/models/flux-1-kontext-pro">model page</a> does not list a per-image rate in the page body, so there is no comparable number to put in this table. Check their pricing page before assuming parity.</p>
+<p>Two pricing facts worth stating plainly:</p>
+<ol>
+<li><strong>There is no free tier for the hosted pro&#x2F;max models.</strong> The Reddit question “is flux kontext api free?” gets a consistent answer across providers: no. The open-weight <a target="_blank" rel="noopener" href="https://huggingface.co/black-forest-labs/FLUX.1-Kontext-dev">dev model</a> is the only free route, and it carries a non-commercial license.</li>
+<li><strong>Per-image price is not per-edit-session cost.</strong> A multi-turn editing workflow (edit → feed result back in → edit again) pays the per-image rate on every generation. At $0.04, ten iterations cost $0.40. Budget for the loop, not the single call.</li>
+</ol>
+<h2 id="Get-an-API-key-and-set-up-your-first-call"><a href="#Get-an-API-key-and-set-up-your-first-call" class="headerlink" title="Get an API key and set up your first call"></a>Get an API key and set up your first call</h2><p>Create an account at the BFL dashboard (dashboard.bfl.ai), add credits, and copy an API key from your profile. The key goes in the <code>x-key</code> header on every request.</p>
+<p>The smallest working call is a text-to-image request — no reference image needed, which makes it a good connectivity check:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST https://api.bfl.ai/v1/flux-kontext-pro \</span><br><span class="line">  -H <span class="string">&quot;x-key: YOUR_API_KEY&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;prompt&quot;: &quot;A small furry elephant peeking out of a cat house&quot;,</span></span><br><span class="line"><span class="string">    &quot;aspect_ratio&quot;: &quot;1:1&quot;,</span></span><br><span class="line"><span class="string">    &quot;output_format&quot;: &quot;jpeg&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>A successful submit returns JSON with an <code>id</code> and a <code>polling_url</code>, not the image itself. The response also includes <code>cost</code> in credits — a useful way to confirm you are being billed 4 credits per pro image before you build anything on top.</p>
+<h2 id="Edit-an-image-with-code-the-BFL-API-async-and-polled"><a href="#Edit-an-image-with-code-the-BFL-API-async-and-polled" class="headerlink" title="Edit an image with code: the BFL API, async and polled"></a>Edit an image with code: the BFL API, async and polled</h2><picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/flux-kontext-api-pipeline.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/flux-kontext-api-pipeline.png" alt="Flux Kontext API request lifecycle: reference image and instruction enter an API endpoint, an async task ID with polling loop returns an edited image" loading="lazy" />
+</picture>
+
+<p><em>The Kontext API request lifecycle: submit a task, get a task ID, poll for the result. The edited image is returned only after the async task completes.</em></p>
+<p>For editing, add an <code>input_image</code> (a public URL or base64 data URI). The request below changes the car’s color in a reference photo — the canonical Kontext demo:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">API_KEY = <span class="string">&quot;YOUR_API_KEY&quot;</span></span><br><span class="line">BASE = <span class="string">&quot;https://api.bfl.ai&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">submit_edit</span>(<span class="params">prompt: <span class="built_in">str</span>, image_url: <span class="built_in">str</span>, safety_tolerance: <span class="built_in">int</span> = <span class="number">2</span></span>):</span><br><span class="line">    resp = requests.post(</span><br><span class="line">        <span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/v1/flux-kontext-pro&quot;</span>,</span><br><span class="line">        headers=&#123;<span class="string">&quot;x-key&quot;</span>: API_KEY, <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>&#125;,</span><br><span class="line">        json=&#123;</span><br><span class="line">            <span class="string">&quot;prompt&quot;</span>: prompt,</span><br><span class="line">            <span class="string">&quot;input_image&quot;</span>: image_url,</span><br><span class="line">            <span class="string">&quot;output_format&quot;</span>: <span class="string">&quot;jpeg&quot;</span>,</span><br><span class="line">            <span class="string">&quot;safety_tolerance&quot;</span>: safety_tolerance,</span><br><span class="line">        &#125;,</span><br><span class="line">    )</span><br><span class="line">    resp.raise_for_status()</span><br><span class="line">    <span class="keyword">return</span> resp.json()[<span class="string">&quot;id&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">wait_for_result</span>(<span class="params">task_id: <span class="built_in">str</span>, timeout: <span class="built_in">int</span> = <span class="number">120</span></span>):</span><br><span class="line">    <span class="keyword">import</span> time</span><br><span class="line">    deadline = time.time() + timeout</span><br><span class="line">    <span class="keyword">while</span> time.time() &lt; deadline:</span><br><span class="line">        r = requests.get(<span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/v1/get_result&quot;</span>, params=&#123;<span class="string">&quot;id&quot;</span>: task_id&#125;,</span><br><span class="line">                         headers=&#123;<span class="string">&quot;x-key&quot;</span>: API_KEY&#125;)</span><br><span class="line">        data = r.json()</span><br><span class="line">        status = data.get(<span class="string">&quot;status&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> status == <span class="string">&quot;Ready&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> data[<span class="string">&quot;result&quot;</span>][<span class="string">&quot;sample&quot;</span>]</span><br><span class="line">        <span class="keyword">if</span> status <span class="keyword">in</span> (<span class="string">&quot;Request Moderated&quot;</span>, <span class="string">&quot;Content Moderated&quot;</span>, <span class="string">&quot;Error&quot;</span>):</span><br><span class="line">            <span class="keyword">raise</span> RuntimeError(<span class="string">f&quot;Task <span class="subst">&#123;status&#125;</span>: <span class="subst">&#123;data&#125;</span>&quot;</span>)</span><br><span class="line">        time.sleep(<span class="number">2</span>)</span><br><span class="line">    <span class="keyword">raise</span> TimeoutError(<span class="string">&quot;Task did not finish in time&quot;</span>)</span><br><span class="line"></span><br><span class="line">task_id = submit_edit(<span class="string">&quot;Change the car color to red&quot;</span>, <span class="string">&quot;https://example.com/car.jpg&quot;</span>)</span><br><span class="line">edited = wait_for_result(task_id)</span><br><span class="line"><span class="built_in">print</span>(edited)  <span class="comment"># URL of the edited image</span></span><br></pre></td></tr></table></figure>
+
+<p>Polling is the simplest reliable pattern for a first integration. Three refinements matter in production:</p>
+<ul>
+<li><strong>Webhooks.</strong> Pass <code>webhook_url</code> (and optionally <code>webhook_secret</code>) in the submit body; BFL POSTs the result when it’s ready, and you skip polling entirely.</li>
+<li><strong>Seeds for reproducible edits.</strong> A fixed <code>seed</code> with the same prompt, image, and model version returns the same output. For iterative workflows, decide deliberately whether to pin the seed (deterministic edits) or leave it unset (more variety between turns).</li>
+<li><strong>Iterative editing.</strong> Kontext is built for multi-turn edits: take the output URL of one call and use it as the <code>input_image</code> of the next. The model keeps the character and style consistent across turns. That loop is the whole point of the model — plan your code around it rather than treating each call as independent.</li>
+</ul>
+<p>The same submit+poll flow works for cURL and Node: submit to <code>/v1/flux-kontext-pro</code>, poll <code>GET /v1/get_result?id=...</code> with the same <code>x-key</code> header. That submit → poll → retrieve loop is the whole flux api kontext integration pattern.</p>
+<h2 id="Use-multiple-reference-images-multiref"><a href="#Use-multiple-reference-images-multiref" class="headerlink" title="Use multiple reference images (multiref)"></a>Use multiple reference images (multiref)</h2><picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/flux-kontext-multiref.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/flux-kontext-multiref.png" alt="Technical schematic of multiref editing: character portrait and style reference images plus a text instruction flowing into a central editing node, producing one consistent output image" loading="lazy" />
+</picture>
+
+<p><em>Multiref in one call: a character reference and a style reference are combined with a text instruction into a single consistent output.</em></p>
+<p>Kontext accepts up to four input images: <code>input_image</code> plus <code>input_image_2</code>, <code>input_image_3</code>, and <code>input_image_4</code>. The BFL API reference marks the extra slots as experimental multiref, but they are live in the request schema and are the practical way to combine a character reference with a style reference in one call.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">resp = requests.post(</span><br><span class="line">    <span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/v1/flux-kontext-pro&quot;</span>,</span><br><span class="line">    headers=&#123;<span class="string">&quot;x-key&quot;</span>: API_KEY, <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>&#125;,</span><br><span class="line">    json=&#123;</span><br><span class="line">        <span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;Remake this product photo in the style of the second image&quot;</span>,</span><br><span class="line">        <span class="string">&quot;input_image&quot;</span>: <span class="string">&quot;https://example.com/product.jpg&quot;</span>,</span><br><span class="line">        <span class="string">&quot;input_image_2&quot;</span>: <span class="string">&quot;https://example.com/style-ref.jpg&quot;</span>,</span><br><span class="line">        <span class="string">&quot;output_format&quot;</span>: <span class="string">&quot;jpeg&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>Two use patterns show up repeatedly in production:</p>
+<ol>
+<li><strong>Character + environment.</strong> Put the character shot in slot 1 and a scene or outfit reference in slot 2, then instruct the model to place the character into the scene. This is how teams build consistent product or avatar imagery without fine-tuning.</li>
+<li><strong>Local edits with annotation boxes.</strong> Kontext also understands bright colored boxes drawn over the input image as edit regions — box an area and the instruction applies to that region only. This pairs naturally with multiref for “change only this object, keep everything else.”</li>
+</ol>
+<p>Both patterns are where Kontext earns its per-image price. If your workflow only needs single-image edits, a simpler inpainting API may be cheaper; if you need identity consistency across dozens of shots, multiref is the differentiator.</p>
+<h2 id="Alternative-routes-fal-ai-Replicate-and-Together-AI"><a href="#Alternative-routes-fal-ai-Replicate-and-Together-AI" class="headerlink" title="Alternative routes: fal.ai, Replicate, and Together AI"></a>Alternative routes: fal.ai, Replicate, and Together AI</h2><p>The same model is available from infrastructure providers, which matters when you already run workloads there or need their queue&#x2F;subscribe tooling.</p>
+<p><strong>fal.ai</strong> — client-based, with a <code>subscribe</code> helper that handles polling:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; fal &#125; <span class="keyword">from</span> <span class="string">&quot;@fal-ai/client&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> result = <span class="keyword">await</span> fal.<span class="title function_">subscribe</span>(<span class="string">&quot;fal-ai/flux-pro/kontext&quot;</span>, &#123;</span><br><span class="line">  <span class="attr">input</span>: &#123;</span><br><span class="line">    <span class="attr">prompt</span>: <span class="string">&quot;Put a donut next to the flour.&quot;</span>,</span><br><span class="line">    <span class="attr">image_url</span>: <span class="string">&quot;https://example.com/flour.jpg&quot;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">logs</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result.<span class="property">data</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>Replicate</strong> — <code>predictions</code> API with a standard create-and-poll pattern:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST https://api.replicate.com/v1/models/black-forest-labs/flux-kontext-pro/predictions \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer YOUR_REPLICATE_TOKEN&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;input&quot;: &#123;</span></span><br><span class="line"><span class="string">      &quot;prompt&quot;: &quot;Change the car color to red&quot;,</span></span><br><span class="line"><span class="string">      &quot;image&quot;: &quot;https://example.com/car.jpg&quot;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Together AI</strong> — OpenAI-compatible serverless endpoint, so it drops into existing SDKs:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> together <span class="keyword">import</span> Together</span><br><span class="line"></span><br><span class="line">client = Together(api_key=<span class="string">&quot;YOUR_TOGETHER_KEY&quot;</span>)</span><br><span class="line">resp = client.images.generate(</span><br><span class="line">    model=<span class="string">&quot;black-forest-labs/FLUX.1-kontext-pro&quot;</span>,</span><br><span class="line">    prompt=<span class="string">&quot;Change the car color to red&quot;</span>,</span><br><span class="line">    image_url=<span class="string">&quot;https://example.com/car.jpg&quot;</span>,</span><br><span class="line">)</span><br><span class="line"><span class="built_in">print</span>(resp.data[<span class="number">0</span>].url)</span><br></pre></td></tr></table></figure>
+
+<p>Which route should you pick? At the price level, pro is $0.04&#x2F;image on BFL, fal, and Replicate alike, so price is not the deciding factor. Choose by operational fit: BFL direct for the newest model versions and webhooks; fal.ai if you already use its queue tooling; Replicate for its ecosystem and run history; Together if you want the OpenAI-compatible shape. For a broader look at how image-manipulation APIs behave in production, our <a href="https://www.modellix.ai/blog/image-manipulation-api-guide/">image manipulation API guide</a> compares seven workflows end to end.</p>
+<h2 id="Handle-errors-moderation-and-rate-limits"><a href="#Handle-errors-moderation-and-rate-limits" class="headerlink" title="Handle errors, moderation, and rate limits"></a>Handle errors, moderation, and rate limits</h2><p>The BFL API uses standard HTTP status codes. The ones you will actually hit:</p>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>400</td>
+<td>Malformed request body</td>
+<td>Validate <code>prompt</code> and image fields before retrying</td>
+</tr>
+<tr>
+<td>402</td>
+<td>Insufficient credits</td>
+<td>Top up; check <code>cost</code> in the submit response</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Key lacks permission</td>
+<td>Verify the key and account state</td>
+</tr>
+<tr>
+<td>422</td>
+<td>Invalid parameters</td>
+<td>Fix the body per the API reference</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Rate limit exceeded</td>
+<td>Back off and retry with exponential delay</td>
+</tr>
+<tr>
+<td>500 &#x2F; 503</td>
+<td>Server or service issue</td>
+<td>Retry later; do not resubmit blindly on 503</td>
+</tr>
+</tbody></table>
+<p>Moderation is part of the async result lifecycle, not a separate API. Polling <code>get_result</code> can return:</p>
+<ul>
+<li><code>Request Moderated</code> — your prompt or input image was flagged before processing.</li>
+<li><code>Content Moderated</code> — the generated output was flagged after processing.</li>
+<li><code>Task not found</code> — the ID is invalid or expired.</li>
+<li><code>Error</code> — processing failed; check the error detail.</li>
+</ul>
+<p>The <code>safety_tolerance</code> parameter (0–6, default 2) controls moderation strictness on inputs and outputs. Leave it at the default unless you have a product reason to loosen it. Also note that BFL applies C2PA cryptographic provenance metadata to API outputs — if your product strips metadata, that is a deliberate choice, not an accident.</p>
+<h2 id="Should-you-still-integrate-FLUX-1-Kontext-in-2026"><a href="#Should-you-still-integrate-FLUX-1-Kontext-in-2026" class="headerlink" title="Should you still integrate FLUX.1 Kontext in 2026?"></a>Should you still integrate FLUX.1 Kontext in 2026?</h2><p>The honest answer: Black Forest Labs itself now recommends FLUX.2 for new projects. The Kontext documentation pages carry the note “For new projects, we recommend FLUX.2,” citing multi-reference support up to ten images, stronger text editing, and output up to 4MP. If you are starting from zero in 2026, read the FLUX.2 docs before committing to Kontext.</p>
+<p>Kontext still makes sense in three situations:</p>
+<ol>
+<li><strong>You are already shipping on it.</strong> The API is stable, the price is known, and the model is not going away. Migrating to FLUX.2 is a model swap with a new request shape, not a free rename.</li>
+<li><strong>Iterative editing quality matters more than raw resolution.</strong> Kontext’s multi-turn consistency is its signature strength, and it remains competitive on that specific job.</li>
+<li><strong>You want the $0.04 entry point.</strong> FLUX.2 pro starts at $0.03 for text-to-image but image editing starts at $0.045; Kontext pro editing at $0.04 is still the cheapest hosted editing tier in the family.</li>
+</ol>
+<p>What you should not do is pick Kontext reflexively because you found this guide. The official FLUX model comparison in the <a target="_blank" rel="noopener" href="https://docs.bfl.ai/">BFL API docs</a> now leads with FLUX.2 for generation and editing; for comparison, our <a href="https://www.modellix.ai/blog/gpt-image-1-5-api/">GPT Image 1.5 API guide</a> shows what a competing editing model looks like at the same price point. The <a href="https://www.modellix.ai/blog/text-to-image-api-guide/">text-to-image API guide</a> positions Kontext’s dual generation-editing capability against six dedicated generators.</p>
+<h2 id="Get-started"><a href="#Get-started" class="headerlink" title="Get started"></a>Get started</h2><p>A disclosure first, because it changes what you should expect from this page: <strong>Modellix does not offer FLUX.1 Kontext.</strong> We are an API aggregator, and our model catalog currently has no Black Forest Labs provider. This guide exists because the model is worth integrating well, and the decision should not depend on who wrote the tutorial.</p>
+<p>Where Modellix does fit: if your product needs many image and video models behind one API key — 210+ models, pay-as-you-go, no monthly fee — the aggregator route is worth evaluating for everything Kontext is not. Start with the <a href="https://www.modellix.ai/models">Modellix models page</a>, where you can compare the editing and generation models we do carry, or use the <a href="https://www.modellix.ai/cli">Modellix CLI</a> to try routes from your terminal.</p>
+<p>The short version of this guide: Kontext pro is $0.04 per image on every major route (the flux kontext max api doubles that to $0.08 per image), the API is a submit-and-poll flow with multiref and iterative editing as the real capabilities, and BFL’s own recommendation has moved to FLUX.2 for new builds. Integrate accordingly.</p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+              <a href="/blog/tags/FLUX/" class="tag-pill tag-pill--sm">FLUX</a>
+            
+              <a href="/blog/tags/Image-Editing-API/" class="tag-pill tag-pill--sm">Image Editing API</a>
+            
+              <a href="/blog/tags/Black-Forest-Labs/" class="tag-pill tag-pill--sm">Black Forest Labs</a>
+            
+              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/reve-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-reve-api.webp" alt="Reve API: Image Models via Unified API Key" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">API-Guides</span>
+              
+                <span class="category-tag category-tag--sm">Model-Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Reve API: Image Models via Unified API Key</h3>
+          <time class="related-article-date" datetime="2026-08-11T02:00:00.000Z">August 11, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/skywork-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-skywork-api.webp" alt="Skywork API: Models, Pricing &amp; Integration" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">API-Guides</span>
+              
+                <span class="category-tag category-tag--sm">Model-Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Skywork API: Models, Pricing &amp; Integration</h3>
+          <time class="related-article-date" datetime="2026-08-10T16:00:00.000Z">August 11, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/seedance-pro-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-seedance-pro-api.webp" alt="Seedance Pro API: ByteDance Video Integration Guide" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">API-Guides</span>
+              
+                <span class="category-tag category-tag--sm">Model-Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Seedance Pro API: ByteDance Video Integration Guide</h3>
+          <time class="related-article-date" datetime="2026-08-09T16:00:00.000Z">August 10, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/flux-kontext-api/&text=Flux%20Kontext%20API%3A%20Integration%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/flux-kontext-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/flux-kontext-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

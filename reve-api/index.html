@@ -1,0 +1,568 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reve API: Image Models via Unified API Key — Modellix Blog</title>
+  <meta name="description" content="Reve API explained: create, edit, and remix endpoints, credit-based pricing, real cost per image, and direct versus aggregator routes for Reve image models.">
+  <meta name="keywords" content="reve api, reve image api, reve api pricing, reve 2.0 api, reve image 2.1 api, reve ai api, reve art api, reve api key">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/reve-api/">
+  <meta name="description" content="Reve API explained: create, edit, and remix endpoints, credit-based pricing, real cost per image, and direct versus aggregator routes for Reve image models.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reve API: Image Models via Unified API Key — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/reve-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Reve API explained: create, edit, and remix endpoints, credit-based pricing, real cost per image, and direct versus aggregator routes for Reve image models.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-reve-api.webp">
+<meta property="article:published_time" content="2026-08-11T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-11T02:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Image API">
+<meta property="article:tag" content="Image Generation API">
+<meta property="article:tag" content="Reve API">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-reve-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Reve API: Image Models via Unified API Key","description":"Reve API explained: create, edit, and remix endpoints, credit-based pricing, real cost per image, and direct versus aggregator routes for Reve image models.","datePublished":"2026-08-11T02:00:00.000Z","dateModified":"2026-08-11T02:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/reve-api/","image":"https://img.modellix.ai/en/article/cover-reve-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Reve API: Image Models via Unified API Key</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/API-Guides/" class="category-tag category-tag--sm">API-Guides</a>
+          
+            <a href="/blog/categories/API-Guides/Model-Guides/" class="category-tag category-tag--sm">Model-Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Reve API: Image Models via Unified API Key</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-11T02:00:00.000Z">August 11, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
+            
+              <a href="/blog/tags/Reve-API/" class="tag-pill tag-pill--sm">Reve API</a>
+            
+              <a href="/blog/tags/Image-Generation-API/" class="tag-pill tag-pill--sm">Image Generation API</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>The short answer: what the Reve API is and is not The Reve API is Reve&#39;s official REST interface for its image models: you send text prompts, reference images, or edit instructions to api.reve.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-reve-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-reve-api.png" alt="Dark amber technical cover showing the Reve API request flow into a 4K image output, with the MODELLIX wordmark and two-line title" />
+</picture>
+
+<h2 id="The-short-answer-what-the-Reve-API-is-and-is-not"><a href="#The-short-answer-what-the-Reve-API-is-and-is-not" class="headerlink" title="The short answer: what the Reve API is (and is not)"></a>The short answer: what the Reve API is (and is not)</h2><p>The Reve API is Reve’s official REST interface for its image models: you send text prompts, reference images, or edit instructions to <code>api.reve.com/v1/</code> and receive generated images billed per image through prepaid credits. It is an image-generation API — not a chat platform, not an LLM provider — and you can call it directly or through aggregators that expose Reve models alongside other image APIs behind one key.</p>
+<p>The “reve api” search results are polluted with unrelated products, so the first step is knowing which Reve you are reading about. REVE Chat is a customer-service chat tool. The GitHub organization <code>reveal-ai</code> maintains a ComfyUI fork. Some LLM trackers list a “Reve AI” entry that hosts language models with a poor success rate. None of these is the Reve behind the <a target="_blank" rel="noopener" href="https://www.reve.com/">Reve Image model family</a> — the company that markets native 4K generation and layout-aware editing. If the page talks about image generation, you are in the right place.</p>
+<h2 id="What-the-Reve-API-offers-endpoints-resolution-and-formats"><a href="#What-the-Reve-API-offers-endpoints-resolution-and-formats" class="headerlink" title="What the Reve API offers: endpoints, resolution, and formats"></a>What the Reve API offers: endpoints, resolution, and formats</h2><p>Reve’s official help documentation describes three core endpoints, each mapping to one creative operation:</p>
+<ul>
+<li><strong>Create</strong> — generate an image from a text description.</li>
+<li><strong>Edit</strong> — modify an uploaded image using text instructions.</li>
+<li><strong>Remix</strong> — combine text prompts with reference images to produce new variations.</li>
+</ul>
+<p>All three run against the same API root. <a target="_blank" rel="noopener" href="https://help.reve.com/hc/en-us/articles/46837930295316-Reve-API">Reve’s API documentation</a> states that requests go to <code>https://api.reve.com/v1/</code>, that setup requires accepting the API License Agreement, purchasing API credits, and receiving access keys, and that the API accepts JPEG, PNG, GIF, WebP, TIFF, and AVIF inputs while returning PNG, JPEG, or WebP outputs.</p>
+<p>The headline capability is resolution. Reve’s <a target="_blank" rel="noopener" href="https://blog.reve.com/posts/the-reve-api/">Reve 2.1 API launch post</a> describes a rendering architecture that generates images at native 4K × 4K — 16 megapixels, with no upscaling step. The post also introduces the layout model behind the output: images are represented as hierarchical, addressable regions, so individual elements can be edited without regenerating the whole image. Reve 2.1 divides the API into ready-to-use endpoints (create and edit) and experimental full-layout-control endpoints that decouple layout creation, editing, and rendering. The same post highlights consistent style and content reference across generations, and a <code>skill.md</code> file that lets coding agents call the API natively.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/reveal-api-endpoints.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/reveal-api-endpoints.png" alt="Reve API endpoint diagram showing Create, Edit, and Remix requests flowing into a 4K image output with layout regions highlighted" loading="lazy" />
+</picture>
+
+<p><em>The Reve API’s three operations — create, edit, remix — all return native 4K images; the 2.1 release adds experimental layout-control endpoints.</em></p>
+<p>The version trajectory matters if you are comparing notes with older content. Reve 2.0 established the native-4K, credit-billed API. The 2.1 update added the layout endpoints and the agent-facing <code>skill.md</code>. Most third-party pages still describe the 2.0 surface, so when someone writes “reve 2.0 api” they usually mean the same create&#x2F;edit&#x2F;remix API, and “reve image 2.1 api” refers to the July 2026 update.</p>
+<h2 id="Reve-API-pricing-how-credits-become-cost-per-image"><a href="#Reve-API-pricing-how-credits-become-cost-per-image" class="headerlink" title="Reve API pricing: how credits become cost per image"></a>Reve API pricing: how credits become cost per image</h2><p>Reve does not publish a per-image dollar price on its help pages. Pricing is credit-based: every request draws from a prepaid credit balance, and optional features — upscaling, background removal, image resizing, and extended generation time — consume additional credits. The official position is that the exact price list lives in the Pricing tab of the <a target="_blank" rel="noopener" href="https://api.reve.com/console">API console</a>.</p>
+<p>The one public number with a paper trail comes from TrilogyAI’s analysis of the 2.0 launch. It reports that create, edit, and remix each cost 5 credits per image, that 7,500 credits sell for $10, and that the implied base price is therefore about <strong>$0.0067 per image</strong> before add-ons. We have not found a conflicting official figure, but treat that as an analyst’s conversion of the published credit structure, not an official quote — the console remains the authoritative price list.</p>
+<table>
+<thead>
+<tr>
+<th>Cost component</th>
+<th>Published facts</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Base image (create&#x2F;edit&#x2F;remix)</td>
+<td>5 credits per image; 7,500 credits for $10 → ≈ $0.0067&#x2F;image</td>
+<td><a target="_blank" rel="noopener" href="https://trilogyai.substack.com/p/reve-20s-innovation-in-image-generation">TrilogyAI analysis</a></td>
+</tr>
+<tr>
+<td>Upscaling (2×&#x2F;3×&#x2F;4×)</td>
+<td>Extra credits, proportional to image size</td>
+<td>Reve help center + <a target="_blank" rel="noopener" href="https://www.pixazo.ai/models/reve-image">pixazo gateway docs</a></td>
+</tr>
+<tr>
+<td>Background removal</td>
+<td>Extra credits</td>
+<td>Same sources</td>
+</tr>
+<tr>
+<td>Test-time scaling (effort 1–15)</td>
+<td>Values above 1 cost proportionally more credits; &gt;5 rarely improves output</td>
+<td>pixazo gateway docs</td>
+</tr>
+<tr>
+<td>Fit&#x2F;resize</td>
+<td>Free</td>
+<td>pixazo gateway docs</td>
+</tr>
+<tr>
+<td>Rate limits</td>
+<td>Apply to all requests; higher limits via <a href="mailto:&#115;&#97;&#108;&#x65;&#115;&#x40;&#x72;&#101;&#118;&#x65;&#x2e;&#x63;&#x6f;&#x6d;">sales@reve.com</a></td>
+<td>Reve help center</td>
+</tr>
+</tbody></table>
+<p><em>All figures reflect sources accessed August 11, 2026. Reve’s console is the only official price list; credit pricing and add-on costs change.</em></p>
+<p>That base price sits in an unusual spot: TrilogyAI’s comparison puts Reve’s implied cost near OpenAI’s low-quality 1024×1024 output tier while Reve advertises native 4K. Before that comparison drives a decision, remember the metric that matters in production: cost per accepted image, not cost per generation. A cheaper model that needs three retries to hold a layout is not cheaper than a pricier one that lands on the first pass. Reve’s layout representation is designed to make edits surgical — change one region, re-render only what changed — which is where its low unit price compounds.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/reveal-api-credit-flow.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/reveal-api-credit-flow.png" alt="Reve API credit flow diagram showing a request drawing credits, with optional upscale and background-removal steps consuming extra credits" loading="lazy" />
+</picture>
+
+<p><em>Every Reve API request consumes credits; upscaling, background removal, and higher test-time scaling draw additional credits on top of the base 5-credit cost.</em></p>
+<h2 id="How-to-call-the-Reve-API"><a href="#How-to-call-the-Reve-API" class="headerlink" title="How to call the Reve API"></a>How to call the Reve API</h2><p>The setup path is short and does not require a credit card up front for evaluation, though access keys are issued after you agree to the license and fund a credit balance:</p>
+<ol>
+<li>Create an account in the Reve API console.</li>
+<li>Agree to the API License Agreement and purchase credits.</li>
+<li>Copy your access keys from the console.</li>
+<li>Call <code>https://api.reve.com/v1/</code> with your key in the request header.</li>
+</ol>
+<p>Reve’s technical documentation — endpoint paths, parameters, response codes — is published in the Docs section of the console rather than on the help center, so the console is also your reference for exact request shapes. The skeleton below shows the call shape:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">BASE_URL = <span class="string">&quot;https://api.reve.com/v1/&quot;</span>   <span class="comment"># base URL from Reve&#x27;s help docs</span></span><br><span class="line">headers = &#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">&quot;Bearer YOUR_API_KEY&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line">resp = requests.post(BASE_URL + <span class="string">&quot;&lt;endpoint&gt;&quot;</span>, json=&#123;<span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;...&quot;</span>&#125;, headers=headers)</span><br><span class="line"><span class="built_in">print</span>(resp.status_code, resp.json())</span><br></pre></td></tr></table></figure>
+
+<p>Two operational details are worth knowing before you build on top of it. First, include the <code>X-Reve-Request-Id</code> value from any response when you contact support — it is how Reve’s team locates a specific request. Second, gateway implementations that proxy Reve 2.1 document request parameters such as <code>test_time_scaling</code> (extra model effort, 1–15) and a <code>postprocessing</code> array (<code>upscale</code>, <code>remove_background</code>, <code>fit_image</code>, <code>effect</code>) — the same add-on cost structure you see in the pricing section, exposed as request parameters.</p>
+<h2 id="Direct-Reve-API-vs-an-aggregator-route"><a href="#Direct-Reve-API-vs-an-aggregator-route" class="headerlink" title="Direct Reve API vs. an aggregator route"></a>Direct Reve API vs. an aggregator route</h2><p>You do not have to hold a Reve credit balance to use Reve models. Several gateways resell access: Replicate hosts <a target="_blank" rel="noopener" href="https://replicate.com/reve/create">Reve Create</a> (“API-ready: scale in apps”), pixazo exposes Reve Image 2.1 endpoints, and AI&#x2F;ML API documents Reve create&#x2F;edit&#x2F;remix routes. Modellix is another aggregator — it routes Reve models alongside 210+ image, video, and audio models from 12 providers behind one API key, with pay-as-you-go billing and no monthly fee.</p>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Direct Reve API</th>
+<th>Aggregator route</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Account setup</td>
+<td>License agreement + credit purchase + access keys</td>
+<td>One signup, one key, free credit to start</td>
+</tr>
+<tr>
+<td>Billing</td>
+<td>Credits in the Reve console</td>
+<td>Pay-as-you-go per call, one invoice</td>
+</tr>
+<tr>
+<td>Model coverage</td>
+<td>Reve only</td>
+<td>Reve plus 200+ other models</td>
+</tr>
+<tr>
+<td>Price visibility</td>
+<td>Console Pricing tab; ≈ $0.0067&#x2F;image implied base</td>
+<td>Per-model price listed per call</td>
+</tr>
+<tr>
+<td>Add-ons</td>
+<td>Upscale &#x2F; background removal &#x2F; test-time scaling in credits</td>
+<td>Same operations, billed per call</td>
+</tr>
+<tr>
+<td>Rate limits</td>
+<td>Contact <a href="mailto:&#115;&#x61;&#x6c;&#x65;&#115;&#x40;&#x72;&#101;&#118;&#101;&#46;&#x63;&#111;&#109;">sales@reve.com</a> for higher limits</td>
+<td>Aggregator’s own rate policy</td>
+</tr>
+</tbody></table>
+<p>This is where we state the commercial interest plainly: Modellix is an aggregator, and we benefit when you choose the aggregator route. The comparison above is a workflow trade-off, not a claim that either route is cheaper — unit prices differ by route, and the honest way to compare is to price the same model and output on both sides.</p>
+<p>For teams already integrating several image or video models, the aggregator argument is operational, not economic: one key, one balance, one log across providers, and per-model price transparency. That is the trade-off the <a href="https://www.modellix.ai/providers/reve">Reve provider page on Modellix</a> exists to serve — you can inspect the Reve route alongside every other provider in the same console, then start with $10–30 of free credit before committing a card.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/reveal-api-aggregator-routing.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/reveal-api-aggregator-routing.png" alt="Routing diagram showing one API key reaching Reve and eleven other providers through a single aggregator gateway" loading="lazy" />
+</picture>
+
+<p><em>A single aggregator key reaches Reve and dozens of other image and video models; direct access requires a separate Reve account, credit balance, and key.</em></p>
+<h2 id="Which-route-fits-your-integration"><a href="#Which-route-fits-your-integration" class="headerlink" title="Which route fits your integration"></a>Which route fits your integration</h2><p>Use the decision questions below rather than a blanket rule:</p>
+<ul>
+<li><strong>You only need Reve, and you want the canonical source.</strong> Go direct. You get Reve’s own console, its pricing tab, and first-party rate-limit support.</li>
+<li><strong>You are evaluating multiple image models side by side.</strong> An aggregator saves you N account setups, N credit balances, and N SDKs — and a free trial credit exists exactly for this evaluation phase.</li>
+<li><strong>You have existing multi-provider traffic.</strong> If your pipeline already calls other models through one key, adding Reve to the same gateway beats onboarding a second billing surface.</li>
+<li><strong>You need a contract or high rate limits.</strong> Talk to Reve sales directly; aggregators have their own rate policies.</li>
+</ul>
+<p>Once you know where Reve fits, the rest of the evaluation is standard image-API diligence: run the same prompt set through the candidate routes, measure retry rates and layout stability, and compute cost per accepted asset. For a broader baseline on image model APIs, our <a href="https://www.modellix.ai/blog/text-to-image-api-guide/">text-to-image API guide</a> walks through the categories of image APIs and how they differ.</p>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p><strong>Is the Reve API free?</strong> No. Access keys are issued after you agree to the license and fund a credit balance; there is no free tier documented on Reve’s help pages. Aggregator routes often offer free trial credit on signup instead.</p>
+<p><strong>What does the Reve API cost per image?</strong> The published credit structure implies about $0.0067 per base image (5 credits per create&#x2F;edit&#x2F;remix at 7,500 credits for $10), before add-ons like upscaling and background removal. The official price list is the Pricing tab in the API console.</p>
+<p><strong>Does the Reve API work with Python?</strong> Yes — it is a plain REST API over HTTPS, so any HTTP client works. Reve’s docs live in the API console; community SDKs and wrappers also exist on GitHub.</p>
+<p><strong>What is the difference between Reve 2.0 and Reve 2.1?</strong> Reve 2.0 established native 4K generation and the create&#x2F;edit&#x2F;remix API. Reve 2.1 (July 2026) added experimental full-layout-control endpoints and the agent-facing <code>skill.md</code> file.</p>
+<p><strong>Is the Reve API the same as “Reve AI” on LLM trackers?</strong> No. Reve is an image-generation company; “Reve AI” entries on LLM trackers describe a different entity. Check whether the page discusses image generation before treating it as relevant.</p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
+            
+              <a href="/blog/tags/Reve-API/" class="tag-pill tag-pill--sm">Reve API</a>
+            
+              <a href="/blog/tags/Image-Generation-API/" class="tag-pill tag-pill--sm">Image Generation API</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/flux-kontext-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-flux-kontext-api.webp" alt="Flux Kontext API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">API-Guides</span>
+              
+                <span class="category-tag category-tag--sm">Model-Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Flux Kontext API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-08-10T16:00:00.000Z">August 11, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/skywork-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-skywork-api.webp" alt="Skywork API: Models, Pricing &amp; Integration" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">API-Guides</span>
+              
+                <span class="category-tag category-tag--sm">Model-Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Skywork API: Models, Pricing &amp; Integration</h3>
+          <time class="related-article-date" datetime="2026-08-10T16:00:00.000Z">August 11, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/seedance-pro-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-seedance-pro-api.webp" alt="Seedance Pro API: ByteDance Video Integration Guide" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">API-Guides</span>
+              
+                <span class="category-tag category-tag--sm">Model-Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Seedance Pro API: ByteDance Video Integration Guide</h3>
+          <time class="related-article-date" datetime="2026-08-09T16:00:00.000Z">August 10, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/reve-api/&text=Reve%20API%3A%20Image%20Models%20via%20Unified%20API%20Key" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/reve-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/reve-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
