@@ -1,0 +1,624 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Video Upscale API: Multi-Provider Integration Guide — Modellix Blog</title>
+  <meta name="description" content="Compare AI video upscale APIs by real cost, input limits, and output resolution, with integration code for Topaz, fal, PiAPI, and an aggregator route.">
+  <meta name="keywords" content="ai video upscale api, video upscale api, ai video upscaler api, video upscaling api, topaz video upscale api, ai video upscale api free, 4k video upscale api, ai video upscaler, ai video upscale, video enhancement api, video super resolution api">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/ai-video-upscale-api/">
+  <meta name="description" content="Compare AI video upscale APIs by real cost, input limits, and output resolution, with integration code for Topaz, fal, PiAPI, and an aggregator route.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI Video Upscale API: Multi-Provider Integration Guide — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/ai-video-upscale-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Compare AI video upscale APIs by real cost, input limits, and output resolution, with integration code for Topaz, fal, PiAPI, and an aggregator route.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-ai-video-upscale-api.webp">
+<meta property="article:published_time" content="2026-08-12T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-12T02:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video API">
+<meta property="article:tag" content="API Guide">
+<meta property="article:tag" content="Integration">
+<meta property="article:tag" content="Video Upscaling">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-ai-video-upscale-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"AI Video Upscale API: Multi-Provider Integration Guide","description":"Compare AI video upscale APIs by real cost, input limits, and output resolution, with integration code for Topaz, fal, PiAPI, and an aggregator route.","datePublished":"2026-08-12T02:00:00.000Z","dateModified":"2026-08-12T02:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/ai-video-upscale-api/","image":"https://img.modellix.ai/en/article/cover-ai-video-upscale-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">AI Video Upscale API: Multi-Provider Integration Guide</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/API-Guides/" class="category-tag category-tag--sm">API Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">AI Video Upscale API: Multi-Provider Integration Guide</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-12T02:00:00.000Z">August 12, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
+            
+              <a href="/blog/tags/Video-Upscaling/" class="tag-pill tag-pill--sm">Video Upscaling</a>
+            
+              <a href="/blog/tags/Integration/" class="tag-pill tag-pill--sm">Integration</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x-38ede26c.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>What an AI video upscale API does — and what it can&#39;t fix An AI video upscale API takes an existing video and returns a higher-resolution, sharper version of it through a programmatic endpoint.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-ai-video-upscale-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-ai-video-upscale-api.png" alt="Editorial cover with the MODELLIX wordmark, a two-line title about the AI video upscale API, and a spec capsule showing a video upscaling integration" />
+</picture>
+
+<h2 id="What-an-AI-video-upscale-API-does-—-and-what-it-can’t-fix"><a href="#What-an-AI-video-upscale-API-does-—-and-what-it-can’t-fix" class="headerlink" title="What an AI video upscale API does — and what it can’t fix"></a>What an AI video upscale API does — and what it can’t fix</h2><p>An AI video upscale API takes an existing video and returns a higher-resolution, sharper version of it through a programmatic endpoint. “Upscale” here means resolution and clarity: the model reconstructs a larger frame from the pixels it has, removes compression artifacts, and sharpens edges. It is a post-processing effect, not a generator — the content, style, and motion of the source clip stay the same.</p>
+<p>That boundary matters, because it sets expectations for what an upscale API can deliver for your footage:</p>
+<ul>
+<li><strong>Low native resolution with clean detail</strong> (a 720p render, an old scan) — upscaling genuinely helps; this is the ideal case.</li>
+<li><strong>Heavily compressed or noisy footage</strong> (social-media re-encodes, low-bitrate streams) — a good model removes artifacts and recovers some detail, but it cannot invent what was destroyed by compression.</li>
+<li><strong>Motion blur or out-of-focus footage</strong> — resolution scaling alone will not fix this. Some providers sell restoration add-ons (deblur, face repair) as separate capabilities; do not assume the upscale endpoint includes them.</li>
+</ul>
+<p>When you search for an “ai video upscale api”, you are not choosing between “4K yes or no”. You are choosing between three different model architectures that produce different trade-offs — and the providers on page one of Google all use different ones. That is the part every vendor page skips, and it is the part that determines whether your integration works on day one.</p>
+<h2 id="The-three-architectures-behind-every-video-upscale-API"><a href="#The-three-architectures-behind-every-video-upscale-API" class="headerlink" title="The three architectures behind every video upscale API"></a>The three architectures behind every video upscale API</h2><p>Every provider that ranks for “ai video upscale api” uses one of three approaches. Knowing which one you are buying explains the price, the output quality, and the failure modes before you write any code.</p>
+<h3 id="1-Frame-by-frame-super-resolution-RealESRGAN-and-relatives"><a href="#1-Frame-by-frame-super-resolution-RealESRGAN-and-relatives" class="headerlink" title="1. Frame-by-frame super-resolution (RealESRGAN and relatives)"></a>1. Frame-by-frame super-resolution (RealESRGAN and relatives)</h3><p>The most common approach: the video is split into frames, each frame is run through a super-resolution model, and the frames are re-encoded. <a target="_blank" rel="noopener" href="https://fal.ai/models/fal-ai/video-upscaler">fal’s video upscaler</a> states this directly — RealESRGAN applied per frame — and the same family powers <a target="_blank" rel="noopener" href="https://www.segmind.com/models/esrgan-video-upscaler">Segmind’s ESRGAN video upscaler</a> and <a target="_blank" rel="noopener" href="https://replicate.com/lucataco/real-esrgan-video">lucataco&#x2F;real-esrgan-video on Replicate</a>.</p>
+<p>Strengths: predictable output, low hallucination risk (the model adds texture but rarely fabricates content), cheap per frame at scale, and the underlying models are open weight so many providers host them. Weaknesses: each frame is processed independently, so temporal consistency is only as good as the model — flicker and shimmering are possible on fast motion; and the per-frame billing adds up on long clips.</p>
+<h3 id="2-Proprietary-enhancement-models-Topaz-style"><a href="#2-Proprietary-enhancement-models-Topaz-style" class="headerlink" title="2. Proprietary enhancement models (Topaz-style)"></a>2. Proprietary enhancement models (Topaz-style)</h3><p><a target="_blank" rel="noopener" href="https://www.topazlabs.com/api">Topaz Labs’ API</a> exposes the same models behind its desktop Video AI product — trained on large corpora of real footage, tuned for detail recovery and artifact reduction. <a target="_blank" rel="noopener" href="https://replicate.com/collections/ai-enhance-videos">Replicate hosts a topazlabs&#x2F;video-upscale model</a> with the same family name, and resellers such as Pixazo bundle “Topaz” as a named model tier.</p>
+<p>Strengths: the best detail recovery for real-world footage, strong motion handling from temporal processing, and a track record of studio use. Weaknesses: closed weights, premium pricing (credit-based, typically contact-sales for volume), and less control — you take the model’s notion of “better”.</p>
+<h3 id="3-Generative-diffusion-upscalers-Magnific-SeedVR2"><a href="#3-Generative-diffusion-upscalers-Magnific-SeedVR2" class="headerlink" title="3. Generative &#x2F; diffusion upscalers (Magnific, SeedVR2)"></a>3. Generative &#x2F; diffusion upscalers (Magnific, SeedVR2)</h3><p>A newer approach that uses diffusion or GAN-based generation to <em>add</em> detail that was not in the source. <a target="_blank" rel="noopener" href="https://docs.magnific.com/api-reference/video/video-upscaler/upscale-video">Magnific’s video upscaler</a> is the clearest example: its request body exposes <code>creativity</code>, <code>sharpen</code>, <code>smart_grain</code>, and <code>fps_boost</code> parameters, and it supports output resolutions from 720p up to 4K. Note that <code>fps_boost</code> is a frame-interpolation feature rather than a resolution one: the docs describe it as increasing the frame rate of the upscaled video — i.e., synthesizing intermediate frames between the originals, a separate axis from upscaling. SeedVR2 (resold by Pixazo and others) is in the same family.</p>
+<p>Strengths: can produce genuinely sharper, more “filmic” output than frame-by-frame models on soft footage, and the artistic controls let you tune the look. Weaknesses: generative models can invent detail (grain, texture, even structure) that changes the footage; output is less predictable; and per-request pricing is higher.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/video-upscale-architecture-comparison.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/video-upscale-architecture-comparison.png" alt="Three upscale API architectures compared: frame-by-frame RealESRGAN super-resolution, proprietary enhancement models, and generative diffusion upscalers, each feeding a different output profile" loading="lazy" />
+</picture>
+
+<p><em>The architecture determines the trade-off you are buying: predictably cheap (frame-by-frame), best detail on real footage (proprietary), or creative enhancement with generative risk (diffusion).</em></p>
+<h2 id="How-to-compare-upscale-APIs-pricing-inputs-outputs"><a href="#How-to-compare-upscale-APIs-pricing-inputs-outputs" class="headerlink" title="How to compare upscale APIs: pricing, inputs, outputs"></a>How to compare upscale APIs: pricing, inputs, outputs</h2><p>Vendor pages quote prices in incompatible units. Here is what you will actually see on the live docs of the providers ranking for this query:</p>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Billing unit</th>
+<th>Published rate (accessed Aug 12, 2026)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PiAPI (Qubico&#x2F;video-toolkit)</td>
+<td>per frame</td>
+<td>$0.0003&#x2F;frame</td>
+</tr>
+<tr>
+<td>fal (fal-ai&#x2F;video-upscaler)</td>
+<td>per megapixel</td>
+<td>$0.0008&#x2F;megapixel</td>
+</tr>
+<tr>
+<td>Topaz API</td>
+<td>credit per request</td>
+<td>from $0.12&#x2F;credit; volume tiers lower</td>
+</tr>
+<tr>
+<td>Modellix (pixverse&#x2F;upscale-video)</td>
+<td>per second of output</td>
+<td>$0.0403&#x2F;second</td>
+</tr>
+<tr>
+<td>Magnific</td>
+<td>per request</td>
+<td>pricing page, not per-minute</td>
+</tr>
+</tbody></table>
+<p>To compare them, convert everything to <strong>dollars per minute of source video</strong>. The math is simple but you must state your assumptions. For a 30-second clip at 30 fps (900 frames), source 720p (0.92 megapixels per frame), upscaled 2x:</p>
+<ul>
+<li><strong>PiAPI:</strong> 900 frames × $0.0003 &#x3D; <strong>$0.27</strong> per 30-second clip. PiAPI’s own docs give the same arithmetic: 60 frames × $0.0003 &#x3D; $0.018.</li>
+<li><strong>fal:</strong> 900 frames × 0.92 MP ≈ 829 megapixels × $0.0008 &#x3D; <strong>$0.66</strong> per clip.</li>
+<li><strong>Modellix:</strong> 30 seconds × $0.0403 &#x3D; <strong>$1.21</strong> per clip.</li>
+</ul>
+<p>This is a worked example with stated assumptions, not a quote — the numbers move with frame rate, source resolution, and current prices. But the exercise is the point: <strong>no two vendors quote the same unit, and anyone who promises “cheap 4K upscaling” without telling you the unit is hiding the comparison.</strong></p>
+<p>Input constraints matter more than price for most integrations, and they are the least documented part of every vendor page. The ones that break integrations on day one:</p>
+<table>
+<thead>
+<tr>
+<th>Constraint</th>
+<th>PiAPI</th>
+<th>fal</th>
+<th>Modellix (PixVerse)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Max input resolution</td>
+<td>720p (1280×720)</td>
+<td>not capped in docs; URL input</td>
+<td>not specified on model page</td>
+</tr>
+<tr>
+<td>Max file size</td>
+<td>10 MB (MP4 only)</td>
+<td>URL-based, no stated cap</td>
+<td>URL-based (via File API where needed)</td>
+</tr>
+<tr>
+<td>Scale factor</td>
+<td>2x only</td>
+<td><code>scale</code> parameter (e.g. 2, 4)</td>
+<td>provider-defined</td>
+</tr>
+<tr>
+<td>Output resolution</td>
+<td>resized to 720p&#x2F;1080p standard</td>
+<td>up to model capability</td>
+<td>“increases resolution and clarity”</td>
+</tr>
+</tbody></table>
+<p>PiAPI’s 720p input cap and 2x-only scale factor are the classic hidden limits: a “4K upscale” search that lands on PiAPI will not get 4K — its output tops out at 1080p. Meanwhile <a target="_blank" rel="noopener" href="https://www.topazlabs.com/api">Topaz advertises 4K-class output</a> and Magnific lists 720p&#x2F;1k&#x2F;2k&#x2F;4k output options. <strong>“4K” is a per-provider claim, not a category feature</strong> — verify the output contract before you promise resolution in your product.</p>
+<h2 id="Provider-snapshot-what-each-upscale-API-actually-offers"><a href="#Provider-snapshot-what-each-upscale-API-actually-offers" class="headerlink" title="Provider snapshot: what each upscale API actually offers"></a>Provider snapshot: what each upscale API actually offers</h2><ul>
+<li><strong>Topaz API</strong> — proprietary models from Topaz Video AI and Gigapixel. Credit-based: entry tier at $0.12&#x2F;credit, 1 credit covers a request at up to 24 MP output on the Enhance endpoint, larger outputs cost 2-16 credits. Try-without-credit-card onboarding; volume pricing via sales. Docs at <a target="_blank" rel="noopener" href="https://developer.topazlabs.com/">developer.topazlabs.com</a>.</li>
+<li><strong>fal.ai video-upscaler</strong> — RealESRGAN per frame, billed $0.0008&#x2F;megapixel, accepts a video URL (mp4, mov, webm, m4v, gif), <code>scale</code> parameter, async queue with status polling. Commercial use, schema and playground on the model page.</li>
+<li><strong>PiAPI</strong> — hosts a Qubico&#x2F;video-toolkit model, <code>task_type: &quot;upscale&quot;</code>, $0.0003&#x2F;frame, 720p-max input, MP4, 2x scale, webhook support. Good for short clips; the frame cap (10-240 frames per the formal spec) means roughly 0.3-8 seconds of 30 fps footage per task.</li>
+<li><strong>Replicate</strong> — not one model but a collection: <a target="_blank" rel="noopener" href="https://replicate.com/collections/ai-enhance-videos">runwayml&#x2F;upscale-v1</a> (up to 4x, 4K-class output for clips under 40 seconds), lucataco&#x2F;real-esrgan-video (MP4, cost&#x2F;quality balance), topazlabs&#x2F;video-upscale (premium), plus specialty models — pbarker&#x2F;gfpgan-video and zsxkib&#x2F;stable-video-face-restoration for faces, tencentarc&#x2F;animesr for anime. Per-second billing at the model level; check each model page.</li>
+<li><strong>Segmind</strong> — ESRGAN-based video upscaler model page with GAN-style artifact reduction; positioned for content creation, film restoration, and gaming footage.</li>
+<li><strong>Magnific</strong> — diffusion-based upscaler with <code>creativity</code>, <code>sharpen</code>, <code>smart_grain</code>, <code>fps_boost</code> controls, output resolutions 720p to 4K, plus a Turbo variant. Task list&#x2F;get endpoints and webhooks.</li>
+</ul>
+<p>Two of these families — frame-by-frame super-resolution and generative upscalers — overlap with other video-to-video processing you may already be running, such as <a href="https://www.modellix.ai/blog/video-extend-api">video extension APIs</a>. If you are building a pipeline that already generates clips, the upscale step is usually the last one, and its output contract (resolution, codec, aspect ratio) has to match your delivery target.</p>
+<h2 id="Integration-code-the-same-upscale-job-on-three-routes"><a href="#Integration-code-the-same-upscale-job-on-three-routes" class="headerlink" title="Integration code: the same upscale job on three routes"></a>Integration code: the same upscale job on three routes</h2><p>All of these APIs share one pattern: <strong>submit an async task, poll (or get a webhook), download the result</strong>. The differences are the endpoint, the auth header, and the input field.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/upscale-api-async-flow.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/upscale-api-async-flow.png" alt="Asynchronous video upscale API flow: submit video, receive task id, poll or webhook, then download the result" loading="lazy" />
+</picture>
+
+<p><em>Every provider in this guide follows the same async contract — only the endpoint, auth header, and status field names differ.</em></p>
+<p>Here is the same job — upscale a 30-second 720p clip 2x — on three routes.</p>
+<p><strong>fal.ai</strong> (submit to the queue, poll the request):</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST https://queue.fal.run/fal-ai/video-upscaler \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Key <span class="variable">$FAL_KEY</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;&quot;video&quot;: &#123;&quot;url&quot;: &quot;https://your-bucket/clip.mp4&quot;&#125;, &quot;scale&quot;: 2&#125;&#x27;</span></span><br><span class="line"><span class="comment"># → &#123;&quot;request_id&quot;: &quot;...&quot;&#125; — poll status until COMPLETED, then read video.url</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>PiAPI</strong> (submit a task, poll by task_id):</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">curl --location <span class="string">&#x27;https://api.piapi.ai/api/v1/task&#x27;</span> \</span><br><span class="line">  --header <span class="string">&#x27;x-api-key: YOUR_PIAPI_KEY&#x27;</span> \</span><br><span class="line">  --header <span class="string">&#x27;Content-Type: application/json&#x27;</span> \</span><br><span class="line">  --data <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;model&quot;: &quot;Qubico/video-toolkit&quot;,</span></span><br><span class="line"><span class="string">    &quot;task_type&quot;: &quot;upscale&quot;,</span></span><br><span class="line"><span class="string">    &quot;input&quot;: &#123;&quot;video&quot;: &quot;https://your-bucket/clip.mp4&quot;, &quot;resolution&quot;: &quot;1080p&quot;&#125;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br><span class="line"><span class="comment"># → &#123;&quot;task_id&quot;: &quot;...&quot;&#125; — poll GET /api/v1/task/&#123;task_id&#125; until done</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Modellix</strong> (aggregator route — the same async contract for every provider behind one key):</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST https://api.modellix.ai/api/v1/pixverse/upscale-video/async \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$MODELLIX_API_KEY</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;&quot;video&quot;: &quot;https://your-bucket/clip.mp4&quot;&#125;&#x27;</span></span><br><span class="line"><span class="comment"># → &#123;&quot;task_id&quot;: &quot;...&quot;&#125; — poll GET /api/v1/tasks/&#123;task_id&#125;, or set X-Webhook-URL</span></span><br></pre></td></tr></table></figure>
+
+<p>The polling loop is identical across providers; only the status shape differs:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests, time</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">wait_for_task</span>(<span class="params">get_url: <span class="built_in">str</span>, headers: <span class="built_in">dict</span>, timeout: <span class="built_in">int</span> = <span class="number">600</span></span>):</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(timeout // <span class="number">5</span>):</span><br><span class="line">        r = requests.get(get_url, headers=headers)</span><br><span class="line">        state = r.json().get(<span class="string">&quot;status&quot;</span>) <span class="keyword">or</span> r.json().get(<span class="string">&quot;state&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> state <span class="keyword">in</span> (<span class="string">&quot;succeeded&quot;</span>, <span class="string">&quot;completed&quot;</span>, <span class="string">&quot;SUCCEEDED&quot;</span>):</span><br><span class="line">            <span class="keyword">return</span> r.json()</span><br><span class="line">        <span class="keyword">if</span> state <span class="keyword">in</span> (<span class="string">&quot;failed&quot;</span>, <span class="string">&quot;FAILED&quot;</span>):</span><br><span class="line">            <span class="keyword">raise</span> RuntimeError(<span class="string">f&quot;task failed: <span class="subst">&#123;r.text&#125;</span>&quot;</span>)</span><br><span class="line">        time.sleep(<span class="number">5</span>)</span><br><span class="line">    <span class="keyword">raise</span> TimeoutError(<span class="string">&quot;task did not finish in time&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Three practical rules when integrating async video pipelines:</p>
+<ol>
+<li><strong>Host your input as a public URL.</strong> Every provider in this list accepts a video URL; only some accept direct uploads. A signed S3&#x2F;GCS URL that expires after the task completes is the standard pattern.</li>
+<li><strong>Set the webhook if the provider supports it.</strong> PiAPI, Modellix, Magnific, and fal’s queue all support webhook callbacks — one header (<code>X-Webhook-URL</code> on Modellix, a <code>webhook_config</code> block on PiAPI) removes the polling loop entirely.</li>
+<li><strong>Test with a 5-second clip first.</strong> Input caps (PiAPI’s 10 MB &#x2F; 10-240 frames), codec assumptions (MP4-only), and scale-factor limits surface in the first test run, not in the docs.</li>
+</ol>
+<h2 id="When-an-aggregator-route-makes-sense-and-when-it-doesn’t"><a href="#When-an-aggregator-route-makes-sense-and-when-it-doesn’t" class="headerlink" title="When an aggregator route makes sense (and when it doesn’t)"></a>When an aggregator route makes sense (and when it doesn’t)</h2><p>The same job can be run through an aggregator like Modellix, which proxies model providers behind one API key and one billing relationship. For the upscale use case specifically, the aggregator argument is a routing decision, not a quality decision:</p>
+<ul>
+<li><strong>One integration contract.</strong> The <code>POST /api/v1/&lt;provider&gt;/&lt;model&gt;/async</code> + task-poll pattern above is identical for PixVerse upscale, a video generator, an image model, or a lip-sync model. If your pipeline already calls Modellix for generation, adding <a href="https://www.modellix.ai/models/pixverse/upscale-video">the PixVerse Upscale Video route</a> is one more endpoint, not one more vendor.</li>
+<li><strong>One bill, per-call logs.</strong> Pay-as-you-go with per-call cost&#x2F;status logs beats juggling per-frame credit balances and per-megapixel meters across three accounts.</li>
+<li><strong>The trade-off is real.</strong> Provider-specific parameters sometimes get flattened in aggregation; brand-new models often land on the vendor’s own API first; and the per-call price includes the platform’s margin. For a single high-volume upscale workload, going direct to the cheapest per-minute provider (PiAPI at ~$0.27 per 30-second clip in the worked example above) can beat any aggregator on raw unit cost.</li>
+</ul>
+<p>Modellix is an aggregator and has a commercial interest in this comparison. The honest version of the argument: if you already use an aggregator for the rest of your media pipeline, routing upscale through it costs you nothing extra in integration work; if upscale is your entire workload, price the direct route too — the math above is exactly how.</p>
+<h2 id="Decision-framework-which-upscale-API-should-you-integrate"><a href="#Decision-framework-which-upscale-API-should-you-integrate" class="headerlink" title="Decision framework: which upscale API should you integrate?"></a>Decision framework: which upscale API should you integrate?</h2><table>
+<thead>
+<tr>
+<th>Your use case</th>
+<th>Best fit</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Archival footage &#x2F; film restoration</td>
+<td>Topaz API (or a premium reseller route)</td>
+<td>Best real-footage detail recovery; face models (GFPGAN-family) if people appear</td>
+</tr>
+<tr>
+<td>Upscaling AI-generated clips before delivery</td>
+<td>RealESRGAN route (fal, Segmind, Replicate)</td>
+<td>Predictable output, no invented detail, cheap per frame</td>
+</tr>
+<tr>
+<td>Batch UGC at high volume, cost-sensitive</td>
+<td>PiAPI or the cheapest per-minute route after normalization</td>
+<td>The per-frame&#x2F;per-second math dominates at scale</td>
+</tr>
+<tr>
+<td>Anime &#x2F; stylized content</td>
+<td>tencentarc&#x2F;animesr on Replicate</td>
+<td>Tuned for clean lines and flat colors</td>
+</tr>
+<tr>
+<td>Artistic enhancement with control</td>
+<td>Magnific</td>
+<td>Creativity&#x2F;sharpen&#x2F;grain parameters give you the look</td>
+</tr>
+<tr>
+<td>Mixed pipeline (generate + upscale + edit)</td>
+<td>Aggregator route (Modellix PixVerse upscale)</td>
+<td>One key, one async contract, one bill</td>
+</tr>
+</tbody></table>
+<p>Whichever route you pick, the discipline is the same: normalize the price to a per-minute figure with stated assumptions, verify the input caps against your source footage, and <strong>test before you promise a resolution</strong> — a “4K” claim on the vendor’s marketing page is not the same as a verified output contract for your input.</p>
+<p>For a deeper walkthrough of one specific route — endpoints, parameters, and the credit math — see our <a href="https://www.modellix.ai/blog/pixverse-video-upscale-api">PixVerse video upscale API guide</a>. For current prices across all models, the <a href="https://www.modellix.ai/pricing">Modellix pricing page</a> is updated continuously and searchable per model.</p>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p><strong>Is there a free AI video upscale API?</strong></p>
+<p>No major provider offers a free API tier. Topaz’s API onboarding is try-without-credit-card, and some platforms offer trial credits, but every upscale request consumes paid capacity — free trials live on consumer apps, not on the API endpoints. Budget a test clip instead.</p>
+<p><strong>Which video upscale API guarantees 4K output?</strong></p>
+<p>None of them guarantee it for arbitrary input. Topaz and Magnific support 4K-class output; PiAPI caps output at 1080p; PixVerse’s upscale improves resolution without publishing a fixed output resolution. The guarantee depends on the model, the source, and the parameters — verify per request.</p>
+<p><strong>How much does it cost to upscale one minute of video?</strong></p>
+<p>It depends on the billing unit and frame rate. Using the worked example above (30 fps, 720p source, 2x): PiAPI ≈ $0.54&#x2F;minute, fal ≈ $1.32&#x2F;minute, Modellix PixVerse ≈ $2.42&#x2F;minute. Re-run the arithmetic with your own frame rate and resolution before budgeting.</p>
+<p><strong>What input does a video upscale API accept?</strong></p>
+<p>A publicly accessible video URL in MP4 (most providers), with provider-specific caps on resolution, file size, and duration — PiAPI is the strictest at 720p input, 10 MB, 10-240 frames, MP4 only.</p>
+<p><strong>Topaz API vs RealESRGAN — which is better?</strong></p>
+<p>Topaz is better on real-world footage with compression artifacts and motion; RealESRGAN routes are cheaper, more predictable, and fine for clean AI-generated clips. Choose by footage type, not by brand.</p>
+<p><strong>Can I upscale video without quality loss?</strong></p>
+<p>No — upscaling always adds inferred pixels. The goal is <em>acceptable</em> loss: better models add less visible artifact. There is no lossless 4K upscale; if a vendor implies otherwise, that is marketing.</p>
+<hr>
+<p><em>Provider facts in this guide were read from the live official pages on August 12, 2026: <a target="_blank" rel="noopener" href="https://www.topazlabs.com/api">Topaz API</a>, <a target="_blank" rel="noopener" href="https://fal.ai/models/fal-ai/video-upscaler">fal video-upscaler</a>, <a target="_blank" rel="noopener" href="https://piapi.ai/docs/tools/video-upscale-api">PiAPI video upscale docs</a>, <a target="_blank" rel="noopener" href="https://replicate.com/collections/ai-enhance-videos">Replicate AI-enhance-videos collection</a>, <a target="_blank" rel="noopener" href="https://www.segmind.com/models/esrgan-video-upscaler">Segmind ESRGAN video upscaler</a>, <a target="_blank" rel="noopener" href="https://docs.magnific.com/api-reference/video/video-upscaler/upscale-video">Magnific video upscaler docs</a>, and <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api">Modellix’s API documentation</a>. Pricing, input limits, and model availability change without notice; this article is a dated guide, not a quote. Modellix is an AI model API aggregator and has a commercial interest in the aggregator discussion above.</em></p>
+<p><em>Cover image: illustrative Modellix artwork; it is not a vendor product screenshot or source evidence.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
+            
+              <a href="/blog/tags/Video-Upscaling/" class="tag-pill tag-pill--sm">Video Upscaling</a>
+            
+              <a href="/blog/tags/Integration/" class="tag-pill tag-pill--sm">Integration</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/ai-motion-control-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-ai-motion-control-api.webp" alt="AI Motion Control API: Kling, PixVerse &amp; More" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">API Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">AI Motion Control API: Kling, PixVerse &amp; More</h3>
+          <time class="related-article-date" datetime="2026-08-12T02:00:00.000Z">August 12, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/imagen-4-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-imagen-4-api.webp" alt="Imagen 4 API: Aggregators, Pricing &amp; the Shutdown" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">API Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Imagen 4 API: Aggregators, Pricing &amp; the Shutdown</h3>
+          <time class="related-article-date" datetime="2026-08-10T16:00:00.000Z">August 11, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/video-restyle-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-video-restyle-api.webp" alt="Video Restyle API: Restyle Existing Video via API" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">API Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Video Restyle API: Restyle Existing Video via API</h3>
+          <time class="related-article-date" datetime="2026-08-07T02:00:00.000Z">August 7, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/ai-video-upscale-api/&text=AI%20Video%20Upscale%20API%3A%20Multi-Provider%20Integration%20Guide" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/ai-video-upscale-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/ai-video-upscale-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

@@ -1,0 +1,639 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Motion Control API: Kling, PixVerse &amp; More — Modellix Blog</title>
+  <meta name="description" content="What an AI motion control API is, how Kling, PixVerse, and Vidu motion endpoints work, live per-second pricing as of August 2026, and a Python template.">
+  <meta name="keywords" content="ai motion control api, motion control api, kling motion control api, pixverse motion control, vidu motion sync, wan 2.2 motion control, motion transfer api">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/ai-motion-control-api/">
+  <meta name="description" content="What an AI motion control API is, how Kling, PixVerse, and Vidu motion endpoints work, live per-second pricing as of August 2026, and a Python template.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI Motion Control API: Kling, PixVerse &amp; More — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/ai-motion-control-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="What an AI motion control API is, how Kling, PixVerse, and Vidu motion endpoints work, live per-second pricing as of August 2026, and a Python template.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-ai-motion-control-api.webp">
+<meta property="article:published_time" content="2026-08-12T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-12T02:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video API">
+<meta property="article:tag" content="Integration Guide">
+<meta property="article:tag" content="Motion Control">
+<meta property="article:tag" content="Pricing">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-ai-motion-control-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"AI Motion Control API: Kling, PixVerse & More","description":"What an AI motion control API is, how Kling, PixVerse, and Vidu motion endpoints work, live per-second pricing as of August 2026, and a Python template.","datePublished":"2026-08-12T02:00:00.000Z","dateModified":"2026-08-12T02:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/ai-motion-control-api/","image":"https://img.modellix.ai/en/article/cover-ai-motion-control-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">AI Motion Control API: Kling, PixVerse &amp; More</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/API-Guides/" class="category-tag category-tag--sm">API Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">AI Motion Control API: Kling, PixVerse &amp; More</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-12T02:00:00.000Z">August 12, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Motion-Control/" class="tag-pill tag-pill--sm">Motion Control</a>
+            
+              <a href="/blog/tags/Integration-Guide/" class="tag-pill tag-pill--sm">Integration Guide</a>
+            
+              <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x-38ede26c.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>If you searched for &#39;ai motion control api,&#39; you are probably looking at a video model&#39;s marketing page that shows a character dancing exactly like the person in a reference clip.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-ai-motion-control-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-ai-motion-control-api.png" alt="Dark amber editorial cover with the MODELLIX wordmark, the two-line title AI Motion Control API, and a motion-transfer pipeline graphic" />
+</picture>
+
+<p>If you searched for “ai motion control api,” you are probably looking at a video model’s marketing page that shows a character dancing exactly like the person in a reference clip. At the API level, that feature is one repeated pattern across providers: a <strong>motion control API</strong> takes a still character image plus a reference video, extracts the motion from the video, and renders a new clip where the character reproduces that motion. Kling, PixVerse, and Vidu all expose it, and their endpoints differ in a small set of fields that determine what you can build and what it costs.</p>
+<p>This guide covers the category, not one vendor: what motion control actually means in a video generation API, the shared endpoint contract, per-provider parameters (Kling, PixVerse, Vidu, and why Wan is different), a like-for-like pricing table pulled from live pages on August 12, 2026, and a Python template you adapt to your provider. Modellix, where this article lives, is an AI media API aggregator and has a commercial interest in the route comparison at the end — the numbers are presented so you can check them yourself.</p>
+<h2 id="What-“motion-control”-means-in-a-video-generation-API"><a href="#What-“motion-control”-means-in-a-video-generation-API" class="headerlink" title="What “motion control” means in a video generation API"></a>What “motion control” means in a video generation API</h2><p>Motion control is motion transfer: the API analyzes the motion sequence in a reference clip and rebuilds it on a target character image, with pose alignment and frame-consistent rendering. If you see “motion transfer API” instead of “motion control API,” it is the same pattern under another name. Kling’s <a target="_blank" rel="noopener" href="https://kling.ai/document-api/api/video/motion-control">official Motion Control API documentation</a> describes exactly this workflow — a reference video drives the character in your image. PixVerse calls the same capability Motion Control (Mimic) in its <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/motion-controlmimic-1982936m0">official Motion Control guide</a>.</p>
+<p>Three things motion control is <strong>not</strong>, because the same term gets used for them in consumer apps:</p>
+<ul>
+<li><strong>Camera control.</strong> Camera behavior inside generation (focal length, pan, aperture) is a separate capability. PixVerse V6 markets “over 20 cinematic camera controls”; Kling has its own camera-move parameters. Neither is motion transfer.</li>
+<li><strong>Motion brush &#x2F; region painting.</strong> Some tools let you paint which parts of an image should move. That is a different mechanism from reference-video transfer.</li>
+<li><strong>A generic “animate this image” model.</strong> Plain image-to-video (I2V) generates motion from a prompt or a single frame; motion control replaces prompt-driven motion with motion copied from a video. For the general I2V category, our <a href="https://www.modellix.ai/blog/image-to-video-api/">image-to-video API guide</a> is the better starting point.</li>
+</ul>
+<p>Two hard constraints are shared across providers: the subject image must contain a clear person or animal, and the reference video must have a person as the primary focus performing the motion. Requests that violate either are rejected before generation — and before any charge.</p>
+<h2 id="The-endpoint-contract-every-motion-control-API-shares"><a href="#The-endpoint-contract-every-motion-control-API-shares" class="headerlink" title="The endpoint contract every motion-control API shares"></a>The endpoint contract every motion-control API shares</h2><p>Strip away the vendor names and motion-control endpoints are the same four inputs plus an asynchronous lifecycle:</p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>What it is</th>
+<th>Typical limits</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Character image</td>
+<td>The still whose appearance is preserved</td>
+<td>jpg&#x2F;png, ~10 MB, clear subject</td>
+</tr>
+<tr>
+<td>Reference video</td>
+<td>The clip whose motion is copied</td>
+<td>mp4&#x2F;mov, ~100 MB, 3–30 s</td>
+</tr>
+<tr>
+<td>Resolution &#x2F; quality</td>
+<td>Output tier</td>
+<td>360p–1080p depending on provider</td>
+</tr>
+<tr>
+<td>Orientation &#x2F; mode</td>
+<td>Whether the character follows the video’s facing or keeps its own</td>
+<td>“image” vs “video” on Kling</td>
+</tr>
+</tbody></table>
+<p>Two variations matter before you write any code. First, <strong>prompt handling differs</strong>: Kling’s motion control accepts a prompt to steer style and atmosphere, while PixVerse’s Mimic request body has no prompt field at all — motion comes entirely from the reference clip. Second, <strong>output duration is usually derived from the reference video</strong> (and capped), not chosen by you: Kling caps the video-orientation mode at 30 seconds and the image-orientation mode at 10 seconds, and PixVerse output duration always equals the reference video’s length.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/motion-control-pipeline.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/motion-control-pipeline.png" alt="Diagram of a motion control API pipeline: a character image and a reference video feed the API, which outputs a new video" loading="lazy" />
+</picture>
+
+<p><em>The motion control API flow: character image + reference video in, extracted motion transferred to the character, output video out. Illustration for this guide; not an official vendor diagram.</em></p>
+<p>All of these are asynchronous jobs. The lifecycle is always submit → poll → retrieve: you post the job, poll a status endpoint, and download the video when the status reaches a terminal state. Billing is per second of output, tiered by resolution. That lifecycle is the same shape whether you call one provider directly or a unified API layer.</p>
+<h2 id="Kling-motion-control-API-endpoints-and-parameters"><a href="#Kling-motion-control-API-endpoints-and-parameters" class="headerlink" title="Kling motion control API: endpoints and parameters"></a>Kling motion control API: endpoints and parameters</h2><p>Kling’s motion control is the most widely routed capability on this SERP, available in 2.6 and 3.0 variants through Kling’s official docs and through aggregators. The parameter surface is visible in the live schema of <a target="_blank" rel="noopener" href="https://fal.ai/models/fal-ai/kling-video/v2.6/standard/motion-control">fal.ai’s Kling 2.6 Motion Control page</a>. <a target="_blank" rel="noopener" href="https://kie.ai/kling-2.6-motion-control">kie.ai’s Kling 2.6 Motion Control page</a> mirrors the same endpoint:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>prompt</code></td>
+<td>string</td>
+<td>Style&#x2F;atmosphere guidance (optional on some routes; ≤2,500 chars on kie’s schema)</td>
+</tr>
+<tr>
+<td><code>image</code> &#x2F; <code>input_urls</code></td>
+<td>URL or file</td>
+<td>Character image, jpg&#x2F;png, ~10 MB</td>
+</tr>
+<tr>
+<td><code>video</code> &#x2F; <code>video_urls</code></td>
+<td>URL or file</td>
+<td>Reference video, mp4&#x2F;mov, ~100 MB, 3–30 s</td>
+</tr>
+<tr>
+<td><code>character_orientation</code></td>
+<td>enum</td>
+<td><code>&quot;image&quot;</code>: character keeps its own facing, max ~10 s output; <code>&quot;video&quot;</code>: matches the reference performer, max ~30 s</td>
+</tr>
+<tr>
+<td><code>mode</code></td>
+<td>enum</td>
+<td><code>720p</code> (standard) or <code>1080p</code> (pro) on kie’s schema</td>
+</tr>
+</tbody></table>
+<p>Orientation is the field that surprises integrators: choose <code>image</code> when you want the character’s original pose and facing preserved (short clips), <code>video</code> when the character should follow the performer’s direction (longer clips, dance and action sequences). Some Kling motion-control versions also preserve the reference clip’s audio and accept stylized characters (anime, 3D renders), per <a target="_blank" rel="noopener" href="https://www.segmind.com/models/kling-2.6-pro-motion-control">Segmind’s Kling Pro Motion Control page</a>.</p>
+<p>Kling prices by resolution and route: fal.ai lists its 2.6 Standard motion control at <strong>$0.07 per second</strong>, and kie.ai lists 11 credits&#x2F;s (<del><strong>$0.055&#x2F;s</strong>) for 720p and 18 credits&#x2F;s (</del><strong>$0.09&#x2F;s</strong>) for 1080p at its published credit rate. For the broader Kling API price surface — including v3 generation routes — see our <a href="https://www.modellix.ai/blog/kling-api-pricing/">Kling API pricing guide</a>.</p>
+<h2 id="PixVerse-Motion-Control-API-credits-not-dollars"><a href="#PixVerse-Motion-Control-API-credits-not-dollars" class="headerlink" title="PixVerse Motion Control API: credits, not dollars"></a>PixVerse Motion Control API: credits, not dollars</h2><p>PixVerse’s Motion Control (Mimic) is the same motion-transfer pattern with a different billing model. The official Motion Control guide defines the request body with three fields: <code>video_media_id</code> (the uploaded reference video), <code>img_id</code> (the uploaded subject image), and <code>quality</code> — which accepts exactly <code>360p</code>, <code>540p</code>, or <code>720p</code>. <strong>PixVerse does not offer 1080p for Motion Control</strong>, a fact that several how-to pages get wrong. Requests hit <code>https://app-api.pixverse.ai/openapi/v2/</code> with two required headers: <code>API-KEY</code> and <code>Ai-Trace-Id</code>, which must be unique for every request.</p>
+<p>PixVerse bills in <strong>credits per second of output</strong>, and the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/pricing-796039m0">official Pricing page</a> lists three tiers: 9 credits&#x2F;s (360p), 10 credits&#x2F;s (540p), and 12 credits&#x2F;s (720p). At the $10-per-1,000-credits buy rate, that is $0.09, $0.10, and $0.12 per second. Two billing details matter: a generation that fails content moderation (status 7) is refunded automatically, and a request rejected during validation never deducts credits. For the rest of the PixVerse API surface — text-to-video, image-to-video, reference-to-video, effects — our <a href="https://www.modellix.ai/blog/pixverse-api/">PixVerse API integration guide</a> covers the wider picture.</p>
+<h2 id="Vidu-motion-sync-and-how-Wan-handles-motion"><a href="#Vidu-motion-sync-and-how-Wan-handles-motion" class="headerlink" title="Vidu motion-sync, and how Wan handles motion"></a>Vidu motion-sync, and how Wan handles motion</h2><p>Two more providers complete the category picture — Vidu with a dedicated motion-sync route, and Wan with a split between prompt-driven image-to-video and a dedicated motion route.</p>
+<p><strong>Vidu</strong> exposes a motion-transfer route named <code>motion-sync</code> on Modellix: it takes a target character image (<code>image_url</code>) and a reference motion video (<code>video_url</code>), preserves the character’s appearance, and applies the reference body movements and poses. The <a href="https://www.modellix.ai/models/vidu/motion-sync">Vidu motion-sync model page</a> currently lists it at <strong>$0.0460 per second</strong>. Vidu’s <a target="_blank" rel="noopener" href="https://platform.vidu.com/docs">official platform documentation</a> organizes the API around Reference2Video, Image2Video, Start-End2Video, and Text2Video — motion transfer is not yet a headline capability in those docs, so treat the route as the practical way to get Vidu-style motion transfer today. For the rest of the Vidu Q2 surface, see our <a href="https://www.modellix.ai/blog/vidu-q2-api/">Vidu Q2 API guide</a>.</p>
+<p><strong>Wan</strong> shows how the same family splits into two contracts. Alibaba’s Wan 2.2 image-to-video routes steer motion through the prompt — the <code>prompt</code> field is described as “motion and style guidance” — so they are not motion-control endpoints in the reference-video sense. Wan’s dedicated motion route on Modellix is <a href="https://www.modellix.ai/models/alibaba/wan2.2-animate-move"><code>wan2.2-animate-move</code></a>: it takes the same motion-control inputs — a character image (<code>image_url</code>) plus a reference motion video (<code>video_url</code>, 2–30 s) — with <code>wan-std</code> ($0.0744&#x2F;s) and <code>wan-pro</code> ($0.1115&#x2F;s) modes. The honest split is: Wan’s I2V routes steer motion by prompt, while its dedicated motion route is animate-move. One caveat: the vendor flags <code>wan2.2-animate-move</code> as a legacy model (“Do NOT use this for new creations … maintained for backward compatibility”) — for new builds, route to a current Wan reference-to-video model such as Wan 2.7 Video Editing unless you explicitly need animate-move’s behavior. Our <a href="https://www.modellix.ai/blog/wan-2-2-api/">Wan 2.2 API guide</a> documents the actual request fields.</p>
+<h2 id="Motion-control-API-pricing-a-like-for-like-table"><a href="#Motion-control-API-pricing-a-like-for-like-table" class="headerlink" title="Motion control API pricing: a like-for-like table"></a>Motion control API pricing: a like-for-like table</h2><p>Comparing these providers requires converting everything to the same unit. The table below uses <strong>US dollars per second of output at the published quality tiers</strong>, converted from live sources accessed on August 12, 2026:</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th align="right">Quality tier</th>
+<th align="right">$ per second</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>fal.ai — Kling 2.6 Motion Control (Standard)</td>
+<td align="right">standard</td>
+<td align="right">$0.07</td>
+<td>fal.ai model page</td>
+</tr>
+<tr>
+<td>kie.ai — Kling 2.6 Motion Control</td>
+<td align="right">720p</td>
+<td align="right">~$0.055</td>
+<td><a target="_blank" rel="noopener" href="https://kie.ai/kling-2.6-motion-control">kie.ai model page</a></td>
+</tr>
+<tr>
+<td>kie.ai — Kling 2.6 Motion Control</td>
+<td align="right">1080p</td>
+<td align="right">~$0.09</td>
+<td>same</td>
+</tr>
+<tr>
+<td>PixVerse official (Mimic)</td>
+<td align="right">360p</td>
+<td align="right">$0.09</td>
+<td><a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/pricing-796039m0">PixVerse pricing docs</a> + credit buy rate</td>
+</tr>
+<tr>
+<td>PixVerse official (Mimic)</td>
+<td align="right">540p</td>
+<td align="right">$0.10</td>
+<td>same</td>
+</tr>
+<tr>
+<td>PixVerse official (Mimic)</td>
+<td align="right">720p</td>
+<td align="right">$0.12</td>
+<td>same</td>
+</tr>
+<tr>
+<td>Modellix — <code>pixverse/motion-control</code></td>
+<td align="right">360p</td>
+<td align="right">$0.0725</td>
+<td><a href="https://www.modellix.ai/models/pixverse/motion-control">Modellix model page</a></td>
+</tr>
+<tr>
+<td>Modellix — <code>pixverse/motion-control</code></td>
+<td align="right">720p</td>
+<td align="right">$0.0966</td>
+<td>same</td>
+</tr>
+<tr>
+<td>Modellix — <code>vidu/motion-sync</code></td>
+<td align="right">—</td>
+<td align="right">$0.0460</td>
+<td><a href="https://www.modellix.ai/models/vidu/motion-sync">Modellix model page</a></td>
+</tr>
+<tr>
+<td>Modellix — <code>wan2.2-animate-move</code></td>
+<td align="right">wan-std</td>
+<td align="right">$0.0744</td>
+<td><a href="https://www.modellix.ai/models/alibaba/wan2.2-animate-move">Modellix model page</a></td>
+</tr>
+<tr>
+<td>Modellix — <code>wan2.2-animate-move</code></td>
+<td align="right">wan-pro</td>
+<td align="right">$0.1115</td>
+<td>same</td>
+</tr>
+</tbody></table>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/motion-control-cost-comparison.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/motion-control-cost-comparison.png" alt="Bar chart comparing motion control API cost per second across Kling, PixVerse, and Modellix routes as of August 2026" loading="lazy" />
+</picture>
+
+<p><em>Per-second cost converted from each source’s published unit, accessed August 12, 2026. PixVerse credits converted at the $0.01&#x2F;credit buy rate; kie.ai credits at its published ~$0.005&#x2F;credit rate. PixVerse membership plans and aggregator top-up bonuses change the effective rate; this chart is the pay-as-you-go baseline.</em></p>
+<p>A few honest caveats before you budget: PixVerse’s official figures assume the $10-per-1,000-credits rate, and its membership plans lower the effective cost per credit; kie.ai’s effective price drops further with high-tier top-up bonuses; and Modellix prices are per-route displays that can change. The one stable conclusion is the shape of the market — motion transfer is a per-second product, and the spread across routes is roughly $0.046–$0.12 per second, so a 5-second clip costs between $0.23 and $0.60 depending on route and resolution.</p>
+<h2 id="Calling-a-motion-control-API-a-unified-Python-flow"><a href="#Calling-a-motion-control-API-a-unified-Python-flow" class="headerlink" title="Calling a motion control API: a unified Python flow"></a>Calling a motion control API: a unified Python flow</h2><p>The submit → poll → retrieve pattern below is a template — wire <code>create_fn</code>, <code>poll_fn</code>, and <code>fetch_video</code> to your provider’s endpoints. The request bodies follow the verified field names from the provider schemas above; adapt the two headers and the status codes to your provider’s docs.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="comment"># Template — wire these three helpers to your provider&#x27;s endpoints:</span></span><br><span class="line"><span class="comment">#   create_fn(job)      -&gt; job_id        e.g. POST /motion-control/generate</span></span><br><span class="line"><span class="comment">#   poll_fn(job_id)     -&gt; status string e.g. GET /motion-control/result/&#123;id&#125;</span></span><br><span class="line"><span class="comment">#   fetch_video(job_id) -&gt; video bytes   download the finished output</span></span><br><span class="line">JOB = &#123;</span><br><span class="line">    <span class="string">&quot;image_url&quot;</span>: <span class="string">&quot;https://cdn.example.com/character.png&quot;</span>,   <span class="comment"># clear person/animal</span></span><br><span class="line">    <span class="string">&quot;video_url&quot;</span>: <span class="string">&quot;https://cdn.example.com/dance_ref.mp4&quot;</span>,   <span class="comment"># person as primary focus</span></span><br><span class="line">    <span class="string">&quot;quality&quot;</span>: <span class="string">&quot;720p&quot;</span>,                                       <span class="comment"># provider-specific enum</span></span><br><span class="line">    <span class="string">&quot;orientation&quot;</span>: <span class="string">&quot;video&quot;</span>,                                  <span class="comment"># Kling-style; omit if unsupported</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">submit_and_wait</span>(<span class="params">create_fn, poll_fn, job, timeout=<span class="number">900</span></span>):</span><br><span class="line">    job_id = create_fn(job)          <span class="comment"># POST /motion-control/generate</span></span><br><span class="line">    start = time.time()</span><br><span class="line">    <span class="keyword">while</span> time.time() - start &lt; timeout:</span><br><span class="line">        status = poll_fn(job_id)     <span class="comment"># GET /motion-control/result/&#123;id&#125;</span></span><br><span class="line">        <span class="keyword">if</span> status == <span class="string">&quot;succeeded&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> fetch_video(job_id)</span><br><span class="line">        <span class="keyword">if</span> status <span class="keyword">in</span> (<span class="string">&quot;failed&quot;</span>, <span class="string">&quot;rejected&quot;</span>):</span><br><span class="line">            <span class="keyword">raise</span> RuntimeError(<span class="string">f&quot;job <span class="subst">&#123;job_id&#125;</span> ended with <span class="subst">&#123;status&#125;</span>&quot;</span>)</span><br><span class="line">        time.sleep(<span class="number">5</span>)                <span class="comment"># docs recommend 3-5s between polls</span></span><br><span class="line">    <span class="keyword">raise</span> TimeoutError(<span class="string">&quot;generation did not finish in time&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Three practices separate working integrations from flaky ones. <strong>Generate a fresh request ID per call</strong> — PixVerse’s docs explicitly call out reused <code>Ai-Trace-Id</code> values as the most common cause of jobs hanging in “Generating.” <strong>Normalize provider states into your own enum</strong> (<code>queued</code>, <code>running</code>, <code>succeeded</code>, <code>failed</code>) so your pipeline code doesn’t depend on each vendor’s numeric codes. <strong>Store the job ID plus your internal request ID together</strong> — that turns “why is this job stuck” into a two-line lookup instead of a hunt through logs.</p>
+<p>The same lifecycle is what an aggregator exposes: one submit&#x2F;poll&#x2F;retrieve shape across the providers above, which is why a single integration can reach Kling-style routes, PixVerse Mimic, and Vidu motion-sync without a per-vendor client. For a broader view of the API landscape this pattern applies to, our <a href="https://www.modellix.ai/blog/best-ai-video-generation-apis-2026/">best AI video generation APIs roundup</a> compares the surrounding options.</p>
+<h2 id="Common-errors-and-how-to-debug-them"><a href="#Common-errors-and-how-to-debug-them" class="headerlink" title="Common errors and how to debug them"></a>Common errors and how to debug them</h2><p>The failures that stall motion-control integrations come from a short list:</p>
+<ul>
+<li><strong>Validation rejects your inputs.</strong> Image without a clear person&#x2F;animal, or reference video without a person as the primary focus — the request is rejected before generation and before any charge. Fix the asset, not the request.</li>
+<li><strong>Job stuck in “Generating.”</strong> The most common cause is a reused request&#x2F;trace ID. Generate a fresh UUID per request and retry.</li>
+<li><strong>Duration caps you didn’t plan for.</strong> Kling’s <code>image</code> orientation caps output near 10 seconds while <code>video</code> orientation allows up to 30. If your output must be 25 seconds, the reference orientation determines whether that is possible at all.</li>
+<li><strong>Unsupported resolution.</strong> PixVerse Mimic accepts only 360p&#x2F;540p&#x2F;720p — requesting 1080p fails validation. Check the enum before submitting, not after.</li>
+<li><strong>Content moderation failure.</strong> Output filtered; PixVerse refunds the credits automatically. Adjust the subject or reference content and resubmit.</li>
+<li><strong>Concurrent job limits.</strong> Providers cap parallel jobs per account; queue submissions server-side.</li>
+</ul>
+<h2 id="Motion-control-through-an-aggregator-when-it-makes-sense"><a href="#Motion-control-through-an-aggregator-when-it-makes-sense" class="headerlink" title="Motion control through an aggregator: when it makes sense"></a>Motion control through an aggregator: when it makes sense</h2><p>If your product calls exactly one motion-control endpoint, calling the provider directly is straightforward once the flow above is in place. The aggregator question is about the rest of your stack. Modellix currently exposes three live motion routes — <code>pixverse/motion-control</code> at $0.0725–$0.0966 per second, <code>wan2.2-animate-move</code> at $0.0744–$0.1115 per second (vendor-flagged legacy; backward-compatible, not for new builds), and <code>vidu/motion-sync</code> at $0.0460 per second — behind one API key, one bill, and one request lifecycle, alongside image and video models from 12 model brands (7 upstream providers) on the same platform.</p>
+<p>Disclosure first, because the numbers matter: on today’s figures the Modellix <code>pixverse/motion-control</code> route displays <strong>below</strong> the official credit equivalent at every tier (720p: $0.0966&#x2F;s vs $0.12&#x2F;s at the standard credit rate) — but that comparison assumes the $0.01&#x2F;credit buy rate, and PixVerse membership plans lower the official effective rate below it. The honest case for the aggregator is not “always cheaper”; it is one key, one bill, and one request lifecycle across providers, pay-as-you-go without prepaid credit balances. The <code>vidu/motion-sync</code> route is the lowest per-second line on this table either way. If your only workload is one motion route at volume, compare the direct route too — membership pricing can beat any aggregator display; if you route several video and image models through one integration, the trade-off flips. Compare routes only when model, quality, and billing unit match.</p>
+<div style="display:flex; gap:12px; flex-wrap:wrap; margin:24px 0;">
+  <a href="https://modellix.ai/console/api-key" class="btn btn-primary" target="_blank" rel="noopener" style="color:#ffffff; text-decoration:none;">Run a Multi-Model Test</a>
+  <a href="https://docs.modellix.ai/get-started/pricing" class="btn btn-secondary" target="_blank" rel="noopener" style="color:#1a1a2e; text-decoration:none;">Compare Live Pricing</a>
+</div>
+
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p><strong>What is an AI motion control API?</strong></p>
+<p>A motion control API transfers motion from a reference video onto a still character image: you provide a character image and a clip of someone moving, and the API generates a new video where the character reproduces the reference motion. Kling, PixVerse (Motion Control &#x2F; Mimic), and Vidu (motion-sync) all expose this pattern; it is billed per second of output.</p>
+<p><strong>Is there a free motion control API?</strong></p>
+<p>No provider in this guide offers a free API tier. Consumer apps (like imagine.art) give away daily credits for their web tools, and PixVerse membership plans lower the effective cost per credit, but API access is paid, per second of output. Treat “free motion control” content as referring to consumer apps, not API endpoints.</p>
+<p><strong>Is there a real-time motion control AI available?</strong></p>
+<p>No — every motion control API in this guide is an asynchronous batch job. You submit the request, poll a status endpoint (typically every 3–5 seconds), and retrieve the video when it finishes. None of the providers covered here offers sub-second synchronous motion transfer at API level today.</p>
+<p><strong>Does Kling 3.0 have motion control, and how does it differ from 2.6?</strong></p>
+<p>Yes — Kling markets Motion Control in both 2.6 and 3.0 variants; aggregators list 3.0 motion control alongside the 2.6 routes. The core contract (image + reference video + orientation + mode) is the same; check the specific model page for resolution caps and per-second price, because 2.6 and 3.0 are priced separately.</p>
+<p><strong>What does the PixVerse motion control API cost?</strong></p>
+<p>Motion Control (Mimic) costs 9, 10, or 12 credits per second of output for 360p, 540p, and 720p respectively. At the $10-per-1,000-credits buy rate that is $0.09, $0.10, and $0.12 per second. PixVerse does not offer 1080p for this capability.</p>
+<p><strong>Does Wan have a motion control API?</strong></p>
+<p>Yes — on Modellix, Wan’s dedicated motion-transfer route is <code>wan2.2-animate-move</code>: a character image plus a reference motion video (2–30 s), with <code>wan-std</code> and <code>wan-pro</code> modes. Wan’s image-to-video routes are a different contract — they steer motion through the prompt (“motion and style guidance”) rather than a reference clip. If you need exact motion replication from a clip, use the animate-move route (vendor-flagged legacy — for new builds prefer a current reference-to-video route such as Wan 2.7 Video Editing) or Kling, PixVerse, or Vidu; if prompt-level motion is enough, Wan’s I2V routes work too.</p>
+<p><strong>Which motion control API is the cheapest?</strong></p>
+<p>At the pay-as-you-go baseline accessed August 12, 2026, the lowest per-second figure in this guide is the Modellix <code>vidu/motion-sync</code> route at $0.0460&#x2F;s, followed by kie.ai’s Kling 2.6 720p at ~$0.055&#x2F;s and fal.ai’s Kling 2.6 Standard at $0.07&#x2F;s. PixVerse direct is $0.09&#x2F;s at 360p at the standard credit rate. Effective prices shift with membership plans, top-up bonuses, and route availability — check the live source before committing budget.</p>
+<hr>
+<p><em>Provider details and pricing reflect public information as of August 2026 and change frequently. Validate against each provider’s live pricing before committing. Access image and video models, including the leading Chinese models, through a single API key at <a href="https://www.modellix.ai/">modellix.ai</a>.</em></p>
+<p><em>Cover image: illustrative Modellix artwork; it is not a product screenshot or source evidence.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Motion-Control/" class="tag-pill tag-pill--sm">Motion Control</a>
+            
+              <a href="/blog/tags/Integration-Guide/" class="tag-pill tag-pill--sm">Integration Guide</a>
+            
+              <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/ai-video-upscale-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-ai-video-upscale-api.webp" alt="AI Video Upscale API: Multi-Provider Integration Guide" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">API Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">AI Video Upscale API: Multi-Provider Integration Guide</h3>
+          <time class="related-article-date" datetime="2026-08-12T02:00:00.000Z">August 12, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/imagen-4-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-imagen-4-api.webp" alt="Imagen 4 API: Aggregators, Pricing &amp; the Shutdown" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">API Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Imagen 4 API: Aggregators, Pricing &amp; the Shutdown</h3>
+          <time class="related-article-date" datetime="2026-08-10T16:00:00.000Z">August 11, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/video-restyle-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-video-restyle-api.webp" alt="Video Restyle API: Restyle Existing Video via API" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">API Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Video Restyle API: Restyle Existing Video via API</h3>
+          <time class="related-article-date" datetime="2026-08-07T02:00:00.000Z">August 7, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/ai-motion-control-api/&text=AI%20Motion%20Control%20API%3A%20Kling%2C%20PixVerse%20%26%20More" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/ai-motion-control-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/ai-motion-control-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
