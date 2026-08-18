@@ -1,0 +1,558 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kling 3.0 API: Integration Guide, Pricing &amp; Code — Modellix Blog</title>
+  <meta name="description" content="How to call the Kling 3.0 API: official unit pricing vs Modellix pay-as-you-go per-second rates, a working curl and Python example, and when each route wins.">
+  <meta name="keywords" content="kling 3.0 api, kling api, kling ai api, kling api pricing, kling api key, kling api price, kling 3.0 api pricing, kling motion control api">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/kling-3-0-api/">
+  <meta name="description" content="How to call the Kling 3.0 API: official unit pricing vs Modellix pay-as-you-go per-second rates, a working curl and Python example, and when each route wins.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kling 3.0 API: Integration Guide, Pricing &amp; Code — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/kling-3-0-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="How to call the Kling 3.0 API: official unit pricing vs Modellix pay-as-you-go per-second rates, a working curl and Python example, and when each route wins.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-kling-3-0-api.webp">
+<meta property="article:published_time" content="2026-08-16T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-16T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video API">
+<meta property="article:tag" content="API Integration">
+<meta property="article:tag" content="Kling">
+<meta property="article:tag" content="Kuaishou">
+<meta property="article:tag" content="Pricing">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-kling-3-0-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Kling 3.0 API: Integration Guide, Pricing & Code","description":"How to call the Kling 3.0 API: official unit pricing vs Modellix pay-as-you-go per-second rates, a working curl and Python example, and when each route wins.","datePublished":"2026-08-16T16:00:00.000Z","dateModified":"2026-08-16T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/kling-3-0-api/","image":"https://img.modellix.ai/en/article/cover-kling-3-0-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Kling 3.0 API: Integration Guide, Pricing &amp; Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/API-Guide/" class="category-tag category-tag--sm">API-Guide</a>
+          
+        
+      </div>
+      <h1 class="post-title">Kling 3.0 API: Integration Guide, Pricing &amp; Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-16T16:00:00.000Z">August 17, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+              <a href="/blog/tags/Kling/" class="tag-pill tag-pill--sm">Kling</a>
+            
+              <a href="/blog/tags/Kuaishou/" class="tag-pill tag-pill--sm">Kuaishou</a>
+            
+              <a href="/blog/tags/API-Integration/" class="tag-pill tag-pill--sm">API Integration</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>The short answer: two routes, one async pattern You can call the Kling 3.0 API two ways: buy units directly from Kling&#39;s developer platform, or use an aggregator such as Modellix that bills per second with a single API key.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-kling-3-0-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-kling-3-0-api.png" alt="Editorial cover: MODELLIX wordmark, Kling 3.0 API title, glass async request-response flow, amber key and cyan rim light on dark copper" />
+</picture>
+
+<h2 id="The-short-answer-two-routes-one-async-pattern"><a href="#The-short-answer-two-routes-one-async-pattern" class="headerlink" title="The short answer: two routes, one async pattern"></a>The short answer: two routes, one async pattern</h2><p>You can call the Kling 3.0 API two ways: buy units directly from Kling’s developer platform, or use an aggregator such as Modellix that bills per second with a single API key. The integration pattern is the same on both routes — submit an async task, poll for the result (or get a webhook), download the video. What actually differs is the billing model, not the programming model.</p>
+<p>Does Kling AI have an API? Yes. Kling’s developer platform exposes official API access for its video and image models, and its docs currently announce a new “Kling API 2.0” with model-specific endpoints and standardized authentication. Is Kling 3.0 available? Yes — both officially and through aggregators, alongside the 3.0 Turbo and 3.0 Omni variants.</p>
+<p>Disclosure: this guide is published by Modellix, an API aggregator that offers Kling 3.0 among 210+ image and video models. We have a commercial interest in the aggregator route. The official Kling figures below were read directly from Kling’s developer pricing page on August 17, 2026; the Modellix figures were read from our own model pages the same day. Where a number could not be verified today, we say so instead of guessing.</p>
+<h2 id="What-the-Kling-3-0-API-is-and-who-makes-it"><a href="#What-the-Kling-3-0-API-is-and-who-makes-it" class="headerlink" title="What the Kling 3.0 API is (and who makes it)"></a>What the Kling 3.0 API is (and who makes it)</h2><p>Kling is the video generation model family from Kuaishou, the Beijing-based company behind the Kwai short-video app — <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Kuaishou">Wikipedia’s Kuaishou article</a> dates the original Kling text-to-video model to June 2024, where it was compared directly to OpenAI’s Sora. Kling 3.0 is the current flagship, launched in February 2026, and the Kling AI API family now spans:</p>
+<ul>
+<li><strong>Kling 3.0</strong> — text-to-video and image-to-video, up to 15-second clips, 4K output, synchronized native audio, multi-shot storyboarding, element reference for character&#x2F;scene consistency.</li>
+<li><strong>Kling 3.0 Turbo</strong> — the faster tier, with a lower price per second and no 4K tier.</li>
+<li><strong>Kling 3.0 Omni</strong> — the multi-input variant: it accepts text, image, or video input, and is also exposed as an image model.</li>
+<li><strong>Kling Image 3.0</strong> — the image generation side, plus separate endpoints for motion control, avatar, lip sync, and video effects.</li>
+</ul>
+<p>Our <a href="https://www.modellix.ai/blog/kling-api-pricing/">Kling API pricing guide</a> walks through the full V1-to-V3 lineup if you need the version-by-version picture. The rest of this article is about actually calling Kling 3.0 — the key, the endpoint, the code, and what it costs today.</p>
+<h2 id="Getting-a-Kling-3-0-API-key-official-console-vs-an-aggregator-key"><a href="#Getting-a-Kling-3-0-API-key-official-console-vs-an-aggregator-key" class="headerlink" title="Getting a Kling 3.0 API key: official console vs an aggregator key"></a>Getting a Kling 3.0 API key: official console vs an aggregator key</h2><p><strong>Official route.</strong> Kling’s developer platform (kling.ai&#x2F;dev) issues keys from its console, and access is tied to buying resource packages: video generation is billed in “units” (1 unit &#x3D; $0.14 list price) and you purchase packages of units up front. Kling’s own rules state that unused resource-package balance does not carry over and is cleared when a package expires, so the key itself is free but usable only after you hold a package. Small trial packages exist for evaluation; the developer pricing page is the authority on current package sizes and validity windows. Note that kling.ai pages block automated readers, so we could not re-render package terms today — the July 2026 breakdown in our Kling 3.0 cost article has the numbers as they stood then.</p>
+<p><strong>Aggregator route.</strong> With Modellix you create an API key in the console and top up a balance; there is no package to buy and no expiry clock on prepaid funds. The key works against any of the 210+ models on the platform, not just Kling. The flow is: sign up, generate a key in the console, top up, call the API — the same pattern covered in our <a href="https://www.modellix.ai/blog/one-api-multiple-ai-video-models/">one-key-multiple-video-models guide</a>. Modellix’s API documentation covers the key workflow and request logs in detail.</p>
+<p>Which route’s “API key” you want depends on whether you are comfortable prepaying units with an expiry date. That trade-off drives everything else in this article.</p>
+<h2 id="Making-your-first-Kling-3-0-request-code"><a href="#Making-your-first-Kling-3-0-request-code" class="headerlink" title="Making your first Kling 3.0 request (code)"></a>Making your first Kling 3.0 request (code)</h2><p>This is a working request against <code>kling/kling-v3-t2v</code> through Modellix’s API. The endpoint, headers, and response shape below come from the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/kling/kling-v3-t2v">Kling V3 T2V API reference</a>; code samples are copy-paste ready once you substitute your key.</p>
+<p><strong>Base URL and auth.</strong> All Modellix media calls use:</p>
+<ul>
+<li>Base URL: <code>https://api.modellix.ai/api/v1/&lt;provider&gt;/&lt;model&gt;</code></li>
+<li>Auth: <code>Authorization: Bearer &lt;your API key&gt;</code></li>
+<li>Content type: <code>application/json</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">curl --request POST \</span><br><span class="line">  --url https://api.modellix.ai/api/v1/kling/kling-v3-t2v \</span><br><span class="line">  --header <span class="string">&#x27;Authorization: Bearer YOUR_API_KEY&#x27;</span> \</span><br><span class="line">  --header <span class="string">&#x27;Content-Type: application/json&#x27;</span> \</span><br><span class="line">  --data <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;prompt&quot;: &quot;A lone cyclist rides through a neon-lit city street after rain&quot;,</span></span><br><span class="line"><span class="string">    &quot;audio&quot;: &quot;native&quot;,</span></span><br><span class="line"><span class="string">    &quot;resolution&quot;: &quot;1080p&quot;,</span></span><br><span class="line"><span class="string">    &quot;aspect_ratio&quot;: &quot;16:9&quot;,</span></span><br><span class="line"><span class="string">    &quot;duration&quot;: 5</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>The equivalent in Python, using the same request body:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;https://api.modellix.ai/api/v1/kling/kling-v3-t2v&quot;</span></span><br><span class="line">payload = &#123;</span><br><span class="line">    <span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;A lone cyclist rides through a neon-lit city street after rain&quot;</span>,</span><br><span class="line">    <span class="string">&quot;audio&quot;</span>: <span class="string">&quot;native&quot;</span>,</span><br><span class="line">    <span class="string">&quot;resolution&quot;</span>: <span class="string">&quot;1080p&quot;</span>,</span><br><span class="line">    <span class="string">&quot;aspect_ratio&quot;</span>: <span class="string">&quot;16:9&quot;</span>,</span><br><span class="line">    <span class="string">&quot;duration&quot;</span>: <span class="number">5</span>,</span><br><span class="line">&#125;</span><br><span class="line">headers = &#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">&quot;Bearer YOUR_API_KEY&quot;</span>, <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line">response = requests.post(url, json=payload, headers=headers)</span><br><span class="line"><span class="built_in">print</span>(response.text)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Video generation is async.</strong> The first call does not return a video; it returns a task handle. Media generation takes seconds to minutes, so the API accepts the job and you retrieve the result separately:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;success&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pending&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;task_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;task-v3-t2v-123&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;model_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;model-123&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;get_result&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;method&quot;</span><span class="punctuation">:</span> <span class="string">&quot;GET&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.modellix.ai/api/v1/tasks/task-v3-t2v-123&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>Poll that <code>get_result.url</code> until <code>status</code> becomes <code>success</code>, then download the output. The <a target="_blank" rel="noopener" href="https://docs.modellix.ai/api/get-task-result">Get task result reference</a> documents the polling response. If you do not want to poll, add an <code>X-Webhook-URL</code> header and Modellix POSTs the result to your endpoint when the task finishes (see the webhook section below).</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/kling-api-async-workflow-kling-3-0-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/kling-api-async-workflow-kling-3-0-api.png" alt="Three-step Kling 3.0 API async flow: submit the generation task, poll the returned task id, then download the finished video" loading="lazy" />
+</picture>
+
+<p><em>Every Kling 3.0 API call follows the same async pattern: submit a task, poll the task id, then download the result. The webhook route replaces step two.</em></p>
+<p><strong>Request parameters</strong> for <code>kling/kling-v3-t2v</code> (documented defaults in brackets):</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Values</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>prompt</code></td>
+<td>1–3072 chars; multi-shot syntax <code>shot 1, 2, &lt;text&gt;; shot 2, 3, &lt;text&gt;;</code></td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>audio</code></td>
+<td><code>native</code> or <code>off</code></td>
+<td><code>off</code></td>
+</tr>
+<tr>
+<td><code>multi_shot</code></td>
+<td><code>true</code> (auto storyboard) or <code>false</code> (single shot)</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>resolution</code></td>
+<td><code>720p</code>, <code>1080p</code>, <code>4k</code></td>
+<td><code>720p</code></td>
+</tr>
+<tr>
+<td><code>aspect_ratio</code></td>
+<td><code>16:9</code>, <code>9:16</code>, <code>1:1</code></td>
+<td><code>16:9</code></td>
+</tr>
+<tr>
+<td><code>duration</code></td>
+<td>integer 3–15 seconds</td>
+<td><code>5</code></td>
+</tr>
+</tbody></table>
+<p>The image-to-video variant lives at <code>kling/kling-v3-i2v</code>; the Turbo and Omni text-to-video routes are <code>kling/kling-v3-turbo-t2v</code> and <code>kling/kling-v3-omni-t2v</code>. For image-to-video input you first upload a reference image through the File API, which accepts up to 16 MB per file and keeps files for about 7 days.</p>
+<h2 id="Kling-3-0-API-pricing-official-units-vs-Modellix-per-second"><a href="#Kling-3-0-API-pricing-official-units-vs-Modellix-per-second" class="headerlink" title="Kling 3.0 API pricing: official units vs Modellix per-second"></a>Kling 3.0 API pricing: official units vs Modellix per-second</h2><p>Kling API pricing is where the two routes genuinely diverge, so both sides get dated numbers.</p>
+<p><strong>Official Kling (read from kling.ai&#x2F;dev&#x2F;pricing, August 17, 2026).</strong> Video bills per second in units, 1 unit &#x3D; $0.14 list:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>720P</th>
+<th>1080P</th>
+<th>4K</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Kling 3.0</td>
+<td>$0.084&#x2F;s (0.6 units)</td>
+<td>$0.112&#x2F;s (0.8 units)</td>
+<td>$0.42&#x2F;s (3.0 units)</td>
+</tr>
+<tr>
+<td>Kling 3.0, native audio</td>
+<td>$0.126&#x2F;s (0.9 units)</td>
+<td>$0.168&#x2F;s (1.2 units)</td>
+<td>$0.42&#x2F;s (3.0 units)</td>
+</tr>
+<tr>
+<td>Kling 3.0 Turbo</td>
+<td>$0.112&#x2F;s (0.8 units)</td>
+<td>$0.14&#x2F;s (1.0 unit)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Kling 3.0 Omni</td>
+<td>$0.084–$0.126&#x2F;s</td>
+<td>$0.112–$0.168&#x2F;s</td>
+<td>$0.42&#x2F;s</td>
+</tr>
+</tbody></table>
+<p><em>Kling’s official developer pricing page (kling.ai&#x2F;dev&#x2F;pricing), read directly on August 17, 2026. Image side: 1 unit &#x3D; $0.0035; Kling Image 3.0 lists 8 units ($0.028) per image at 1K&#x2F;2K and 16 units ($0.056) at 4K. These list prices are only reachable after purchasing a unit package.</em></p>
+<p><strong>Modellix (read from model pages, August 17, 2026).</strong> The same models bill per second of output, pay-as-you-go:</p>
+<table>
+<thead>
+<tr>
+<th>Modellix route</th>
+<th align="right">Displayed price (2026-08-17)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>kling/kling-v3-t2v</code></td>
+<td align="right">$0.0580–$0.2898&#x2F;sec</td>
+</tr>
+<tr>
+<td><code>kling/kling-v3-turbo-t2v</code></td>
+<td align="right">$0.0773–$0.0966&#x2F;sec</td>
+</tr>
+<tr>
+<td><code>kling/kling-v3-omni-t2v</code></td>
+<td align="right">$0.0580–$0.2898&#x2F;sec</td>
+</tr>
+<tr>
+<td><code>kling/kling-v3-i2v</code></td>
+<td align="right">$0.0580–$0.2898&#x2F;sec</td>
+</tr>
+<tr>
+<td><code>kling/kling-v3-t2i</code></td>
+<td align="right">$0.1932&#x2F;image</td>
+</tr>
+</tbody></table>
+<p><em>Sources: the Modellix Kling provider hub and the Modellix full price table, accessed August 17, 2026. Ranges reflect resolution and mode tiers; the exact tier mapping is shown per model page.</em></p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/kling-api-billing-routes-kling-3-0-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/kling-api-billing-routes-kling-3-0-api.png" alt="Two Kling 3.0 API billing routes: official prepaid unit packages with an expiry clock versus an aggregator pay-as-you-go meter" loading="lazy" />
+</picture>
+
+<p><em>The billing difference in one picture: official Kling access runs on prepaid unit packages that expire, while the aggregator route meters per second with no package to maintain.</em></p>
+<p><strong>Worked example — one 5-second 1080p clip.</strong> On the official grid, Kling 3.0 at 1080p consumes 0.8 units&#x2F;s, so 5 seconds &#x3D; 4 units &#x3D; <strong>$0.56</strong> at list — before any package-expiry math. On the Modellix route the same call bills inside the $0.0580–$0.2898&#x2F;s range, so the clip lands between roughly $0.29 and $1.45 depending on the tier you select; the <a href="https://www.modellix.ai/models/kling/kling-v3-t2v">Kling 3.0 T2V model page</a> shows the exact tier breakdown. Today, both ends of Modellix’s displayed range sit below the official list rate for the corresponding resolution tier — but that gap is exactly what the prepaid commitment buys you, so it is not a free lunch (next section).</p>
+<p>One honest boundary: the numbers above are per-second or per-image rates. A real task cost depends on duration, resolution, native audio, and whether you are comparing like-for-like model versions. The <a href="https://www.modellix.ai/blog/kling-3-0-cost/">Kling 3.0 cost breakdown</a> does the full four-channel math if you want the deep dive.</p>
+<h2 id="Beyond-one-model-motion-control-Omni-and-a-single-key"><a href="#Beyond-one-model-motion-control-Omni-and-a-single-key" class="headerlink" title="Beyond one model: motion control, Omni, and a single key"></a>Beyond one model: motion control, Omni, and a single key</h2><p>The Kling API is not one endpoint. The same platform exposes motion control (camera moves), avatar, lip sync, and video effects — <code>kling motion control api</code> traffic mostly lands on those, and our <a href="https://www.modellix.ai/blog/ai-motion-control-api/">AI motion control API guide</a> covers that family across providers. Via Modellix, the <a href="https://www.modellix.ai/series/kling-v3">Kling V3 series hub</a> lists the current routes, and each has its own documented endpoint like the T2V example above.</p>
+<p>The ecosystem argument is the aggregator’s real pitch, and it is a workflow argument, not a price argument. One Modellix key calls Kling 3.0 today and, say, Veo or Wan tomorrow without a second account, a second billing relationship, or a second auth scheme; request logs and per-call cost records stay in one console. If your product is Kling-only, that is irrelevant — which is exactly the point of the next two sections.</p>
+<h2 id="Rate-limits-errors-and-webhooks"><a href="#Rate-limits-errors-and-webhooks" class="headerlink" title="Rate limits, errors, and webhooks"></a>Rate limits, errors, and webhooks</h2><p>Operational details are where docs pages typically go quiet, so here is the concrete contract for the Modellix route, from the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api">API documentation</a>:</p>
+<ul>
+<li><strong>Errors are uniform JSON.</strong> Every error returns <code>{ &quot;code&quot;: &lt;http status&gt;, &quot;message&quot;: &quot;&lt;Category&gt;: &lt;detail&gt;&quot; }</code>. The retryable set: 429 (rate or concurrency limit — back off exponentially), 500, 503 (retry up to three times). Non-retryable: 400 (fix parameters), 401 (bad or expired key), 402 (insufficient balance), 404 (wrong task or model id).</li>
+<li><strong>Rate limits scale with top-up tier</strong>, per the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started/entitlements">entitlements table</a>: a $10 top-up tier allows 10 concurrent tasks at 100 RPM; $100 raises it to 20 concurrent &#x2F; 200 RPM; $500 to 50 &#x2F; 500. Higher tiers by arrangement.</li>
+<li><strong>Webhooks replace polling.</strong> Send an <code>X-Webhook-URL</code> header on the create call; Modellix POSTs <code>prediction.task.succeeded</code> &#x2F; <code>failed</code> &#x2F; <code>canceled</code> events with <code>X-Modellix-Task-ID</code>, <code>X-Modellix-Delivery-ID</code>, and <code>X-Modellix-Retry-Count</code> headers. Retries happen for 429&#x2F;5xx&#x2F;network errors; your endpoint must return 2xx to acknowledge.</li>
+<li><strong>Cost transparency is structural.</strong> Per-call logs record input, output, and cost, which matters for a video API where a bug in duration selection quietly multiplies your bill.</li>
+</ul>
+<h2 id="When-to-go-direct-with-Kling-—-and-when-an-aggregator-wins"><a href="#When-to-go-direct-with-Kling-—-and-when-an-aggregator-wins" class="headerlink" title="When to go direct with Kling — and when an aggregator wins"></a>When to go direct with Kling — and when an aggregator wins</h2><p>Both routes are legitimate; which one is right depends on your workload shape.</p>
+<p><strong>Go direct with Kling if:</strong></p>
+<ul>
+<li><strong>Kling is your only model family.</strong> The unit list price is the floor — no aggregator margin on top. If you consume your package before expiry, direct is cheaper on a like-for-like tier.</li>
+<li><strong>Your volume is high and predictable.</strong> Prepaid units are the classic volume discount; the commitment only pays off if you actually use them.</li>
+<li><strong>You need official enterprise terms.</strong> Kling’s platform offers enterprise API agreements, custom plans, and (in the API 2.0 line) deduction-details-via-API — things an aggregator cannot promise because it is not the model operator.</li>
+<li><strong>Package-expiry management is not a burden for you.</strong> If a $700-scale package expiring in months is fine for your burn rate, the prepaid structure is not a downside.</li>
+</ul>
+<p><strong>Choose the aggregator route if:</strong></p>
+<ul>
+<li><strong>You call models from several vendors.</strong> One key, one billing relationship, one auth scheme across Kling, Veo, Seedance, and others. This is the most common reason teams go aggregator, and it is a structural difference direct access cannot match.</li>
+<li><strong>Your volume is irregular or exploratory.</strong> Pay-as-you-go means you never watch prepaid units expire unused — Kling’s own rules clear unused package balance at expiry.</li>
+<li><strong>You want to evaluate before committing.</strong> A small top-up tests the model without buying a package first.</li>
+<li><strong>You want per-call cost logging and a single error contract</strong> across every model you use.</li>
+</ul>
+<p><strong>Modellix’s honest limitations.</strong> We are an aggregator, not the model maker: a margin sits between upstream cost and the displayed rate, so direct list pricing can beat us on matched tiers at high volume. Modellix exposes 40 Kling routes today — deep, but not the widest Kling catalog in the market. There is no consumer UI; this is an API platform for developers. And while Kling’s native audio works inside video calls, Modellix offers no standalone audio <em>generation</em> models — audio is accepted as input (voice, music) but not produced as an independent output.</p>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p><strong>Does Kling AI have an API?</strong></p>
+<p>Yes. Kling’s developer platform (kling.ai&#x2F;dev) provides official API access for its video and image models; its documentation currently announces Kling API 2.0 with model-specific endpoints and standardized authentication. Aggregators such as Modellix also expose Kling models through their own APIs.</p>
+<p><strong>Is Kling 3.0 available via API?</strong></p>
+<p>Yes. Kling 3.0, 3.0 Turbo, and 3.0 Omni are all available through the official API and through aggregators. On Modellix, the text-to-video route is <code>kling/kling-v3-t2v</code>, with image-to-video and Turbo&#x2F;Omni variants alongside it.</p>
+<p><strong>What is the Kling 3.0 API base URL?</strong></p>
+<p>Officially, the endpoints are documented on Kling’s developer platform. Via Modellix, the base URL is <code>https://api.modellix.ai/api/v1/</code> followed by the model path, e.g. <code>https://api.modellix.ai/api/v1/kling/kling-v3-t2v</code>, authenticated with <code>Authorization: Bearer &lt;key&gt;</code>.</p>
+<p><strong>How much does the Kling 3.0 API cost?</strong></p>
+<p>As of August 17, 2026: officially, 1 unit &#x3D; $0.14, with Kling 3.0 at $0.084&#x2F;s (720p), $0.112&#x2F;s (1080p), and $0.42&#x2F;s (4K), reachable after buying a unit package. Modellix displays <code>kling/kling-v3-t2v</code> at $0.0580–$0.2898&#x2F;sec on a pay-as-you-go basis. Prices move; check the live pages before budgeting.</p>
+<p><strong>Can I use the Kling 3.0 API without a prepaid package?</strong></p>
+<p>Not through the official route — official access is tied to unit packages, and unused package balance expires. Through an aggregator like Modellix, there is no package: you top up a balance and pay per second of output.</p>
+<hr>
+<p><em>Pricing sources accessed August 17, 2026: Kling’s developer pricing page (kling.ai&#x2F;dev&#x2F;pricing, read directly; the page blocks automated readers, so it is referenced here as text), the Modellix Kling provider hub, the Modellix price table, and the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started/pricing">Modellix API docs</a>. Kling and Modellix can change pricing, packages, and terms without notice. Modellix is an aggregator and has a commercial interest in the comparison above.</em></p>
+<p><em>Cover image: illustrative Modellix artwork; it is not a Kling product screenshot or source evidence.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+              <a href="/blog/tags/Kling/" class="tag-pill tag-pill--sm">Kling</a>
+            
+              <a href="/blog/tags/Kuaishou/" class="tag-pill tag-pill--sm">Kuaishou</a>
+            
+              <a href="/blog/tags/API-Integration/" class="tag-pill tag-pill--sm">API Integration</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/kling-3-0-api/&text=Kling%203.0%20API%3A%20Integration%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/kling-3-0-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/kling-3-0-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
