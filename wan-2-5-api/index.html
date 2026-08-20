@@ -1,0 +1,658 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wan 2.5 API: Integration Guide, Pricing &amp; Code — Modellix Blog</title>
+  <meta name="description" content="Wan 2.5 API explained with live August 2026 pricing: model IDs, authentication, submit-poll-retrieve code, free quota, and when to pick Wan 2.7 instead.">
+  <meta name="keywords" content="wan 2.5 api, wan 2.5 api pricing, wan 2.5 api free, wan 2.5 api key, wan 2.5 i2v, wan 2.5 t2v api, skyreels vs wan">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/wan-2-5-api/">
+  <meta name="description" content="Wan 2.5 API explained with live August 2026 pricing: model IDs, authentication, submit-poll-retrieve code, free quota, and when to pick Wan 2.7 instead.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wan 2.5 API: Integration Guide, Pricing &amp; Code — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/wan-2-5-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Wan 2.5 API explained with live August 2026 pricing: model IDs, authentication, submit-poll-retrieve code, free quota, and when to pick Wan 2.7 instead.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-wan-2-5-api.webp">
+<meta property="article:published_time" content="2026-08-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-18T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video API">
+<meta property="article:tag" content="Alibaba">
+<meta property="article:tag" content="Integration">
+<meta property="article:tag" content="Pricing">
+<meta property="article:tag" content="Wan">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-wan-2-5-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Wan 2.5 API: Integration Guide, Pricing & Code","description":"Wan 2.5 API explained with live August 2026 pricing: model IDs, authentication, submit-poll-retrieve code, free quota, and when to pick Wan 2.7 instead.","datePublished":"2026-08-18T16:00:00.000Z","dateModified":"2026-08-18T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/wan-2-5-api/","image":"https://statics.mylandingpages.co/static/modellix/image/cover-wan-2-5-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Wan 2.5 API: Integration Guide, Pricing &amp; Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Wan 2.5 API: Integration Guide, Pricing &amp; Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-18T16:00:00.000Z">August 19, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Integration/" class="tag-pill tag-pill--sm">Integration</a>
+            
+              <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+              <a href="/blog/tags/Wan/" class="tag-pill tag-pill--sm">Wan</a>
+            
+              <a href="/blog/tags/Alibaba/" class="tag-pill tag-pill--sm">Alibaba</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.srcgptbots.com/blog/author/20260409/modellix-blog-author-official@2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>If you searched for &#39;wan 2.5 api&#39; because a demo clip from last September finally made it to your backlog, here is the part the demo doesn&#39;t tell you: Wan 2.5 is now a legacy option.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/cover-wan-2-5-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/cover-wan-2-5-api.png" alt="Dark amber and cyan Wan 2.5 API cover: Alibaba's Wan 2.5 model family flowing through hosted routes into one unified key" />
+</picture>
+
+<p>If you searched for “wan 2.5 api” because a demo clip from last September finally made it to your backlog, here is the part the demo doesn’t tell you: Wan 2.5 is now a legacy option. It was released as a preview model in late September 2025, and by August 2026 Alibaba’s own newer Wan 2.6 and Wan 2.7 models have superseded it. It is still cheap, still works, and existing integrations still pin to it — but “the Wan 2.5 API” is not one official endpoint. It is a family of open models served by many platforms, each with its own route names, billing units, and request shapes.</p>
+<p>This guide is current as of August 19, 2026. It gives you the model IDs you will actually type, a per-second price comparison across four routes in one unit, the free-quota facts nobody on the SERP mentions, a complete submit–poll–retrieve example with real response JSON, and an honest answer to “should I even use 2.5 in 2026?”. We run Modellix, an API aggregator that carries the Wan 2.5 family next to 210+ image and video models behind one key, so we disclose the commercial interest up front — the prices below come from live pages, not from a brochure.</p>
+<h2 id="What-the-Wan-2-5-API-actually-is"><a href="#What-the-Wan-2-5-API-actually-is" class="headerlink" title="What the Wan 2.5 API actually is"></a>What the Wan 2.5 API actually is</h2><p>The Wan 2.5 API is an asynchronous REST interface for generating video and images with Alibaba’s open Wan 2.5 model family, released as a preview in September 2025. It covers text-to-video, image-to-video, text-to-image, and image-to-image generation with native audio synthesis, and it is served by Alibaba Cloud Model Studio and independent platforms, each with its own endpoint, model IDs, and billing.</p>
+<p>Three facts shape every integration decision:</p>
+<ol>
+<li><strong>It was a preview model by design.</strong> The Wan team shipped Wan 2.5 as a preview release to collect feedback, per the community notes from the release livestream. By 2026 the family has moved on: Wan 2.6 and then Wan 2.7 shipped with longer durations and native multi-shot support. Alibaba’s Model Studio still serves 2.5, and providers still host it, but the model pages now describe it as the older generation — ours included, which is why we say so here.</li>
+<li><strong>The weights are open, the API is not.</strong> The model weights are distributed through Alibaba’s <a target="_blank" rel="noopener" href="https://modelscope.cn/models/Wan-AI/Wan2.5-T2V-Preview">ModelScope platform</a>. “The Wan 2.5 API” is never one endpoint: Alibaba Cloud serves it through Model Studio, and independent providers (fal.ai, Replicate, WaveSpeed, EvoLink, Modellix, and others) host their own routes with their own pricing.</li>
+<li><strong>Every route is asynchronous.</strong> Video generation takes 30 seconds to a few minutes, so every provider uses the same pattern: submit a task, poll for status, retrieve the result. The differences are in the details — required fields, polling semantics, and what unit you are billed in.</li>
+</ol>
+<p>Because of that, “wan 2.5 api” is really a family of questions: which model variant, which provider, which price, which request schema. The rest of this guide answers them in that order. If you are starting a new project today, also read our <a href="https://www.modellix.ai/blog/wan-2-7-api/">Wan 2.7 API guide</a> before you commit to a model — the honest version-picking conversation happens there.</p>
+<h2 id="Wan-2-5-models-and-their-API-route-names"><a href="#Wan-2-5-models-and-their-API-route-names" class="headerlink" title="Wan 2.5 models and their API route names"></a>Wan 2.5 models and their API route names</h2><p>Wan 2.5 ships as four task models. Each one appears under a different route string depending on where you call it, and most platforms keep the same <code>wan2.5-*</code> ID from Model Studio. This table is the mapping you need:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Task</th>
+<th>Alibaba Model Studio ID</th>
+<th>Modellix route</th>
+<th>Key params</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>wan2.5-t2v-preview</td>
+<td>Text → video</td>
+<td><code>wan2.5-t2v-preview</code></td>
+<td><code>alibaba/wan2.5-t2v-preview</code></td>
+<td><code>prompt</code>, <code>duration</code> (5&#x2F;10), <code>size</code></td>
+</tr>
+<tr>
+<td>wan2.5-i2v-preview</td>
+<td>Image → video (first frame)</td>
+<td><code>wan2.5-i2v-preview</code></td>
+<td><code>alibaba/wan2.5-i2v-preview</code></td>
+<td><code>img_url</code> (required), <code>prompt</code>, <code>resolution</code>, <code>audio_url</code></td>
+</tr>
+<tr>
+<td>wan2.5-t2i-preview</td>
+<td>Text → image</td>
+<td><code>wan2.5-t2i-preview</code></td>
+<td><code>alibaba/wan2.5-t2i-preview</code></td>
+<td><code>prompt</code>, <code>size</code>, <code>n</code></td>
+</tr>
+<tr>
+<td>wan2.5-i2i-preview</td>
+<td>Image → image</td>
+<td><code>wan2.5-i2i-preview</code></td>
+<td><code>alibaba/wan2.5-i2i-preview</code></td>
+<td>up to 3 reference images + prompt</td>
+</tr>
+</tbody></table>
+<p>All video models output 480p &#x2F; 720p &#x2F; 1080p at 30 fps in MP4 (H.264), in 5- or 10-second clips, with synchronized audio — that “one-step audio” capability is the defining feature of the 2.5 generation. Text-to-video and image-to-video accept an optional <code>audio_url</code> for custom audio, and the image-to-video variant can take audio as an input driver as well.</p>
+<p>Two naming traps: some platforms rewrite the route string (<a target="_blank" rel="noopener" href="https://fal.ai/models/fal-ai/wan-25-preview/image-to-video/api">fal.ai exposes <code>fal-ai/wan-25-preview/image-to-video</code></a>, <a target="_blank" rel="noopener" href="https://replicate.com/wan-video/wan-2.5-t2v">Replicate uses <code>wan-video/wan-2.5-t2v</code></a>), and the image-to-image variant is easy to miss because most providers advertise only the video models. If you are coming from the 2.2 generation, our <a href="https://www.modellix.ai/blog/wan-2-2-api/">Wan 2.2 API guide</a> covers that family’s naming, and the diagram below shows how the 2.5 family flows through hosted routes to a single key.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/wan-2-5-model-routes.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/wan-2-5-model-routes.png" alt="Wan 2.5 model family diagram: four preview models (T2V, I2V, T2I, I2I) flowing through Alibaba Model Studio and third-party routes into one unified API key" loading="lazy" />
+</picture>
+*Figure: Wan 2.5's four task models map to per-platform route strings; an aggregator collapses them behind one key. Prices and route names verified August 19, 2026.*
+
+<h2 id="What-Wan-2-5-API-calls-cost-one-unit-live-prices"><a href="#What-Wan-2-5-API-calls-cost-one-unit-live-prices" class="headerlink" title="What Wan 2.5 API calls cost (one unit, live prices)"></a>What Wan 2.5 API calls cost (one unit, live prices)</h2><p>Before the numbers: the single biggest source of confusion in this market is the billing unit. Alibaba and Modellix bill <strong>per second of video</strong>; WaveSpeed bills <strong>per run</strong> (one fixed price per completed video, whatever its duration); EvoLink bills per second but prices in its own credit currency. Convert everything to USD&#x2F;second before comparing — and remember that a 10-second 1080p clip is not the same product at two different providers if one of them caps audio or resolution.</p>
+<table>
+<thead>
+<tr>
+<th>Route (as of 2026-08-19)</th>
+<th>Billing unit</th>
+<th>480p</th>
+<th>720p</th>
+<th>1080p</th>
+<th>Free tier</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Alibaba Model Studio (International)</td>
+<td>USD &#x2F; second</td>
+<td>$0.05</td>
+<td>$0.10</td>
+<td>$0.15</td>
+<td>50 s new-model quota</td>
+</tr>
+<tr>
+<td>Modellix <code>alibaba/wan2.5-t2v-preview</code></td>
+<td>USD &#x2F; second</td>
+<td>$0.025–$0.0917 (range across resolutions)</td>
+<td></td>
+<td></td>
+<td>$10–30 credit, no card</td>
+</tr>
+<tr>
+<td>Modellix <code>alibaba/wan2.5-i2v-preview</code></td>
+<td>USD &#x2F; second</td>
+<td>$0.0305–$0.0917 (range across resolutions)</td>
+<td></td>
+<td></td>
+<td>$10–30 credit, no card</td>
+</tr>
+<tr>
+<td>EvoLink</td>
+<td>credits &#x2F; second</td>
+<td>$0.038–$0.126</td>
+<td></td>
+<td></td>
+<td>—</td>
+</tr>
+<tr>
+<td>WaveSpeed</td>
+<td>USD &#x2F; run</td>
+<td>≈ $0.5 per run</td>
+<td></td>
+<td></td>
+<td>—</td>
+</tr>
+</tbody></table>
+<p>Notes that change the math:</p>
+<ul>
+<li><strong>Alibaba’s official list price</strong> is the reference point: <a target="_blank" rel="noopener" href="https://www.alibabacloud.com/help/en/model-studio/model-pricing">Model Studio pricing</a> shows <code>wan2.5-t2v-preview</code> at $0.05&#x2F;sec (480p), $0.10&#x2F;sec (720p), $0.15&#x2F;sec (1080p) in the International scope, with the image models at $0.03&#x2F;image. The same page lists a <strong>free quota of 50 seconds of video and 50 images</strong>, valid 90 days from Model Studio activation or model release — this is the “wan 2.5 api free” answer that the rest of the SERP omits.</li>
+<li><strong>Aggregator prices are real but resolution-dependent.</strong> The Modellix figures are the live ranges on our <a href="https://www.modellix.ai/models/alibaba/wan2.5-t2v-preview">wan2.5-t2v-preview model page</a>; the spread is the resolution ladder. For a 5-second 480p clip you are looking at roughly $0.25 at Alibaba’s list price — and about half that through aggregators that negotiate volume rates.</li>
+<li><strong>Per-run billing hides per-second cost.</strong> WaveSpeed’s ~$0.5&#x2F;run for a 10-second clip is $0.05&#x2F;sec equivalent — competitive at 480p, less so if the run is capped at 5 seconds. Read the fine print on duration.</li>
+<li><strong>Prices drift.</strong> Every number above was read live on August 19, 2026. Check the Alibaba Model Studio pricing page linked above, or a provider’s model page, before you commit a budget. For the broader Alibaba model family picture, our <a href="https://www.modellix.ai/blog/alibaba-api-pricing/">Alibaba API pricing deep-dive</a> covers the other generations.</li>
+</ul>
+<p>The price table is only the first layer. What actually lands on your invoice is the billing unit and the request shape — which is where authentication and the async contract come in.</p>
+<h2 id="Authentication-and-request-basics"><a href="#Authentication-and-request-basics" class="headerlink" title="Authentication and request basics"></a>Authentication and request basics</h2><p>Every provider authenticates with a static API key; the header name is the main difference:</p>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Auth header</th>
+<th>Async opt-in</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Alibaba Cloud Model Studio</td>
+<td><code>Authorization: Bearer $DASHSCOPE_API_KEY</code></td>
+<td><code>X-DashScope-Async: enable</code></td>
+</tr>
+<tr>
+<td>Modellix</td>
+<td><code>Authorization: Bearer &lt;token&gt;</code></td>
+<td>implicit (jobs always async)</td>
+</tr>
+<tr>
+<td>fal.ai</td>
+<td><code>Authorization: Key &lt;key&gt;</code> (or <code>FAL_KEY</code> env)</td>
+<td><code>fal.queue.submit</code></td>
+</tr>
+<tr>
+<td>Pollo &#x2F; others</td>
+<td><code>x-api-key: &lt;key&gt;</code></td>
+<td><code>webhookUrl</code> param</td>
+</tr>
+</tbody></table>
+<p>The async lifecycle is the same everywhere: <strong>create task → poll status → retrieve result</strong>. Alibaba’s <a target="_blank" rel="noopener" href="https://www.alibabacloud.com/help/en/model-studio/text-to-video-api-reference">text-to-video API reference</a> documents the official flow: POST to the <code>video-synthesis</code> endpoint with <code>X-DashScope-Async: enable</code>, get a <code>task_id</code> (valid 24 hours), and poll — never create duplicate tasks. fal.ai and Replicate wrap the same contract in their clients.</p>
+<p>Now the route decision. You can open accounts at three or four providers, generate keys per provider, and track five billing dashboards — or you can use one key that routes to all of them. That is the entire value proposition of an aggregator like Modellix: a single <code>Bearer</code> token, one billing ledger, and per-call cost logs that show input, output, and spend for each request. It is not the cheapest option on every single model, and it is not a magic router — it is a convenience layer with transparent per-call pricing, which is a trade you might not want for a two-call prototype. For more on the trade, our <a href="https://www.modellix.ai/blog/one-api-multiple-ai-video-models/">one-key-many-models explainer</a> walks through when the single-key route pays for itself.</p>
+<h2 id="Calling-Wan-2-5-end-to-end-submit-poll-retrieve"><a href="#Calling-Wan-2-5-end-to-end-submit-poll-retrieve" class="headerlink" title="Calling Wan 2.5 end to end: submit, poll, retrieve"></a>Calling Wan 2.5 end to end: submit, poll, retrieve</h2><p>Here is a complete working flow against the Modellix API — the same shape works for Alibaba Model Studio with the headers swapped. The example generates a 5-second 480p clip from a first-frame image with <code>wan2.5-i2v-preview</code>.</p>
+<p><strong>Step 1 — submit the task:</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">curl --request POST \</span><br><span class="line">  --url https://api.modellix.ai/api/v1/alibaba/wan2.5-i2v-preview \</span><br><span class="line">  --header <span class="string">&#x27;Authorization: Bearer $MODELLIX_API_KEY&#x27;</span> \</span><br><span class="line">  --header <span class="string">&#x27;Content-Type: application/json&#x27;</span> \</span><br><span class="line">  --data <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;prompt&quot;: &quot;A slow aerial push-in over a misty pine ridge at dawn, camera drifting forward, warm amber light breaking through&quot;,</span></span><br><span class="line"><span class="string">    &quot;img_url&quot;: &quot;https://your-bucket.example.com/first-frame.jpg&quot;,</span></span><br><span class="line"><span class="string">    &quot;duration&quot;: 5,</span></span><br><span class="line"><span class="string">    &quot;resolution&quot;: &quot;480p&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>The response returns a task reference immediately — generation itself runs in the background:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;success&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pending&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;task_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;task-abc123&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;model_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;alibaba/wan2.5-i2v-preview&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;get_result&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;method&quot;</span><span class="punctuation">:</span> <span class="string">&quot;GET&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.modellix.ai/api/v1/tasks/task-abc123&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Step 2 — poll until terminal state:</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl --request GET \</span><br><span class="line">  --url https://api.modellix.ai/api/v1/tasks/task-abc123 \</span><br><span class="line">  --header <span class="string">&#x27;Authorization: Bearer $MODELLIX_API_KEY&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>Poll every 5–10 seconds (back off to 15–30 s for 1080p jobs, which take longer). Terminal states are <code>completed</code> (the payload carries the video URL) and <code>failed</code>. If you would rather not poll, add an <code>X-Webhook-URL</code> header to the submit call; Modellix then POSTs the same result payload to your endpoint when the task reaches a terminal state. Webhook receivers must return HTTP 2xx to acknowledge, and you should deduplicate on the delivery ID header — retries happen automatically on 429&#x2F;5xx and network timeouts, but not on other 4xx errors.</p>
+<p><strong>Step 3 — handle errors by category:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>400</td>
+<td>Missing&#x2F;invalid parameters</td>
+<td>Fix the request; never retry blindly</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Bad or missing API key</td>
+<td>Rotate&#x2F;provide a valid key</td>
+</tr>
+<tr>
+<td>402</td>
+<td>Insufficient balance</td>
+<td>Top up — this is the “free tier exhausted” signal</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Unknown task&#x2F;model</td>
+<td>Check the task ID or route name</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Rate limit &#x2F; concurrency exceeded</td>
+<td>Exponential backoff</td>
+</tr>
+<tr>
+<td>500 &#x2F; 503</td>
+<td>Provider-side failure</td>
+<td>Retry up to 3 times with backoff</td>
+</tr>
+</tbody></table>
+<p>Full request&#x2F;response schemas for the Wan routes live in the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/alibaba/wan-2-5-t2v-preview">Modellix API reference</a>. The lifecycle diagram below is the same contract every provider implements, with different labels.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/wan-2-5-api-lifecycle.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/wan-2-5-api-lifecycle.png" alt="Async task lifecycle diagram: POST submit returns task_id, then polling the get_result URL until status completed, then retrieving the video URL, with a failed branch for error handling" loading="lazy" />
+</picture>
+*Figure: the submit → poll → retrieve lifecycle shared by every Wan 2.5 route. Verified against Modellix and Alibaba Model Studio docs, August 19, 2026.*
+
+<h2 id="Errors-rate-limits-and-the-mistakes-that-cost-budget"><a href="#Errors-rate-limits-and-the-mistakes-that-cost-budget" class="headerlink" title="Errors, rate limits, and the mistakes that cost budget"></a>Errors, rate limits, and the mistakes that cost budget</h2><p>Four mistakes show up repeatedly in integration threads:</p>
+<ol>
+<li><strong>Comparing prices across billing units.</strong> A “$0.5 per run” price and a “$0.15 per second” price are not comparable until you know the duration and resolution each covers. Always normalize to USD&#x2F;second before deciding.</li>
+<li><strong>Assuming the free quota renews.</strong> Alibaba’s 50-second&#x2F;50-image quota is a one-time grant valid 90 days — it does not reset monthly. The <code>402</code> you hit mid-production is that quota expiring, not a billing bug.</li>
+<li><strong>Coding against 2.5’s parameter quirks as if they were stable.</strong> <code>wan2.5-t2v-preview</code> accepts a <code>size</code> parameter; the i2v variant uses <code>resolution</code>. Those enums differ across versions — if you later migrate to Wan 2.7, parameter names like <code>ratio</code> and <code>duration</code> (2–15 s) change. Pin your model ID explicitly instead of using “latest” aliases.</li>
+<li><strong>Polling too hot.</strong> Video tasks run 30 s–3 min; polling every second earns you 429s and burns request budget. Back off, or use webhooks.</li>
+</ol>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p><strong>Is the Wan 2.5 API free?</strong> Partially. Alibaba Cloud Model Studio grants a one-time free quota of 50 seconds of video and 50 images per qualifying model, valid 90 days from activation. Modellix offers $10–30 of free credit on signup without a credit card. After that, it is pay-as-you-go at per-second or per-image rates.</p>
+<p><strong>How do I get a Wan 2.5 API key?</strong> Sign up at any provider hosting the model: Alibaba Cloud Model Studio, fal.ai, Replicate, WaveSpeed, or an aggregator like Modellix. The key is a static token you send in the authorization header. With an aggregator, one key covers Wan 2.5 and 210+ other models.</p>
+<p><strong>What’s the difference between Wan 2.5 T2V and I2V?</strong> T2V (<code>wan2.5-t2v-preview</code>) generates video from a text prompt. I2V (<code>wan2.5-i2v-preview</code>) animates a first-frame image, which gives you much tighter control over composition and character — at the cost of requiring a valid image URL or upload.</p>
+<p><strong>Wan 2.5 vs SkyReels: which should I use?</strong> SkyReels (ByteDance) and Wan 2.5 are both open Chinese video models popular on API platforms. SkyReels is stronger for consistent characters and human motion across shots; Wan 2.5’s edge is one-step synchronized audio and a lower entry price tier. For API work, the deciding factor is usually which model your platform routes and at what per-second price — compare live pages for <a href="https://www.modellix.ai/models/skywork/skyreels-t2v">SkyReels</a> and Wan 2.5 rather than going on benchmarks alone.</p>
+<p><strong>Is Wan 2.5 open source?</strong> The weights are openly distributed via Alibaba’s ModelScope platform for preview use, but the APIs that serve it are commercial — “open weights” does not mean free inference. If you need to self-host, the ModelScope repos are the starting point; if you just need an API, the provider routes above are faster.</p>
+<p><strong>Is Wan 2.5 still worth using in 2026?</strong> For new projects, mostly no — Wan 2.6&#x2F;2.7 are meaningfully better and only modestly more expensive. For existing integrations pinned to 2.5, it remains a cheap, stable option, and 480p output is still one of the cheapest open video tiers you can call over an API. Treat it as the budget&#x2F;legacy choice, not the state of the art.</p>
+<p><strong>How long does Wan 2.5 generation take?</strong> Roughly 1–3 minutes for a 10-second clip, less for 480p and 5-second jobs. The API returns a task ID immediately and the result asynchronously — plan your UX around polling or webhooks, not synchronous waits.</p>
+<hr>
+<p><em>Pricing and model availability verified August 19, 2026, against Alibaba Cloud Model Studio, fal.ai, Replicate, WaveSpeed, EvoLink, and Modellix live pages. Video-generation pricing changes frequently; always confirm on the provider’s current pricing page before committing budget. Modellix is an API aggregator that carries the Wan 2.5 family; we disclose that interest and have not altered any third-party figures.</em></p>
+<p>Ready to skip the five-key spreadsheet? <a href="https://www.modellix.ai/providers/alibaba">Browse the Wan models on Modellix</a> — one key, live per-call pricing, no monthly fee.</p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Integration/" class="tag-pill tag-pill--sm">Integration</a>
+            
+              <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+              <a href="/blog/tags/Wan/" class="tag-pill tag-pill--sm">Wan</a>
+            
+              <a href="/blog/tags/Alibaba/" class="tag-pill tag-pill--sm">Alibaba</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/openai-video-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://statics.mylandingpages.co/static/modellix/image/cover-openai-video-api.webp" alt="OpenAI Video API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">OpenAI Video API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-08-19T02:00:00.000Z">August 19, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/google-virtual-try-on-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://statics.mylandingpages.co/static/modellix/image/cover-google-virtual-try-on-api.webp" alt="Google Virtual Try On API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Google Virtual Try On API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-08-18T16:00:00.000Z">August 19, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/ai-talking-avatar-free/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-ai-talking-avatar-free.webp" alt="AI Talking Avatar Free: What &#39;Free&#39; Means (Credits &amp; Limits)" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">AI Talking Avatar Free: What &#39;Free&#39; Means (Credits &amp; Limits)</h3>
+          <time class="related-article-date" datetime="2026-08-12T16:00:00.000Z">August 13, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/wan-2-5-api/&text=Wan%202.5%20API%3A%20Integration%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/wan-2-5-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/wan-2-5-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

@@ -1,0 +1,591 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenAI Video API: Integration Guide, Pricing &amp; Code — Modellix Blog</title>
+  <meta name="description" content="OpenAI&#39;s video API shuts down September 24, 2026. Verified Sora 2 per-second pricing, working integration code, and honest migration options, as of August 2026.">
+  <meta name="keywords" content="openai video api, sora 2 api, sora 2 api pricing, sora 2 pro api, openai video generation api, openai sora api pricing, sora api python, openai video api python, openai video api tutorial, openai video api example">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/openai-video-api/">
+  <meta name="description" content="OpenAI&#39;s video API shuts down September 24, 2026. Verified Sora 2 per-second pricing, working integration code, and honest migration options, as of August 2026.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenAI Video API: Integration Guide, Pricing &amp; Code — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/openai-video-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="OpenAI&#39;s video API shuts down September 24, 2026. Verified Sora 2 per-second pricing, working integration code, and honest migration options, as of August 2026.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-openai-video-api.webp">
+<meta property="article:published_time" content="2026-08-19T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-19T02:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video API">
+<meta property="article:tag" content="Integration Guide">
+<meta property="article:tag" content="OpenAI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-openai-video-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"OpenAI Video API: Integration Guide, Pricing & Code","description":"OpenAI's video API shuts down September 24, 2026. Verified Sora 2 per-second pricing, working integration code, and honest migration options, as of August 2026.","datePublished":"2026-08-19T02:00:00.000Z","dateModified":"2026-08-19T02:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/openai-video-api/","image":"https://statics.mylandingpages.co/static/modellix/image/cover-openai-video-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">OpenAI Video API: Integration Guide, Pricing &amp; Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">OpenAI Video API: Integration Guide, Pricing &amp; Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-19T02:00:00.000Z">August 19, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Integration-Guide/" class="tag-pill tag-pill--sm">Integration Guide</a>
+            
+              <a href="/blog/tags/OpenAI/" class="tag-pill tag-pill--sm">OpenAI</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.srcgptbots.com/blog/author/20260409/modellix-blog-author-official@2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>The single most important fact about the OpenAI video API in August 2026 is not how to call it.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/cover-openai-video-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/cover-openai-video-api.png" alt="Dark amber OpenAI video API cover showing a prompt-to-frames-to-MP4 generation pipeline with the MODELLIX wordmark" />
+</picture>
+
+<p>The single most important fact about the OpenAI video API in August 2026 is not how to call it. It is that OpenAI has officially deprecated the whole thing: the Videos API and every Sora 2 model alias are scheduled to shut down on <strong>September 24, 2026</strong>, with no replacement listed on OpenAI’s deprecations page. Most of what ranks for “openai video api” today either predates that announcement or simply repeats official docs, which means a developer evaluating this API has no single, current, code-level answer. This guide is that answer, verified against OpenAI’s own pages on August 19, 2026.</p>
+<p>You will get the current pricing per second, a working Python and curl integration, the failure modes that actually cost time, and an honest look at what to build on once the shutdown lands. Modellix is an API aggregator and has a commercial interest in the migration part of this article; the facts about OpenAI’s API are drawn from OpenAI’s documentation and stand on their own.</p>
+<h2 id="The-OpenAI-video-API-is-officially-being-shut-down"><a href="#The-OpenAI-video-API-is-officially-being-shut-down" class="headerlink" title="The OpenAI video API is officially being shut down"></a>The OpenAI video API is officially being shut down</h2><p>OpenAI announced on March 24, 2026 that the Videos API and the Sora 2 video generation models were being deprecated, with removal from the API on September 24, 2026. The <a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/deprecations">official deprecations page</a> lists every affected item with that exact shutdown date:</p>
+<ul>
+<li>The Videos API (the <code>/v1/videos</code> endpoint family)</li>
+<li><code>sora-2</code> and <code>sora-2-pro</code></li>
+<li>The snapshots <code>sora-2-2025-10-06</code>, <code>sora-2-2025-12-08</code>, and <code>sora-2-pro-2025-10-06</code></li>
+</ul>
+<p>The “recommended replacement” column for every row is empty. The <a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/guides/video-generation">video generation guide</a> that still documents this API opens with the same banner, and the <a target="_blank" rel="noopener" href="https://developers.openai.com/api/reference/resources/videos/methods/create/">Create video reference</a> marks the API “deprecated” with the same September 24 shutdown. If you read the Sora 2 model page today, the model is tagged “Legacy.”</p>
+<p>What this means in practice: between now and September 24, 2026, the API keeps working and is billed normally. After that date, calls to these models and endpoints will fail, and OpenAI’s guidance is that developers should plan migrations. If you are starting a new integration today, the deprecation is not a reason to panic — it is a reason to design the integration so that the video provider is a replaceable module from day one. For a broader look at how OpenAI’s video route fits into the wider <a href="https://www.modellix.ai/blog/text-to-video-api/">text-to-video API</a> landscape, we maintain a separate guide with vendor-by-vendor details.</p>
+<h2 id="What-the-OpenAI-video-API-does-today"><a href="#What-the-OpenAI-video-API-does-today" class="headerlink" title="What the OpenAI video API does today"></a>What the OpenAI video API does today</h2><p>Until the shutdown, the Videos API exposes two models. <code>sora-2</code> is the fast, flexible option for iteration — concepting, rough cuts, social clips. <code>sora-2-pro</code> is the production tier: slower to render, more expensive, and the only model that exports 1080p (<code>1920x1080</code> or <code>1080x1920</code>). Both support generations of 16 and 20 seconds, per the current <a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/guides/video-generation">video generation guide</a>, with synced audio output.</p>
+<p>The API is asynchronous, which shapes everything about integrating it:</p>
+<ol>
+<li><code>POST /v1/videos</code> returns a job object with an <code>id</code> and a starting <code>status</code> (<code>queued</code>).</li>
+<li>You poll <code>GET /v1/videos/{video_id}</code> (the guide suggests every 10–20 seconds, with backoff) or register a webhook to receive <code>video.completed</code> &#x2F; <code>video.failed</code> events.</li>
+<li>When the job reaches <code>completed</code>, you download the MP4 from <code>GET /v1/videos/{video_id}/content</code> — and you should do it promptly, because download URLs expire one hour after generation.</li>
+</ol>
+<p>Beyond plain text-to-video, the current feature set includes:</p>
+<ul>
+<li><strong>Image-guided generation</strong> (<code>input_reference</code>): a JPEG, PNG, or WebP that becomes the first frame of the clip. The image must match the requested output resolution.</li>
+<li><strong>Characters</strong>: upload a short MP4 of a reusable non-human subject (a mascot, an object), then reference it across generations by name. A single video can include up to two characters; the feature works best with 2–4 second clips.</li>
+<li><strong>Video extensions</strong>: continue a finished clip with up to 20 additional seconds per call, up to six extensions for a 120-second maximum.</li>
+<li><strong>Edits</strong>: <code>POST /v1/videos/edits</code> applies a targeted change (palette, staging, one element) to an existing video, replacing the older remix endpoint. Editing uploaded videos requires eligibility — contact sales for that workflow.</li>
+<li><strong>Batch API</strong>: queue many renders offline through <a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/guides/batch">batch jobs</a> via <code>POST /v1/videos</code>, useful for shot lists and scheduled render pipelines. Batch output is downloadable for 24 hours.</li>
+</ul>
+<p>There are hard content guardrails: only content suitable for audiences under 18, no copyrighted characters or music, no real people (including public figures), and input images with human faces are rejected. Prompts and reference assets that violate these rules fail rather than silently producing output.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/openai-video-api-pipeline.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/openai-video-api-pipeline.png" alt="Glass and chrome pipeline diagram showing a text prompt flowing through a video timeline into generated frames and a final MP4 output" loading="lazy" />
+</picture>
+
+<p><em>Illustrative diagram of the Videos API pipeline: prompt → timeline → frames → MP4. Concept art, not a product screenshot; generated August 19, 2026.</em></p>
+<h2 id="OpenAI-video-API-pricing-verified-per-second-rates"><a href="#OpenAI-video-API-pricing-verified-per-second-rates" class="headerlink" title="OpenAI video API pricing: verified per-second rates"></a>OpenAI video API pricing: verified per-second rates</h2><p>OpenAI bills video generation <strong>per second of output</strong>, by model and resolution. The following rates were read from the official <a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/pricing">pricing page</a> on August 19, 2026. Prices change; treat this table as a dated snapshot, not a quote.</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Size</th>
+<th>Resolution</th>
+<th>Standard price&#x2F;sec</th>
+<th>Batch price&#x2F;sec</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sora-2</td>
+<td>720p</td>
+<td>1280x720 &#x2F; 720x1280</td>
+<td>$0.10</td>
+<td>$0.05</td>
+</tr>
+<tr>
+<td>sora-2-pro</td>
+<td>720p</td>
+<td>1280x720 &#x2F; 720x1280</td>
+<td>$0.30</td>
+<td>$0.15</td>
+</tr>
+<tr>
+<td>sora-2-pro</td>
+<td>1024p</td>
+<td>1024x1792 &#x2F; 1792x1024</td>
+<td>$0.50</td>
+<td>$0.25</td>
+</tr>
+<tr>
+<td>sora-2-pro</td>
+<td>1080p</td>
+<td>1920x1080 &#x2F; 1080x1920</td>
+<td>$0.70</td>
+<td>$0.35</td>
+</tr>
+</tbody></table>
+<p>A worked example, so the per-second unit means something: an 8-second <code>sora-2</code> clip at 720p costs $0.80 at standard rates (8 × $0.10); the same clip on <code>sora-2-pro</code> at 1080p costs $5.60 (8 × $0.70). A 20-second 1080p pro render is $14.00. If you run the same jobs through the Batch API, those figures drop by half — useful for offline pipelines where latency is not a constraint.</p>
+<p>Rate limits scale with your usage tier. The <a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/models/sora-2">sora-2 model page</a> lists these RPM caps: <strong>free tier is not supported</strong> for this model; Tier 1 gets 25 RPM, Tier 2 gets 50, Tier 3 gets 125, Tier 4 gets 200, and Tier 5 gets 375. Because a single render takes minutes, the practical constraint for most teams is concurrent jobs, not requests per minute.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/openai-video-api-metered-clip.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/openai-video-api-metered-clip.png" alt="Video clip strip with frame-by-frame metering marks, conveying per-second billing without any numerals" loading="lazy" />
+</picture>
+
+<p><em>Per-second metering concept for video API billing. Illustrative only — no prices in the image because they change; the table above is the dated source of truth.</em></p>
+<h2 id="Quick-start-generate-a-video-with-the-API"><a href="#Quick-start-generate-a-video-with-the-API" class="headerlink" title="Quick start: generate a video with the API"></a>Quick start: generate a video with the API</h2><p>Everything below works against the current API. Keep the September 24, 2026 shutdown in mind, and pin your integration behind a thin client so the model can be swapped later.</p>
+<p><strong>Prerequisites:</strong> an OpenAI API key with a funded account (the free tier does not support video generation), and the official <code>openai</code> Python SDK (<code>pip install openai</code>).</p>
+<p>The minimal flow — create a job, poll until it completes, download the MP4:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openai <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">client = OpenAI(api_key=<span class="string">&quot;sk-...&quot;</span>)  <span class="comment"># from platform.openai.com</span></span><br><span class="line"></span><br><span class="line">video = client.videos.create(</span><br><span class="line">    model=<span class="string">&quot;sora-2&quot;</span>,</span><br><span class="line">    prompt=<span class="string">&quot;Wide shot of a child flying a red kite in a grassy park, golden hour sunlight, camera slowly pans upward.&quot;</span>,</span><br><span class="line">    size=<span class="string">&quot;1280x720&quot;</span>,</span><br><span class="line">    seconds=<span class="number">8</span>,</span><br><span class="line">)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;job:&quot;</span>, video.<span class="built_in">id</span>, video.status)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> video.status <span class="keyword">in</span> (<span class="string">&quot;queued&quot;</span>, <span class="string">&quot;in_progress&quot;</span>):</span><br><span class="line">    time.sleep(<span class="number">10</span>)</span><br><span class="line">    video = client.videos.retrieve(video.<span class="built_in">id</span>)</span><br><span class="line">    <span class="built_in">print</span>(video.status, <span class="built_in">getattr</span>(video, <span class="string">&quot;progress&quot;</span>, <span class="literal">None</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> video.status == <span class="string">&quot;completed&quot;</span>:</span><br><span class="line">    content = client.videos.download_content(video.<span class="built_in">id</span>)</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;kite.mp4&quot;</span>, <span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(content.read())</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;failed:&quot;</span>, video.error)</span><br></pre></td></tr></table></figure>
+
+<p>If you prefer curl, the same job looks like this:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST <span class="string">&quot;https://api.openai.com/v1/videos&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$OPENAI_API_KEY</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;model&quot;: &quot;sora-2&quot;,</span></span><br><span class="line"><span class="string">    &quot;prompt&quot;: &quot;Close-up of a steaming coffee cup on a wooden table, morning light through blinds.&quot;,</span></span><br><span class="line"><span class="string">    &quot;size&quot;: &quot;1280x720&quot;,</span></span><br><span class="line"><span class="string">    &quot;seconds&quot;: 8</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># then poll</span></span><br><span class="line">curl <span class="string">&quot;https://api.openai.com/v1/videos/<span class="variable">$VIDEO_ID</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$OPENAI_API_KEY</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># then download (valid for 1 hour)</span></span><br><span class="line">curl -L <span class="string">&quot;https://api.openai.com/v1/videos/<span class="variable">$VIDEO_ID</span>/content&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$OPENAI_API_KEY</span>&quot;</span> --output clip.mp4</span><br></pre></td></tr></table></figure>
+
+<p>Key parameters on <code>POST /v1/videos</code>, from the <a target="_blank" rel="noopener" href="https://developers.openai.com/api/reference/resources/videos/methods/create/">API reference</a>:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>prompt</code></td>
+<td>string</td>
+<td>Required. Describe shot type, subject, action, setting, and lighting.</td>
+</tr>
+<tr>
+<td><code>model</code></td>
+<td>string</td>
+<td><code>sora-2</code> (default) or <code>sora-2-pro</code>.</td>
+</tr>
+<tr>
+<td><code>seconds</code></td>
+<td>integer</td>
+<td>Reference lists 4, 8, or 12, default 4; the current guide describes 16- and 20-second generations. See the gotcha below.</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td>string</td>
+<td><code>1280x720</code>, <code>1920x1080</code>, <code>1080x1920</code>, and 1024p variants, matching the pricing table.</td>
+</tr>
+<tr>
+<td><code>input_reference</code></td>
+<td>object</td>
+<td><code>{ &quot;file_id&quot;: ... }</code> or <code>{ &quot;image_url&quot;: ... }</code> for image-guided generation.</td>
+</tr>
+</tbody></table>
+<p>For long-running pipelines, <a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/guides/webhooks">webhooks</a> are more efficient than polling: OpenAI emits <code>video.completed</code> and <code>video.failed</code> events, each carrying the job ID, so your worker only wakes up when a render finishes.</p>
+<h2 id="Common-errors-and-integration-gotchas"><a href="#Common-errors-and-integration-gotchas" class="headerlink" title="Common errors and integration gotchas"></a>Common errors and integration gotchas</h2><p>The failures that cost real time are rarely syntax errors. In rough order of frequency:</p>
+<ul>
+<li><strong>Assuming generation is synchronous.</strong> A render takes minutes. Code that treats the create call as the finished result, or polls without backoff, is the classic bug. Design for <code>queued → in_progress → completed/failed</code> from the start.</li>
+<li><strong>Losing the download window.</strong> Download URLs expire one hour after generation. Teams that download lazily (or only on the webhook, which may arrive late) get 404s and have to re-render. Download immediately, then move the file to your own storage.</li>
+<li><strong>Guardrail rejections.</strong> Real people, human faces in input images, copyrighted characters, and copyrighted music are rejected. These failures surface as job errors, sometimes after minutes of queue time — validate prompts and reference assets before submitting.</li>
+<li><strong>The seconds documentation conflict.</strong> The API reference for <code>POST /v1/videos</code> lists allowed <code>seconds</code> values of 4, 8, and 12 with a default of 4, while the current video generation guide describes 16- and 20-second generations on both models. The two pages disagree; if a duration you need is rejected, that is why. Test in your own account and pin the value that works.</li>
+<li><strong>Free tier confusion.</strong> “Is OpenAI API free?” is one of the most asked questions about this API, and the answer for video is no: the sora-2 model page states the free tier is not supported. Budget a funded account before you start.</li>
+<li><strong>Post-shutdown behavior.</strong> After September 24, 2026, requests to <code>/v1/videos</code> and the sora-2 models will fail. If you are building today, treat every hard-coded model name and endpoint as a migration point, and add a provider abstraction now rather than after the 404s start.</li>
+</ul>
+<h2 id="After-September-24-2026-what-to-build-on-instead"><a href="#After-September-24-2026-what-to-build-on-instead" class="headerlink" title="After September 24, 2026: what to build on instead"></a>After September 24, 2026: what to build on instead</h2><p>OpenAI has not listed a replacement for the Videos API, so “the OpenAI video API” as a distinct endpoint family will stop existing on that date. What continues: the consumer Sora product (OpenAI’s <a target="_blank" rel="noopener" href="https://openai.com/index/sora/">Sora announcement page</a> is live and describes video generation up to a minute long), and OpenAI’s <a href="https://www.modellix.ai/blog/openai-image-generation-api/">image generation API</a>, which is not affected by this deprecation.</p>
+<p>That leaves three honest routes for a team that needs video generation in September and beyond:</p>
+<ol>
+<li><strong>Stay on OpenAI’s platform for images, move video elsewhere.</strong> OpenAI’s image models (<code>gpt-image-2</code>) are unaffected. If your product’s video needs are the same text-to-video and <a href="https://www.modellix.ai/blog/image-to-video-api/">image-to-video</a> tasks, model providers like Google (Veo), Kling, ByteDance (Seedance&#x2F;Wan), Vidu, and MiniMax (Hailuo) offer per-second billed video APIs — our <a href="https://www.modellix.ai/blog/veo-3-vs-sora/">Veo vs Sora comparison</a> digs into the closest direct alternative.</li>
+<li><strong>Use an aggregator to keep one key and one bill.</strong> Modellix aggregates image and video generation models from more than 10 providers behind a single REST API with pay-as-you-go billing — over 200 models in the catalog, including OpenAI image models and per-second video routes from vendors like Kling, Google, and MiniMax. We are an aggregator, and this is the part where we have a commercial interest, so the honest caveats: Modellix does <strong>not</strong> currently offer OpenAI’s video models (check our <a href="https://www.modellix.ai/providers/openai">OpenAI provider page</a> — the catalog covers OpenAI’s image and transcription models, not Sora), and we are not claiming this route is cheapest; the point is operational, not a price ranking. Live per-model pricing is on the <a href="https://www.modellix.ai/pricing">Modellix pricing page</a>.</li>
+<li><strong>Evaluate a direct multi-vendor setup.</strong> If you need OpenAI for images and another vendor for video, running two SDKs, two keys, and two invoices is workable — it just costs engineering time and opaque cross-vendor accounting.</li>
+</ol>
+<p>Whichever route you take, a five-point migration checklist:</p>
+<ul>
+<li><strong>Decide now, not in October.</strong> The API is fully functional today; treating the shutdown as an October problem is how integrations get stranded.</li>
+<li><strong>Isolate the provider.</strong> One client class per vendor; no hard-coded model IDs in business logic.</li>
+<li><strong>Standardize the task model.</strong> Your internal “render a clip” contract (prompt, duration, resolution, callback) should be vendor-neutral.</li>
+<li><strong>Re-verify pricing the week you switch.</strong> Video prices move; the table in this article is dated August 19, 2026 and must be re-checked against each vendor’s live page before you commit budget.</li>
+<li><strong>Plan the asset pipeline once.</strong> Download, store, thumbnail, and transcode steps are identical across vendors — build them once and reuse.</li>
+</ul>
+<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>Can OpenAI generate videos?</strong></p>
+<p>Yes. OpenAI’s video generation models are Sora 2 and Sora 2 Pro, served through the Videos API. As of August 2026, that API is deprecated with a shutdown date of September 24, 2026; the consumer Sora product is not part of that shutdown.</p>
+<p><strong>How much does the Sora 2 API cost?</strong></p>
+<p>Per second of output: <code>sora-2</code> at 720p is $0.10&#x2F;second, <code>sora-2-pro</code> is $0.30&#x2F;second at 720p, $0.50&#x2F;second at 1024p, and $0.70&#x2F;second at 1080p (standard rates, verified August 19, 2026). Batch API prices are half. The free tier does not support this model.</p>
+<p><strong>Is the Sora API being shut down?</strong></p>
+<p>The Videos API and all Sora 2 model aliases and snapshots are scheduled to shut down on September 24, 2026, per OpenAI’s deprecations page. No replacement has been listed.</p>
+<p><strong>Can I call the OpenAI video API from Python?</strong></p>
+<p>Yes. The official <code>openai</code> Python SDK exposes <code>client.videos.create()</code>, <code>client.videos.retrieve()</code>, and <code>client.videos.download_content()</code>; the section “Quick start: generate a video with the API” above has a complete, copy-pasteable example.</p>
+<p><strong>Is video generation available through the Responses API?</strong></p>
+<p>OpenAI’s documentation does not currently describe video generation through the Responses API for the sora-2 family; video generation is documented under the dedicated Videos API, which is the deprecated surface. Re-check OpenAI’s docs before relying on any endpoint path, since the platform is in transition.</p>
+<p><strong>Does Modellix offer OpenAI’s video models?</strong></p>
+<p>No. Modellix’s OpenAI catalog covers image generation and transcription models (for example <code>gpt-image-2</code>), not Sora. Modellix does aggregate video generation models from other providers — Google, Kling, ByteDance, Vidu, and MiniMax among them — behind one API key.</p>
+<p><strong>What are the best OpenAI video API alternatives?</strong></p>
+<p>The closest direct alternative to Sora 2 is Google’s Veo family; Kling, ByteDance Seedance&#x2F;Wan, Vidu, and MiniMax Hailuo also provide per-second billed text-to-video and image-to-video APIs. “Best” depends on your quality bar, latency, and budget — compare the same prompt, duration, and resolution across vendors before deciding.</p>
+<p><strong>How long can a Sora 2 video be?</strong></p>
+<p>The current guide describes 16- and 20-second generations on both models, with extensions that add up to 20 seconds per call and a 120-second maximum per video. Note the API reference lists 4&#x2F;8&#x2F;12 seconds for the create endpoint — test the duration you need in your own account.</p>
+<hr>
+<p><em>Provider details and pricing reflect public information as of August 19, 2026, and change frequently. Validate against each provider’s live pricing before committing. Access image and video models, including the leading Chinese models, through a single API key at <a href="https://www.modellix.ai/">modellix.ai</a>.</em></p>
+<div style="display:flex; gap:12px; flex-wrap:wrap; margin:24px 0;">
+  <a href="https://modellix.ai/console/api-key" class="btn btn-primary" target="_blank" rel="noopener" style="color:#ffffff; text-decoration:none;">Run a Multi-Model Test</a>
+  <a href="https://docs.modellix.ai/get-started/pricing" class="btn btn-secondary" target="_blank" rel="noopener" style="color:#1a1a2e; text-decoration:none;">Compare Live Pricing</a>
+</div>
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Integration-Guide/" class="tag-pill tag-pill--sm">Integration Guide</a>
+            
+              <a href="/blog/tags/OpenAI/" class="tag-pill tag-pill--sm">OpenAI</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/google-virtual-try-on-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://statics.mylandingpages.co/static/modellix/image/cover-google-virtual-try-on-api.webp" alt="Google Virtual Try On API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Google Virtual Try On API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-08-18T16:00:00.000Z">August 19, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/wan-2-5-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://statics.mylandingpages.co/static/modellix/image/cover-wan-2-5-api.webp" alt="Wan 2.5 API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Wan 2.5 API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-08-18T16:00:00.000Z">August 19, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/ai-talking-avatar-free/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-ai-talking-avatar-free.webp" alt="AI Talking Avatar Free: What &#39;Free&#39; Means (Credits &amp; Limits)" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">AI Talking Avatar Free: What &#39;Free&#39; Means (Credits &amp; Limits)</h3>
+          <time class="related-article-date" datetime="2026-08-12T16:00:00.000Z">August 13, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/openai-video-api/&text=OpenAI%20Video%20API%3A%20Integration%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/openai-video-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/openai-video-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

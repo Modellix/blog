@@ -1,0 +1,610 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Virtual Try On API: Integration Guide, Pricing &amp; Code — Modellix Blog</title>
+  <meta name="description" content="Google&#39;s virtual try-on API (virtual-try-on-001) costs $0.06 per image. Verified status, working Python and REST code, limits, and alternatives, August 2026.">
+  <meta name="keywords" content="google virtual try on api, google virtual try-on api pricing, google virtual try on api python, virtual try on api free, google shopping virtual try on, kling virtual try-on api, vertex ai virtual try-on api, google try on ai, how to use google virtual try on">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/google-virtual-try-on-api/">
+  <meta name="description" content="Google&#39;s virtual try-on API (virtual-try-on-001) costs $0.06 per image. Verified status, working Python and REST code, limits, and alternatives, August 2026.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Google Virtual Try On API: Integration Guide, Pricing &amp; Code — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/google-virtual-try-on-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Google&#39;s virtual try-on API (virtual-try-on-001) costs $0.06 per image. Verified status, working Python and REST code, limits, and alternatives, August 2026.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-google-virtual-try-on-api.webp">
+<meta property="article:published_time" content="2026-08-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-18T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="Google">
+<meta property="article:tag" content="Integration Guide">
+<meta property="article:tag" content="Virtual Try-On API">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-google-virtual-try-on-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Google Virtual Try On API: Integration Guide, Pricing & Code","description":"Google's virtual try-on API (virtual-try-on-001) costs $0.06 per image. Verified status, working Python and REST code, limits, and alternatives, August 2026.","datePublished":"2026-08-18T16:00:00.000Z","dateModified":"2026-08-18T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/google-virtual-try-on-api/","image":"https://statics.mylandingpages.co/static/modellix/image/cover-google-virtual-try-on-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Google Virtual Try On API: Integration Guide, Pricing &amp; Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Google Virtual Try On API: Integration Guide, Pricing &amp; Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-18T16:00:00.000Z">August 19, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/Integration-Guide/" class="tag-pill tag-pill--sm">Integration Guide</a>
+            
+              <a href="/blog/tags/Google/" class="tag-pill tag-pill--sm">Google</a>
+            
+              <a href="/blog/tags/Virtual-Try-On-API/" class="tag-pill tag-pill--sm">Virtual Try-On API</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.srcgptbots.com/blog/author/20260409/modellix-blog-author-official@2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>Google has a virtual try-on API, and the first search result for &#39;google virtual try on api&#39; is not it. It is the free consumer try-on inside Google Shopping — the thing shoppers use, not the thing developers call.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/cover-google-virtual-try-on-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/cover-google-virtual-try-on-api.png" alt="Dark amber cover for a Google virtual try-on API guide showing a person silhouette and a garment flowing into one output through glass and chrome pipeline panels, with the MODELLIX wordmark" />
+</picture>
+
+<p>Google has a virtual try-on API, and the first search result for “google virtual try on api” is not it. It is the free consumer try-on inside Google Shopping — the thing shoppers use, not the thing developers call. The developer-facing product lives one level deeper: a dedicated model, <code>virtual-try-on-001</code>, served through Google’s Gemini Enterprise Agent Platform (the Vertex AI product line), priced at <strong>$0.06 per generated image</strong> as of August 19, 2026.</p>
+<p>That distinction matters because most of what ranks for this query muddles the two. This guide gives you the developer answer: what the API actually is today, verified same-day pricing, working Python and REST code, the integration constraints the official docs don’t call out, and an honest comparison with the alternatives (including Kling Kolors VTO and FASHN) for when a Google Cloud setup is more friction than your use case deserves. Modellix is an API aggregator and has a commercial interest in the alternatives section; everything stated about Google’s API is drawn from Google’s own documentation and stands on its own.</p>
+<h2 id="Google-has-a-virtual-try-on-API-—-but-not-where-most-people-look"><a href="#Google-has-a-virtual-try-on-API-—-but-not-where-most-people-look" class="headerlink" title="Google has a virtual try-on API — but not where most people look"></a>Google has a virtual try-on API — but not where most people look</h2><p>Four things are called “Google virtual try-on,” and only one is an API:</p>
+<ol>
+<li><strong>Google Shopping’s “Try on you” tool</strong> (<a target="_blank" rel="noopener" href="https://www.google.com/shopping/tryon">google.com&#x2F;shopping&#x2F;tryon</a>) — a consumer feature where shoppers preview clothes on generated models. Free for shoppers, no API surface.</li>
+<li><strong>Merchant Center apparel try-on</strong> — an opt-in shopping feed feature for retailers that want product imagery shown on real models. Free for shoppers; a feed integration, not a model API.</li>
+<li><strong>The old Gemini API <code>tryon</code> capability</strong> — this was the one that used to be a plain API call. The preview model that carried it (<code>gemini-2.0-flash-preview-image-generation</code>) was removed on <strong>November 14, 2025</strong>, per <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/deprecations">Google’s deprecations page</a>. If your integration predates that, it is already broken and there is no direct replacement on the standard Gemini API.</li>
+<li><strong>The <code>virtual-try-on-001</code> model</strong> on <a target="_blank" rel="noopener" href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/capabilities/generate-virtual-try-on-images">Gemini Enterprise Agent Platform</a> — the actual API: send a person image plus a product image, get back the person wearing the product. This is the model this guide integrates.</li>
+</ol>
+<p>The model’s lifecycle is stated plainly on its <a target="_blank" rel="noopener" href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/vto/virtual-try-on-001">official model page</a>: <strong>GA since January 20, 2026, retirement scheduled January 20, 2027</strong>. It is not a preview and not deprecated today — but the retirement date means this is a model you should treat as replaceable, exactly like the Gemini-API-era <code>tryon</code> that vanished without a direct successor. The same discipline applies across Google’s image model family; our <a href="https://www.modellix.ai/blog/imagen-4-api/">Imagen 4 API guide</a> documents a sibling model that went through the same kind of lifecycle. It is also a GA product with a real retailer story behind it: German fashion house <a target="_blank" rel="noopener" href="https://cloud.google.com/blog/topics/retail/how-breuninger-boosted-sales-with-its-be-your-own-model-ai">Breuninger</a> built a selfie-based “be your own model” experience on the VTO API through Google’s Trusted Tester Program and, in a six-week A&#x2F;B test over Black Week and the holiday season, found try-on users converted at a higher rate with a stronger contribution margin than shoppers who did not use it. For e-commerce and fashion retailers evaluating the API, that is the closest thing to public proof-of-concept data.</p>
+<h2 id="What-the-Google-Virtual-Try-On-API-costs"><a href="#What-the-Google-Virtual-Try-On-API-costs" class="headerlink" title="What the Google Virtual Try-On API costs"></a>What the Google Virtual Try-On API costs</h2><p>Google bills Virtual Try-On <strong>per generated image</strong>, and the rate is public. Read from the official <a target="_blank" rel="noopener" href="https://cloud.google.com/gemini-enterprise-agent-platform/generative-ai/pricing">Generative AI pricing page</a> on August 19, 2026:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Input</th>
+<th>Output</th>
+<th>Price</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>virtual-try-on-001</code></td>
+<td>1 person image + 1 clothing image</td>
+<td>1 generated image</td>
+<td><strong>$0.06 &#x2F; image</strong></td>
+</tr>
+</tbody></table>
+<p>How the unit works in practice: one request consumes two input images and produces between 1 and 4 output images (<code>sampleCount</code> 1–4). The $0.06 figure is per output image, so a single request with <code>sampleCount: 4</code> costs $0.24 — not $0.06. A modest catalog-rendering job of 10,000 images costs $600 at standard pay-as-you-go rates. There is no minimum commitment; you pay for what you generate, billed against your Google Cloud project.</p>
+<p>Two caveats worth knowing before you budget:</p>
+<ul>
+<li><strong>The free-credit math is GCP, not VTO.</strong> New Google Cloud customers get a $300 trial credit, which covers roughly 5,000 generated images at this rate — useful for an evaluation, not a free tier of the model itself. There is no VTO-specific free quota.</li>
+<li><strong>Provisioned Throughput exists.</strong> The model page lists Provisioned Throughput as a supported consumption option for teams that need committed capacity; standard pay-as-you-go is the default and the numbers above assume it. Prices move — treat this table as a dated snapshot (August 19, 2026), not a quote.</li>
+</ul>
+<h2 id="How-virtual-try-on-001-works-two-images-in-one-worn-image-out"><a href="#How-virtual-try-on-001-works-two-images-in-one-worn-image-out" class="headerlink" title="How virtual-try-on-001 works: two images in, one worn image out"></a>How virtual-try-on-001 works: two images in, one worn image out</h2><p>The model contract is deliberately narrow. You supply a person image and one product image; the model returns the person wearing that garment. No text prompt, no scene description, no style guide — the <a target="_blank" rel="noopener" href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/vto/virtual-try-on-001">model page</a> lists text input as not supported. Output images inherit the aspect ratio and resolution of the input person image, and generated content carries C2PA content credentials.</p>
+<p>The technical constraints you will actually hit during integration:</p>
+<table>
+<thead>
+<tr>
+<th>Constraint</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Input images per request</td>
+<td>Max 2 (1 person + 1 product)</td>
+</tr>
+<tr>
+<td>File size per image (inline&#x2F;base64)</td>
+<td>Max 7 MB</td>
+</tr>
+<tr>
+<td>Output images per request</td>
+<td>1–4 (<code>sampleCount</code> &#x2F; <code>candidateCount</code>)</td>
+</tr>
+<tr>
+<td>Supported MIME types</td>
+<td><code>image/png</code>, <code>image/jpeg</code></td>
+</tr>
+<tr>
+<td>Output format</td>
+<td>Same aspect ratio and resolution as the input person image</td>
+</tr>
+<tr>
+<td>Text prompt support</td>
+<td>Not supported</td>
+</tr>
+<tr>
+<td>Content credentials (C2PA)</td>
+<td>Supported</td>
+</tr>
+</tbody></table>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/virtual-try-on-pipeline.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/virtual-try-on-pipeline.png" alt="Glass and chrome pipeline showing a person image and a garment image converging into a single worn-image output, dark amber lighting with cyan rim light" loading="lazy" />
+</picture>
+
+<p><em>Concept diagram of the virtual-try-on-001 contract: person image + product image → worn image. Illustrative, generated August 19, 2026; no product screenshot because the model has no public UI.</em></p>
+<p>Input quality follows the same logic Google documents for the Merchant Center apparel feature (<a target="_blank" rel="noopener" href="https://support.google.com/merchants/answer/14096369">support page</a>): one garment fully visible per image, a clean pose, and high resolution — the better the product photo, the better the draping and fabric detail in the output. Model the person image the same way: front-facing, well lit, full garment area unobstructed.</p>
+<h2 id="Integrate-the-Google-Virtual-Try-On-API-Python-and-REST"><a href="#Integrate-the-Google-Virtual-Try-On-API-Python-and-REST" class="headerlink" title="Integrate the Google Virtual Try-On API: Python and REST"></a>Integrate the Google Virtual Try-On API: Python and REST</h2><p>Everything below is verified against the official <a target="_blank" rel="noopener" href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/capabilities/generate-virtual-try-on-images">capability documentation</a> (fetched August 19, 2026). The setup has three prerequisites, and all three are Google Cloud, not model-specific:</p>
+<ol>
+<li><strong>A Google Cloud project</strong> with billing enabled, and the <strong>Agent Platform API</strong> enabled for it.</li>
+<li><strong>Authentication via Application Default Credentials</strong> — for local development, <code>gcloud auth application-default login</code>. This API does not take a plain API key the way the old Gemini API did; ADC (or a service account) is the supported path.</li>
+<li><strong>Region awareness</strong> — the model is available in a defined region list (US, Canada, Europe, Asia-Pacific, and Middle East regions; check the <a target="_blank" rel="noopener" href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/resources/locations">locations page</a> for the current list). Your request URL and your project’s location must line up.</li>
+</ol>
+<h3 id="Python-Google-Gen-AI-SDK"><a href="#Python-Google-Gen-AI-SDK" class="headerlink" title="Python (Google Gen AI SDK)"></a>Python (Google Gen AI SDK)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pip install --upgrade google-genai</span></span><br><span class="line"><span class="comment"># export GOOGLE_CLOUD_PROJECT=your-project-id</span></span><br><span class="line"><span class="comment"># export GOOGLE_CLOUD_LOCATION=global</span></span><br><span class="line"><span class="comment"># export GOOGLE_GENAI_USE_ENTERPRISE=True</span></span><br><span class="line"><span class="comment"># gcloud auth application-default login</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> google <span class="keyword">import</span> genai</span><br><span class="line"><span class="keyword">from</span> google.genai.types <span class="keyword">import</span> Image, ProductImage, RecontextImageSource</span><br><span class="line"></span><br><span class="line">client = genai.Client()</span><br><span class="line"></span><br><span class="line">result = client.models.recontext_image(</span><br><span class="line">    model=<span class="string">&quot;virtual-try-on-001&quot;</span>,</span><br><span class="line">    source=RecontextImageSource(</span><br><span class="line">        person_image=Image.from_file(location=<span class="string">&quot;person.jpg&quot;</span>),</span><br><span class="line">        product_images=[</span><br><span class="line">            ProductImage(product_image=Image.from_file(location=<span class="string">&quot;sweater.jpg&quot;</span>)),</span><br><span class="line">        ],</span><br><span class="line">    ),</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">result.generated_images[<span class="number">0</span>].image.save(<span class="string">&quot;worn.png&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;saved <span class="subst">&#123;<span class="built_in">len</span>(result.generated_images[<span class="number">0</span>].image.image_bytes)&#125;</span> bytes&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Note the method name: <code>recontext_image</code> is the SDK surface the docs use for this model. <code>Image.from_file(location=...)</code> reads local files; <code>product_images</code> takes a list because the API supports a product image per output when you generate several variants.</p>
+<h3 id="REST-curl"><a href="#REST-curl" class="headerlink" title="REST (curl)"></a>REST (curl)</h3><p>The REST surface is a standard Vertex-style predict call on the publishers model path:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud auth print-access-token   <span class="comment"># capture the token</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;instances&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;personImage&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;image&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;bytesBase64Encoded&quot;</span><span class="punctuation">:</span> <span class="string">&quot;BASE64_PERSON_IMAGE&quot;</span> <span class="punctuation">&#125;</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;productImages&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span> <span class="attr">&quot;image&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;bytesBase64Encoded&quot;</span><span class="punctuation">:</span> <span class="string">&quot;BASE64_PRODUCT_IMAGE&quot;</span> <span class="punctuation">&#125;</span> <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;parameters&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;sampleCount&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;storageUri&quot;</span><span class="punctuation">:</span> <span class="string">&quot;gs://YOUR_BUCKET/vto-output/&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="subst">$(gcloud auth print-access-token)</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json; charset=utf-8&quot;</span> \</span><br><span class="line">  -d @request.json \</span><br><span class="line">  <span class="string">&quot;https://REGION-aiplatform.googleapis.com/v1/projects/PROJECT_ID/locations/REGION/publishers/google/models/virtual-try-on-001:predict&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>Replace <code>REGION</code>, <code>PROJECT_ID</code>, and the two base64 image values. The response returns the generated images as base64-encoded PNG objects inside <code>predictions</code>, and the <code>storageUri</code> you set is where output is written for retrieval.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/virtual-try-on-request-flow.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/virtual-try-on-request-flow.png" alt="Glass and chrome request anatomy showing a person image and a product image entering a predict call and emerging as a stored worn-image output, dark amber and cyan lighting" loading="lazy" />
+</picture>
+
+<p><em>Concept diagram of the REST flow: personImage + productImages → predict → storageUri output. Illustrative, generated August 19, 2026.</em></p>
+<h2 id="Integration-constraints-and-common-errors"><a href="#Integration-constraints-and-common-errors" class="headerlink" title="Integration constraints and common errors"></a>Integration constraints and common errors</h2><p>The failures that cost time are rarely syntax errors:</p>
+<ul>
+<li><strong>Forgetting <code>storageUri</code> on REST.</strong> The predict call needs a Cloud Storage path for output. Teams that omit it get errors or empty results because the REST flow is storage-backed. The Python SDK hides this for you; raw REST does not.</li>
+<li><strong>Auth mismatch.</strong> This is Vertex, not the old Gemini API: an API key will not work. ADC (<code>gcloud auth application-default login</code>) for local dev, a service account for production. The most common first-hour error is trying to reuse a Gemini API key.</li>
+<li><strong>Input-image rules.</strong> Two images max, 7 MB per image, PNG or JPEG only. Product images with multiple garments, heavy background clutter, or cropped garments degrade output — follow the Merchant Center guidance (one garment fully visible, ≥512 px, clean background) and you will see better fabric fidelity.</li>
+<li><strong>Output inherits input.</strong> There is no resolution parameter. If you need large output images, the person input must already be large. A 512×512 person photo yields 512×512 output, no upscaling.</li>
+<li><strong>No text prompt.</strong> The model ignores textual instructions. If you need guided composition, this model is not the tool.</li>
+<li><strong>Region and quota.</strong> The endpoint is <code>REGION-aiplatform.googleapis.com</code>, and region must be one where the model is deployed. Quotas are per-project; batch inference is not supported, so high-volume rendering means managing concurrent requests within your quota.</li>
+</ul>
+<h2 id="Google-VTO-vs-the-alternatives-Kling-Kolors-FASHN-and-the-aggregator-route"><a href="#Google-VTO-vs-the-alternatives-Kling-Kolors-FASHN-and-the-aggregator-route" class="headerlink" title="Google VTO vs the alternatives: Kling Kolors, FASHN, and the aggregator route"></a>Google VTO vs the alternatives: Kling Kolors, FASHN, and the aggregator route</h2><p><code>virtual-try-on-001</code> is not the only try-on API on the market, and for many teams it is not the easiest one to start. The honest comparison on the dimensions a developer actually chooses on:</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Model &#x2F; surface</th>
+<th>Price (Aug 19, 2026)</th>
+<th>Setup friction</th>
+<th>Best fit</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Google VTO API</td>
+<td><code>virtual-try-on-001</code> on Gemini Enterprise Agent Platform</td>
+<td>$0.06 &#x2F; image</td>
+<td>Google Cloud project, billing, ADC, region</td>
+<td>Teams already on GCP, enterprise fashion retailers</td>
+</tr>
+<tr>
+<td>Kling Kolors VTO via Modellix</td>
+<td><a href="https://www.modellix.ai/models/kling/kolors-virtual-try-on-v1">Kolors Virtual Try-On V1</a> &#x2F; <a href="https://www.modellix.ai/models/kling/kolors-virtual-try-on-v1-5">V1.5</a></td>
+<td>$0.09 &#x2F; image</td>
+<td>One API key, no cloud project</td>
+<td>Developers who want an API key and no GCP setup</td>
+</tr>
+<tr>
+<td>FASHN</td>
+<td><a target="_blank" rel="noopener" href="https://fashn.ai/products/api">FASHN API</a></td>
+<td>Credit packs; no per-image price published on the API page as of Aug 19, 2026</td>
+<td>Account + credits</td>
+<td>Fashion teams wanting a full suite (model creation, product photography) beyond try-on</td>
+</tr>
+</tbody></table>
+<p>Two structural notes. First, Google’s $0.06 is cheaper per image than Modellix’s $0.09 on the Kling route — the aggregator is not a price play here; it is a setup play. The trade is: Google requires a cloud project, billing, ADC, and a region decision before your first call, while Modellix hands you an API key and the same request style you use for every other model in the catalog (the <a href="https://www.modellix.ai/providers/google">Google provider page</a> lists which Google models sit behind that key). That is an access-path trade-off, not a claim that aggregators are cheaper. Second, the broader “virtual try-on api” SERP is crowded with roundups of vendors (Pixelcut, API4AI, Glamar, LightX among them) — the comparison above is deliberately limited to the two routes with verifiable same-day numbers plus the one credit-based suite.</p>
+<p>If your team is already on Google Cloud, the VTO API is the natural first call. If you are evaluating try-on from outside GCP — a startup, a middleware product, a team that wants one bill across many models — the API-key route removes an entire layer of setup, and you can A&#x2F;B the same pair of test images against both models before committing. Google’s own case study shows the model quality is real; the question is which integration path your team can ship.</p>
+<h2 id="Which-try-on-route-should-you-integrate"><a href="#Which-try-on-route-should-you-integrate" class="headerlink" title="Which try-on route should you integrate?"></a>Which try-on route should you integrate?</h2><table>
+<thead>
+<tr>
+<th>If your main reason is…</th>
+<th>Start with…</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>You’re already on Google Cloud with billing and ADC set up</td>
+<td><code>virtual-try-on-001</code> directly</td>
+</tr>
+<tr>
+<td>Lowest per-image cost at scale on GCP</td>
+<td><code>virtual-try-on-001</code> (and check Provisioned Throughput for committed volume)</td>
+</tr>
+<tr>
+<td>No GCP project, want a single key and no region dance</td>
+<td>Kling Kolors VTO via Modellix</td>
+</tr>
+<tr>
+<td>Fashion suite beyond try-on (virtual models, product photography)</td>
+<td>FASHN</td>
+</tr>
+<tr>
+<td>You need video try-on</td>
+<td>Neither — video try-on is a different product category; see our <a href="https://www.modellix.ai/blog/image-to-video-api/">image-to-video API</a> guide</td>
+</tr>
+</tbody></table>
+<p>The one experiment worth running before any commitment: take the same person photo and the same product photo, generate with Google’s model and with Kling’s, and compare draping, fabric detail, and garment fidelity side by side. Quality differences between try-on models are visible within a handful of images, and the test costs a few dollars at either rate.</p>
+<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>Is the Google virtual try-on API free?</strong></p>
+<p>No. The model bills per generated image — $0.06 at standard pay-as-you-go as of August 19, 2026. New Google Cloud customers do get a $300 trial credit, which covers roughly 5,000 images during an evaluation, but that is a GCP signup credit, not a free tier of the model. The free thing people usually find is Google Shopping’s consumer try-on, which is free for shoppers and is not an API.</p>
+<p><strong>What is the difference between Google Shopping try-on and the virtual try-on API?</strong></p>
+<p>Google Shopping’s “Try on you” is a consumer feature: shoppers see clothes on generated models, and retailers participate through the Merchant Center apparel feed. It has no developer API surface. The <code>virtual-try-on-001</code> API is the paid developer product on Gemini Enterprise Agent Platform: you call it, you pay per image, and you control the output.</p>
+<p><strong>Do I need a Google Cloud project to use it?</strong></p>
+<p>Yes. The API runs on Gemini Enterprise Agent Platform (Vertex), which requires a Google Cloud project, billing enabled, the Agent Platform API enabled, and authentication via Application Default Credentials rather than a plain API key. That setup is the single biggest difference from the old Gemini API <code>tryon</code> capability, which was removed in November 2025.</p>
+<p><strong>Can I call the Google virtual try-on API from Python?</strong></p>
+<p>Yes. The Google Gen AI SDK exposes it as <code>client.models.recontext_image(model=&quot;virtual-try-on-001&quot;, ...)</code>; the “Integrate” section above has a complete, copy-pasteable example with the required environment variables.</p>
+<p><strong>Does the API support video?</strong></p>
+<p>No. <code>virtual-try-on-001</code> is image-in&#x2F;image-out; the model page lists video and audio as unsupported, and batch inference is not supported either. Video try-on is a separate product category with its own providers.</p>
+<p><strong>Does Modellix offer virtual try-on?</strong></p>
+<p>Yes. Modellix aggregates the Kling Kolors Virtual Try-On models (V1 and V1.5) behind its unified API — one key, one bill, no Google Cloud project — at $0.09 per image as of August 19, 2026. Modellix is an aggregator and this is the section where we have a commercial interest; the honest caveat is that Google’s own per-image price is lower, and the point of the aggregator route is access-path simplicity, not a price ranking.</p>
+<hr>
+<p><em>Provider details and pricing reflect public information as of August 19, 2026, and change frequently. Validate against each provider’s live pricing before committing. Access image and video models, including the leading Chinese models, through a single API key at <a target="_blank" rel="noopener" href="https://modellix.ai/">modellix.ai</a>.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/Integration-Guide/" class="tag-pill tag-pill--sm">Integration Guide</a>
+            
+              <a href="/blog/tags/Google/" class="tag-pill tag-pill--sm">Google</a>
+            
+              <a href="/blog/tags/Virtual-Try-On-API/" class="tag-pill tag-pill--sm">Virtual Try-On API</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/openai-video-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://statics.mylandingpages.co/static/modellix/image/cover-openai-video-api.webp" alt="OpenAI Video API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">OpenAI Video API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-08-19T02:00:00.000Z">August 19, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/wan-2-5-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://statics.mylandingpages.co/static/modellix/image/cover-wan-2-5-api.webp" alt="Wan 2.5 API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Wan 2.5 API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-08-18T16:00:00.000Z">August 19, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/ai-talking-avatar-free/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-ai-talking-avatar-free.webp" alt="AI Talking Avatar Free: What &#39;Free&#39; Means (Credits &amp; Limits)" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">AI Talking Avatar Free: What &#39;Free&#39; Means (Credits &amp; Limits)</h3>
+          <time class="related-article-date" datetime="2026-08-12T16:00:00.000Z">August 13, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/google-virtual-try-on-api/&text=Google%20Virtual%20Try%20On%20API%3A%20Integration%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/google-virtual-try-on-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/google-virtual-try-on-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
