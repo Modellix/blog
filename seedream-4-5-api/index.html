@@ -1,0 +1,667 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seedream 4.5 API: Integration Guide, Pricing &amp; Code — Modellix Blog</title>
+  <meta name="description" content="Seedream 4.5 API pricing as of August 2026: official BytePlus at $0.04/image, aggregator routes with no activation, model IDs, error handling, and working code.">
+  <meta name="keywords" content="seedream 4.5 api, seedream 4.5 api pricing, seedream 4.5 price, seedream 4.5 api key, seedream 4.5 edit, seedream 4.5 image to image, seedream 4.5 documentation, seedream api, seedream 4.0 api, seedream 5.0 api, seedream 4.5 image generator">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/seedream-4-5-api/">
+  <meta name="description" content="Seedream 4.5 API pricing as of August 2026: official BytePlus at $0.04&#x2F;image, aggregator routes with no activation, model IDs, error handling, and working code.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Seedream 4.5 API: Integration Guide, Pricing &amp; Code — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/seedream-4-5-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Seedream 4.5 API pricing as of August 2026: official BytePlus at $0.04&#x2F;image, aggregator routes with no activation, model IDs, error handling, and working code.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-seedream-4-5-api.webp">
+<meta property="article:published_time" content="2026-08-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-19T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="api">
+<meta property="article:tag" content="bytedance">
+<meta property="article:tag" content="developer-guide">
+<meta property="article:tag" content="image-generation">
+<meta property="article:tag" content="seedream">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-seedream-4-5-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Seedream 4.5 API: Integration Guide, Pricing & Code","description":"Seedream 4.5 API pricing as of August 2026: official BytePlus at $0.04/image, aggregator routes with no activation, model IDs, error handling, and working code.","datePublished":"2026-08-19T16:00:00.000Z","dateModified":"2026-08-19T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/seedream-4-5-api/","image":"https://img.modellix.ai/en/article/cover-seedream-4-5-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Seedream 4.5 API: Integration Guide, Pricing &amp; Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/api-guides/" class="category-tag category-tag--sm">api-guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Seedream 4.5 API: Integration Guide, Pricing &amp; Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-19T16:00:00.000Z">August 20, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">developer-guide</a>
+            
+              <a href="/blog/tags/api/" class="tag-pill tag-pill--sm">api</a>
+            
+              <a href="/blog/tags/bytedance/" class="tag-pill tag-pill--sm">bytedance</a>
+            
+              <a href="/blog/tags/seedream/" class="tag-pill tag-pill--sm">seedream</a>
+            
+              <a href="/blog/tags/image-generation/" class="tag-pill tag-pill--sm">image-generation</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.srcgptbots.com/blog/author/20260409/modellix-blog-author-official@2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>The short answer: three ways to call Seedream 4.5 through an API Yes, Seedream 4.5 has a real API, and no, you do not need a ByteDance account to use it.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-seedream-4-5-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-seedream-4-5-api.png" alt="Editorial cover titled Seedream 4.5 API with subtitle Integration Guide, Pricing and Code: an amber key unlocking a glass image-generation pipeline with a 4K spec capsule" />
+</picture>
+
+<h2 id="The-short-answer-three-ways-to-call-Seedream-4-5-through-an-API"><a href="#The-short-answer-three-ways-to-call-Seedream-4-5-through-an-API" class="headerlink" title="The short answer: three ways to call Seedream 4.5 through an API"></a>The short answer: three ways to call Seedream 4.5 through an API</h2><p>Yes, Seedream 4.5 has a real API, and no, you do not need a ByteDance account to use it. The official route is <strong>BytePlus ModelArk</strong>, ByteDance’s international cloud, which bills <strong>USD 0.04 per output image</strong> (model <code>seedream-4-5-251128</code>, price read from the official model pricing documentation on August 20, 2026). The domestic Chinese route is Volcengine Ark with the same model family. The third route — the one most developers end up on — is an <strong>aggregator API</strong>: platforms that license Seedream 4.5 and expose it behind one key with no activation step. Aggregator prices on the same day ranged from <strong>$0.0325 to $0.0414 per image</strong>.</p>
+<p>Two definitions before the details, because this SERP mixes them constantly. <strong>Seedream</strong> is ByteDance’s <em>image</em> generation family (4.0 → 4.5 → 5.0). <strong>Seedance</strong> is the <em>video</em> model family — a different product with different endpoints; we cover its access separately in our <a href="https://www.modellix.ai/blog/seedance-2-0-api-access/">Seedance 2.0 API guide</a>. And “Seedream 4.5” in consumer apps (Dreamina, 即梦) is not the API; this article is about the API only.</p>
+<p>Full disclosure up front: Modellix is an aggregator, and we benefit if you pick the aggregator route — we run Modellix, and the Seedream 4.5 model pages we link below are ours. Every price and requirement in this guide was pulled from first-party pages on August 20, 2026, so you can verify each claim — and the honest conclusion includes when the official route is the better trade.</p>
+<h2 id="Seedream-4-5-API-facts-what-you-are-actually-integrating"><a href="#Seedream-4-5-API-facts-what-you-are-actually-integrating" class="headerlink" title="Seedream 4.5 API facts: what you are actually integrating"></a>Seedream 4.5 API facts: what you are actually integrating</h2><p>Seedream 4.5 is ByteDance’s high-fidelity image model, released in early December 2025 as the successor to Seedream 4.0. The <a target="_blank" rel="noopener" href="https://seed.bytedance.com/en/seedream4_5">official product page</a> leads with three capabilities: reference-image consistency (preserving facial features, lighting, and color tone in multi-image edits), professional editing, and strong typography&#x2F;dense-text rendering. The <a target="_blank" rel="noopener" href="https://docs.byteplus.com/en/docs/ModelArk/1541523">official API reference</a> fills in the API-relevant numbers:</p>
+<table>
+<thead>
+<tr>
+<th>Fact</th>
+<th>Seedream 4.5</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Output resolution</td>
+<td>2K (default, 2048×2048) or 4K (up to 4096×4096); pixel range 2560×1440–4096×4096</td>
+</tr>
+<tr>
+<td>Reference images</td>
+<td>Up to <strong>14</strong> per request (jpeg&#x2F;png&#x2F;webp&#x2F;bmp&#x2F;tiff&#x2F;gif&#x2F;heic&#x2F;heif, ≤30 MB each)</td>
+</tr>
+<tr>
+<td>Batch &#x2F; sequential generation</td>
+<td>Yes — <code>sequential_image_generation: auto</code>, input references + output ≤ 15 images per request</td>
+</tr>
+<tr>
+<td>Billing</td>
+<td>Per <strong>successfully generated</strong> image (<code>usage.generated_images</code>); content-review rejections are not billed</td>
+</tr>
+<tr>
+<td>Watermark</td>
+<td><code>watermark: true</code> by default (corner “AI-generated” mark); set false to disable</td>
+</tr>
+<tr>
+<td>Output URLs</td>
+<td>Expire within 24 hours — download before then</td>
+</tr>
+<tr>
+<td>Open source?</td>
+<td>No — API model, no weights released</td>
+</tr>
+</tbody></table>
+<p>For positioning, the family lineup matters more than the spec sheet: <strong>Seedream 4.0</strong> (API <code>seedream-4-0-250828</code>, $0.03&#x2F;image) is the previous generation; <strong>Seedream 4.5</strong> adds the editing and typography upgrades; <strong>Seedream 5.0</strong> series is the newest reasoning-enhanced line. If you are reading this because you searched “seedream api” generically, the 4.5 route below is ByteDance’s current default for text-to-image and image editing workloads.</p>
+<h2 id="Seedream-4-5-API-pricing-official-vs-aggregators-August-2026"><a href="#Seedream-4-5-API-pricing-official-vs-aggregators-August-2026" class="headerlink" title="Seedream 4.5 API pricing: official vs aggregators (August 2026)"></a>Seedream 4.5 API pricing: official vs aggregators (August 2026)</h2><p>Image APIs bill per output image, and Seedream 4.5 pricing is flat per image on every route — no resolution multiplier, no token math on the aggregator side. What varies is the list price and the activation friction around it. All numbers below were read live on August 20, 2026:</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th align="right">Price per image</th>
+<th>Activation required</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BytePlus ModelArk (official)</td>
+<td align="right"><strong>$0.04</strong> (2K and 4K)</td>
+<td>Yes — model activation after funding</td>
+<td>Input images free; only successful outputs billed</td>
+</tr>
+<tr>
+<td>Modellix (aggregator)</td>
+<td align="right"><strong>$0.0414</strong> (T2I and I2I)</td>
+<td>No — key works immediately</td>
+<td>See <a href="https://www.modellix.ai/models/bytedance/seedream-4.5-t2i">Seedream 4.5 T2I model page</a> and <a href="https://www.modellix.ai/models/bytedance/seedream-4.5-i2i">Seedream 4.5 I2I model page</a></td>
+</tr>
+<tr>
+<td>OpenRouter (aggregator)</td>
+<td align="right"><strong>$0.04</strong></td>
+<td>No</td>
+<td>Flat per image, 4K output listed</td>
+</tr>
+<tr>
+<td>Kie (aggregator)</td>
+<td align="right"><strong>$0.0325</strong> (6.5 credits)</td>
+<td>No</td>
+<td>Publishes “19% below official price”</td>
+</tr>
+</tbody></table>
+<p>The official price is documented on the <a target="_blank" rel="noopener" href="https://docs.byteplus.com/en/docs/ModelArk/1544106">BytePlus model pricing page</a> (output $0.04&#x2F;image, input free, batch billed by actual generated images). OpenRouter’s <a target="_blank" rel="noopener" href="https://openrouter.ai/bytedance-seed/seedream-4.5">Seedream 4.5 page</a> lists $0.04 flat. Kie publishes its credit price on its <a target="_blank" rel="noopener" href="https://kie.ai/seedream-4-5">Seedream 4.5 page</a>.</p>
+<p>The honest reading: the official route and the cheapest aggregator differ by about <strong>$0.0075 per image</strong> — roughly 19%. At 1,000 images that is a $7.50 difference. That gap is real but small; the decision between routes is dominated by activation friction and workflow fit, which is what the next two sections are about. For a single live comparison of every model’s current per-call price, the full list is on our <a href="https://www.modellix.ai/pricing">pricing page</a>.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/seedream-45-pricing-routes.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/seedream-45-pricing-routes.png" alt="Two-route Seedream 4.5 API pricing diagram: the official BytePlus cloud path behind a gate marked activation, and the aggregator path straight to the model behind one API key" loading="lazy" />
+</picture>
+
+<p><em>Figure: the two access shapes for Seedream 4.5 — the official cloud gates the model behind activation, the aggregator path does not. Both end at the same underlying model.</em></p>
+<h2 id="Route-1-official-BytePlus-ModelArk-step-by-step"><a href="#Route-1-official-BytePlus-ModelArk-step-by-step" class="headerlink" title="Route 1: official BytePlus ModelArk, step by step"></a>Route 1: official BytePlus ModelArk, step by step</h2><p>The official international path is BytePlus ModelArk (region ap-southeast-1). The step that trips up most developers is not the account — it is <strong>model activation</strong>: BytePlus requires a funded balance or a purchased resource pack before models can be activated, and the image-generation reference lists model activation under Prerequisites. The video-model tutorial on the same platform states the threshold explicitly (a balance above USD 30 or a purchased resource pack, see <a target="_blank" rel="noopener" href="https://docs.byteplus.com/en/docs/ModelArk/1520757">Create a video generation task</a>); the console activation flow is the same for image models.</p>
+<ol>
+<li><strong>Create a BytePlus account</strong> and fund your balance above USD 30, or purchase a resource pack.</li>
+<li><strong>Generate an API key</strong> in the BytePlus console’s API key management.</li>
+<li><strong>Activate the model.</strong> Find Seedream 4.5 in model management and activate it — the activation step refuses without step 1.</li>
+<li><strong>Call the API.</strong> Unlike ByteDance’s video endpoints, image generation is a <strong>single synchronous request</strong>: <code>POST https://ark.ap-southeast.bytepluses.com/api/v3/images/generations</code>, and the response carries the image directly.</li>
+</ol>
+<p>A minimal text-to-image call with curl:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">curl https://ark.ap-southeast.bytepluses.com/api/v3/images/generations \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$ARK_API_KEY</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;model&quot;: &quot;seedream-4-5-251128&quot;,</span></span><br><span class="line"><span class="string">    &quot;prompt&quot;: &quot;A miniature yurt village at night, warm orange light from the windows, dark blue sky&quot;,</span></span><br><span class="line"><span class="string">    &quot;size&quot;: &quot;2K&quot;,</span></span><br><span class="line"><span class="string">    &quot;watermark&quot;: false</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>The same call in Python:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">resp = requests.post(</span><br><span class="line">    <span class="string">&quot;https://ark.ap-southeast.bytepluses.com/api/v3/images/generations&quot;</span>,</span><br><span class="line">    headers=&#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;os.environ[<span class="string">&#x27;ARK_API_KEY&#x27;</span>]&#125;</span>&quot;</span>&#125;,</span><br><span class="line">    json=&#123;</span><br><span class="line">        <span class="string">&quot;model&quot;</span>: <span class="string">&quot;seedream-4-5-251128&quot;</span>,</span><br><span class="line">        <span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;A miniature yurt village at night, warm orange light from the windows, dark blue sky&quot;</span>,</span><br><span class="line">        <span class="string">&quot;size&quot;</span>: <span class="string">&quot;2K&quot;</span>,</span><br><span class="line">        <span class="string">&quot;watermark&quot;</span>: <span class="literal">False</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    timeout=<span class="number">120</span>,</span><br><span class="line">)</span><br><span class="line">data = resp.json()[<span class="string">&quot;data&quot;</span>][<span class="number">0</span>]</span><br><span class="line"><span class="built_in">print</span>(data[<span class="string">&quot;url&quot;</span>])   <span class="comment"># expires within 24 hours — download immediately</span></span><br></pre></td></tr></table></figure>
+
+<p>Parameters that matter for Seedream 4.5 specifically: <code>size</code> accepts <code>2K</code> or <code>4K</code> (or exact pixel dimensions), <code>image</code> accepts up to 14 reference images for editing workflows, <code>sequential_image_generation: auto</code> returns a related batch (input + output ≤ 15 images), <code>stream: true</code> streams each image as it finishes, and <code>watermark: false</code> removes the corner mark where your license allows. <strong>Read the model ID from configuration</strong> — ByteDance version-suffixes these IDs (<code>seedream-4-5-251128</code>, the <code>251128</code> being a date), and when the model is updated the old ID can stop resolving. Hard-coding it is how integrations silently break.</p>
+<p>For image-to-image work — the “Seedream 4.5 edit” and “image to image” searches — pass reference images in the <code>image</code> field:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;product_shot.png&quot;</span>, <span class="string">&quot;rb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    b64 = base64.b64encode(f.read()).decode()</span><br><span class="line"></span><br><span class="line">resp = requests.post(</span><br><span class="line">    <span class="string">&quot;https://ark.ap-southeast.bytepluses.com/api/v3/images/generations&quot;</span>,</span><br><span class="line">    headers=&#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;os.environ[<span class="string">&#x27;ARK_API_KEY&#x27;</span>]&#125;</span>&quot;</span>&#125;,</span><br><span class="line">    json=&#123;</span><br><span class="line">        <span class="string">&quot;model&quot;</span>: <span class="string">&quot;seedream-4-5-251128&quot;</span>,</span><br><span class="line">        <span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;Swap the background to a clean white studio, keep the product exactly as-is&quot;</span>,</span><br><span class="line">        <span class="string">&quot;image&quot;</span>: [<span class="string">f&quot;data:image/png;base64,<span class="subst">&#123;b64&#125;</span>&quot;</span>],</span><br><span class="line">        <span class="string">&quot;size&quot;</span>: <span class="string">&quot;2K&quot;</span>,</span><br><span class="line">        <span class="string">&quot;watermark&quot;</span>: <span class="literal">False</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    timeout=<span class="number">180</span>,</span><br><span class="line">)</span><br><span class="line"><span class="built_in">print</span>(resp.json()[<span class="string">&quot;data&quot;</span>][<span class="number">0</span>][<span class="string">&quot;url&quot;</span>])</span><br></pre></td></tr></table></figure>
+
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/seedream-45-api-lifecycle.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/seedream-45-api-lifecycle.png" alt="Four-stage image generation lifecycle: SUBMIT, GENERATING, RESULT URL, DOWNLOAD chips, with SUCCESS and FAILED statuses and a 24-hour expiry note" loading="lazy" />
+</picture>
+
+<p><em>Figure: the Seedream 4.5 API call lifecycle — one synchronous request on the official route, one submit-and-poll on aggregator routes. Both end in a download-before-expiry step.</em></p>
+<h2 id="Route-2-an-aggregator-API-—-one-key-no-activation"><a href="#Route-2-an-aggregator-API-—-one-key-no-activation" class="headerlink" title="Route 2: an aggregator API — one key, no activation"></a>Route 2: an aggregator API — one key, no activation</h2><p>Aggregator platforms license Seedream 4.5 and resell it behind their own REST endpoints. The trade-off mirrors the official route: no balance top-up, no model activation, per-image billing through a middle layer, and no direct vendor relationship. A Seedream 4.5 API key from an aggregator works the moment you create it. Modellix is one such aggregator (we run it, and we want you to evaluate us on the same terms you would evaluate any provider). Signing up, creating a key, and calling the model is the whole setup:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">BASE = <span class="string">&quot;https://api.modellix.ai/api/v1&quot;</span></span><br><span class="line">HEADERS = &#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">&quot;Bearer YOUR_MODELLIX_API_KEY&quot;</span>, <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Text-to-image — async submit, then poll</span></span><br><span class="line">payload = &#123;</span><br><span class="line">    <span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;A miniature yurt village at night, warm orange light from the windows, dark blue sky&quot;</span>,</span><br><span class="line">    <span class="string">&quot;ratio&quot;</span>: <span class="string">&quot;4:3&quot;</span>,</span><br><span class="line">    <span class="string">&quot;resolution&quot;</span>: <span class="string">&quot;2K&quot;</span>,</span><br><span class="line">&#125;</span><br><span class="line">resp = requests.post(<span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/bytedance/seedream-4.5-t2i/async&quot;</span>, headers=HEADERS, json=payload)</span><br><span class="line">data = resp.json()[<span class="string">&quot;data&quot;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;submitted:&quot;</span>, data[<span class="string">&quot;task_id&quot;</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">120</span>):</span><br><span class="line">    result = requests.get(data[<span class="string">&quot;get_result&quot;</span>][<span class="string">&quot;url&quot;</span>], headers=HEADERS).json()</span><br><span class="line">    <span class="keyword">if</span> result[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;status&quot;</span>] <span class="keyword">in</span> (<span class="string">&quot;success&quot;</span>, <span class="string">&quot;failed&quot;</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    time.sleep(<span class="number">2</span>)   <span class="comment"># exponential backoff in production</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;status:&quot;</span>, result[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;status&quot;</span>])</span><br></pre></td></tr></table></figure>
+
+<p>Modellix wraps image generation as an asynchronous task (submit → poll → result), with webhooks available by passing an <code>X-Webhook-URL</code> header — the exact contract is in the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api">Modellix API documentation</a>, and every model’s request schema is published on its model page. The same key unlocks ByteDance’s video models too — the <a href="https://www.modellix.ai/providers/bytedance">ByteDance provider hub</a> lists the current set, and our guide to <a href="https://www.modellix.ai/blog/unified-ai-api/">running many AI models behind one API key</a> explains the workflow trade-off that motivates it. Treat both code snippets as skeletons, not production modules — verify field names against the current docs for the model ID you actually use.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Seedream 4.5 API Reference</h3><p class="view-docs-tag-desc">See the full request schema, model IDs, and error codes for Seedream 4.5 on Modellix.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/seedream-45-multi-reference.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/seedream-45-multi-reference.png" alt="Multi-reference Seedream 4.5 editing concept: a grid of reference product images flowing into a generator core that preserves subject identity while changing background and lighting" loading="lazy" />
+</picture>
+
+<p><em>Figure: what Seedream 4.5’s 14-reference editing is for — keep the subject identical, change everything around it, in one API call.</em></p>
+<h2 id="Official-vs-aggregator-the-honest-comparison"><a href="#Official-vs-aggregator-the-honest-comparison" class="headerlink" title="Official vs aggregator: the honest comparison"></a>Official vs aggregator: the honest comparison</h2><p>The decision is not “who is cheaper” — it is “which wrapper fits your constraints.” Match the columns before you match the numbers:</p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Official: BytePlus ModelArk</th>
+<th>Aggregator (e.g. Modellix)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Price</td>
+<td>$0.04&#x2F;image (input free)</td>
+<td>$0.0325–$0.0414&#x2F;image, varies by provider</td>
+</tr>
+<tr>
+<td>Activation</td>
+<td>Balance &gt; USD 30 or resource pack, then activate model</td>
+<td>None — key works immediately</td>
+</tr>
+<tr>
+<td>Account setup</td>
+<td>Cloud account, key, activation steps</td>
+<td>Sign-up + API key</td>
+</tr>
+<tr>
+<td>Billing unit</td>
+<td>Per successful output image</td>
+<td>Per output image</td>
+</tr>
+<tr>
+<td>Key scope</td>
+<td>ByteDance&#x2F;BytePlus models only</td>
+<td>Many providers behind one key</td>
+</tr>
+<tr>
+<td>Output contract</td>
+<td>Official docs define size, watermark, expiry rules</td>
+<td>Platform mirrors the model’s contract per model page</td>
+</tr>
+</tbody></table>
+<p><strong>Choose the official route when:</strong> you are all-in on ByteDance image models at serious volume and want the direct vendor relationship, per-token economics at BytePlus scale, and contractual support. The activation investment is one-time, and the list price is the lowest single-provider option.</p>
+<p><strong>Choose an aggregator when:</strong> you are evaluating Seedream 4.5 next to other image&#x2F;video models, you want signup-to-first-image in minutes rather than through funding and activation, or you need one billing relationship across several providers. You pay a small per-image margin and sit one layer away from the vendor.</p>
+<p>Neither framing supports a blanket “aggregator is cheaper” claim — the $0.0075 gap versus the cheapest aggregator is real, but activation friction is what usually decides the evaluation. A fuller cost comparison across the whole model landscape lives in our <a href="https://www.modellix.ai/blog/cheapest-ai-api/">cheapest AI API analysis</a>.</p>
+<h2 id="Seedream-4-5-error-handling-codes-moderation-and-model-IDs"><a href="#Seedream-4-5-error-handling-codes-moderation-and-model-IDs" class="headerlink" title="Seedream 4.5 error handling: codes, moderation, and model IDs"></a>Seedream 4.5 error handling: codes, moderation, and model IDs</h2><p>Most failed first calls are not model errors — they are integration errors. The ones to know before you hit them:</p>
+<ul>
+<li><strong>401 Unauthorized</strong> — wrong, expired, or mis-regioned key. BytePlus and Volcengine keys are separate; an aggregator key only works on that aggregator’s endpoints.</li>
+<li><strong>403 &#x2F; model not activated</strong> — the classic BytePlus trap: account and key exist, activation was never completed.</li>
+<li><strong>Insufficient balance</strong> — per-image billing draws against the balance; the funded amount that cleared activation is not a free budget.</li>
+<li><strong>Model ID not found</strong> — ByteDance rotates version-suffixed IDs (<code>-251128</code> style). Read the ID from configuration, and re-check it when you update.</li>
+<li><strong>Content moderation rejection</strong> — the killer detail on the official route: rejected images are <strong>not billed</strong> (<code>usage.generated_images</code> counts only successes), but the request still fails. In batch mode, a rejected image is skipped and the rest continue; an internal 500 stops the batch.</li>
+<li><strong>Expired output URL</strong> — generated image URLs live 24 hours on BytePlus. Persist the output when it lands, not at the end of your pipeline.</li>
+</ul>
+<p>The Modellix API documentation publishes the aggregator-side error table (400&#x2F;401&#x2F;402&#x2F;404&#x2F;429&#x2F;500&#x2F;503, with retry guidance per code), and rate limits scale with your top-up tier — 2 concurrent tasks at the lowest tier up to 100 concurrent at the highest, with RPM limits to match. Key hygiene is the part nobody on this SERP covers: keep keys in environment variables, never commit them, and scope them per service. The snippets in this guide read from <code>os.environ</code> for exactly that reason.</p>
+<h2 id="Batch-generation-and-cost-control-at-scale"><a href="#Batch-generation-and-cost-control-at-scale" class="headerlink" title="Batch generation and cost control at scale"></a>Batch generation and cost control at scale</h2><p>Seedream 4.5 is one of the few image models with a real batch mode: <code>sequential_image_generation: auto</code> generates a related set in one request (reference images + output ≤ 15), and billing counts only the images actually produced. That changes the cost math from “per request” to “per successful image”:</p>
+<ul>
+<li>Single image: 1 × $0.04 &#x3D; <strong>$0.04</strong> (official) or 1 × $0.0414 &#x3D; <strong>$0.0414</strong> (Modellix)</li>
+<li>Batch of 15 (2K, all succeed): 15 × $0.04 &#x3D; <strong>$0.60</strong> official</li>
+<li>1,000 images for a product catalog: <strong>$40</strong> official, <strong>$41.40</strong> via Modellix, <strong>$32.50</strong> at the cheapest aggregator list price</li>
+</ul>
+<p>Two cost levers worth knowing: failed&#x2F;rejected images cost nothing on the official route (so a 5% rejection rate costs 5% of your <em>time</em>, not your budget), and input reference images are free on both routes — the 14-reference editing workflows bill only the single output. If you are building a pipeline that generates thousands of variants, budget by successful-image count, add retry-with-backoff around 429s and 5xx, and treat the per-image rate as a moving number: prices drift, and the same model can differ by ~20% across providers on any given day.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/seedream-45-batch-cost.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/seedream-45-batch-cost.png" alt="Batch cost concept: a stack of generated product images with a per-image unit marker, illustrating 15 images per request and billing per successful output" loading="lazy" />
+</picture>
+
+<p><em>Figure: the batch math — one request can produce up to 15 images, and the bill is per image that actually succeeds.</em></p>
+<h2 id="Seedream-4-5-vs-4-0-vs-5-0-which-API-should-you-integrate"><a href="#Seedream-4-5-vs-4-0-vs-5-0-which-API-should-you-integrate" class="headerlink" title="Seedream 4.5 vs 4.0 vs 5.0: which API should you integrate?"></a>Seedream 4.5 vs 4.0 vs 5.0: which API should you integrate?</h2><p>The Seedream family moves fast, and several ranking pages mix versions. The full current inventory is on the <a href="https://www.modellix.ai/series/seedream">Seedream series hub</a>; here is the API-relevant lineup as of August 2026:</p>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>API model ID (current)</th>
+<th>Price</th>
+<th>Why you would pick it</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Seedream 4.0</td>
+<td><code>seedream-4-0-250828</code></td>
+<td>$0.03&#x2F;image</td>
+<td>Cheapest; fine for plain text-to-image</td>
+</tr>
+<tr>
+<td><strong>Seedream 4.5</strong> (this guide)</td>
+<td><code>seedream-4-5-251128</code></td>
+<td>$0.04&#x2F;image</td>
+<td>Editing consistency, typography, 14-reference workflows</td>
+</tr>
+<tr>
+<td>Seedream 5.0 series</td>
+<td><code>seedream-5-0-*</code> &#x2F; lite</td>
+<td>$0.035–0.045&#x2F;image</td>
+<td>Newest reasoning-enhanced line; check model pages for current pricing</td>
+</tr>
+</tbody></table>
+<p>For new integrations, 4.5 is the sensible default: the editing and text-rendering upgrades are the reason it exists, and the $0.01&#x2F;image premium over 4.0 buys the multi-reference consistency that most production workloads actually need. Choose 4.0 only when you generate plain single images at volume and want the cheapest per-image rate. And keep the video side separate — if the query that got you here was actually about moving images, that is Seedance territory, not Seedream.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Start Generating with Seedream 4.5</h3><p class="view-docs-tag-desc">Log in to call Seedream 4.5 and 210+ other image, video, and audio models on one Modellix key.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p><strong>Is there a free Seedream 4.5 API?</strong></p>
+<p>No free tier exists on the official route — activation itself requires a funded balance or resource pack, and every output image bills at $0.04. Some aggregators offer trial credit for new accounts; check each provider’s current terms. Input reference images are free on both routes, which is the only genuinely free part.</p>
+<p><strong>How do I get a Seedream 4.5 API key?</strong></p>
+<p>Two paths: official BytePlus (account → fund balance &gt; USD 30 or buy a resource pack → activate model → create API key) or an aggregator like Modellix (sign up, create key, call immediately — no activation).</p>
+<p><strong>How much does the Seedream 4.5 API cost?</strong></p>
+<p>As of August 20, 2026: $0.04 per image on BytePlus and OpenRouter, $0.0414 per image on Modellix, $0.0325 per image on Kie. Prices are per output image; input images are free; failed or moderation-rejected images are not billed.</p>
+<p><strong>Does Seedream 4.5 support 4K output?</strong></p>
+<p>Yes — <code>size</code> accepts <code>2K</code> (default) or <code>4K</code> (up to 4096×4096), and exact pixel dimensions are supported within the documented range. Price is flat regardless of resolution.</p>
+<p><strong>Is Seedream 4.5 open source?</strong></p>
+<p>No. It is a closed API model; ByteDance publishes no weights, which is why “seedream 4.5 huggingface” searches find re-uploads or third-party wrappers rather than official checkpoints.</p>
+<p><strong>Can I use Seedream 4.5 with ComfyUI?</strong></p>
+<p>Not through the official API — ComfyUI integration would run through third-party nodes that call an API provider under the hood, not native weights. If your workflow is API-driven, the direct routes in this guide are simpler.</p>
+<p><strong>What is the difference between Seedream and Seedance?</strong></p>
+<p>Seedream is ByteDance’s image generation family (text-to-image and image editing, $0.04&#x2F;image at 4.5). Seedance is the video generation family (per-second billing, async task endpoints). They share a vendor and a naming prefix, not an API surface — see our Seedance 2.0 API access guide for the video side.</p>
+<p><strong>Can I use Seedream 4.5 API from the USA?</strong></p>
+<p>Yes — BytePlus ModelArk is the international route (region ap-southeast-1) and needs no China-region account. Volcengine Ark is the domestic alternative for infrastructure inside mainland China.</p>
+<hr>
+<p><em>Prices, model IDs, and activation rules reflect public information as of August 20, 2026 and change frequently — model IDs rotate on update, and per-image rates drift. Validate against each provider’s live pages before committing. Access Seedream 4.5 and 210+ other image, video, and audio models through a single API key at <a href="http://www.modellix.ai/">www.modellix.ai</a>.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">developer-guide</a>
+            
+              <a href="/blog/tags/api/" class="tag-pill tag-pill--sm">api</a>
+            
+              <a href="/blog/tags/bytedance/" class="tag-pill tag-pill--sm">bytedance</a>
+            
+              <a href="/blog/tags/seedream/" class="tag-pill tag-pill--sm">seedream</a>
+            
+              <a href="/blog/tags/image-generation/" class="tag-pill tag-pill--sm">image-generation</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/seedance-2-0-api-key/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-seedance-2-0-api-key.webp" alt="Seedance 2.0 API Key: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">api-guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Seedance 2.0 API Key: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-08-23T02:00:00.000Z">August 23, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/seedance-2-0-api-access/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-seedance-2-0-api-access.webp" alt="Seedance 2.0 API Access: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">api-guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Seedance 2.0 API Access: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-08-17T02:00:00.000Z">August 17, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/ai-avatar-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-ai-avatar-api.webp" alt="AI Avatar API: Talking Video &amp; Lip Sync Integration Guide" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">api-guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">AI Avatar API: Talking Video &amp; Lip Sync Integration Guide</h3>
+          <time class="related-article-date" datetime="2026-08-16T16:00:00.000Z">August 17, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/seedream-4-5-api/&text=Seedream%204.5%20API%3A%20Integration%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/seedream-4-5-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/seedream-4-5-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

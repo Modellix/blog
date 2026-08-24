@@ -1,0 +1,590 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qwen Image API: Integration Guide, Pricing &amp; Code — Modellix Blog</title>
+  <meta name="description" content="Qwen image API pricing, lineup, and code: compare official Model Studio rates with Modellix, run a Qwen-Image 3.0 call, and dodge the common pitfalls.">
+  <meta name="keywords" content="qwen image api, qwen image api pricing, qwen image 2.0 price, qwen image api free, qwen image vs, qwen image 3.0 api, qwen image api key, qwen image generation api, qwen image edit api">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/qwen-image-api/">
+  <meta name="description" content="Qwen image API pricing, lineup, and code: compare official Model Studio rates with Modellix, run a Qwen-Image 3.0 call, and dodge the common pitfalls.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Qwen Image API: Integration Guide, Pricing &amp; Code — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/qwen-image-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Qwen image API pricing, lineup, and code: compare official Model Studio rates with Modellix, run a Qwen-Image 3.0 call, and dodge the common pitfalls.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-qwen-image-api.webp">
+<meta property="article:published_time" content="2026-08-23T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-23T02:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Image API">
+<meta property="article:tag" content="Pricing">
+<meta property="article:tag" content="Qwen">
+<meta property="article:tag" content="Text-to-Image">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-qwen-image-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Qwen Image API: Integration Guide, Pricing & Code","description":"Qwen image API pricing, lineup, and code: compare official Model Studio rates with Modellix, run a Qwen-Image 3.0 call, and dodge the common pitfalls.","datePublished":"2026-08-23T02:00:00.000Z","dateModified":"2026-08-23T02:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/qwen-image-api/","image":"https://img.modellix.ai/en/article/cover-qwen-image-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Qwen Image API: Integration Guide, Pricing &amp; Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Qwen Image API: Integration Guide, Pricing &amp; Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-23T02:00:00.000Z">August 23, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+              <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
+            
+              <a href="/blog/tags/Qwen/" class="tag-pill tag-pill--sm">Qwen</a>
+            
+              <a href="/blog/tags/Text-to-Image/" class="tag-pill tag-pill--sm">Text-to-Image</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.srcgptbots.com/blog/author/20260409/modellix-blog-author-official@2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>The Qwen image API is one model family with a confusing name ladder. qwen-image, qwen-image-plus, qwen-image-max, qwen-image-2.0, qwen-image-2.0-pro, and now qwen-image-3.0 and 3.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-qwen-image-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-qwen-image-api.png" alt="Dark amber editorial cover: MODELLIX wordmark, bold two-line title QWEN IMAGE API / PRICING & CODE, and a glowing amber key unlocking a glass stack of Qwen image model cards" />
+</picture>
+
+<p>The Qwen image API is one model family with a confusing name ladder. <code>qwen-image</code>, <code>qwen-image-plus</code>, <code>qwen-image-max</code>, <code>qwen-image-2.0</code>, <code>qwen-image-2.0-pro</code>, and now <code>qwen-image-3.0</code> and <code>3.0-pro</code> all describe different tiers of the same text-to-image engine, and the official pricing for them sits on a separate page with five region tabs. If you just want to know which model to call, what it costs today, and how to run it, the official documentation makes you assemble that answer from three or four pages yourself.</p>
+<p>This guide does it in one pass: the model lineup, official prices read live on August 23, 2026, working code for both the direct route (Alibaba Cloud Model Studio) and a unified-API route (Modellix), and the five operational pitfalls the docs bury. Modellix is an API aggregator and has a commercial interest in the second route, so prices on both sides are shown and the comparison stays like-for-like.</p>
+<h2 id="The-Qwen-image-API-model-lineup-in-2026"><a href="#The-Qwen-image-API-model-lineup-in-2026" class="headerlink" title="The Qwen image API model lineup in 2026"></a>The Qwen image API model lineup in 2026</h2><p>Qwen image generation exists in four generations, and the API exposes most of them side by side. The naming tells you the tier, not the age: <code>plus</code> and <code>max</code> are older, cheaper-quality tiers of the original model; <code>2.0</code> and <code>2.0-pro</code> are the second generation; <code>3.0</code> and <code>3.0-pro</code> are the current release (announced July 20, 2026); the <code>edit</code> variants are image-editing models. One more wrinkle: the official API reference pins each model to a dated snapshot ID (for example <code>qwen-image-2.0-pro-2026-06-22</code>), so the same model name can map to several versioned releases over time — the prices in this guide track the snapshots current on the access date.</p>
+<table>
+<thead>
+<tr>
+<th>Model ID</th>
+<th align="right">Type</th>
+<th>Positioning</th>
+<th align="right">Official price (Singapore, per image)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>qwen-image</code></td>
+<td align="right">T2I</td>
+<td>Legacy, maintained for compatibility</td>
+<td align="right">$0.035</td>
+</tr>
+<tr>
+<td><code>qwen-image-plus</code></td>
+<td align="right">T2I</td>
+<td>Distilled fast tier of the original</td>
+<td align="right">$0.03</td>
+</tr>
+<tr>
+<td><code>qwen-image-max</code></td>
+<td align="right">T2I</td>
+<td>Higher realism tier of the original</td>
+<td align="right">$0.075</td>
+</tr>
+<tr>
+<td><code>qwen-image-2.0</code></td>
+<td align="right">T2I + edit</td>
+<td>Accelerated 2.0, balances speed and quality</td>
+<td align="right">$0.035</td>
+</tr>
+<tr>
+<td><code>qwen-image-2.0-pro</code></td>
+<td align="right">T2I + edit</td>
+<td>Professional 2.0: stronger text rendering, negative prompts, 1–6 images</td>
+<td align="right">$0.075</td>
+</tr>
+<tr>
+<td><code>qwen-image-3.0</code></td>
+<td align="right">T2I + I2I</td>
+<td>Current gen, balances quality and speed</td>
+<td align="right">$0.03 (1K) &#x2F; $0.03 (2K)</td>
+</tr>
+<tr>
+<td><code>qwen-image-3.0-pro</code></td>
+<td align="right">T2I + I2I</td>
+<td>Current gen, Pro tier, photorealism and complex layouts</td>
+<td align="right">$0.04 (1K) &#x2F; $0.075 (2K)</td>
+</tr>
+<tr>
+<td><code>qwen-image-edit</code> &#x2F; <code>edit-plus</code> &#x2F; <code>edit-max</code></td>
+<td align="right">I2I editing</td>
+<td>Dedicated editing models</td>
+<td align="right">$0.045 &#x2F; $0.03 &#x2F; $0.075</td>
+</tr>
+</tbody></table>
+<p><em>Model IDs and positioning from the official Qwen-Image API reference, accessed August 23, 2026.</em></p>
+<p>What makes the whole family distinctive is <mark>in-image text rendering</mark>: posters, infographics, UI mockups, and multi-language layouts where the text inside the image has to be legible and correctly spelled. The 3.0 generation pushes this further — up to 4.5K token prompts, text as small as 10px, and native rendering in 12 languages, per the <a target="_blank" rel="noopener" href="https://qwen.ai/blog?id=qwen-image-3.0">Qwen-Image-3.0 launch post</a>. The open-weight lineage (Apache 2.0 for the original) is on <a target="_blank" rel="noopener" href="https://github.com/QwenLM/Qwen-Image">GitHub</a>, which is why so many platforms host it.</p>
+<p>For a new integration, start with <code>qwen-image-3.0</code> or <code>qwen-image-3.0-pro</code>. The 2.0 family remains relevant when you need batch output (<code>n</code> up to 6) at a fixed per-image price, and the <code>edit</code> models when your task is image-to-image transformation rather than generation.</p>
+<h2 id="Qwen-image-API-pricing-as-of-August-23-2026"><a href="#Qwen-image-API-pricing-as-of-August-23-2026" class="headerlink" title="Qwen image API pricing (as of August 23, 2026)"></a>Qwen image API pricing (as of August 23, 2026)</h2><p>Official pricing is per successfully generated image, billed on the Alibaba Cloud Model Studio page — failed calls cost nothing and do not consume free quota. The Singapore (International) region is the one to use without a Chinese mainland account; prices there differ slightly from the Beijing region.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/qwen-model-studio-pricing.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/qwen-model-studio-pricing.png" alt="Official Alibaba Cloud Model Studio pricing table for Qwen image models, Singapore region, showing per-image rates and free quotas, captured August 23 2026" loading="lazy" />
+</picture>
+
+<p><em>Official Model Studio pricing for Qwen image models (Singapore tab), captured from the live page on August 23, 2026. The 3.0 series adds a $0.003&#x2F;image input charge and free quotas of 10 images; the text-to-image models offer 100 free images.</em></p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th align="right">Official price (Singapore)</th>
+<th align="right">Modellix displayed price</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>qwen-image-3.0-pro</code></td>
+<td align="right">$0.04 (1K) &#x2F; $0.075 (2K) + $0.003 input</td>
+<td align="right">$0.0460&#x2F;img</td>
+</tr>
+<tr>
+<td><code>qwen-image-3.0</code></td>
+<td align="right">$0.03 (1K &#x2F; 2K) + $0.003 input</td>
+<td align="right">$0.0020&#x2F;img</td>
+</tr>
+<tr>
+<td><code>qwen-image-2.0-pro</code></td>
+<td align="right">$0.075</td>
+<td align="right">$0.0465&#x2F;img</td>
+</tr>
+<tr>
+<td><code>qwen-image-2.0</code></td>
+<td align="right">$0.035</td>
+<td align="right">—</td>
+</tr>
+</tbody></table>
+<p><em>Sources: <a target="_blank" rel="noopener" href="https://www.alibabacloud.com/help/en/model-studio/model-pricing">Model Studio model pricing</a> and the <a href="https://www.modellix.ai/models/alibaba/qwen-image-3.0-pro">Modellix model pages</a>, both accessed August 23, 2026. For the provider’s full catalog, see the <a href="https://www.modellix.ai/blog/alibaba-api-pricing/">Alibaba API pricing guide</a>.</em></p>
+<p>Two caveats before you compare numbers. First, the official 3.0-series price depends on output resolution (1K vs 2K) and charges for input images on editing calls; Modellix displays a single per-image rate. Second, these prices move — treat this table as a dated snapshot, not a quote. Read it per row, because the comparison cuts both ways: on the 3.0 Pro tier’s 1K output the official rate ($0.04) is below Modellix’s $0.0460, while on 2K output, on 3.0 ($0.03 vs $0.0020) and on 2.0-pro ($0.075 vs $0.0465), Modellix’s displayed rate is lower. One row deserves extra scrutiny: the 3.0 entry’s $0.0020 is the displayed per-run rate on Modellix’s model page today, but a 15× spread against the official $0.03 is unusually wide — re-verify it before committing to a budget, since it may be promotional.</p>
+<h2 id="Calling-the-Qwen-image-API-directly-Alibaba-Cloud-Model-Studio"><a href="#Calling-the-Qwen-image-API-directly-Alibaba-Cloud-Model-Studio" class="headerlink" title="Calling the Qwen image API directly (Alibaba Cloud Model Studio)"></a>Calling the Qwen image API directly (Alibaba Cloud Model Studio)</h2><p>You need three things: a Model Studio account, an API key, and the workspace ID embedded in the endpoint. The <a target="_blank" rel="noopener" href="https://www.alibabacloud.com/help/en/model-studio/qwen-image-api">official Qwen-Image API reference</a> covers key setup and the full parameter list — note that <strong>Beijing and Singapore keys and endpoints are separate and cannot be mixed</strong>.</p>
+<p>The synchronous endpoint for the 3.0 series (Singapore):</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">curl --location <span class="string">&#x27;https://&#123;WorkspaceId&#125;.ap-southeast-1.maas.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation&#x27;</span> \</span><br><span class="line">--header <span class="string">&#x27;Content-Type: application/json&#x27;</span> \</span><br><span class="line">--header <span class="string">&quot;Authorization: Bearer <span class="variable">$DASHSCOPE_API_KEY</span>&quot;</span> \</span><br><span class="line">--data <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;model&quot;: &quot;qwen-image-3.0-pro&quot;,</span></span><br><span class="line"><span class="string">    &quot;input&quot;: &#123;</span></span><br><span class="line"><span class="string">      &quot;messages&quot;: [</span></span><br><span class="line"><span class="string">        &#123;</span></span><br><span class="line"><span class="string">          &quot;role&quot;: &quot;user&quot;,</span></span><br><span class="line"><span class="string">          &quot;content&quot;: [</span></span><br><span class="line"><span class="string">            &#123; &quot;text&quot;: &quot;A vertical outdoor portrait with warm afternoon light. A newsstand on a sunlit street, dark green vines over the eaves, the sign reads \&quot;Il Messaggero\&quot; in white Gothic lettering.&quot; &#125;</span></span><br><span class="line"><span class="string">          ]</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">      ]</span></span><br><span class="line"><span class="string">    &#125;,</span></span><br><span class="line"><span class="string">    &quot;parameters&quot;: &#123;</span></span><br><span class="line"><span class="string">      &quot;prompt_extend&quot;: true</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>The Python equivalent uses the DashScope SDK:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> dashscope</span><br><span class="line"><span class="keyword">from</span> dashscope <span class="keyword">import</span> MultiModalConversation</span><br><span class="line"></span><br><span class="line">dashscope.base_http_api_url = <span class="string">&quot;https://&#123;WorkspaceId&#125;.ap-southeast-1.maas.aliyuncs.com/api/v1&quot;</span>  <span class="comment"># Singapore region; replace &#123;WorkspaceId&#125;</span></span><br><span class="line"></span><br><span class="line">response = MultiModalConversation.call(</span><br><span class="line">    api_key=os.getenv(<span class="string">&quot;DASHSCOPE_API_KEY&quot;</span>),</span><br><span class="line">    model=<span class="string">&quot;qwen-image-3.0-pro&quot;</span>,</span><br><span class="line">    messages=[&#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>, <span class="string">&quot;content&quot;</span>: [&#123;<span class="string">&quot;text&quot;</span>: <span class="string">&quot;A sunlit street portrait with a newsstand and a sign reading Il Messaggero&quot;</span>&#125;]&#125;],</span><br><span class="line">    result_format=<span class="string">&quot;message&quot;</span>,</span><br><span class="line">    stream=<span class="literal">False</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> response.status_code == <span class="number">200</span>:</span><br><span class="line">    image_url = response.output.choices[<span class="number">0</span>].message.content[<span class="number">0</span>][<span class="string">&quot;image&quot;</span>]</span><br><span class="line">    <span class="built_in">print</span>(image_url)  <span class="comment"># download this now — it expires in 24 hours</span></span><br></pre></td></tr></table></figure>
+
+<p>Both examples follow the official API reference above. The response returns a temporary image URL (PNG) that <strong>expires after 24 hours</strong> — download it to your own storage immediately. Only <code>qwen-image</code> and <code>qwen-image-plus</code> support the asynchronous task workflow (send <code>X-DashScope-Async: enable</code>, poll the returned <code>task_id</code>); the 2.0 and 3.0 series are called synchronously. The 3.0 series has its own <a target="_blank" rel="noopener" href="https://www.alibabacloud.com/help/en/model-studio/qwen-image-generation-and-editing-api-reference">API reference</a> with additional regions (Hong Kong, Frankfurt, Tokyo) and the I2I&#x2F;editing request shape.</p>
+<h2 id="Calling-Qwen-image-through-Modellix-one-key-the-whole-family"><a href="#Calling-Qwen-image-through-Modellix-one-key-the-whole-family" class="headerlink" title="Calling Qwen image through Modellix: one key, the whole family"></a>Calling Qwen image through Modellix: one key, the whole family</h2><p>Modellix exposes the Qwen image family — including 3.0, 3.0-pro, 2.0, and the edit models — behind one key and one async pattern. The endpoint follows the <code>https://api.modellix.ai/api/v1/&lt;provider&gt;/&lt;model&gt;</code> convention, so switching from <code>qwen-image-3.0-pro</code> to <code>qwen-image-2.0-pro-edit</code> is a one-line change:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">curl --request POST \</span><br><span class="line">  --url https://api.modellix.ai/api/v1/alibaba/qwen-image-3.0-pro \</span><br><span class="line">  --header <span class="string">&#x27;Authorization: Bearer YOUR_API_KEY&#x27;</span> \</span><br><span class="line">  --header <span class="string">&#x27;Content-Type: application/json&#x27;</span> \</span><br><span class="line">  --data <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;prompt&quot;: &quot;A sunlit street portrait with a newsstand and a sign reading Il Messaggero&quot;,</span></span><br><span class="line"><span class="string">    &quot;size&quot;: &quot;2048*2048&quot;,</span></span><br><span class="line"><span class="string">    &quot;prompt_extend&quot;: true</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>Media generation is asynchronous, so the first call returns a task handle, not an image:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;success&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pending&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;task_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;task-qwen-img-123&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;get_result&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;method&quot;</span><span class="punctuation">:</span> <span class="string">&quot;GET&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.modellix.ai/api/v1/tasks/task-qwen-img-123&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>Poll the <code>get_result.url</code> until <code>status</code> becomes <code>success</code>, then download the output — the pattern is documented in the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api">Modellix API docs</a> and per-model in the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/alibaba/qwen-image-3-0-pro">Qwen Image 3.0 Pro reference</a>. If you prefer not to poll, send an <code>X-Webhook-URL</code> header and Modellix POSTs the result when the task finishes.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/qwen-image-async-workflow.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/qwen-image-async-workflow.png" alt="Qwen image API async flow: submit the generation task, poll the returned task id, then download the finished image" loading="lazy" />
+</picture>
+
+<p><em>Every Qwen image API call on the Modellix route follows the same async pattern: submit a task, poll the task id, then download the result. The webhook option replaces step two.</em></p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Qwen Image API Reference</h3><p class="view-docs-tag-desc">See the request and response shape for calling Qwen image models on Modellix.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<p>Why would you pick the aggregator route over direct? The honest reasons: one key for Qwen <strong>and</strong> the rest of the platform’s 210+ image and video models, no Chinese mainland account needed, per-call cost logs, and pay-as-you-go billing with no prepaid packages. The honest boundary: for a single model at high volume, direct Alibaba billing can be cheaper per image — the operational value of one key and one bill is what you are paying for, not a guaranteed lower unit price.</p>
+<h2 id="Qwen-image-API-parameters-that-actually-matter"><a href="#Qwen-image-API-parameters-that-actually-matter" class="headerlink" title="Qwen image API parameters that actually matter"></a>Qwen image API parameters that actually matter</h2><p>The parameter set is small, and four knobs change your results more than the rest:</p>
+<ul>
+<li><strong><code>prompt_extend</code></strong> — defaults to <code>true</code> and silently rewrites your prompt for more detail. Leave it on for diverse output; turn it off when you need tight control over a specific composition. The 3.0 series adds <code>prompt_extend_mode</code> (<code>direct</code> &#x2F; <code>agent</code>).</li>
+<li><strong><code>negative_prompt</code></strong> — up to 500 characters, only on models that support it (the 2.0&#x2F;3.0 Pro tiers do). Useful for excluding “low resolution, distorted hands, warped text” style artifacts.</li>
+<li><strong><code>size</code></strong> — the 2.0 series accepts any <code>width*height</code> between 512×512 and 2048×2048 total pixels (recommended presets include <code>2688*1536</code> for 16:9 and <code>2368*1728</code> for 4:3); <code>max</code>&#x2F;<code>plus</code> accept a fixed set ending at <code>1664*928</code>.</li>
+<li><strong><code>n</code></strong> — number of images per call. 1–6 on the 2.0&#x2F;3.0 series; <strong>fixed at 1 on <code>max</code> and <code>plus</code></strong> — any other value returns an error.</li>
+</ul>
+<p>Prompt length limits differ by model: 1,300 tokens on the 2.0 series, 800 on most others, and about 4,500 tokens on 3.0 (which is what makes dense layouts like newspapers and storyboards possible). Excess tokens are silently truncated — if your complex prompt keeps losing detail, check the cap before blaming the model.</p>
+<h2 id="Common-Qwen-image-API-errors-and-how-to-fix-them"><a href="#Common-Qwen-image-API-errors-and-how-to-fix-them" class="headerlink" title="Common Qwen image API errors and how to fix them"></a>Common Qwen image API errors and how to fix them</h2><ol>
+<li><strong>Region mismatch (authentication or service errors).</strong> A Beijing key against a Singapore endpoint fails. Keys and endpoints are region-scoped — pick one region and keep both in sync.</li>
+<li><strong><code>&quot;current user api does not support synchronous calls&quot;</code>.</strong> You called the async-only models (<code>qwen-image</code>, <code>qwen-image-plus</code>) without the <code>X-DashScope-Async: enable</code> header, or used an HTTP endpoint that requires it. Add the header and poll the task, or switch to a synchronous model.</li>
+<li><strong><code>&quot;n must be 1&quot;</code>.</strong> You requested <code>n &gt; 1</code> on <code>qwen-image-max</code> or <code>qwen-image-plus</code>, where batch output is not supported.</li>
+<li><strong>The image URL is dead by the time you need it.</strong> Result URLs and task data expire after 24 hours. Download to your own storage (S3, R2, your server) at generation time, not when you deploy.</li>
+<li><strong>Single-turn restriction.</strong> The <code>messages</code> array must contain exactly one user message; multi-turn conversations are not supported. Wrap each generation in its own call.</li>
+</ol>
+<h2 id="Qwen-image-API-free-quota-and-free-tiers"><a href="#Qwen-image-API-free-quota-and-free-tiers" class="headerlink" title="Qwen image API free quota and free tiers"></a>Qwen image API free quota and free tiers</h2><p>Yes, there is a free tier, with two honest caveats. Officially, Model Studio offers a free quota <strong>only in the Singapore region</strong>: 100 images for most text-to-image models (and 10 images for the 3.0 series), valid for 90 days from account activation — failed generations don’t consume it. Other regions have no free quota. On the Modellix side, new users get free credit that can be used to test Qwen image models without paying upfront; the exact amount is set in the console rather than published in the docs, so check the signup flow for the current figure. If you want the wider image-model context, our <a href="https://www.modellix.ai/blog/text-to-image-api-guide/">text-to-image API guide</a> compares Qwen against the rest of the production text-to-image field. For running many media models through one key, see the <a href="https://www.modellix.ai/blog/unified-ai-api/">unified AI API guide</a>.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Start Generating with Qwen</h3><p class="view-docs-tag-desc">Log in to Modellix and run Qwen-Image 3.0 and 200+ other models on one key.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p><strong>What is the Qwen image API?</strong></p>
+<p>The Qwen image API is Alibaba’s hosted interface to the Qwen-Image family of text-to-image and image-editing models, available through Alibaba Cloud Model Studio (DashScope) and through aggregators such as Modellix. Its signature capability is accurate text rendering inside generated images — posters, infographics, and UI layouts where the text has to be legible and correctly spelled.</p>
+<p><strong>Which Qwen image model should I use?</strong></p>
+<p>For new text-to-image work, use <code>qwen-image-3.0-pro</code> when photorealism and complex layouts matter, <code>qwen-image-3.0</code> when you want the best quality&#x2F;speed balance, and <code>qwen-image-2.0</code> or <code>2.0-pro</code> when you need batch output (1–6 images per call) or strict negative-prompt control at a flat per-image price. Use the <code>edit</code> variants for image-to-image transformation.</p>
+<p><strong>How much does the Qwen image API cost?</strong></p>
+<p>As of August 23, 2026, official Singapore-region prices are $0.03–$0.075 per successfully generated image depending on model and resolution, with the 3.0 series adding a $0.003&#x2F;image input charge. Modellix displays a single per-image rate per model (for example $0.0460&#x2F;img for <code>qwen-image-3.0-pro</code>). Failed calls are not billed on either side.</p>
+<p><strong>Is there a free Qwen image API?</strong></p>
+<p>Yes — a limited one. Model Studio grants a free quota in the Singapore region only (100 images for most models, 10 for the 3.0 series, valid 90 days). Modellix provides free credit to new users that can be applied to Qwen image models. Both require a new account.</p>
+<p><strong>Can I use the Qwen image API without a Chinese account?</strong></p>
+<p>Yes. The Singapore (International) region of Model Studio is open to international accounts and uses its own API key. Do not mix Singapore and Beijing keys — they are region-scoped and cross-region calls fail.</p>
+<p><strong>What is the difference between qwen-image and qwen-image-3.0?</strong></p>
+<p><code>qwen-image</code> is the original 2025 generation (Apache 2.0, open weights); <code>qwen-image-3.0</code> is the current generation with much longer prompt support (4.5K tokens), finer text rendering (down to 10px), 12-language rendering, and stronger world knowledge for UI and infographic output. The 3.0 series also merges generation and editing into one model.</p>
+<p><strong>Can I edit images with the Qwen image API?</strong></p>
+<p>Yes. Dedicated editing models (<code>qwen-image-edit</code>, <code>edit-plus</code>, <code>edit-max</code>, <code>qwen-image-2.0-edit</code>, <code>qwen-image-2.0-pro-edit</code>, and the 3.0 edit variants) perform instruction-based edits and image fusion; the 3.0 generation and editing models also accept 1–3 input images with an edit instruction.</p>
+<p><strong>Is the Qwen image API OpenAI-compatible?</strong></p>
+<p>The Qwen image models are not OpenAI-compatible — they use the DashScope native multimodal-generation endpoint. OpenAI-compatible mode applies to Qwen text models (<code>qwen-plus</code> and up), which is how agent frameworks orchestrate image generation as a tool call.</p>
+<hr>
+<p><em>Provider details and pricing reflect public information as of August 23, 2026 and change frequently. Validate against each provider’s live pricing before committing. Access image and video models, including the leading Chinese models, through a single API key at <a target="_blank" rel="noopener" href="https://modellix.ai/">modellix.ai</a>.</em></p>
+<p><em>Cover image: illustrative Modellix artwork; it is not an Alibaba product screenshot or source evidence.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+              <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
+            
+              <a href="/blog/tags/Qwen/" class="tag-pill tag-pill--sm">Qwen</a>
+            
+              <a href="/blog/tags/Text-to-Image/" class="tag-pill tag-pill--sm">Text-to-Image</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/nano-banana-api-key-free/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-nano-banana-api-key-free.webp" alt="Nano Banana API Key Free: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Nano Banana API Key Free: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-08-23T02:00:00.000Z">August 23, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/openai-video-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-openai-video-api.webp" alt="OpenAI Video API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">OpenAI Video API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-08-19T02:00:00.000Z">August 19, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/google-virtual-try-on-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-google-virtual-try-on-api.webp" alt="Google Virtual Try On API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Google Virtual Try On API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-08-18T16:00:00.000Z">August 19, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/qwen-image-api/&text=Qwen%20Image%20API%3A%20Integration%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/qwen-image-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/qwen-image-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

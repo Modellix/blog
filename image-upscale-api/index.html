@@ -1,0 +1,651 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Upscale API: Integration Guide, Pricing &amp; Code — Modellix Blog</title>
+  <meta name="description" content="Compare image upscale APIs by real per-image cost, input limits, and output resolution, with working code for Clipdrop sync and Modellix async routes.">
+  <meta name="keywords" content="image upscale api, image upscaling api, image upscaler api, upscale image api, image upscale api free, image upscale api python, 4k image upscale api, image super resolution api, ai image upscaler api, best image upscaler api, topaz image upscale api">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/image-upscale-api/">
+  <meta name="description" content="Compare image upscale APIs by real per-image cost, input limits, and output resolution, with working code for Clipdrop sync and Modellix async routes.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Image Upscale API: Integration Guide, Pricing &amp; Code — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/image-upscale-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Compare image upscale APIs by real per-image cost, input limits, and output resolution, with working code for Clipdrop sync and Modellix async routes.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-image-upscale-api.webp">
+<meta property="article:published_time" content="2026-08-23T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-23T02:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Image API">
+<meta property="article:tag" content="API Guide">
+<meta property="article:tag" content="Image Upscaling">
+<meta property="article:tag" content="Integration">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-image-upscale-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Image Upscale API: Integration Guide, Pricing & Code","description":"Compare image upscale APIs by real per-image cost, input limits, and output resolution, with working code for Clipdrop sync and Modellix async routes.","datePublished":"2026-08-23T02:00:00.000Z","dateModified":"2026-08-23T02:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/image-upscale-api/","image":"https://statics.mylandingpages.co/static/modellix/image/cover-image-upscale-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Image Upscale API: Integration Guide, Pricing &amp; Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/API-Guides/" class="category-tag category-tag--sm">API Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Image Upscale API: Integration Guide, Pricing &amp; Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-23T02:00:00.000Z">August 23, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
+            
+              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
+            
+              <a href="/blog/tags/Integration/" class="tag-pill tag-pill--sm">Integration</a>
+            
+              <a href="/blog/tags/Image-Upscaling/" class="tag-pill tag-pill--sm">Image Upscaling</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.srcgptbots.com/blog/author/20260409/modellix-blog-author-official@2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>An image upscale API takes an image and returns a larger, sharper version of it through a programmatic endpoint.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/cover-image-upscale-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/cover-image-upscale-api.png" alt="MODELLIX wordmark with a two-line title about the image upscale API and a spec capsule showing one API key for many image models" />
+</picture>
+
+<p>An image upscale API takes an image and returns a larger, sharper version of it through a programmatic endpoint. “Upscale” means resolution: the model reconstructs a higher-pixel version of your source, removes compression artifacts, and sharpens detail. It is a post-processing effect, not a generator — the content and composition of the source image stay the same.</p>
+<p>Every vendor page for this category sells the same sentence (“bigger, sharper images”), but the APIs underneath bill in incompatible units, cap their inputs differently, and mean different things by “4x”. This guide compares the image upscale APIs that actually rank for this query — Picsart, Topaz, Claid, Clipdrop, and the aggregator route — with pricing normalized to a per-image figure, the input&#x2F;output limits each one enforces, and integration code you can run today. Provider facts were read from the live official pages on August 23, 2026.</p>
+<h2 id="What-an-image-upscale-API-does-—-and-what-it-can’t-fix"><a href="#What-an-image-upscale-API-does-—-and-what-it-can’t-fix" class="headerlink" title="What an image upscale API does — and what it can’t fix"></a>What an image upscale API does — and what it can’t fix</h2><p>An upscale API increases the pixel dimensions of an image and reconstructs detail that a plain resize would blur. The mechanics differ by provider, but the practical contract is the same: send an image, specify a target scale or size, get a larger image back.</p>
+<p>That contract has boundaries worth knowing before you build on it:</p>
+<ul>
+<li><strong>Low-resolution but clean source images</strong> (small product photos, old scans, downscaled renders) — upscaling genuinely helps; this is the ideal case.</li>
+<li><strong>Heavily compressed images</strong> (social-media re-encodes, low-bitrate JPEGs) — a good model removes artifacts and recovers some detail, but it cannot invent what compression destroyed.</li>
+<li><strong>Blurry or noisy source images</strong> — resolution scaling alone will not fix focus. Some providers sell sharpen&#x2F;unblur as separate capabilities; do not assume the upscale endpoint includes them. <a target="_blank" rel="noopener" href="https://kie.ai/topaz-image-upscale">Kie’s Topaz reseller page</a>, for example, markets upscale, unblur, and sharpen as three distinct products.</li>
+</ul>
+<p>The second boundary is the scale factor. When a vendor says “4x upscale”, it means each dimension is multiplied by 4 — a 1024×1024 image becomes 4096×4096, which is <strong>16× the pixel count</strong>, not 4×. That distinction matters when you check a “4K output” claim against your actual source size, and it is the first thing to verify in any pricing calculation. If the asset you are processing is a video rather than a still image, the same comparison logic applies to the <a href="https://www.modellix.ai/blog/ai-video-upscale-api/">AI video upscale API category</a> — different providers, same three architectures, same unit-normalization problem.</p>
+<h2 id="How-to-compare-image-upscale-APIs-pricing-limits-output"><a href="#How-to-compare-image-upscale-APIs-pricing-limits-output" class="headerlink" title="How to compare image upscale APIs: pricing, limits, output"></a>How to compare image upscale APIs: pricing, limits, output</h2><p>Vendor pages quote prices in incompatible units, when they quote them at all. Here is what the live pages for the providers ranking on this query actually publish (accessed August 23, 2026):</p>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Billing unit</th>
+<th>Published rate</th>
+<th>Output ceiling</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Modellix (seedream-5.0-lite-edit)</td>
+<td>per image</td>
+<td>$0.0362&#x2F;image (flat)</td>
+<td>model-defined imageSize</td>
+</tr>
+<tr>
+<td>Modellix (nano-banana-2-edit)</td>
+<td>per image, by output size</td>
+<td>$0.0419 (512) – $0.1265 (4K)</td>
+<td>up to 4K</td>
+</tr>
+<tr>
+<td>Topaz Labs API (Enhance)</td>
+<td>credit per request</td>
+<td>from $0.12&#x2F;credit (entry tier)</td>
+<td>24 MP per request</td>
+</tr>
+<tr>
+<td>Clipdrop</td>
+<td>credit per request</td>
+<td>not published on docs page; <code>x-credits-consumed</code> returned per call</td>
+<td>16k×16k async, 4096px sync</td>
+</tr>
+<tr>
+<td>Picsart</td>
+<td>usage-based</td>
+<td>not published on product page</td>
+<td>up to 8x</td>
+</tr>
+<tr>
+<td>Claid</td>
+<td>usage-based</td>
+<td>not published on product page</td>
+<td>16x claim</td>
+</tr>
+</tbody></table>
+<p>The comparison you need is <strong>dollars per output image for your specific source</strong>. Worked example, stated assumptions: a 1024×1024 source image (1 MP), upscaled 4× to 4096×4096 (16.7 MP output), one image per request:</p>
+<ul>
+<li><strong>Modellix seedream-5.0-lite-edit:</strong> <strong>$0.0362</strong> per image, flat — the output size does not change the rate.</li>
+<li><strong>Modellix nano-banana-2-edit:</strong> $0.0419 at 512 output up to <strong>$0.1265</strong> at 4K; a 4096×4096 request lands at the 4K tier.</li>
+<li><strong>Topaz Enhance:</strong> the entry tier is $0.12&#x2F;credit and Enhance consumes 1 credit per request up to 24 MP output — 16.7 MP fits, so <strong>≈$0.12</strong>.</li>
+<li><strong>Clipdrop:</strong> credit-based; the exact cost is only visible per request via the <code>x-credits-consumed</code> response header, so budget a test call.</li>
+<li><strong>Picsart and Claid:</strong> no per-image rate published on their product pages — you cannot price them without contacting sales or running a test account.</li>
+</ul>
+<p>This is a worked example with stated assumptions, not a quote — prices move, and Modellix is an aggregator whose per-image rates include the platform’s margin. But the exercise is the point: <strong>no two vendors quote the same unit, and any comparison that does not convert everything to cost per output image for your source size is marketing, not math.</strong></p>
+<p>Input limits matter more than price for most integrations, and they are the least documented part of every vendor page. The ones that break integrations on day one:</p>
+<table>
+<thead>
+<tr>
+<th>Constraint</th>
+<th>Clipdrop</th>
+<th>Topaz</th>
+<th>Picsart</th>
+<th>Modellix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Max input resolution</td>
+<td>16 MP</td>
+<td>model-dependent</td>
+<td>not stated</td>
+<td>not stated (URL or file input)</td>
+</tr>
+<tr>
+<td>Max file size</td>
+<td>30 MB</td>
+<td>not stated</td>
+<td>not stated</td>
+<td>via File API (documented limits)</td>
+</tr>
+<tr>
+<td>Input format</td>
+<td>PNG, JPEG, WebP</td>
+<td>images&#x2F;video</td>
+<td>images</td>
+<td>images, URL or upload</td>
+</tr>
+<tr>
+<td>Scale control</td>
+<td>target width&#x2F;height (1–4096 px)</td>
+<td>up to 24 MP output</td>
+<td>up to 8x</td>
+<td>model parameter (imageSize)</td>
+</tr>
+<tr>
+<td>Sync or async</td>
+<td>both</td>
+<td>async</td>
+<td>async</td>
+<td>async</td>
+</tr>
+</tbody></table>
+<p>Clipdrop’s sync endpoint caps target dimensions at 4096 px per side, while its async route allows up to <strong>16k×16k</strong> output — the same vendor, two very different output contracts depending on which endpoint you call. Picsart markets “up to 8x”, which sounds generous until you do the pixel math above: 8x on a 512×512 source is only 4096×4096. <strong>Always compute the output pixel count for your source, then check it against the provider’s ceiling.</strong></p>
+<h2 id="Two-integration-patterns-synchronous-and-asynchronous"><a href="#Two-integration-patterns-synchronous-and-asynchronous" class="headerlink" title="Two integration patterns: synchronous and asynchronous"></a>Two integration patterns: synchronous and asynchronous</h2><p>Every upscale API falls into one of two shapes, and your pipeline’s latency budget decides which you need:</p>
+<ul>
+<li><strong>Synchronous</strong> — you send the image, the response body <em>is</em> the upscaled image. Simple, but the request blocks for the model’s runtime, and providers cap input size to keep responses fast. Clipdrop’s <code>/upscale</code> endpoint is the clearest example.</li>
+<li><strong>Asynchronous</strong> — you submit a task, receive a <code>task_id</code>, and either poll a status endpoint or register a webhook; the finished image is downloaded from a result URL. This is the pattern for large images, batches, and production pipelines. Topaz, Picsart, and Modellix all use it.</li>
+</ul>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/upscale-api-sync-async-flow.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/upscale-api-sync-async-flow.png" alt="Synchronous versus asynchronous image upscale API flow: sync returns the image bytes directly, async submits a task id and then polls or receives a webhook before download" loading="lazy" />
+</picture>
+
+<p><em>The sync path returns image bytes in the response; the async path returns a task id first, then a result URL after polling or a webhook.</em></p>
+<p>The async pattern dominates the category because upscaling is compute-heavy. If you are building a batch pipeline — thousands of product images per day — synchronous calls serialize your throughput; the async path lets you submit N tasks and drain them in parallel.</p>
+<h2 id="Image-upscale-API-code-the-same-job-on-two-routes"><a href="#Image-upscale-API-code-the-same-job-on-two-routes" class="headerlink" title="Image upscale API code: the same job on two routes"></a>Image upscale API code: the same job on two routes</h2><p>Here is the same job — upscale a 1024×1024 image 4× — on a synchronous route and an asynchronous route.</p>
+<p><strong>Clipdrop (synchronous, multipart upload):</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST https://clipdrop-api.co/image-upscaling/v1/upscale \</span><br><span class="line">  -H <span class="string">&quot;x-api-key: <span class="variable">$CLIPDROP_API_KEY</span>&quot;</span> \</span><br><span class="line">  -F <span class="string">&quot;image_file=@input.png&quot;</span> \</span><br><span class="line">  -F <span class="string">&quot;target_width=4096&quot;</span> \</span><br><span class="line">  -F <span class="string">&quot;target_height=4096&quot;</span> \</span><br><span class="line">  -o output.jpg</span><br></pre></td></tr></table></figure>
+
+<p>The response body is the upscaled image (WebP if the source has transparency, JPEG otherwise), and the response headers include <code>x-credits-consumed</code> so you can meter real cost per request.</p>
+<p><strong>Modellix (asynchronous, URL input, poll for the result):</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST https://api.modellix.ai/api/v1/bytedance/seedream-5.0-lite-edit/async \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$MODELLIX_API_KEY</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;&quot;prompt&quot;: &quot;Upscale this image 4x, keep it identical&quot;, &quot;image_url&quot;: &quot;https://your-bucket/input.png&quot;&#125;&#x27;</span></span><br><span class="line"><span class="comment"># → &#123;&quot;code&quot;:0,&quot;data&quot;:&#123;&quot;status&quot;:&quot;pending&quot;,&quot;task_id&quot;:&quot;task-abc123&quot;,&quot;get_result&quot;:&#123;...&#125;&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>Then poll the returned task endpoint:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -X GET https://api.modellix.ai/api/v1/tasks/task-abc123 \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$MODELLIX_API_KEY</span>&quot;</span></span><br><span class="line"><span class="comment"># → &#123;&quot;code&quot;:0,&quot;data&quot;:&#123;&quot;status&quot;:&quot;success&quot;,&quot;output&quot;:&#123;...&#125;&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>The polling loop is the same regardless of provider — here it is in Python, which is the pattern you will ship:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">wait_for_task</span>(<span class="params">get_url: <span class="built_in">str</span>, headers: <span class="built_in">dict</span>, timeout: <span class="built_in">int</span> = <span class="number">600</span></span>):</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(timeout // <span class="number">5</span>):</span><br><span class="line">        r = requests.get(get_url, headers=headers)</span><br><span class="line">        state = r.json().get(<span class="string">&quot;data&quot;</span>, &#123;&#125;).get(<span class="string">&quot;status&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> state == <span class="string">&quot;success&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> r.json()</span><br><span class="line">        <span class="keyword">if</span> state <span class="keyword">in</span> (<span class="string">&quot;failed&quot;</span>, <span class="string">&quot;canceled&quot;</span>):</span><br><span class="line">            <span class="keyword">raise</span> RuntimeError(<span class="string">f&quot;task failed: <span class="subst">&#123;r.text&#125;</span>&quot;</span>)</span><br><span class="line">        time.sleep(<span class="number">5</span>)</span><br><span class="line">    <span class="keyword">raise</span> TimeoutError(<span class="string">&quot;task did not finish in time&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>To skip the polling entirely, Modellix accepts an <code>X-Webhook-URL</code> header on the submit call; the webhook fires once the task reaches a terminal state (<code>success</code>, <code>failed</code>, <code>canceled</code>) and carries the task result, delivered as a <code>POST</code> with an <code>X-Modellix-Event</code> header naming the event (<code>prediction.task.succeeded</code>, <code>prediction.task.failed</code>, or <code>prediction.task.canceled</code>).</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Image Upscale API Reference</h3><p class="view-docs-tag-desc">See the full submit, poll, and webhook contract for Modellix media generation APIs.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Provider-snapshot-what-each-image-upscale-API-actually-offers"><a href="#Provider-snapshot-what-each-image-upscale-API-actually-offers" class="headerlink" title="Provider snapshot: what each image upscale API actually offers"></a>Provider snapshot: what each image upscale API actually offers</h2><ul>
+<li><strong>Picsart Upscale API</strong> — the top-ranking product page (<a target="_blank" rel="noopener" href="https://picsart.io/upscale/">picsart.io&#x2F;upscale</a>): up to 8x upscaling, API key from the Picsart console, positioned for e-commerce, advertising, social, and print. No published per-image price; “easy integration” claims without a public limits table. Usage-based billing.</li>
+<li><strong>Topaz Labs API</strong> — <a target="_blank" rel="noopener" href="https://developer.topazlabs.com/">official API docs</a> for the models behind Topaz’s desktop products. Credit-based: entry tier from $0.12&#x2F;credit; the Enhance endpoint covers requests up to 24 MP output. This is the provider most resellers (Kie, and others) bundle, so check whether a “Topaz API” reseller is actually calling Topaz’s own endpoint or a proxy.</li>
+<li><strong>Claid</strong> — <a target="_blank" rel="noopener" href="https://claid.ai/api-products/upscale-image">product page</a> claims 16x upscaling, combines upscale with “decompress” (JPEG artifact cleanup) and “polish” (sharpening), and publishes a real integration case: Mixam, a print platform, reports 78% fewer image-quality complaints after automating quality improvement on ~22 MB average images. Batch support; URL-based input; no published per-image rate.</li>
+<li><strong>Clipdrop</strong> — <a target="_blank" rel="noopener" href="https://clipdrop.co/apis/docs/image-upscaling">official API docs</a> are the most concrete in the category: sync endpoint (16 MP &#x2F; 30 MB input caps, 1–4096 px target dimensions) and async endpoint (16k×16k output ceiling). Credit-based with per-request cost returned in the response headers.</li>
+<li><strong>LetsEnhance &#x2F; Claid family</strong> — <a target="_blank" rel="noopener" href="https://letsenhance.io/blog/all/best-upscaler-apis/">LetsEnhance’s 2026 roundup</a> is the freshest listicle in the SERP (January 2026) and benchmarks seven tools: LetsEnhance, Topaz, Clipdrop, Magnific, Pixelbin&#x2F;Upscale.media, Picsart, and Cloudinary. Useful as a landscape map; the pricing table is in “subscription + credits” units, not per-image.</li>
+<li><strong>Stability AI</strong> — the ranking result is a <a target="_blank" rel="noopener" href="https://stability.ai/news-updates/stability-ai-releases-image-upscaling-api">2023 press release</a> announcing the Image Upscaling API. It is three years old; Stability’s image models have since moved to its platform API. Useful as a reminder that this SERP is stale — “image upscale api” results have not been meaningfully refreshed since 2023-2026, which is exactly why a dated integration guide can win.</li>
+<li><strong>Replicate (Real-ESRGAN and friends)</strong> — <a target="_blank" rel="noopener" href="https://replicate.com/collections/super-resolution">Replicate’s super-resolution collection</a> hosts the open-weight Real-ESRGAN family and similar models, billed per second of compute at the model level. If you want predictable, open-source-style upscaling without a vendor lock-in and are comfortable with per-second metering, this is the route to evaluate. The underlying models are the same ones many commercial APIs wrap.</li>
+</ul>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/image-upscale-architectures.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/image-upscale-architectures.png" alt="Three image upscale API architectures compared: open-weight super-resolution models, proprietary restoration models, and generative upscalers" loading="lazy" />
+</picture>
+
+<p><em>The three families behind every upscale API: open-weight super-resolution models (Real-ESRGAN and relatives), proprietary restoration models (Topaz-style), and generative upscalers that invent detail.</em></p>
+<h2 id="When-an-aggregator-route-makes-sense-and-when-it-doesn’t"><a href="#When-an-aggregator-route-makes-sense-and-when-it-doesn’t" class="headerlink" title="When an aggregator route makes sense (and when it doesn’t)"></a>When an aggregator route makes sense (and when it doesn’t)</h2><p>The same job can run through an aggregator like Modellix, which proxies model providers behind one API key and one billing relationship. For upscaling specifically, the aggregator argument is a routing decision, not a quality decision:</p>
+<ul>
+<li><strong>One integration contract.</strong> The async submit→poll→retrieve pattern above is identical for an upscaler, an image generator, or a video model. If your pipeline already calls Modellix for generation — the same pattern our <a href="https://www.modellix.ai/blog/ai-media-generation-api/">AI media generation API guide</a> walks through — adding the <a href="https://www.modellix.ai/collections/image-upscale">image upscale collection</a> — six image-to-image models including Seedream 5.0 Lite Edit and Nano Banana 2 Edit — is one more endpoint, not one more vendor.</li>
+<li><strong>One bill, per-call logs.</strong> Pay-as-you-go with per-call cost and status logs beats juggling credit packs and per-megapixel meters across three accounts.</li>
+<li><strong>The trade-off is real.</strong> Provider-specific parameters sometimes get flattened in aggregation; brand-new models often land on the vendor’s own API first; and the per-image price includes the platform’s margin. For a single high-volume upscale workload, going direct to the cheapest per-image provider (Clipdrop’s credits, or Topaz at volume) can beat any aggregator on raw unit cost.</li>
+</ul>
+<p>Modellix is an aggregator and has a commercial interest in this comparison. The honest version: if you already use an aggregator for the rest of your media pipeline, routing upscale through it costs you nothing extra in integration work; if upscale is your entire workload, price the direct routes too — the math above is exactly how.</p>
+<h2 id="Decision-framework-which-image-upscale-API-should-you-integrate"><a href="#Decision-framework-which-image-upscale-API-should-you-integrate" class="headerlink" title="Decision framework: which image upscale API should you integrate?"></a>Decision framework: which image upscale API should you integrate?</h2><table>
+<thead>
+<tr>
+<th>Your use case</th>
+<th>Best fit</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Product photos at high volume, print-quality output</td>
+<td>Claid (or LetsEnhance)</td>
+<td>Batch-first positioning and a published print case; no per-image price, so test first</td>
+</tr>
+<tr>
+<td>Clean open-source-style upscaling, no vendor lock-in</td>
+<td>Replicate (Real-ESRGAN collection)</td>
+<td>Open weights, per-second metering, predictable output</td>
+</tr>
+<tr>
+<td>Large-format output (posters, 8K-class)</td>
+<td>Clipdrop async</td>
+<td>16k×16k output ceiling is the highest published in the category</td>
+</tr>
+<tr>
+<td>Pro-grade enhancement + restoration</td>
+<td>Topaz API (or a Topaz reseller)</td>
+<td>Credit-based, 24 MP per request, established quality reputation</td>
+</tr>
+<tr>
+<td>Mixed pipeline (generate + upscale + edit)</td>
+<td>Aggregator route (Modellix image upscale collection)</td>
+<td>One key, one async contract, one bill; flat per-image rates on Seedream edit</td>
+</tr>
+<tr>
+<td>Consumer-style quick fixes, budget ≈ zero</td>
+<td>None of the APIs — use a free consumer tool</td>
+<td>The free tiers live on consumer apps, not on API endpoints</td>
+</tr>
+</tbody></table>
+<p>Whichever route you pick, the discipline is the same: convert the published billing unit to cost per output image for your source size, verify the output pixel count against the provider’s ceiling, and <strong>run one paid test image before you promise a resolution in your product</strong>.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Start Upscaling Images via API</h3><p class="view-docs-tag-desc">Log in to Modellix to try the image upscale collection and 210+ other models on one API key.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p><strong>Is there a free image upscale API?</strong></p>
+<p>No major provider maintains a sustained free API tier. Topaz’s <a target="_blank" rel="noopener" href="https://www.topazlabs.com/api">API landing page</a> advertises “try for free — no credit card required”, a trial-based allowance rather than an unlimited free API; Clipdrop has a free allowance in its consumer tools, and Kie offers free credits to test its Topaz reseller. Every long-term integration above consumes paid capacity. Free upscaling lives on consumer apps (Picsart’s free web tool, Pixelcut), which are not the same as an API you can integrate. Budget a test image instead.</p>
+<p><strong>Which image upscale API gives 4K or 8K output?</strong></p>
+<p>None of them guarantee it for arbitrary input — “4K” is a per-provider claim. Clipdrop’s async endpoint supports up to 16k×16k output; Topaz covers up to 24 MP per Enhance request; Picsart advertises up to 8x (which is 8× per dimension). The actual output depends on your source resolution and the endpoint you call, so compute the pixel math for your input before promising resolution.</p>
+<p><strong>How much does it cost to upscale one image?</strong></p>
+<p>Using the worked example above (1024×1024 → 4x → 4096×4096): Modellix seedream-5.0-lite-edit ≈ $0.0362, Modellix nano-banana-2-edit at the 4K tier ≈ $0.1265, Topaz Enhance ≈ $0.12 at entry-tier credits. Clipdrop, Picsart, and Claid do not publish per-image rates, so the honest answer for them is “run a test call and read the meter.”</p>
+<p><strong>What is the difference between an image upscale API and an image enhance API?</strong></p>
+<p>Upscaling increases resolution and reconstructs detail; enhancement is a broader category that includes sharpening, denoising, color correction, and artifact removal. Some providers (Claid, Kie&#x2F;Topaz) sell them together, but the endpoints are distinct capabilities. If your images are already high-resolution but noisy, enhancement is the relevant tool, not upscaling.</p>
+<p><strong>What is the best image upscaler API?</strong></p>
+<p>There is no single best — it depends on volume, output size, and whether you need batch processing. For published per-image pricing and flat rates, the aggregator route (Seedream 5.0 Lite Edit at $0.0362&#x2F;image) is the cheapest verifiable figure in this comparison as of August 2026. For the highest published output ceiling, Clipdrop’s async endpoint (16k×16k) wins. For pro-grade restoration, Topaz has the reputation. Match the provider to the workload, not the brand.</p>
+<p><strong>Can I upscale images via API with Python?</strong></p>
+<p>Yes — every provider in this guide has an HTTP API you can call from Python with <code>requests</code>. The async pattern with a polling loop (the <code>wait_for_task</code> function above) is the standard approach; sync routes like Clipdrop’s <code>/upscale</code> return the image bytes directly in the response.</p>
+<p><strong>What input formats do image upscale APIs accept?</strong></p>
+<p>Clipdrop documents PNG, JPEG, and WebP with a 16 MP &#x2F; 30 MB input cap. Most providers accept standard image formats and a publicly accessible URL; Modellix also supports direct file upload through its File API, which returns a URL you can pass into the model call.</p>
+<hr>
+<p><em>Provider details and pricing reflect public information as of August 23, 2026, and change frequently. Validate against each provider’s live pricing before committing — several vendors in this category do not publish per-image rates at all. Access image and video models, including the leading Chinese models, through a single API key at <a href="https://www.modellix.ai/">www.modellix.ai</a>.</em></p>
+<p><em>Cover image: illustrative Modellix artwork; it is not a vendor product screenshot or source evidence.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
+            
+              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
+            
+              <a href="/blog/tags/Integration/" class="tag-pill tag-pill--sm">Integration</a>
+            
+              <a href="/blog/tags/Image-Upscaling/" class="tag-pill tag-pill--sm">Image Upscaling</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/ai-motion-control-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-ai-motion-control-api.webp" alt="AI Motion Control API: Kling, PixVerse &amp; More" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">API Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">AI Motion Control API: Kling, PixVerse &amp; More</h3>
+          <time class="related-article-date" datetime="2026-08-12T02:00:00.000Z">August 12, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/ai-video-upscale-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-ai-video-upscale-api.webp" alt="AI Video Upscale API: Multi-Provider Integration Guide" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">API Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">AI Video Upscale API: Multi-Provider Integration Guide</h3>
+          <time class="related-article-date" datetime="2026-08-12T02:00:00.000Z">August 12, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/imagen-4-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-imagen-4-api.webp" alt="Imagen 4 API: Aggregators, Pricing &amp; the Shutdown" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">API Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Imagen 4 API: Aggregators, Pricing &amp; the Shutdown</h3>
+          <time class="related-article-date" datetime="2026-08-10T16:00:00.000Z">August 11, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/image-upscale-api/&text=Image%20Upscale%20API%3A%20Integration%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/image-upscale-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/image-upscale-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
