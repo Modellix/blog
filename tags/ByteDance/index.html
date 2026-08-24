@@ -134,9 +134,9 @@
             <div class="article-card-meta">
               
                 
-                  <span class="category-tag category-tag--sm">API-Guides</span>
+                  <span class="category-tag category-tag--sm">Guides</span>
                 
-                  <span class="category-tag category-tag--sm">Model-Guides</span>
+                  <span class="category-tag category-tag--sm">API Integration</span>
                 
               
             </div>
@@ -155,7 +155,7 @@
             <div class="article-card-meta">
               
                 
-                  <span class="category-tag category-tag--sm">Model Guides</span>
+                  <span class="category-tag category-tag--sm">Guides</span>
                 
               
             </div>
@@ -174,7 +174,7 @@
             <div class="article-card-meta">
               
                 
-                  <span class="category-tag category-tag--sm">Model Guides</span>
+                  <span class="category-tag category-tag--sm">Guides</span>
                 
               
             </div>
@@ -299,6 +299,18 @@
         if (optionsElement) {
           try {
             mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
+ || '{}');
           } catch (err) {
             mermaidOptions = {};
           }
