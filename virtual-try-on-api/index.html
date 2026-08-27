@@ -1,0 +1,635 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Virtual Try On API: Integration Guide, Pricing &amp; Code — Modellix Blog</title>
+  <meta name="description" content="Virtual try-on API integration guide: the two-image job contract, live August 2026 pricing for Kolors VTO and rivals, plus runnable curl and Python code.">
+  <meta name="keywords" content="virtual try on api, virtual try-on api, virtual try on api pricing, kolors virtual try on api, virtual try on api python, virtual try on api free, best virtual try on api">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/virtual-try-on-api/">
+  <meta name="description" content="Virtual try-on API integration guide: the two-image job contract, live August 2026 pricing for Kolors VTO and rivals, plus runnable curl and Python code.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Virtual Try On API: Integration Guide, Pricing &amp; Code — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/virtual-try-on-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Virtual try-on API integration guide: the two-image job contract, live August 2026 pricing for Kolors VTO and rivals, plus runnable curl and Python code.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-virtual-try-on-api.webp">
+<meta property="article:published_time" content="2026-08-25T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-25T02:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Image API">
+<meta property="article:tag" content="Integration">
+<meta property="article:tag" content="Virtual Try-On">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-virtual-try-on-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Virtual Try On API: Integration Guide, Pricing & Code","description":"Virtual try-on API integration guide: the two-image job contract, live August 2026 pricing for Kolors VTO and rivals, plus runnable curl and Python code.","datePublished":"2026-08-25T02:00:00.000Z","dateModified":"2026-08-25T02:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/virtual-try-on-api/","image":"https://statics.mylandingpages.co/static/modellix/image/cover-virtual-try-on-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Virtual Try On API: Integration Guide, Pricing &amp; Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Virtual Try On API: Integration Guide, Pricing &amp; Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-25T02:00:00.000Z">August 25, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
+            
+              <a href="/blog/tags/Integration/" class="tag-pill tag-pill--sm">Integration</a>
+            
+              <a href="/blog/tags/Virtual-Try-On/" class="tag-pill tag-pill--sm">Virtual Try-On</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.srcgptbots.com/blog/author/20260409/modellix-blog-author-official@2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>Every virtual try-on API works the same way at the contract level: you send a photo of a person and a photo of a garment, and the API returns a composited image of that person wearing that garment.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/cover-virtual-try-on-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/cover-virtual-try-on-api.png" alt="Dark amber virtual try-on API cover: a person photo and a garment photo flowing into one on-model result, with the MODELLIX wordmark" />
+</picture>
+
+<p>Every virtual try-on API works the same way at the contract level: you send a photo of a person and a photo of a garment, and the API returns a composited image of that person wearing that garment. The decisions that actually shape your integration are the ones the product pages skip — which model version you are calling, what its input rules are, what it costs per image, and how the async lifecycle behaves when things go wrong.</p>
+<p>This guide walks through the complete integration against a real endpoint — the Kling Kolors Virtual Try-On V1 model as routed by Modellix — then compares it with the alternatives that rank for “virtual try on api” today. Prices were pulled from live pages on <strong>August 25, 2026</strong>, and every figure below carries its date. This is not a “pick the winner” article: Modellix is an aggregator and has a commercial interest in the comparison, so the goal is a workflow you can verify yourself.</p>
+<h2 id="What-a-virtual-try-on-API-needs-from-you"><a href="#What-a-virtual-try-on-API-needs-from-you" class="headerlink" title="What a virtual try-on API needs from you"></a>What a virtual try-on API needs from you</h2><p>A try-on API is an <strong>image-to-image</strong> job with a fixed two-image contract. You provide:</p>
+<ul>
+<li><strong>A person image</strong> — the model whose body the garment will be rendered on. For the Kolors VTO route, a clear frontal or side-view full-body photo works best.</li>
+<li><strong>A garment image</strong> — a product photo, a flat-lay, or a white-background clothing image. The model transfers the garment onto the person while preserving the person’s pose and identity.</li>
+</ul>
+<p>The output is a new image: the person wearing the garment. That is the entire product surface for the most common e-commerce use cases — product-page model shots, personalized recommendations, and “see it on you” previews.</p>
+<p>The part that surprises most integrators is the lifecycle. Media generation takes seconds, so <strong>most providers</strong> in this category use an <strong>asynchronous submit–poll–retrieve</strong> pattern: your request returns a task ID immediately, and you poll a result endpoint until the job reaches a terminal state. Photta’s product page describes the same four steps — generate an API key, pick a mannequin, POST the try-on job, poll until the job completes. Google’s official Virtual Try-On documentation, by contrast, shows a synchronous predict-style call that returns the image directly. Once you understand the dominant contract, every virtual try-on API is a variation on it.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/vto-two-image-contract.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/vto-two-image-contract.png" alt="Diagram of the two-image virtual try-on contract: a person photo and a garment photo feed one on-model result image" loading="lazy" />
+</picture>
+
+<p><em>The two-image contract every virtual try-on API shares: person photo + garment photo → composited on-model result. Illustrative concept diagram.</em></p>
+<h2 id="Virtual-try-on-API-pricing-in-August-2026"><a href="#Virtual-try-on-API-pricing-in-August-2026" class="headerlink" title="Virtual try-on API pricing in August 2026"></a>Virtual try-on API pricing in August 2026</h2><p>Pricing varies by route, model version, and billing unit, so the table below names all three. All figures were read from the live pages on August 25, 2026.</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th align="right">Model &#x2F; product</th>
+<th align="right">Billing unit</th>
+<th align="right">Price (2026-08-25)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Modellix (aggregator)</td>
+<td align="right">Kling Kolors Virtual Try-On V1</td>
+<td align="right">per image</td>
+<td align="right"><strong>$0.0900</strong></td>
+</tr>
+<tr>
+<td>Modellix (aggregator)</td>
+<td align="right">Kolors Virtual Try-On V1.5</td>
+<td align="right">per image</td>
+<td align="right"><strong>$0.0900</strong></td>
+</tr>
+<tr>
+<td>fal.ai hub</td>
+<td align="right">Kling Kolors v1.5</td>
+<td align="right">per generation</td>
+<td align="right"><strong>$0.07</strong></td>
+</tr>
+<tr>
+<td>fal.ai hub</td>
+<td align="right">FLUX 2 LoRA Gallery</td>
+<td align="right">per processed megapixel</td>
+<td align="right"><strong>$0.021</strong></td>
+</tr>
+<tr>
+<td>fal.ai hub</td>
+<td align="right">Decart Lucy 2.1 VTON Realtime</td>
+<td align="right">per second of streaming</td>
+<td align="right"><strong>$0.02</strong></td>
+</tr>
+<tr>
+<td>FASHN</td>
+<td align="right">FASHN API suite</td>
+<td align="right">credit package</td>
+<td align="right">from <strong>$7.50</strong></td>
+</tr>
+<tr>
+<td>Google (Vertex)</td>
+<td align="right">Gemini Enterprise VTO</td>
+<td align="right">not published per image</td>
+<td align="right">check official pricing</td>
+</tr>
+</tbody></table>
+<p>Version discipline matters more than the numbers. The Modellix row is <strong>Kolors Virtual Try-On V1</strong> — a legacy model kept for backward compatibility — while the fal hub row is <strong>Kolors v1.5</strong>, the newer pipeline that adds top+bottom combination try-on. Comparing “$0.09 vs $0.07” across those two rows is comparing two different model versions through two different middlemen, not a like-for-like price. On Modellix both V1 and V1.5 currently display the same $0.0900&#x2F;image. None of this is a claim that Modellix is the cheapest route; on fal’s hub, Kling Kolors v1.5 is listed at $0.07 per generation, and Google’s enterprise VTO pricing is not published per image on its documentation page. The honest use of this table is as a <em>starting set of numbers to re-check</em>, not as a quote.</p>
+<p>The <a href="https://www.modellix.ai/models/kling/kolors-virtual-try-on-v1">Kolors Virtual Try On V1 model page</a> is where the aggregator route’s current price and schema are displayed; fal’s prices above come from its <a target="_blank" rel="noopener" href="https://fal.ai/explore/virtual-try-on-apis">virtual try-on hub</a>.</p>
+<h2 id="Quick-start-submit-a-virtual-try-on-job"><a href="#Quick-start-submit-a-virtual-try-on-job" class="headerlink" title="Quick start: submit a virtual try-on job"></a>Quick start: submit a virtual try-on job</h2><p>The Modellix route for Kolors VTO V1 is a single POST to <code>https://api.modellix.ai/api/v1/kling/kolors-virtual-try-on-v1</code> with an <code>Authorization: Bearer</code> header and a JSON body containing exactly two fields: <code>human_image</code> and <code>cloth_image</code>. Both accept a public image URL or a Base64 string — without the <code>data:</code> prefix. Create an API key in the <a href="https://www.modellix.ai/console/api-key">Modellix console</a> first; the request needs one real key.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST https://api.modellix.ai/api/v1/kling/kolors-virtual-try-on-v1 \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer YOUR_MODELLIX_API_KEY&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;human_image&quot;: &quot;https://example.com/person.jpg&quot;,</span></span><br><span class="line"><span class="string">    &quot;cloth_image&quot;: &quot;https://example.com/tshirt.jpg&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>The submit response returns a task ID and the URL you will poll — it does not return an image:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;get_result&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;method&quot;</span><span class="punctuation">:</span> <span class="string">&quot;GET&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.modellix.ai/api/v1/tasks/task-vto-abc123&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;model_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;model-123&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pending&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;task_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;task-vto-abc123&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;success&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>Note what is <strong>not</strong> in the request body: there is no prompt, no aspect ratio, no resolution, and no negative prompt. Kolors VTO is a deterministic two-image transform, and its schema rejects those parameters — <code>model_name</code> is injected automatically by the system. If you come from text-to-image APIs, the instinct to add a prompt is the first thing to unlearn.</p>
+<h2 id="Poll-the-job-and-save-the-result"><a href="#Poll-the-job-and-save-the-result" class="headerlink" title="Poll the job and save the result"></a>Poll the job and save the result</h2><p>Generation takes <strong>15–60 seconds</strong> on this route. Poll the <code>get_result.url</code> from the submit response with the same auth header until the status reaches a terminal state.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">API_KEY = <span class="string">&quot;YOUR_MODELLIX_API_KEY&quot;</span></span><br><span class="line">HEADERS = &#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;API_KEY&#125;</span>&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># From the submit response:</span></span><br><span class="line">get_result_url = <span class="string">&quot;https://api.modellix.ai/api/v1/tasks/task-vto-abc123&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">120</span>):  <span class="comment"># up to 10 minutes</span></span><br><span class="line">    r = requests.get(get_result_url, headers=HEADERS)</span><br><span class="line">    data = r.json().get(<span class="string">&quot;data&quot;</span>, &#123;&#125;)</span><br><span class="line">    state = data.get(<span class="string">&quot;status&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> state == <span class="string">&quot;success&quot;</span>:</span><br><span class="line">        result = data.get(<span class="string">&quot;result&quot;</span>, &#123;&#125;)</span><br><span class="line">        resources = result.get(<span class="string">&quot;resources&quot;</span>, [])</span><br><span class="line">        url = resources[<span class="number">0</span>][<span class="string">&quot;url&quot;</span>] <span class="keyword">if</span> resources <span class="keyword">else</span> <span class="literal">None</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Try-on done:&quot;</span>, url)   <span class="comment"># result.resources[] carries the generated image URL(s)</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span> state <span class="keyword">in</span> (<span class="string">&quot;failed&quot;</span>, <span class="string">&quot;canceled&quot;</span>):</span><br><span class="line">        <span class="keyword">raise</span> RuntimeError(<span class="string">f&quot;try-on task <span class="subst">&#123;state&#125;</span>: <span class="subst">&#123;r.text&#125;</span>&quot;</span>)</span><br><span class="line">    time.sleep(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Two persistence rules matter more than the polling loop itself:</p>
+<ul>
+<li><strong>Results expire.</strong> Generated images on this route are valid for <strong>30 days only</strong> — download or re-host the output before then, and do not hot-link the result URL as a permanent asset.</li>
+<li><strong>Save promptly, don’t just log.</strong> The result object carries the generated image URL(s) in <code>result.resources[]</code>; persist them to your own storage (S3 or equivalent) as part of the success path, not as a post-processing step.</li>
+</ul>
+<p>If you do not want to poll at all, Modellix accepts an <code>X-Webhook-URL</code> header on the submit call. The webhook fires once the task reaches a terminal state (<code>success</code>, <code>failed</code>, or <code>canceled</code>) and carries the task result, delivered as a POST with an <code>X-Modellix-Event</code> header naming the event. The same submit–poll–webhook lifecycle is shared across every image and video route on the platform, which is what makes the aggregator’s <a href="https://www.modellix.ai/blog/image-to-video-api/">image-to-video API guide</a> a useful second read once you have this one working.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/vto-submit-poll-flow.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/vto-submit-poll-flow.png" alt="Flow diagram of a virtual try-on API task: submit with an API key, poll the task endpoint, then save the result before expiry" loading="lazy" />
+</picture>
+
+<p><em>The async lifecycle behind every virtual try-on API: submit returns a task ID, poll until success or failure, then persist the result. Illustrative concept diagram.</em></p>
+<h2 id="Parameter-rules-limits-and-error-handling"><a href="#Parameter-rules-limits-and-error-handling" class="headerlink" title="Parameter rules, limits, and error handling"></a>Parameter rules, limits, and error handling</h2><p>The Kolors VTO schema is small on purpose. Here is the complete contract as documented on the model page and API schema:</p>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Request fields</td>
+<td><code>human_image</code>, <code>cloth_image</code> — both required, string (URL or Base64 without <code>data:</code> prefix)</td>
+</tr>
+<tr>
+<td>Supported formats</td>
+<td><code>.jpg</code>, <code>.jpeg</code>, <code>.png</code></td>
+</tr>
+<tr>
+<td>Max image size</td>
+<td>10 MB per image</td>
+</tr>
+<tr>
+<td>Min dimensions</td>
+<td>300 × 300 px</td>
+</tr>
+<tr>
+<td>Input guidance</td>
+<td>frontal or side-view full-body photo; product photo or white-background garment image</td>
+</tr>
+<tr>
+<td>V1 capability</td>
+<td>single garment: one top, one bottom, or a dress</td>
+</tr>
+<tr>
+<td>V1.5 capability</td>
+<td>single garments <strong>or</strong> a top+bottom combination merged into one white-background image</td>
+</tr>
+<tr>
+<td>Unsupported parameters</td>
+<td><code>prompt</code>, <code>negative_prompt</code>, <code>n</code>, <code>aspect_ratio</code>, <code>resolution</code>, <code>image_fidelity</code>, <code>image_reference</code> — <code>model_name</code> is injected automatically</td>
+</tr>
+<tr>
+<td>Typical latency</td>
+<td>15–60 seconds per task</td>
+</tr>
+<tr>
+<td>Result validity</td>
+<td>30 days</td>
+</tr>
+<tr>
+<td>Rate limit</td>
+<td>100 requests per minute at the entry tier (HTTP 429; <code>X-RateLimit-Limit</code> &#x2F; <code>X-RateLimit-Remaining</code> &#x2F; <code>X-RateLimit-Reset</code> headers); higher top-up tiers unlock higher RPM per the Modellix entitlements table</td>
+</tr>
+</tbody></table>
+<p>Error responses follow a <code>&#123;code, message&#125;</code> shape where <code>message</code> is formatted as <code>Category: detail</code>. The three you will actually hit:</p>
+<ul>
+<li><strong>400 Invalid parameters</strong> — a missing or malformed field, an oversized image (&gt;10 MB), or a dimension below 300×300. The message names the offending parameter.</li>
+<li><strong>401 Authentication failed</strong> — invalid or missing API key. Check that the key is active in the console and that the <code>Authorization: Bearer</code> header is intact.</li>
+<li><strong>429 Rate limit exceeded: 100 requests per minute</strong> — you are above the per-minute quota. The <code>X-RateLimit-Reset</code> header tells you when the window clears; back off with an exponential retry rather than hammering.</li>
+</ul>
+<p>For a batch pipeline, the right pattern is a small queue with a fixed concurrency (e.g., 5–10 in-flight tasks), each task polled independently, and failed tasks retried with exponential backoff. Since this is a legacy model maintained for backward compatibility, treat V1 as the stable fallback and evaluate <a href="https://www.modellix.ai/models/kling/kolors-virtual-try-on-v1-5">Kolors Virtual Try-On V1.5</a> for new builds — the model page itself recommends V1.5 for new creations because it adds the top+bottom combination and higher output quality at the same displayed price.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Virtual Try-On API Reference</h3><p class="view-docs-tag-desc">See the full submit and poll contract for Kolors Virtual Try-On and other image models on Modellix.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Which-virtual-try-on-API-should-you-integrate"><a href="#Which-virtual-try-on-API-should-you-integrate" class="headerlink" title="Which virtual try-on API should you integrate?"></a>Which virtual try-on API should you integrate?</h2><p>The “virtual try on api” SERP is mostly vendor product pages, so the comparison framework is yours to build. These are the axes that actually separate the options:</p>
+<p><strong>Static vs. real-time.</strong> Static two-image try-on (Kolors VTO, FASHN, most of the fal hub catalog) is what you want for catalog photography and “see it on you” product pages. Real-time try-on over WebRTC — Decart Lucy 2.1 VTON Realtime at $0.02&#x2F;second of streaming — is a different product for live camera experiences like virtual fitting mirrors. Do not evaluate them on the same price table; they are not the same workload.</p>
+<p><strong>Single garment vs. combination.</strong> V1 handles one garment (top, bottom, or dress). V1.5 adds top+bottom combos from a merged garment image. If your catalog sells outfits rather than singles, combination support should be a hard requirement.</p>
+<p><strong>Input tolerance.</strong> FASHN’s API exposes explicit controls (<code>garment_photo_type</code> for on-model vs. flat-lay inputs, a <code>mode</code> parameter trading speed against quality, and <code>num_samples</code> for batching variations). If your catalog photos are inconsistent — some on-model, some flat-lay — this kind of control matters more than a few cents per image.</p>
+<p><strong>Self-hosted vs. API.</strong> Open-weight families like IDM-VTON can be self-hosted on your own GPUs. That removes per-image fees but adds queueing, cold starts, and maintenance; for most teams an API is cheaper until volume is very high. There is no one right answer — there is a volume threshold.</p>
+<p><strong>Aggregator vs. direct.</strong> An aggregator like Modellix proxies many providers behind one key, one bill, and one submit–poll contract. The honest trade-offs: provider-specific parameters sometimes get flattened, brand-new models usually land on the vendor’s own API first, and the per-image price includes the platform’s margin. In exchange you get one integration that covers a dozen providers, <a href="https://www.modellix.ai/providers/kling">Kling</a> among them, per-task cost logs, and no per-vendor accounts. The <a href="https://www.modellix.ai/collections/virtual-try-on">virtual try-on collection</a> on Modellix lists the try-on models available through that single contract; if try-on is your entire workload and you have one high-volume provider, price the direct route too — the table above shows exactly how.</p>
+<p>Output quality also depends on your input population. Results vary with pose, body type, and garment fit — a model that looks great on a front-facing studio shot may degrade on side-view or loose-fit garments. Budget a visual QA pass across your actual catalog before committing to any route.</p>
+<h2 id="What-try-on-costs-at-catalog-scale"><a href="#What-try-on-costs-at-catalog-scale" class="headerlink" title="What try-on costs at catalog scale"></a>What try-on costs at catalog scale</h2><p>Per-image pricing is easy to reason about, so here is the arithmetic for a mid-size catalog. All figures use the August 25, 2026 prices above.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Scale</th>
+<th align="right">Kolors VTO V1 via Modellix ($0.0900&#x2F;img)</th>
+<th align="right">Kling Kolors v1.5 via fal hub ($0.07&#x2F;gen)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">1,000 images</td>
+<td align="right">$90</td>
+<td align="right">$70</td>
+</tr>
+<tr>
+<td align="right">10,000 images</td>
+<td align="right">$900</td>
+<td align="right">$700</td>
+</tr>
+<tr>
+<td align="right">100,000 images</td>
+<td align="right">$9,000</td>
+<td align="right">$7,000</td>
+</tr>
+</tbody></table>
+<p>Read those columns with the version caveat from the pricing section: V1 and v1.5 are different pipelines, and the fal hub prices are the hub’s displayed rates on the access date — re-verify both before you build a budget. Two cost factors are invisible in per-image math: <strong>retry rate</strong> (a 5% failure rate adds 5% to unit cost) and <strong>expiry churn</strong> (regenerating an image you failed to save within 30 days is a second paid call). A reliable queue with persistence built into the success path is a cost control, not just an engineering nicety.</p>
+<p>For reference on how aggregator pricing compares across the wider model catalog, the <a href="https://www.modellix.ai/blog/cheapest-ai-api/">cheapest AI API roundup</a> tracks image and video routes with the same dated-table discipline, and the <a href="https://www.modellix.ai/pricing">Modellix pricing page</a> shows the current rate card.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Start Generating Try-Ons</h3><p class="view-docs-tag-desc">Log in to run Kolors Virtual Try-On and 200+ other image and video models on one Modellix key.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>What is a virtual try-on API?</strong></p>
+<p>A virtual try-on API is an image-to-image service that takes a photo of a person and a photo of a garment and returns a composited image of that person wearing the garment. It is used by e-commerce teams to generate on-model product photos and personalized previews without a physical photo shoot.</p>
+<p><strong>How much does a virtual try-on API cost?</strong></p>
+<p>As of August 25, 2026, Modellix displays Kolors Virtual Try-On V1 and V1.5 at $0.0900 per image, fal’s hub lists Kling Kolors v1.5 at $0.07 per generation and FLUX 2 LoRA Gallery at $0.021 per processed megapixel, and FASHN’s credit packages start at $7.50. Google’s enterprise VTO pricing is not published per image on its documentation page. Prices change; re-check the live pages.</p>
+<p><strong>Is there a free virtual try-on API?</strong></p>
+<p>No major provider in the current SERP publishes a free tier with a per-image price of zero. The lowest entry points are small credit packages (FASHN from $7.50) or low per-generation routes such as fal’s Kolors v1.5 listing. If “free” matters, the realistic option is self-hosting an open-weight model like IDM-VTON on your own GPUs.</p>
+<p><strong>How long does a virtual try-on generation take?</strong></p>
+<p>On the Modellix Kolors VTO route, typical processing time is 15–60 seconds per task. The API is asynchronous: your submit returns a task ID, and you poll until the status reaches success, failed, or canceled.</p>
+<p><strong>What image formats and sizes do virtual try-on APIs accept?</strong></p>
+<p>For Kolors VTO, both <code>human_image</code> and <code>cloth_image</code> accept <code>.jpg</code>, <code>.jpeg</code>, or <code>.png</code>, with a maximum size of 10 MB and minimum dimensions of 300 × 300 pixels. A clear frontal or side-view full-body person photo and a product photo or white-background garment image give the best results.</p>
+<p><strong>Can I use a virtual try-on API on my own product photos?</strong></p>
+<p>Yes — that is the main production use. Flat-lay or white-background product photos are valid garment inputs for Kolors VTO, and FASHN’s API exposes an explicit <code>garment_photo_type</code> control for on-model versus flat-lay inputs. Run a visual QA pass across your actual catalog, since results vary with pose, body type, and fit.</p>
+<p><strong>Is Modellix cheaper than calling Kling Kolors directly?</strong></p>
+<p>Not as a blanket statement. On the matching display data, Modellix shows $0.0900&#x2F;image for Kolors VTO V1 and V1.5, while fal’s hub lists Kling Kolors v1.5 at $0.07&#x2F;generation — different model versions through different routes. Compare only the same model version and billing unit, then weigh the aggregator’s single-key, single-bill workflow and per-task cost logs against the direct route’s lower unit price.</p>
+<p><strong>Do virtual try-on APIs support real-time video?</strong></p>
+<p>Some do. Decart Lucy 2.1 VTON Realtime (via fal) streams try-on over WebRTC at $0.02 per second and is designed for live camera experiences. Static two-image try-on APIs like Kolors VTO and FASHN are a separate category for catalog and product-page images; do not compare them on the same price table.</p>
+<hr>
+<p><em>Pricing and availability sources accessed August 25, 2026: the <a href="https://www.modellix.ai/models/kling/kolors-virtual-try-on-v1">Modellix Kolors VTO V1 model page</a>, <a target="_blank" rel="noopener" href="https://fal.ai/explore/virtual-try-on-apis">fal’s virtual try-on hub</a>, <a target="_blank" rel="noopener" href="https://fashn.ai/products/api">FASHN’s API page</a>, <a target="_blank" rel="noopener" href="https://www.photta.app/api/virtual-try-on-api">Photta’s try-on API page</a>, and <a target="_blank" rel="noopener" href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/capabilities/generate-virtual-try-on-images">Google’s Virtual Try-On documentation</a>. Provider pricing and availability change frequently; validate against each live page before committing budget. Modellix is an AI model API aggregator and has a commercial interest in the routes it sells.</em></p>
+<p><em>Cover image is illustrative Modellix artwork, not a provider screenshot or pricing evidence.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
+            
+              <a href="/blog/tags/Integration/" class="tag-pill tag-pill--sm">Integration</a>
+            
+              <a href="/blog/tags/Virtual-Try-On/" class="tag-pill tag-pill--sm">Virtual Try-On</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/nano-banana-2-api-key/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://statics.mylandingpages.co/static/modellix/image/cover-nano-banana-2-api-key.webp" alt="Nano Banana 2 API Key: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Nano Banana 2 API Key: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-08-25T02:00:00.000Z">August 25, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/ai-short-drama-anime-video-apis-2026/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/57a0dcf7-5816-4353-b4ab-7d001d60690f.webp" alt="How to Produce AI Short Drama &amp; Anime Video with APIs 2026" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">AI Video</span>
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">How to Produce AI Short Drama &amp; Anime Video with APIs 2026</h3>
+          <time class="related-article-date" datetime="2026-08-23T16:00:00.000Z">August 24, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/image-upscale-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-image-upscale-api.webp" alt="Image Upscale API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+                <span class="category-tag category-tag--sm">API Integration</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Image Upscale API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-08-23T02:00:00.000Z">August 23, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/virtual-try-on-api/&text=Virtual%20Try%20On%20API%3A%20Integration%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/virtual-try-on-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/virtual-try-on-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
