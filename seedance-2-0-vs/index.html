@@ -1,0 +1,669 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seedance 2.0 Vs: Integration Guide, Pricing &amp; Code — Modellix Blog</title>
+  <meta name="description" content="Seedance 2.0 vs Kling 3.0 is a workload decision: reference control and 4K headroom versus motion at scale. Live prices, API code, and tier guidance inside.">
+  <meta name="keywords" content="seedance 2.0 vs, seedance 2.0 vs kling 3.0, seedance 2.0 vs sora 2, seedance 2.0 vs 2.0 fast, seedance 2.0 vs mini, seedance 2.0 price per second, seedance 2.0 api pricing, seedance 2.0 vs seedance 2.5">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/seedance-2-0-vs/">
+  <meta name="description" content="Seedance 2.0 vs Kling 3.0 is a workload decision: reference control and 4K headroom versus motion at scale. Live prices, API code, and tier guidance inside.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Seedance 2.0 Vs: Integration Guide, Pricing &amp; Code — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/seedance-2-0-vs/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Seedance 2.0 vs Kling 3.0 is a workload decision: reference control and 4K headroom versus motion at scale. Live prices, API code, and tier guidance inside.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-seedance-2-0-vs.webp">
+<meta property="article:published_time" content="2026-08-26T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-26T02:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video API">
+<meta property="article:tag" content="ByteDance">
+<meta property="article:tag" content="Comparison">
+<meta property="article:tag" content="Seedance">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-seedance-2-0-vs.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Seedance 2.0 Vs: Integration Guide, Pricing & Code","description":"Seedance 2.0 vs Kling 3.0 is a workload decision: reference control and 4K headroom versus motion at scale. Live prices, API code, and tier guidance inside.","datePublished":"2026-08-26T02:00:00.000Z","dateModified":"2026-08-26T02:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/seedance-2-0-vs/","image":"https://img.modellix.ai/en/article/cover-seedance-2-0-vs.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Seedance 2.0 Vs: Integration Guide, Pricing &amp; Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Comparisons/" class="category-tag category-tag--sm">Comparisons</a>
+          
+        
+      </div>
+      <h1 class="post-title">Seedance 2.0 Vs: Integration Guide, Pricing &amp; Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-26T02:00:00.000Z">August 26, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Comparison/" class="tag-pill tag-pill--sm">Comparison</a>
+            
+              <a href="/blog/tags/Seedance/" class="tag-pill tag-pill--sm">Seedance</a>
+            
+              <a href="/blog/tags/ByteDance/" class="tag-pill tag-pill--sm">ByteDance</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>&#39;Seedance 2.0 vs&#39; does not name a rival — and that is the first honest thing to say about the search. Type it into Google and you get three different comparisons at once: Seedance 2.0 vs Kling 3.0, Seedance 2.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-seedance-2-0-vs.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-seedance-2-0-vs.png" alt="Dark amber editorial cover showing Seedance 2.0 and Kling 3.0 as two facing glass cards with a MODELLIX wordmark and a two-line comparison title" />
+</picture>
+
+<p>“Seedance 2.0 vs” does not name a rival — and that is the first honest thing to say about the search. Type it into Google and you get three different comparisons at once: Seedance 2.0 vs Kling 3.0, Seedance 2.0 vs its own Fast and Mini tiers, and Seedance 2.0 vs the newer 2.5. The strongest cross-vendor pairing, by ranking pages, YouTube tests, and the “Which is better, Kling or Seedance?” question Google surfaces, is <strong>Seedance 2.0 vs Kling 3.0</strong>. This guide answers that comparison head-on, then covers the tier and version questions, and finishes with the two things every ranking article in this space gets wrong: live per-second pricing pulled on the day you read this, and API code that actually runs.</p>
+<p>The goal is not to crown a winner. As of August 26, 2026, the honest verdict is that Seedance 2.0 and Kling 3.0 win different workloads, and the per-second price you pay depends more on the route you pick than on the model name. Every number below was pulled from first-party pages today — BytePlus’s official API reference for the promo pricing, the live Modellix model pages for the aggregator routes, and Kling’s official price page as the canonical source for its side. Modellix runs the aggregator route shown in the pricing section and benefits if you choose it, so treat the disclosure as part of the data: matched model, resolution, and billing contract come before any price comparison, and nothing here claims Modellix is the cheapest way to run Seedance 2.0.</p>
+<h2 id="Seedance-2-0-vs-Kling-3-0-what-the-comparison-really-comes-down-to"><a href="#Seedance-2-0-vs-Kling-3-0-what-the-comparison-really-comes-down-to" class="headerlink" title="Seedance 2.0 vs Kling 3.0: what the comparison really comes down to"></a>Seedance 2.0 vs Kling 3.0: what the comparison really comes down to</h2><p>Both models are 2026 flagship video generators — ByteDance’s Seedance 2.0 and Kuaishou’s Kling 3.0 — and both are serious enough that the decision is architectural, not academic. The fastest way through the comparison is the at-a-glance table; the dimensions below it are where the real differences live.</p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Seedance 2.0 (ByteDance)</th>
+<th>Kling 3.0 (Kuaishou)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Input modes</td>
+<td>Text, image, video, and audio references together (omni-reference)</td>
+<td>Text, image, and video; motion&#x2F;action driven</td>
+</tr>
+<tr>
+<td>Reference budget</td>
+<td>Up to 9 images, 3 videos, 3 audio clips per task</td>
+<td>No comparable published figure; strengths in action transfer</td>
+</tr>
+<tr>
+<td>Max output</td>
+<td>15-second multi-shot clips; 4K at 10-bit H.265</td>
+<td>Long-form capable; strong human-action rendering</td>
+</tr>
+<tr>
+<td>Native audio in output</td>
+<td>No — audio is reference input only on the 2.0 series</td>
+<td>No (via separate tracks on the platform)</td>
+</tr>
+<tr>
+<td>Standout strength</td>
+<td>Reference-driven control and character consistency</td>
+<td>Motion fluency for complex human action</td>
+</tr>
+<tr>
+<td>API access model</td>
+<td>BytePlus ModelArk (balance &gt; USD 30 or resource pack + activation)</td>
+<td>Kling global developer API (registration + quota purchase)</td>
+</tr>
+<tr>
+<td>Billing unit</td>
+<td>Official: per token (promo priced per second); aggregator: per second</td>
+<td>Platform credits; aggregator routes bill per second</td>
+</tr>
+</tbody></table>
+<p>The table hides the shape of the decision, so let me be direct: <strong>Seedance 2.0 wins when the job needs the model to follow inputs</strong> — a reference video’s motion, a set of character images, an audio track. <strong>Kling 3.0 wins when the job needs fast, believable human action</strong> — running, fighting, dancing, dialogue in front of camera — at high volume. The Reddit threads that rank for this query converge on the same split: Kling 3.0 handles characters speaking long lines directly in front of the camera better than Seedance 2.0. That community consensus matches what the model architectures advertise: Seedance 2.0 is built around a multimodal reference system, Kling 3.0 around motion quality.</p>
+<p>For the API integration crowd, the second most important line in that table is the access model. Seedance 2.0’s official door, BytePlus ModelArk, requires a funded balance above USD 30 or a resource pack and an explicit model activation step before the first call — the <a target="_blank" rel="noopener" href="https://docs.byteplus.com/en/docs/ModelArk/2291680">official tutorial</a> states this outright. Kling’s global developer API has its own registration and quota flow. Neither is a five-minute signup, which is exactly why the aggregator route exists — more on that in the pricing section. Our <a href="https://www.modellix.ai/blog/seedance-vs-kling/">Seedance vs Kling family comparison</a> covers the earlier generations of this same rivalry if you are evaluating the whole lineage.</p>
+<h2 id="Where-Seedance-2-0-wins-multimodal-reference-and-4K-headroom"><a href="#Where-Seedance-2-0-wins-multimodal-reference-and-4K-headroom" class="headerlink" title="Where Seedance 2.0 wins: multimodal reference and 4K headroom"></a>Where Seedance 2.0 wins: multimodal reference and 4K headroom</h2><p>Seedance 2.0’s defining feature is the omni-reference system: a single task accepts up to <strong>9 reference images, 3 reference videos (2–15 seconds each), and 3 reference audio clips (2–15 seconds each)</strong> alongside the text prompt, per ByteDance’s <a target="_blank" rel="noopener" href="https://seed.bytedance.com/en/blog/seedance-2-0-official-launch">official launch post</a>. The API expresses this as roles in the content array — <code>reference_image</code>, <code>reference_video</code>, <code>reference_audio</code>, plus <code>first_frame</code> and <code>last_frame</code> for image-to-video. That is how teams hold character consistency across shots: you feed the model a set of images and a motion reference, and the output inherits both. For product advertising, music videos, and anything where “make it move exactly like this” is the brief, this is the strongest tool in the current generation.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/seedance-omni-reference-workflow.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/seedance-omni-reference-workflow.png" alt="Omni-reference video generation workflow: image, video, and audio inputs converging into one engine that outputs a multi-shot film strip" loading="lazy" />
+</picture>
+
+<p><em>The omni-reference pipeline that separates Seedance 2.0 from the rest of the field: multiple input modalities converge into one generation task, and the output inherits character, motion, and audio direction from the references.</em></p>
+<p>Two caveats keep that claim honest. First, audio is <strong>input only</strong> on the 2.0 series — the model consumes an audio track as direction but does not generate synchronized speech or sound in the output (that is Seedance 1.5 Pro’s job). Second, you cannot upload reference images or videos containing real human faces directly; portrait work goes through the platform’s asset library. Both are stated in the BytePlus API reference linked in the pricing section below.</p>
+<p>The second win is resolution headroom. Seedance 2.0 outputs <strong>up to 4K with 10-bit color depth and H.265 encoding</strong> — the only tier in the 2.0 family that does; Fast and Mini cap at 720p. Kling 3.0’s flagship tier also reaches high resolution, but the 10-bit 4K output is a concrete differentiator for professional film and HDR work where banding in gradients is a rejection criterion.</p>
+<h2 id="Where-Kling-3-0-wins-motion-speed-and-cost-at-scale"><a href="#Where-Kling-3-0-wins-motion-speed-and-cost-at-scale" class="headerlink" title="Where Kling 3.0 wins: motion, speed, and cost at scale"></a>Where Kling 3.0 wins: motion, speed, and cost at scale</h2><p>Kling 3.0’s reputation, built across the V1–V3 generations, is <strong>motion fluency for complex human action</strong> — the failure mode it targets is “spaghetti limbs” and morphing bodies during running, fighting, and dancing sequences. For social short-form content where the subject is a person doing something physical, Kling 3.0 is the community default, and the YouTube tests ranking for “seedance 2.0 vs” repeatedly land there.</p>
+<p>The second Kling advantage is operational: its API has been in production across more versions, and at high volume its per-clip economics are competitive. On the aggregator side, the live Modellix route for <code>kling-v3-t2v</code> currently displays <strong>$0.0580–$0.2898&#x2F;second</strong> (pulled August 26, 2026) — a lower entry point than the equivalent Seedance 2.0 T2V route’s <strong>$0.0805&#x2F;second</strong> floor. That is a route comparison, not a vendor verdict: Kling’s official pricing is published on its <a target="_blank" rel="noopener" href="https://app.klingai.com/global/dev/document-api/price">API price page</a>, and it changes. But the pattern — Kling cheaper per second at the entry tier, Seedance more expensive but with 4K and reference headroom — is consistent with what both vendors advertise.</p>
+<p>Honest corollary: if your workload is short action clips at volume, Kling 3.0 is likely the better trade, and this is the section of the article where I say so explicitly. Seedance 2.0’s reference system is wasted on a 5-second punch-and-cut reel.</p>
+<h2 id="Seedance-2-0-vs-Seedance-2-0-Fast-vs-Mini-which-tier-to-route"><a href="#Seedance-2-0-vs-Seedance-2-0-Fast-vs-Mini-which-tier-to-route" class="headerlink" title="Seedance 2.0 vs Seedance 2.0 Fast vs Mini: which tier to route"></a>Seedance 2.0 vs Seedance 2.0 Fast vs Mini: which tier to route</h2><p>Before you compare across vendors, decide which Seedance tier you mean — the SERP treats “Seedance 2.0 vs 2.0 Fast” and “vs Mini” as separate questions, and they are. The official family, per the BytePlus tutorial:</p>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Max resolution</th>
+<th>Character</th>
+<th>Speed</th>
+<th>Live Modellix T2V route price (2026-08-26)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Seedance 2.0</td>
+<td>4K (10-bit H.265)</td>
+<td>Flagship: reference system, extension, editing</td>
+<td>Slowest</td>
+<td>$0.0805–$0.8970&#x2F;sec</td>
+</tr>
+<tr>
+<td>Seedance 2.0 Fast</td>
+<td>720p</td>
+<td>Faster drafts, fewer references</td>
+<td>~2× faster</td>
+<td>$0.0690–$0.1380&#x2F;sec</td>
+</tr>
+<tr>
+<td>Seedance 2.0 Mini</td>
+<td>720p</td>
+<td>Lightweight, cheapest</td>
+<td>Fastest, ~2× Fast</td>
+<td>$0.0460–$0.0920&#x2F;sec</td>
+</tr>
+</tbody></table>
+<p>Routing guidance, which mirrors what every tier-comparison page converges on: use <strong>Mini for prompt tests and timing checks</strong>, <strong>Fast for reference tests and shot planning</strong>, and the <strong>full model only for final 1080p&#x2F;4K output</strong> where consistency and polish pay the bill. The mistake to avoid is generating finals on a fast tier and calling it a quality comparison — resolution caps alone make that apples-to-oranges.</p>
+<h2 id="Seedance-2-0-vs-Seedance-2-5-should-you-hold-out"><a href="#Seedance-2-0-vs-Seedance-2-5-should-you-hold-out" class="headerlink" title="Seedance 2.0 vs Seedance 2.5: should you hold out?"></a>Seedance 2.0 vs Seedance 2.5: should you hold out?</h2><p>Seedance 2.5 shipped in August 2026 with a 30-second single-pass ceiling, a much larger reference budget (up to 30 images, 10 videos, 10 audio clips), and timestamp-level editing, per ByteDance’s <a target="_blank" rel="noopener" href="https://seed.bytedance.com/en/blog/one-take-creation-flexible-referencing-introducing-seedance-2-5">2.5 release post</a>. It is the hot comparison right now — four of the ranking pages for “seedance 2.0 vs” are 2.5-vs-2.0 articles published in the last three weeks.</p>
+<p>The practical stance for an API integrator: <strong>start with 2.0, evaluate 2.5 when your workload needs long single takes or heavy reference sets.</strong> Two facts push that way. First, 2.5’s resolution ceiling on the official route is 1080p — the 4K tier remains 2.0-only, so “newer” is not “higher-res.” Second, the official promo pricing tells the same story: as of today, Seedance 2.5’s 1080p promo runs at 72% of list (from ~USD 0.41&#x2F;sec, through September 17, 2026) while the 2.0 family promos run at 40–75% of list — 2.0 is the value-optimized tier this quarter. For model IDs and the 2.5-vs-2.0 API notes in one place, our <a href="https://www.modellix.ai/blog/seedance-2-0-api-access/">Seedance 2.0 API access guide</a> has the full family table.</p>
+<h2 id="Seedance-2-0-API-pricing-live-per-second-rates-August-2026"><a href="#Seedance-2-0-API-pricing-live-per-second-rates-August-2026" class="headerlink" title="Seedance 2.0 API pricing: live per-second rates (August 2026)"></a>Seedance 2.0 API pricing: live per-second rates (August 2026)</h2><p>Video APIs bill by the second of generated output, so a task costs rate × duration at your resolution. Two sets of numbers matter, and they are different contracts.</p>
+<p><strong>Official BytePlus promo pricing</strong> (from the <a target="_blank" rel="noopener" href="https://docs.byteplus.com/en/docs/ModelArk/1520757">Create a video generation task</a> API reference, accessed August 26, 2026):</p>
+<table>
+<thead>
+<tr>
+<th>Official tier</th>
+<th align="right">Promo</th>
+<th align="right">List discount</th>
+<th align="right">720p promo price</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Seedance 2.0 mini</td>
+<td align="right">Aug 7 – Sep 7, 2026</td>
+<td align="right">40% of list</td>
+<td align="right">from ~$0.03&#x2F;sec</td>
+</tr>
+<tr>
+<td>Seedance 2.0 fast</td>
+<td align="right">Aug 7 – Sep 7, 2026</td>
+<td align="right">75% of list</td>
+<td align="right">from ~$0.09&#x2F;sec</td>
+</tr>
+<tr>
+<td>Seedance 2.5 (1080p only)</td>
+<td align="right">Aug 14 – Sep 17, 2026</td>
+<td align="right">72% of list</td>
+<td align="right">from ~$0.41&#x2F;sec (1080p)</td>
+</tr>
+</tbody></table>
+<p><strong>Aggregator routes (Modellix)</strong> — per-second ranges read from the live model pages today, spanning the supported resolutions:</p>
+<table>
+<thead>
+<tr>
+<th>Model route</th>
+<th align="right">Modellix price (2026-08-26)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://www.modellix.ai/models/bytedance/seedance-2.0-t2v">seedance-2.0-t2v</a></td>
+<td align="right">$0.0805–$0.8970&#x2F;sec</td>
+</tr>
+<tr>
+<td>seedance-2.0-i2v</td>
+<td align="right">$0.0805–$0.8970&#x2F;sec</td>
+</tr>
+<tr>
+<td>seedance-2.0-fast-t2v</td>
+<td align="right">$0.0690–$0.1380&#x2F;sec</td>
+</tr>
+<tr>
+<td>seedance-2.0-mini-t2v</td>
+<td align="right">$0.0460–$0.0920&#x2F;sec</td>
+</tr>
+<tr>
+<td>seedance-2.0-v2v</td>
+<td align="right">$0.1978–$2.1459&#x2F;sec</td>
+</tr>
+<tr>
+<td>seedance-2.5-t2v</td>
+<td align="right">$0.1184–$0.2656&#x2F;sec</td>
+</tr>
+<tr>
+<td>kling-v3-t2v</td>
+<td align="right">$0.0580–$0.2898&#x2F;sec</td>
+</tr>
+</tbody></table>
+<p>What a task actually costs, using simple arithmetic on today’s numbers: a <strong>10-second 720p clip on the official mini promo ≈ $0.30</strong>; the same clip on Modellix’s mini route at the top of its range ≈ $0.92; a <strong>10-second 4K clip on the full 2.0 model ≈ $8.97</strong> at the top of its range. Those are worked examples from range endpoints — the per-resolution price on each page is what you should quote in a budget.</p>
+<p>Two reading rules before you compare columns. <strong>Rule one: match the billing contract.</strong> Official BytePlus bills per token — see the <a target="_blank" rel="noopener" href="https://docs.byteplus.com/en/docs/ModelArk/2191775">resource pack docs</a> — with the promo prices published in per-second terms for orientation; aggregators bill per second — a “cheapest route” claim across those two is meaningless without the contract. <strong>Rule two: remember the access gate.</strong> The official promo prices sit behind the USD 30 balance &#x2F; resource-pack activation; the aggregator prices include zero activation friction. That trade-off — activation cost and friction versus per-second rate — is the real pricing story for this model, and the <a href="https://www.modellix.ai/providers/bytedance">ByteDance provider hub</a> lists the current set of 2.0-series routes and their displayed ranges at a glance. The single always-current reference for every route is the live <a href="https://www.modellix.ai/pricing">Modellix pricing page</a>.</p>
+<h2 id="Integrating-Seedance-2-0-endpoints-parameters-and-code"><a href="#Integrating-Seedance-2-0-endpoints-parameters-and-code" class="headerlink" title="Integrating Seedance 2.0: endpoints, parameters, and code"></a>Integrating Seedance 2.0: endpoints, parameters, and code</h2><p>Every Seedance 2.0 route — official or aggregator — uses the same asynchronous lifecycle: <strong>submit a generation task, get a task ID, poll until it reaches a terminal state, then fetch the video URL</strong>. There is no synchronous video endpoint anywhere in this family; budget for the polling loop.</p>
+<p>The official BytePlus shape: <code>POST https://ark.ap-southeast.bytepluses.com/api/v3/contents/generations/tasks</code> with a Bearer key, then <code>GET .../tasks/&#123;id&#125;</code> until status is <code>succeeded</code> or <code>failed</code>. The Modellix shape is the same lifecycle flattened behind one key, and this is the shortest working skeleton — a text-to-video job with the parameters that matter (<code>resolution</code>, <code>ratio</code>, <code>duration</code>, <code>watermark</code>):</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">BASE = <span class="string">&quot;https://api.modellix.ai/api/v1&quot;</span></span><br><span class="line">HEADERS = &#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">&quot;Bearer YOUR_MODELLIX_API_KEY&quot;</span>, <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line">payload = &#123;</span><br><span class="line">    <span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;A long single take through a neon-lit night market, cinematic, consistent protagonist&quot;</span>,</span><br><span class="line">    <span class="string">&quot;resolution&quot;</span>: <span class="string">&quot;720p&quot;</span>,</span><br><span class="line">    <span class="string">&quot;ratio&quot;</span>: <span class="string">&quot;16:9&quot;</span>,</span><br><span class="line">    <span class="string">&quot;duration&quot;</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">&quot;watermark&quot;</span>: <span class="literal">False</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">resp = requests.post(<span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/bytedance/seedance-2.0-t2v/async&quot;</span>, headers=HEADERS, json=payload)</span><br><span class="line">task = resp.json()[<span class="string">&quot;data&quot;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;submitted:&quot;</span>, task[<span class="string">&quot;task_id&quot;</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">60</span>):</span><br><span class="line">    result = requests.get(task[<span class="string">&quot;get_result&quot;</span>][<span class="string">&quot;url&quot;</span>], headers=HEADERS).json()</span><br><span class="line">    <span class="keyword">if</span> result[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;status&quot;</span>] <span class="keyword">in</span> (<span class="string">&quot;success&quot;</span>, <span class="string">&quot;failed&quot;</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    time.sleep(<span class="number">5</span>)  <span class="comment"># exponential backoff in production, start ~2s, cap ~30s</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;status:&quot;</span>, result[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;status&quot;</span>])</span><br></pre></td></tr></table></figure>
+
+<p>Treat that as a starting skeleton, not a production module — verify response field names against the current docs for the model ID you use, and read your key from an environment variable, never from code. For image-to-video you pass a <code>first_frame</code> image (and optionally <code>last_frame</code>); for reference work you add <code>reference_image</code> &#x2F; <code>reference_video</code> &#x2F; <code>reference_audio</code> content entries. The official request schema, including the face-upload restriction and the asset-library path for portraits, is in the BytePlus API reference cited in the pricing section. For getting and managing the key itself — including the console paths and key-hygiene rules — see our <a href="https://www.modellix.ai/blog/seedance-2-0-api-key/">Seedance 2.0 API key guide</a>.</p>
+<p>The errors that actually hit first-time integrators, and what they mean:</p>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Meaning</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>401 Unauthorized</td>
+<td>Wrong, expired, or mismatched key</td>
+<td>Check the key’s console and region; BytePlus and aggregator keys are separate</td>
+</tr>
+<tr>
+<td>403 &#x2F; model not activated</td>
+<td>The classic Seedance 2.0 trap: account and key exist, activation never happened</td>
+<td>Fund balance &gt; USD 30 (or buy a resource pack) and activate the model in the console</td>
+</tr>
+<tr>
+<td>402 &#x2F; insufficient balance</td>
+<td>Balance drawn down below the activation floor</td>
+<td>Top up; a funded balance is not a budget for unlimited generation</td>
+</tr>
+<tr>
+<td>404 &#x2F; model ID not found</td>
+<td>ByteDance rotates version-suffixed IDs (<code>-260128</code> style)</td>
+<td>Read the model ID from configuration, never hard-code it</td>
+</tr>
+<tr>
+<td>429 &#x2F; rate limit</td>
+<td>Concurrency or RPM quota hit</td>
+<td>Check the entitlements for your top-up tier; add backoff</td>
+</tr>
+</tbody></table>
+<p>Rate limits are the “Is Seedance 2.0 unlimited?” question answered: no model route is unlimited. Modellix publishes concurrency and RPM tiers per top-up level (from 2 concurrent tasks &#x2F; 100 RPM below $10 up to 100 &#x2F; 1,000 at $1,000), and BytePlus documents online-inference limits on its tutorial page. Webhooks are supported on aggregator routes via an <code>X-Webhook-URL</code> header with <code>succeeded</code> &#x2F; <code>failed</code> &#x2F; <code>canceled</code> events — see the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api">Modellix API docs</a> if you want to skip polling.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Seedance 2.0 API Reference</h3><p class="view-docs-tag-desc">See the full request schema, parameters, and task lifecycle for calling Seedance 2.0 on Modellix.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="How-to-choose-route-by-workload-not-by-brand"><a href="#How-to-choose-route-by-workload-not-by-brand" class="headerlink" title="How to choose: route by workload, not by brand"></a>How to choose: route by workload, not by brand</h2><p>Decision framework, compressed to the three questions that matter:</p>
+<ul>
+<li><strong>Does the job need the model to follow inputs?</strong> Character consistency across shots, product motion from a reference, audio-directed scenes → <strong>Seedance 2.0 full tier</strong>, with the reference system doing the work.</li>
+<li><strong>Does the job need fast, believable human action at volume?</strong> Social shorts, dialogue-heavy talking heads, action cutups → <strong>Kling 3.0</strong> is the community default and the honest pick.</li>
+<li><strong>Is this a test, a draft, or a final frame?</strong> Mini for tests, Fast for shot planning, full model for finals — and never compare quality across tiers.</li>
+</ul>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/seedance-vs-kling-route-decision.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/seedance-vs-kling-route-decision.png" alt="Routing decision between two video pipelines: a central node splitting into a calm reference-driven path and a dynamic motion path" loading="lazy" />
+</picture>
+
+<p><em>The routing decision visualized: one integration point, two diverging model paths (reference-driven control vs fast action), and a single output ribbon — which is exactly how an aggregator API lets you run both without maintaining two vendor integrations.</em></p>
+<p>The route question is separate from the model question. If you are all-in on ByteDance models at serious volume and want the per-token economics and direct vendor relationship, the official BytePlus route is the right trade — the activation is a one-time cost. If you are evaluating Seedance 2.0 against Kling 3.0 and Veo 3.1 in the same sprint, or you need one billing relationship across several providers, an aggregator exists precisely for that, at the price of being one layer removed from the vendor and paying per-second rates instead of vendor tokens. This is not a claim that the aggregator route is cheaper — the official mini promo at ~$0.03&#x2F;sec beats every aggregator Mini price shown above, and it should, because it sits behind the activation gate. The honest bottom line: <strong>Seedance 2.0 vs Kling 3.0 is decided by your workload; Seedance 2.0 vs 2.0 Fast vs Mini is decided by your stage of production; and the price is decided by the route — verify all three on the live pages before you commit.</strong></p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Start Comparing Video Models</h3><p class="view-docs-tag-desc">Log in to run Seedance 2.0, Kling 3.0, and 200+ other models on one Modellix key.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>Which is better, Kling or Seedance?</strong></p>
+<p>It depends on the workload. Kling 3.0 is generally better for fast, complex human action — running, fighting, dancing, long dialogue in front of camera — at high volume. Seedance 2.0 is better when the job needs multimodal reference control: character consistency across shots, motion copied from a reference video, or audio-directed scenes. Community consensus (Reddit threads ranking for this query) matches that split.</p>
+<p><strong>Is Seedance 2.0 the best video generator?</strong></p>
+<p>“Best” depends on the job. Seedance 2.0 has the strongest multimodal reference system and 4K output in its generation, but Kling 3.0 wins on human motion and cost at scale, and Sora 2 remains the reference for physical realism and world simulation — see our <a href="https://www.modellix.ai/blog/seedance-vs-sora/">Seedance vs Sora comparison</a> for that pair. For API integration, “best” is the model that wins your specific workload at an acceptable per-second cost.</p>
+<p><strong>Is Seedance 2.0 worth it?</strong></p>
+<p>For reference-driven production — ads, music videos, character-consistent series, product motion — yes, the omni-reference system is a genuine capability gap that other models don’t fill. For simple short-form action clips, you are paying for headroom you won’t use; Kling 3.0 is likely the better trade. As of August 2026 the official promo pricing (40–75% of list through September 7) makes evaluation cheap.</p>
+<p><strong>Is Seedance 2.0 unlimited?</strong></p>
+<p>No. Every route has limits: BytePlus requires a balance above USD 30 (or a resource pack) for activation and bills per token; aggregator routes bill per second with published concurrency and RPM tiers per top-up level; tasks must be polled to completion and outputs are retained only for a limited window. There is no unlimited tier.</p>
+<p><strong>What is the difference between Seedance 2.0 and Seedance 2.0 Fast?</strong></p>
+<p>Resolution and consistency. Full Seedance 2.0 outputs up to 4K (10-bit H.265) with the full reference system; Fast caps at 720p and targets faster drafts and shot planning at roughly half the top-end price. Use Fast for iteration, the full model for finals.</p>
+<p><strong>Seedance 2.0 vs Mini: is Mini good enough?</strong></p>
+<p>Mini is the cheapest tier (from $0.0460&#x2F;sec on the Modellix route, ~$0.03&#x2F;sec on the official promo at 720p) and roughly twice as fast as Fast, but caps at 720p and is best for prompt tests, timing checks, and low-stakes drafts. It is not the tier for final 1080p&#x2F;4K output or reference-heavy production work.</p>
+<p><strong>How much does the Seedance 2.0 API cost per second?</strong></p>
+<p>As of August 26, 2026: official BytePlus promos are ~$0.03&#x2F;sec (mini, 720p) and ~$0.09&#x2F;sec (fast, 720p) through September 7, 2026; Modellix displays $0.0460–$0.0920&#x2F;sec (mini), $0.0690–$0.1380&#x2F;sec (fast), and $0.0805–$0.8970&#x2F;sec (full model, spanning resolutions up to 4K). Official billing is per token, aggregator billing per second — match the billing contract before comparing.</p>
+<p><strong>Should I wait for Seedance 2.5 instead of using 2.0?</strong></p>
+<p>Start with 2.0 unless your workload needs 30-second single takes or very large reference sets. Seedance 2.5’s official ceiling is 1080p (4K remains 2.0-only) and its current promo is priced higher (72% of list, from ~$0.41&#x2F;sec at 1080p). 2.0 is the value-optimized, widely mirrored route this quarter.</p>
+<hr>
+<p><em>Provider details and pricing reflect public information as of August 26, 2026 and change frequently — the BytePlus promo windows close September 7 and September 17, 2026, model IDs rotate, and per-second rates drift. Validate against each provider’s live pages before committing. Access image and video models, including the leading Chinese models, through a single API key at <a href="https://www.modellix.ai/">modellix.ai</a>.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Comparison/" class="tag-pill tag-pill--sm">Comparison</a>
+            
+              <a href="/blog/tags/Seedance/" class="tag-pill tag-pill--sm">Seedance</a>
+            
+              <a href="/blog/tags/ByteDance/" class="tag-pill tag-pill--sm">ByteDance</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/nano-banana-vs-stable-diffusion/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-nano-banana-vs-stable-diffusion.webp" alt="Nano Banana vs Stable Diffusion: Honest Comparison (2026)" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Comparisons</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Nano Banana vs Stable Diffusion: Honest Comparison (2026)</h3>
+          <time class="related-article-date" datetime="2026-08-26T02:00:00.000Z">August 26, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/grok-aurora-vs-imagine/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-grok-aurora-vs-imagine.webp" alt="Grok Aurora vs Imagine: Honest Comparison (2026)" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Comparisons</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Grok Aurora vs Imagine: Honest Comparison (2026)</h3>
+          <time class="related-article-date" datetime="2026-08-25T16:00:00.000Z">August 26, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/nano-banana-vs-flux/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-nano-banana-vs-flux.webp" alt="Nano Banana vs Flux: Honest Comparison (2026)" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Comparisons</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Nano Banana vs Flux: Honest Comparison (2026)</h3>
+          <time class="related-article-date" datetime="2026-08-24T02:00:00.000Z">August 24, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/seedance-2-0-vs/&text=Seedance%202.0%20Vs%3A%20Integration%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/seedance-2-0-vs/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/seedance-2-0-vs/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
