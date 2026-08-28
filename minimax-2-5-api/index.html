@@ -1,0 +1,598 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MiniMax 2.5 API: Integration Guide, Pricing &amp; Code — Modellix Blog</title>
+  <meta name="description" content="MiniMax 2.5 API guide: legacy status, current per-million pricing, both base URLs, working curl and SDK code, error handling, and M2.5 vs M2.7 vs M3 guidance.">
+  <meta name="keywords" content="minimax 2.5 api, minimax 2.5 api pricing, minimax 2.5 api key, minimax m2.5 api, minimax m2.5 api base url, minimax m2.5 context length, minimax 2.5 free api, minimax api base url, minimax m2.5 vs minimax m3, minimax 2.5 api documentation">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/minimax-2-5-api/">
+  <meta name="description" content="MiniMax 2.5 API guide: legacy status, current per-million pricing, both base URLs, working curl and SDK code, error handling, and M2.5 vs M2.7 vs M3 guidance.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MiniMax 2.5 API: Integration Guide, Pricing &amp; Code — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/minimax-2-5-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="MiniMax 2.5 API guide: legacy status, current per-million pricing, both base URLs, working curl and SDK code, error handling, and M2.5 vs M2.7 vs M3 guidance.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-minimax-2-5-api.webp">
+<meta property="article:published_time" content="2026-08-28T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-28T02:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="LLM API">
+<meta property="article:tag" content="MiniMax">
+<meta property="article:tag" content="Tutorial">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-minimax-2-5-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"MiniMax 2.5 API: Integration Guide, Pricing & Code","description":"MiniMax 2.5 API guide: legacy status, current per-million pricing, both base URLs, working curl and SDK code, error handling, and M2.5 vs M2.7 vs M3 guidance.","datePublished":"2026-08-28T02:00:00.000Z","dateModified":"2026-08-28T02:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/minimax-2-5-api/","image":"https://img.modellix.ai/en/article/cover-minimax-2-5-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">MiniMax 2.5 API: Integration Guide, Pricing &amp; Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">MiniMax 2.5 API: Integration Guide, Pricing &amp; Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-28T02:00:00.000Z">August 28, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/MiniMax/" class="tag-pill tag-pill--sm">MiniMax</a>
+            
+              <a href="/blog/tags/Tutorial/" class="tag-pill tag-pill--sm">Tutorial</a>
+            
+              <a href="/blog/tags/LLM-API/" class="tag-pill tag-pill--sm">LLM API</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>Yes — MiniMax 2.5 has a real, documented API, and it is callable today with an OpenAI-compatible or Anthropic-compatible client. The MiniMax 2.5 API is served from api.minimax.io with two interchangeable base URLs, costs $0.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-minimax-2-5-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-minimax-2-5-api.png" alt="MODELLIX editorial cover for the MiniMax 2.5 API integration guide showing two base URLs flowing into one API gateway" />
+</picture>
+
+<p>Yes — MiniMax 2.5 has a real, documented API, and it is callable today with an OpenAI-compatible or Anthropic-compatible client. The MiniMax 2.5 API is served from <code>api.minimax.io</code> with two interchangeable base URLs, costs $0.30 per million input tokens and $1.20 per million output tokens on official pay-as-you-go pricing, and works through the model string <code>MiniMax-M2.5</code>. This guide assembles what the official docs spread across five pages — model identity, pricing, key setup, base URLs, working code, and failure modes — into one place, with every number re-pulled on August 28, 2026.</p>
+<p>One honest disclosure before the code: Modellix is an AI model API aggregator and has a commercial interest in this article. MiniMax 2.5 is <strong>not</strong> available on Modellix’s LLM gateway as of this date — we checked, and it is not listed there. What Modellix does serve is MiniMax’s <em>media</em> models (Hailuo video, image, speech), and we say so plainly in the routing section rather than pretending the text model is part of our catalog. Everything in between is vendor-neutral integration material you can use with or without us.</p>
+<h2 id="What-MiniMax-2-5-is-in-2026-a-legacy-model-that-still-ships"><a href="#What-MiniMax-2-5-is-in-2026-a-legacy-model-that-still-ships" class="headerlink" title="What MiniMax 2.5 is in 2026: a legacy model that still ships"></a>What MiniMax 2.5 is in 2026: a legacy model that still ships</h2><p>MiniMax-M2.5 is the company’s code-optimized M-series LLM, launched in February 2026 and marketed around “Peak Performance. Ultimate Value” — its selling point was strong coding and agentic behavior at a competitive price point. The <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/guides/models-intro">official model catalog</a> now lists it under <strong>Legacy Models</strong>, alongside M2.5-highspeed, M2.1, and M2. The current lineup is MiniMax-M3 (1M context, frontier coding) and MiniMax-M2.7.</p>
+<p>That legacy label is the most important fact about this model in 2026, and it is the one every ranking page hides. “Legacy” here does not mean dead: the <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/guides/text-generation">text-generation guide</a> still documents MiniMax-M2.5 as a supported model, the endpoints accept it, and billing continues on the standard pay-as-you-go table. It means MiniMax has stopped adding features to it and is steering new integrations toward M2.7 and M3. If you pick M2.5 today, you are making a deliberate cost-versus-future-proofing trade, not a mistake.</p>
+<p>The specs that matter for integration, from the <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/api-reference/api-overview">API reference overview</a>:</p>
+<ul>
+<li><strong>Context window</strong>: 204,800 tokens (input and output combined)</li>
+<li><strong>Throughput</strong>: ~60 tokens&#x2F;second output; the <code>MiniMax-M2.5-highspeed</code> variant keeps identical output quality at roughly 100 tps</li>
+<li><strong>Modalities</strong>: text in, text out — no native image or video input</li>
+<li><strong>Third-party benchmark</strong> (reported on the <a target="_blank" rel="noopener" href="https://openrouter.ai/minimax/minimax-m2.5">OpenRouter model page</a>, fetched August 28, 2026): 80.2% SWE-Bench Verified, 51.3% Multi-SWE-Bench, 76.3% BrowseComp — strong coding numbers, but treat benchmarks as directional, not guarantees</li>
+</ul>
+<h2 id="MiniMax-2-5-API-pricing-pulled-today"><a href="#MiniMax-2-5-API-pricing-pulled-today" class="headerlink" title="MiniMax 2.5 API pricing, pulled today"></a>MiniMax 2.5 API pricing, pulled today</h2><p>The official pay-as-you-go rates below were read from the <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/guides/pricing-paygo">MiniMax pricing guide</a> on August 28, 2026, and are per 1M tokens:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th align="right">Input</th>
+<th align="right">Output</th>
+<th align="right">Cache read</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MiniMax-M2.5</td>
+<td align="right">$0.30</td>
+<td align="right">$1.20</td>
+<td align="right">$0.03</td>
+</tr>
+<tr>
+<td>MiniMax-M2.5-highspeed</td>
+<td align="right">$0.60</td>
+<td align="right">$2.40</td>
+<td align="right">$0.03</td>
+</tr>
+<tr>
+<td>MiniMax-M2.7</td>
+<td align="right">$0.30</td>
+<td align="right">$1.20</td>
+<td align="right">$0.06</td>
+</tr>
+<tr>
+<td>MiniMax-M3 (≤512k input)</td>
+<td align="right">$0.30</td>
+<td align="right">$1.20</td>
+<td align="right">$0.06</td>
+</tr>
+</tbody></table>
+<p>Three practical readings of that table:</p>
+<ol>
+<li><strong>M2.5 is priced identically to M2.7</strong> — $0.30&#x2F;$1.20 per million tokens on both. The legacy model saves you nothing per token versus its current successor at the same context tier, which is a strong argument for defaulting new integrations to M2.7 (more on this in the selection section).</li>
+<li><strong>M2.5-highspeed costs 2× standard</strong> ($0.60&#x2F;$2.40) for roughly 1.7× the output speed. It earns its premium only when latency per request is the constraint.</li>
+<li><strong>Prompt caching cuts real cost.</strong> Cached input tokens on M2.5 read at $0.03&#x2F;M — one-tenth of the uncached input rate. If your workload sends the same system prompt or tool definitions repeatedly, cache hits turn the effective input price into pocket change.</li>
+</ol>
+<p>For a worked example: a 100k-token request with 50k output tokens costs 100 × $0.30 + 50 × $1.20 &#x3D; <strong>$0.09</strong> on M2.5 direct. If 80k of those input tokens hit cache, input drops to 20 × $0.30 + 80 × $0.03 &#x3D; $0.006 + $0.0024 &#x3D; $0.0084; add the 50k output tokens (50 × $1.20 &#x3D; $0.06) and the request totals <strong>$0.0684</strong> — 24% cheaper than the uncached $0.09 on that request, and the gap grows with cache reuse.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/minimax-m25-price-tiers.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/minimax-m25-price-tiers.png" alt="MiniMax text model tier cards showing M2.5, M2.5-highspeed, M2.7 and M3 arranged from legacy to current flagship" loading="lazy" />
+</picture>
+
+<p><em>The MiniMax text model ladder from legacy M2.5 to the current M3 flagship — no prices, because they drift. Diagram generated August 28, 2026.</em></p>
+<p>Two other pricing systems exist and are worth naming so you do not confuse them. <strong>Token Plan</strong> is MiniMax’s subscription-style quota system, billed monthly with a separate Subscription Key — it is a different billing universe from pay-as-you-go, not a discount applied to it. And <strong>marketplace routes</strong> set their own prices: the <a target="_blank" rel="noopener" href="https://openrouter.ai/minimax/minimax-m2.5">OpenRouter route for <code>minimax/minimax-m2.5</code></a> lists $0.27&#x2F;M input and $1.08&#x2F;M output as of August 28, 2026 (read from its models API, not the page), marginally below official direct rates — the usual marketplace pattern of a few percent off in exchange for an extra hop. For the full breakdown of MiniMax’s pricing family across models and media, our <a href="https://www.modellix.ai/blog/minimax-pricing/">MiniMax pricing guide</a> has the complete table.</p>
+<h2 id="Getting-a-MiniMax-2-5-API-key-and-which-key-type-you-need"><a href="#Getting-a-MiniMax-2-5-API-key-and-which-key-type-you-need" class="headerlink" title="Getting a MiniMax 2.5 API key (and which key type you need)"></a>Getting a MiniMax 2.5 API key (and which key type you need)</h2><p>Keys live in the MiniMax platform console at <code>platform.minimax.io</code>. Sign in, open <strong>API Keys</strong>, and click <strong>Create new secret key</strong> — the key is displayed exactly once, so copy it before closing the dialog. Creating a key does not require a credit card; you top up billing only when you start spending.</p>
+<p>The critical distinction is which <em>billing system</em> your key belongs to, because it changes the key itself:</p>
+<ul>
+<li><strong>Pay-as-you-go</strong> — the default. A secret key billed per token at the table above. This is the key type for the code in this guide.</li>
+<li><strong>Token Plan</strong> — a monthly quota subscription. It issues a separate <strong>Subscription Key</strong> (prefix <code>sk-cp</code>) that only works against Token Plan billing. A pay-as-you-go key cannot spend Token Plan quota and vice versa.</li>
+</ul>
+<p>There is also a platform split worth remembering: the international platform (<code>platform.minimax.io</code> &#x2F; <code>api.minimax.io</code>) and the China platform (<code>platform.minimax.cn</code>) are isolated — a key issued on one will not authenticate on the other. Our <a href="https://www.modellix.ai/blog/minimax-api-key/">guide to getting a MiniMax API key</a> walks through the console step by step if you want screenshots.</p>
+<p>One expectation to set now: there is <strong>no official free tier</strong> for MiniMax M2.5. No signup credits, no free quota on the text API. The only “free” endpoints MiniMax has ever published were the free music models, which were discontinued for new users in August 2026. Third-party free routes exist — OpenRouter currently offers rate-limited <code>:free</code> variants of <strong>M3</strong> and <strong>M2.7</strong>, but not M2.5 as of this date — and they are worth checking for experimentation. The honest picture of what “free” means across MiniMax today is in our <a href="https://www.modellix.ai/blog/minimax-free-api/">MiniMax free API article</a>.</p>
+<h2 id="Base-URLs-one-model-two-compatible-endpoints"><a href="#Base-URLs-one-model-two-compatible-endpoints" class="headerlink" title="Base URLs: one model, two compatible endpoints"></a>Base URLs: one model, two compatible endpoints</h2><p>MiniMax runs an OpenAI-compatible and an Anthropic-compatible surface on the same backend. From the official <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/guides/text-generation">text-generation guide</a>:</p>
+<table>
+<thead>
+<tr>
+<th>Compatibility</th>
+<th>Base URL</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Anthropic-compatible (recommended)</td>
+<td><code>https://api.minimax.io/anthropic</code></td>
+</tr>
+<tr>
+<td>OpenAI-compatible</td>
+<td><code>https://api.minimax.io/v1</code></td>
+</tr>
+</tbody></table>
+<p>That “one model, two doors” design is the single biggest integration shortcut MiniMax offers: if you already have an OpenAI SDK client or an Anthropic SDK client in production, switching models is a two-line change — swap <code>base_url</code> and <code>model</code> and your existing plumbing (auth, retries, streaming) keeps working. No MiniMax-specific SDK required. The model string is exactly <code>MiniMax-M2.5</code> (case-sensitive), or <code>MiniMax-M2.5-highspeed</code> for the fast variant.</p>
+<h2 id="Calling-MiniMax-2-5-curl-and-SDK-examples"><a href="#Calling-MiniMax-2-5-curl-and-SDK-examples" class="headerlink" title="Calling MiniMax 2.5: curl and SDK examples"></a>Calling MiniMax 2.5: curl and SDK examples</h2><p><strong>curl against the OpenAI-compatible endpoint</strong> — the same shape as any OpenAI chat completion:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">curl https://api.minimax.io/v1/chat/completions \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$MINIMAX_API_KEY</span>&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;model&quot;: &quot;MiniMax-M2.5&quot;,</span></span><br><span class="line"><span class="string">    &quot;messages&quot;: [</span></span><br><span class="line"><span class="string">      &#123;&quot;role&quot;: &quot;system&quot;, &quot;content&quot;: &quot;You are a senior code reviewer.&quot;&#125;,</span></span><br><span class="line"><span class="string">      &#123;&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Review this function for edge cases: def parse(data): return data.strip().split(&#x27;</span>,<span class="string">&#x27;)&quot;&#125;</span></span><br><span class="line"><span class="string">    ],</span></span><br><span class="line"><span class="string">    &quot;stream&quot;: false,</span></span><br><span class="line"><span class="string">    &quot;max_tokens&quot;: 1024</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Python with the OpenAI SDK</strong> — install <code>openai</code>, point it at the MiniMax base URL:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openai <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">client = OpenAI(</span><br><span class="line">    api_key=os.environ[<span class="string">&quot;MINIMAX_API_KEY&quot;</span>],</span><br><span class="line">    base_url=<span class="string">&quot;https://api.minimax.io/v1&quot;</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">resp = client.chat.completions.create(</span><br><span class="line">    model=<span class="string">&quot;MiniMax-M2.5&quot;</span>,</span><br><span class="line">    messages=[</span><br><span class="line">        &#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;system&quot;</span>, <span class="string">&quot;content&quot;</span>: <span class="string">&quot;You write concise, correct Python.&quot;</span>&#125;,</span><br><span class="line">        &#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>, <span class="string">&quot;content&quot;</span>: <span class="string">&quot;Write a retry wrapper with exponential backoff.&quot;</span>&#125;,</span><br><span class="line">    ],</span><br><span class="line">)</span><br><span class="line"><span class="built_in">print</span>(resp.choices[<span class="number">0</span>].message.content)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Python with the Anthropic SDK</strong> — the documented “recommended” route:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> anthropic <span class="keyword">import</span> Anthropic</span><br><span class="line"></span><br><span class="line">client = Anthropic(</span><br><span class="line">    api_key=os.environ[<span class="string">&quot;MINIMAX_API_KEY&quot;</span>],</span><br><span class="line">    base_url=<span class="string">&quot;https://api.minimax.io/anthropic&quot;</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">resp = client.messages.create(</span><br><span class="line">    model=<span class="string">&quot;MiniMax-M2.5&quot;</span>,</span><br><span class="line">    max_tokens=<span class="number">1024</span>,</span><br><span class="line">    messages=[</span><br><span class="line">        &#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>, <span class="string">&quot;content&quot;</span>: <span class="string">&quot;Explain the difference between M2.5 and M2.7 in one paragraph.&quot;</span>&#125;,</span><br><span class="line">    ],</span><br><span class="line">)</span><br><span class="line"><span class="built_in">print</span>(resp.content[<span class="number">0</span>].text)</span><br></pre></td></tr></table></figure>
+
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/minimax-m25-api-routes.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/minimax-m25-api-routes.png" alt="Two input pipelines labeled OpenAI-compatible and Anthropic-compatible merging into one MiniMax API gateway" loading="lazy" />
+</picture>
+
+<p><em>Both compatibility routes hit the same MiniMax gateway, so one key works with either SDK. Diagram generated August 28, 2026.</em></p>
+<p>Two production notes that apply to both routes:</p>
+<ul>
+<li><strong>Streaming</strong> works through the standard flag — <code>stream: true</code> on the OpenAI side, <code>stream=True</code> in the Anthropic SDK — and emits SSE chunks with the same shapes you already handle. No MiniMax-specific streaming protocol.</li>
+<li><strong>Tool calling</strong> uses the standard <code>tools</code> parameter. On the OpenAI surface, define functions in the familiar JSON schema and M2.5 will emit <code>tool_calls</code>; on the Anthropic surface, pass <code>tools</code> with the block format. The model string and base URL are the only MiniMax-specific parts of your code.</li>
+</ul>
+<h2 id="Errors-limits-and-the-gotchas-nobody-pages-warn-about"><a href="#Errors-limits-and-the-gotchas-nobody-pages-warn-about" class="headerlink" title="Errors, limits, and the gotchas nobody pages warn about"></a>Errors, limits, and the gotchas nobody pages warn about</h2><p>MiniMax returns API errors inside the response body as <code>base_resp.status_code</code> — <strong>not</strong> as HTTP status codes. A 200 HTTP response can still carry a failed business call, so check the body. The four errors new integrators hit, per <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/api-reference/api-overview">MiniMax’s API documentation</a> and the current error reference:</p>
+<table>
+<thead>
+<tr>
+<th><code>base_resp.status_code</code></th>
+<th align="right">Meaning</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2049</td>
+<td align="right">Invalid API key</td>
+<td>Re-copy the key — whitespace and line breaks are the usual culprit</td>
+</tr>
+<tr>
+<td>1004</td>
+<td align="right">Not authorized</td>
+<td>Wrong key, revoked key, or platform mismatch (intl vs China)</td>
+</tr>
+<tr>
+<td>1008</td>
+<td align="right">Insufficient balance</td>
+<td>Top up at Billing &gt; Balance</td>
+</tr>
+<tr>
+<td>1002</td>
+<td align="right">Rate limit</td>
+<td>Back off and retry with exponential delay</td>
+</tr>
+</tbody></table>
+<p>Beyond the error codes, four gotchas cost people real time:</p>
+<ol>
+<li><strong>Token Plan vs pay-as-you-go keys are not interchangeable</strong> — a <code>sk-cp</code> Subscription Key will fail on pay-as-you-go endpoints with 1004&#x2F;1008-style errors, and the console makes the distinction easy to miss.</li>
+<li><strong>“Legacy” status is invisible until it bites.</strong> M2.5 works, but new features (new tool types, context extensions, multimodal inputs) land on M3&#x2F;M2.7 first. Budget for a migration, not for M2.5 to keep improving.</li>
+<li><strong>Caching only saves money if you structure requests for it.</strong> Cache hits require identical prefix content — put your system prompt and tool definitions first and keep them byte-stable, or you will never see the $0.03&#x2F;M cache rate.</li>
+<li><strong>Prices and model status change fast.</strong> This article’s numbers are frozen at August 28, 2026; MiniMax has already moved models in and out of “legacy” within a single quarter. Re-pull the <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/guides/pricing-paygo">official pricing page</a> before committing budget.</li>
+</ol>
+<h2 id="MiniMax-2-5-vs-M2-7-vs-M3-which-model-should-you-call"><a href="#MiniMax-2-5-vs-M2-7-vs-M3-which-model-should-you-call" class="headerlink" title="MiniMax 2.5 vs M2.7 vs M3: which model should you call?"></a>MiniMax 2.5 vs M2.7 vs M3: which model should you call?</h2><p>Three-way selection, as of August 2026:</p>
+<ul>
+<li><strong>MiniMax-M2.5</strong> — pick it when your pipeline already targets it, your prompts are tuned against its quirks, and you are optimizing for stability over new features. At $0.30&#x2F;$1.20 it is not cheaper than M2.7, so the argument is “it works and we know it,” not “it’s the budget option.”</li>
+<li><strong>MiniMax-M2.7</strong> — the sensible default for new integrations that want the same 204,800-token context and the same price, with current-model support. If you are starting from scratch today, this is usually the answer.</li>
+<li><strong>MiniMax-M3</strong> — the frontier model: 1M context, stronger agentic coding, and — notably — the same $0.30&#x2F;$1.20 rate as M2.5 <em>up to 512k input tokens</em>. Above that it doubles to $0.60&#x2F;$2.40. For long-context agent workloads M3 is the value pick, not the luxury pick.</li>
+</ul>
+<p>The honest bottom line: if a teammate asks “why are we calling a legacy model?”, the defensible answers are (a) it is already integrated and battle-tested in our stack, or (b) we need a cheap code model and M3’s long-context features are irrelevant to us. If neither applies, M2.7 or M3 is the better choice, and this article exists because searchers deserve to know that before they wire up M2.5.</p>
+<p><strong>Where Modellix fits — MiniMax media, not MiniMax text.</strong> We checked Modellix’s <a href="https://www.modellix.ai/llm">LLM gateway</a> on August 28, 2026: MiniMax text models (M2.5, M2.7, M3) are not on it, and we are not going to claim otherwise. What Modellix <em>does</em> route is MiniMax’s media family — Hailuo video models, image generation, and speech synthesis — through the <a href="https://www.modellix.ai/providers/minimax">MiniMax provider page</a> and one unified REST API. If your project pairs an LLM with generated media, that is the <a href="https://www.modellix.ai/blog/one-api-multiple-ai-video-models/">one-key-for-many-model-families</a> workflow. A Hailuo text-to-video call on Modellix looks like this, from the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api">Modellix API docs</a>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST https://api.modellix.ai/api/v1/minimax/hailuo-2.3-t2v \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$MODELLIX_API_KEY</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;&quot;prompt&quot;: &quot;A glass factory at night, molten glass glowing amber, slow dolly shot&quot;&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Modellix REST API Reference</h3><p class="view-docs-tag-desc">One REST contract for 210+ image and video models — see the full request, polling, and billing reference.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<p>A fair comparison so you can budget correctly: Hailuo 2.3 T2V on Modellix runs <strong>$0.0504&#x2F;sec at 768P and $0.0738&#x2F;sec at 1080P</strong> (from the <a href="https://www.modellix.ai/models/minimax/hailuo-2.3-t2v">model page</a>, August 28, 2026). We are not claiming that undercuts MiniMax direct — the two price sheets are quoted in different units, so there is no single number to line up: Modellix bills per second of video, while MiniMax’s direct Hailuo pricing is per task (per generation, set by resolution and duration), which means the cheaper route depends on your clip rather than on one headline rate. The aggregator’s value is operational: one key, one bill, consistent task APIs across 210+ models from many vendors, not a guarantee of the cheapest per-call rate on every model.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Run MiniMax Media Models on One Key</h3><p class="view-docs-tag-desc">Log in to Modellix to call Hailuo video, image, and speech alongside 200+ other models with one API key.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>Does MiniMax 2.5 have an API?</strong></p>
+<p>Yes. MiniMax-M2.5 is served through MiniMax’s platform at <code>api.minimax.io</code>, with both an OpenAI-compatible endpoint (<code>/v1</code>) and an Anthropic-compatible endpoint (<code>/anthropic</code>). No separate SDK is required — existing OpenAI or Anthropic clients work after swapping base URL and model string.</p>
+<p><strong>How do I get a MiniMax 2.5 API key?</strong></p>
+<p>Sign in to <code>platform.minimax.io</code>, open <strong>API Keys</strong>, and click <strong>Create new secret key</strong>. The key shows once — copy it immediately. No credit card is required to create it; you top up when you start spending.</p>
+<p><strong>What is the MiniMax 2.5 API base URL?</strong></p>
+<p>Two options: <code>https://api.minimax.io/v1</code> (OpenAI-compatible) and <code>https://api.minimax.io/anthropic</code> (Anthropic-compatible, recommended by MiniMax). The model string is <code>MiniMax-M2.5</code>.</p>
+<p><strong>How much does the MiniMax 2.5 API cost per million tokens?</strong></p>
+<p>As of August 28, 2026: $0.30&#x2F;M input and $1.20&#x2F;M output on pay-as-you-go, with cached input at $0.03&#x2F;M. The <code>MiniMax-M2.5-highspeed</code> variant is $0.60&#x2F;$2.40. MiniMax M2.7 is priced identically to M2.5.</p>
+<p><strong>Is there a free MiniMax 2.5 API?</strong></p>
+<p>No official free tier exists for MiniMax text models — no signup credits, no free quota. OpenRouter hosts rate-limited <code>:free</code> variants of newer models (M3, M2.7) but not M2.5 as of August 28, 2026.</p>
+<p><strong>Is MiniMax M2.5 still supported?</strong></p>
+<p>Yes. It is listed as a Legacy Model — MiniMax has stopped adding features but still serves it, documents it, and bills it on the standard pricing table. The supported model strings include <code>MiniMax-M2.5</code> and <code>MiniMax-M2.5-highspeed</code>.</p>
+<p><strong>What is MiniMax M2.5’s context window?</strong></p>
+<p>204,800 tokens (input and output combined), with ~60 tokens&#x2F;second output throughput; the highspeed variant roughly doubles output speed at 2× the token price.</p>
+<p><strong>Can I call MiniMax 2.5 through Modellix?</strong></p>
+<p>Not the text model — as of August 28, 2026, MiniMax LLMs are not on Modellix’s LLM gateway. Modellix does serve MiniMax’s media models (Hailuo video, image, speech) through a single API key.</p>
+<hr>
+<p><em>MiniMax model status and pricing reflect public information as of August 28, 2026 and change frequently; MiniMax has moved models in and out of its legacy list within a single quarter. Re-validate against the official pricing and model pages before committing budget. This article was written by Modellix, an API aggregator with a commercial interest in MiniMax media models — the M2.5 integration material above is vendor-neutral. Access 210+ image and video models, including MiniMax’s media family, through one API key at <a target="_blank" rel="noopener" href="https://modellix.ai/">modellix.ai</a>.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/MiniMax/" class="tag-pill tag-pill--sm">MiniMax</a>
+            
+              <a href="/blog/tags/Tutorial/" class="tag-pill tag-pill--sm">Tutorial</a>
+            
+              <a href="/blog/tags/LLM-API/" class="tag-pill tag-pill--sm">LLM API</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/grok-imagine-video-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-grok-imagine-video-api.webp" alt="Grok Imagine Video API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Grok Imagine Video API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-08-28T02:00:00.000Z">August 28, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/live-avatar-ai/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-live-avatar-ai.webp" alt="Live Avatar AI: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Live Avatar AI: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-08-28T02:00:00.000Z">August 28, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/nano-banana-api-docs/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-nano-banana-api-docs.webp" alt="Nano Banana API Docs: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Nano Banana API Docs: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-08-28T02:00:00.000Z">August 28, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/minimax-2-5-api/&text=MiniMax%202.5%20API%3A%20Integration%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/minimax-2-5-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/minimax-2-5-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

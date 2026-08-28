@@ -1,0 +1,571 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Avatar AI: Integration Guide, Pricing &amp; Code — Modellix Blog</title>
+  <meta name="description" content="Live avatar AI integration guide: what truly streams in real time, per-minute pricing for HeyGen, D-ID, JAI and New Port AI, plus embed and WebRTC code.">
+  <meta name="keywords" content="live avatar ai, heygen live avatar, live avatar api, real-time avatar api, ai avatar live streaming, live streaming avatar, live avatar ai free, real-time ai avatar">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/live-avatar-ai/">
+  <meta name="description" content="Live avatar AI integration guide: what truly streams in real time, per-minute pricing for HeyGen, D-ID, JAI and New Port AI, plus embed and WebRTC code.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Live Avatar AI: Integration Guide, Pricing &amp; Code — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/live-avatar-ai/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Live avatar AI integration guide: what truly streams in real time, per-minute pricing for HeyGen, D-ID, JAI and New Port AI, plus embed and WebRTC code.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-live-avatar-ai.webp">
+<meta property="article:published_time" content="2026-08-28T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-28T02:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Avatar API">
+<meta property="article:tag" content="Integration">
+<meta property="article:tag" content="Live Streaming">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-live-avatar-ai.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Live Avatar AI: Integration Guide, Pricing & Code","description":"Live avatar AI integration guide: what truly streams in real time, per-minute pricing for HeyGen, D-ID, JAI and New Port AI, plus embed and WebRTC code.","datePublished":"2026-08-28T02:00:00.000Z","dateModified":"2026-08-28T02:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/live-avatar-ai/","image":"https://img.modellix.ai/en/article/cover-live-avatar-ai.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Live Avatar AI: Integration Guide, Pricing &amp; Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Live Avatar AI: Integration Guide, Pricing &amp; Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-28T02:00:00.000Z">August 28, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/Integration/" class="tag-pill tag-pill--sm">Integration</a>
+            
+              <a href="/blog/tags/AI-Avatar-API/" class="tag-pill tag-pill--sm">AI Avatar API</a>
+            
+              <a href="/blog/tags/Live-Streaming/" class="tag-pill tag-pill--sm">Live Streaming</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>Search for &#39;live avatar AI&#39; and you get the rock band LIVE, a dictionary entry for the word &#39;live,&#39; and a stack of vendor pages — each describing its own product as if it were the whole category.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-live-avatar-ai.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-live-avatar-ai.png" alt="Dark amber live avatar AI cover art: a glass avatar face inside a WebRTC pipeline motif with the MODELLIX wordmark" />
+</picture>
+
+<p>Search for “live avatar AI” and you get the rock band LIVE, a dictionary entry for the word “live,” and a stack of vendor pages — each describing its own product as if it were the whole category. The developers behind that search are usually after something narrower and more concrete: a real-time conversational avatar they can put behind an API, and a price they can put in a spreadsheet.</p>
+<p>Live avatar AI is not one product, and the word “live” carries most of the confusion. This guide separates the three things vendors actually ship — scripted avatar video, streamable batch generation, and real-time conversational avatars — then normalizes pricing for the vendors that rank for the term (HeyGen, D-ID, JAI, New Port AI) to a per-minute basis where the published data allows it, walks through the documented integration shapes, and lists the failure modes that burn money. Every figure is date-stamped, accessed August 27–28, 2026. Full disclosure: Modellix is an AI model API aggregator with a commercial interest in the routes it sells, so we state plainly where Modellix fits in this market — and where it does not.</p>
+<h2 id="What-counts-as-“live”-in-live-avatar-AI"><a href="#What-counts-as-“live”-in-live-avatar-AI" class="headerlink" title="What counts as “live” in live avatar AI"></a>What counts as “live” in live avatar AI</h2><p>“Live” is used loosely across the whole category. Before comparing anything, separate the three families — they have different latency budgets, different architectures, and different price points:</p>
+<ol>
+<li><strong>Scripted avatar video.</strong> You type a script, the platform renders a video of an avatar speaking it (HeyGen’s studio, Synthesia, most of D-ID’s non-realtime output). Nothing is live: the render takes minutes, and the result is a video file you host. This is what most people mean by “talking avatar,” and our <a href="https://www.modellix.ai/blog/talking-avatar-api/">talking avatar API guide</a> covers the API side of it in depth.</li>
+<li><strong>Streamable batch generation labeled “live.”</strong> A model animates a portrait from an audio file and streams the result as long-form video. JAI’s Live Avatar is the cleanest example: real-time animation from a single reference image plus an audio track, streamable in near-“infinite-length” clips of roughly three seconds each. It is fast and streamable, but it is not conversational — there is no listening loop, no STT, no turn detection. The lip sync is the point.</li>
+<li><strong>Real-time conversational avatars.</strong> The avatar listens, reasons, and speaks in a loop over WebRTC: speech-to-text, turn detection, an LLM response, text-to-speech, and synchronized avatar rendering, streamed back to the user in near real time. This is what HeyGen LiveAvatar, D-ID’s realtime agents, and LiveKit-orchestrated stacks deliver, and it is the only family where “live” is architecturally honest. D-ID’s own glossary defines a <a target="_blank" rel="noopener" href="https://www.d-id.com/resources/glossary/real-time-avatar/">real-time avatar</a> exactly this way: conversational AI delivered through an avatar over WebRTC.</li>
+</ol>
+<p>Most of the SERP for “live avatar AI” fails to draw this line, which is why the same product gets quoted as both “sub-500 ms” and “not really live” depending on the page. When a vendor page says “live,” ask which family it belongs to before you evaluate latency or price. A streamable-batch model at $0.02&#x2F;minute-equivalent cannot compete with a conversational avatar that needs an STT→LLM→TTS round trip on every turn — and it does not have to; they are different products.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/live-avatar-families.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/live-avatar-families.png" alt="Diagram of the three live avatar AI families: scripted video, streamable batch generation, and real-time conversational WebRTC avatars" loading="lazy" />
+</picture>
+
+<p><em>The three families that ship under “live avatar AI”: scripted video, streamable batch labeled live, and real-time conversational over WebRTC. Illustrative concept diagram.</em></p>
+<h2 id="The-real-time-avatar-pipeline-what-you’re-actually-integrating"><a href="#The-real-time-avatar-pipeline-what-you’re-actually-integrating" class="headerlink" title="The real-time avatar pipeline: what you’re actually integrating"></a>The real-time avatar pipeline: what you’re actually integrating</h2><p>A conversational avatar is a voice pipeline with a video output stage. D-ID’s realtime documentation describes the canonical shape: user speech flows through <strong>speech-to-text</strong>, then <strong>turn detection</strong> (deciding when the user has finished speaking), then the <strong>LLM</strong> (which can query an optional knowledge base for RAG answers), then <strong>text-to-speech</strong>, then the <strong>avatar renderer</strong>, and the video is delivered back to the user over <strong>WebRTC</strong>. LiveKit’s avatar documentation describes the same delivery layer from the orchestration side: an avatar worker joins the room as a separate participant and publishes synchronized audio and video tracks.</p>
+<p>The design decision that actually shapes your integration is <strong>who manages which stage</strong>:</p>
+<ul>
+<li><strong>Vendor-managed full mode.</strong> HeyGen’s FULL mode runs the whole pipeline — WebRTC, STT, LLM, TTS — and you pay 2 credits per minute for the privilege. You integrate by requesting an embed and dropping it into a page. This is the fastest path to a working avatar.</li>
+<li><strong>Bring-your-own stack.</strong> HeyGen’s Avatar Only (LITE) mode charges 1 credit per minute and hands you the WebRTC, STT, LLM, and TTS stages. D-ID’s realtime agents support client keys for a backendless embed, a backend session token for server-controlled sessions, or a full SDK for a custom UI. LiveKit’s <a target="_blank" rel="noopener" href="https://docs.livekit.io/agents/models/avatar/">avatar plugins</a> — for Anam, D-ID, LemonSlice, HeyGen LiveAvatar, Tavus, and others — give you the same split inside an existing agent framework.</li>
+</ul>
+<p>Your choice between the two is a latency and cost trade, not a quality judgment. If your product already has an LLM and a TTS provider you like, LITE-mode or a LiveKit plugin avoids paying for pipeline stages you would otherwise run twice. If you need an avatar in a demo by Friday, FULL mode wins — 2 credits per minute is the price of not operating the pipeline yourself.</p>
+<p>Azure’s text-to-speech avatar documentation is worth a read even if you never touch Azure: it is one of the clearest public explanations of how <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/ai-services/speech-service/text-to-speech-avatar/what-is-text-to-speech-avatar">real-time synthesis</a> differs from batch avatar generation, which is the same distinction this article is drawing.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/live-avatar-pipeline.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/live-avatar-pipeline.png" alt="Real-time avatar pipeline diagram: user speech flows through STT, turn detection, LLM, TTS, avatar rendering, and WebRTC delivery back to the user" loading="lazy" />
+</picture>
+
+<p><em>The real-time avatar pipeline every conversational product shares: STT → turn detection → LLM → TTS → avatar, delivered over WebRTC, with an optional knowledge base on the LLM. Illustrative concept diagram.</em></p>
+<h2 id="Live-avatar-pricing-normalized-to-per-minute"><a href="#Live-avatar-pricing-normalized-to-per-minute" class="headerlink" title="Live avatar pricing, normalized to per-minute"></a>Live avatar pricing, normalized to per-minute</h2><p>Every vendor bills in a different unit — credits per minute, monthly minute allowances, or pay-as-you-go clip credits — so the only honest comparison is to normalize to a per-minute cost <em>where the vendor publishes enough to do so</em>. All figures below were read from the live pages on August 27–28, 2026. Where the data is insufficient, this table says so instead of inventing a conversion.</p>
+<table>
+<thead>
+<tr>
+<th>Vendor</th>
+<th align="right">Published plan &#x2F; unit</th>
+<th align="right">Published allowance</th>
+<th align="right">Effective per-minute</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HeyGen (LiveAvatar FULL)</td>
+<td align="right">Creator $29&#x2F;mo, 600 credits</td>
+<td align="right">FULL mode &#x3D; 2 credits&#x2F;min</td>
+<td align="right"><strong>≈ $0.097&#x2F;min</strong> (calculation from list prices)</td>
+</tr>
+<tr>
+<td>HeyGen (Avatar Only &#x2F; LITE)</td>
+<td align="right">same plans</td>
+<td align="right">LITE mode &#x3D; 1 credit&#x2F;min</td>
+<td align="right">≈ half of FULL (same calculation)</td>
+</tr>
+<tr>
+<td>D-ID</td>
+<td align="right">Lite $4.7&#x2F;mo, Pro $16&#x2F;mo, Advanced $108&#x2F;mo</td>
+<td align="right">10 &#x2F; 15 &#x2F; 100 min per month</td>
+<td align="right"><strong>not published per minute</strong> for realtime agents</td>
+</tr>
+<tr>
+<td>JAI Live Avatar</td>
+<td align="right">pay-as-you-go credits</td>
+<td align="right">~3-second clips; <code>frames_per_clip</code>&#x2F;<code>acceleration</code> change cost</td>
+<td align="right"><strong>no per-minute list price</strong> on the accessed page</td>
+</tr>
+<tr>
+<td>New Port AI</td>
+<td align="right">Professional $49&#x2F;mo, Premium $259&#x2F;mo</td>
+<td align="right">300 &#x2F; 2,000 min per month</td>
+<td align="right">≈ $0.163&#x2F;min and ≈ $0.13&#x2F;min (calculation)</td>
+</tr>
+</tbody></table>
+<p>A few notes on what is — and is not — in that table:</p>
+<ul>
+<li><strong>HeyGen</strong> publishes its <a target="_blank" rel="noopener" href="https://www.heygen.com/pricing">plan prices</a> (Free $0 with 3 videos&#x2F;month, Creator $29, Pro $49, Business $149) and its <a target="_blank" rel="noopener" href="https://docs.heygen.com/docs/streaming-api-integration-with-livekit-v2">LiveAvatar credit rates</a> (FULL 2 credits&#x2F;min, Avatar Only 1 credit&#x2F;min) in separate places; combining them is our arithmetic, not an official rate. $29 ÷ 600 credits × 2 credits&#x2F;min ≈ $0.097&#x2F;min at Creator list prices — before any credit rollover or volume discounts.</li>
+<li><strong>D-ID</strong> publishes its <a target="_blank" rel="noopener" href="https://www.d-id.com/pricing/">studio&#x2F;API plan prices</a> (Lite $4.7&#x2F;mo for 10 minutes, Pro $16&#x2F;mo for 15, Advanced $108&#x2F;mo for 100) and rounds minutes <strong>up to the nearest 15-second interval</strong>, but it does not publish a per-minute rate for realtime agents on the pages we accessed — so we do not compute one. Realtime agents sit in the higher tiers.</li>
+<li><strong>JAI</strong> sells Live Avatar on <a target="_blank" rel="noopener" href="https://www.jaiportal.com/model/live-avatar">credits with no per-minute list price</a> on the accessed page; cost depends on clip count, frames per clip, and acceleration. Its “10 free credits — no credit card” trial is the practical way to measure your own per-minute cost.</li>
+<li><strong>New Port AI</strong> publishes <a target="_blank" rel="noopener" href="https://www.newportai.com/">monthly minute allowances</a> (Free 30 min&#x2F;mo, Professional $49&#x2F;mo for 300, Premium $259&#x2F;mo for 2,000); the per-minute figures are our division of published numbers.</li>
+</ul>
+<p>One guardrail before you build a budget: <strong>credits ≠ dollars ≠ minutes.</strong> Never divide by a conversion you invented. If a vendor does not publish a per-minute rate, the honest move is to run a timed trial and meter it yourself — most of them fund one (HeyGen’s free tier, D-ID’s 14-day trial, JAI’s 10 credits, New Port AI’s 30 free minutes).</p>
+<h2 id="A-working-live-avatar-integration"><a href="#A-working-live-avatar-integration" class="headerlink" title="A working live avatar integration"></a>A working live avatar integration</h2><p>The request shapes below follow each vendor’s documented contract — they are written from the docs, not executed against a live account, so treat field names as current-but-verify. All three paths are realistic integration points.</p>
+<p><strong>HeyGen — fastest path (FULL mode embed).</strong> The quickstart in HeyGen’s LiveAvatar docs is a single call: <code>POST /v2/embeddings</code> with your API key returns a short-lived embed URL and a ready-to-use script tag.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST https://api.heygen.com/v2/embeddings \</span><br><span class="line">  -H <span class="string">&quot;X-Api-Key: YOUR_HEYGEN_API_KEY&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;&quot;avatar&quot;: &#123;&quot;avatar_id&quot;: &quot;your_avatar_id&quot;&#125;&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://...short-lived-embed-url...&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;script&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&lt;script src=\&quot;https://...embed.js\&quot; ...&gt;&lt;/script&gt;&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>Drop the returned <code>script</code> value straight into your HTML — it is a ready-to-use iframe. If you need your own UI or custom conversation logic instead, HeyGen publishes a <a target="_blank" rel="noopener" href="https://github.com/heygen-com/liveavatar-web-sdk">Web SDK</a> and supports LiveKit or Agora for custom WebRTC handling.</p>
+<p><strong>D-ID — client keys or backend session token.</strong> D-ID’s realtime path lets you embed a prebuilt agent widget with client keys and no backend at all; for server-controlled sessions you create a session on your backend, obtain a token, and pass it to the client, which uses it to connect to the stream. The <a target="_blank" rel="noopener" href="https://docs.d-id.com/reference/createtalkstream">talk stream reference</a> documents the stream contract if you want to drive the WebRTC connection yourself. The <a target="_blank" rel="noopener" href="https://docs.d-id.com/docs/realtime-overview">realtime overview</a> is the map of which component (STT, LLM, TTS) is optional and which provider plugs in where.</p>
+<p><strong>LiveKit — avatar session inside an agent.</strong> With a LiveKit avatar plugin, you add an avatar to an existing voice agent in a few steps: install the plugin and API keys, create an <code>AgentSession</code>, create an <code>AvatarSession</code> configured for your provider, start the avatar session, then start the agent session with audio output disabled — the audio goes to the avatar worker, which publishes synchronized audio + video to the room. Call <code>wait_for_join()</code> before <code>session.start()</code> so the avatar video is live before the agent starts speaking; it waits up to 30 seconds by default and raises <code>asyncio.TimeoutError</code> if the avatar never joins. In the frontend, distinguish the agent from the avatar worker participant (kind <code>agent</code> with <code>publish_on_behalf</code> set) so you render the worker’s tracks, not the agent’s.</p>
+<p>Which one is “the” integration depends entirely on your stack: no backend wanted, an existing agent framework, or a full custom pipeline. The pricing section is the tiebreaker — FULL mode is the most expensive per minute precisely because it removes the most work.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Avatar &amp; Video Model API Reference</h3><p class="view-docs-tag-desc">See the REST contract for Modellix&#39;s avatar-adjacent routes — kling-avatar, single-actor-avatar and 200+ image and video models on one key.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Failure-modes-that-cost-money"><a href="#Failure-modes-that-cost-money" class="headerlink" title="Failure modes that cost money"></a>Failure modes that cost money</h2><p>Integration guides skip the failure modes because they are boring — but for live avatars, failures are metered. The expensive ones:</p>
+<ul>
+<li><strong>Credits burn during FULL mode.</strong> At 2 credits&#x2F;min in HeyGen FULL mode, an idle session that stays connected while a user thinks burns the same credits as one where they talk. If your conversation has long silences and you do not need HeyGen’s pipeline, LITE mode halves the rate — or you manage the session lifecycle yourself.</li>
+<li><strong>WebRTC join and playback latency.</strong> LiveKit’s <code>AvatarMetrics</code> reports two numbers worth alerting on: <strong>join latency</strong> (time from avatar session start until the avatar publishes video) and <strong>playback latency</strong> (delay between the agent forwarding audio and playback starting on the avatar). A high playback latency means the avatar starts moving its mouth late — which users read as broken.</li>
+<li><strong>Minutes rounding.</strong> D-ID rounds usage up to the nearest 15-second interval per its pricing FAQ. Short sessions round up, and at scale the rounding is not noise: 100 sessions averaging 8 seconds bill as 100 × 15 seconds.</li>
+<li><strong>Content-policy rejections mid-flight.</strong> Avatar providers run moderation on generated speech and rendering; a rejected turn can fail the session after you have already paid for connection time. JAI’s model page advertises an integrated safety checker; D-ID’s terms require review before production use of certain voices&#x2F;avatars.</li>
+<li><strong>Audio-video desync.</strong> This is the failure users notice first. It is usually a pipeline-latency problem (LLM slow to respond → TTS late → avatar mouth out of sync with intent), not a rendering bug. Instrument the per-stage latencies before you blame the avatar vendor.</li>
+<li><strong>Regional STT&#x2F;TTS latency.</strong> The LLM can be 50 ms away and the STT 800 ms away if they are in different regions. Co-locate the pipeline or the round-trip budget quietly doubles.</li>
+</ul>
+<p>The pattern behind all of these: <strong>measure before you meter.</strong> Every vendor charges by wall-clock time or credits, and every failure mode above inflates one of those two numbers.</p>
+<h2 id="Where-Modellix-fits-—-and-where-it-does-not"><a href="#Where-Modellix-fits-—-and-where-it-does-not" class="headerlink" title="Where Modellix fits — and where it does not"></a>Where Modellix fits — and where it does not</h2><p>Honest catalog statement first: as of August 27, 2026, <strong>Modellix does not list a real-time streaming avatar API.</strong> Site search for <code>live-avatar</code>, <code>realtime-avatar</code>, and <code>streaming-avatar</code> returns zero hits, and neither the <a href="https://www.modellix.ai/collections/ai-avatar-generator">AI avatar generator collection</a> nor the digital-human routes include a WebRTC conversational product. For a true live-streaming avatar, you cannot go through Modellix at all. That is not a claim that the aggregator route is cheaper — for this category there is no aggregator route, and we are not going to pretend otherwise.</p>
+<p>What Modellix <em>does</em> carry is the avatar-adjacent pipeline: scripted avatar generation models like <a href="https://www.modellix.ai/models/kling/kling-avatar">kling-avatar</a> (image-to-video avatar, $0.0448–$0.0896&#x2F;sec on the model page, August 28, 2026) and <a href="https://www.modellix.ai/models/skywork/single-actor-avatar">skywork single-actor-avatar</a> (audio-to-video talking head from one portrait and one audio track, $0.0480–$0.0720&#x2F;sec), video lip-sync models covered in our <a href="https://www.modellix.ai/blog/pixverse-lip-sync/">pixverse lip-sync guide</a>, and TTS models (qwen-audio and the CosyVoice family) that can generate the audio side of an avatar pipeline. Those are family 1 and family 2 products — scripted and streamable batch — not family 3.</p>
+<p>That limitation is also the workflow argument for the adjacent use case. If your product is “generate avatar videos from a portrait and a script,” you can build that pipeline entirely through one key and one submit–poll contract: <a href="https://www.modellix.ai/blog/unified-ai-api/">how the Modellix unified API works</a> explains the shared contract, and the <a href="https://www.modellix.ai/blog/ai-avatar-api/">AI avatar API overview</a> walks the catalog. If your product needs a <em>conversational</em> avatar, go direct to HeyGen, D-ID, or a LiveKit-orchestrated provider — and re-check this page when the aggregator catalog grows, because a realtime avatar route is exactly the kind of model that would land here.</p>
+<h2 id="How-to-choose-a-live-avatar-API"><a href="#How-to-choose-a-live-avatar-API" class="headerlink" title="How to choose a live avatar API"></a>How to choose a live avatar API</h2><p>The decision framework is simpler than the marketing suggests. Match your latency budget to a family, then let pricing and pipeline ownership decide the vendor.</p>
+<table>
+<thead>
+<tr>
+<th>If you need…</th>
+<th>Start with…</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Sub-second conversational latency, turn-based dialogue</td>
+<td>HeyGen LIVE &#x2F; Avatar Only, D-ID realtime agents, or LiveKit + a provider plugin</td>
+</tr>
+<tr>
+<td>Minutes-latency streamable video from a portrait + audio</td>
+<td>JAI-style streaming models (streamable batch, not conversational)</td>
+</tr>
+<tr>
+<td>Offline scripted avatar video at scale</td>
+<td>HeyGen studio, Synthesia, or Modellix’s scripted avatar routes</td>
+</tr>
+<tr>
+<td>Several avatar models behind one key and one bill</td>
+<td>Modellix’s avatar-adjacent catalog (scripted generation, lip sync, TTS)</td>
+</tr>
+</tbody></table>
+<p>The free-tier reality check: HeyGen’s Free plan includes 3 videos&#x2F;month, D-ID runs a 14-day trial with 3 minutes, JAI gives 10 free credits, and New Port AI includes 30 minutes&#x2F;month free. None of those funds a production pilot by itself — but together they let you time the same conversation script on each platform and measure real per-minute cost and real lip-sync latency, which is worth more than any vendor’s spec sheet. (For the budget-constrained path, our <a href="https://www.modellix.ai/blog/ai-talking-avatar-free/">free talking avatar options</a> roundup covers the no-cost routes in detail.)</p>
+<p>One compliance note: if your use case is customer-facing and regulated, check what each vendor publishes before you commit. D-ID documents SOC 2 and ISO 27001&#x2F;27017&#x2F;27018&#x2F;27701 certifications on its trust pages, which is more than most avatar vendors disclose; ask for the equivalent from anyone else before you send real customer audio through them.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Explore Avatar Models on Modellix</h3><p class="view-docs-tag-desc">Log in to check live pricing on kling-avatar, single-actor-avatar and 200+ image and video models behind one API key.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>What is live avatar AI?</strong></p>
+<p>Live avatar AI refers to avatars that render and speak in real time, usually as part of a conversational loop — the avatar listens, an LLM formulates a response, TTS speaks it, and the avatar’s lips and gestures are rendered in sync over WebRTC. The term is also loosely applied to streamable batch generation that animates a portrait from an audio file without a conversation loop.</p>
+<p><strong>Is HeyGen LiveAvatar an API?</strong></p>
+<p>Yes. HeyGen exposes LiveAvatar through <code>POST /v2/embeddings</code>, which returns a short-lived embed URL and a script tag, plus a Web SDK and LiveKit&#x2F;Agora options for custom WebRTC handling. FULL mode (2 credits&#x2F;min) runs the pipeline for you; Avatar Only &#x2F; LITE mode (1 credit&#x2F;min) leaves STT, LLM, and TTS to you.</p>
+<p><strong>How much does a live avatar AI cost per minute?</strong></p>
+<p>It depends on who runs your pipeline. HeyGen’s published rates work out to roughly $0.097&#x2F;min in FULL mode and about half that in Avatar Only mode at Creator list prices (our calculation, not an official rate). New Port AI’s plans divide to about $0.163&#x2F;min (Professional) and $0.13&#x2F;min (Premium). D-ID and JAI do not publish per-minute realtime rates on their accessed pages, so an honest answer for them requires a timed trial.</p>
+<p><strong>What is the difference between a live avatar and a talking avatar?</strong></p>
+<p>A talking avatar is any avatar that speaks — including scripted video rendered in minutes. A live avatar is specifically one that renders and responds in real time within a conversational loop. Every live avatar is a talking avatar; most talking avatars are not live.</p>
+<p><strong>What latency can I expect from a live avatar API?</strong></p>
+<p>Real-time conversational avatars are engineered for sub-second to ~2-second turn times (vendors quote under 500 ms lip-sync to under 2 s conversational timing), but the number you get depends on your own pipeline: STT, LLM, and TTS each add latency, and misconfigured regions can quietly double the round trip. LiveKit’s <code>AvatarMetrics</code> (join latency, playback latency) is the standard way to measure the delivery stage.</p>
+<p><strong>Is there a free live avatar AI?</strong></p>
+<p>Every major vendor has an entry tier: HeyGen’s Free plan (3 videos&#x2F;month), D-ID’s 14-day trial (3 minutes), JAI’s 10 free credits, and New Port AI’s 30 minutes&#x2F;month. These are evaluation allowances, not production free tiers — and none of them is a free realtime API with unlimited minutes.</p>
+<p><strong>Does Modellix offer a live streaming avatar API?</strong></p>
+<p>Not as of August 27, 2026. Modellix does not list a real-time streaming avatar API; its catalog covers avatar-adjacent routes — scripted avatar generation (kling-avatar, single-actor-avatar), video lip-sync, and TTS — through one key and one submit–poll contract. For a true live-streaming avatar, use HeyGen, D-ID, or a LiveKit-orchestrated provider directly.</p>
+<hr>
+<p><em>Pricing and availability sources accessed August 27–28, 2026: <a target="_blank" rel="noopener" href="https://docs.heygen.com/docs/streaming-api-integration-with-livekit-v2">HeyGen LiveAvatar docs</a> and <a target="_blank" rel="noopener" href="https://www.heygen.com/pricing">HeyGen pricing</a>, <a target="_blank" rel="noopener" href="https://docs.d-id.com/docs/realtime-overview">D-ID realtime overview</a>, <a target="_blank" rel="noopener" href="https://docs.d-id.com/reference/createtalkstream">D-ID talk stream reference</a>, <a target="_blank" rel="noopener" href="https://www.d-id.com/pricing/">D-ID pricing</a>, <a target="_blank" rel="noopener" href="https://www.d-id.com/resources/glossary/real-time-avatar/">D-ID real-time avatar glossary</a>, <a target="_blank" rel="noopener" href="https://docs.livekit.io/agents/models/avatar/">LiveKit avatar docs</a>, <a target="_blank" rel="noopener" href="https://github.com/heygen-com/liveavatar-web-sdk">HeyGen LiveAvatar Web SDK</a>, <a target="_blank" rel="noopener" href="https://www.jaiportal.com/model/live-avatar">JAI Live Avatar</a>, <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/ai-services/speech-service/text-to-speech-avatar/what-is-text-to-speech-avatar">Azure text-to-speech avatar docs</a>, and <a target="_blank" rel="noopener" href="https://www.newportai.com/">New Port AI</a>. Provider pricing and availability change frequently; validate against each live page before committing budget. Modellix is an AI model API aggregator with a commercial interest in the routes it sells, and this guide is not a claim that the aggregator route is cheaper — for a true live-streaming avatar you currently cannot go through <a href="https://www.modellix.ai/">Modellix</a> at all.</em></p>
+<p><em>Cover image is illustrative Modellix artwork, not a provider screenshot or pricing evidence.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/Integration/" class="tag-pill tag-pill--sm">Integration</a>
+            
+              <a href="/blog/tags/AI-Avatar-API/" class="tag-pill tag-pill--sm">AI Avatar API</a>
+            
+              <a href="/blog/tags/Live-Streaming/" class="tag-pill tag-pill--sm">Live Streaming</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/grok-imagine-video-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-grok-imagine-video-api.webp" alt="Grok Imagine Video API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Grok Imagine Video API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-08-28T02:00:00.000Z">August 28, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/minimax-2-5-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-minimax-2-5-api.webp" alt="MiniMax 2.5 API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">MiniMax 2.5 API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-08-28T02:00:00.000Z">August 28, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/nano-banana-api-docs/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-nano-banana-api-docs.webp" alt="Nano Banana API Docs: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Nano Banana API Docs: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-08-28T02:00:00.000Z">August 28, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/live-avatar-ai/&text=Live%20Avatar%20AI%3A%20Integration%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/live-avatar-ai/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/live-avatar-ai/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
