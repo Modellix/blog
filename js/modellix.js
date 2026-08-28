@@ -14,6 +14,42 @@ document.addEventListener('DOMContentLoaded', function () {
     }, ICON_RESET_DELAY);
   }
 
+  // Open outbound links in a new tab (keeps readers on the blog article).
+  function openExternalLinksInNewTab(root) {
+    if (!root) return;
+    root.querySelectorAll('a[href]').forEach(function (anchor) {
+      if (anchor.target === '_blank') return;
+
+      var href = anchor.getAttribute('href');
+      if (!href || href.charAt(0) === '#') return;
+      if (href.indexOf('mailto:') === 0 || href.indexOf('tel:') === 0) return;
+
+      var opensInNewTab = false;
+
+      if (/^https?:\/\//i.test(href) || href.indexOf('//') === 0) {
+        try {
+          var url = new URL(href, window.location.href);
+          var isSameBlog =
+            url.origin === window.location.origin && url.pathname.indexOf('/blog/') === 0;
+          opensInNewTab = !isSameBlog;
+        } catch (error) {
+          opensInNewTab = true;
+        }
+      } else if (href.indexOf('../') === 0) {
+        opensInNewTab = true;
+      }
+
+      if (opensInNewTab) {
+        anchor.target = '_blank';
+        anchor.rel = 'noopener noreferrer';
+      }
+    });
+  }
+
+  document.querySelectorAll('.post-content, .post-excerpt, .post-cta, .post-sidebar').forEach(function (root) {
+    openExternalLinksInNewTab(root);
+  });
+
   // Share: copy link button (uses Font Awesome)
   var copyBtn = document.querySelector('.post-copy-link');
   if (copyBtn) {
