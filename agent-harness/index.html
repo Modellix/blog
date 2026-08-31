@@ -1,0 +1,513 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Harness: What It Is, What It Does for You — Modellix Blog</title>
+  <meta name="description" content="An agent harness turns a language model into an agent: loop, tools, context, and the model source most explainers skip. Examples and what it does for you.">
+  <meta name="keywords" content="agent harness, ai agent harness, what is an agent harness, agent harness vs agent framework, coding agent harness, examples of agent harnesses, harness engineering">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/agent-harness/">
+  <meta name="description" content="An agent harness turns a language model into an agent: loop, tools, context, and the model source most explainers skip. Examples and what it does for you.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Agent Harness: What It Is, What It Does for You — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/agent-harness/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="An agent harness turns a language model into an agent: loop, tools, context, and the model source most explainers skip. Examples and what it does for you.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-agent-harness.webp">
+<meta property="article:published_time" content="2026-08-29T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-29T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Agents">
+<meta property="article:tag" content="Agent Harness">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-agent-harness.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Agent Harness: What It Is, What It Does for You","description":"An agent harness turns a language model into an agent: loop, tools, context, and the model source most explainers skip. Examples and what it does for you.","datePublished":"2026-08-29T16:00:00.000Z","dateModified":"2026-08-29T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/agent-harness/","image":"https://img.modellix.ai/en/article/cover-agent-harness.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Agent Harness: What It Is, What It Does for You</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/LLM-API/" class="category-tag category-tag--sm">LLM API</a>
+          
+        
+      </div>
+      <h1 class="post-title">Agent Harness: What It Is, What It Does for You</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-29T16:00:00.000Z">August 30, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/Agent-Harness/" class="tag-pill tag-pill--sm">Agent Harness</a>
+            
+              <a href="/blog/tags/AI-Agents/" class="tag-pill tag-pill--sm">AI Agents</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>An agent harness is the software layer that wraps a language model and turns it into an agent: it runs the loop that decides, acts, and observes; it gives the model tools, memory, and context; and it holds the guardrails that keep the work .</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-agent-harness.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-agent-harness.png" alt="Agent harness cover: dark amber technical illustration of an LLM core wrapped by loop, tools, context, and model source, with the MODELLIX wordmark and a two-line title" />
+</picture>
+
+<p><strong>An agent harness is the software layer that wraps a language model and turns it into an agent: it runs the loop that decides, acts, and observes; it gives the model tools, memory, and context; and it holds the guardrails that keep the work safe. The model provides the intelligence; the harness makes it useful.</strong></p>
+<p>That sentence is the answer to “what is an agent harness,” and it has become one of the most asked questions in AI development this year. The word used to belong to test runners and CI pipelines; in 2026 it names a product category. Microsoft ships a documented <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/agent-framework/concepts/harness">Agent Framework Harness</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Agent_harness">Wikipedia’s entry on agent harnesses</a> was created this year, and DeepSeek’s open-source DeepSeek Harness measured 202,091 stars when we checked on August 29, 2026. If you are trying to understand what all of that has in common — and whether you need one — this article is for you.</p>
+<h2 id="What-is-an-agent-harness"><a href="#What-is-an-agent-harness" class="headerlink" title="What is an agent harness?"></a>What is an agent harness?</h2><p>An agent harness is the execution layer of an agent stack. The stack has three parts: the model, which reasons; the harness, which acts; and the agent, which is the combination of both. <a target="_blank" rel="noopener" href="https://www.langchain.com/blog/the-anatomy-of-an-agent-harness">LangChain’s “The Anatomy of an Agent Harness”</a> popularized the shorthand <em>Agent &#x3D; Model + Harness</em>, and the Wikipedia entry defines the harness as the infrastructure that lets a stateless LLM take actions over multiple steps, use external tools, and sustain long-running work.</p>
+<p>Concretely, the harness owns everything the model cannot do on its own: deciding what to do next in a loop, calling tools, remembering what happened, keeping the conversation inside the context window, and flagging or blocking unsafe actions.</p>
+<p>A useful analogy: the model is a worker; the harness is the toolbox, the workbench, the logbook, and the safety officer. Without the harness the worker can only talk. With it, the worker gets things done — and you can see what it did.</p>
+<p>A harness is <strong>not</strong> the model, and it is not the chat interface or the application you build around it. Those are separate layers. The harness sits between them as the machinery that makes model calls, tool calls, and state work together.</p>
+<h2 id="What-an-agent-harness-does-for-you"><a href="#What-an-agent-harness-does-for-you" class="headerlink" title="What an agent harness does for you"></a>What an agent harness does for you</h2><p>The core of every harness is a loop, usually the <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2210.03629">ReAct loop</a> from the 2022 paper of that name: the model reasons about the task, picks an action, the harness executes it, the result returns as new context, and the loop repeats until the task is done.</p>
+<p>Around that loop the harness does five jobs that matter to anyone running agents for real work:</p>
+<ul>
+<li><strong>Execute</strong> — runs the tools, code, and API calls the model can only describe.</li>
+<li><strong>Remember</strong> — persists state and history across steps and sessions.</li>
+<li><strong>Protect</strong> — enforces permissions and approval gates before irreversible actions.</li>
+<li><strong>Observe</strong> — logs every call and result so you can debug what happened.</li>
+<li><strong>Correct</strong> — feeds test failures and errors back so the agent can try again.</li>
+</ul>
+<p>A coding agent is the clearest example: the model writes a code change, the harness runs the tests in a sandbox, the results come back, and if they fail the model tries again. Without the harness, you have a model that can suggest a fix but never verify it.</p>
+<h2 id="The-four-parts-of-an-agent-harness"><a href="#The-four-parts-of-an-agent-harness" class="headerlink" title="The four parts of an agent harness"></a>The four parts of an agent harness</h2><p>Every harness, whatever its name, is built from the same four parts. Naming them makes the category concrete and makes it easy to compare one harness with another.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/harness-four-components.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/harness-four-components.png" alt="Diagram of the four parts of an agent harness: agent loop, tools, context management, and model source arranged around an LLM core" loading="lazy" />
+</picture>
+
+<p><em>The four parts of an agent harness: loop, tools, context, and model source.</em></p>
+<h3 id="The-loop"><a href="#The-loop" class="headerlink" title="The loop"></a>The loop</h3><p>The loop is the while loop that drives the agent: reason, act, observe, repeat. It decides when the task is done, when to ask a human, and when to stop. Most failures in agent behavior — stopping too early, looping forever, declaring success on incomplete work — are loop problems.</p>
+<h3 id="Tools"><a href="#Tools" class="headerlink" title="Tools"></a>Tools</h3><p>Tools are the functions the model can call: shell and code execution, file operations, web search, database queries, and any API you register. The harness runs the tool and returns the result. Connections to external tools are increasingly standardized on the Model Context Protocol (MCP), which lets one tool server work across many harnesses.</p>
+<h3 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h3><p>The context part manages what the model sees: the system prompt, conversation history, memory files injected at start, and strategies for when the window fills up — summarizing old turns (often called compaction) and offloading large tool outputs. Without it, long tasks degrade as the conversation grows, an effect known as context rot.</p>
+<h3 id="Model-source"><a href="#Model-source" class="headerlink" title="Model source"></a>Model source</h3><p>The model source is where model calls actually go: an endpoint, a credential, and a list of model IDs. It is the part that almost every explainer skips — and the part you will touch first when you set up a harness, because no harness ships with a model.</p>
+<h2 id="The-model-source-the-part-everyone-skips"><a href="#The-model-source-the-part-everyone-skips" class="headerlink" title="The model source: the part everyone skips"></a>The model source: the part everyone skips</h2><p>Search results for “How do I build an AI agent harness?” mostly describe designing a harness from scratch. The realistic version of that question — for almost everyone asking it in 2026 — is different: <strong>you don’t build a harness, you take an existing one and give it a model source.</strong></p>
+<p>A harness expects its model source to speak a protocol it understands. The common denominator across harnesses today is the OpenAI-compatible Chat Completions interface: a base URL, an API key, and model IDs. Point a harness’s model configuration at any endpoint that speaks that protocol, and the harness can use the models behind it. That is the same idea as a <a href="https://www.modellix.ai/blog/unified-ai-api/">unified AI API</a> applied to the agent layer, and it is why our <a href="https://www.modellix.ai/blog/tags/openai-compatible/">OpenAI-compatible endpoint explainer</a> exists as a topic.</p>
+<p>One instance of such an endpoint: the Modellix LLM gateway at <code>https://llm.modellix.ai/v1</code>, which exposes 28 language models from 9 providers behind the OpenAI Chat Completions and Responses protocols, plus an Anthropic-compatible Messages endpoint (<a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/overview">gateway overview</a>). Full disclosure: the company behind this blog operates that endpoint and has a commercial interest in it. The mechanism it illustrates is generic — the same configuration works with any OpenAI-compatible gateway, including self-hosted ones.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/harness-model-source-gateway.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/harness-model-source-gateway.png" alt="Technical schematic of an agent harness connecting to an OpenAI-compatible model source endpoint with an API key and model chips" loading="lazy" />
+</picture>
+
+<p><em>An agent harness connects to a model source through an OpenAI-compatible endpoint: a base URL, an API key, and model IDs.</em></p>
+<p>Skipping this part is the most common first-run failure of a new harness: not a broken loop or a missing tool, but a model source that was never connected, a key in the wrong place, or a model ID the endpoint does not recognize. The model source is also where cost, latency, and model choice actually live. A harness that is excellent at running tools still produces whatever its model source gives it.</p>
+<h2 id="Agent-harness-vs-agent-framework-what’s-the-difference"><a href="#Agent-harness-vs-agent-framework-what’s-the-difference" class="headerlink" title="Agent harness vs agent framework: what’s the difference?"></a>Agent harness vs agent framework: what’s the difference?</h2><p>An <strong>agent framework</strong> is a library you build an agent with — you write the loop, wire the tools, and ship your own application (LangChain and CrewAI are frameworks). An <strong>agent harness</strong> is a complete, runnable agent shell — you configure it, connect a model source, and operate it (Claude Code and DeepSeek Harness are harnesses).</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Agent framework</th>
+<th>Agent harness</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>What you get</td>
+<td>Building blocks</td>
+<td>A working agent</td>
+</tr>
+<tr>
+<td>What you do</td>
+<td>Write code</td>
+<td>Configure and run</td>
+</tr>
+<tr>
+<td>Who owns the loop</td>
+<td>You</td>
+<td>The harness</td>
+</tr>
+</tbody></table>
+<p>The boundary is blurry — frameworks ship harnesses and harnesses are built on frameworks — but one question separates them: <em>who owns the loop?</em> If your code drives the agent, you are using a framework. If the harness drives the agent and you supply configuration and a model source, you are using a harness.</p>
+<p>Two related terms are worth keeping apart: a <em>test harness</em> or <em>evaluation harness</em> is software that runs an agent against tests, and an <em>agent SDK</em> is usually the inner harness a vendor ships with its model, while the outer harness is what you add on top.</p>
+<h2 id="Examples-of-agent-harnesses"><a href="#Examples-of-agent-harnesses" class="headerlink" title="Examples of agent harnesses"></a>Examples of agent harnesses</h2><p>If you are looking for examples of agent harnesses, the highest-traffic ones in 2026 are coding agents and open-source harness projects:</p>
+<ul>
+<li><strong>DeepSeek Harness</strong> — the open-source harness that made the category mainstream. Built on an everything-is-a-plugin architecture, it runs as a local web UI and accepts any OpenAI-compatible model source. We measured <strong>202,091 stars and 23,242 forks on August 29, 2026</strong> via the GitHub API (<a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness">repository</a>). It is in developer preview, and its own README warns that compatibility-breaking changes are coming. We also have a <a href="https://www.modellix.ai/blog/modellix-deepseek-harness-plugin/">plugin guide for DeepSeek Harness</a> if you want to see what a plugin adds on top.</li>
+</ul>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/deepseek-harness-repo-stars.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/deepseek-harness-repo-stars.png" alt="Live view of the deepseek-ai/deepseek-harness GitHub repository showing stars, forks, and the DeepSeek Harness tagline" loading="lazy" />
+</picture>
+
+<p><em>Live view of the DeepSeek Harness repository, captured August 30, 2026. The figures quoted in the text were measured via the GitHub API on August 29, 2026; the badge counts shown here are the live values from the capture date.</em></p>
+<ul>
+<li><strong>Claude Code</strong> — Anthropic’s coding agent. <a target="_blank" rel="noopener" href="https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents">Anthropic’s engineering write-up on effective harnesses for long-running agents</a> shows the harness thinking behind it: an initializer agent prepares the environment, a coding agent works through tasks, and progress records keep the loop honest.</li>
+<li><strong>OpenAI Codex</strong> — a coding agent harness in the same family as Claude Code: a model post-trained together with its harness, configurable through an outer harness.</li>
+<li><strong>Microsoft’s Agent Framework Harness</strong> — a batteries-included harness you compose from chat clients, pipelines, and context providers. Useful if you prefer framework-style composition with harness defaults (documentation is linked in the introduction).</li>
+<li><strong>OpenHarness</strong> — an open-source Python harness (HKUDS) with tools, skills, memory, and multi-agent coordination. A good place to read a harness’s source rather than just run one.</li>
+</ul>
+<p>That list raises the question people actually search for — <em>which agent harness is best?</em> — and the honest answer is a set of dimensions, not a winner:</p>
+<ul>
+<li><strong>Model source flexibility</strong> — can it point at any OpenAI-compatible endpoint, or is it tied to one vendor?</li>
+<li><strong>Interface</strong> — terminal, web UI, or SDK? DeepSeek Harness defaults to a local web UI; Claude Code and Codex are terminals.</li>
+<li><strong>Tool ecosystem</strong> — built-in tools, plugin system, MCP support.</li>
+<li><strong>Maturity</strong> — production-grade vs. developer preview. DeepSeek Harness itself tells you to expect breaking changes.</li>
+<li><strong>Cost structure</strong> — open source, subscription, or pay-as-you-go model calls.</li>
+</ul>
+<p>Which dimension matters most depends on your setup. Because harnesses standardize on OpenAI-compatible model sources, you can test several of them against the same endpoint before committing.</p>
+<h2 id="Harness-engineering-what-it-means-in-practice"><a href="#Harness-engineering-what-it-means-in-practice" class="headerlink" title="Harness engineering: what it means in practice"></a>Harness engineering: what it means in practice</h2><p>“Harness engineering” is the discipline of designing that machinery deliberately. It sits one level above prompt engineering (writing better inputs) and context engineering (controlling what the model sees). <a target="_blank" rel="noopener" href="https://martinfowler.com/articles/harness-engineering.html">Birgitta Böckeler’s “Harness engineering for coding agent users”</a> frames it as building the whole system around the model: guides that steer the agent before it acts, and sensors that observe results so it can correct itself.</p>
+<p>It matters because the model is increasingly the easy part. As models converge in capability, the harness decides how much of that capability becomes reliable work — the same model scores very differently depending on the environment, tools, and feedback loops around it. For teams, the highest-leverage work is often harness work: configuring, observing, and tightening the loop rather than swapping models.</p>
+<h2 id="Where-to-go-next"><a href="#Where-to-go-next" class="headerlink" title="Where to go next"></a>Where to go next</h2><p>If this article was your introduction to agent harnesses, the natural next step is to look at one specific harness in depth. The rest of this series covers DeepSeek Harness — what it is, how to run it, and where its models come from — and the <a href="https://www.modellix.ai/blog/tags/llm-gateway/">LLM gateway tag</a> collects our writing on the model-source side of the stack.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Point a Harness at a Model Source</h3><p class="view-docs-tag-desc">Log in to the Modellix console to create an API key and point any OpenAI-compatible harness at 28 language models through one gateway.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<hr>
+<p><em>An agent harness is a category, not a product. This article defines the category and names examples without ranking them. Modellix is an AI model API aggregator and has a commercial interest in the LLM gateway mentioned above; we disclose that whenever we name our own service. Access 210+ image, video, and text models through one API key at <a href="https://www.modellix.ai/">modellix.ai</a>.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/Agent-Harness/" class="tag-pill tag-pill--sm">Agent Harness</a>
+            
+              <a href="/blog/tags/AI-Agents/" class="tag-pill tag-pill--sm">AI Agents</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/deepseek-harness-custom-model/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-deepseek-harness-custom-model.webp" alt="DeepSeek Harness Custom Model: Form + settings.yaml" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">DeepSeek Harness Custom Model: Form + settings.yaml</h3>
+          <time class="related-article-date" datetime="2026-08-29T16:00:00.000Z">August 30, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/deepseek-harness/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-deepseek-harness.webp" alt="DeepSeek Harness: What It Is, How to Run It" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">DeepSeek Harness: What It Is, How to Run It</h3>
+          <time class="related-article-date" datetime="2026-08-29T16:00:00.000Z">August 30, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/modellix-deepseek-harness-plugin/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/20217b0e-7f0d-4b50-938e-3fa9edc5cc60.webp" alt="DeepSeek Harness Plugin: Modellix LLM Gateway with $0 Models" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">DeepSeek Harness Plugin: Modellix LLM Gateway with $0 Models</h3>
+          <time class="related-article-date" datetime="2026-08-27T16:00:00.000Z">August 28, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/agent-harness/&text=Agent%20Harness%3A%20What%20It%20Is%2C%20What%20It%20Does%20for%20You" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/agent-harness/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/agent-harness/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

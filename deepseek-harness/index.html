@@ -1,0 +1,558 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeepSeek Harness: What It Is, How to Run It — Modellix Blog</title>
+  <meta name="description" content="DeepSeek Harness (dsh) is DeepSeek&#39;s open-source agent harness where everything is a plugin. Here&#39;s what it is, how to run it, and where its models come from.">
+  <meta name="keywords" content="deepseek harness, what is deepseek harness, deepseek harness web ui, deepseek harness github, deepseek harness docker, dsh cli, deepseek harness review">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/deepseek-harness/">
+  <meta name="description" content="DeepSeek Harness (dsh) is DeepSeek&#39;s open-source agent harness where everything is a plugin. Here&#39;s what it is, how to run it, and where its models come from.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DeepSeek Harness: What It Is, How to Run It — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/deepseek-harness/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="DeepSeek Harness (dsh) is DeepSeek&#39;s open-source agent harness where everything is a plugin. Here&#39;s what it is, how to run it, and where its models come from.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-deepseek-harness.webp">
+<meta property="article:published_time" content="2026-08-29T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-29T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="Agent Harness">
+<meta property="article:tag" content="DeepSeek Harness">
+<meta property="article:tag" content="Tutorial">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-deepseek-harness.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"DeepSeek Harness: What It Is, How to Run It","description":"DeepSeek Harness (dsh) is DeepSeek's open-source agent harness where everything is a plugin. Here's what it is, how to run it, and where its models come from.","datePublished":"2026-08-29T16:00:00.000Z","dateModified":"2026-08-29T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/deepseek-harness/","image":"https://img.modellix.ai/en/article/cover-deepseek-harness.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">DeepSeek Harness: What It Is, How to Run It</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/LLM-API/" class="category-tag category-tag--sm">LLM API</a>
+          
+        
+      </div>
+      <h1 class="post-title">DeepSeek Harness: What It Is, How to Run It</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-29T16:00:00.000Z">August 30, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/Agent-Harness/" class="tag-pill tag-pill--sm">Agent Harness</a>
+            
+              <a href="/blog/tags/DeepSeek-Harness/" class="tag-pill tag-pill--sm">DeepSeek Harness</a>
+            
+              <a href="/blog/tags/Tutorial/" class="tag-pill tag-pill--sm">Tutorial</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>DeepSeek Harness dsh is an open-source agent harness from DeepSeek AI in which models, tools, sessions, and even the UI are plugins.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-deepseek-harness.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-deepseek-harness.png" alt="DeepSeek Harness editorial cover: plugin-based agent harness with a local web UI, dark amber and copper technical scene" />
+</picture>
+
+<p><strong>DeepSeek Harness (dsh) is an open-source agent harness from DeepSeek AI in which models, tools, sessions, and even the UI are plugins.</strong> It is MIT-licensed, built on the Cordis plugin kernel, and ships as a developer preview: the official README warns, in all caps, “THERE WILL BE COMPATIBILITY-BREAKING CHANGES.” This guide covers what dsh is, how to run it, and the question almost every tutorial skips — where its models come from.</p>
+<p>If you have used Claude Code or Codex, the first five minutes with DeepSeek Harness will feel wrong, and that feeling is the point. The command you run, <code>npx @deepseek-ai/dsh web</code>, does not drop you into a terminal TUI. It opens a browser at <code>http://127.0.0.1:3080</code> and serves a local web application. That single fact explains most of the project’s early community confusion, and it shapes everything else in this article.</p>
+<h2 id="DeepSeek-Harness-is-an-open-source-agent-harness-where-everything-is-a-plugin"><a href="#DeepSeek-Harness-is-an-open-source-agent-harness-where-everything-is-a-plugin" class="headerlink" title="DeepSeek Harness is an open-source agent harness where everything is a plugin"></a>DeepSeek Harness is an open-source agent harness where everything is a plugin</h2><p>The official definition is short: DeepSeek Harness (<code>dsh</code>) is “an open-source agent harness developed by DeepSeek AI.” The repository lives at <a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness">deepseek-ai&#x2F;deepseek-harness on GitHub</a>, was created on 2026-08-13, and is MIT-licensed. As of 2026-08-30, the repository shows <strong>204,568 stars and 23,671 forks</strong> (measured via the GitHub API on that date) — an extraordinary reception for a project that is two and a half weeks old and explicitly not finished.</p>
+<p>The project’s tagline is “Everything is a Plugin.” The README makes the claim precise: models, tools, skills, sessions, sandboxes, filesystems, loops, orchestration, and the UI are all implemented as plugins that can be mixed, matched, replaced, and extended. Underneath sits <a target="_blank" rel="noopener" href="https://github.com/cordiverse/cordis">Cordis</a>, a plugin kernel whose design is described in a <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.25512">DeepSeek research paper</a> on what the team calls spatiotemporal composability. In practical terms, Cordis manages plugin mounting, unmounting, and dependency ordering, and every agent capability lives in a plugin rather than in the harness core.</p>
+<p>That architecture has one immediate consequence: <strong>there is no single “DeepSeek Harness experience.”</strong> Your configuration decides which model adapter, which tools, which sandbox policy, and which interface you get. A colleague running the same version can be using a completely different agent. That is the feature, and also the reason the project needs a careful version story (more on that below).</p>
+<p>For the category question first — what an agent harness actually is, how it differs from an agent framework, and where it sits in the agent stack — <a href="https://www.modellix.ai/blog/agent-harness/">the agent harness guide</a> is the better starting point if you want the full context before diving into this specific product.</p>
+<h2 id="The-first-thing-to-unlearn-dsh’s-default-form-is-a-web-UI-not-a-terminal-TUI"><a href="#The-first-thing-to-unlearn-dsh’s-default-form-is-a-web-UI-not-a-terminal-TUI" class="headerlink" title="The first thing to unlearn: dsh’s default form is a web UI, not a terminal TUI"></a>The first thing to unlearn: dsh’s default form is a web UI, not a terminal TUI</h2><p>The most discussed topic in the project’s GitHub Discussions is the interface. A scan of 1,400 discussion titles shows <strong>46 hits for <code>cli|CLI|TUI|tui</code></strong>, and the largest thread class is variants of “there is no CLI&#x2F;TUI — it’s a web app.” One Q&amp;A thread about the missing terminal client and a top General thread asking for a standalone client and CLI have each accumulated dozens of comments.</p>
+<p>The reason is straightforward: most coding agents you have used are terminal-native. Claude Code is a TUI. Codex runs in your shell. When DeepSeek Harness launches with <code>npx @deepseek-ai/dsh web</code>, it starts a local server and opens <code>http://127.0.0.1:3080</code> in your browser by default. That is the primary, supported, default way to interact with it.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/dsh-web-ui-browser.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/dsh-web-ui-browser.png" alt="Browser window showing a DeepSeek Harness local web UI served from 127.0.0.1:3080" loading="lazy" />
+</picture>
+
+<p><em>A concept render of dsh’s default interface: a local web application in the browser rather than a terminal TUI.</em></p>
+<p>The <code>dsh</code> command is still there — the npm package <code>@deepseek-ai/dsh</code> describes itself as the “dsh CLI: profile boot, plugin management, and the browser UI alias.” But the CLI is a launcher, not a chat interface. <code>dsh web</code> is an alias for <code>dsh --profile web</code>; <code>dsh --profile headless &quot;job&quot;</code> runs one session and prints the answer; <code>dsh --profile acp</code> and <code>dsh --profile sdk</code> serve automation clients over ACP and JSON-RPC. The team’s own docs recently made “Web UI” the primary onboarding path. If you came from a terminal workflow, budget a few minutes for the browser-based model picker and workspace selector — and note that <code>--no-open</code> starts the server without launching a browser, which is useful on remote machines.</p>
+<p>This is not a judgment about which interface is better. It is a structural difference worth knowing before you start, because it changes how you will configure, watch, and automate the agent. The comparison question — whether dsh or another coding agent fits your workflow — is a separate decision we keep out of this overview.</p>
+<h2 id="How-the-plugin-system-actually-works"><a href="#How-the-plugin-system-actually-works" class="headerlink" title="How the plugin system actually works"></a>How the plugin system actually works</h2><p>If the web UI is the first thing to unlearn, the second is how the project is organized. DeepSeek Harness is not one program with optional add-ons. It is a plugin composition system with a launcher.</p>
+<ul>
+<li><strong>Profiles</strong> are the unit of composition. A profile directory contains a manifest (<code>dsh.profile</code>) with an ordered list of plugin bundles, plus your own patch layer (<code>cordis.patch.yml</code>). The built-in profiles are <code>web</code>, <code>headless</code>, <code>sdk</code>, <code>sdk-minimal</code>, and <code>acp</code> — all of which are profiles, not separate binaries.</li>
+<li><strong>Bundles</strong> are installable plugin packages. The framework ships six, all under the <code>@deepseek-ai</code> scope: <code>@deepseek-ai/dsh-base</code>, <code>dsh-web-app</code>, <code>dsh-headless</code>, <code>dsh-sdk-app</code>, <code>dsh-sdk-minimal</code>, and <code>dsh-acp-app</code>. Your profile’s <code>package.json</code> maintains the bundle list in install order, starting with <code>dsh-base</code>.</li>
+<li><strong>A plugin is a TypeScript module</strong> that exports an <code>apply(ctx)</code> function and registers capabilities on the shared context. The official tutorial says “That is the complete configuration.” Event listeners, tools, and timers registered through the context are cleaned up automatically when the plugin unloads.</li>
+</ul>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/dsh-plugin-stack.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/dsh-plugin-stack.png" alt="Layered diagram of a DeepSeek Harness profile: ordered plugin bundles and a user patch layer composing on top of the base" loading="lazy" />
+</picture>
+
+<p><em>How a dsh profile composes: ordered plugin-bundle patch layers with the user’s own overrides on top.</em></p>
+<p>This design is why the “which plugins should I install” question has no universal answer. The plugin system replaces the model adapter, the tool registry, the session store, the sandbox, and even the UI. The practical consequence: when you want a capability the base setup lacks — media generation, a different search provider, a different model catalog — you can either add a plugin or, in many cases, simply configure the existing adapter. The boundary between “needs a plugin” and “only needs configuration” is the most useful mental model for this project, and <a href="https://www.modellix.ai/blog/deepseek-harness-plugin/">the plugin guide</a> walks through the mechanism in detail.</p>
+<h2 id="How-to-run-DeepSeek-Harness"><a href="#How-to-run-DeepSeek-Harness" class="headerlink" title="How to run DeepSeek Harness"></a>How to run DeepSeek Harness</h2><p>There are two officially documented ways to run dsh.</p>
+<p><strong>The npm path (fastest):</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx @deepseek-ai/dsh web</span><br></pre></td></tr></table></figure>
+
+<p>This starts the web UI at <code>http://127.0.0.1:3080</code> and opens your browser. On an SSH connection it prints the host URL instead, since the client holds the local forwarding address. Add <code>--no-open</code> to skip launching a browser.</p>
+<p><strong>The source path (for development or auditing):</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/deepseek-ai/deepseek-harness.git</span><br><span class="line"><span class="built_in">cd</span> deepseek-harness</span><br><span class="line">pnpm install</span><br><span class="line">pnpm run build</span><br><span class="line">pnpm dsh web</span><br></pre></td></tr></table></figure>
+
+<p>The build step is not optional — <code>pnpm run build</code> prepares the repository artifacts, and the README explicitly says the built artifacts are what <code>pnpm dsh web</code> uses. Skipping the build is the single most common community setup mistake.</p>
+<p>On first launch, a fresh web UI has no selected workspace until you add one, and the session composer stays disabled until a workspace is selected. You will also need a model source — which is the third question of this article, and the one most write-ups skip. For key handling and storage locations — including the difference between a DeepSeek key and other provider keys, and where <code>$DSH_HOME</code> keeps credentials — <a href="https://www.modellix.ai/blog/deepseek-harness-api-key/">the API key guide</a> is the right follow-up. And once you start adding plugins, <a href="https://www.modellix.ai/blog/dsh-plugin-add/">the install-verify-remove command flow</a> is covered separately.</p>
+<h2 id="Where-DeepSeek-Harness-models-come-from"><a href="#Where-DeepSeek-Harness-models-come-from" class="headerlink" title="Where DeepSeek Harness models come from"></a>Where DeepSeek Harness models come from</h2><p>Here is the part that the “what is DeepSeek Harness” posts leave out: <strong>dsh has no mandatory model provider.</strong> The <code>llm-pi-ai</code> adapter accepts any OpenAI-compatible endpoint as a <em>custom provider</em>, which means the answer to “where do the models come from” is “wherever you point the adapter — or wherever a plugin points it for you.”</p>
+<h3 id="Path-one-pure-configuration-with-a-custom-provider"><a href="#Path-one-pure-configuration-with-a-custom-provider" class="headerlink" title="Path one: pure configuration with a custom provider"></a>Path one: pure configuration with a custom provider</h3><p>Because the <code>llm-pi-ai</code> adapter speaks the OpenAI Chat Completions wire protocol, any service that exposes an OpenAI-compatible endpoint can be added without writing a plugin. Modellix’s own integration documentation makes the point explicitly: “Modellix needs no plugin—only configuration.”</p>
+<p>Concretely, you add a custom provider in the web UI (Settings → Models → Add a custom provider) or directly in <code>$DSH_HOME/settings.yaml</code>:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">llm-pi-ai:</span></span><br><span class="line">  <span class="attr">providers:</span></span><br><span class="line">    <span class="attr">modellix:</span></span><br><span class="line">      <span class="attr">apiKeyEnv:</span> <span class="string">MODELLIX_API_KEY</span></span><br><span class="line">      <span class="attr">api:</span> <span class="string">openai-completions</span></span><br><span class="line">      <span class="attr">baseURL:</span> <span class="string">https://llm.modellix.ai/v1</span></span><br><span class="line">      <span class="attr">models:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">openai/gpt-5.5</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">openai/gpt-5.6-sol</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">anthropic/claude-sonnet-5</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">google/gemini-3.6-flash</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">deepseek/deepseek-v4-flash</span></span><br></pre></td></tr></table></figure>
+
+<p>That example is taken from the official <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/agent/deepseek-harness">Use Modellix LLM with DeepSeek Harness</a> documentation. Model IDs follow a <code>provider/name</code> form, and the full string must be used as each model’s <code>id</code> so the harness sends it unchanged in the request body. The <a href="https://www.modellix.ai/llm">Modellix LLM gateway</a> serves 28 text models behind that base URL — OpenAI, Anthropic, Google, DeepSeek, Qwen, Moonshot, xAI, ZAI, and Modellix’s own label — all reachable with one Modellix API key. Model changes take effect on the next request; you do not need to restart the server. The complete walkthrough of both the form and the YAML path, including the <code>UNKNOWN_MODEL</code> trap when a model is missing from the list, lives in <a href="https://www.modellix.ai/blog/deepseek-harness-custom-model/">the custom model guide</a>.</p>
+<p>One boundary is worth stating plainly: the gateway is a text gateway. The official troubleshooting table says, verbatim, “Modellix LLM is a text gateway—use text-only prompts; do not attach images.” Some models in the price table advertise image input, but in the harness context the documented behavior is text-only prompts.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/dsh-model-source-gateway.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/dsh-model-source-gateway.png" alt="Diagram of the model source path: DeepSeek Harness llm-pi-ai adapter calling an OpenAI-compatible gateway that fans out to multiple model providers" loading="lazy" />
+</picture>
+
+<p><em>The model source path: dsh’s llm-pi-ai adapter calls an OpenAI-compatible endpoint, and the gateway handles the providers.</em></p>
+<h3 id="Path-two-a-plugin-that-adds-more-than-models"><a href="#Path-two-a-plugin-that-adds-more-than-models" class="headerlink" title="Path two: a plugin that adds more than models"></a>Path two: a plugin that adds more than models</h3><p>Configuration swaps the model source. A plugin can add whole capabilities. The table below is the short version of the trade-off; the rest of this section and the series links after it are the long version.</p>
+<table>
+<thead>
+<tr>
+<th>What you want</th>
+<th>Pure configuration (custom provider)</th>
+<th>Plugin (e.g. dsh-modellix)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Switch which text models the harness calls</td>
+<td>Yes — add any OpenAI-compatible endpoint</td>
+<td>Yes — merges a live catalog into the model selector</td>
+</tr>
+<tr>
+<td>Image, video, or audio generation</td>
+<td>No — the LLM gateway is text-only</td>
+<td>Yes — Design module routes to the media API</td>
+</tr>
+<tr>
+<td>Web search and fetch through the harness</td>
+<td>No built-in custom search provider seam</td>
+<td>Yes — Web module routes native <code>web_search</code>&#x2F;<code>web_fetch</code></td>
+</tr>
+<tr>
+<td>Setup effort</td>
+<td>A form or a few YAML lines, no plugin</td>
+<td>One <code>dsh plugin --profile web add</code> command</td>
+</tr>
+</tbody></table>
+<p><a target="_blank" rel="noopener" href="https://github.com/Modellix/dsh-modellix">dsh-modellix</a>, Modellix’s plugin for DeepSeek Harness, is a worked example of what a plugin looks like — it is Apache-2.0, installs with <code>dsh plugin --profile web add dsh-modellix</code>, and brings three independently toggleable modules on one Modellix API key:</p>
+<ul>
+<li><strong>Design</strong> reads Modellix’s live image, video, and audio catalog plus each model’s schema, and provides a left-panel&#x2F;right-results workspace for media generation inside the harness. Billed generation is submitted exactly once, never auto-retried.</li>
+<li><strong>LLM</strong> merges the live Modellix model catalog into the harness’s <code>llm-pi-ai</code> provider, so the model selector always reflects what the gateway currently serves rather than a hand-maintained list. It never fabricates a fallback catalog when the live catalog is unavailable.</li>
+<li><strong>Web</strong> routes the harness’s native <code>web_search</code> and <code>web_fetch</code> tools through Modellix’s Web Search and Fetch API, without creating duplicate custom tools.</li>
+</ul>
+<p>The plugin exists because the harness is a plugin system; nothing about these modules is hardwired. If media generation from an agent is what you want, <a href="https://www.modellix.ai/blog/deepseek-harness-image-generation/">the image generation guide</a> walks through the Design module and its billing boundaries. If search and fetch are the goal, <a href="https://www.modellix.ai/blog/deepseek-harness-web-search/">the web search guide</a> covers the provider seam.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Run 28 Models from DeepSeek Harness</h3><p class="view-docs-tag-desc">Log in to Modellix, add one custom provider, and point dsh at 28 text models with a single key.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="A-fast-moving-project-what-the-version-numbers-actually-mean"><a href="#A-fast-moving-project-what-the-version-numbers-actually-mean" class="headerlink" title="A fast-moving project: what the version numbers actually mean"></a>A fast-moving project: what the version numbers actually mean</h2><p>DeepSeek Harness is in developer preview and iterating fast — the kind of project where “current version” depends on which registry you ask. As of 2026-08-30, checked live on both registries:</p>
+<table>
+<thead>
+<tr>
+<th>What you ask</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>npm install</code> &#x2F; <code>npx @deepseek-ai/dsh</code> gets you</td>
+<td><code>0.1.1-rc.2</code> (release candidate, published 2026-08-21)</td>
+</tr>
+<tr>
+<td>The newest GitHub release tag</td>
+<td><code>dsh-v0.1.2-alpha.2</code> (2026-08-30)</td>
+</tr>
+<tr>
+<td>npm’s <code>alpha</code> dist-tag</td>
+<td><code>0.1.2-alpha.2</code></td>
+</tr>
+</tbody></table>
+<p>The official README states the project’s status without hedging: DeepSeek Harness is “in developer preview and iterating rapidly. <strong>THERE WILL BE COMPATIBILITY-BREAKING CHANGES.</strong>“ Treat the alpha as an alpha: fine for a contained experiment, not something to pin a production workflow to without a plan for breakage. Community feedback flows through GitHub Discussions (issues are closed), with an official Discord server alongside. The ecosystem has already produced community plugin directories and desktop wrappers — useful, but third-party, and none of them is an official plugin marketplace, which does not exist yet.</p>
+<p>Independent reviewers reach the same conclusion. Wavect’s <a target="_blank" rel="noopener" href="https://wavect.io/blog/deepseek-harness-enterprise-review/">production-readiness review</a> calls dsh “a compelling foundation for a contained engineering pilot” but “not yet a production control plane” — worth reading before you commit anything important to it. When a provider configuration goes wrong, the error names to know are <code>UNKNOWN_MODEL</code>, <code>MISSING_CREDENTIAL</code>, and the 401 class; <a href="https://www.modellix.ai/blog/deepseek-harness-error/">the provider errors guide</a> decodes them. And if you are tracking what a run actually costs in tokens, <a href="https://www.modellix.ai/blog/deepseek-harness-token-usage/">the token usage guide</a> shows how to see per-request spend instead of estimating it.</p>
+<h2 id="Where-to-go-next-the-DeepSeek-Harness-series"><a href="#Where-to-go-next-the-DeepSeek-Harness-series" class="headerlink" title="Where to go next: the DeepSeek Harness series"></a>Where to go next: the DeepSeek Harness series</h2><p>This article is the overview; the rest of the series goes deep on the parts that bite. Each guide below covers one decision or one failure mode, so you can jump straight to the one that matches where you are:</p>
+<ul>
+<li><strong><a href="https://www.modellix.ai/blog/claude-code-alternatives/">Claude Code alternatives (2026): the harness options and how to feed them models</a></strong> — the candidate list for anyone comparing dsh against Claude Code and Codex, on verifiable dimensions rather than hype.</li>
+</ul>
+<h2 id="Frequently-asked-questions"><a href="#Frequently-asked-questions" class="headerlink" title="Frequently asked questions"></a>Frequently asked questions</h2><p><strong>Is DeepSeek Harness a CLI tool?</strong></p>
+<p>No — its default form is a local web UI. <code>npx @deepseek-ai/dsh web</code> starts a server at <code>http://127.0.0.1:3080</code> and opens it in your browser. The <code>dsh</code> CLI is a launcher and plugin manager; <code>dsh web</code> is an alias for the web profile, and headless&#x2F;ACP&#x2F;SDK modes are profiles, not separate binaries.</p>
+<p><strong>Is DeepSeek Harness free?</strong></p>
+<p>The software is open source under the MIT license — the code is free to run and modify. The models it calls are billed by your model provider, not by the harness. There is no dsh subscription because there is no dsh service to subscribe to; you bring the model source.</p>
+<p><strong>Where do DeepSeek Harness models come from?</strong></p>
+<p>Wherever you point the <code>llm-pi-ai</code> adapter. It accepts any OpenAI-compatible endpoint as a custom provider, so models can come from DeepSeek’s API, another vendor’s API, a self-hosted endpoint, or a gateway like Modellix LLM that exposes many providers behind one key. Plugins can also add model catalogs directly.</p>
+<p><strong>Do I need a DeepSeek API key to use it?</strong></p>
+<p>For the default first-run setup, yes — the harness asks for a DeepSeek API key in Settings → Models. But the harness is model-agnostic by design: the custom-provider mechanism lets you replace the model source entirely, which is what the custom model guide covers.</p>
+<p><strong>Is DeepSeek Harness stable enough for production?</strong></p>
+<p>It is a developer preview. The README says, in all caps, “THERE WILL BE COMPATIBILITY-BREAKING CHANGES,” npm’s <code>latest</code> tag is a release candidate (<code>0.1.1-rc.2</code>), and the newest GitHub tag is <code>dsh-v0.1.2-alpha.2</code>. Independent reviewers reach the same conclusion — Wavect’s production-readiness review calls it “a compelling foundation for a contained engineering pilot” but “not yet a production control plane.” Evaluate it as a pilot, not a platform.</p>
+<p><strong>Can I run DeepSeek Harness with Docker?</strong></p>
+<p>There is no official Docker image documented in the README as of 2026-08-30; the two documented paths are the npm package and building from source. Community images may exist, but they are third-party and should be treated as such.</p>
+<p><strong>Is DeepSeek Harness better than Claude Code?</strong></p>
+<p>That is the wrong question to answer in the abstract. dsh differs structurally — plugin architecture, web UI default, provider-agnostic model adapter — and those differences matter differently for different workflows. The Claude Code alternatives guide covers the comparison on verifiable dimensions rather than declaring a winner.</p>
+<p><strong>Does the Modellix gateway support image input in DeepSeek Harness?</strong></p>
+<p>The official troubleshooting table says to use text-only prompts: “Modellix LLM is a text gateway—use text-only prompts; do not attach images.” If you need media generation, the Design module in dsh-modellix routes to Modellix’s media API instead — a different host, a different billing unit, and a separate workflow. The two should not be mixed.</p>
+<hr>
+<p><em>DeepSeek Harness is a developer-preview project: versions, stars, and documentation change by the day. Figures above were verified against the GitHub API, the npm registry, and official documentation on August 30, 2026. Modellix is an aggregator and a commercial party here — we operate the LLM gateway used as the example model source, and we maintain the dsh-modellix plugin. This article is a dated overview, not a stability guarantee; re-check the official repository before committing a workflow to it.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/Agent-Harness/" class="tag-pill tag-pill--sm">Agent Harness</a>
+            
+              <a href="/blog/tags/DeepSeek-Harness/" class="tag-pill tag-pill--sm">DeepSeek Harness</a>
+            
+              <a href="/blog/tags/Tutorial/" class="tag-pill tag-pill--sm">Tutorial</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/agent-harness/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-agent-harness.webp" alt="Agent Harness: What It Is, What It Does for You" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Agent Harness: What It Is, What It Does for You</h3>
+          <time class="related-article-date" datetime="2026-08-29T16:00:00.000Z">August 30, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/deepseek-harness-custom-model/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-deepseek-harness-custom-model.webp" alt="DeepSeek Harness Custom Model: Form + settings.yaml" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">DeepSeek Harness Custom Model: Form + settings.yaml</h3>
+          <time class="related-article-date" datetime="2026-08-29T16:00:00.000Z">August 30, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/modellix-deepseek-harness-plugin/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/20217b0e-7f0d-4b50-938e-3fa9edc5cc60.webp" alt="DeepSeek Harness Plugin: Modellix LLM Gateway with $0 Models" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">DeepSeek Harness Plugin: Modellix LLM Gateway with $0 Models</h3>
+          <time class="related-article-date" datetime="2026-08-27T16:00:00.000Z">August 28, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/deepseek-harness/&text=DeepSeek%20Harness%3A%20What%20It%20Is%2C%20How%20to%20Run%20It" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/deepseek-harness/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/deepseek-harness/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

@@ -1,0 +1,663 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeepSeek Harness Custom Model: Form + settings.yaml — Modellix Blog</title>
+  <meta name="description" content="Add any OpenAI-compatible provider to DeepSeek Harness: five-field Web UI form, settings.yaml block, 28 Modellix model IDs, and the traps behind UNKNOWN_MODEL.">
+  <meta name="keywords" content="deepseek harness custom model, deepseek harness custom provider, deepseek harness openai compatible, deepseek harness settings yaml, deepseek harness add model, deepseek harness base url, deepseek harness model list">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/deepseek-harness-custom-model/">
+  <meta name="description" content="Add any OpenAI-compatible provider to DeepSeek Harness: five-field Web UI form, settings.yaml block, 28 Modellix model IDs, and the traps behind UNKNOWN_MODEL.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DeepSeek Harness Custom Model: Form + settings.yaml — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/deepseek-harness-custom-model/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Add any OpenAI-compatible provider to DeepSeek Harness: five-field Web UI form, settings.yaml block, 28 Modellix model IDs, and the traps behind UNKNOWN_MODEL.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-deepseek-harness-custom-model.webp">
+<meta property="article:published_time" content="2026-08-29T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-29T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="DeepSeek Harness">
+<meta property="article:tag" content="LLM Gateway">
+<meta property="article:tag" content="Tutorial">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-deepseek-harness-custom-model.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"DeepSeek Harness Custom Model: Form + settings.yaml","description":"Add any OpenAI-compatible provider to DeepSeek Harness: five-field Web UI form, settings.yaml block, 28 Modellix model IDs, and the traps behind UNKNOWN_MODEL.","datePublished":"2026-08-29T16:00:00.000Z","dateModified":"2026-08-29T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/deepseek-harness-custom-model/","image":"https://img.modellix.ai/en/article/cover-deepseek-harness-custom-model.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">DeepSeek Harness Custom Model: Form + settings.yaml</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/LLM-API/" class="category-tag category-tag--sm">LLM API</a>
+          
+        
+      </div>
+      <h1 class="post-title">DeepSeek Harness Custom Model: Form + settings.yaml</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-29T16:00:00.000Z">August 30, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/DeepSeek-Harness/" class="tag-pill tag-pill--sm">DeepSeek Harness</a>
+            
+              <a href="/blog/tags/LLM-Gateway/" class="tag-pill tag-pill--sm">LLM Gateway</a>
+            
+              <a href="/blog/tags/Tutorial/" class="tag-pill tag-pill--sm">Tutorial</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>DeepSeek Harness Custom Model: pure configuration, no plugin required You can point DeepSeek Harness at any OpenAI-compatible provider, and the &#39;custom model&#39; part is nothing but configuration.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-deepseek-harness-custom-model.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-deepseek-harness-custom-model.png" alt="DeepSeek Harness custom model editorial cover: two configuration paths, a Web UI form and a settings.yaml file, feeding an OpenAI-compatible gateway with an amber key" />
+</picture>
+
+<h2 id="DeepSeek-Harness-Custom-Model-pure-configuration-no-plugin-required"><a href="#DeepSeek-Harness-Custom-Model-pure-configuration-no-plugin-required" class="headerlink" title="DeepSeek Harness Custom Model: pure configuration, no plugin required"></a>DeepSeek Harness Custom Model: pure configuration, no plugin required</h2><p>You can point DeepSeek Harness at any OpenAI-compatible provider, and the “custom model” part is nothing but configuration. The harness’s <code>llm-pi-ai</code> adapter accepts a custom provider for any OpenAI-compatible endpoint:</p>
+<blockquote>
+<p>Modellix needs no plugin—only configuration. — <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/agent/deepseek-harness">Modellix DeepSeek Harness docs</a></p>
+</blockquote>
+<p>Four values define a model source: <strong>provider ID, base URL, API protocol, and model IDs</strong>. Get those right and the harness talks to the new source on the next request, no restart, no bundle to install.</p>
+<p>This article covers exactly that configuration path: the five-field Web UI form and the equivalent <code>$DSH_HOME/settings.yaml</code> block, side by side, with real values and the complete list of 28 model IDs you can select. It does <strong>not</strong> cover where keys live and how to rotate them, and it does not cover installing plugins. The plugin path is a separate decision—if you need image and video generation, web search and fetch, or a live model catalog that syncs into the model selector, that is what the <a href="https://www.modellix.ai/blog/modellix-deepseek-harness-plugin/">Modellix plugin for DeepSeek Harness</a> is for. This page is the “just swap the model source” half of that pair.</p>
+<p>One disclosure up front: Modellix runs the LLM gateway used in these examples, so we have a commercial interest in this configuration working for you. The instructions below come from our own documentation and the official Harness providers guide, and the numbers are dated August 30, 2026.</p>
+<h2 id="What-a-custom-model-source-needs-from-you"><a href="#What-a-custom-model-source-needs-from-you" class="headerlink" title="What a custom model source needs from you"></a>What a custom model source needs from you</h2><p>Before you open the form, make sure the prerequisites are in place:</p>
+<ul>
+<li><strong>DeepSeek Harness Web UI is running.</strong> Start it with <code>npx @deepseek-ai/dsh web</code> from the <a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness">official repository</a>, or build from source per the root README.</li>
+<li><strong>A Modellix API key from the console</strong>—at <a href="https://www.modellix.ai/console/api-key">https://www.modellix.ai/console/api-key</a>. The key must be a <strong>Modellix key, not a vendor platform key</strong>: an OpenAI, Anthropic, or DeepSeek platform key will not authenticate against <code>llm.modellix.ai</code>.</li>
+<li><strong>A workspace selected</strong> in the harness, so the session composer is available.</li>
+</ul>
+<p>A DeepSeek Harness custom provider is defined by four things, and this article is organized around exactly those four:</p>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>Where it lives</th>
+<th>Example for Modellix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Provider ID</td>
+<td>form field &#x2F; YAML key under <code>providers:</code></td>
+<td><code>modellix</code></td>
+</tr>
+<tr>
+<td>Base URL</td>
+<td>form field &#x2F; <code>baseURL</code></td>
+<td><code>https://llm.modellix.ai/v1</code></td>
+</tr>
+<tr>
+<td>API protocol</td>
+<td>form field &#x2F; <code>api</code></td>
+<td><code>openai-completions</code></td>
+</tr>
+<tr>
+<td>Model IDs</td>
+<td>form list &#x2F; <code>models[].id</code></td>
+<td><code>openai/gpt-5.6-sol</code></td>
+</tr>
+</tbody></table>
+<p>Model changes take effect on the <strong>next request</strong>; you do not need to restart the server. This applies to both paths below, and it is also the reason a saved provider “just works” later—the harness reads the configuration per request.</p>
+<p>The official <a target="_blank" rel="noopener" href="https://deepseek-harness.github.io/deepseek-harness/guide/providers">DeepSeek Harness providers guide</a> documents the same custom-provider mechanism generically. What follows is that mechanism applied to a real gateway, with values you can copy.</p>
+<h2 id="Option-A-—-the-five-field-Web-UI-form"><a href="#Option-A-—-the-five-field-Web-UI-form" class="headerlink" title="Option A — the five-field Web UI form"></a>Option A — the five-field Web UI form</h2><p>Open <strong>Settings → Models</strong> and choose <strong>Add a custom provider</strong>. The form has five fields:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Provider ID</td>
+<td><code>modellix</code> (lowercase; <strong>permanent once saved</strong>)</td>
+</tr>
+<tr>
+<td>Display name</td>
+<td><code>Modellix</code></td>
+</tr>
+<tr>
+<td>Base URL</td>
+<td><code>https://llm.modellix.ai/v1</code></td>
+</tr>
+<tr>
+<td>API protocol</td>
+<td><code>openai-completions</code> (OpenAI Chat Completions)</td>
+</tr>
+<tr>
+<td>API key</td>
+<td>Your Modellix API key</td>
+</tr>
+</tbody></table>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/deepseek-harness-custom-provider-form.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/deepseek-harness-custom-provider-form.png" alt="DeepSeek Harness custom provider form with Provider ID, display name, base URL, API protocol, and API key fields pointing at the Modellix LLM gateway" loading="lazy" />
+</picture>
+
+<p><em>The five fields of the custom provider form as documented for the Modellix gateway: Provider ID, display name, base URL, API protocol, and API key.</em></p>
+<p>Three things about this form are easy to miss:</p>
+<ul>
+<li><strong>The Provider ID is permanent once saved.</strong> Requests, saved sessions, model defaults, and credential references all use it. The display name, base URL, protocol, credential, and models stay editable—the Provider ID does not. There is no rename; you add a new provider and delete the old one. More on this in the traps section.</li>
+<li><strong>Keys are write-only.</strong> After saving, the page shows only a redacted descriptor, and the key is stored in <code>$DSH_HOME/.credentials.yaml</code>—not <code>~/.dsh/.credentials.yaml</code>. Settings files keep only a credential reference, never the literal secret.</li>
+<li><strong>“Fetch available models” does a live query.</strong> The Modellix gateway serves the OpenAI-compatible <code>GET /v1/models</code> endpoint, so the form can list current model IDs automatically. Select the ones you want, or enter them by hand. The provider is not stored until you save.</li>
+</ul>
+<p>After saving, pick a Modellix model in the model picker. Selecting a model also makes it the default for new sessions.</p>
+<h2 id="Option-B-—-the-same-provider-in-DSH-HOME-settings-yaml"><a href="#Option-B-—-the-same-provider-in-DSH-HOME-settings-yaml" class="headerlink" title="Option B — the same provider in $DSH_HOME&#x2F;settings.yaml"></a>Option B — the same provider in $DSH_HOME&#x2F;settings.yaml</h2><p>You can declare the exact same provider in <code>$DSH_HOME/settings.yaml</code> instead of the form. The deepseek harness settings yaml route is equivalent to the form above: same provider, same fields, same semantics. Credentials stay out of this file—<code>apiKeyEnv</code> is a reference that is resolved per request (or you can provide the key through the Models page):</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">llm-pi-ai:</span></span><br><span class="line">  <span class="attr">providers:</span></span><br><span class="line">    <span class="attr">modellix:</span></span><br><span class="line">      <span class="attr">apiKeyEnv:</span> <span class="string">MODELLIX_API_KEY</span></span><br><span class="line">      <span class="attr">api:</span> <span class="string">openai-completions</span></span><br><span class="line">      <span class="attr">baseURL:</span> <span class="string">https://llm.modellix.ai/v1</span></span><br><span class="line">      <span class="attr">models:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">openai/gpt-5.5</span></span><br><span class="line">          <span class="attr">name:</span> <span class="string">GPT</span> <span class="number">5.5</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">openai/gpt-5.6-sol</span></span><br><span class="line">          <span class="attr">name:</span> <span class="string">GPT</span> <span class="number">5.6</span> <span class="string">Sol</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">anthropic/claude-sonnet-5</span></span><br><span class="line">          <span class="attr">name:</span> <span class="string">Claude</span> <span class="string">Sonnet</span> <span class="number">5</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">google/gemini-3.6-flash</span></span><br><span class="line">          <span class="attr">name:</span> <span class="string">Gemini</span> <span class="number">3.6</span> <span class="string">Flash</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">deepseek/deepseek-v4-flash</span></span><br><span class="line">          <span class="attr">name:</span> <span class="string">DeepSeek</span> <span class="string">V4</span> <span class="string">Flash</span></span><br></pre></td></tr></table></figure>
+
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/deepseek-harness-settings-yaml-config.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/deepseek-harness-settings-yaml-config.png" alt="settings.yaml llm-pi-ai provider block mapping apiKeyEnv, api, baseURL and models to the Modellix LLM gateway endpoint" loading="lazy" />
+</picture>
+
+<p><em>The settings.yaml route block: <code>apiKeyEnv</code> resolves the credential, <code>api</code> selects the wire protocol, <code>baseURL</code> points at the gateway, and <code>models</code> is the catalog the route will serve.</em></p>
+<p>Field-by-field:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>apiKeyEnv</code></td>
+<td>Environment variable holding the Modellix API key</td>
+</tr>
+<tr>
+<td><code>api</code></td>
+<td>Wire protocol; <code>openai-completions</code> for Chat Completions</td>
+</tr>
+<tr>
+<td><code>baseURL</code></td>
+<td><code>https://llm.modellix.ai/v1</code></td>
+</tr>
+<tr>
+<td><code>models</code></td>
+<td>List of model entries; <code>id</code> is the exact Modellix model ID sent on the wire</td>
+</tr>
+</tbody></table>
+<p>Two semantics in that block matter more than they look:</p>
+<ul>
+<li><strong>The <code>models</code> list replaces the route’s catalog—it does not append to it.</strong> Every model the route should serve must appear in the list; an entry with only <code>id</code> is enough, and <code>name</code> is optional (it is what selectors show). Add or remove entries as needed. <strong>A model the route does not configure fails with <code>UNKNOWN_MODEL</code>.</strong></li>
+<li><strong>Each <code>id</code> must be the full Modellix model ID, including the <code>provider/</code> prefix</strong>—<code>openai/gpt-5.6-sol</code>, not <code>gpt-5.6-sol</code>. The harness sends the string unchanged in the request body, and the gateway routes on the full ID. The full list of valid IDs is the next section.</li>
+</ul>
+<h2 id="The-28-model-IDs-you-can-select"><a href="#The-28-model-IDs-you-can-select" class="headerlink" title="The 28 model IDs you can select"></a>The 28 model IDs you can select</h2><p>The Modellix LLM gateway currently exposes <strong>28 language models across 9 provider labels</strong>. This is the full deepseek harness model list for the gateway as of August 30, 2026—these are the IDs you put in the form’s model list or in <code>models[].id</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Model IDs</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Anthropic</td>
+<td><code>anthropic/claude-haiku-4.5</code> · <code>anthropic/claude-opus-5</code> · <code>anthropic/claude-sonnet-5</code></td>
+</tr>
+<tr>
+<td>DeepSeek</td>
+<td><code>deepseek/deepseek-v4-flash</code> · <code>deepseek/deepseek-v4-flash-vision</code> · <code>deepseek/deepseek-v4-pro</code></td>
+</tr>
+<tr>
+<td>Google</td>
+<td><code>google/gemini-3.1-pro</code> · <code>google/gemini-3.5-flash</code> · <code>google/gemini-3.6-flash</code> · <code>google/gemini-3.7-flash</code></td>
+</tr>
+<tr>
+<td>modellix-ai</td>
+<td><code>modellix-ai/free-llm</code></td>
+</tr>
+<tr>
+<td>Moonshot</td>
+<td><code>moonshot/kimi-k2.7</code> · <code>moonshot/kimi-k3</code></td>
+</tr>
+<tr>
+<td>OpenAI</td>
+<td><code>openai/gpt-5.5</code> · <code>openai/gpt-5.6-luna</code> · <code>openai/gpt-5.6-sol</code> · <code>openai/gpt-5.6-terra</code></td>
+</tr>
+<tr>
+<td>Qwen</td>
+<td><code>qwen/qwen3.7-max</code> · <code>qwen/qwen3.7-plus</code> · <code>qwen/qwen3.8-flash</code> · <code>qwen/qwen3.8-max</code></td>
+</tr>
+<tr>
+<td>xAI</td>
+<td><code>xai/grok-4.3</code> · <code>xai/grok-4.5</code> · <code>xai/grok-4.6</code></td>
+</tr>
+<tr>
+<td>ZAI</td>
+<td><code>zai/glm-4.7-flash</code> · <code>zai/glm-5.2</code> · <code>zai/glm-5.3</code> · <code>zai/glm-5.3-flash</code></td>
+</tr>
+</tbody></table>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/modellix-llm-model-catalog.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/modellix-llm-model-catalog.png" alt="Modellix LLM model catalog with 28 model IDs grouped by nine provider labels for the DeepSeek Harness model list" loading="lazy" />
+</picture>
+
+<p><em>The full Modellix LLM catalog: 28 model IDs in <code>provider/name</code> form, grouped by their nine provider labels, as of August 30, 2026.</em></p>
+<p>Three notes on the list:</p>
+<ul>
+<li><strong>Every ID is <code>provider/name</code>.</strong> Copy them verbatim. The harness sends exactly what you type, and the gateway’s <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/overview">Models &amp; Pricing reference</a> is the canonical list to check when this table ages.</li>
+<li><strong>Prices are per 1M tokens and change.</strong> Billing is in USD per 1M tokens for input, output, and cache reads&#x2F;writes, with per-model rates shown on the live <a href="https://www.modellix.ai/llm">Modellix LLM page</a>. This article intentionally does not quote rates—they move, and the live table is the source of truth.</li>
+<li><strong>Latest aliases exist, with a naming asymmetry.</strong> The gateway supports <code>~provider/series-latest</code> stable aliases. As of August 30, 2026, <code>~anthropic/claude-opus-latest</code> routes to <code>anthropic/claude-opus-5</code>, while <code>~anthropic/sonnet-latest</code> and <code>~anthropic/haiku-latest</code> route to <code>anthropic/claude-sonnet-5</code> and <code>anthropic/claude-haiku-4.5</code>—note that one carries the <code>claude-</code> prefix and the other two do not. That asymmetry is real, so don’t “fix” it. <strong>DeepSeek and <code>modellix-ai</code> have no latest aliases.</strong> Targets change as each family evolves, so treat any alias mapping as dated.</li>
+</ul>
+<h3 id="Which-models-should-you-put-in-the-list"><a href="#Which-models-should-you-put-in-the-list" class="headerlink" title="Which models should you put in the list?"></a>Which models should you put in the list?</h3><p>There is no rule that says you must add all 28. The list is your route’s catalog, and a smaller list means fewer models to audit when the gateway’s catalog changes. Three practical defaults:</p>
+<ul>
+<li><strong>Start with two to four models</strong> covering the workloads you actually run—say <code>openai/gpt-5.6-sol</code> for hard reasoning, <code>anthropic/claude-sonnet-5</code> for long agent turns, and <code>deepseek/deepseek-v4-flash</code> for cheap bulk work.</li>
+<li><strong>Use a <code>~latest</code> alias when you want a family to track its newest release</strong> without editing config, and <strong>pin a concrete ID when you need reproducible results</strong>—the gateway’s own guidance for evaluations and regression tests is to use a fixed ID such as <code>openai/gpt-5.6-sol</code>.</li>
+<li><strong>Context windows vary a lot</strong>—from 200K tokens (<code>anthropic/claude-haiku-4.5</code>, <code>modellix-ai/free-llm</code>) up to 1,310,720 tokens (<code>zai/glm-5.3-flash</code>). If your agent feeds large repos into context, check the window before you pick the default model; the Models &amp; Pricing page lists it per model.</li>
+</ul>
+<h2 id="The-Anthropic-protocol-variant-api-anthropic-messages"><a href="#The-Anthropic-protocol-variant-api-anthropic-messages" class="headerlink" title="The Anthropic protocol variant: api: anthropic-messages"></a>The Anthropic protocol variant: api: anthropic-messages</h2><p>Most setups should keep <code>openai-completions</code>: every Modellix model, including the <code>anthropic/...</code> ones, works over Chat Completions at <code>https://llm.modellix.ai/v1</code>. That is the OpenAI-compatible path, and it answers the deepseek harness openai compatible question directly: one protocol for the whole catalog.</p>
+<p>If you prefer the Anthropic wire protocol, change two values:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">llm-pi-ai:</span></span><br><span class="line">  <span class="attr">providers:</span></span><br><span class="line">    <span class="attr">modellix:</span></span><br><span class="line">      <span class="attr">apiKeyEnv:</span> <span class="string">MODELLIX_API_KEY</span></span><br><span class="line">      <span class="attr">api:</span> <span class="string">anthropic-messages</span></span><br><span class="line">      <span class="attr">baseURL:</span> <span class="string">https://llm.modellix.ai</span></span><br><span class="line">      <span class="attr">models:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">anthropic/claude-sonnet-5</span></span><br><span class="line">          <span class="attr">name:</span> <span class="string">Claude</span> <span class="string">Sonnet</span> <span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<p>Two differences from the main path, both easy to get wrong. The deepseek harness base url rule is protocol-dependent, and this is the one place it differs from the OpenAI path:</p>
+<ul>
+<li><strong><code>baseURL</code> is <code>https://llm.modellix.ai</code> with no <code>/v1</code>.</strong> The Anthropic Messages endpoint is <code>POST /v1/messages</code>, and the harness appends the path itself. The <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/api/api">LLM API guide</a> states this explicitly: OpenAI-compatible clients include <code>/v1</code>; Anthropic clients do not.</li>
+<li><strong>Model discovery stops working.</strong> <code>Fetch available models</code> only reads OpenAI-compatible <code>GET /models</code> endpoints, so on this protocol the form cannot auto-list models—<strong>enter the model IDs by hand</strong>. Your <code>models</code> list is now the only catalog the route has.</li>
+</ul>
+<h2 id="The-four-traps-that-cause-“model-won’t-connect”"><a href="#The-four-traps-that-cause-“model-won’t-connect”" class="headerlink" title="The four traps that cause “model won’t connect”"></a>The four traps that cause “model won’t connect”</h2><p>The biggest model-side complaint in the harness community is “model won’t connect” reports (a 27-comment GitHub Discussions thread is the largest on the topic). In practice, four configuration mistakes account for most of them. Each maps to a specific line in the harness or gateway response:</p>
+<h3 id="Trap-1-the-Provider-ID-is-permanent-once-saved"><a href="#Trap-1-the-Provider-ID-is-permanent-once-saved" class="headerlink" title="Trap 1: the Provider ID is permanent once saved"></a>Trap 1: the Provider ID is permanent once saved</h3><p>The <code>modellix</code> Provider ID is baked into requests, saved sessions, model defaults, and credential references at save time. If you later decide the ID should be different, you cannot rename it—the harness’s own docs say to add a new provider and delete the old one. Choose the ID carefully on day one; it is the one field you cannot change later.</p>
+<h3 id="Trap-2-the-models-list-replaces-the-route’s-catalog"><a href="#Trap-2-the-models-list-replaces-the-route’s-catalog" class="headerlink" title="Trap 2: the models list replaces the route’s catalog"></a>Trap 2: the <code>models</code> list replaces the route’s catalog</h3><p>This is the most common <code>UNKNOWN_MODEL</code> cause. The list is not a filter on a bigger built-in catalog—it <strong>is</strong> the catalog. Concretely: you configure the route with <code>openai/gpt-5.5</code> only, run a session, then edit <code>settings.yaml</code> down to that single entry; when the saved session resumes and asks for <code>openai/gpt-5.6-sol</code> (a model the session had used earlier), the route no longer configures it and the request fails with <code>UNKNOWN_MODEL</code>. Sessions retain the model recorded in their own logs, so a changed list can invalidate an old session. The fix is always the same: add the missing model to the custom provider, or select a configured one.</p>
+<h3 id="Trap-3-model-IDs-must-carry-the-provider-prefix"><a href="#Trap-3-model-IDs-must-carry-the-provider-prefix" class="headerlink" title="Trap 3: model IDs must carry the provider/ prefix"></a>Trap 3: model IDs must carry the <code>provider/</code> prefix</h3><p><code>gpt-5.6-sol</code> is not a valid model on the gateway; <code>openai/gpt-5.6-sol</code> is. The harness sends the <code>id</code> string unchanged, and the gateway routes on the full <code>provider/name</code> form. A missing prefix produces a 404-style “unknown model” response that looks like a connectivity problem.</p>
+<h3 id="Trap-4-Anthropic-protocol-means-no-v1-and-no-auto-discovery"><a href="#Trap-4-Anthropic-protocol-means-no-v1-and-no-auto-discovery" class="headerlink" title="Trap 4: Anthropic protocol means no /v1 and no auto-discovery"></a>Trap 4: Anthropic protocol means no <code>/v1</code> and no auto-discovery</h3><p>If you switch <code>api</code> to <code>anthropic-messages</code> but leave the base URL at <code>https://llm.modellix.ai/v1</code>, requests fail—the client appends <code>/v1/messages</code> to whatever base URL you gave it, producing a doubled path. And because model discovery reads only OpenAI-compatible <code>GET /models</code>, a correctly configured Anthropic route with an empty <code>models</code> list has no models at all. Enter IDs by hand.</p>
+<h3 id="Reading-the-error-lines"><a href="#Reading-the-error-lines" class="headerlink" title="Reading the error lines"></a>Reading the error lines</h3><table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Most likely cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>MISSING_CREDENTIAL</code></td>
+<td>No key stored for the provider, or <code>MODELLIX_API_KEY</code> not set in the harness environment</td>
+<td>Store the key through the Models page, or provide the referenced environment variable</td>
+</tr>
+<tr>
+<td><code>UNKNOWN_MODEL</code></td>
+<td>Model not in the route’s <code>models</code> list (the list replaces the catalog)</td>
+<td>Add the missing model to the custom provider, or select a configured one</td>
+</tr>
+<tr>
+<td><code>Fetch available models</code> returns 401</td>
+<td>The key is wrong, or it is a vendor platform key rather than a Modellix key</td>
+<td>Check the key in the Modellix console (linked in the prerequisites); enter models manually if needed</td>
+</tr>
+</tbody></table>
+<p>These three rows cover the configuration errors you can hit on this path. The gateway’s own API reference adds the protocol-level rules (auth headers, base URL per protocol, request body shapes) if a request passes configuration and still fails—that guide is linked in the previous section.</p>
+<h2 id="When-configuration-is-not-enough-the-plugin-path"><a href="#When-configuration-is-not-enough-the-plugin-path" class="headerlink" title="When configuration is not enough: the plugin path"></a>When configuration is not enough: the plugin path</h2><p>Pure configuration swaps the model source—and that is all it does. The plugin path exists for everything else the harness can do with a gateway:</p>
+<ul>
+<li><strong>Design</strong>: image, video, and audio generation from inside the harness, on the media API (a different host from the text gateway, with async tasks).</li>
+<li><strong>Web</strong>: native <code>web_search</code> and <code>web_fetch</code> providers backed by the Modellix tool API, without building custom tools.</li>
+<li><strong>Live catalog</strong>: a model selector that keeps syncing the current model list, instead of the snapshot you configure once here.</li>
+</ul>
+<p>If those capabilities matter to your setup, the Modellix plugin for DeepSeek Harness article (linked in the first section) walks through installing the bundle, storing the key, and what each module does. If you only need a different model source, you are already done—the form or the YAML block above is the whole change. For context on why a single key and one integration path exist at all, the <a href="https://www.modellix.ai/blog/unified-ai-api/">unified AI API guide</a> explains the aggregator model behind it.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">DeepSeek Harness Integration Docs</h3><p class="view-docs-tag-desc">Read the full DeepSeek Harness configuration reference for the Modellix LLM gateway, including the Anthropic protocol variant and the troubleshooting table.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Open the Modellix Console</h3><p class="view-docs-tag-desc">Log in to generate your Modellix API key and check live per-million-token pricing for all 28 models.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<hr>
+<p><em>Configuration instructions verified against the Modellix DeepSeek Harness documentation and the official Harness providers guide on August 30, 2026. Model catalogs, prices, and alias targets change as providers evolve; check the live Models &amp; Pricing page before relying on a specific ID. Modellix operates the gateway described in this article and has a commercial interest in it. The Modellix LLM gateway is a text gateway—use text-only prompts; do not attach images.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/DeepSeek-Harness/" class="tag-pill tag-pill--sm">DeepSeek Harness</a>
+            
+              <a href="/blog/tags/LLM-Gateway/" class="tag-pill tag-pill--sm">LLM Gateway</a>
+            
+              <a href="/blog/tags/Tutorial/" class="tag-pill tag-pill--sm">Tutorial</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/agent-harness/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-agent-harness.webp" alt="Agent Harness: What It Is, What It Does for You" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Agent Harness: What It Is, What It Does for You</h3>
+          <time class="related-article-date" datetime="2026-08-29T16:00:00.000Z">August 30, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/deepseek-harness/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-deepseek-harness.webp" alt="DeepSeek Harness: What It Is, How to Run It" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">DeepSeek Harness: What It Is, How to Run It</h3>
+          <time class="related-article-date" datetime="2026-08-29T16:00:00.000Z">August 30, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/modellix-deepseek-harness-plugin/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/20217b0e-7f0d-4b50-938e-3fa9edc5cc60.webp" alt="DeepSeek Harness Plugin: Modellix LLM Gateway with $0 Models" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">DeepSeek Harness Plugin: Modellix LLM Gateway with $0 Models</h3>
+          <time class="related-article-date" datetime="2026-08-27T16:00:00.000Z">August 28, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/deepseek-harness-custom-model/&text=DeepSeek%20Harness%20Custom%20Model%3A%20Form%20%2B%20settings.yaml" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/deepseek-harness-custom-model/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/deepseek-harness-custom-model/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
