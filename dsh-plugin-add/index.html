@@ -1,0 +1,561 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>dsh plugin add: Install, Verify, Remove Harness Bundles — Modellix Blog</title>
+  <meta name="description" content="dsh plugin add installs a bundle into a profile, but installed does not mean effective. Verify with dsh --dump-config, pack a tarball, or remove cleanly.">
+  <meta name="keywords" content="dsh plugin add, dsh plugin install, dsh plugin remove, dsh plugin list, dsh plugin registry, dsh --dump-config, dsh cli commands">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/dsh-plugin-add/">
+  <meta name="description" content="dsh plugin add installs a bundle into a profile, but installed does not mean effective. Verify with dsh --dump-config, pack a tarball, or remove cleanly.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dsh plugin add: Install, Verify, Remove Harness Bundles — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/dsh-plugin-add/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="dsh plugin add installs a bundle into a profile, but installed does not mean effective. Verify with dsh --dump-config, pack a tarball, or remove cleanly.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-dsh-plugin-add.webp">
+<meta property="article:published_time" content="2026-08-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-31T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="DeepSeek Harness">
+<meta property="article:tag" content="Plugin Management">
+<meta property="article:tag" content="dsh CLI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-dsh-plugin-add.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"dsh plugin add: Install, Verify, Remove Harness Bundles","description":"dsh plugin add installs a bundle into a profile, but installed does not mean effective. Verify with dsh --dump-config, pack a tarball, or remove cleanly.","datePublished":"2026-08-31T16:00:00.000Z","dateModified":"2026-08-31T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/dsh-plugin-add/","image":"https://img.modellix.ai/en/article/cover-dsh-plugin-add.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">dsh plugin add: Install, Verify, Remove Harness Bundles</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/LLM-API/" class="category-tag category-tag--sm">LLM API</a>
+          
+        
+      </div>
+      <h1 class="post-title">dsh plugin add: Install, Verify, Remove Harness Bundles</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-31T16:00:00.000Z">September 1, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/DeepSeek-Harness/" class="tag-pill tag-pill--sm">DeepSeek Harness</a>
+            
+              <a href="/blog/tags/Plugin-Management/" class="tag-pill tag-pill--sm">Plugin Management</a>
+            
+              <a href="/blog/tags/dsh-CLI/" class="tag-pill tag-pill--sm">dsh CLI</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>dsh plugin add: one command, one verification, one rollback Installing a DeepSeek Harness bundle is three commands, but the middle one is the one everyone skips.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-dsh-plugin-add.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-dsh-plugin-add.png" alt="dsh plugin add editorial cover: three terminal command blocks for install, verify and remove feeding a Harness profile configuration tree with an amber key" />
+</picture>
+
+<h2 id="dsh-plugin-add-one-command-one-verification-one-rollback"><a href="#dsh-plugin-add-one-command-one-verification-one-rollback" class="headerlink" title="dsh plugin add: one command, one verification, one rollback"></a>dsh plugin add: one command, one verification, one rollback</h2><p>Installing a DeepSeek Harness bundle is three commands, but the middle one is the one everyone skips. <code>dsh plugin add</code> puts a bundle into a profile; <code>dsh --dump-config</code> proves it took effect; <code>dsh plugin remove</code> takes it back out. Run all three and “installed but not effective”—the most common failure state in this ecosystem—stops being a mystery and becomes a checkable line in the config tree.</p>
+<p>This article walks the full lifecycle with a real bundle, <a target="_blank" rel="noopener" href="https://github.com/Modellix/dsh-modellix">dsh-modellix</a>, so every command below is copy-pasteable. The same flow applies to any bundle. The <code>dsh</code> CLI itself is thin: per the <a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness">official repository</a>, it is “the sole supported Node application launcher”—profiles are ordered stacks of plugin-bundle patch layers, and <code>dsh plugin</code> manages them by forwarding arguments to pnpm in the profile directory.</p>
+<p>The core command surface, as documented in the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/agent/deepseek-harness">Modellix DeepSeek Harness docs</a> and the official CLI readme:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>dsh --profile &lt;name&gt;</code></td>
+<td>Boot the named profile under <code>$DSH_HOME/profiles/&lt;name&gt;</code></td>
+</tr>
+<tr>
+<td><code>dsh web</code></td>
+<td>Alias of <code>--profile web</code></td>
+</tr>
+<tr>
+<td><code>dsh plugin --profile &lt;name&gt; &lt;pnpm args&gt;</code></td>
+<td>Manage a profile’s plugins by forwarding to pnpm</td>
+</tr>
+<tr>
+<td><code>dsh --profile &lt;name&gt; --dump-config</code></td>
+<td>Print the composed config tree <strong>without booting</strong> it</td>
+</tr>
+<tr>
+<td><code>dsh --profile &lt;name&gt; --dump-default-config</code></td>
+<td>Print the default template for comparison</td>
+</tr>
+</tbody></table>
+<p>One disclosure before the commands: Modellix operates the plugin used as the worked example here, so we have a commercial interest in this flow working for you. Every command and quote below comes from our documentation or the official Harness repository, and versions are dated September 1, 2026.</p>
+<p>This article is about the command flow. It is not about whether you need a plugin at all—that decision, including what a bundle is and when pure configuration is enough, lives in the <a href="https://www.modellix.ai/blog/modellix-deepseek-harness-plugin/">DeepSeek Harness plugin guide</a>. And if you only want to swap a model source, the <a href="https://www.modellix.ai/blog/deepseek-harness-custom-model/">custom provider path</a> needs no plugin at all.</p>
+<h2 id="Before-you-run-dsh-plugin-add-pinned-versions-and-prerelease-reality"><a href="#Before-you-run-dsh-plugin-add-pinned-versions-and-prerelease-reality" class="headerlink" title="Before you run dsh plugin add: pinned versions and prerelease reality"></a>Before you run dsh plugin add: pinned versions and prerelease reality</h2><p>Three version facts decide whether an install succeeds, and none of them are optional. The bundle you are installing was built and verified against specific versions of Harness and Node:</p>
+<ul>
+<li><strong>DeepSeek Harness is pinned at <code>0.1.1-rc.2</code>.</strong> The npm package <code>@deepseek-ai/dsh</code> currently publishes <code>0.1.1-rc.2</code> as <code>latest</code> (verified on the <a target="_blank" rel="noopener" href="https://registry.npmjs.org/@deepseek-ai/dsh">npm registry</a> on September 1, 2026). There is a newer GitHub tag, <code>0.1.2-alpha.1</code>, but it has no npm release—treat <code>0.1.1-rc.2</code> as the current version.</li>
+<li><strong>Published-package runtime: Node.js <code>^22.19.0 || &gt;=24.0.0</code>.</strong> This is the <code>engines</code> range in the package manifest.</li>
+<li><strong>Source development and release verification: Node.js <code>24.18.1</code> and pnpm <code>11.24.0</code></strong> (from <code>.nvmrc</code> and <code>packageManager</code>). If you build from source or verify a release, use these exact versions.</li>
+</ul>
+<p>Why pinned? Harness is in developer preview. The official readme says it in full: “DeepSeek Harness is in developer preview and iterating rapidly. <strong>THERE WILL BE COMPATIBILITY-BREAKING CHANGES.</strong>“ The plugin’s readme adds the practical consequence: “Before upgrading Harness, check this package’s peer dependencies and CHANGELOG.” Every <code>@deepseek-ai/dsh-*</code> peer dependency is pinned to <code>0.1.1-rc.2</code>, so a mismatched Harness is the most common silent cause of a bundle that installs but does nothing.</p>
+<p>You also need the credential the bundle will use. For the worked example that is a valid <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started">Modellix API key</a>—create it in the console at <a href="https://www.modellix.ai/console/api-key">https://www.modellix.ai/console/api-key</a>. One key covers the gateway and media endpoints the plugin’s modules route through; the live catalog the LLM module can reach is on the <a href="https://www.modellix.ai/llm">Modellix LLM page</a>. Key storage itself is a separate topic covered in the <a href="https://www.modellix.ai/blog/deepseek-harness/">DeepSeek Harness overview</a> article. If you are new to the harness itself, that overview is the right starting point before any plugin work.</p>
+<h2 id="Install-path-1-the-published-package-dsh-plugin-add-dsh-modellix"><a href="#Install-path-1-the-published-package-dsh-plugin-add-dsh-modellix" class="headerlink" title="Install path 1: the published package (dsh plugin add dsh-modellix)"></a>Install path 1: the published package (dsh plugin add dsh-modellix)</h2><p>The simplest path installs the published npm package into the web profile:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dsh plugin --profile web add dsh-modellix</span><br><span class="line">dsh --profile web --dump-config</span><br><span class="line">dsh --profile web</span><br></pre></td></tr></table></figure>
+
+<p>What happens: <code>dsh plugin</code> forwards <code>add dsh-modellix</code> to pnpm inside the profile directory, and pnpm resolves the package from the registry. The profile’s <code>package.json</code> automatically maintains the <code>dsh.profile.bundles</code> list in installation order, starting with <code>@deepseek-ai/dsh-base</code>.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/dsh-plugin-add-command-flow.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/dsh-plugin-add-command-flow.png" alt="dsh plugin add command forwarding to pnpm and merging the dsh-modellix bundle into the web profile configuration tree" loading="lazy" />
+</picture>
+
+<p><em>The add command forwards to pnpm in the profile directory, which resolves the package and merges the bundle’s patch layer into the profile’s configuration tree.</em></p>
+<p>Three things to get right:</p>
+<ul>
+<li><strong>Name the profile explicitly.</strong> <code>--profile web</code> targets the web profile (the one <code>dsh web</code> uses). Install into a different profile—<code>sdk</code>, <code>headless</code>, or a custom one—and the bundle will not appear in the web UI. Replace <code>web</code> with your profile if you use a different one.</li>
+<li><strong>Do not start the web UI between add and verify.</strong> The install is not confirmed by a successful command exit; it is confirmed by the config tree, which is the next step. If you already have the profile running, restart it before verifying.</li>
+<li><strong>The command forwards, it does not abstract.</strong> Anything you could do with pnpm in the profile directory—add, remove, install a tarball—goes through the same <code>dsh plugin</code> forwarding layer. That is the whole design: one command, pnpm semantics underneath.</li>
+</ul>
+<h2 id="Verify-with-dsh-–dump-config-the-acceptance-command"><a href="#Verify-with-dsh-–dump-config-the-acceptance-command" class="headerlink" title="Verify with dsh –dump-config: the acceptance command"></a>Verify with dsh –dump-config: the acceptance command</h2><p>This is the step the third-party tutorials skip. <code>dsh --profile web --dump-config</code> prints the composed configuration tree—bundles, patches, and plugin rows—<strong>without booting the profile</strong>. It is the executable acceptance check for an install.</p>
+<p>For the worked example, the acceptance criteria from the plugin’s own readme, verbatim:</p>
+<blockquote>
+<p><code>--dump-config</code> should show the <code>dsh-modellix</code> Bundle layer and a plugin row whose id is <code>modellix</code>.</p>
+</blockquote>
+<p>So you are looking for two things in the output:</p>
+<ol>
+<li><strong>A Bundle layer named <code>dsh-modellix</code></strong> in the bundle list of the profile.</li>
+<li><strong>A plugin row whose <code>id</code> is <code>modellix</code></strong>—the bundle declares a plugin entry in its <code>cordis.patch.yml</code> (<code>- insert: - id: modellix, name: dsh-modellix</code>), and the composed tree materializes it as a row.</li>
+</ol>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/dsh-plugin-dump-config-acceptance.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/dsh-plugin-dump-config-acceptance.png" alt="dsh --dump-config output highlighting the dsh-modellix Bundle layer and the modellix plugin row as the install acceptance check" loading="lazy" />
+</picture>
+
+<p><em>Reading the acceptance check: the composed config tree must show the dsh-modellix Bundle layer and a plugin row whose id is modellix.</em></p>
+<p>If either piece is missing, the install did not take effect. Work the list in order:</p>
+<ul>
+<li><strong>Did you restart the profile after installing?</strong> A plugin with a web client entry is a Client Bundle; reloading the browser alone does not load it. Restart the profile process, then re-run <code>--dump-config</code>.</li>
+<li><strong>Is the version right?</strong> Harness must be <code>0.1.1-rc.2</code> and Node inside <code>^22.19.0 || &gt;=24.0.0</code>. A peer mismatch can leave the bundle registered but inert.</li>
+<li><strong>Did you install into the profile you are dumping?</strong> <code>--profile web</code> in both commands must match. A bundle installed into <code>sdk</code> will never show up in <code>web</code>‘s tree.</li>
+<li><strong>Compare against the default.</strong> <code>dsh --profile web --dump-default-config</code> prints the template a fresh profile starts from. Diffing the two outputs isolates exactly what your installs and patches contributed—which is also the fastest way to see what a later <code>remove</code> will take away.</li>
+</ul>
+<p>This “verify the composed tree” habit is why the failure mode you read about most in the community—plugin logs present, behavior unchanged—is almost always one of the four items above. The command makes it diagnosable in ten seconds instead of a forum thread.</p>
+<h2 id="Install-path-2-a-local-tarball-from-trusted-source-pnpm-pack"><a href="#Install-path-2-a-local-tarball-from-trusted-source-pnpm-pack" class="headerlink" title="Install path 2: a local tarball from trusted source (pnpm pack)"></a>Install path 2: a local tarball from trusted source (pnpm pack)</h2><p>When you want to install a bundle you can audit byte-for-byte, build a tarball from source yourself and add the artifact:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pnpm install --frozen-lockfile</span><br><span class="line">pnpm run verify:release:static</span><br><span class="line">pnpm pack</span><br><span class="line">dsh plugin --profile web add ./dsh-modellix-0.1.1.tgz</span><br></pre></td></tr></table></figure>
+
+<p>The trust argument is the middle command. <code>verify:release:static</code> chains the static release gates: environment verification, type checking, lint, tests, build, <code>verify:pack</code> (which checks the exact artifact allowlist, bilingual documentation, and twelve locale-specific screenshots by actually decoding them), <code>verify:fresh-install</code> (installs the final tarball into a temporary project and smokes the entry points), and <code>verify:node22-install</code> (repeats the runtime smoke on a Node <code>^22.19.0</code> binary and <strong>fails instead of silently skipping</strong> when none is found). Installing the tarball <code>pnpm pack</code> produces is the same artifact that gate audited—which is the honest answer to “is it safe to install this plugin?”: you can verify the pipeline that produced the file before it ever touches your profile.</p>
+<p>One limitation in the readme is worth quoting in full, because it stops a very common attempt:</p>
+<blockquote>
+<p>Installing TypeScript source directly from Git requires the installation phase to produce <code>lib/</code>. Until the package provides a verified <code>prepare</code> flow, use the published package or a local tarball.</p>
+</blockquote>
+<p>In other words: <strong>you cannot <code>dsh plugin add</code> an unbuilt Git source directory.</strong> Cloning <code>Modellix/dsh-modellix</code> and pointing <code>dsh plugin add</code> at the checkout will not work until the installation phase produces <code>lib/</code>. Use the published package or a local tarball built as above. This is a general rule for bundles that ship TypeScript source without a verified <code>prepare</code> step—check the target package before assuming a directory add will build.</p>
+<p>And after any install that replaces a previous local copy, restart the profile. From the readme: “Reloading the browser alone does not load a new Client Bundle.” The config tree is read at profile boot, not at browser refresh.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/dsh-plugin-local-tarball-flow.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/dsh-plugin-local-tarball-flow.png" alt="Local tarball install flow from trusted source: pnpm install, static release verification, pack, then dsh plugin add of the tarball" loading="lazy" />
+</picture>
+
+<p><em>The trusted-source path: frozen install, static release verification, pack, then add the artifact—the same file the release gate audited.</em></p>
+<p>The official <a target="_blank" rel="noopener" href="https://deepseek-harness.github.io/deepseek-harness/develop/basic/publish">publishing guide</a> documents the underlying mechanics generically: the <code>dsh.bundle.patch</code> field in a package’s <code>package.json</code> marks an npm package as an installable bundle, and the same <code>add</code> &#x2F; <code>--dump-config</code> loop applies to any of them.</p>
+<h2 id="Start-the-profile-and-confirm-it-loads"><a href="#Start-the-profile-and-confirm-it-loads" class="headerlink" title="Start the profile and confirm it loads"></a>Start the profile and confirm it loads</h2><p>With the bundle verified in the tree, boot the profile:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dsh --profile web</span><br></pre></td></tr></table></figure>
+
+<p>Two first-run behaviors can look like failures and are not:</p>
+<ul>
+<li>A fresh profile may first show Harness’s own DeepSeek initialization dialog before the plugin presents its “Connect Modellix” dialog. Complete or handle the first one before the second appears.</li>
+<li>The plugin’s first-run dialog asks for the API key and confirms three default-on switches (Design, LLM, Web). “Configure later” is a real option, but it does not mark the plugin usable—the next explicit use of a capability that needs a credential will ask again.</li>
+</ul>
+<p>One honest caveat: this article cannot promise “works after install.” Harness and this plugin use prerelease interfaces, and the versions above are the ones verified against each other as of September 1, 2026. If you are upgrading either side, re-check peer dependencies and the CHANGELOG before trusting a previously verified install.</p>
+<h2 id="Removing-a-bundle-dsh-plugin-remove-and-what-it-does-not-clean-up"><a href="#Removing-a-bundle-dsh-plugin-remove-and-what-it-does-not-clean-up" class="headerlink" title="Removing a bundle: dsh plugin remove, and what it does not clean up"></a>Removing a bundle: dsh plugin remove, and what it does not clean up</h2><p>Uninstall is the same three-command shape, inverted:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dsh plugin --profile web remove dsh-modellix</span><br><span class="line">dsh --profile web --dump-config</span><br><span class="line">dsh --profile web</span><br></pre></td></tr></table></figure>
+
+<p>Run <code>--dump-config</code> again and confirm the <code>dsh-modellix</code> Bundle layer and the <code>modellix</code> plugin row are gone, then restart the profile. Removal is the mirror of install: the bundle leaves the profile’s <code>dsh.profile.bundles</code> list, and the composed tree stops materializing its plugin rows.</p>
+<p>What removal does <strong>not</strong> do is worth quoting from the readme, because it is the difference between “uninstalled” and “clean”:</p>
+<blockquote>
+<p>Uninstalling the plugin does not promise to remove external environment variables, upstream tasks, or every piece of persisted Harness data.</p>
+</blockquote>
+<p>Concretely, for the worked example: if you supplied the key as a <code>MODELLIX_API_KEY</code> environment variable, that variable lives in your launch environment, not in the profile—remove it there. Credentials stored through the Harness Credential service are a separate store from <code>modellix-cli</code>‘s keychain; the plugin does not read a CLI login automatically, and removal does not purge the Credential store entry. Upstream tasks (billed media jobs already submitted) keep running to completion upstream regardless of plugin state. If your policy requires cleanup, handle each system separately. The official publishing guide linked above shows the same remove flow for any bundle.</p>
+<h2 id="dsh-plugin-registry-where-bundles-come-from-and-how-to-judge-one"><a href="#dsh-plugin-registry-where-bundles-come-from-and-how-to-judge-one" class="headerlink" title="dsh plugin registry: where bundles come from, and how to judge one"></a>dsh plugin registry: where bundles come from, and how to judge one</h2><p>There is no official plugin marketplace. DeepSeek has not shipped one—community threads have explicitly asked for it, and the closest thing is the GitHub topic <code>dsh-plugin</code>, which the official readme suggests for discoverability. Everything else is third party: marketplaces like dshmarket.com or dsh-plugin.org, and community directories like <a target="_blank" rel="noopener" href="https://github.com/kejixiaoliang/awesome-dsh-plugins">awesome-dsh-plugins</a>. They are discovery channels, not attestations.</p>
+<p>Which makes the judgment checklist the real content of this section. Before you <code>dsh plugin add</code> something from a directory:</p>
+<ul>
+<li><strong>Peer dependencies are pinned to the Harness version you run.</strong> A bundle that declares <code>@deepseek-ai/dsh-*@0.1.1-rc.2</code> peers was built against the version the worked example uses. A bundle that does not pin peers is a compatibility risk, not a red flag—just verify it.</li>
+<li><strong>The package ships a release gate.</strong> Screenshot-decoding artifact checks, fresh-install smoke tests, a Node-22 runtime check that fails loudly: these are evidence the author treats release as a process, not a publish button.</li>
+<li><strong>Stars are a measured fact, not a verdict.</strong> The worked example here has exactly 1 star and 0 forks, measured on August 29, 2026—it is a brand-new project, and this article is not claiming it is popular or battle-tested. Star counts in directories are snapshots; check the repository yourself and date what you cite.</li>
+<li><strong>Download counts are unverified.</strong> npm download numbers for this ecosystem are not something we have verified, and neither should you trust a directory’s copy blindly.</li>
+<li><strong>Prefer the audit path when it matters.</strong> The local-tarball flow in this article is the strongest form of trust: you verify the pipeline, not a listing.</li>
+</ul>
+<p>If you are looking for a <code>dsh plugin list</code> style command: the CLI does not define one. <code>dsh plugin</code> forwards every argument after <code>--profile &lt;name&gt;</code> to pnpm, so the installed bundle list lives in the profile’s <code>package.json</code> (<code>dsh.profile.bundles</code>, in installation order starting with <code>@deepseek-ai/dsh-base</code>)—and the composed result of everything installed is exactly what <code>dsh --profile web --dump-config</code> prints. When in doubt, dump the tree. The plugin guide linked at the top covers the mechanism and the “do you need one” decision in depth if you want the background.</p>
+<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>How do I know a dsh plugin actually installed?</strong><br>Run <code>dsh --profile &lt;name&gt; --dump-config</code> and look for the bundle’s layer in the profile’s bundle list plus a plugin row whose <code>id</code> matches the plugin’s declared name. For the worked example, the acceptance criteria are verbatim: “the <code>dsh-modellix</code> Bundle layer and a plugin row whose id is <code>modellix</code>.” A successful <code>dsh plugin add</code> exit code alone is not proof.</p>
+<p><strong>I ran dsh plugin add but the Web UI shows nothing new.</strong><br>Restart the profile process. A bundle with a web client entry is a Client Bundle, and reloading the browser alone does not load it. Then re-run <code>--dump-config</code> to confirm the bundle layer is actually in the tree before looking at the UI.</p>
+<p><strong>Can I dsh plugin add a GitHub repository directly?</strong><br>Not if it is unbuilt TypeScript source. “Installing TypeScript source directly from Git requires the installation phase to produce <code>lib/</code>. Until the package provides a verified <code>prepare</code> flow, use the published package or a local tarball.” Clone, verify, and pack a tarball instead.</p>
+<p><strong>Do I need to restart Harness after installing or removing a plugin?</strong><br>Yes for the profile that owns the bundle. Configuration is composed at profile boot; <code>--dump-config</code> reflects what the next boot will load. A running profile keeps serving its old tree until restarted.</p>
+<p><strong>How do I remove a plugin completely?</strong><br>Run <code>dsh plugin --profile &lt;name&gt; remove &lt;pkg&gt;</code>, re-run <code>--dump-config</code> to confirm the bundle layer and plugin rows are gone, then restart the profile. Then clean what removal does not: environment variables, upstream tasks, and persisted Harness data are separate systems and are not touched by the plugin.</p>
+<p><strong>Is it safe to install third-party dsh plugins?</strong><br>There is no official marketplace, so “safe” is your judgment call. Check that peer dependencies are pinned to your Harness version, that the package ships a real release-verification gate, and that you can audit the source. For anything sensitive, use the local-tarball flow so you install exactly the artifact you verified.</p>
+<p><strong>What is the difference between –dump-config and –dump-default-config?</strong><br><code>--dump-config</code> prints the composed tree for the named profile—what the next boot will actually load. <code>--dump-default-config</code> prints the default template a fresh profile starts from. Diffing them isolates exactly what your installs and patches contributed.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">DeepSeek Harness Agent Docs</h3><p class="view-docs-tag-desc">Read the official Modellix DeepSeek Harness integration page, covering plugin setup, the LLM gateway, and web providers.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Open the Modellix Console</h3><p class="view-docs-tag-desc">Log in to generate your Modellix API key and check live per-model pricing for the whole catalog.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<hr>
+<p><em>Command syntax, pinned versions, and release information reflect public sources as of September 1, 2026 and change frequently—DeepSeek Harness is in developer preview and iterating rapidly. Validate versions against the official repository before relying on them. Modellix maintains the dsh-modellix plugin used as the worked example and has a commercial interest in it.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/DeepSeek-Harness/" class="tag-pill tag-pill--sm">DeepSeek Harness</a>
+            
+              <a href="/blog/tags/Plugin-Management/" class="tag-pill tag-pill--sm">Plugin Management</a>
+            
+              <a href="/blog/tags/dsh-CLI/" class="tag-pill tag-pill--sm">dsh CLI</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/deepseek-harness-image-generation/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-deepseek-harness-image-generation.webp" alt="DeepSeek Harness Image Generation: Media Output via Plugin" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">DeepSeek Harness Image Generation: Media Output via Plugin</h3>
+          <time class="related-article-date" datetime="2026-08-31T16:00:00.000Z">September 1, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/deepseek-harness-plugin/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-deepseek-harness-plugin.webp" alt="DeepSeek Harness Plugin: Bundles and When You Don&#39;t Need One" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">DeepSeek Harness Plugin: Bundles and When You Don&#39;t Need One</h3>
+          <time class="related-article-date" datetime="2026-08-31T16:00:00.000Z">September 1, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/deepseek-harness-web-search/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-deepseek-harness-web-search.webp" alt="DeepSeek Harness Web Search: web_search and web_fetch" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">DeepSeek Harness Web Search: web_search and web_fetch</h3>
+          <time class="related-article-date" datetime="2026-08-30T16:00:00.000Z">August 31, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/dsh-plugin-add/&text=dsh%20plugin%20add%3A%20Install%2C%20Verify%2C%20Remove%20Harness%20Bundles" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/dsh-plugin-add/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/dsh-plugin-add/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

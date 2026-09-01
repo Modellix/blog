@@ -1,0 +1,541 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeepSeek Harness Web Search: web_search and web_fetch — Modellix Blog</title>
+  <meta name="description" content="Swap DeepSeek Harness web_search and web_fetch providers: install dsh-modellix, add a Modellix key, and both native tools run through tool.modellix.ai.">
+  <meta name="keywords" content="deepseek harness web search, deepseek harness web_search api key, deepseek harness web_fetch, deepseek harness search plugin, deepseek harness browsing">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/deepseek-harness-web-search/">
+  <meta name="description" content="Swap DeepSeek Harness web_search and web_fetch providers: install dsh-modellix, add a Modellix key, and both native tools run through tool.modellix.ai.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DeepSeek Harness Web Search: web_search and web_fetch — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/deepseek-harness-web-search/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Swap DeepSeek Harness web_search and web_fetch providers: install dsh-modellix, add a Modellix key, and both native tools run through tool.modellix.ai.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-deepseek-harness-web-search.webp">
+<meta property="article:published_time" content="2026-08-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-30T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="DeepSeek Harness">
+<meta property="article:tag" content="Tutorial">
+<meta property="article:tag" content="Web Search">
+<meta property="article:tag" content="dsh-modellix">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-deepseek-harness-web-search.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"DeepSeek Harness Web Search: web_search and web_fetch","description":"Swap DeepSeek Harness web_search and web_fetch providers: install dsh-modellix, add a Modellix key, and both native tools run through tool.modellix.ai.","datePublished":"2026-08-30T16:00:00.000Z","dateModified":"2026-08-30T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/deepseek-harness-web-search/","image":"https://img.modellix.ai/en/article/cover-deepseek-harness-web-search.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">DeepSeek Harness Web Search: web_search and web_fetch</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/LLM-API/" class="category-tag category-tag--sm">LLM API</a>
+          
+        
+      </div>
+      <h1 class="post-title">DeepSeek Harness Web Search: web_search and web_fetch</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-30T16:00:00.000Z">August 31, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/DeepSeek-Harness/" class="tag-pill tag-pill--sm">DeepSeek Harness</a>
+            
+              <a href="/blog/tags/Tutorial/" class="tag-pill tag-pill--sm">Tutorial</a>
+            
+              <a href="/blog/tags/Web-Search/" class="tag-pill tag-pill--sm">Web Search</a>
+            
+              <a href="/blog/tags/dsh-modellix/" class="tag-pill tag-pill--sm">dsh-modellix</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>Why configuring web_search means installing a plugin DeepSeek Harness ships with two built-in web tools: web_search, which looks things up, and web_fetch, which opens a specific URL and returns its readable content.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-deepseek-harness-web-search.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-deepseek-harness-web-search.png" alt="DeepSeek Harness web search editorial cover: native web_search and web_fetch tools routed through the Modellix provider to tool.modellix.ai, amber key with cyan rim light on dark copper" />
+</picture>
+
+<h2 id="Why-configuring-web-search-means-installing-a-plugin"><a href="#Why-configuring-web-search-means-installing-a-plugin" class="headerlink" title="Why configuring web_search means installing a plugin"></a>Why configuring web_search means installing a plugin</h2><p>DeepSeek Harness ships with two built-in web tools: <code>web_search</code>, which looks things up, and <code>web_fetch</code>, which opens a specific URL and returns its readable content. Together they cover the browsing loop every agent needs: find a source, read it, cite it. Out of the box, both run through DeepSeek’s official provider and authenticate with a DeepSeek API key—the <a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness">official repository</a> calls the whole product “everything is a plugin,” and web search is one of the plugin seams. The tools themselves are native; only the provider behind them is swappable.</p>
+<p>That seam is the thing people get stuck on. A <a target="_blank" rel="noopener" href="https://www.reddit.com/r/LocalLLaMA/comments/1vva30g/web_search_tool_in_deepseek_harness_needs_api_key/">r&#x2F;LocalLLaMA thread</a> that ranks first for “deepseek harness web_search api key” describes the exact failure: you point the harness at another model source, the model works, and then every <code>web_search</code> call still bills you as if it had called DeepSeek’s own model. The same issue shows up in the harness’s GitHub Discussions, where a ten-comment thread reports that <code>web_search</code> pins itself to the official endpoint, so users of self-configured gateways hit authentication failures on every search.</p>
+<p>The reason is structural. The harness routes <code>web_search</code> and <code>web_fetch</code> through a <code>searchProvider</code> &#x2F; <code>fetchProvider</code> seam, and the default provider is DeepSeek’s own. The configuration-only path that swaps your model source—covered in the <a href="https://www.modellix.ai/blog/deepseek-harness-custom-model/">DeepSeek Harness custom model guide</a>—does not touch this seam. Swapping the search and fetch providers is exactly what the <a href="https://www.modellix.ai/blog/modellix-deepseek-harness-plugin/">Modellix plugin for DeepSeek Harness</a> calls the “second reason a plugin exists”: a plugin can patch the seam, pure configuration cannot.</p>
+<p>This article walks through one concrete seam swap: the <code>dsh-modellix</code> plugin’s Web module, which registers Modellix as the search and fetch provider for the native tools. Modellix operates the search API used in these examples, so we have a commercial interest in this working for you. Endpoints and prices were verified against <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/agent/deepseek-harness">docs.modellix.ai</a> on August 31, 2026; plugin behaviors were verified against the dsh-modellix README (0.2.0).</p>
+<h2 id="What-the-Web-module-does-and-does-not-do"><a href="#What-the-Web-module-does-and-does-not-do" class="headerlink" title="What the Web module does (and does not do)"></a>What the Web module does (and does not do)</h2><p>The <code>dsh-modellix</code> profile bundle ships three modules—Design, LLM, and Web. The Web module’s entire job is to make web access run through Modellix. This article documents <strong>dsh-modellix 0.2.0</strong> (released August 31, 2026); the native-provider takeover introduced in 0.1.x remains. The <a target="_blank" rel="noopener" href="https://github.com/Modellix/dsh-modellix">plugin README</a> describes the current behavior verbatim:</p>
+<blockquote>
+<p>The explicit Modellix tools and the native Harness providers share the same underlying service, but the routing instruction prevents both tool families from being called for the same operation. Failed or unknown Web requests are not repeated automatically.</p>
+</blockquote>
+<p>That mechanism is the structural difference this article is about. There are two ways to give a harness web access:</p>
+<ul>
+<li><strong>Take over the native seam.</strong> The plugin patches the existing configuration so <code>web_search</code> and <code>web_fetch</code> keep their names, keep their call signature, and simply hit a different provider. The model keeps using tools it already knows how to call.</li>
+<li><strong>Create a new custom tool.</strong> A plugin or skill adds a differently named capability (a new skill, a new tool) that the model has to learn, discover, and prefer over the built-in one.</li>
+</ul>
+<p><code>dsh-modellix</code> 0.2.0 sits on both sides of that line. Its <code>cordis.patch.yml</code> sets <code>searchProvider: modellix</code> and <code>fetchProvider: modellix</code> with 60-second timeouts for both tools, and registers the plugin under the <code>modellix</code> id—the same patch as 0.1.x, so the native <code>web_search</code> and <code>web_fetch</code> still run through Modellix. On top of that, 0.2.0 registers explicit <code>modellix_web_search</code> and <code>modellix_web_fetch</code> tools that Agent routing selects automatically when current or source-backed information is needed. Both tool families share the same Modellix service, and the routing instruction is what stops them from being called for the same operation.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/dsh-web-seam-takeover.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/dsh-web-seam-takeover.png" alt="DeepSeek Harness web search architecture: native web_search and web_fetch routed through the Modellix provider to tool.modellix.ai, with explicit Modellix web tools sharing the same service" loading="lazy" />
+</picture>
+
+<p><em>The seam takeover in one diagram: the native tools and the explicit Modellix tools share the same Modellix service, and the routing instruction prevents both tool families from being called for the same operation.</em></p>
+<p>Three behaviors follow from this design, and all three are worth knowing before you install:</p>
+<ul>
+<li><strong>The provider is unavailable when Web is disabled or no valid Key exists.</strong> The native tools exist, but there is nothing behind them.</li>
+<li><strong>Web requests may incur Modellix usage, and the provider does not automatically retry.</strong> If a request fails on the wire, the plugin does not re-fire it for you. That is a deliberate boundary: retrying a billed call automatically is how duplicate charges happen.</li>
+<li><strong>If a paid Fetch outcome is unknown, inspect the Harness transcript or the Modellix-side record before repeating it manually.</strong> “Outcome unknown” is a real state (connection dropped after the request left), and the documented recovery is to check what actually happened, not to re-run the call blindly.</li>
+</ul>
+<h2 id="Before-you-start-versions-and-a-key"><a href="#Before-you-start-versions-and-a-key" class="headerlink" title="Before you start: versions and a key"></a>Before you start: versions and a key</h2><p>The plugin pins its host interfaces, so the version requirements are not negotiable:</p>
+<ul>
+<li><strong>DeepSeek Harness <code>0.1.1-rc.2</code></strong> — the plugin’s peer dependencies are fixed to <code>@deepseek-ai/dsh-*@0.1.1-rc.2</code>. Harness and the plugin both use prerelease interfaces; check the package’s peer dependencies before upgrading Harness.</li>
+<li><strong>Node.js <code>^22.19.0 || &gt;=24.0.0</code></strong> for the published package.</li>
+<li><strong>A Modellix API key</strong> from the <a href="https://www.modellix.ai/console/api-key">Modellix console</a>—a Modellix key, not a DeepSeek, OpenAI, or Anthropic platform key. The getting-started guide at <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started">docs.modellix.ai</a> shows where to create one.</li>
+</ul>
+<p>One ordering trap from the plugin’s local-usage notes: a fresh profile may show Harness’s own DeepSeek initialization dialog first. Complete (or dismiss) that step before the plugin’s “Connect Modellix” dialog appears—otherwise it looks like the plugin failed to load when it is simply waiting its turn.</p>
+<h2 id="Install-and-verify-three-commands"><a href="#Install-and-verify-three-commands" class="headerlink" title="Install and verify: three commands"></a>Install and verify: three commands</h2><p>Installation is three commands against the profile that runs your Web UI (default <code>web</code>):</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dsh plugin --profile web add dsh-modellix</span><br><span class="line">dsh --profile web --dump-config</span><br><span class="line">dsh --profile web</span><br></pre></td></tr></table></figure>
+
+<p>Verification lives in the middle command: <code>--dump-config</code> should show the <code>dsh-modellix</code> Bundle layer and a plugin row whose id is <code>modellix</code>. If you see those two entries, the Web module is registered; start or restart the profile and the “Connect Modellix” dialog will appear on first launch.</p>
+<p>Two details that are easy to miss:</p>
+<ul>
+<li><strong>Updating the plugin requires restarting the profile.</strong> Reloading the browser does not load a new Client Bundle. After <code>dsh plugin add</code> (or an update), stop and start the profile.</li>
+<li><strong>Installing from source is not <code>dsh plugin add &lt;git-url&gt;</code>.</strong> Building a tarball from the repo (<code>pnpm install --frozen-lockfile</code> → <code>pnpm run verify:release:static</code> → <code>pnpm pack</code>) and adding the <code>.tgz</code> works; pointing the plugin command at an unbuilt Git checkout does not, because the package must produce <code>lib/</code> before it loads. For Windows isolation environments, the plugin’s <code>LOCAL_USAGE.md</code> documents a <code>DSH_HOME</code>-scoped flow.</li>
+</ul>
+<h2 id="The-key-what-web-search-actually-authenticates-with"><a href="#The-key-what-web-search-actually-authenticates-with" class="headerlink" title="The key: what web_search actually authenticates with"></a>The key: what web_search actually authenticates with</h2><p>The “deepseek harness web_search api key” question has a simple answer once the seam model is clear: <strong>the key belongs to the provider configured on the seam, not to the tool name.</strong> Default provider, DeepSeek key. Provider swapped to Modellix, Modellix key. The <code>web_search</code> tool itself never “needs a DeepSeek key”—it needs whatever key the provider on the seam accepts. That is why the reddit thread’s setup kept billing DeepSeek: the model source was changed, but the search provider on the seam was still DeepSeek’s.</p>
+<p>The Web module accepts the key from two sources, matching the rest of the plugin:</p>
+<ul>
+<li><strong>Enter it in the “Connect Modellix” dialog or in Modellix settings.</strong> The Harness Credential service stores it; after saving, the UI shows only a redacted descriptor, never the key itself.</li>
+<li><strong>Provide <code>MODELLIX_API_KEY</code> in the Harness launch environment.</strong> An environment-sourced key is read-only in the UI—change it outside the harness and restart.</li>
+</ul>
+<p>The plugin’s README is explicit about handling keys: never put a real key in a repository, command argument, log, screenshot, HAR, recording, or test snapshot. <code>MODELLIX_API_KEY</code> in your shell profile or secret manager is the supported pattern. The one-key-per-provider rule also means a single Modellix key covers search, fetch, and any Modellix LLM models you configure—there is no separate “search key” to create.</p>
+<h2 id="What-the-two-tools-call-on-the-Modellix-side"><a href="#What-the-two-tools-call-on-the-Modellix-side" class="headerlink" title="What the two tools call on the Modellix side"></a>What the two tools call on the Modellix side</h2><p>Modellix’s web tools run at <code>https://tool.modellix.ai</code>, launched on <strong>August 17, 2026</strong> per the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/changelog/product-updates">product changelog</a>. Both calls are synchronous and use the same Modellix API key. The <a target="_blank" rel="noopener" href="https://docs.modellix.ai/tools/overview">Modellix Tools overview</a> documents the two endpoints:</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Endpoint</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Web Search</td>
+<td><code>POST /v1/web-search</code></td>
+<td>Returns ranked results; depth <code>lite</code>, <code>standard</code>, or <code>rich</code>; optional filters for domain, time range, topic, or country</td>
+</tr>
+<tr>
+<td>Web Fetch</td>
+<td><code>POST /v1/web-fetch</code></td>
+<td>Extracts readable title and content from public HTTP&#x2F;HTTPS URLs, up to 20 per request; failed URLs are returned separately</td>
+</tr>
+</tbody></table>
+<p>Pricing follows the same per-call split. Web Search is charged <strong>per request</strong> by depth—not per result, not per URL: <code>lite</code> $0.01, <code>standard</code> $0.015, <code>rich</code> $0.02 per request (default <code>standard</code>). Web Fetch is charged <strong>$0.002 per successful URL</strong>, and failed URLs are not billed. Full parameter details live in the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/api/web-search">Web Search</a> and <a target="_blank" rel="noopener" href="https://docs.modellix.ai/api/web-fetch">Web Fetch</a> API references. Prices change; confirm current rates in the Modellix console before you rely on them.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/web-search-fetch-behavior.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/web-search-fetch-behavior.png" alt="Web Search and Web Fetch behavior on tool.modellix.ai: per-request search with depth levels and per-URL fetch with failed URLs returned separately" loading="lazy" />
+</picture>
+
+<p><em>Both tools are synchronous calls on the same host: search is billed once per request at the chosen depth, fetch is billed per successful URL.</em></p>
+<p>Two practical notes. First, the tool calls carry an <code>X-Mdlx-User-Id</code> header (8–128 characters), which the provider sets on your behalf—you do not configure it inside the harness, but it is what appears in Modellix-side request logs if you need to trace a specific agent run. Second, request history is queryable through the Get Tool Logs endpoint, which is the “Modellix-side record” to check when a fetch outcome is unknown.</p>
+<h2 id="How-this-differs-from-community-web-search-plugins"><a href="#How-this-differs-from-community-web-search-plugins" class="headerlink" title="How this differs from community web search plugins"></a>How this differs from community web search plugins</h2><p>The SERP for “deepseek harness web search” is dominated by community-built search plugins, and each one sits on a different side of the seam distinction above:</p>
+<table>
+<thead>
+<tr>
+<th>Plugin</th>
+<th>Form</th>
+<th>Where it operates</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/liustack/modsearch">ModSearch</a></td>
+<td>A skill with its own CLI and engine failover (Firecrawl, Tavily, Exa, Grok, local)</td>
+<td>A new capability called by name—a new tool, not a replacement for the native one</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness/discussions/2671">AnySearch provider</a></td>
+<td>A custom <code>WebSearchProvider</code> against AnySearch’s <code>/v1/search</code>, with its own settings section and credential flow</td>
+<td>At the seam, but community-built and maintained, and search only—fetch stays on the default provider</td>
+</tr>
+<tr>
+<td>dsh-modellix (0.2.0)</td>
+<td>Native seam takeover (<code>cordis.patch.yml</code> unchanged) plus explicit <code>modellix_web_search</code> &#x2F; <code>modellix_web_fetch</code> tools</td>
+<td>Both: the native tools run through Modellix, and Agent routing selects the explicit tools automatically—the routing instruction prevents both families from being called for the same operation</td>
+</tr>
+</tbody></table>
+<p>These are structural differences, not quality judgments. A custom tool and a seam takeover both give the model web access; the difference is what the model has to know. With a seam takeover, <code>web_search</code> behaves exactly as before from the model’s perspective—same name, same arguments, same result shape—so prompts, agent presets, and saved sessions that already call it keep working. With a new tool, the model must discover the new name and learn to prefer it. Under 0.2.0 the two paths coexist in <code>dsh-modellix</code>: the seam keeps the native tools on Modellix, and the explicit tools give the Agent an automatically selected route to the same service.</p>
+<p>One honest caveat that belongs to the harness, not to any plugin: community threads have noted that <code>web_fetch</code> lacks HTTP proxy support. That is a Harness-side gap raised against the native tool—it is not a defect of the Modellix plugin, which simply routes the native tool to its provider.</p>
+<h2 id="Where-this-fits-boundaries-and-next-steps"><a href="#Where-this-fits-boundaries-and-next-steps" class="headerlink" title="Where this fits: boundaries and next steps"></a>Where this fits: boundaries and next steps</h2><p>The Web module is one of three in the plugin; the Design module covers image, video, and audio generation and has been chat-first since 0.2.0 (a separate guide in this series covers it), and the LLM module handles model selection. If you only needed a different model source, you did not need a plugin at all—the <a href="https://www.modellix.ai/blog/deepseek-harness-custom-model/">custom model guide</a> is pure configuration. If you are deciding whether any plugin is worth it, the <a href="https://www.modellix.ai/blog/modellix-deepseek-harness-plugin/">plugin mechanisms article</a> explains bundles, manifests, and the two entry points.</p>
+<p>For the wider category, the <a href="https://www.modellix.ai/blog/agent-harness/">agent harness overview</a> provides the surrounding context and the pillar <a href="https://www.modellix.ai/blog/deepseek-harness/">DeepSeek Harness article</a> ties the whole cluster together. If you are weighing gateway-level options rather than Harness specifics, the <a href="https://www.modellix.ai/blog/unified-ai-api/">unified AI API guide</a> covers the aggregation-API angle.</p>
+<p>Two boundaries worth stating explicitly. First, this article is about <em>how to connect</em> search and fetch in the harness—<em>which</em> search provider to pick (Tavily versus Exa versus a tool API) is a separate selection decision, and a dedicated guide covers provider alternatives. Second, choosing Modellix for search does not change the text-gateway rule for the LLM side: the Modellix LLM gateway is text-only, and you should not attach images to model requests in the harness.</p>
+<p>What you should be able to do now: install the plugin, confirm the <code>modellix</code> provider row in <code>--dump-config</code>, enter one Modellix key, and ask the harness to search and fetch through the native tools—knowing that search is billed per request, fetch per successful URL, and neither is retried automatically.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">DeepSeek Harness Integration Docs</h3><p class="view-docs-tag-desc">Read the full DeepSeek Harness configuration reference for the Modellix LLM gateway, including the Web module, credentials, and the troubleshooting table.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Open the Modellix Console</h3><p class="view-docs-tag-desc">Log in to create your Modellix API key and check live Web Search and Web Fetch rates before your first harness run.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<hr>
+<p><em>Endpoints, prices, and launch dates reflect Modellix public documentation as of August 31, 2026, and change as the platform evolves; confirm live rates in the Modellix console before committing. Access image and video models, including the leading Chinese models, through a single API key at <a target="_blank" rel="noopener" href="https://modellix.ai/">modellix.ai</a>.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/DeepSeek-Harness/" class="tag-pill tag-pill--sm">DeepSeek Harness</a>
+            
+              <a href="/blog/tags/Tutorial/" class="tag-pill tag-pill--sm">Tutorial</a>
+            
+              <a href="/blog/tags/Web-Search/" class="tag-pill tag-pill--sm">Web Search</a>
+            
+              <a href="/blog/tags/dsh-modellix/" class="tag-pill tag-pill--sm">dsh-modellix</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/deepseek-harness-image-generation/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-deepseek-harness-image-generation.webp" alt="DeepSeek Harness Image Generation: Media Output via Plugin" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">DeepSeek Harness Image Generation: Media Output via Plugin</h3>
+          <time class="related-article-date" datetime="2026-08-31T16:00:00.000Z">September 1, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/deepseek-harness-plugin/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-deepseek-harness-plugin.webp" alt="DeepSeek Harness Plugin: Bundles and When You Don&#39;t Need One" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">DeepSeek Harness Plugin: Bundles and When You Don&#39;t Need One</h3>
+          <time class="related-article-date" datetime="2026-08-31T16:00:00.000Z">September 1, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/dsh-plugin-add/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-dsh-plugin-add.webp" alt="dsh plugin add: Install, Verify, Remove Harness Bundles" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">dsh plugin add: Install, Verify, Remove Harness Bundles</h3>
+          <time class="related-article-date" datetime="2026-08-31T16:00:00.000Z">September 1, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/deepseek-harness-web-search/&text=DeepSeek%20Harness%20Web%20Search%3A%20web_search%20and%20web_fetch" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/deepseek-harness-web-search/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/deepseek-harness-web-search/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

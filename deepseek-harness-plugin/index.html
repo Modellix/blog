@@ -1,0 +1,589 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeepSeek Harness Plugin: Bundles and When You Don&#39;t Need One — Modellix Blog</title>
+  <meta name="description" content="DeepSeek Harness plugins ship as bundles: a package manifest, a patch file, a profile entry. Here is how bundles work — and when pure configuration is enough.">
+  <meta name="keywords" content="deepseek harness plugin, best deepseek harness plugins, deepseek harness plugin github, how to write a dsh plugin, deepseek harness bundle, deepseek harness plugin vs custom provider, awesome dsh plugins">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/deepseek-harness-plugin/">
+  <meta name="description" content="DeepSeek Harness plugins ship as bundles: a package manifest, a patch file, a profile entry. Here is how bundles work — and when pure configuration is enough.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DeepSeek Harness Plugin: Bundles and When You Don&#39;t Need One — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/deepseek-harness-plugin/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="DeepSeek Harness plugins ship as bundles: a package manifest, a patch file, a profile entry. Here is how bundles work — and when pure configuration is enough.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-deepseek-harness-plugin.webp">
+<meta property="article:published_time" content="2026-08-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-31T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="DeepSeek Harness">
+<meta property="article:tag" content="LLM Gateway">
+<meta property="article:tag" content="Plugin">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-deepseek-harness-plugin.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"DeepSeek Harness Plugin: Bundles and When You Don't Need One","description":"DeepSeek Harness plugins ship as bundles: a package manifest, a patch file, a profile entry. Here is how bundles work — and when pure configuration is enough.","datePublished":"2026-08-31T16:00:00.000Z","dateModified":"2026-08-31T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/deepseek-harness-plugin/","image":"https://img.modellix.ai/en/article/cover-deepseek-harness-plugin.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">DeepSeek Harness Plugin: Bundles and When You Don&#39;t Need One</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/LLM-API/" class="category-tag category-tag--sm">LLM API</a>
+          
+        
+      </div>
+      <h1 class="post-title">DeepSeek Harness Plugin: Bundles and When You Don&#39;t Need One</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-31T16:00:00.000Z">September 1, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/DeepSeek-Harness/" class="tag-pill tag-pill--sm">DeepSeek Harness</a>
+            
+              <a href="/blog/tags/LLM-Gateway/" class="tag-pill tag-pill--sm">LLM Gateway</a>
+            
+              <a href="/blog/tags/Plugin/" class="tag-pill tag-pill--sm">Plugin</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>DeepSeek Harness plugins: ask whether you need one before you pick one Almost every article about the DeepSeek Harness plugin ecosystem starts with a list of plugins you should install.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-deepseek-harness-plugin.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-deepseek-harness-plugin.png" alt="DeepSeek Harness plugin editorial cover: a glass bundle stack feeding an agent harness, with a split between a pure-configuration path and a plugin path, amber key and cyan rim light" />
+</picture>
+
+<h2 id="DeepSeek-Harness-plugins-ask-whether-you-need-one-before-you-pick-one"><a href="#DeepSeek-Harness-plugins-ask-whether-you-need-one-before-you-pick-one" class="headerlink" title="DeepSeek Harness plugins: ask whether you need one before you pick one"></a>DeepSeek Harness plugins: ask whether you need one before you pick one</h2><p>Almost every article about the DeepSeek Harness plugin ecosystem starts with a list of plugins you should install. This one starts earlier, with a question none of those lists ask: do you need a plugin at all?</p>
+<p>DeepSeek Harness (<code>dsh</code>) is built on an everything-is-a-plugin architecture, and its own documentation says the fastest way to change what it can do is often <strong>not</strong> to install a plugin. The official Modellix integration page puts it in one sentence:</p>
+<blockquote>
+<p>Modellix needs no plugin—only configuration. — <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/agent/deepseek-harness">Modellix DeepSeek Harness docs</a></p>
+</blockquote>
+<p>That sentence is the dividing line this article is organized around. There are two ways to change what your harness can do: <strong>pure configuration</strong> (point the existing model adapter at a different endpoint) and <strong>plugins</strong> (install a bundle that adds capabilities configuration cannot express). This article explains what a DeepSeek Harness plugin actually is mechanically — bundles, manifests, patch files, and profile entries — then walks through what each path buys you, using the Modellix plugin for DeepSeek Harness as the worked example.</p>
+<p>The installation commands themselves (<code>dsh plugin add</code>, verify, remove) belong to a separate article; here the focus is the mechanism and the decision. If you came here wanting the custom-provider setup walkthrough, the <a href="https://www.modellix.ai/blog/deepseek-harness-custom-model/">DeepSeek Harness custom model guide</a> is the “swap the model source” half of this pair, and this page is the “plugin mechanism and whether you need it” half.</p>
+<p>One disclosure up front: Modellix runs the plugin and the gateway used in the examples below, so we have a commercial interest in both working for you. The technical claims come from the official DeepSeek Harness repository and documentation, and the numbers are dated September 1, 2026.</p>
+<h2 id="What-a-DeepSeek-Harness-plugin-actually-is"><a href="#What-a-DeepSeek-Harness-plugin-actually-is" class="headerlink" title="What a DeepSeek Harness plugin actually is"></a>What a DeepSeek Harness plugin actually is</h2><p>DeepSeek Harness describes itself with the tagline “Everything is a Plugin”: models, tools, skills, sessions, sandboxes, storage, loops, scheduling, and even the UI are swappable components. The harness runs on the Cordis microkernel, which manages plugin mounting, unmounting, and dependencies. That is the architecture in one line — but “plugin” covers two different shapes, and confusing them causes most of the ecosystem’s confusion:</p>
+<ul>
+<li><strong>A plugin</strong> is a TypeScript module that exports an <code>apply(ctx)</code> function and registers capabilities. That is the complete definition: <code>export function apply(ctx) &#123; /* register capabilities here */ &#125;</code>, optionally declaring dependencies with <code>inject</code>.</li>
+<li><strong>A bundle</strong> is the distributable package that carries one or more plugins into a profile. A bundle is an npm package whose <code>package.json</code> contains a <code>dsh</code> field marking it as installable:</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;dsh-hello-plugin&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0.1.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;main&quot;</span><span class="punctuation">:</span> <span class="string">&quot;index.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;dsh&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;bundle&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;patch&quot;</span><span class="punctuation">:</span> <span class="string">&quot;./cordis.patch.yml&quot;</span> <span class="punctuation">&#125;</span> <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>The <code>dsh.bundle.patch</code> field points at a <code>cordis.patch.yml</code> — a YAML array that references plugins <strong>by package name</strong>, not by file path:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">insert:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">hello</span></span><br><span class="line">      <span class="attr">name:</span> <span class="string">dsh-hello-plugin</span></span><br></pre></td></tr></table></figure>
+
+<p>When you install a bundle with <code>dsh plugin --profile web add &lt;package&gt;</code>, the harness does two things: it adds the package to the profile’s <code>package.json</code>, and it appends the bundle to the profile’s <code>dsh.profile.bundles</code> list in installation order, starting with the built-in <code>@deepseek-ai/dsh-base</code>. Profiles are ordered stacks of these bundle layers — the <code>web</code>, <code>headless</code>, <code>sdk</code>, <code>sdk-minimal</code>, and <code>acp</code> profiles initialize automatically from built-in templates; any other profile is created through the plugin command. Configuration layers stack on top of each other (each bundle’s patch, then the profile’s <code>cordis.patch.yml</code>, then the home-level patch, then command-line overlays), with later layers overriding earlier rows by id.</p>
+<p>Two details matter when you read plugin documentation:</p>
+<ul>
+<li><strong>Bundles can have host-side and client-side entries.</strong> A simple plugin registers backend capabilities. A bundle that changes the Web UI ships a client entry too — the <code>dsh.client</code> field lists which client packages it injects. If a plugin’s README talks about UI changes, it almost certainly ships both sides; a bare <code>apply()</code> module does not.</li>
+<li><strong>Verification is a command, not a feeling.</strong> The official acceptance check is <code>dsh --profile web --dump-config</code>, which prints the composed configuration tree without booting it. If you do not see the bundle layer and the plugin row you installed, the plugin is not active — reloading the browser alone does not load a new client bundle.</li>
+</ul>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/dsh-plugin-bundle-anatomy.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/dsh-plugin-bundle-anatomy.png" alt="Plugin bundle anatomy diagram: an npm package dsh field, cordis.patch.yml, and profile bundles feeding host and client entries" loading="lazy" />
+</picture>
+
+<p><em>A bundle is an npm package with a <code>dsh</code> manifest and a <code>cordis.patch.yml</code>; the profile’s bundles list decides what a profile actually loads, on both host and client sides.</em></p>
+<p>One more fact to keep in your head before you go hunting: <strong>DeepSeek Harness is in developer preview.</strong> The repository README says it is “iterating rapidly” and that <strong>there will be compatibility-breaking changes</strong>. Any plugin you install today is pinned to prerelease interfaces, so a plugin’s version compatibility is part of its evaluation — not an afterthought.</p>
+<p>The ecosystem you are searching is large and young at the same time. The only first-party number worth citing: the <a target="_blank" rel="noopener" href="https://github.com/topics/dsh-plugin">GitHub <code>dsh-plugin</code> topic</a> contains <strong>12,409 repositories</strong> as of August 29, 2026 — and that count mixes in plenty of projects that are not plugins at all. Every other “plugin count” you will see (a catalog claiming 316 plugins, a directory claiming 11,000+) is a third-party number with no verifiable source. Treat them as marketing.</p>
+<h2 id="What-pure-configuration-already-gives-you"><a href="#What-pure-configuration-already-gives-you" class="headerlink" title="What pure configuration already gives you"></a>What pure configuration already gives you</h2><p>Before evaluating a single plugin, know what your harness can already do with configuration alone. DeepSeek Harness’s model adapter (<code>llm-pi-ai</code>) accepts a <strong>custom provider</strong> for any OpenAI-compatible endpoint, and the <a target="_blank" rel="noopener" href="https://deepseek-harness.github.io/deepseek-harness/guide/providers">official providers guide</a> documents the mechanism generically. Four values define a model source:</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Example for Modellix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Provider ID</td>
+<td><code>modellix</code></td>
+</tr>
+<tr>
+<td>Base URL</td>
+<td><code>https://llm.modellix.ai/v1</code></td>
+</tr>
+<tr>
+<td>API protocol</td>
+<td><code>openai-completions</code></td>
+</tr>
+<tr>
+<td>Model IDs</td>
+<td><code>openai/gpt-5.5</code>, <code>deepseek/deepseek-v4-flash</code>, …</td>
+</tr>
+</tbody></table>
+<p>Enter those in the Web UI form or in <code>$DSH_HOME/settings.yaml</code>, and the harness talks to the new source on the next request — no restart, no bundle, no plugin. The Modellix LLM gateway serves the OpenAI-compatible <code>GET /v1/models</code> endpoint, so “Fetch available models” lists the current catalog automatically, and you can pick models by hand or by fetch. As of September 1, 2026, that catalog is <strong>28 language models across 9 provider labels</strong> — Anthropic, DeepSeek, Google, Moonshot, OpenAI, Qwen, xAI, ZAI, and Modellix’s own — with the live list and per-million-token pricing on the <a href="https://www.modellix.ai/llm">Modellix LLM page</a>. You can also choose the wire protocol: <code>openai-completions</code> for Chat Completions, or <code>anthropic-messages</code> if you prefer the Anthropic protocol (with the base URL change that protocol requires).</p>
+<p>This is the path the official docs are pointing at: “Modellix needs no plugin—only configuration.” If your goal is a different model source — which is the most common reason people go looking for a “deepseek harness plugin” in the first place — you are already done after the form. The step-by-step walkthrough for this path, including the <code>settings.yaml</code> variant and the four traps that cause “model won’t connect,” is in the DeepSeek Harness custom model article linked in the opening section. One boundary note from that same documentation: the Modellix LLM gateway is a <strong>text gateway</strong> — use text-only prompts and do not attach images to model calls.</p>
+<h2 id="What-a-plugin-adds-that-configuration-cannot"><a href="#What-a-plugin-adds-that-configuration-cannot" class="headerlink" title="What a plugin adds that configuration cannot"></a>What a plugin adds that configuration cannot</h2><p>Configuration can only point existing seams at new providers. A plugin can add <strong>new seams</strong>. That is the real difference, and it is why “plugin vs custom provider” is the wrong way to frame the choice: they are not competing solutions for the same job, they are different layers. The Modellix plugin for DeepSeek Harness (<a target="_blank" rel="noopener" href="https://github.com/Modellix/dsh-modellix"><code>dsh-modellix</code></a>) is a clean worked example because it packages exactly the three things configuration cannot do:</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/dsh-config-vs-plugin-fork.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/dsh-config-vs-plugin-fork.png" alt="Decision fork between pure configuration and a plugin: one API key branching to a config panel or Design, Web, and LLM modules" loading="lazy" />
+</picture>
+
+<p><em>One key, two paths: pure configuration covers model sources; a plugin adds Design, Web, and live-catalog capabilities that configuration cannot express.</em></p>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>What you experience</th>
+<th>What actually happens</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Design</strong></td>
+<td>A media workspace in the harness: pick an image&#x2F;video&#x2F;audio model, enter a prompt, adjust parameters, review results</td>
+<td>Reads the live media catalog and each model’s public schema; a billed generation is submitted exactly once</td>
+</tr>
+<tr>
+<td><strong>LLM</strong></td>
+<td>Modellix models appear in the harness model selector and stay current</td>
+<td>Merges the live catalog into the <code>llm-pi-ai</code> Modellix provider continuously — new models show up without editing config</td>
+</tr>
+<tr>
+<td><strong>Web</strong></td>
+<td>The native <code>web_search</code> and <code>web_fetch</code> tools just work against Modellix</td>
+<td>Registers Modellix search&#x2F;fetch providers behind the existing tool names; no duplicate custom tools</td>
+</tr>
+</tbody></table>
+<p>Three of those behaviors deserve emphasis because they are invisible until you need them:</p>
+<ul>
+<li><strong>The LLM module is a live catalog, not a snapshot.</strong> The pure-configuration path gives you one <code>GET /v1/models</code> fetch at setup time; the plugin keeps merging the current catalog into the model selector, with a settings panel that shows catalog health, model count, and last refresh time, plus a manual refresh. When Modellix adds a model, it appears in the selector without you touching config.</li>
+<li><strong>The Web module takes over the native tools.</strong> <code>web_search</code> and <code>web_fetch</code> are harness-native tool names; the plugin’s patch sets the search and fetch providers to Modellix (60-second timeouts) without creating a second set of tools. This matters because a harness only shows one Web UI for search&#x2F;fetch — a plugin that reuses the native seam integrates cleanly, one that builds its own tool does not.</li>
+<li><strong>The Design module does not guess.</strong> Parameter fields come from each model’s live <code>api_schema</code>; a complex schema with a blocking unsupported constraint disables submission instead of guessing. The plugin’s “adjust by chat” assistant proposes a reviewable diff and never starts a media generation by itself — only the explicit “Confirm and generate” action issues the billed request, and that request is never retried automatically.</li>
+</ul>
+<p>All three modules share <strong>one Modellix API key</strong>, and all three default to on with independent switches — you can enable only Design, only LLM, or only Web. The media generation runs on the async media API (a different host from the text gateway, with task IDs and polling), which is how the harness gets image, video, and audio output at all: every model on the Modellix text gateway outputs text only, so generation inside the harness is plugin territory.</p>
+<h2 id="A-worked-example-the-Modellix-bundle"><a href="#A-worked-example-the-Modellix-bundle" class="headerlink" title="A worked example: the Modellix bundle"></a>A worked example: the Modellix bundle</h2><p>The Modellix plugin for DeepSeek Harness — <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/dsh-modellix">npm package <code>dsh-modellix</code></a>, source at <code>Modellix/dsh-modellix</code>, Apache-2.0 — installs into the web profile and is a good reference for what a well-built bundle looks like, and for what a young plugin honestly looks like.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/dsh-modellix-plugin-modules.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/dsh-modellix-plugin-modules.png" alt="dsh-modellix integration diagram: one Modellix API key connecting Design, LLM, and Web modules into DeepSeek Harness" loading="lazy" />
+</picture>
+
+<p><em>The Modellix bundle wires three modules to one key: Design for media generation, LLM for the live model catalog, Web for native search and fetch.</em></p>
+<p>Requirements are pinned, which is exactly what prerelease interfaces demand: DeepSeek Harness <strong>0.1.1-rc.2</strong> (not “latest”), and Node.js <code>^22.19.0 || &gt;=24.0.0</code> for the published package. The README opens with the warning that applies to every bundle in this ecosystem: “Harness and this plugin currently use prerelease interfaces. Before upgrading Harness, check this package’s peer dependencies and CHANGELOG.”</p>
+<p>Keys follow the two-source pattern: enter the key in the first-run dialog (the harness stores it write-only — after saving, the browser never displays it again, only a redacted descriptor), or provide <code>MODELLIX_API_KEY</code> in the harness launch environment (in which case the UI shows it as read-only and you restart the harness after changing it). The plugin does not read a <code>modellix-cli</code> login; the CLI keychain and the harness credential store are separate.</p>
+<p>Two behaviors in the plugin are worth calling out because they are billing guardrails, not features:</p>
+<ul>
+<li>The billed media POST is <strong>submitted once and never auto-retried</strong>. If a submission disconnects with an unknown outcome, Design shows “Submission outcome unknown” and asks you to check results before resubmitting — a deliberate design to prevent duplicate charges.</li>
+<li>The LLM module sets provider retries to <strong>0</strong> (avoid repeating model calls at the plugin layer) and <strong>never fabricates a static model list</strong> when the catalog is unavailable. If the catalog is down, the model picker is empty rather than stale.</li>
+</ul>
+<p>The engineering behind it is verifiable in the repository: a ten-step release gate (<code>verify:env</code> → typecheck → lint → test → build → <code>verify:pack</code> → <code>verify:fresh-install</code> → <code>verify:node22-install</code> → <code>verify:release:static</code> → <code>verify:release</code>). Two steps are unusual for a plugin this size: <code>verify:pack</code> actually decodes the twelve locale-specific WebP screenshots to confirm they are metadata-free, and <code>verify:node22-install</code> <strong>fails instead of silently skipping</strong> when no Node 22 binary is found. Documentation is bilingual (English and Chinese), and the client UI targets 320px viewports, 200% text zoom, forced colors, 48px pointer targets, and reduced motion.</p>
+<p>Honesty about adoption: this is a very new plugin. <code>Modellix/dsh-modellix</code> was created on <strong>August 24, 2026</strong>; as of August 29, 2026, it has <strong>1 star, 0 forks, 0 open issues, and no GitHub releases</strong>, with 27 commits concentrated in three days by a single committer, and two same-day npm versions (0.1.0, 0.1.1). Nothing here should be read as community adoption — there is none to point at yet. The same design space already has projects with hundreds of thousands of stars (the open-source <code>open-design</code> plugin for image generation sits at roughly 92,000), so judge the Modellix plugin on the engineering evidence above and your own <code>--dump-config</code>, not on its star count. If you prefer a deeper product walkthrough, the <a href="https://www.modellix.ai/blog/modellix-deepseek-harness-plugin/">Modellix DeepSeek Harness plugin article</a> covers the bundle’s modules and first-run flow in detail.</p>
+<h2 id="How-to-evaluate-any-dsh-plugin-before-installing"><a href="#How-to-evaluate-any-dsh-plugin-before-installing" class="headerlink" title="How to evaluate any dsh plugin before installing"></a>How to evaluate any dsh plugin before installing</h2><p>The deepseek harness plugin GitHub search will return thousands of repositories, and every third-party directory claims to have already ranked them for you. None of that substitutes for a five-minute check. The checklist below applies to any bundle, including the one in the previous section:</p>
+<ol>
+<li><strong>Check the version contract.</strong> Prerelease interfaces mean the plugin’s peer dependencies are its compatibility statement. Does it pin a specific <code>dsh</code> version, and does that match the harness you run? The <code>0.1.1-rc.2</code> requirement above is the norm, not a quirk.</li>
+<li><strong>Read the README’s warning section.</strong> A plugin that documents its prerelease status, its credentials model, and its billing behavior is telling you it has thought about failure. A README that only lists features is not.</li>
+<li><strong>Look at the repository, not the star count.</strong> Activity is a better signal than stars on a two-week-old ecosystem: commit recency, issue responses, and a release or tag history. A 92,000-star project and a 1-star project can both be the right or wrong choice for your setup — stars measure attention, not compatibility.</li>
+<li><strong>Ask what permissions it needs.</strong> Browser-control plugins can inherit authenticated sessions; workflow plugins can repeat actions; UI bundles pull in many packages for one feature. The harness’s own sandbox has known sharp edges — a plugin that needs <code>workspace-write</code> or broader deserves extra scrutiny.</li>
+<li><strong>Verify after install.</strong> Run <code>dsh --profile web --dump-config</code> and confirm the bundle layer and plugin row are present. “Installed but not active” is the most common failure state in this ecosystem, and it is invisible until you check.</li>
+<li><strong>Install one plugin per problem.</strong> Every bundle adds code, dependencies, and a surface that needs updating when the harness changes. The goal is not the longest plugin list; it is an environment where every extension has a job you can explain.</li>
+</ol>
+<p>Also worth stating plainly: <strong>there is no official plugin marketplace.</strong> DeepSeek has not shipped one; the community has been asking for it. Every “plugin store” or “plugin market” you find (dshbase, dshfind, the various <code>awesome-dsh-plugin</code> lists, category catalogs) is third-party. That does not make them useless — the curated lists are the best discovery surface the ecosystem has — but “listed on a directory” is a discovery signal, not a quality or security signal.</p>
+<h2 id="Plugin-or-not-the-decision-in-one-table"><a href="#Plugin-or-not-the-decision-in-one-table" class="headerlink" title="Plugin or not: the decision in one table"></a>Plugin or not: the decision in one table</h2><p>Put the two paths side by side and the choice stops being about “plugins vs configuration” and becomes “what are you trying to change?”</p>
+<table>
+<thead>
+<tr>
+<th>Your need</th>
+<th>Path</th>
+<th>What it costs</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Use different LLM models in the harness</td>
+<td>Pure configuration (custom provider)</td>
+<td>Four form fields, no restart</td>
+</tr>
+<tr>
+<td>Keep the model list current as a catalog changes</td>
+<td>Plugin (LLM module) or periodic manual refresh</td>
+<td>A bundle install + one key</td>
+</tr>
+<tr>
+<td>Generate image&#x2F;video&#x2F;audio inside the harness</td>
+<td>Plugin (Design module)</td>
+<td>A bundle install + one key + billed media usage</td>
+</tr>
+<tr>
+<td>Search and fetch the web through Modellix</td>
+<td>Plugin (Web module)</td>
+<td>A bundle install + one key</td>
+</tr>
+<tr>
+<td>Anything else a harness seam can express</td>
+<td>Plugin, but only the one that covers that seam</td>
+<td>Varies; evaluate per the checklist</td>
+</tr>
+</tbody></table>
+<p>When you do <strong>not</strong> need a plugin: you only want a different model source; you want the smallest possible surface on a prerelease harness (fewer bundles &#x3D; fewer things to break when interfaces change); or you are still evaluating the harness and want to minimize variables. Pure configuration is the honest answer in all three cases — and it is also the recommended first step before any plugin, because a working baseline makes a broken plugin much easier to diagnose.</p>
+<p>When you do need a plugin: the capability genuinely does not exist in configuration — media generation inside the harness, native web tools backed by a specific provider, a live model catalog in the picker, or any of the hundreds of capability plugins (vision bridges, browser control, workflows, UI skins, memory) the ecosystem is producing. That is the point where “best deepseek harness plugins” becomes a real question, and the answer is the one that covers the missing seam you identified — not the highest-starred one.</p>
+<p>If this is your first time touching the harness, the <a href="https://www.modellix.ai/blog/deepseek-harness/">DeepSeek Harness overview</a> is the whole-product context for this subsystem: what the harness is, how to run it, and where its models come from. For the config path’s execution details, the custom model article linked above has the form and the <code>settings.yaml</code> side by side. The install&#x2F;verify&#x2F;remove command flow for bundles is covered in the companion <code>dsh plugin add</code> article, and the Design and Web modules each get their own deep dive in the image generation and web search articles. The short version: understand the mechanism, start with configuration, add exactly one plugin for exactly one missing capability, and verify with <code>--dump-config</code>.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">DeepSeek Harness Integration Docs</h3><p class="view-docs-tag-desc">Read the official Modellix × DeepSeek Harness configuration reference — the custom provider fields, the settings.yaml block, and the troubleshooting table behind the &#39;no plugin—only configuration&#39; sentence.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Open the Modellix Console</h3><p class="view-docs-tag-desc">Log in to generate your Modellix API key and check live per-model pricing for the 28-model LLM catalog.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<hr>
+<p><em>Facts verified against the official DeepSeek Harness repository and documentation, the Modellix DeepSeek Harness docs, and the dsh-modellix repository on September 1, 2026. DeepSeek Harness is in developer preview and compatibility-breaking changes are expected; plugin requirements, model catalogs, and prices change as providers evolve. Modellix operates the gateway and plugin described here and has a commercial interest in them. The Modellix LLM gateway is a text gateway — use text-only prompts; do not attach images.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/DeepSeek-Harness/" class="tag-pill tag-pill--sm">DeepSeek Harness</a>
+            
+              <a href="/blog/tags/LLM-Gateway/" class="tag-pill tag-pill--sm">LLM Gateway</a>
+            
+              <a href="/blog/tags/Plugin/" class="tag-pill tag-pill--sm">Plugin</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/deepseek-harness-image-generation/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-deepseek-harness-image-generation.webp" alt="DeepSeek Harness Image Generation: Media Output via Plugin" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">DeepSeek Harness Image Generation: Media Output via Plugin</h3>
+          <time class="related-article-date" datetime="2026-08-31T16:00:00.000Z">September 1, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/dsh-plugin-add/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-dsh-plugin-add.webp" alt="dsh plugin add: Install, Verify, Remove Harness Bundles" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">dsh plugin add: Install, Verify, Remove Harness Bundles</h3>
+          <time class="related-article-date" datetime="2026-08-31T16:00:00.000Z">September 1, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/deepseek-harness-web-search/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-deepseek-harness-web-search.webp" alt="DeepSeek Harness Web Search: web_search and web_fetch" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">DeepSeek Harness Web Search: web_search and web_fetch</h3>
+          <time class="related-article-date" datetime="2026-08-30T16:00:00.000Z">August 31, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/deepseek-harness-plugin/&text=DeepSeek%20Harness%20Plugin%3A%20Bundles%20and%20When%20You%20Don&#39;t%20Need%20One" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/deepseek-harness-plugin/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/deepseek-harness-plugin/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

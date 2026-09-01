@@ -1,0 +1,540 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeepSeek Harness Image Generation: Media Output via Plugin — Modellix Blog</title>
+  <meta name="description" content="Generating images inside DeepSeek Harness requires a plugin: the Design module adds image, video and audio output, and the billing boundaries most guides skip.">
+  <meta name="keywords" content="deepseek harness image generation, deepseek harness image generation plugin, dsh generate image, deepseek harness video generation, deepseek harness audio, deepseek harness design">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/deepseek-harness-image-generation/">
+  <meta name="description" content="Generating images inside DeepSeek Harness requires a plugin: the Design module adds image, video and audio output, and the billing boundaries most guides skip.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DeepSeek Harness Image Generation: Media Output via Plugin — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/deepseek-harness-image-generation/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Generating images inside DeepSeek Harness requires a plugin: the Design module adds image, video and audio output, and the billing boundaries most guides skip.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-deepseek-harness-image-generation.webp">
+<meta property="article:published_time" content="2026-08-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-31T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="DeepSeek Harness">
+<meta property="article:tag" content="Image Generation">
+<meta property="article:tag" content="Tutorial">
+<meta property="article:tag" content="dsh-modellix">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-deepseek-harness-image-generation.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"DeepSeek Harness Image Generation: Media Output via Plugin","description":"Generating images inside DeepSeek Harness requires a plugin: the Design module adds image, video and audio output, and the billing boundaries most guides skip.","datePublished":"2026-08-31T16:00:00.000Z","dateModified":"2026-08-31T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/deepseek-harness-image-generation/","image":"https://img.modellix.ai/en/article/cover-deepseek-harness-image-generation.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">DeepSeek Harness Image Generation: Media Output via Plugin</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/LLM-API/" class="category-tag category-tag--sm">LLM API</a>
+          
+        
+      </div>
+      <h1 class="post-title">DeepSeek Harness Image Generation: Media Output via Plugin</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-31T16:00:00.000Z">September 1, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/DeepSeek-Harness/" class="tag-pill tag-pill--sm">DeepSeek Harness</a>
+            
+              <a href="/blog/tags/Tutorial/" class="tag-pill tag-pill--sm">Tutorial</a>
+            
+              <a href="/blog/tags/dsh-modellix/" class="tag-pill tag-pill--sm">dsh-modellix</a>
+            
+              <a href="/blog/tags/Image-Generation/" class="tag-pill tag-pill--sm">Image Generation</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>DeepSeek Harness Image Generation: Adding Image, Video and Audio Output via a Plugin If you want DeepSeek Harness dsh to produce images, video, or audio, a plugin is not an optional extra—it is the only path.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-deepseek-harness-image-generation.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-deepseek-harness-image-generation.png" alt="DeepSeek Harness image generation editorial cover: an agent harness pipeline producing image, video and audio output through a media API plugin, dark amber and copper with an amber key" />
+</picture>
+
+<h2 id="DeepSeek-Harness-Image-Generation-Adding-Image-Video-and-Audio-Output-via-a-Plugin"><a href="#DeepSeek-Harness-Image-Generation-Adding-Image-Video-and-Audio-Output-via-a-Plugin" class="headerlink" title="DeepSeek Harness Image Generation: Adding Image, Video and Audio Output via a Plugin"></a>DeepSeek Harness Image Generation: Adding Image, Video and Audio Output via a Plugin</h2><p>If you want DeepSeek Harness (dsh) to produce images, video, or audio, a plugin is not an optional extra—it is the only path. The 28 language models the harness connects to on the Modellix LLM gateway all have text-only output, and the official DeepSeek Harness itself generates no media. Adding media generation to dsh means installing a plugin that brings its own media pipeline into the harness, which is exactly what the <strong>Design module</strong> of the Modellix plugin for DeepSeek Harness does.</p>
+<p>This is a walkthrough of that module: how to install the plugin, connect your key, and generate a first image—and, because this is the part every listicle skips, what happens at the billing and irreversibility boundaries when you do. It does not cover the pure-configuration path for swapping text models (that is the <a href="https://www.modellix.ai/blog/deepseek-harness-custom-model/">custom model configuration</a> article), and it does not re-explain the plugin mechanism in general (that is the <a href="https://www.modellix.ai/blog/modellix-deepseek-harness-plugin/">DeepSeek Harness plugin</a> article).</p>
+<p>One disclosure up front: Modellix operates the media API and the plugin used in these examples, so we have a commercial interest in this working for you. The instructions below come from the plugin’s own README and Modellix documentation, and the numbers are dated September 1, 2026.</p>
+<h2 id="Why-image-generation-in-dsh-requires-a-plugin"><a href="#Why-image-generation-in-dsh-requires-a-plugin" class="headerlink" title="Why image generation in dsh requires a plugin"></a>Why image generation in dsh requires a plugin</h2><p>The structural reason is simple: the harness is a text agent. Every model in the Modellix LLM catalog—28 models across 9 provider labels, from <code>openai/gpt-5.6-sol</code> to <code>deepseek/deepseek-v4-flash</code>—advertises <strong>text</strong> as its output modality. The gateway that serves them returns text; that is its contract. So inside the harness, no model you select can emit an image, no matter what you prompt it with. The <a href="https://www.modellix.ai/blog/deepseek-harness/">DeepSeek Harness</a> guide covers how the harness gets its model source at all.</p>
+<p>The community hit this wall within days of the <a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness">official repository</a>‘s release. The answer Google’s AI Overview now cites first is a developer who built a plugin precisely because “DeepSeek Harness didn’t have ChatGPT-style image generation”—proof that “how do I make dsh generate an image” is a real, unanswered question, and that the answer everyone finds is a plugin. If you search for a deepseek harness image generation plugin today, you get community projects and CLI skills like the two below, plus the workspace route this article covers.</p>
+<p>Three plugin routes exist today, and they are structurally different:</p>
+<ul>
+<li><strong>Community tool plugins</strong> like <code>dsh-image-gen</code>: add a <code>generate_image</code> tool the agent can call, bring-your-own-key, OpenAI-compatible backends.</li>
+<li><strong>CLI skills</strong> like the WaveSpeed skill: the agent drives a command-line client (<code>wavespeed run &lt;model-id&gt;</code>) to find, inspect, and run media models.</li>
+<li><strong>Workspace-style plugins</strong> like Modellix’s Design module: a schema-driven two-pane workspace inside the harness UI where you pick a model, edit parameters, and review results, with the API call handled by the plugin.</li>
+</ul>
+<p>This article walks through the third route. If you want to decide between plugin routes first, the <a href="https://www.modellix.ai/blog/modellix-deepseek-harness-plugin/">Modellix plugin for DeepSeek Harness</a> article explains how bundles work and when you do or don’t need one.</p>
+<h2 id="Two-hosts-one-key-the-boundary-you-must-not-mix"><a href="#Two-hosts-one-key-the-boundary-you-must-not-mix" class="headerlink" title="Two hosts, one key: the boundary you must not mix"></a>Two hosts, one key: the boundary you must not mix</h2><p>Before any generation happens, understand where the media request actually goes—because it is a different service from the text gateway, with different billing.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>LLM gateway</th>
+<th>Media API</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Host</td>
+<td><code>https://llm.modellix.ai</code></td>
+<td><code>https://api.modellix.ai</code></td>
+</tr>
+<tr>
+<td>Produces</td>
+<td>Text only (Chat Completions &#x2F; Responses &#x2F; Messages)</td>
+<td>Image, video, and audio generation</td>
+</tr>
+<tr>
+<td>Request style</td>
+<td>Synchronous, optional SSE streaming</td>
+<td><strong>Async tasks</strong>: submit → get <code>task_id</code> → poll</td>
+</tr>
+<tr>
+<td>Billing unit</td>
+<td>USD per 1M tokens</td>
+<td>USD per image · USD per second · USD per M chars</td>
+</tr>
+<tr>
+<td>Auth</td>
+<td>Modellix API key</td>
+<td>Same Modellix API key</td>
+</tr>
+</tbody></table>
+<p>Modellix’s <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/api/api">API reference</a> is explicit about the split: “Media generation (image, video, speech) uses <code>https://api.modellix.ai</code> and async tasks. <strong>Do not mix that host with the LLM gateway.</strong>“ The <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/overview">LLM gateway overview</a> states it even more plainly: “This gateway returns text.”</p>
+<p>Two practical consequences follow. First, the text gateway does not generate images—sending an image prompt to <code>llm.modellix.ai</code> gets you text or an error, not a picture. Second, because the media API is asynchronous, a “generate” action does not return an image in the response body; it returns a task you then poll. That async lifecycle is where the billing boundaries live, and it is the subject of the next sections.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/deepseek-harness-image-generation-two-host.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/deepseek-harness-image-generation-two-host.png" alt="Two pipelines for DeepSeek Harness media generation: the text gateway and the async media API sharing one API key" loading="lazy" />
+</picture>
+
+<p><em>The two hosts behind dsh media generation: text flows synchronously through the LLM gateway, while image, video, and audio generation runs as async tasks on the media API—same key, different service, never mixed.</em></p>
+<h2 id="Installing-the-plugin-and-connecting-your-key"><a href="#Installing-the-plugin-and-connecting-your-key" class="headerlink" title="Installing the plugin and connecting your key"></a>Installing the plugin and connecting your key</h2><p><strong>Prerequisites.</strong> The plugin pins its host: <strong>DeepSeek Harness <code>0.1.1-rc.2</code></strong> (check peer dependencies before upgrading—the harness is in developer preview and warns “THERE WILL BE COMPATIBILITY-BREAKING CHANGES”). Node.js <code>^22.19.0 || &gt;=24.0.0</code> for published-package use. And a valid Modellix API key from <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started">https://docs.modellix.ai/get-started</a>—a vendor platform key (OpenAI, Anthropic, DeepSeek) will not authenticate.</p>
+<p><strong>Install.</strong> With the harness installed, run:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dsh plugin --profile web add dsh-modellix</span><br><span class="line">dsh --profile web --dump-config</span><br><span class="line">dsh --profile web</span><br></pre></td></tr></table></figure>
+
+<p>The <a target="_blank" rel="noopener" href="https://github.com/Modellix/dsh-modellix">dsh-modellix repository</a> is the package source of truth. <code>--dump-config</code> is the acceptance step: it should show the <code>dsh-modellix</code> Bundle layer and a plugin row whose id is <code>modellix</code>. The plugin is a Profile Bundle for the <code>web</code> profile (replace <code>web</code> if you use another profile). After any update, <strong>restart the profile</strong>—the README warns that reloading the browser alone does not load a new Client Bundle.</p>
+<p><strong>Connect your key.</strong> On first start, wait for the “Connect Modellix” dialog. It has one API Key field plus Design, LLM, and Web switches (all on by default; this article only uses Design). The key can come from either of two sources:</p>
+<ul>
+<li><strong>Enter it in the dialog or in settings</strong>—the Harness Credential service stores it, and the browser never shows it again, only its status and source.</li>
+<li><strong>Set <code>MODELLIX_API_KEY</code> in the harness launch environment</strong>—an environment-sourced key is read-only in the UI; update it outside and restart Harness.</li>
+</ul>
+<p>Two gotchas worth knowing: a fresh profile may first show Harness’s own DeepSeek initialization dialog—complete or handle that step before “Connect Modellix” appears. And never put a real key in a repository, command argument, log, screenshot, or test snapshot; the plugin’s security rule is absolute about this.</p>
+<h2 id="Generating-your-first-image-with-the-Design-module"><a href="#Generating-your-first-image-with-the-Design-module" class="headerlink" title="Generating your first image with the Design module"></a>Generating your first image with the Design module</h2><p>Open the <strong>Design</strong> view in the harness. The workspace is two-pane: on the left you pick a model, enter a prompt, and adjust parameters; on the right you review tasks and results. (The layout is two columns when the container is wider than 992px and stacks into one column on narrow slots.)</p>
+<p><strong>1. Pick a model.</strong> The left pane reads the <strong>live Modellix image&#x2F;video&#x2F;audio catalog</strong> plus each model’s current <code>api_schema</code>—the fields you see are the real API parameters, not a static form. Search or filter by output type and select a model. The plugin restores your most recently selected model if it is still available; otherwise it suggests a preferred one from the current catalog.</p>
+<p><strong>2. Enter a prompt.</strong> Many models need only a prompt; everything else comes from the model’s schema, including public defaults. The plugin’s documented worked example uses <code>gpt-image-2</code> with this exact acceptance prompt:</p>
+<blockquote>
+<p>A premium editorial architectural photograph of a quiet cliffside library above a misty alpine lake at blue hour, carved pale stone arches, warm amber reading lamps, one thoughtful reader, subtle greenery, natural reflections, cinematic but realistic lighting, restrained navy and ivory palette, precise composition, no text, no logo.</p>
+</blockquote>
+<p><strong>3. Set parameters.</strong> For <code>gpt-image-2</code>, set <code>quality</code> to <code>high</code> and <code>size</code> to <code>1536x1024</code>, leaving the rest at defaults. You can edit enum, switch, numeric, text, or JSON fields directly; values that violate the schema prevent submission. If a model does not advertise a field, do not add it manually—use the live schema only.</p>
+<p><strong>4. Or let the parameter assistant propose them.</strong> Under “Adjust parameters by chat,” describe the change in natural language. The assistant runs on the fixed <code>openai/gpt-5.6-luna</code> model through the same key, produces a reviewable before&#x2F;after diff you accept or reject, and <strong>never starts generation by itself</strong>. Note that a proposal may incur LLM usage (text rates) even though no media is generated.</p>
+<p><strong>5. Confirm and generate.</strong> Review the parameters and the billing notice, then select <strong>“Confirm and generate”</strong> once. This is the only action that starts a billed media request. The right results pane then groups records as Running, Succeeded, or Diagnostics, with enlarged image view, video&#x2F;audio playback, and safe downloads.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/deepseek-harness-image-generation-design-workspace.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/deepseek-harness-image-generation-design-workspace.png" alt="Design module workspace with model controls on the left, task results on the right, and the Confirm and generate button" loading="lazy" />
+</picture>
+
+<p><em>The Design module’s two-pane workspace: schema-driven parameters on the left, task results on the right, and one “Confirm and generate” button that starts the only billed request.</em></p>
+<h2 id="What-actually-happens-when-you-hit-“Confirm-and-generate”"><a href="#What-actually-happens-when-you-hit-“Confirm-and-generate”" class="headerlink" title="What actually happens when you hit “Confirm and generate”"></a>What actually happens when you hit “Confirm and generate”</h2><p>This is where media generation differs from everything else in the harness. The plugin submits to the media API’s async task model: a <code>POST</code> to <code>https://api.modellix.ai/api/v1/&lt;model-slug&gt;/async</code> returns a <code>task_id</code>, and the UI polls <code>https://api.modellix.ai/api/v1/tasks/&lt;task_id&gt;</code> until the media is ready (an empty balance returns HTTP 402 at submit time).</p>
+<p>Three boundaries matter more than they look:</p>
+<ul>
+<li><strong>The billed POST is never retried automatically.</strong> The plugin submits the billed generation exactly once. Read-only task status checks use bounded safe retries—but the chargeable call itself is fire-once. If a retry ever happens, it is a duplicate charge.</li>
+<li><strong>A disconnect leaves the outcome unknown.</strong> If the session drops mid-flight, the Design view shows <strong>“Submission outcome unknown.”</strong> The correct move is to check the Results pane or your Modellix-side task records <em>before</em> manually re-submitting—otherwise you can pay twice for the same image.</li>
+<li><strong>There is no cancel.</strong> The plugin has no upstream cancellation call and the UI has no task cancellation button. Once the billed POST is sent, the task runs to completion or failure on the upstream side; you cannot take it back.</li>
+</ul>
+<p>The practical translation for a harness user: treat “Confirm and generate” as a deliberate, final action. Review the parameters and the billing notice as if there were no undo—because for a submitted task, there isn’t.</p>
+<h2 id="The-honest-limitations-cancellation-storage-and-the-parameter-assistant"><a href="#The-honest-limitations-cancellation-storage-and-the-parameter-assistant" class="headerlink" title="The honest limitations: cancellation, storage, and the parameter assistant"></a>The honest limitations: cancellation, storage, and the parameter assistant</h2><p>The plugin’s own README is candid about what it does <em>not</em> do, and it is worth quoting the boundaries so you are not surprised later:</p>
+<ul>
+<li><strong>Results are not a media library.</strong> The results pane persists task metadata and upstream resource URLs—not the API key, not your prompt, and not copies of the media. If the upstream response has no expiry, the plugin applies a <strong>seven-day local display cap</strong>; that cap does not extend the upstream URL or copy media into permanent local storage. Download what you need while it is there.</li>
+<li><strong>Complex schemas refuse to guess.</strong> When a schema contains a blocking unsupported constraint, the plugin disables submission instead of interpreting parameters it does not understand. If a model won’t submit, read its schema rather than fighting the form.</li>
+<li><strong>The parameter assistant is not an open-ended agent.</strong> It is constrained by the current schema, proposes diffs you review, and never begins generation itself. Plan prompts as a human in the loop.</li>
+</ul>
+<p>For completeness on errors: only an explicit HTTP 401 marks your credential invalid and opens recovery; a 402, 429, network failure, or 5xx is not reported as a bad key. If your key is environment-sourced and invalid, update <code>MODELLIX_API_KEY</code> and restart Harness—the UI cannot override it.</p>
+<h2 id="Beyond-images-video-and-audio-in-the-same-workspace"><a href="#Beyond-images-video-and-audio-in-the-same-workspace" class="headerlink" title="Beyond images: video and audio in the same workspace"></a>Beyond images: video and audio in the same workspace</h2><p>The Design module is not image-only. The same workspace reads the live catalog for image, video, and audio models, and all three follow the same async task lifecycle and the same billing rules (USD per image, per second, per M characters). The video and audio long-tails of this topic—“deepseek harness video generation,” “deepseek harness audio”—are answered by the same module, not by a different plugin.</p>
+<p>Because dsh media generation ultimately routes to the Modellix media API, the model-level knowledge carries over from the existing model pages on this blog. If you are choosing an image model to run inside the harness, the <a href="https://www.modellix.ai/blog/openai-image-generation-api/">OpenAI image generation API</a> and the <a href="https://www.modellix.ai/blog/imagen-4-api/">Imagen 4 API</a> guides cover the underlying models, and the <a href="https://www.modellix.ai/blog/gpt-image-1-5-pricing/">GPT Image 1.5 pricing</a> reference explains how image-model pricing behaves. For video workloads, the same API covers text-to-video and image-to-video models behind one key—the catalog in the Design left pane is the current list, and it changes as models are added.</p>
+<h2 id="Five-rules-for-generating-media-in-a-harness"><a href="#Five-rules-for-generating-media-in-a-harness" class="headerlink" title="Five rules for generating media in a harness"></a>Five rules for generating media in a harness</h2><p>If you take one thing from this walkthrough, take these five boundaries:</p>
+<ol>
+<li><strong>Media output requires a plugin.</strong> Every LLM the harness connects to outputs text; image, video, and audio generation is a plugin capability.</li>
+<li><strong>Never mix the two hosts.</strong> <code>llm.modellix.ai</code> returns text synchronously; <code>api.modellix.ai</code> generates media as async tasks. Different service, different billing units.</li>
+<li><strong>Only “Confirm and generate” bills—and it never auto-retries.</strong> The chargeable POST is fire-once; polling is safe, resubmitting is not.</li>
+<li><strong>There is no cancel button.</strong> Review parameters and the billing notice before submitting, because you cannot take a submitted task back.</li>
+<li><strong>Results are URLs, not a library.</strong> Export or download media while it is valid; a seven-day local display cap is not permanent storage.</li>
+</ol>
+<p>That last point is the one most tutorials miss, and it is the difference between treating a harness as a media production tool and treating it as a chat that happens to make pictures. Generate deliberately, download what you need, and let the task lifecycle do the rest.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">DeepSeek Harness Integration Docs</h3><p class="view-docs-tag-desc">Read the full DeepSeek Harness integration reference for the Modellix media API and LLM gateway, including the Design module walkthrough and the two-host troubleshooting table.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Open the Modellix Console</h3><p class="view-docs-tag-desc">Log in to create your Modellix API key and browse the live image, video, and audio model catalog.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<hr>
+<p><em>Instructions verified against the dsh-modellix README and Modellix documentation on September 1, 2026 (Beijing time). DeepSeek Harness is in developer preview and iterating rapidly—before upgrading, check the plugin’s peer dependencies and CHANGELOG. Model catalogs, tasks, and billing rates change; the live catalog and the billing page are the source of truth. Modellix operates the media API and plugin described in this article and has a commercial interest in them. The Modellix LLM gateway is a text gateway—use text-only prompts; do not attach images. Media generation runs on the separate async media API, which is the subject of this article.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/DeepSeek-Harness/" class="tag-pill tag-pill--sm">DeepSeek Harness</a>
+            
+              <a href="/blog/tags/Tutorial/" class="tag-pill tag-pill--sm">Tutorial</a>
+            
+              <a href="/blog/tags/dsh-modellix/" class="tag-pill tag-pill--sm">dsh-modellix</a>
+            
+              <a href="/blog/tags/Image-Generation/" class="tag-pill tag-pill--sm">Image Generation</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/deepseek-harness-plugin/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-deepseek-harness-plugin.webp" alt="DeepSeek Harness Plugin: Bundles and When You Don&#39;t Need One" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">DeepSeek Harness Plugin: Bundles and When You Don&#39;t Need One</h3>
+          <time class="related-article-date" datetime="2026-08-31T16:00:00.000Z">September 1, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/dsh-plugin-add/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-dsh-plugin-add.webp" alt="dsh plugin add: Install, Verify, Remove Harness Bundles" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">dsh plugin add: Install, Verify, Remove Harness Bundles</h3>
+          <time class="related-article-date" datetime="2026-08-31T16:00:00.000Z">September 1, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/deepseek-harness-web-search/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-deepseek-harness-web-search.webp" alt="DeepSeek Harness Web Search: web_search and web_fetch" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">DeepSeek Harness Web Search: web_search and web_fetch</h3>
+          <time class="related-article-date" datetime="2026-08-30T16:00:00.000Z">August 31, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/deepseek-harness-image-generation/&text=DeepSeek%20Harness%20Image%20Generation%3A%20Media%20Output%20via%20Plugin" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/deepseek-harness-image-generation/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/deepseek-harness-image-generation/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
