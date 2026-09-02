@@ -1,0 +1,577 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeepSeek Harness Provider Errors: UNKNOWN_MODEL and 401s — Modellix Blog</title>
+  <meta name="description" content="Decode DeepSeek Harness provider errors: UNKNOWN_MODEL means the models list is the catalog, MISSING_CREDENTIAL means no key, only a 401 marks a key invalid.">
+  <meta name="keywords" content="deepseek harness error, deepseek harness unknown_model, deepseek harness missing_credential, deepseek harness 401, deepseek harness fetch models failed, deepseek harness troubleshooting, deepseek harness not working">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/deepseek-harness-error/">
+  <meta name="description" content="Decode DeepSeek Harness provider errors: UNKNOWN_MODEL means the models list is the catalog, MISSING_CREDENTIAL means no key, only a 401 marks a key invalid.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DeepSeek Harness Provider Errors: UNKNOWN_MODEL and 401s — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/deepseek-harness-error/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Decode DeepSeek Harness provider errors: UNKNOWN_MODEL means the models list is the catalog, MISSING_CREDENTIAL means no key, only a 401 marks a key invalid.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-deepseek-harness-error.webp">
+<meta property="article:published_time" content="2026-08-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-31T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="API Key">
+<meta property="article:tag" content="DeepSeek Harness">
+<meta property="article:tag" content="Troubleshooting">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-deepseek-harness-error.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"DeepSeek Harness Provider Errors: UNKNOWN_MODEL and 401s","description":"Decode DeepSeek Harness provider errors: UNKNOWN_MODEL means the models list is the catalog, MISSING_CREDENTIAL means no key, only a 401 marks a key invalid.","datePublished":"2026-08-31T16:00:00.000Z","dateModified":"2026-08-31T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/deepseek-harness-error/","image":"https://img.modellix.ai/en/article/cover-deepseek-harness-error.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">DeepSeek Harness Provider Errors: UNKNOWN_MODEL and 401s</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/LLM-API/" class="category-tag category-tag--sm">LLM API</a>
+          
+        
+      </div>
+      <h1 class="post-title">DeepSeek Harness Provider Errors: UNKNOWN_MODEL and 401s</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-31T16:00:00.000Z">September 1, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/DeepSeek-Harness/" class="tag-pill tag-pill--sm">DeepSeek Harness</a>
+            
+              <a href="/blog/tags/API-Key/" class="tag-pill tag-pill--sm">API Key</a>
+            
+              <a href="/blog/tags/Troubleshooting/" class="tag-pill tag-pill--sm">Troubleshooting</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>Your DeepSeek Harness agent was running fine against a custom provider, and then a request came back with UNKNOWN_MODEL. Or MISSING_CREDENTIAL. Or the model picker&#39;s &#39;Fetch available models&#39; button returned 401.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-deepseek-harness-error.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-deepseek-harness-error.png" alt="DeepSeek Harness error decoding editorial cover: the provider error codes MISSING_CREDENTIAL, UNKNOWN_MODEL and 401 mapped to their fixes, amber key with cyan rim light on dark copper" />
+</picture>
+
+<p>Your DeepSeek Harness agent was running fine against a custom provider, and then a request came back with <code>UNKNOWN_MODEL</code>. Or <code>MISSING_CREDENTIAL</code>. Or the model picker’s “Fetch available models” button returned 401. Each of those is a typed error from the provider layer, and each maps to one specific piece of configuration you can fix—which field, and how, is what this deepseek harness error guide covers.</p>
+<p>This is the troubleshooting counterpart to the <a href="https://www.modellix.ai/blog/deepseek-harness-custom-model/">custom model guide</a> (how to configure a provider correctly) and the finale for the provider side of this cluster: it takes the official troubleshooting table from the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/agent/deepseek-harness">Modellix DeepSeek Harness docs</a>, explains every row, and adds the credential-recovery semantics from the <a target="_blank" rel="noopener" href="https://github.com/Modellix/dsh-modellix">dsh-modellix README</a> that decide when a key is really invalid. The <a href="https://www.modellix.ai/blog/deepseek-harness/">pillar article for this cluster</a> covers what the harness is and how to run it. Modellix operates the gateway these examples use, so we have a commercial interest in this working for you. Every statement below was verified against the docs and the README on September 1, 2026.</p>
+<h2 id="DeepSeek-Harness-provider-errors-decoded"><a href="#DeepSeek-Harness-provider-errors-decoded" class="headerlink" title="DeepSeek Harness provider errors, decoded"></a>DeepSeek Harness provider errors, decoded</h2><p>When a request reaches a custom provider and fails, the harness reports a typed error rather than a bare HTTP status. The Modellix integration docs maintain a four-row troubleshooting table that is the complete set of provider-level errors on this path:</p>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>What the docs say</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>MISSING_CREDENTIAL</code></td>
+<td>Store the provider key through the Models page, or provide the referenced environment variable</td>
+</tr>
+<tr>
+<td><code>UNKNOWN_MODEL</code></td>
+<td>Select a configured model, or add the missing model to the custom provider</td>
+</tr>
+<tr>
+<td>Fetch available models returns 401</td>
+<td>Check the key. Model discovery calls <code>GET /v1/models</code> on <code>https://llm.modellix.ai/v1</code>; enter models manually if needed</td>
+</tr>
+<tr>
+<td>Request rejected with an image</td>
+<td>Modellix LLM is a text gateway—use text-only prompts; do not attach images</td>
+</tr>
+</tbody></table>
+<p>Read those rows against the fields of a provider—credential, base URL, protocol, models list—and each error points at one misconfigured field:</p>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Most likely misconfigured field</th>
+<th>The fix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>MISSING_CREDENTIAL</code></td>
+<td>Credential &#x2F; <code>apiKeyEnv</code></td>
+<td>Store the key through the Models page, or set the referenced environment variable</td>
+</tr>
+<tr>
+<td><code>UNKNOWN_MODEL</code></td>
+<td><code>models</code> list</td>
+<td>Add the missing model to the custom provider, or select a configured one</td>
+</tr>
+<tr>
+<td>Fetch available models returns 401</td>
+<td>API key</td>
+<td>Check the key in the Modellix console; enter models manually if needed</td>
+</tr>
+<tr>
+<td>Request rejected with an image</td>
+<td>Prompt content, not configuration</td>
+<td>Remove the image attachment and resend text-only</td>
+</tr>
+</tbody></table>
+<p>That error-to-field mapping is the whole value of the table: none of these rows means “the gateway is down” or “retry the request.” Each one is configuration feedback. The next four sections go row by row, and the section after them covers the one rule that decides whether a failing key is actually broken.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/harness-error-code-fix-mapping.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/harness-error-code-fix-mapping.png" alt="DeepSeek Harness provider error mapping: MISSING_CREDENTIAL, UNKNOWN_MODEL, fetch models 401 and image rejection each pointing to their documented fix" loading="lazy" />
+</picture>
+
+<p><em>The four rows of the official troubleshooting table, each mapped to the field it points at: credential, models list, API key, and prompt content.</em></p>
+<h2 id="MISSING-CREDENTIAL-the-provider-has-no-key"><a href="#MISSING-CREDENTIAL-the-provider-has-no-key" class="headerlink" title="MISSING_CREDENTIAL: the provider has no key"></a>MISSING_CREDENTIAL: the provider has no key</h2><p><code>MISSING_CREDENTIAL</code> means the provider is configured but no key is attached to it. The harness resolves the credential per request—from the Credential service (what the Models page writes) or from the environment variable a provider block references via <code>apiKeyEnv</code>. If neither exists at request time, the request fails before it reaches the gateway.</p>
+<p>The fix has two sides, matching the two key sources documented in the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started">Modellix getting-started guide</a>:</p>
+<ul>
+<li><strong>Key stored through the Models page:</strong> open Settings → Models, add the provider key, save. After saving, the page shows only a redacted descriptor, never the key itself.</li>
+<li><strong>Key referenced by environment variable:</strong> make sure the variable is actually set in the harness launch environment. A provider block declaring <code>apiKeyEnv: MODELLIX_API_KEY</code> will not read your shell profile unless the harness process was started with that variable exported.</li>
+</ul>
+<p>If the key came from the environment, the UI cannot repair it: if an environment-sourced Key is invalid, update <code>MODELLIX_API_KEY</code> in the launch environment and restart Harness; the UI cannot override it.</p>
+<p>One boundary keeps this page honest: where keys live and how to rotate them is a different topic from why requests fail. A separate article in this series covers storage and ownership; this one stays on the error and recovery side.</p>
+<h2 id="UNKNOWN-MODEL-the-models-list-is-the-catalog"><a href="#UNKNOWN-MODEL-the-models-list-is-the-catalog" class="headerlink" title="UNKNOWN_MODEL: the models list is the catalog"></a>UNKNOWN_MODEL: the models list is the catalog</h2><p><code>UNKNOWN_MODEL</code> is the most common provider error, and its usual cause is a misunderstanding about what the <code>models</code> list does. In custom provider configuration, the list does <strong>not</strong> filter a bigger built-in catalog—it replaces the route’s catalog. Every model the route should serve must appear in the list, and a model the route does not configure fails with <code>UNKNOWN_MODEL</code>.</p>
+<p>A concrete example: you configure the provider with <code>openai/gpt-5.6-sol</code> and <code>deepseek/deepseek-v4-flash</code>, then later edit <code>settings.yaml</code> down to just the DeepSeek entry. A saved session that earlier used <code>openai/gpt-5.6-sol</code> resumes, asks for a model the route no longer configures, and the request fails with <code>UNKNOWN_MODEL</code>. The fix is always the same: add the missing model to the custom provider, or select a configured one.</p>
+<p>Two details keep coming up in harness troubleshooting threads:</p>
+<ul>
+<li><strong>Model IDs must be the full gateway IDs, including the provider prefix</strong>—<code>openai/gpt-5.6-sol</code>, not <code>gpt-5.6-sol</code>. The harness sends the string unchanged, and the gateway routes on the full ID.</li>
+<li><strong>The canonical list of valid IDs is the live <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/overview">Models &amp; Pricing page</a></strong>, and it changes as providers release models. If your list was correct last month, check it against that page before assuming the gateway changed.</li>
+</ul>
+<p>How to build the <code>models</code> list correctly in the first place—the form fields, the <code>settings.yaml</code> block, and the full current catalog—is the custom model guide’s job. This page covers what the error means and how to read it back to your configuration.</p>
+<h2 id="“Fetch-available-models”-401-the-key-is-wrong"><a href="#“Fetch-available-models”-401-the-key-is-wrong" class="headerlink" title="“Fetch available models” 401: the key is wrong"></a>“Fetch available models” 401: the key is wrong</h2><p>The model picker’s “Fetch available models” button does a live query: it calls <code>GET /v1/models</code> on the gateway’s base URL (<code>https://llm.modellix.ai/v1</code>). When that call returns 401, the gateway rejected the key. The docs are direct about the fix: check the key; enter models manually if needed.</p>
+<p>A 401 here means one of two things:</p>
+<ul>
+<li>The key is wrong, expired, or revoked—check it in the Modellix console (linked in the docs prerequisites), or</li>
+<li>The key is a vendor platform key (OpenAI, Anthropic, or DeepSeek platform) rather than a Modellix key. A vendor key does not authenticate against <code>llm.modellix.ai</code>.</li>
+</ul>
+<p>One protocol detail that is easy to mistake for a 401: model discovery only reads OpenAI-compatible <code>GET /models</code> endpoints. If the provider uses <code>api: anthropic-messages</code>, discovery cannot list models at all and you must enter the model IDs by hand. That is the protocol’s documented limit, not an authentication failure.</p>
+<p>A 401 on model discovery is the clearest “the key is wrong” signal the harness gives you, which makes it the right place for the next section: what a 401 does—and does not—mean for your key’s validity.</p>
+<h2 id="401-≠-broken-key-what-actually-marks-a-Credential-invalid"><a href="#401-≠-broken-key-what-actually-marks-a-Credential-invalid" class="headerlink" title="401 ≠ broken key: what actually marks a Credential invalid"></a>401 ≠ broken key: what actually marks a Credential invalid</h2><p>This is the part most troubleshooting pages get wrong, and it is worth slowing down for. The dsh-modellix README defines exactly which response invalidates a credential:</p>
+<blockquote>
+<p>Only HTTP 401 marks a Credential invalid. HTTP 402, 429, network failures, and 5xx retain their own recovery states. Concurrent 401 responses are coalesced into one Credential dialog.</p>
+</blockquote>
+<p>Read that literally: the recovery flow—the UI that asks you for a new key—opens only on an explicit HTTP 401 from Modellix. Every other failure keeps its own recovery state, and none of them means “your key is broken.” The plugin’s user guide documents what each state means:</p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Meaning &#x2F; next step</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>402</td>
+<td>Check account status in Modellix</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Wait for the rate limit window</td>
+</tr>
+<tr>
+<td>Offline &#x2F; timeout</td>
+<td>Restore connectivity; do not assume the Key is invalid</td>
+</tr>
+<tr>
+<td>5xx</td>
+<td>Service error; retry only when the operation is safe</td>
+</tr>
+<tr>
+<td>Unknown generation&#x2F;upload result</td>
+<td>Inspect the task&#x2F;transcript&#x2F;Modellix record before any manual repeat</td>
+</tr>
+</tbody></table>
+<p>Two practical consequences follow. First, when a request fails with 429 or a network error, replacing the key will not help—the key was never the problem, and no recovery dialog appears because nothing marked it invalid. Second, when several requests fail with 401 at the same time, you get exactly one credential dialog, not one per request; concurrent 401s are coalesced.</p>
+<p>The recovery dialog also has defined behavior around what is already on screen. If a key editor is already open, it keeps its lease and upgrades in place instead of competing with a second modal. If a normal dialog—a delete-confirmation prompt or the enlarged image viewer, for example—is open, the recovery prompt waits for it to close rather than stacking another modal on top. None of this changes what you have to do, but it explains why the dialog sometimes appears late, or not at all.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/harness-credential-401-decision.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/harness-credential-401-decision.png" alt="Credential recovery decision flow: only an explicit HTTP 401 marks the key invalid, while 402, 429, offline and 5xx keep their own recovery states" loading="lazy" />
+</picture>
+
+<p><em>The 401 rule in one diagram: an explicit 401 opens the single credential dialog; 402, 429, offline, and 5xx each keep their own recovery state and never mark the key invalid.</em></p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">DeepSeek Harness Integration Docs</h3><p class="view-docs-tag-desc">Read the full DeepSeek Harness configuration reference for the Modellix LLM gateway, including the troubleshooting table and the credential recovery semantics.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="“Request-rejected-with-an-image”-a-text-gateway-not-a-config-error"><a href="#“Request-rejected-with-an-image”-a-text-gateway-not-a-config-error" class="headerlink" title="“Request rejected with an image”: a text gateway, not a config error"></a>“Request rejected with an image”: a text gateway, not a config error</h2><p>The fourth row of the troubleshooting table is easy to misread as a configuration problem, and it is not one:</p>
+<blockquote>
+<p>Modellix LLM is a text gateway—use text-only prompts; do not attach images.</p>
+</blockquote>
+<p>If a request is rejected with this message, the request carried an image attachment. The gateway is text-only, so no settings change, key rotation, or model swap fixes it. Remove the attachment and resend.</p>
+<p>One source of confusion deserves a direct note: the catalog includes model IDs that look multimodal—<code>deepseek/deepseek-v4-flash-vision</code> is a real entry on the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/overview">Models &amp; Pricing page</a>. The gateway constraint still applies. Even though the model card lists image modality, the Modellix LLM gateway is a text gateway and rejects attached images; the harness keeps telling you so until the prompt is text-only. The gateway’s <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/api/api">LLM API guide</a> spells out the request formats that do work.</p>
+<h2 id="When-the-error-is-not-the-provider"><a href="#When-the-error-is-not-the-provider" class="headerlink" title="When the error is not the provider"></a>When the error is not the provider</h2><p>Not every error you will see in DeepSeek Harness is a provider error, and the four rows above cover only the provider layer. The boundary matters because the fix differs in kind:</p>
+<ul>
+<li><strong>If the harness will not start, a plugin fails to load, or an install command errors</strong>, you are in install-time territory. The <a href="https://www.modellix.ai/blog/dsh-plugin-add/">plugin installation guide</a> covers install, verify, and remove, and the <a href="https://www.modellix.ai/blog/deepseek-harness-plugin/">plugin article</a> explains bundles, manifests, and why some errors are structural rather than configurable.</li>
+<li><strong>If requests reach the provider but fail in the agent loop</strong>—unknown tool names, <code>400 INVALID_REQUEST</code>-style tool-call rejections, replay errors—those are harness runtime errors, not provider errors. They are outside the four-row table, and this article deliberately does not interpret them; the official <a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness">DeepSeek Harness repository</a> and the harness’s <a target="_blank" rel="noopener" href="https://deepseek-harness.github.io/deepseek-harness/guide/providers">providers guide</a> are the right starting points.</li>
+</ul>
+<p>For the generic “deepseek harness not working” case, the diagnostic order that resolves most reports is: read the exact error text (the harness reports typed errors, not bare status codes, and when the UI message is vague the session log carries the real status) → check whether it is one of the four rows above → if it involves the key, apply the 401 rule from the previous section → if it involves a model, check the models list → if none of those apply, treat it as a harness runtime issue rather than a gateway issue.</p>
+<p>That is not a claim that these four errors are the only errors you will see—the harness has plenty of its own. It is a scope statement: the provider layer’s errors are exactly the four rows, and the recovery semantics are exactly the 401 rule. For the wider category, the <a href="https://www.modellix.ai/blog/agent-harness/">agent harness overview</a> places this cluster in context, and the sibling guide on <a href="https://www.modellix.ai/blog/deepseek-harness-web-search/">web search and fetch</a> covers the web-tools seam where provider errors look similar.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Open the Modellix Console</h3><p class="view-docs-tag-desc">Log in to check your key status in the Modellix console, or create a new key if a 401 marked the current one invalid.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>What does MISSING_CREDENTIAL mean in DeepSeek Harness?</strong><br>The provider is configured but no key is attached to it. The harness resolves the credential per request from the Credential service or from the environment variable the provider references; if neither exists, the request fails with <code>MISSING_CREDENTIAL</code>. Store the key through the Models page, or provide the referenced environment variable.</p>
+<p><strong>Why do I get UNKNOWN_MODEL even though the model exists on Modellix?</strong><br>Because the <code>models</code> list in your custom provider replaces the route’s catalog—it is not a filter. If the model ID is not in the list, the route does not configure it and requests fail with <code>UNKNOWN_MODEL</code>. Add the full ID (including the <code>provider/</code> prefix) to the list, or select a configured model.</p>
+<p><strong>What does a 401 on “Fetch available models” mean?</strong><br>Model discovery calls <code>GET /v1/models</code> on the gateway with your key, and a 401 means the gateway rejected it: the key is wrong, expired, revoked, or a vendor platform key rather than a Modellix key. Check the key in the Modellix console, and enter models manually if needed.</p>
+<p><strong>Is a 429 rate limit the same as a bad key?</strong><br>No. Only an explicit HTTP 401 marks a credential invalid. A 429 keeps its own recovery state—wait for the rate limit window—and does not open the credential recovery flow. Replacing the key will not fix a 429.</p>
+<p><strong>Can I send images to the Modellix LLM gateway from the harness?</strong><br>No. Modellix LLM is a text gateway—use text-only prompts; do not attach images. A request that carries an image is rejected regardless of the model selected, even when the model card lists image modality.</p>
+<p><strong>How do I update an environment-sourced MODELLIX_API_KEY?</strong><br>The UI cannot override it. Update the variable in the harness launch environment and restart Harness; environment-sourced keys are read-only in the UI, so the change happens outside the harness.</p>
+<p><strong>Will I get one credential dialog per failed request?</strong><br>No. Concurrent 401 responses are coalesced into one credential dialog. If a key editor is already open, it upgrades in place; if another dialog is open, the recovery prompt waits for it to close instead of stacking another modal.</p>
+<hr>
+<p><em>The four-row troubleshooting table and the 401 recovery semantics reflect the Modellix DeepSeek Harness documentation and the dsh-modellix README as of September 1, 2026, and both change as the harness and plugin evolve; the live <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/overview">Models &amp; Pricing page</a> is the source of truth for model IDs. Modellix operates the gateway described here and has a commercial interest in it. Access image and video models, including the leading Chinese models, through a single API key at <a target="_blank" rel="noopener" href="https://modellix.ai/">modellix.ai</a>.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/DeepSeek-Harness/" class="tag-pill tag-pill--sm">DeepSeek Harness</a>
+            
+              <a href="/blog/tags/API-Key/" class="tag-pill tag-pill--sm">API Key</a>
+            
+              <a href="/blog/tags/Troubleshooting/" class="tag-pill tag-pill--sm">Troubleshooting</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/deepseek-harness-api-key/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-deepseek-harness-api-key.webp" alt="DeepSeek Harness API Key: Which Key Goes Where" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">DeepSeek Harness API Key: Which Key Goes Where</h3>
+          <time class="related-article-date" datetime="2026-08-31T16:00:00.000Z">September 1, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/deepseek-harness-plugin/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-deepseek-harness-plugin.webp" alt="DeepSeek Harness Plugin: Bundles and When You Don&#39;t Need One" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">DeepSeek Harness Plugin: Bundles and When You Don&#39;t Need One</h3>
+          <time class="related-article-date" datetime="2026-08-31T16:00:00.000Z">September 1, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/deepseek-harness-image-generation/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-deepseek-harness-image-generation.webp" alt="DeepSeek Harness Image Generation: Media Output via Plugin" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">DeepSeek Harness Image Generation: Media Output via Plugin</h3>
+          <time class="related-article-date" datetime="2026-08-31T16:00:00.000Z">September 1, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/deepseek-harness-error/&text=DeepSeek%20Harness%20Provider%20Errors%3A%20UNKNOWN_MODEL%20and%20401s" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/deepseek-harness-error/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/deepseek-harness-error/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

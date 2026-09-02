@@ -1,0 +1,560 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeepSeek Harness Token Usage: What an Agent Run Costs — Modellix Blog</title>
+  <meta name="description" content="See what one DeepSeek Harness agent run costs: query GET /v1/logs for per-request cost, token buckets, and session attribution, then convert per 1M tokens.">
+  <meta name="keywords" content="deepseek harness token usage, deepseek harness cost, deepseek harness pricing, deepseek harness api cost, deepseek harness usage, deepseek harness billing, dsh token consumption">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/deepseek-harness-token-usage/">
+  <meta name="description" content="See what one DeepSeek Harness agent run costs: query GET &#x2F;v1&#x2F;logs for per-request cost, token buckets, and session attribution, then convert per 1M tokens.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DeepSeek Harness Token Usage: What an Agent Run Costs — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/deepseek-harness-token-usage/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="See what one DeepSeek Harness agent run costs: query GET &#x2F;v1&#x2F;logs for per-request cost, token buckets, and session attribution, then convert per 1M tokens.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-deepseek-harness-token-usage.webp">
+<meta property="article:published_time" content="2026-08-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-31T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="DeepSeek Harness">
+<meta property="article:tag" content="LLM Billing">
+<meta property="article:tag" content="Token Usage">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-deepseek-harness-token-usage.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"DeepSeek Harness Token Usage: What an Agent Run Costs","description":"See what one DeepSeek Harness agent run costs: query GET /v1/logs for per-request cost, token buckets, and session attribution, then convert per 1M tokens.","datePublished":"2026-08-31T16:00:00.000Z","dateModified":"2026-08-31T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/deepseek-harness-token-usage/","image":"https://img.modellix.ai/en/article/cover-deepseek-harness-token-usage.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">DeepSeek Harness Token Usage: What an Agent Run Costs</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/LLM-API/" class="category-tag category-tag--sm">LLM API</a>
+          
+        
+      </div>
+      <h1 class="post-title">DeepSeek Harness Token Usage: What an Agent Run Costs</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-31T16:00:00.000Z">September 1, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/DeepSeek-Harness/" class="tag-pill tag-pill--sm">DeepSeek Harness</a>
+            
+              <a href="/blog/tags/Token-Usage/" class="tag-pill tag-pill--sm">Token Usage</a>
+            
+              <a href="/blog/tags/LLM-Billing/" class="tag-pill tag-pill--sm">LLM Billing</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>You finish a DeepSeek Harness session, the Trajectory view shows a token count, and you reach for a calculator: was that run worth it? You are not alone in doing mental math at the end of every agent round.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-deepseek-harness-token-usage.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-deepseek-harness-token-usage.png" alt="DeepSeek Harness token usage editorial cover: an agent run feeding into the logs API and breaking into token buckets with a cost total, amber key with cyan rim light on dark copper" />
+</picture>
+
+<p>You finish a DeepSeek Harness session, the Trajectory view shows a token count, and you reach for a calculator: <em>was that run worth it?</em> You are not alone in doing mental math at the end of every agent round. In the harness’s GitHub Discussions, a thread asking for a Plus&#x2F;Pro plan “so we don’t have to calculate the API bill while the agent runs” has 12 comments, and a 1,400-thread scan finds 33 threads whose titles mention price, pricing, cost, or tokens. A thread asking for per-turn token display has 11 comments; another reporting that large contexts inflate token consumption has 22.</p>
+<p>This article replaces the mental math with one API call. If you run DeepSeek Harness against the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/overview">Modellix LLM gateway</a>, a single <code>GET /v1/logs</code> request returns the per-request <code>cost</code>, the token breakdown (<code>prompt_tokens</code> &#x2F; <code>completion_tokens</code> &#x2F; <code>cached_tokens</code>), the model that served each call, and enough metadata to attribute spend to a session or an end-user. You will get a runnable query, a field-by-field meaning table, and the per-1M-token conversion the meters never show. Endpoints and prices were verified against <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/get-llm-logs">docs.modellix.ai</a> and <a href="https://www.modellix.ai/llm">modellix.ai&#x2F;llm</a> on September 1, 2026. Modellix operates the gateway used in these examples, so we have a commercial interest in this working for you. One boundary up front: this article covers <em>what one run costs and how to see it</em> — choosing models or configuring the provider are separate guides in this series.</p>
+<h2 id="Why-DeepSeek-Harness-token-usage-needs-a-second-source-of-truth"><a href="#Why-DeepSeek-Harness-token-usage-needs-a-second-source-of-truth" class="headerlink" title="Why DeepSeek Harness token usage needs a second source of truth"></a>Why DeepSeek Harness token usage needs a second source of truth</h2><p>The harness is not hiding the numbers from you. The <a target="_blank" rel="noopener" href="https://www.datacamp.com/tutorial/deepseek-harness">Trajectory view</a> exposes token usage alongside model responses and tool calls, and session statistics track turns, steps, model time, tool time, time to first token, and decoding time. A <a target="_blank" rel="noopener" href="https://www.mindstudio.ai/blog/deepseek-harness-agentic-coding">hands-on review of the harness</a> shows live stats such as tokens per second and cache hit rate while a task runs, and the <a target="_blank" rel="noopener" href="https://www.deepseek.com/harness/en/">official page</a> advertises that “every run is traceable.”</p>
+<p>The problem is what those numbers are. The harness token meter is an estimate — roughly one token per four characters, as a <a target="_blank" rel="noopener" href="https://www.atlascloud.ai/blog/tips/deepseek-harness-vs-opencode">vendor comparison of harness token usage</a> describes it — built for diagnosing <em>where</em> tokens went, not for reconciling <em>what they cost</em>. General deepseek harness usage guides show you how to run the agent; none of them show you what a run costs at the provider. That is why the community keeps asking for more: per-turn token display, per-session accounting, anything that removes the arithmetic. Community shorthand for the whole topic, “dsh token consumption,” shows up across those threads. A <a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness/discussions/1530">proposal to add persistent token-usage tracking</a> to the harness itself (the <code>dsh-token-usage</code> plugin) exists as a GitHub Discussion with one comment — a proposal, not a merged feature. Traceable is not the same as itemized. The meter tells you the shape of the run; the bill lives at the provider that served the requests, and that is where the per-request truth sits.</p>
+<h2 id="What-one-agent-run-is-billed-on"><a href="#What-one-agent-run-is-billed-on" class="headerlink" title="What one agent run is billed on"></a>What one agent run is billed on</h2><p>Modellix bills LLM gateway requests from token usage on successful responses. Each request falls into four billed token buckets: <strong>uncached input</strong> (<code>prompt_tokens</code>), <strong>output</strong> (<code>completion_tokens</code>), <strong>cache read</strong> (<code>cached_tokens</code>), and <strong>cache write</strong>. The logs API exposes per-request fields for three of them; cache write is billed but has no per-request log field. Reasoning tokens are part of the output count, not a separate line. The cost of one run is the sum of each bucket converted at the model’s per-1M-token rate:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">run cost = (uncached_input / 1M × input price)</span><br><span class="line">         + (output / 1M × output price)</span><br><span class="line">         + (cached_read / 1M × cached-read price)</span><br><span class="line">         + (cached_write / 1M × cached-write price)</span><br></pre></td></tr></table></figure>
+
+<p>The per-1M rates for <code>deepseek/deepseek-v4-flash</code>, one of the models Harness ships as a default, were pulled live from the <a href="https://www.modellix.ai/llm">Modellix LLM pricing page</a> on September 1, 2026:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Input</th>
+<th>Output</th>
+<th>Cached Read</th>
+<th>Cached Write</th>
+<th>Discount</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DeepSeek V4 Flash <code>deepseek/deepseek-v4-flash</code></td>
+<td>$0.44</td>
+<td>$1.32</td>
+<td>$0.014</td>
+<td>$0</td>
+<td>—</td>
+</tr>
+<tr>
+<td>DeepSeek V4 Pro <code>deepseek/deepseek-v4-pro</code></td>
+<td>$1.33</td>
+<td>$3.96</td>
+<td>$0.044</td>
+<td>$0</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<p>Two honest notes on this table. First, the Discount column for V4 Flash is <code>—</code>: there is no promotional discount on it as of the pull date. Second, Cached Read at $0.014 per 1M is roughly 97% cheaper than uncached input at $0.44 — which is why cache hit rate dominates every cost discussion — but Modellix documents that cache read&#x2F;write pricing applies “when present” and publishes no trigger, TTL, or minimum-token threshold for when a request qualifies. Whether your run hits cache depends on how stable the harness keeps the prompt prefix, and community measurements (for example the 95–100% cache hit rates in the <a target="_blank" rel="noopener" href="https://www.mindstudio.ai/blog/deepseek-harness-agentic-coding">MindStudio hands-on</a>) are harness-side observations, not a gateway guarantee.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/token-bucket-cost-flow.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/token-bucket-cost-flow.png" alt="Token buckets flowing into per-1M-token prices and summing into a single run cost, dark amber technical schematic" loading="lazy" />
+</picture>
+
+<p><em>The conversion the meters skip: each of the four token buckets is priced per 1M tokens and summed into the run’s cost.</em></p>
+<p>A worked example, illustrative rather than from a real run: a session with 1,000,000 uncached input tokens, 200,000 output tokens, and 3,000,000 cached-read tokens at the V4 Flash rates above costs <code>1.0 × $0.44 + 0.2 × $1.32 + 3.0 × $0.014</code> &#x3D; <strong>$0.746</strong>. Substitute your own bucket counts from the logs and the same arithmetic gives you your number — the deepseek harness cost question reduced to arithmetic you can verify.</p>
+<h2 id="See-per-request-spend-GET-v1-logs"><a href="#See-per-request-spend-GET-v1-logs" class="headerlink" title="See per-request spend: GET &#x2F;v1&#x2F;logs"></a>See per-request spend: GET &#x2F;v1&#x2F;logs</h2><p>The logs endpoint lists LLM request logs for your team within a time window, and it is the billing view this article promised. It lives at <code>https://llm.modellix.ai/v1/logs</code> and requires a time window — <code>start_time</code> and <code>end_time</code> are both required UNIX-second timestamps, and the span cannot exceed 30 days. <code>page_size</code> defaults to 10 and caps at 100; <code>page</code> defaults to 1. The <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/get-llm-logs">API reference</a> documents the full contract.</p>
+<p>A directly runnable query — replace the timestamps with your own window and the token with your key:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl --request GET \</span><br><span class="line">  --url <span class="string">&#x27;https://llm.modellix.ai/v1/logs?page=1&amp;page_size=100&amp;start_time=1788134400&amp;end_time=1788220800&#x27;</span> \</span><br><span class="line">  --header <span class="string">&#x27;Authorization: Bearer &lt;your-modellix-key&gt;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>The response is a paginated list. Field names and shapes match the API reference; this is an illustrative response:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;requests&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;task_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;9f2c1e0a-7b4d-4f6e-9a3c-2d8b5e1f0c7a&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;model&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;provider&quot;</span><span class="punctuation">:</span> <span class="string">&quot;deepseek&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;model_name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;deepseek-v4-flash&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;success&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;prompt_tokens&quot;</span><span class="punctuation">:</span> <span class="number">184320</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;completion_tokens&quot;</span><span class="punctuation">:</span> <span class="number">12408</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;cached_tokens&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;cost&quot;</span><span class="punctuation">:</span> <span class="number">0.0975</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;created_at&quot;</span><span class="punctuation">:</span> <span class="number">1788156000</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;duration&quot;</span><span class="punctuation">:</span> <span class="number">312.4</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;e2e_sec&quot;</span><span class="punctuation">:</span> <span class="number">312.4</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;tps&quot;</span><span class="punctuation">:</span> <span class="number">96</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;client_ip&quot;</span><span class="punctuation">:</span> <span class="string">&quot;203.0.113.7&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;total&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;page&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;page_size&quot;</span><span class="punctuation">:</span> <span class="number">100</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>What each field means:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>cost</code></td>
+<td>USD cost of that request as billed by the gateway</td>
+</tr>
+<tr>
+<td><code>prompt_tokens</code></td>
+<td>uncached input tokens sent in</td>
+</tr>
+<tr>
+<td><code>completion_tokens</code></td>
+<td>output tokens generated (reasoning included)</td>
+</tr>
+<tr>
+<td><code>cached_tokens</code></td>
+<td>tokens served from cache read</td>
+</tr>
+<tr>
+<td><code>model.provider</code> &#x2F; <code>model.model_name</code></td>
+<td>which provider and model actually served the request</td>
+</tr>
+<tr>
+<td><code>status</code> &#x2F; <code>error</code></td>
+<td>success vs failure; billing is based on usage of successful responses</td>
+</tr>
+<tr>
+<td><code>created_at</code> &#x2F; <code>duration</code> &#x2F; <code>e2e_sec</code> &#x2F; <code>tps</code></td>
+<td>request time, duration, and throughput — diagnostics, not billing</td>
+</tr>
+<tr>
+<td><code>apikeyname</code></td>
+<td>which API key the request ran under</td>
+</tr>
+<tr>
+<td><code>input</code> &#x2F; <code>result</code></td>
+<td>request&#x2F;response payloads <strong>when retained</strong> (see the next section)</td>
+</tr>
+</tbody></table>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/logs-api-anatomy.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/logs-api-anatomy.png" alt="Anatomy of the GET /v1/logs request and response: query parameters on the left, per-request fields with cost and token counts on the right" loading="lazy" />
+</picture>
+
+<p><em>One call, two halves: the query parameters that define your window, and the per-request fields that carry cost and token buckets.</em></p>
+<p>This is the whole “deepseek harness api cost” question in one endpoint: you no longer estimate a run’s cost from the meter — you read it off the row. A run is the set of requests with a shared session; sum their <code>cost</code> fields and you have the run’s price.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">GET /v1/logs API Reference</h3><p class="view-docs-tag-desc">See the full parameter contract, response schema, and error codes for the Modellix LLM request logs endpoint.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Attribute-spend-to-a-session-or-end-user"><a href="#Attribute-spend-to-a-session-or-end-user" class="headerlink" title="Attribute spend to a session or end-user"></a>Attribute spend to a session or end-user</h2><p>Teams share keys, and a shared key turns “what did this cost” into “who spent what.” The logs API answers that too, if the requests carried two optional headers:</p>
+<ul>
+<li><strong><code>X-Mdlx-User-Id</code></strong> — an end-user identifier, 8–128 characters, alphanumeric plus <code>-</code> and <code>_</code>. When requests carry it, the logs endpoint filters on it through the <code>mdlx_user_id</code> query parameter (exact match, same charset rules).</li>
+<li><strong><code>X-Mdlx-Session-Id</code></strong> — a session identifier with the same 8–128 character rules. It groups the requests of one agent run. The <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/api/api">API guide</a> documents a precedence rule worth knowing: some agent tools send their own session header — Claude Code sends <code>X-Claude-Code-Session-Id</code> — and when both are present, <code>X-Mdlx-Session-Id</code> takes precedence.</li>
+</ul>
+<p>In practice: give each developer a stable <code>X-Mdlx-User-Id</code> in their harness environment, and one query per user (<code>…&amp;mdlx_user_id=alice-dev</code>) returns that developer’s request rows for the window. Give each run a fresh <code>X-Mdlx-Session-Id</code> and the run’s total is a filter, not a spreadsheet exercise. The <a href="https://www.modellix.ai/blog/deepseek-harness-plugin/">dsh-modellix plugin</a> and the <a href="https://www.modellix.ai/blog/deepseek-harness-custom-model/">custom provider setup</a> both land on the same gateway, so whichever path you used, the same logs cover it.</p>
+<h2 id="What-the-logs-will-and-will-not-tell-you"><a href="#What-the-logs-will-and-will-not-tell-you" class="headerlink" title="What the logs will and will not tell you"></a>What the logs will and will not tell you</h2><p>The endpoint is precise about what it stores, and the boundaries are documented — including the parts that are not. Read these before you build a dashboard on top of the logs:</p>
+<ul>
+<li><strong>Payloads are conditional.</strong> The <code>input</code> and <code>result</code> fields are returned only “when retained.” Modellix’s documentation does not state how long payloads are retained, whether retention can be opted out of, or whether retained payloads are used for training — the answers are undocumented as of September 1, 2026. If you need prompt text for audit trails, do not assume it will be there; the token counts and <code>cost</code> are the reliable part.</li>
+<li><strong>Cache qualification is undocumented.</strong> Cached Read&#x2F;Write appear in the price table and apply “when present,” but there is no published trigger, TTL, or minimum-token threshold. A <code>cached_tokens</code> of 0 in your logs does not mean caching is broken — it means that request did not qualify under whatever the platform applies.</li>
+<li><strong>Rate-limit headers are hints, not a contract.</strong> The documentation says 429 responses <em>may include</em> <code>X-RateLimit-Limit</code> &#x2F; <code>X-RateLimit-Remaining</code> &#x2F; <code>X-RateLimit-Reset</code> and <code>Retry-After</code> — “may,” not “will.” The logs endpoint runs on the <strong>query</strong> rate limit, which is a separate quota from the inference RPM used by chat requests, so reading your logs does not consume inference quota; exact limits are not published here.</li>
+<li><strong>Retries show up as rows.</strong> Each API request is one log row. A harness that retries a failing step generates one row per attempt, each with its own token counts and cost — which is how a retry loop becomes visible in the bill.</li>
+</ul>
+<p>None of this is a claim that Modellix pricing beats anyone else’s. The value of per-request logs is verifiability: you can check the number yourself instead of trusting a meter, a blog post, or a benchmark.</p>
+<h2 id="From-log-rows-to-a-monthly-bill"><a href="#From-log-rows-to-a-monthly-bill" class="headerlink" title="From log rows to a monthly bill"></a>From log rows to a monthly bill</h2><p>The path from rows to a bill is mechanical — this is deepseek harness billing reduced to a sum. Pick a 30-day window, page through with <code>page_size=100</code>, sum <code>cost</code> across rows: that is the token spend for that period at the gateway. A few practices make the sums meaningful:</p>
+<ul>
+<li><strong>Dedicated keys per environment or person.</strong> A key per developer or per CI runner turns <code>apikeyname</code> into a cost dimension you do not have to guess about.</li>
+<li><strong>Sessions over spreadsheets.</strong> Set <code>X-Mdlx-Session-Id</code> per run and you can answer “what did yesterday’s refactor cost” with one filtered query.</li>
+<li><strong>Watch the retry rows.</strong> A loop that retries 20 times is 20 rows of tokens; the logs make it visible before the invoice does.</li>
+</ul>
+<p>One boundary: this billing view covers the <strong>text</strong> LLM gateway. Media generation (image and video models) bills per task or per second, not per token, and is estimated separately in the Modellix media cost calculator — the two are different math and different endpoints. For the harness side of the ecosystem, the <a href="https://www.modellix.ai/blog/agent-harness/">agent harness overview</a> places all of this in context, and the <a href="https://www.modellix.ai/blog/deepseek-harness/">DeepSeek Harness pillar article</a> ties the whole series together. If you are still wiring the gateway in, the <a href="https://www.modellix.ai/blog/dsh-plugin-add/">plugin add guide</a> covers installation end to end.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Open the Modellix Console</h3><p class="view-docs-tag-desc">Create your Modellix API key and query your own request logs — the first run you price is yours.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Frequently-Asked-Questions-About-DeepSeek-Harness-Token-Usage"><a href="#Frequently-Asked-Questions-About-DeepSeek-Harness-Token-Usage" class="headerlink" title="Frequently Asked Questions About DeepSeek Harness Token Usage"></a>Frequently Asked Questions About DeepSeek Harness Token Usage</h2><p><strong>Does DeepSeek Harness show token usage?</strong> The harness shows token estimates in the Trajectory view (<code>tokenUsage</code>, <code>contextPressure</code>, <code>contextBreakdown</code>) and session statistics, and community threads repeatedly request per-turn token display — an 11-comment Discussion asks for exactly that. A third-party plugin proposal (<code>dsh-token-usage</code>) exists, but the official repository has not confirmed built-in per-turn accounting. For billing accuracy, read the provider’s request logs.</p>
+<p><strong>What does <code>cached_tokens</code> mean in the logs?</strong> It counts tokens served from cache read instead of being billed as fresh input. On Modellix, Cached Read for <code>deepseek/deepseek-v4-flash</code> is $0.014 per 1M versus $0.44 per 1M for input (as of September 1, 2026). Whether a request qualifies for cache is not documented — there is no published trigger, TTL, or minimum-token threshold.</p>
+<p><strong>Is the <code>cost</code> field in USD?</strong> Yes — <code>cost</code> is the USD cost of the request as billed by the gateway. Rates change, so confirm current pricing in the Modellix console before relying on a number.</p>
+<p><strong>How far back can I query logs?</strong> <code>start_time</code> and <code>end_time</code> are both required, and the span between them cannot exceed 30 days. Paginate with <code>page</code> and <code>page_size</code> (default 10, maximum 100).</p>
+<p><strong>Can I filter logs by user?</strong> Yes — pass <code>mdlx_user_id</code> as a query parameter; it is an exact match against the <code>X-Mdlx-User-Id</code> header sent on inference, with the same 8–128 character rule (alphanumeric plus <code>-</code> and <code>_</code>).</p>
+<p><strong>Do failed requests cost money?</strong> Billing is based on token usage of successful responses. Log rows include <code>status</code> and <code>error</code> per request, so failures are identifiable in the log even though they are not the billed ones.</p>
+<p><strong>Will reading logs slow down my agent?</strong> No — the logs endpoint runs on the query rate limit, which is a separate quota from the inference RPM used for chat requests. Reading logs does not consume inference quota.</p>
+<p><strong>How do I attribute costs to one Harness session?</strong> Send <code>X-Mdlx-Session-Id</code> on the requests. If Claude Code’s own <code>X-Claude-Code-Session-Id</code> is also present, <code>X-Mdlx-Session-Id</code> takes precedence per the API guide, so the session you name is the session that lands in the logs.</p>
+<hr>
+<p><em>Endpoints, pricing, and rate-limit wording reflect Modellix public documentation as of September 1, 2026, and change as the platform evolves; confirm live rates in the Modellix console before committing. Access DeepSeek and 200+ other models through a single API key at <a target="_blank" rel="noopener" href="https://modellix.ai/">modellix.ai</a>.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/DeepSeek-Harness/" class="tag-pill tag-pill--sm">DeepSeek Harness</a>
+            
+              <a href="/blog/tags/Token-Usage/" class="tag-pill tag-pill--sm">Token Usage</a>
+            
+              <a href="/blog/tags/LLM-Billing/" class="tag-pill tag-pill--sm">LLM Billing</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/deepseek-harness-api-key/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-deepseek-harness-api-key.webp" alt="DeepSeek Harness API Key: Which Key Goes Where" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">DeepSeek Harness API Key: Which Key Goes Where</h3>
+          <time class="related-article-date" datetime="2026-08-31T16:00:00.000Z">September 1, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/deepseek-harness-error/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-deepseek-harness-error.webp" alt="DeepSeek Harness Provider Errors: UNKNOWN_MODEL and 401s" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">DeepSeek Harness Provider Errors: UNKNOWN_MODEL and 401s</h3>
+          <time class="related-article-date" datetime="2026-08-31T16:00:00.000Z">September 1, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/deepseek-harness-plugin/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-deepseek-harness-plugin.webp" alt="DeepSeek Harness Plugin: Bundles and When You Don&#39;t Need One" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">DeepSeek Harness Plugin: Bundles and When You Don&#39;t Need One</h3>
+          <time class="related-article-date" datetime="2026-08-31T16:00:00.000Z">September 1, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/deepseek-harness-token-usage/&text=DeepSeek%20Harness%20Token%20Usage%3A%20What%20an%20Agent%20Run%20Costs" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/deepseek-harness-token-usage/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/deepseek-harness-token-usage/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

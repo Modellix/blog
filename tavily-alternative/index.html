@@ -1,0 +1,571 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tavily Alternative: What Your Agent Harness Actually Calls — Modellix Blog</title>
+  <meta name="description" content="Tavily alternatives for agent search: Exa, Brave Search API, SerpApi, and Modellix — official pricing and limits, plus what your harness actually calls.">
+  <meta name="keywords" content="tavily alternative, tavily alternatives, serp api alternative, web search api for llm, brave search api alternative, exa api alternative, search api for ai agents, agent web search provider">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/tavily-alternative/">
+  <meta name="description" content="Tavily alternatives for agent search: Exa, Brave Search API, SerpApi, and Modellix — official pricing and limits, plus what your harness actually calls.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tavily Alternative: What Your Agent Harness Actually Calls — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/tavily-alternative/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Tavily alternatives for agent search: Exa, Brave Search API, SerpApi, and Modellix — official pricing and limits, plus what your harness actually calls.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-tavily-alternative.webp">
+<meta property="article:published_time" content="2026-08-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-31T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Agents">
+<meta property="article:tag" content="Comparisons">
+<meta property="article:tag" content="Search API">
+<meta property="article:tag" content="Web Search">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-tavily-alternative.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Tavily Alternative: What Your Agent Harness Actually Calls","description":"Tavily alternatives for agent search: Exa, Brave Search API, SerpApi, and Modellix — official pricing and limits, plus what your harness actually calls.","datePublished":"2026-08-31T16:00:00.000Z","dateModified":"2026-08-31T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/tavily-alternative/","image":"https://img.modellix.ai/en/article/cover-tavily-alternative.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Tavily Alternative: What Your Agent Harness Actually Calls</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Comparisons/" class="category-tag category-tag--sm">Comparisons</a>
+          
+        
+      </div>
+      <h1 class="post-title">Tavily Alternative: What Your Agent Harness Actually Calls</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-08-31T16:00:00.000Z">September 1, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Agents/" class="tag-pill tag-pill--sm">AI Agents</a>
+            
+              <a href="/blog/tags/Web-Search/" class="tag-pill tag-pill--sm">Web Search</a>
+            
+              <a href="/blog/tags/Search-API/" class="tag-pill tag-pill--sm">Search API</a>
+            
+              <a href="/blog/tags/Comparisons/" class="tag-pill tag-pill--sm">Comparisons</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>The practical Tavily alternatives in 2026 are Exa, Brave Search API, SerpApi, and Modellix Web Search.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-tavily-alternative.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-tavily-alternative.png" alt="Tavily alternatives cover: an amber key opening a search-provider seam in an agent harness, glass and chrome on dark copper, MODELLIX top left" />
+</picture>
+
+<p>The practical Tavily alternatives in 2026 are <strong>Exa, Brave Search API, SerpApi, and Modellix Web Search</strong>. Tavily is still the default agent search API—free tier of 1,000 credits a month, no credit card—but its acquisition by Nebius, its web-only scope, and its rate limits are pushing teams to shop. The decision is not only about price per request. It is about what your agent harness actually calls: choosing a search API for AI agents means deciding whether a standalone search vendor—a second account, a second key, and a second bill—or a search capability wired into the same gateway as your models fits your stack better. This article compares the options with pricing, rate limits, and licensing pulled from each vendor’s official site on September 1, 2026, so you can verify every number yourself.</p>
+<p>One boundary before the comparison: a search provider is not a model gateway. Picking a search API decides where web results come from; picking a model gateway decides which LLM your calls reach—separate decisions, and this article only covers the search side. It is also published by Modellix, which sells a web search API, so treat the last entry accordingly; we flag our commercial interest up front and are not claiming any vendor is best.</p>
+<h2 id="Why-developers-shop-for-a-Tavily-alternative-in-2026"><a href="#Why-developers-shop-for-a-Tavily-alternative-in-2026" class="headerlink" title="Why developers shop for a Tavily alternative in 2026"></a>Why developers shop for a Tavily alternative in 2026</h2><p>Three things changed for Tavily users this year.</p>
+<p><strong>The ownership changed.</strong> On February 10, 2026, <a target="_blank" rel="noopener" href="https://nebius.com/newsroom/nebius-announces-agreement-to-acquire-tavily-to-add-agentic-search-to-its-ai-cloud-platform">Nebius announced an agreement to acquire Tavily</a> to add agentic search to its AI cloud platform. The Tavily team, including founder and CEO Rotem Weiss, stays and Tavily keeps operating under its own brand; Nebius has not disclosed the transaction value. None of that means Tavily is broken—but for teams that picked a search vendor partly because of its roadmap, an acquisition is a reason to re-evaluate the alternatives.</p>
+<p><strong>The free tier is a ceiling, not a floor.</strong> Tavily’s <a target="_blank" rel="noopener" href="https://tavily.com/pricing">pricing page</a> lists 1,000 free API credits per month (no credit card required), pay-as-you-go at $0.008 per credit, a Project plan with 4,000 credits a month, and Enterprise with custom terms and SLAs. Credits reset on the first of each month; when they run out, requests stop until reset or upgrade. For parallel production agents, that becomes a recurring chore.</p>
+<p><strong>The rate limits are real constraints for parallel agents.</strong> Tavily’s <a target="_blank" rel="noopener" href="https://docs.tavily.com/documentation/rate-limits">rate limits documentation</a> is explicit: 100 requests per minute for development keys and 1,000 RPM for production keys, with separate lower limits for the crawl endpoint (100 RPM), research endpoint (20 RPM), and usage endpoint (10 requests per 10 minutes). When a rate-limit response comes back, it is a <code>429</code> with a <code>retry-after</code> header. Community threads about Tavily alternatives consistently name rate limiting and the cost of running several agents in parallel as the reasons they started looking.</p>
+<p>There is also a scope limit: Tavily is web-only. If your agent needs SEC filings, PubMed, or paywalled academic content, no web search API in this comparison covers that out of the box—you are integrating a specialized data API regardless of which provider you pick.</p>
+<h2 id="The-alternatives-at-a-glance"><a href="#The-alternatives-at-a-glance" class="headerlink" title="The alternatives at a glance"></a>The alternatives at a glance</h2><table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Entry pricing</th>
+<th>Free tier</th>
+<th>Published uptime &#x2F; SLA</th>
+<th>Harness-side provider implementation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Tavily</td>
+<td>$0.008&#x2F;credit (pay-as-you-go)</td>
+<td>1,000 credits&#x2F;month, no card</td>
+<td>Enterprise plan only (custom SLA)</td>
+<td>None (SDKs, LangChain, MCP)</td>
+</tr>
+<tr>
+<td>Exa</td>
+<td>$7 per 1k search requests (≤10 results)</td>
+<td>$10 credits&#x2F;month</td>
+<td>Enterprise plan only (custom SLA)</td>
+<td>None (SDKs, MCP)</td>
+</tr>
+<tr>
+<td>Brave Search API</td>
+<td>$5 per 1,000 requests (Search plan)</td>
+<td>$5 credits&#x2F;month (card required)</td>
+<td>Enterprise plan only</td>
+<td>None (SDKs, MCP server)</td>
+</tr>
+<tr>
+<td>SerpApi</td>
+<td>$25&#x2F;month (Starter, 1,000 searches)</td>
+<td>250 searches&#x2F;month</td>
+<td>Not published on public page</td>
+<td>None (SDKs)</td>
+</tr>
+<tr>
+<td>Modellix Web Search</td>
+<td>$0.01–$0.02 per request by depth</td>
+<td>None (trial credits on request)</td>
+<td>—</td>
+<td><strong>Yes — dsh-modellix Web module</strong></td>
+</tr>
+</tbody></table>
+<p>Pricing as of September 1, 2026, from each provider’s official pricing page—verify current rates before committing, because all of them change pricing without notice. The last column is the one every other comparison table misses, and it is the subject of the second half of this article.</p>
+<h2 id="1-Tavily-—-the-baseline-you-are-measuring-against"><a href="#1-Tavily-—-the-baseline-you-are-measuring-against" class="headerlink" title="1. Tavily — the baseline you are measuring against"></a>1. Tavily — the baseline you are measuring against</h2><p>Tavily is a search API built for AI agents: you send a query, you get ranked, structured results with content and summaries ready for an LLM, plus extract, crawl, map, and research endpoints. It integrates with LangChain out of the box and is widely referenced in agent tutorials, which is why it is the default starting point.</p>
+<p><strong>Official URL:</strong> <a target="_blank" rel="noopener" href="https://tavily.com/pricing">tavily.com</a></p>
+<p><strong>Pricing (as of 2026-09-01):</strong> free 1,000 credits&#x2F;month (no credit card); pay-as-you-go $0.008&#x2F;credit; Project plan 4,000 credits&#x2F;month; Enterprise custom. Credits are consumed per request type—search, extract, crawl, research consume different amounts, with research the most expensive.</p>
+<p><strong>Rate limits (from official docs):</strong> 100 RPM development &#x2F; 1,000 RPM production; crawl 100 RPM; research 20 RPM; usage 10 per 10 minutes; <code>429</code> responses include <code>retry-after</code>.</p>
+<p><strong>Licensing (from <a target="_blank" rel="noopener" href="https://www.tavily.com/terms">platform terms</a>):</strong> the service is for your internal business purposes; you may not access it to build a competitive product, may not resell or sublicense it, and may not use it or its output for automated decisions with significant adverse impact on individual rights in high-risk areas (employment, healthcare, finance, legal, housing, insurance, social benefits) without human oversight.</p>
+<p><strong>Service targets:</strong> teams that want the most battle-tested agent search API with a genuinely usable free tier, and who do not mind a separate vendor account.</p>
+<p><strong>Watch out for:</strong> the credit model makes cost prediction indirect (credits per request type rather than a flat per-request price), and the 100 RPM development limit is easy to hit with parallel agents. If you are choosing an agent web search provider partly because of roadmap stability, the Nebius deal is the open question to track.</p>
+<h2 id="2-Exa-—-semantic-search-for-research-heavy-agents"><a href="#2-Exa-—-semantic-search-for-research-heavy-agents" class="headerlink" title="2. Exa — semantic search for research-heavy agents"></a>2. Exa — semantic search for research-heavy agents</h2><p><a target="_blank" rel="noopener" href="https://exa.ai/pricing">Exa</a> is a neural search API: instead of keyword matching, it uses embeddings to find pages by meaning, which suits research assistants, competitive intelligence, and technical documentation discovery. Its “Find Similar” endpoint returns more pages like a given URL, and its deep research endpoint produces structured output with field-level citations.</p>
+<p><strong>Official URL:</strong> <a target="_blank" rel="noopener" href="https://exa.ai/pricing">exa.ai</a></p>
+<p><strong>Pricing (as of 2026-09-01):</strong> free tier with $10 credits per month (5 search QPS, 3 agent concurrency); Search at $7 per 1,000 requests including up to 10 results, $1 per additional result; Deep Search $12&#x2F;1k; Contents $1&#x2F;1k pages; Answer $5&#x2F;1k; Agent runs $0.012–$1.00 per run depending on effort mode.</p>
+<p><strong>Rate limits (from official pricing):</strong> 5 search QPS on the free tier, 10 QPS on the Developer plan; enterprise gets custom QPS and concurrency.</p>
+<p><strong>Licensing (from <a target="_blank" rel="noopener" href="https://exa.ai/terms">terms of service</a>):</strong> a non-exclusive, non-transferable, revocable API license; you may not use the output to develop a competitive product; output ownership stays with you subject to those restrictions.</p>
+<p><strong>Service targets:</strong> research-heavy agents where semantic relevance matters more than raw SERP coverage. As an Exa API alternative to Tavily, it is the pick when your queries are “find pages like this” rather than “rank results for this keyword”.</p>
+<p><strong>Watch out for:</strong> web-only scope, and the fact that Firecrawl’s Tavily-alternatives post claims Exa has “no public free tier” while Exa’s own site lists $10 in monthly free credits—a good example of why you should verify against official pages rather than competitor posts.</p>
+<h2 id="3-Brave-Search-API-—-the-independent-index"><a href="#3-Brave-Search-API-—-the-independent-index" class="headerlink" title="3. Brave Search API — the independent index"></a>3. Brave Search API — the independent index</h2><p><a target="_blank" rel="noopener" href="https://brave.com/search/api/">Brave Search API</a> runs on Brave’s own index of over 30 billion pages, independent of Google and Bing, with zero-data-retention options on enterprise plans. It returns complete search results (URLs, text, news, images) and offers an LLM Context endpoint tuned for grounding models.</p>
+<p><strong>Official URL:</strong> <a target="_blank" rel="noopener" href="https://brave.com/search/api/">brave.com&#x2F;search&#x2F;api&#x2F;</a></p>
+<p><strong>Pricing (as of 2026-09-01):</strong> Search plan $5 per 1,000 requests, with $5 in free credits applied every month; Answers plan $4 per 1,000 requests plus $5 per million tokens, 2 QPS. Note the free-credits plan requires a credit card—per Brave’s FAQ, the card is an anti-fraud measure and is not charged.</p>
+<p><strong>Rate limits (from official page):</strong> 50 queries per second on the Search plan, 2 QPS on Answers; enterprise capacity custom.</p>
+<p><strong>Licensing (from <a target="_blank" rel="noopener" href="https://api-dashboard.search.brave.com/documentation/resources/terms-of-service">API terms of service</a>):</strong> the license is limited, revocable, and non-sublicensable; you may not store or cache search results beyond transient storage; and importantly, you may not use search results to create, evaluate, train, fine-tune, or otherwise improve AI models. If model training on search output matters to you, read that clause before building.</p>
+<p><strong>Service targets:</strong> privacy-conscious teams and applications that want an independent index rather than an aggregated retrieval layer. If you are evaluating a Brave Search API alternative because you need AI-structured content instead of raw SERP JSON, that distinction—not price—is the deciding factor.</p>
+<p><strong>Watch out for:</strong> raw SERP-style JSON rather than AI-optimized content—you may need a separate extraction step to get full page content.</p>
+<h2 id="4-SerpApi-—-structured-SERP-data-not-web-content"><a href="#4-SerpApi-—-structured-SERP-data-not-web-content" class="headerlink" title="4. SerpApi — structured SERP data, not web content"></a>4. SerpApi — structured SERP data, not web content</h2><p><a target="_blank" rel="noopener" href="https://serpapi.com/pricing">SerpApi</a> solves a different problem than the others: it returns the structured contents of a search engine results page—organic rankings, ads, featured snippets, knowledge graph panels—across Google, Bing, and other engines. That is search-engine intelligence, not a clean content layer for an LLM. If your agent needs “what ranks for this query,” SerpApi is the right shape; if it needs “read this page and summarize,” SerpApi is not a content API.</p>
+<p><strong>Official URL:</strong> <a target="_blank" rel="noopener" href="https://serpapi.com/pricing">serpapi.com</a></p>
+<p><strong>Pricing (as of 2026-09-01):</strong> Free plan 250 searches&#x2F;month at 50 searches per hour; Starter $25&#x2F;month for 1,000 searches; Developer $75&#x2F;month for 5,000; Production $150&#x2F;month for 15,000; Big Data $275&#x2F;month for 30,000; Enterprise custom.</p>
+<p><strong>Rate limits (from official pricing):</strong> throughput is per-hour: 50&#x2F;h free, 200&#x2F;h Starter, 1,000&#x2F;h Developer, 3,000&#x2F;h Production.</p>
+<p><strong>Licensing (from <a target="_blank" rel="noopener" href="https://serpapi.com/legal">legal&#x2F;terms</a>):</strong> on all recurring plans except Free, Starter, and Developer, SerpApi assumes liability for scraping and parsing search-engine results under its U.S. Legal Shield program, with up to $2 million in coverage for lawful use of the data.</p>
+<p><strong>Service targets:</strong> SEO teams, market researchers, and agents that need to know the structure of a SERP rather than web content. As a SERP API alternative to Tavily, SerpApi fits when your pipeline consumes rankings and features, not article text.</p>
+<p><strong>Watch out for:</strong> it is a SERP-data API, not a web-content API—pairing it with a separate fetch layer is common, and per-search pricing is higher than content-oriented search APIs.</p>
+<h2 id="5-Modellix-—-search-behind-the-same-key-as-your-models"><a href="#5-Modellix-—-search-behind-the-same-key-as-your-models" class="headerlink" title="5. Modellix — search behind the same key as your models"></a>5. Modellix — search behind the same key as your models</h2><p>Modellix runs web search at <code>https://tool.modellix.ai</code>, launched in August 2026 per the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/changelog/product-updates">product changelog</a>. The <a target="_blank" rel="noopener" href="https://docs.modellix.ai/tools/overview">Tools overview</a> documents two synchronous endpoints: Web Search (<code>POST /v1/web-search</code>), billed once per request by depth—lite $0.01, standard $0.015, rich $0.02 per request—and Web Fetch (<code>POST /v1/web-fetch</code>), billed $0.002 per successful URL, with failed URLs not billed. Both authenticate with the same Modellix API key, and request history is queryable through the Get Tool Logs endpoint.</p>
+<p>The structural difference versus Tavily, Exa, Brave, and SerpApi is verifiable and narrow: <strong>one Modellix API key covers both the LLM gateway at <code>llm.modellix.ai</code> and Web Search&#x2F;Web Fetch at <code>tool.modellix.ai</code></strong>—there is no separate search-vendor account, second card, or second terms page. If your project already uses Modellix for models, search joins the same billing surface.</p>
+<p>Honest caveats, because this is a young product. Modellix publishes no uptime promise or SLA on its docs, and no auto-failover description—treat availability as unpublished until they post numbers. There is no automatic free tier: the $1 signup credit was retired in August 2026, and trial credits are available by email request only. And the Modellix LLM gateway is a text gateway—use text-only prompts for model calls; web search and fetch are separate tool endpoints, not part of the model request path. We are not claiming Modellix is the cheapest search API—at these volumes the per-request price differences between providers are usually smaller than the operational cost of a second vendor.</p>
+<p><strong>Official URL:</strong> <a target="_blank" rel="noopener" href="https://docs.modellix.ai/tools/overview">docs.modellix.ai&#x2F;tools&#x2F;overview</a></p>
+<p><strong>Service targets:</strong> teams already using Modellix for models that want search and fetch on the same key and bill, without provisioning a second search vendor. Key creation and rotation follow the same <a href="https://www.modellix.ai/blog/deepseek-harness-api-key/">API key workflow</a> as the rest of the platform.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/modellix-search-call-path.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/modellix-search-call-path.png" alt="Modellix web search call path: one API key authenticates Web Search and Web Fetch on tool.modellix.ai, billed per request and per successful URL" loading="lazy" />
+</picture>
+
+<p><em>The call path in one diagram: one key, one host, two synchronous endpoints—search billed once per request at the chosen depth, fetch billed per successful URL.</em></p>
+<h2 id="What-your-agent-harness-actually-calls"><a href="#What-your-agent-harness-actually-calls" class="headerlink" title="What your agent harness actually calls"></a>What your agent harness actually calls</h2><p>Here is the dimension the alternatives listicles skip. Your agent does not call “Tavily” or “Exa” by name—it calls whatever your harness wires to the search seam. In <a href="https://www.modellix.ai/blog/deepseek-harness/">DeepSeek Harness</a>, that seam is the <code>searchProvider</code> &#x2F; <code>fetchProvider</code> configuration, and the provider behind it decides which API, key, and billing account every <code>web_search</code> and <code>web_fetch</code> call hits. The <a href="https://www.modellix.ai/blog/agent-harness/">agent harness overview</a> explains the pattern for the wider category.</p>
+<p>That is what the last column of the comparison table measures. Tavily, Exa, Brave, and SerpApi integrate with agent frameworks through SDKs, LangChain, and MCP servers—you add them as an external dependency, and if you run DeepSeek Harness you are wiring a community or hand-rolled provider. Modellix ships a provider implementation instead: the <a target="_blank" rel="noopener" href="https://github.com/Modellix/dsh-modellix">dsh-modellix plugin</a> registers Modellix as the search and fetch provider in the harness, so the native <code>web_search</code> and <code>web_fetch</code> tools run against <code>tool.modellix.ai</code> with a Modellix key. The “how to connect” side—installing the plugin, entering one key, verifying the provider row—is covered in the <a href="https://www.modellix.ai/blog/deepseek-harness-web-search/">DeepSeek Harness web search guide</a>; this article covers the “which provider to choose” side, and the two read as a pair.</p>
+<p>Why this matters for your decision: with a standalone search API, search capability and harness wiring arrive separately, and you own the glue (plus its failure modes). With a harness-side implementation, the seam is already patched—but you are tying search to a specific harness’s provider ecosystem. Neither is universally better; it is a trade-off you should make with your eyes open, which is exactly why the comparison table carries the column.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/agent-harness-search-seam.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/agent-harness-search-seam.png" alt="Agent harness search seam: agent node routing through the provider seam to standalone vendor panels or one Modellix key with llm and tool endpoints" loading="lazy" />
+</picture>
+
+<p><em>The seam in one diagram: the harness calls the provider on the seam, and that decision—standalone vendor or same-key capability—determines the account, key, and bill behind every search.</em></p>
+<h2 id="How-to-choose-a-search-provider-for-your-agents"><a href="#How-to-choose-a-search-provider-for-your-agents" class="headerlink" title="How to choose a search provider for your agents"></a>How to choose a search provider for your agents</h2><table>
+<thead>
+<tr>
+<th>If your main reason is</th>
+<th>Start with</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A battle-tested search API with a real free tier</td>
+<td>Tavily</td>
+</tr>
+<tr>
+<td>Semantic discovery for research-heavy agents</td>
+<td>Exa</td>
+</tr>
+<tr>
+<td>An independent index and privacy posture</td>
+<td>Brave Search API</td>
+</tr>
+<tr>
+<td>Structured SERP data for SEO&#x2F;rank tracking</td>
+<td>SerpApi</td>
+</tr>
+<tr>
+<td>Search and models on one key, with harness wiring included</td>
+<td>Modellix Web Search + dsh-modellix</td>
+</tr>
+</tbody></table>
+<p>Two practical notes. First, if your only goal is a different model source, you do not need a search decision at all—the <a href="https://www.modellix.ai/blog/deepseek-harness-custom-model/">DeepSeek Harness custom model guide</a> is pure configuration. Second, if you already use a model aggregator, check whether search is part of its surface before adding a vendor: the <a href="https://www.modellix.ai/blog/unified-ai-api/">unified AI API guide</a> explains the aggregation-API model that Modellix’s single key for models and tools fits into, and the <a href="https://www.modellix.ai/blog/deepseek-harness-token-usage/">token usage guide</a> covers how billed calls show up on the Modellix side.</p>
+<p>Whichever you evaluate, run the same verification we did: open the pricing, rate-limits, and terms pages on the same day, and budget for the request type your agents actually issue—search, extract, or fetch—because credit-based and per-request billing do not compare on sticker price alone. And abstract the provider behind a clean interface, so a switch stays a configuration change rather than a refactor.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Open the Modellix Console</h3><p class="view-docs-tag-desc">Log in to create one Modellix API key and check live Web Search and Web Fetch rates before wiring your agent&#39;s search provider.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Frequently-Asked-Questions-About-Tavily-Alternatives"><a href="#Frequently-Asked-Questions-About-Tavily-Alternatives" class="headerlink" title="Frequently Asked Questions About Tavily Alternatives"></a>Frequently Asked Questions About Tavily Alternatives</h2><p><strong>Is there a free version of Tavily?</strong><br>Yes. The Researcher plan gives 1,000 API credits per month with no credit card required, per Tavily’s official pricing page. Credits reset on the first of each month, and requests stop when they run out.</p>
+<p><strong>Is Tavily worth it?</strong><br>For prototyping and low-volume agents, the free tier makes it the lowest-friction option, and its LangChain integrations mean less glue code. For parallel production agents, factor in the 100 RPM development &#x2F; 1,000 RPM production rate limits and the credit-based billing before committing.</p>
+<p><strong>Is Tavily search better than Exa search?</strong><br>They optimize different things. Tavily is a general-purpose, AI-structured web search API; Exa is an embedding-based semantic search API for research-heavy retrieval. Match the search method to your queries rather than looking for a universal winner.</p>
+<p><strong>What is the best Tavily alternative?</strong><br>There is no single best—the candidates are Exa for semantic search, Brave Search API for an independent index, SerpApi for structured SERP data, and Modellix Web Search for search behind the same key as your models. Choose by what your agent actually needs.</p>
+<p><strong>What does “web search api for llm” mean?</strong><br>A web search API for LLMs returns clean, structured results designed to be fed into a language model—ranked results with content and summaries, not raw HTML. Tavily, Exa, Brave Search API, and Modellix Web Search fit that shape; SerpApi returns SERP structure instead.</p>
+<p><strong>Can I use search API results to train a model?</strong><br>Check each vendor’s terms. Brave’s API terms explicitly prohibit using search results to create, evaluate, train, fine-tune, or improve AI models; Tavily and Exa restrict competitive use of their services and output. Read the license before you build if training on search output is part of your plan.</p>
+<p><strong>Do search APIs have rate limits?</strong><br>Yes, and they differ a lot. Tavily publishes 100 RPM development &#x2F; 1,000 RPM production; Exa publishes QPS (5 free, 10 developer); Brave publishes 50 QPS on Search; SerpApi publishes per-hour throughput (50&#x2F;h free, 200&#x2F;h Starter). Modellix does not publish fixed RPM numbers—responses may include X-RateLimit headers, and current limits are confirmed via the console. For harness-side failures, the <a href="https://www.modellix.ai/blog/deepseek-harness-error/">DeepSeek Harness error guide</a> walks through the common 429-class cases.</p>
+<p><strong>Which provider has a provider implementation for my agent harness?</strong><br>Among these five, Modellix is the entry that ships a harness-side provider implementation: the dsh-modellix plugin registers Modellix as the search and fetch provider in DeepSeek Harness, so the native web tools run against tool.modellix.ai with one Modellix key. The other four integrate through SDKs and MCP servers, which leaves the harness wiring to you.</p>
+<hr>
+<p><em>Provider details, pricing, rate limits, and terms reflect each vendor’s public pages as of September 1, 2026, and change frequently—validate against each provider’s live pricing and terms before committing. This article was published by Modellix, a commercial party that sells a web search API. Access image and video models, including the leading Chinese models, through a single API key at <a target="_blank" rel="noopener" href="https://modellix.ai/">modellix.ai</a>.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Agents/" class="tag-pill tag-pill--sm">AI Agents</a>
+            
+              <a href="/blog/tags/Web-Search/" class="tag-pill tag-pill--sm">Web Search</a>
+            
+              <a href="/blog/tags/Search-API/" class="tag-pill tag-pill--sm">Search API</a>
+            
+              <a href="/blog/tags/Comparisons/" class="tag-pill tag-pill--sm">Comparisons</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/claude-code-alternatives/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-claude-code-alternatives.webp" alt="Claude Code Alternatives (2026): How to Feed Them Models" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Comparisons</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Claude Code Alternatives (2026): How to Feed Them Models</h3>
+          <time class="related-article-date" datetime="2026-08-29T16:00:00.000Z">August 30, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/nano-banana-vs-stable-diffusion/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-nano-banana-vs-stable-diffusion.webp" alt="Nano Banana vs Stable Diffusion: Honest Comparison (2026)" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Comparisons</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Nano Banana vs Stable Diffusion: Honest Comparison (2026)</h3>
+          <time class="related-article-date" datetime="2026-08-26T02:00:00.000Z">August 26, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/seedance-2-0-vs/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-seedance-2-0-vs.webp" alt="Seedance 2.0 Vs: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Comparisons</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Seedance 2.0 Vs: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-08-26T02:00:00.000Z">August 26, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/tavily-alternative/&text=Tavily%20Alternative%3A%20What%20Your%20Agent%20Harness%20Actually%20Calls" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/tavily-alternative/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/tavily-alternative/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
