@@ -1,0 +1,628 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Fable 5.1 vs Opus 5: Run Cost, Not Benchmarks — Modellix Blog</title>
+  <meta name="description" content="Fable 5.1 output is ~2x Opus 5 ($45 vs $22.50/1M, Sep 4, 2026); cache reads are half. Cheaper depends on workload shape; decide by scenario, verify on bills.">
+  <meta name="keywords" content="claude fable vs opus, claude opus 5 vs fable, claude fable vs sonnet, claude fable vs gpt 5.6, claude fable review, claude fable model, fable ai model, claude fable benchmark, is claude fable better than opus">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/claude-fable-vs-opus/">
+  <meta name="description" content="Fable 5.1 output is ~2x Opus 5 ($45 vs $22.50&#x2F;1M, Sep 4, 2026); cache reads are half. Cheaper depends on workload shape; decide by scenario, verify on bills.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Claude Fable 5.1 vs Opus 5: Run Cost, Not Benchmarks — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/claude-fable-vs-opus/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Fable 5.1 output is ~2x Opus 5 ($45 vs $22.50&#x2F;1M, Sep 4, 2026); cache reads are half. Cheaper depends on workload shape; decide by scenario, verify on bills.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-claude-fable-vs-opus.webp">
+<meta property="article:published_time" content="2026-09-03T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-03T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="Anthropic">
+<meta property="article:tag" content="Claude">
+<meta property="article:tag" content="LLM API">
+<meta property="article:tag" content="Model Comparison">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-claude-fable-vs-opus.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Claude Fable 5.1 vs Opus 5: Run Cost, Not Benchmarks","description":"Fable 5.1 output is ~2x Opus 5 ($45 vs $22.50/1M, Sep 4, 2026); cache reads are half. Cheaper depends on workload shape; decide by scenario, verify on bills.","datePublished":"2026-09-03T16:00:00.000Z","dateModified":"2026-09-03T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/claude-fable-vs-opus/","image":"https://img.modellix.ai/en/article/cover-claude-fable-vs-opus.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Claude Fable 5.1 vs Opus 5: Run Cost, Not Benchmarks</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Comparisons/" class="category-tag category-tag--sm">Comparisons</a>
+          
+        
+      </div>
+      <h1 class="post-title">Claude Fable 5.1 vs Opus 5: Run Cost, Not Benchmarks</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-09-03T16:00:00.000Z">September 4, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/Anthropic/" class="tag-pill tag-pill--sm">Anthropic</a>
+            
+              <a href="/blog/tags/LLM-API/" class="tag-pill tag-pill--sm">LLM API</a>
+            
+              <a href="/blog/tags/Model-Comparison/" class="tag-pill tag-pill--sm">Model Comparison</a>
+            
+              <a href="/blog/tags/Claude/" class="tag-pill tag-pill--sm">Claude</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>Searching &#39;claude fable vs opus&#39; in September 2026 surfaces benchmark roundups and Reddit threads — mostly comparing Fable 5, the previous release, with Opus 4.8 or July&#39;s Opus 5. The model everyone is choosing between now, Claude Fable 5.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-claude-fable-vs-opus.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-claude-fable-vs-opus.png" alt="Modellix cover: two-line title CLAUDE FABLE 5.1 VS OPUS 5 and CHOOSE BY RUN COST over an amber glass gateway with two model tier chips, MODELLIX wordmark" />
+</picture>
+
+<p>Searching “claude fable vs opus” in September 2026 surfaces benchmark roundups and Reddit threads — mostly comparing <strong>Fable 5, the previous release</strong>, with Opus 4.8 or July’s Opus 5. The model everyone is choosing between now, <strong>Claude Fable 5.1</strong> (released September 1, 2026), barely appears, and no ranking page answers the question that sets your invoice: which model is cheaper <em>per run of your workload</em>, not per benchmark point. This article compares Fable 5.1 and Opus 5 the way a billing meeting would, with every price captured on September 4, 2026.</p>
+<p>Two questions this keyword keeps asking, answered up front. <strong>Is Claude Fable better than Opus?</strong> There is no “better” verdict — Anthropic’s own scores split by task, so this page gives a dimension breakdown with scenario attribution instead of a ranking. <strong>Is Claude Fable more expensive than Opus?</strong> Yes on the headline rates: as of September 4, 2026, Fable 5.1 bills $45 per 1M output tokens against Opus 5’s $22.50 — about 2× — and $9 against $4.50 on input. That ratio is arithmetic on two price rows, derived and dated here, not a figure either vendor publishes. One exception runs the other way: cache reads cost $0.225 per 1M on Fable 5.1, half of Opus 5’s $0.45. Whether that ever offsets a 2× output price is what this article walks through — and how to answer it for your own traffic, not a benchmark table. We run <a href="https://www.modellix.ai/">Modellix</a>, an API gateway that lists both models behind one key, so we have a commercial interest when Modellix appears; rates were read from the <a href="https://www.modellix.ai/llm">Modellix LLM price page</a> and Anthropic’s own pages on September 4, 2026, and we flag wherever a number could not be verified.</p>
+<h2 id="The-short-answer-close-on-paper-different-bills-in-practice"><a href="#The-short-answer-close-on-paper-different-bills-in-practice" class="headerlink" title="The short answer: close on paper, different bills in practice"></a>The short answer: close on paper, different bills in practice</h2><p>Anthropic’s benchmark table puts Fable 5.1 and Opus 5 within a few points on most rows (next section). At a 20-point gap this would be an easy call; at this one it is economic. Both models share a 1M-token window and flat-rate billing; what differs is the rate card and where your tokens land on it.</p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Claude Fable 5.1</th>
+<th>Claude Opus 5</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Anthropic list price (input &#x2F; output, per 1M)</td>
+<td>$10.00 &#x2F; $50.00</td>
+<td>$5.00 &#x2F; $25.00</td>
+</tr>
+<tr>
+<td>Modellix rate, Sept 4, 2026 (input &#x2F; output)</td>
+<td>$9.00 &#x2F; $45.00</td>
+<td>$4.50 &#x2F; $22.50</td>
+</tr>
+<tr>
+<td>Cache read per 1M (Modellix, Sept 4, 2026)</td>
+<td>$0.225</td>
+<td>$0.45</td>
+</tr>
+<tr>
+<td>Context window &#x2F; pricing mode</td>
+<td>1M tokens &#x2F; flat-rate</td>
+<td>1M tokens &#x2F; flat-rate</td>
+</tr>
+<tr>
+<td>Terminal-Bench 4.0 (Anthropic)</td>
+<td>55.8%</td>
+<td>52.3%</td>
+</tr>
+<tr>
+<td>CursorBench 3.2.0 (Anthropic)</td>
+<td>73.4%</td>
+<td>70.0%</td>
+</tr>
+<tr>
+<td>Switching cost</td>
+<td>One string, same key</td>
+<td>One string, same key</td>
+</tr>
+<tr>
+<td>How to verify for your workload</td>
+<td>Run both, compare logs</td>
+<td>Run both, compare logs</td>
+</tr>
+</tbody></table>
+<p>Read the last two rows before the scores. If testing a model meant a new account and re-plumbed SDKs, benchmarks would be the pragmatic default; when the two models differ by one string on the same key, your own comparison takes an afternoon. That is the second half of this article.</p>
+<h2 id="First-which-models-are-we-actually-comparing"><a href="#First-which-models-are-we-actually-comparing" class="headerlink" title="First, which models are we actually comparing"></a>First, which models are we actually comparing</h2><p>Version drift does most of the work in this SERP: June’s pieces pit Fable 5 against Opus 4.8, July’s against the then-new Opus 5, and both are stale since Claude Fable 5.1 shipped September 1, 2026. This article compares the two current flagship IDs as billed today: <code>anthropic/claude-fable-5.1</code> and <code>anthropic/claude-opus-5</code>.</p>
+<p>Anthropic positions them like this. The <a target="_blank" rel="noopener" href="https://www.anthropic.com/news/claude-opus-5">Opus 5 announcement</a> calls Opus 5 “a thoughtful and proactive model that comes close to the frontier intelligence of Claude Fable 5 at half the price” — the deliberate default for everyday difficult work. The <a target="_blank" rel="noopener" href="https://www.anthropic.com/claude-fable-and-mythos-5-1">Fable 5.1 announcement</a> puts Fable 5.1 at the top of the rate card: Anthropic’s most capable model for long-running agentic coding, knowledge work, and research. Those are positions, not a verdict — “half the price” is exactly why the run-cost question exists.</p>
+<p>Three facts keep the comparison honest (Modellix catalog, September 4, 2026, consistent with Anthropic’s pages):</p>
+<ol>
+<li><strong>Same context window, same billing shape.</strong> Both accept up to 1M tokens, both flat-rate — no tiered surcharge for long contexts. Neither has a bigger window or different tiering.</li>
+<li><strong>Same modality shape.</strong> Both list text and image input, text output.</li>
+<li><strong>Fable 5.1 kept Fable 5’s $10&#x2F;$50 rate but cut cache reads.</strong> Per <a target="_blank" rel="noopener" href="https://www.anthropic.com/claude/fable">Anthropic’s Fable model page</a>, cache reads now cost “$0.25 per million tokens, 75% less than Fable 5”. Anthropic separately estimates that cut lowers Fable 5.1’s typical-workload cost by about 25% versus Fable 5, and highly agentic workloads by up to approximately 45%. Those percentages are Anthropic’s, about Fable 5 → 5.1, not gateway discounts.</li>
+</ol>
+<p>The full Fable 5.1 rate card — four billing dimensions, cache columns, the Fable 5 migration math — lives in our <a href="https://www.modellix.ai/blog/claude-fable-pricing/">Claude Fable 5.1 pricing guide</a>. This article answers the other question: which flagship should a given workload run on.</p>
+<h2 id="What-the-official-benchmarks-actually-show"><a href="#What-the-official-benchmarks-actually-show" class="headerlink" title="What the official benchmarks actually show"></a>What the official benchmarks actually show</h2><p>The scores below are verbatim from Anthropic’s benchmark table on its Fable 5.1 announcement (accessed September 4, 2026), which lists Fable 5.1, Fable 5, Opus 5, and GPT-5.6 Sol side by side. We quote only Anthropic’s numbers — third-party reruns (Tessl, BenchLM, DataCamp, Toloka, YouTube) are excluded by policy.</p>
+<table>
+<thead>
+<tr>
+<th>Benchmark (Anthropic, Fable 5.1 page)</th>
+<th align="right">Fable 5.1</th>
+<th align="right">Opus 5</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Agentic scientific research — Terminal-Bench-Science 0.1</td>
+<td align="right">52.6%</td>
+<td align="right">29.0%</td>
+</tr>
+<tr>
+<td>Agentic coding — Terminal-Bench 4.0</td>
+<td align="right">55.8%</td>
+<td align="right">52.3%</td>
+</tr>
+<tr>
+<td>Multidisciplinary reasoning — Humanity’s Last Exam</td>
+<td align="right">60.9%</td>
+<td align="right">56.6%</td>
+</tr>
+<tr>
+<td>Agentic coding — CursorBench 3.2.0</td>
+<td align="right">73.4%</td>
+<td align="right">70.0%</td>
+</tr>
+</tbody></table>
+<p><em>The Humanity’s Last Exam row shows Anthropic’s published run without tool use; the second configuration Anthropic publishes for this benchmark is not reproduced here.</em></p>
+<p>Three observations before anyone turns scores into spend:</p>
+<ul>
+<li><strong>The big gap is on scientific research, not everyday work.</strong> Terminal-Bench-Science 0.1 (52.6% vs 29.0%) is the one clear separation. On the coding and reasoning rows most API traffic touches, the spread is 3.4 to 4.3 points.</li>
+<li><strong>Anthropic flags noise itself.</strong> Its Terminal-Bench-Science footnote reports a standard error of ±3.5–4.5 points per model and says its setup reproduces public leaderboard figures “within noise.” A single-digit gap sits inside that band; treat it as approximate.</li>
+<li><strong>Scores describe capability, not your bill.</strong> A model 3 points higher can be the costlier choice per successful run at 2× the token price — or cheaper, if it finishes in one attempt where the other needs two.</li>
+</ul>
+<h2 id="The-price-gap-2×-output-half-price-cache-reads"><a href="#The-price-gap-2×-output-half-price-cache-reads" class="headerlink" title="The price gap: ~2× output, half-price cache reads"></a>The price gap: ~2× output, half-price cache reads</h2><p>The two current rows on the Modellix LLM price page, captured September 4, 2026:</p>
+<table>
+<thead>
+<tr>
+<th>Model (Modellix ID)</th>
+<th align="right">Input &#x2F; 1M</th>
+<th align="right">Output &#x2F; 1M</th>
+<th align="right">Cached read &#x2F; 1M</th>
+<th align="right">Discount</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Claude Fable 5.1 (<code>anthropic/claude-fable-5.1</code>)</td>
+<td align="right">$9.00</td>
+<td align="right">$45.00</td>
+<td align="right">$0.225</td>
+<td align="right">10% OFF</td>
+</tr>
+<tr>
+<td>Claude Opus 5 (<code>anthropic/claude-opus-5</code>)</td>
+<td align="right">$4.50</td>
+<td align="right">$22.50</td>
+<td align="right">$0.45</td>
+<td align="right">10% OFF</td>
+</tr>
+</tbody></table>
+<p><em>Modellix shows the official list price and its rate side by side; figures above are Modellix’s rates. Anthropic list prices ($10&#x2F;$50 and $5&#x2F;$25) were confirmed on Anthropic’s pages the same day. Every price is a September 4, 2026 snapshot — the discount column changed for all four Anthropic rows within the past 24 hours, so re-check before you budget.</em></p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/modellix-llm-anthropic-rows.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/modellix-llm-anthropic-rows.png" alt="Screenshot of the Anthropic rows on the Modellix LLM pricing table on September 4, 2026: Claude Fable 5.1 at $9.00/$45.00 and Claude Opus 5 at $4.50/$22.50 per 1M tokens, both rows marked 10% OFF" loading="lazy" />
+</picture>
+
+<p><em>Source of the two rows: Modellix’s “Models and pricing” list, captured September 4, 2026.</em></p>
+<p>Three structural facts fall out of these rows:</p>
+<ol>
+<li><strong>Fable 5.1 is about 2× Opus 5 on input and output</strong> ($45 vs $22.50 output, $9 vs $4.50 input). “2×” is arithmetic on the two rows, dated September 4, 2026 — Anthropic publishes no Fable-vs-Opus ratio, and this is not a claim beyond today’s numbers.</li>
+<li><strong>Cache reads are the one line where Fable 5.1 is cheaper — half price</strong> ($0.225 vs $0.45). This holds at both layers: Anthropic prices Fable 5.1 reads at $0.25 (0.025× its input) while other Claude models follow the standard 0.1×-of-input rule that puts Opus 5 reads at $0.50, per <a target="_blank" rel="noopener" href="https://platform.claude.com/docs/en/about-claude/pricing">Anthropic’s pricing documentation</a>.</li>
+<li><strong>Both rows carry the same 10% OFF label today</strong>, so the gateway discount shaves both sides of the ratio equally.</li>
+</ol>
+<p>For the full Fable rate card see the <a href="https://www.modellix.ai/blog/claude-fable-pricing/">Claude Fable 5.1 pricing guide</a>; the wider Anthropic lineup is in our <a href="https://www.modellix.ai/blog/claude-api-pricing/">Claude API pricing guide</a> and the 28-model catalog in the <a href="https://www.modellix.ai/blog/llm-api-pricing-comparison/">LLM API pricing comparison</a>. This article keeps two rows because the flagship decision does not need the rest of the table.</p>
+<h2 id="When-a-2×-output-price-is-the-cheaper-run"><a href="#When-a-2×-output-price-is-the-cheaper-run" class="headerlink" title="When a 2× output price is the cheaper run"></a>When a 2× output price is the cheaper run</h2><p>Two worked examples with <strong>illustrative token assumptions we invented</strong> and Modellix’s September 4, 2026 rates; change the assumptions and the math changes.</p>
+<p><strong>Scenario A — a cache-dominant agent loop.</strong> A long-running agent re-reads a large stable context every turn. Say a 400K-token context written once, then re-read from cache 59 times, plus 2K fresh input and 1.5K output per call, 60 calls. The cache reads alone: Fable 5.1 &#x3D; 59 × 400K × $0.225&#x2F;1M ≈ <strong>$5.31</strong>, Opus 5 &#x3D; 59 × 400K × $0.45&#x2F;1M ≈ <strong>$10.62</strong> — Fable saves ~$5.31 there, while its 2× rates add ~$1.80 (first-call input), $0.54 (fresh input), and $2.02 (output) over Opus’s equivalents. Net: <strong>Fable 5.1 ≈ $14.04 vs Opus 5 ≈ $14.99</strong> — narrowly cheaper. (Caveat: cache columns apply only when tokens bill as cached reads; Modellix’s docs don’t document how caching is triggered.)</p>
+<p><strong>Scenario B — fresh context, output-heavy one-shot.</strong> 30K input, 6K output, one call, no reuse: Fable 5.1 &#x3D; 30K × $9&#x2F;1M + 6K × $45&#x2F;1M &#x3D; <strong>$0.54</strong>; Opus 5 &#x3D; 30K × $4.50&#x2F;1M + 6K × $22.50&#x2F;1M &#x3D; <strong>$0.27</strong>. Exactly half. No cache to rescue the premium.</p>
+<p><strong>Scenario C — retries, the hidden variable.</strong> Every failed run re-bills the whole call, and retries cost 2× as much on Fable 5.1. If Fable’s higher scores mean fewer attempts per success, the per-success cost narrows or flips; if Opus 5 rarely fails, you are paying 2× for nothing. That is why the next two sections exist.</p>
+<p>The takeaway: <strong>Fable 5.1 suits cache-read-dominant, low-output, failure-expensive workloads; Opus 5 suits fresh-context, high-output, high-volume traffic.</strong> The dividing line is a ratio only your own usage supplies.</p>
+<h2 id="Switching-between-them-is-a-one-string-edit"><a href="#Switching-between-them-is-a-one-string-edit" class="headerlink" title="Switching between them is a one-string edit"></a>Switching between them is a one-string edit</h2><p>Every benchmark site on this SERP assumes the hard part of comparing models is access. It is not, when both live behind one API key: on the Modellix LLM gateway, <code>anthropic/claude-fable-5.1</code> and <code>anthropic/claude-opus-5</code> differ by exactly one string in the <code>model</code> field — same key, same base URL, same SDK, same invoice. All four Anthropic IDs carry the same 10% OFF label, so the discount treatment does not change either. “Try it yourself” only works when trying costs one line edit — the precondition benchmark sites cannot give you.</p>
+<p>Two ID-management details keep the test clean:</p>
+<ul>
+<li><strong>Pin fixed IDs for the experiment.</strong> Modellix’s docs echo Anthropic’s guidance: for evaluations or regression tests, use a fixed model ID. Compare the two concrete IDs above, not a moving target.</li>
+<li><strong>Use <code>~</code> aliases to track a family.</strong> Modellix also publishes stable aliases — <code>~anthropic/claude-fable-latest</code> and <code>~anthropic/claude-opus-latest</code> — that follow new releases without a code change. The trade-off, per Modellix’s alias note: the alias changes target as a family evolves and is “billed at the current target rate.” Alias for production drift-tracking; fixed IDs for a controlled A&#x2F;B.</li>
+</ul>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/fable-opus-one-key-billing.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/fable-opus-one-key-billing.png" alt="Concept diagram of running Claude Fable 5.1 and Claude Opus 5 side by side on one Modellix API key, switched by a one-string edit, with per-request billing streams" loading="lazy" />
+</picture>
+
+<p><em>The comparison setup this article recommends: two Anthropic flagship IDs on one Modellix key, a one-string switch between them, and per-request billing streams on the same account. Illustrative Modellix artwork, not a product screenshot.</em></p>
+<p>Once you have picked a side, pointing an Anthropic-protocol client at it is the remaining step — Claude Code and the Anthropic SDK reach the gateway through <code>ANTHROPIC_BASE_URL</code> without <code>/v1</code>, covered end to end in our <a href="https://www.modellix.ai/blog/anthropic-base-url/">Anthropic base URL guide</a>.</p>
+<h2 id="Run-each-on-your-workload-then-compare-real-bills"><a href="#Run-each-on-your-workload-then-compare-real-bills" class="headerlink" title="Run each on your workload, then compare real bills"></a>Run each on your workload, then compare real bills</h2><p>This is the step no benchmark can do for you. Modellix exposes per-request usage logs at <code>GET /v1/logs</code> — for every request, the model, token counts, and the exact billed cost. The fields that settle this comparison (per the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/api/api">Modellix LLM API docs</a>, September 4, 2026):</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;model&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;provider&quot;</span><span class="punctuation">:</span> <span class="string">&quot;anthropic&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;model_name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;claude-fable-5.1&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;prompt_tokens&quot;</span><span class="punctuation">:</span> <span class="number">4210</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;completion_tokens&quot;</span><span class="punctuation">:</span> <span class="number">1530</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;cached_tokens&quot;</span><span class="punctuation">:</span> <span class="number">398000</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;cost&quot;</span><span class="punctuation">:</span> <span class="number">0.1123</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><em>Illustrative shape — field names from the Modellix LLM API docs, values invented for display.</em></p>
+<p>Run a representative batch of your real traffic on each model and pull both logs. Three things appear that no review can show:</p>
+<ol>
+<li><strong>Your actual cache-read share.</strong> Whether your requests bill mostly cached reads or fresh input and output is a <code>cached_tokens</code> column away. Cache-dominant → Fable 5.1’s $0.225 read does real work; otherwise you pay the 2× output rate with no offset.</li>
+<li><strong>Real per-request <code>cost</code>, not estimates.</strong> Sum the <code>cost</code> field per batch and the debate ends with a number. The optional <code>X-Mdlx-User-Id</code> header (8–128 characters) tags requests per end user so one team can A&#x2F;B without mixing bills.</li>
+<li><strong>Retry economics, observed.</strong> Log task outcomes alongside the request log and Scenario C stops being hypothetical.</li>
+</ol>
+<p>Both protocols work for the test, so use whatever client you already run: Anthropic Messages (<code>https://llm.modellix.ai</code>, no <code>/v1</code>) or OpenAI-compatible Chat Completions (<code>https://llm.modellix.ai/v1</code>). One honest boundary: Modellix publishes no SLA, uptime, or upstream-fallback guarantees and is a distribution layer, not the model maker — nothing here claims either model is faster or more stable through the gateway; what the gateway adds is measurability.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Read the Request Logs Reference</h3><p class="view-docs-tag-desc">See the full GET /v1/logs response shape, headers, and per-request billing fields in the Modellix LLM documentation.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Fable-vs-Sonnet-GPT-5-6-and-the-subscription-meter"><a href="#Fable-vs-Sonnet-GPT-5-6-and-the-subscription-meter" class="headerlink" title="Fable vs Sonnet, GPT-5.6, and the subscription meter"></a>Fable vs Sonnet, GPT-5.6, and the subscription meter</h2><p>Quick boundaries for the long-tail versions of this query:</p>
+<ul>
+<li><strong>Fable vs Sonnet is a different axis.</strong> Sonnet 5 ($2&#x2F;$10 list) is the production workhorse a full tier below both flagships. Between Fable 5.1 and Sonnet 5 the question is not “which is better” but “does this workload need the frontier tier” — the three-model rate card is in our Claude API pricing guide.</li>
+<li><strong>Fable vs GPT-5.6 crosses vendors.</strong> Anthropic’s table lists GPT-5.6 Sol as a reference column, but cross-vendor selection is a different decision than picking between two Claude models on one key. The 28-model catalog in our LLM API pricing comparison handles that.</li>
+<li><strong>Subscriptions and the API are separate meters.</strong> Fable 5.1 is available to Claude Pro and Max subscribers per Anthropic’s model page, and subscription caps do not share tokens with API billing — this article does not tell you to route around a subscription to save money. Choosing a client at all is covered by our <a href="https://www.modellix.ai/blog/claude-code-alternatives/">Claude Code alternatives guide</a>; here we only choose a model ID.</li>
+</ul>
+<h2 id="How-to-choose-Opus-5-Fable-5-1-or-neither"><a href="#How-to-choose-Opus-5-Fable-5-1-or-neither" class="headerlink" title="How to choose: Opus 5, Fable 5.1, or neither"></a>How to choose: Opus 5, Fable 5.1, or neither</h2><p>Three decision paths cover most traffic:</p>
+<ul>
+<li><strong>Opus 5</strong> for high-volume, varied work: fresh-context requests, long outputs, extraction and classification at scale, routine agent loops on moderate context. At half the token price it is the default until your logs show a reason to leave.</li>
+<li><strong>Fable 5.1</strong> when the task is hard, long, or failure-expensive: deep multi-step coding, research, anything where a wrong answer means a full paid retry. Its score deltas on Terminal-Bench 4.0 and CursorBench 3.2.0 are small but consistently its way, and cache-heavy sessions blunt the price gap.</li>
+<li><strong>Neither</strong> when the workload never needed the frontier tier. Sonnet 5 and Haiku 4.5 exist so average traffic does not pay flagship prices; the cheapest correct model is the right one.</li>
+</ul>
+<p>Two caveats before you commit spend. Our token scenarios are illustrative, and Anthropic’s scores are self-reported — only a logged A&#x2F;B on your traffic settles it. Prices also drift: the Modellix discount column changed for all four Anthropic rows between September 3 and 4, 2026, so treat every figure here as a dated snapshot and re-check the <a href="https://www.modellix.ai/llm">Modellix LLM price page</a> before budgeting.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Compare Fable 5.1 vs Opus 5 on Real Usage</h3><p class="view-docs-tag-desc">Log in to switch between anthropic/claude-fable-5.1 and anthropic/claude-opus-5 on one key and pull per-request cost logs for your own A/B.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>Is Claude Fable better than Opus?</strong></p>
+<p>Only by dimension and scenario. On Anthropic’s numbers, Fable 5.1 leads Opus 5 on Terminal-Bench-Science 0.1 (52.6% vs 29.0%) and edges it on Terminal-Bench 4.0, Humanity’s Last Exam, and CursorBench 3.2.0 (table above) — while costing about 2× per token. Whether it “wins” depends if your workload needs that edge badly enough to pay for it.</p>
+<p><strong>Is Claude Fable more expensive than Opus?</strong></p>
+<p>Yes on headline rates as of September 4, 2026: $45 vs $22.50 output and $9 vs $4.50 input per 1M — about 2× — while cache reads run the other way ($0.225 vs $0.45). The 2× figure is derived from that date’s two price rows, not a vendor-published number.</p>
+<p><strong>Is Claude Fable really that good?</strong></p>
+<p>The only scores this article repeats are Anthropic’s own: 52.6% Terminal-Bench-Science 0.1, 55.8% Terminal-Bench 4.0, 73.4% CursorBench 3.2.0, Opus 5 within a few points on coding. Whether that is “good” for your budget is the run-cost question above.</p>
+<p><strong>What is Claude Fable?</strong></p>
+<p>Anthropic’s frontier model tier, positioned above Opus for the hardest long-running agentic coding and knowledge work. Fable 5.1 (September 2026) is the current release — API model <code>anthropic/claude-fable-5.1</code> (Anthropic writes <code>claude-fable-5-1</code>) — sharing Opus 5’s 1M window and flat-rate billing at $10&#x2F;$50 list, $9&#x2F;$45 on Modellix as of September 4, 2026.</p>
+<p><strong>Is Fable faster or more stable than Opus on the API?</strong></p>
+<p>We do not publish an answer, and you should distrust anyone who does without receipts. Modellix discloses no SLA, uptime, or upstream-fallback guarantees. What is documented is billing: per-request <code>cost</code> and token logs at <code>GET /v1/logs</code>, so you measure runs instead of taking a vendor’s word.</p>
+<p><strong>Can I run both models under one API key and compare costs?</strong></p>
+<p>Yes — that is what a gateway is for. Both IDs share one key and base URL (Messages at <code>https://llm.modellix.ai</code> without <code>/v1</code>, Chat Completions at <code>https://llm.modellix.ai/v1</code>), so switching is a one-string edit; run a batch on each, pull the logs, compare summed <code>cost</code>.</p>
+<p><strong>Fable 5 or Fable 5.1?</strong></p>
+<p>Fable 5.1, starting fresh: same $10&#x2F;$50 list as Fable 5 with cache reads cut 75% (Anthropic estimates ~25% lower typical cost, up to ~45% for highly agentic work — its figures). Pin Fable 5 only if a regression suite must not move; the migration arithmetic is in our Claude Fable 5.1 pricing guide.</p>
+<hr>
+<p><em>Model availability, pricing, and discount labels change without notice; Anthropic’s pages are the authority on the models themselves. All prices above were captured September 4, 2026 from the <a href="https://www.modellix.ai/llm">Modellix LLM price page</a>, with Anthropic list prices and benchmark figures cross-checked against <a target="_blank" rel="noopener" href="https://www.anthropic.com/claude-fable-and-mythos-5-1">Anthropic’s Fable 5.1 announcement</a>, the <a target="_blank" rel="noopener" href="https://www.anthropic.com/claude/fable">Fable model page</a>, <a target="_blank" rel="noopener" href="https://www.anthropic.com/news/claude-opus-5">Anthropic’s Opus 5 announcement</a>, and <a target="_blank" rel="noopener" href="https://platform.claude.com/docs/en/about-claude/pricing">Anthropic’s pricing documentation</a>. Benchmark scores are Anthropic’s self-reported evaluations, not independent results. Modellix is an API aggregator with a commercial interest in this comparison and is not affiliated with Anthropic; verify current rates and scores against live sources before committing spend. Access language models from Anthropic, OpenAI, Google, DeepSeek, Qwen, and more through a single API key at <a href="https://www.modellix.ai/">modellix.ai</a>.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/Anthropic/" class="tag-pill tag-pill--sm">Anthropic</a>
+            
+              <a href="/blog/tags/LLM-API/" class="tag-pill tag-pill--sm">LLM API</a>
+            
+              <a href="/blog/tags/Model-Comparison/" class="tag-pill tag-pill--sm">Model Comparison</a>
+            
+              <a href="/blog/tags/Claude/" class="tag-pill tag-pill--sm">Claude</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/litellm-vs-openrouter/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-litellm-vs-openrouter.webp" alt="LiteLLM vs OpenRouter: Self-Hosted Proxy or Hosted Gateway?" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Comparisons</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">LiteLLM vs OpenRouter: Self-Hosted Proxy or Hosted Gateway?</h3>
+          <time class="related-article-date" datetime="2026-09-01T16:00:00.000Z">September 2, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/openrouter-alternative/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-openrouter-alternative-d3ecca45.webp" alt="OpenRouter Alternatives (2026): Picking an LLM Gateway" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Comparisons</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">OpenRouter Alternatives (2026): Picking an LLM Gateway</h3>
+          <time class="related-article-date" datetime="2026-09-01T16:00:00.000Z">September 2, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/tavily-alternative/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-tavily-alternative.webp" alt="Tavily Alternative: What Your Agent Harness Actually Calls" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Comparisons</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Tavily Alternative: What Your Agent Harness Actually Calls</h3>
+          <time class="related-article-date" datetime="2026-08-31T16:00:00.000Z">September 1, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/claude-fable-vs-opus/&text=Claude%20Fable%205.1%20vs%20Opus%205%3A%20Run%20Cost%2C%20Not%20Benchmarks" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/claude-fable-vs-opus/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/claude-fable-vs-opus/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
