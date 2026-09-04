@@ -1,0 +1,557 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LiteLLM vs OpenRouter: Self-Hosted Proxy or Hosted Gateway? — Modellix Blog</title>
+  <meta name="description" content="LiteLLM vs OpenRouter is a form decision: self-host a proxy or call a hosted gateway. Compare operations, credentials, and billing from official docs.">
+  <meta name="keywords" content="litellm vs openrouter, litellm alternative, litellm proxy, llm proxy, openrouter markup, self hosted llm gateway, openrouter fee, litellm proxy server, openrouter vs litellm">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/litellm-vs-openrouter/">
+  <meta name="description" content="LiteLLM vs OpenRouter is a form decision: self-host a proxy or call a hosted gateway. Compare operations, credentials, and billing from official docs.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LiteLLM vs OpenRouter: Self-Hosted Proxy or Hosted Gateway? — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/litellm-vs-openrouter/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="LiteLLM vs OpenRouter is a form decision: self-host a proxy or call a hosted gateway. Compare operations, credentials, and billing from official docs.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-litellm-vs-openrouter.webp">
+<meta property="article:published_time" content="2026-09-01T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-01T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="Comparisons">
+<meta property="article:tag" content="LLM Gateway">
+<meta property="article:tag" content="LiteLLM">
+<meta property="article:tag" content="OpenRouter">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-litellm-vs-openrouter.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"LiteLLM vs OpenRouter: Self-Hosted Proxy or Hosted Gateway?","description":"LiteLLM vs OpenRouter is a form decision: self-host a proxy or call a hosted gateway. Compare operations, credentials, and billing from official docs.","datePublished":"2026-09-01T16:00:00.000Z","dateModified":"2026-09-01T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/litellm-vs-openrouter/","image":"https://statics.mylandingpages.co/static/modellix/image/cover-litellm-vs-openrouter.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">LiteLLM vs OpenRouter: Self-Hosted Proxy or Hosted Gateway?</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Comparisons/" class="category-tag category-tag--sm">Comparisons</a>
+          
+        
+      </div>
+      <h1 class="post-title">LiteLLM vs OpenRouter: Self-Hosted Proxy or Hosted Gateway?</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-09-01T16:00:00.000Z">September 2, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/LLM-Gateway/" class="tag-pill tag-pill--sm">LLM Gateway</a>
+            
+              <a href="/blog/tags/OpenRouter/" class="tag-pill tag-pill--sm">OpenRouter</a>
+            
+              <a href="/blog/tags/LiteLLM/" class="tag-pill tag-pill--sm">LiteLLM</a>
+            
+              <a href="/blog/tags/Comparisons/" class="tag-pill tag-pill--sm">Comparisons</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.srcgptbots.com/blog/author/20260409/modellix-blog-author-official@2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>&#39;LiteLLM vs OpenRouter&#39; is not really a product question.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/cover-litellm-vs-openrouter.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/cover-litellm-vs-openrouter.png" alt="LiteLLM vs OpenRouter cover: a glass and chrome two-route fork splitting toward a self-hosted server stack and a hosted gateway node with one amber key, MODELLIX top left" />
+</picture>
+
+<p>“LiteLLM vs OpenRouter” is not really a product question. It is a <strong>form question: do you run the routing layer yourself, or do you point at a hosted endpoint?</strong> LiteLLM is an open-source AI gateway you deploy—a process you operate, holding your provider keys, doing your logging. OpenRouter is a managed gateway—a base URL you call, with credentials and billing handled behind it. Most of the content ranking for this query is written by gateway vendors pitching themselves; this article instead breaks the decision into three axes—<strong>operations, credentials, and billing</strong>—and verifies every claim against each party’s official pages, fetched on September 2, 2026.</p>
+<p>One boundary before we start: this is not another list of OpenRouter alternatives. If your question is “which hosted gateway should I pick once I’ve decided not to self-host,” the <a href="https://www.modellix.ai/blog/openrouter-alternative/">OpenRouter alternative guide</a> compares the hosted options head to head. This article answers the question that comes first: <strong>should the gateway be your process at all?</strong> It is published by Modellix, which sells a hosted text-model gateway, so treat our entry as a data point with a disclosed interest—we flag where we lose, and we do not crown a winner.</p>
+<h2 id="The-decision-is-about-form-not-features"><a href="#The-decision-is-about-form-not-features" class="headerlink" title="The decision is about form, not features"></a>The decision is about form, not features</h2><p>Both tools solve the same problem: your application speaks one API dialect and reaches many model providers through it. The difference is who runs the thing that translates between your app and the providers.</p>
+<p>A self-hosted proxy like LiteLLM is software you deploy. Its <a target="_blank" rel="noopener" href="https://github.com/BerriAI/litellm">GitHub README</a> calls it “Open Source AI Gateway for 100+ LLMs. Self-hosted. Enterprise-ready,” usable as a Python SDK or deployed as a proxy server. A hosted gateway like OpenRouter is the same layer run by someone else: you call <code>https://openrouter.ai/api/v1</code>, and routing, failover, and per-provider credentials are handled for you. OpenRouter’s own comparison post states the frame plainly: “the decision comes down to where the routing layer should run.”</p>
+<p>For agent users, the decision has a concrete shape. If your agent harness exposes a custom provider configuration, the question is what its <code>baseURL</code> points at: a process on your own machine or network (LiteLLM’s default is <code>http://0.0.0.0:4000</code>), or a hosted endpoint. Everything else—model IDs, key, bill—follows from that one line of configuration. The <a href="https://www.modellix.ai/blog/deepseek-harness/">DeepSeek Harness hub</a> explains where that provider configuration lives, and the <a href="https://www.modellix.ai/blog/deepseek-harness-custom-model/">custom model guide</a> shows the exact settings block. We frame the comparison through that lens because that is where you will feel the difference, but the analysis applies to any OpenAI-compatible client.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/gateway-form-fork.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/gateway-form-fork.png" alt="Gateway form fork: one agent node splits at a baseURL decision toward a self-hosted proxy panel with provider keys, or a hosted gateway panel with one key" loading="lazy" />
+</picture>
+
+<p><em>The fork in one diagram: both forms speak the same API to your agent; the baseURL decides who operates the routing layer, whose keys it holds, and where the money flows.</em></p>
+<h2 id="LiteLLM-vs-OpenRouter-at-a-glance"><a href="#LiteLLM-vs-OpenRouter-at-a-glance" class="headerlink" title="LiteLLM vs OpenRouter at a glance"></a>LiteLLM vs OpenRouter at a glance</h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong>LiteLLM</strong></th>
+<th><strong>OpenRouter</strong></th>
+<th><strong>Modellix LLM</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Form</td>
+<td>Self-hosted proxy + SDK (open source)</td>
+<td>Hosted gateway (managed SaaS)</td>
+<td>Hosted gateway (managed)</td>
+</tr>
+<tr>
+<td>Who operates it</td>
+<td>You (process, database, upgrades)</td>
+<td>OpenRouter</td>
+<td>Modellix</td>
+</tr>
+<tr>
+<td>Credentials</td>
+<td>You collect and store each provider’s key; virtual keys for internal access control</td>
+<td>One OpenRouter key; optional BYOK above a free allowance</td>
+<td>One Modellix API key for all protocols</td>
+</tr>
+<tr>
+<td>Billing structure</td>
+<td>Free core (MIT); you pay providers directly at list price, plus your infrastructure</td>
+<td>Provider pricing passed through with no markup; 5.5% fee on credit purchases ($0.80 minimum); crypto 5%</td>
+<td>Pay-as-you-go; most models below the listed official price, some with no discount</td>
+</tr>
+<tr>
+<td>Published SLA &#x2F; uptime promise</td>
+<td>N&#x2F;A—you operate it</td>
+<td>Enterprise contracts only</td>
+<td>Not published in docs</td>
+</tr>
+</tbody></table>
+<p><em>As of September 2, 2026, from official pages. None of the three publishes a public uptime percentage or an automatic-failover guarantee; where an SLA exists it is contractual. Verify current pricing before committing—all three change terms without notice.</em></p>
+<h2 id="Axis-1-—-Operations-who-runs-the-gateway"><a href="#Axis-1-—-Operations-who-runs-the-gateway" class="headerlink" title="Axis 1 — Operations: who runs the gateway"></a>Axis 1 — Operations: who runs the gateway</h2><p>Self-hosting is a feature with a running cost, and that cost is a person or a team.</p>
+<p>LiteLLM’s <a target="_blank" rel="noopener" href="https://docs.litellm.ai/docs/proxy/quick_start">proxy quick start</a> shows how small the happy path is: install with <code>uv tool install &#39;litellm[proxy]&#39;</code>, run <code>litellm --model &lt;model&gt;</code>, and the proxy listens on <code>http://0.0.0.0:4000</code> with an OpenAI-style <code>/chat/completions</code> endpoint. Teams that need the routing layer to survive production add more: the README documents a Helm chart, signed Docker images on <code>ghcr.io/berriai/litellm</code>, and one-click deploys on Render and Railway, and Terraform modules for AWS and GCP, while OpenRouter’s comparison post summarizes the standard production topology as “PostgreSQL stores spend data and keys; Redis handles caching and rate limits in production.” That is the real form difference: a proxy is a service your team owns—deployments, secrets, upgrades, backups, capacity, and pager duty for a layer every AI feature in your product sits behind.</p>
+<p>Hosted gateways remove that category of work. There is no process to patch and no database to back up, because there is no infrastructure on your side—you hold a key and call an endpoint (OpenRouter on Cloudflare’s edge, Modellix at <code>https://llm.modellix.ai</code>). The trade is architectural: with a self-hosted proxy, request data stays inside your network until it reaches the provider; with a hosted gateway, requests pass through a managed layer first. If data-residency rules are your binding constraint, that single fact can decide the question before any other axis matters.</p>
+<h2 id="Axis-2-—-Credentials-one-key-you-create-or-keys-you-collect"><a href="#Axis-2-—-Credentials-one-key-you-create-or-keys-you-collect" class="headerlink" title="Axis 2 — Credentials: one key you create, or keys you collect"></a>Axis 2 — Credentials: one key you create, or keys you collect</h2><p>The second axis is about who holds provider credentials, and it quietly decides how much governance work lands on you.</p>
+<p>With a self-hosted proxy, <strong>you are the aggregator</strong>. The LiteLLM proxy does not sell you model access; it holds the keys you bring. Someone on your team collects an OpenAI key, an Anthropic key, a Bedrock setup—whatever you want behind the gateway—and stores them where the proxy can read them. LiteLLM’s <a target="_blank" rel="noopener" href="https://docs.litellm.ai/docs/proxy/virtual_keys">virtual keys documentation</a> then gives you the internal control plane: generate keys for users or teams, restrict each to specific models, attach budgets and rate limits, and read spend back per key, per user, or per team. Useful—it is the pattern every platform team eventually wants—but it assumes you are operating a secrets store, a key lifecycle, and a spend-reporting surface. The enterprise tier exists precisely because those controls (SSO, audit logs, secret-manager integration) are work; LiteLLM’s <a target="_blank" rel="noopener" href="https://docs.litellm.ai/docs/enterprise">enterprise docs</a> describe the tier as for “teams running LiteLLM at scale” needing those controls “on top of OSS,” priced through sales.</p>
+<p>A hosted gateway inverts this: you create one key on their side and stop collecting vendor keys entirely. OpenRouter runs on credits with a single API key; its FAQ describes Bring Your Own Key as an optional path with a free allowance measured in list-price inference ($25,000 per month on pay-as-you-go) and a 5% fee above it. Modellix takes the same one-key shape: a single key from the <a href="https://www.modellix.ai/console/api-key">Modellix console</a> authenticates the whole gateway.</p>
+<p>Hosted gateways also answer a question self-hosters eventually hit: <strong>who was the end user?</strong> With LiteLLM, per-user attribution is something you build from its key and user tables. A hosted gateway can ship it: Modellix documents an optional <code>X-Mdlx-User-Id</code> header on every request, and a <code>GET /v1/logs</code> endpoint that filters history by that id, with each entry carrying per-request <code>cost</code>, <code>prompt_tokens</code>, <code>completion_tokens</code>, and <code>cached_tokens</code>—the data you need to bill back a customer or department without building a reporting pipeline. Relatedly, <code>GET /v1/models</code> runs on a separate query rate limit from inference, so a monitoring loop listing models does not eat your inference quota. Neither alone justifies hosted over self-hosted; both are examples of what you get when the gateway is someone else’s product.</p>
+<h2 id="Axis-3-—-Billing-where-the-money-flows"><a href="#Axis-3-—-Billing-where-the-money-flows" class="headerlink" title="Axis 3 — Billing: where the money flows"></a>Axis 3 — Billing: where the money flows</h2><p>Pricing is where the marketing gets loudest and official wording matters most, because the two sides are not charging for the same thing.</p>
+<p><strong>LiteLLM is free software, not a free gateway.</strong> The core is MIT-licensed (the repository LICENSE covers everything outside its <code>enterprise/</code> directory under MIT). You pay each provider its list price through the keys you brought, pay the infrastructure bill for the proxy, its database, and its cache, and pay your engineers’ time to run it. The enterprise tier is a commercial license priced through sales with a 30-day trial. The honest answer to “does LiteLLM cost money”: the software is free; the gateway isn’t.</p>
+<p><strong>OpenRouter is a pass-through with a fee on the way in.</strong> Its <a target="_blank" rel="noopener" href="https://openrouter.ai/docs/faq">FAQ</a> is explicit: “We pass through the pricing of the underlying model providers without any markup, so you pay the same rate as you would directly with the provider.” The cost shows up when you fund your account: “OpenRouter charges a 5.5% ($0.80 minimum) fee when you purchase credits,” and crypto payments run 5%; the <a target="_blank" rel="noopener" href="https://openrouter.ai/pricing">pricing page</a> also lists 5% BYOK fees above the free allowance. So the “openrouter markup” question has a precise answer: no per-token markup, and a payment-channel fee. That is why OpenRouter’s own comparison post frames self-hosting as arithmetic: at roughly $200&#x2F;month of infrastructure, a proxy gets cheaper than the fee once inference spend passes about $3,600&#x2F;month. Run that math on your numbers, not theirs.</p>
+<p><strong>Modellix prices in the opposite direction, and we should say exactly how.</strong> The Modellix LLM <a href="https://www.modellix.ai/llm">pricing page</a> shows each model with the official list price struck through next to the Modellix rate; on most models the Modellix rate is below that listed price—the Anthropic rows read, verbatim, <code>3% OFF</code>, and other families carry larger discounts. Top-ups go through Stripe with no published purchase fee, and successful responses are billed from token usage. Honest caveats, because this is a young product: not every model is discounted, prices drift and are worth checking on the day you commit, and there is no automatic signup credit—the $1 registration credit was retired in August 2026, with trial credit available by request. Nor is this a claim that Modellix is the cheapest gateway; fee structure and volume matter more than the per-token list price, and we do not price-rank ourselves.</p>
+<p>The three forms differ structurally in who you pay and what the price includes: with a self-hosted proxy you pay providers at list price plus your own infrastructure; with OpenRouter you pay list price through a credit channel with a purchase fee; with Modellix you pay a hosted rate that sits below the listed price on most models. That is not “who is cheapest”—it is the billing axis of a form decision.</p>
+<h2 id="When-to-self-host-an-LLM-proxy"><a href="#When-to-self-host-an-LLM-proxy" class="headerlink" title="When to self-host an LLM proxy"></a>When to self-host an LLM proxy</h2><p>Choose the self-hosted form when the constraints are yours to own. The strongest cases, in order:</p>
+<ul>
+<li><strong>Data residency or network policy.</strong> If requests must not cross your network before reaching a provider, a hosted gateway is disqualified by architecture, and LiteLLM is the natural answer—the only form where the routing layer lives on your side.</li>
+<li><strong>Deep control of routing and governance.</strong> LiteLLM documents fallbacks, load balancing, budgets, and request logging in the open-source core; the enterprise tier adds SSO, audit logs, and secret-manager integration. If you want policy encoded in your own gateway and will operate it, the proxy wins on capability, not just price.</li>
+<li><strong>Spend is large enough that the fee math flips.</strong> At tens of thousands of dollars of inference per month, a 5.5% purchase fee or a below-list hosted rate is a real line item, and a proxy you already operate starts to look cheaper at the margin.</li>
+</ul>
+<h2 id="When-a-hosted-gateway-wins"><a href="#When-a-hosted-gateway-wins" class="headerlink" title="When a hosted gateway wins"></a>When a hosted gateway wins</h2><p>Choose the hosted form when the gateway is not your product:</p>
+<ul>
+<li><strong>You are a small team or an individual developer.</strong> Running a tier-0 service—database, cache, upgrades, pager duty—so you can call models is a bad trade until you have a platform team or a real bill. A hosted gateway is the difference between an afternoon and a project.</li>
+<li><strong>You want one key and one bill across many providers.</strong> That is the entire product of a hosted gateway: no vendor-key collection, no secrets store, no spend tables to aggregate.</li>
+<li><strong>You want observability without building it.</strong> If per-request cost and token detail, end-user attribution, or a model list that does not consume inference quota matter to you, compare what hosted gateways document before assuming you will self-build those on top of a proxy.</li>
+</ul>
+<p>A final note for harness users: the two forms compose. A self-hosted LiteLLM proxy can use OpenRouter as an upstream provider, so the choice is not always either&#x2F;or—one proxy config can point at direct provider keys for some models and a hosted gateway for others. What you cannot do is skip the form decision, because your harness’s <code>baseURL</code> still has to point somewhere.</p>
+<h2 id="What-a-hosted-gateway-should-prove-before-you-trust-it"><a href="#What-a-hosted-gateway-should-prove-before-you-trust-it" class="headerlink" title="What a hosted gateway should prove before you trust it"></a>What a hosted gateway should prove before you trust it</h2><p>If you land on the hosted form, evaluate gateways against the things a proxy would have forced you to build:</p>
+<ul>
+<li><strong>Protocol surface.</strong> Which API shapes does it speak? Modellix documents Chat Completions, Responses, and Anthropic Messages on the same host—<code>POST /v1/chat/completions</code>, <code>POST /v1/responses</code>, and <code>POST /v1/messages</code> at <code>https://llm.modellix.ai</code>—with a warning that the three endpoints use different body shapes, per its <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/api/api">API guide</a>. If your clients are Anthropic-native (Claude Code, the Anthropic SDK), whether a gateway documents a Messages-compatible endpoint is a first-round filter.</li>
+<li><strong>Logs and cost visibility.</strong> Per-request <code>cost</code> and token counts through an API, or only a dashboard? Modellix’s <code>GET /v1/logs</code> returns both per request within a <code>start_time</code>&#x2F;<code>end_time</code> window.</li>
+<li><strong>Attribution.</strong> Can you tag requests by end user? The <code>X-Mdlx-User-Id</code> header plus log filtering is how Modellix documents per-end-user attribution—the B2B case of reselling agent capability.</li>
+<li><strong>Model catalog mechanics.</strong> Does the gateway keep a stable alias per model family? Modellix documents <code>~provider/series-latest</code> IDs (for example <code>~openai/gpt-latest</code>) that re-target when a new model ships, so agent config does not break on every release.</li>
+<li><strong>Billing transparency and published limits.</strong> Is the pricing structure stated in words you can verify, and are rate limits documented rather than guessed? None of these gateways publishes an uptime percentage, so treat availability claims as unverified until a vendor posts numbers.</li>
+</ul>
+<p>That checklist doubles as our self-disclosure: Modellix is a hosted text gateway, and the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/overview">LLM overview</a> states the boundaries plainly—it returns text, image and video generation stay on the media API, there is no published SLA or automatic-failover description in the docs, and some models carry no discount. The <a href="https://www.modellix.ai/blog/unified-ai-api/">unified AI API guide</a> explains the aggregation model behind a single key if you want the broader context.</p>
+<h2 id="The-bottom-line"><a href="#The-bottom-line" class="headerlink" title="The bottom line"></a>The bottom line</h2><p>LiteLLM and OpenRouter are not competitors in the usual sense; they are the two forms of the same layer. Decide the form first; feature lists only make sense after that.</p>
+<table>
+<thead>
+<tr>
+<th>If your main reason is</th>
+<th>Start with</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Requests must not leave your network</td>
+<td>Self-host a LiteLLM proxy</td>
+</tr>
+<tr>
+<td>Deep control of routing, governance, and audit</td>
+<td>Self-host a LiteLLM proxy (enterprise tier for SSO and audit logs)</td>
+</tr>
+<tr>
+<td>Inference spend large enough to flip the fee math</td>
+<td>Self-host—after running the arithmetic on your own numbers</td>
+</tr>
+<tr>
+<td>No infrastructure budget or platform team</td>
+<td>A hosted gateway (OpenRouter, Modellix, or the sibling gateway guide’s field)</td>
+</tr>
+<tr>
+<td>Per-end-user cost attribution without building it</td>
+<td>A hosted gateway with documented per-request logs (Modellix <code>GET /v1/logs</code> + <code>X-Mdlx-User-Id</code>)</td>
+</tr>
+<tr>
+<td>Anthropic-native clients without running a proxy</td>
+<td>A hosted gateway that documents a Messages-compatible endpoint</td>
+</tr>
+</tbody></table>
+<p>Whichever form you lean toward, verify the three axes on the vendors’ live pages before committing—operating model, credential model, and billing structure are all subject to change without notice. This article was published by Modellix, which sells a hosted text-model gateway; our interest is disclosed, we are not claiming to be the cheapest or most complete option, and the sibling OpenRouter alternative guide on this blog covers the hosted field if you want more entries to compare.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Compare Gateway Options on Modellix</h3><p class="view-docs-tag-desc">Log in to create a Modellix API key and check live per-model pricing before you commit to a gateway form.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>Is LiteLLM like OpenRouter?</strong><br>They solve the same problem from opposite forms. LiteLLM is an open-source proxy and SDK you deploy and operate—you bring the provider keys, and it gives you a unified OpenAI-style API plus virtual keys, budgets, and spend tracking. OpenRouter is a hosted gateway: one key, no infrastructure, routing handled for you. Which one is right is a question about who should run your routing layer, not about features.</p>
+<p><strong>Is LiteLLM free?</strong><br>The core project is free under the MIT license; code under the repository’s <code>enterprise/</code> directory carries a separate commercial license. “Free” covers the software—you still pay providers at list price, pay for the infrastructure the proxy runs on, and pay for the engineering time to operate it. The enterprise tier is a paid license via LiteLLM’s sales team.</p>
+<p><strong>Does OpenRouter add a markup or a fee?</strong><br>Per its official FAQ, OpenRouter passes through provider pricing with no markup on inference. The fees sit on funding and BYOK: 5.5% ($0.80 minimum) when you purchase credits, 5% for crypto payments, and 5% on BYOK usage above the plan’s free allowance. That is the precise answer behind the “openrouter markup” question.</p>
+<p><strong>Can LiteLLM and OpenRouter work together?</strong><br>Yes. LiteLLM supports OpenRouter as an upstream provider, so a self-hosted proxy can route some models to OpenRouter and others to direct provider keys. The two forms compose; your harness’s <code>baseURL</code> can point at both through one proxy.</p>
+<p><strong>When should I self-host an LLM proxy?</strong><br>When owning the routing layer is worth its operating cost: strict data-residency requirements, deep control over routing and governance, or an inference bill large enough that platform fees exceed what your team pays to run the proxy. If none of those applies, a hosted gateway is usually the cheaper form.</p>
+<p><strong>Is OpenRouter an alternative to LiteLLM?</strong><br>For the “don’t operate anything” use case, yes—both expose OpenAI-compatible APIs over many providers, and switching is mostly a base URL and key change. If you are weighing hosted gateways against each other, the OpenRouter alternative guide on this blog covers the broader field; this article covers the form decision itself.</p>
+<hr>
+<p><em>Provider details, pricing, and fees reflect each vendor’s official pages as of September 2, 2026, and change frequently—validate against live pricing before committing. This article was published by Modellix, a commercial party that sells a hosted text-model gateway at <code>llm.modellix.ai</code>; it is not a claim that Modellix is the cheapest or most complete gateway. Access language models from Anthropic, DeepSeek, Google, OpenAI, Qwen, xAI, and more through one API key at <a target="_blank" rel="noopener" href="https://modellix.ai/">modellix.ai</a>.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/LLM-Gateway/" class="tag-pill tag-pill--sm">LLM Gateway</a>
+            
+              <a href="/blog/tags/OpenRouter/" class="tag-pill tag-pill--sm">OpenRouter</a>
+            
+              <a href="/blog/tags/LiteLLM/" class="tag-pill tag-pill--sm">LiteLLM</a>
+            
+              <a href="/blog/tags/Comparisons/" class="tag-pill tag-pill--sm">Comparisons</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/openrouter-alternative/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://statics.mylandingpages.co/static/modellix/image/cover-openrouter-alternative.webp" alt="OpenRouter Alternatives (2026): Picking an LLM Gateway" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Comparisons</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">OpenRouter Alternatives (2026): Picking an LLM Gateway</h3>
+          <time class="related-article-date" datetime="2026-09-01T16:00:00.000Z">September 2, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/tavily-alternative/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-tavily-alternative.webp" alt="Tavily Alternative: What Your Agent Harness Actually Calls" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Comparisons</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Tavily Alternative: What Your Agent Harness Actually Calls</h3>
+          <time class="related-article-date" datetime="2026-08-31T16:00:00.000Z">September 1, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/claude-code-alternatives/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-claude-code-alternatives.webp" alt="Claude Code Alternatives (2026): How to Feed Them Models" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Comparisons</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Claude Code Alternatives (2026): How to Feed Them Models</h3>
+          <time class="related-article-date" datetime="2026-08-29T16:00:00.000Z">August 30, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/litellm-vs-openrouter/&text=LiteLLM%20vs%20OpenRouter%3A%20Self-Hosted%20Proxy%20or%20Hosted%20Gateway%3F" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/litellm-vs-openrouter/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/litellm-vs-openrouter/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

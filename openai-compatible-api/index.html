@@ -1,0 +1,534 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenAI Compatible API: What &#39;openai-completions&#39; Means — Modellix Blog</title>
+  <meta name="description" content="What &#39;openai-completions&#39; means: an OpenAI compatible API is a protocol contract, not a switch. Changing only the URL breaks; the cheat sheet shows why.">
+  <meta name="keywords" content="openai compatible api, openai compatible endpoint, openai compatible provider, openai-compatible base url, custom llm provider, openai compatible api free">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/openai-compatible-api/">
+  <meta name="description" content="What &#39;openai-completions&#39; means: an OpenAI compatible API is a protocol contract, not a switch. Changing only the URL breaks; the cheat sheet shows why.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenAI Compatible API: What &#39;openai-completions&#39; Means — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/openai-compatible-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="What &#39;openai-completions&#39; means: an OpenAI compatible API is a protocol contract, not a switch. Changing only the URL breaks; the cheat sheet shows why.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-openai-compatible-api.webp">
+<meta property="article:published_time" content="2026-09-01T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-01T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Agents">
+<meta property="article:tag" content="API Protocols">
+<meta property="article:tag" content="LLM API">
+<meta property="article:tag" content="OpenAI Compatible">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-openai-compatible-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"OpenAI Compatible API: What 'openai-completions' Means","description":"What 'openai-completions' means: an OpenAI compatible API is a protocol contract, not a switch. Changing only the URL breaks; the cheat sheet shows why.","datePublished":"2026-09-01T16:00:00.000Z","dateModified":"2026-09-01T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/openai-compatible-api/","image":"https://statics.mylandingpages.co/static/modellix/image/cover-openai-compatible-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">OpenAI Compatible API: What &#39;openai-completions&#39; Means</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/LLM-API/" class="category-tag category-tag--sm">LLM API</a>
+          
+        
+      </div>
+      <h1 class="post-title">OpenAI Compatible API: What &#39;openai-completions&#39; Means</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-09-01T16:00:00.000Z">September 2, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Agents/" class="tag-pill tag-pill--sm">AI Agents</a>
+            
+              <a href="/blog/tags/LLM-API/" class="tag-pill tag-pill--sm">LLM API</a>
+            
+              <a href="/blog/tags/OpenAI-Compatible/" class="tag-pill tag-pill--sm">OpenAI Compatible</a>
+            
+              <a href="/blog/tags/API-Protocols/" class="tag-pill tag-pill--sm">API Protocols</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.srcgptbots.com/blog/author/20260409/modellix-blog-author-official@2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>Somewhere in your agent&#39;s configuration there is a string that decides how every model request is spoken. In a DeepSeek Harness custom provider, it is the api field: yaml $DSH_HOME/settings.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/cover-openai-compatible-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/cover-openai-compatible-api.png" alt="OpenAI Compatible API editorial cover: a glass gateway routing requests along three protocol paths, chat completions and responses and messages, on dark copper with an amber key, MODELLIX top left" />
+</picture>
+
+<p>Somewhere in your agent’s configuration there is a string that decides how every model request is spoken. In a DeepSeek Harness custom provider, it is the <code>api</code> field:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># $DSH_HOME/settings.yaml — llm-pi-ai custom provider</span></span><br><span class="line"><span class="attr">llm-pi-ai:</span></span><br><span class="line">  <span class="attr">providers:</span></span><br><span class="line">    <span class="attr">modellix:</span></span><br><span class="line">      <span class="attr">apiKeyEnv:</span> <span class="string">MODELLIX_API_KEY</span></span><br><span class="line">      <span class="attr">api:</span> <span class="string">openai-completions</span></span><br><span class="line">      <span class="attr">baseURL:</span> <span class="string">https://llm.modellix.ai/v1</span></span><br><span class="line">      <span class="attr">models:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">openai/gpt-5.6-sol</span></span><br></pre></td></tr></table></figure>
+
+<p>That <code>api: openai-completions</code> line is not a vendor name and not a model name. It tells the harness which <strong>wire protocol</strong> to speak: the OpenAI Chat Completions protocol, at a base URL your provider publishes. The same pattern shows up everywhere OpenAI compatibility appears—as an <code>api</code> value in <a href="https://www.modellix.ai/blog/deepseek-harness/">DeepSeek Harness</a>, as a <code>base_url</code> in an OpenAI SDK client, as an “OpenAI-compatible endpoint” checkbox in a local server. This article explains what that compatibility actually covers, where it stops, and why on a gateway that exposes several protocols, changing only the URL is not enough. If your goal is narrower—how to fill these fields into a harness—the <a href="https://www.modellix.ai/blog/deepseek-harness-custom-model/">DeepSeek Harness custom model guide</a> walks through the form and the YAML side by side. The Anthropic side of the same gateway (which drops the <code>/v1</code> prefix) is covered in <a href="https://www.modellix.ai/blog/anthropic-base-url/">Anthropic Base URL</a>, and choosing between gateway products rather than protocols is the subject of <a href="https://www.modellix.ai/blog/openrouter-alternative/">OpenRouter alternatives</a>.</p>
+<p>Modellix operates the LLM gateway used as the worked example here, so we have a commercial interest in this working for you—the protocol facts below come from the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/api/api">Modellix LLM API guide</a>, OpenAI’s and Anthropic’s official references, and third-party documentation, all checked on September 2, 2026.</p>
+<h2 id="What-“OpenAI-compatible”-actually-promises"><a href="#What-“OpenAI-compatible”-actually-promises" class="headerlink" title="What “OpenAI-compatible” actually promises"></a>What “OpenAI-compatible” actually promises</h2><p>An OpenAI-compatible API is an API that replicates OpenAI’s interface conventions: the same REST paths (<code>/v1/chat/completions</code> and friends), the same JSON request and response shapes, and the same authentication pattern (an API key, usually as a Bearer token). The <a target="_blank" rel="noopener" href="https://handbook.modular.com/model-interaction/openai-compatible-api/">Modular handbook</a> puts it cleanly: any API that replicates the common OpenAI interface, request&#x2F;response schema, and authentication conventions. OpenAI never formally standardized this; its API simply became the de facto interface for LLMs, because an entire ecosystem—SDKs, agent frameworks, IDE clients, local inference servers—was built around that schema.</p>
+<p>Read the promise carefully, because it is narrower than it sounds:</p>
+<ul>
+<li><strong>It promises that code written against OpenAI’s SDK pattern can be pointed elsewhere.</strong> You keep <code>from openai import OpenAI</code>, change <code>base_url</code> and <code>api_key</code>, and your chat calls reach a different backend.</li>
+<li><strong>It promises a shared vocabulary for the core chat exchange:</strong> a <code>model</code> name, a <code>messages</code> array of roles and content, a text completion back, often streamed as server-sent events.</li>
+<li><strong>It does not promise OpenAI’s models, OpenAI’s field catalog, or OpenAI’s infrastructure.</strong> <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/openai">Google’s Gemini compatibility page</a>, for example, lets you reach Gemini models through the OpenAI SDK by changing three lines—the key, the base URL, and the model name. The interface is shared; everything behind it is the provider’s own.</li>
+</ul>
+<p>That is why “drop-in replacement” is accurate about your code and silent about your runtime: two OpenAI-compatible endpoints can both accept the same client and behave differently in fields, limits, and pricing.</p>
+<h2 id="Why-changing-only-the-URL-is-not-enough"><a href="#Why-changing-only-the-URL-is-not-enough" class="headerlink" title="Why changing only the URL is not enough"></a>Why changing only the URL is not enough</h2><p>Here is where the “just change the URL” advice breaks. It assumes the URL is the only thing that identifies a protocol. On a host that exposes <strong>multiple</strong> protocols, the URL and the request body are bound together—each path expects its own body shape, and the fields do not translate.</p>
+<p>A gateway that is OpenAI-compatible and Anthropic-compatible at the same time is the clearest place to see this. The Modellix LLM host (<code>llm.modellix.ai</code>) documents exactly three protocol surfaces, and its docs are explicit that the endpoints use <strong>different URLs and body shapes</strong> and that you must not mix fields across protocols. The official field catalog for each is separate, and the same conceptual setting lives under different field names:</p>
+<table>
+<thead>
+<tr>
+<th>Protocol</th>
+<th>Path</th>
+<th>Key body field</th>
+<th>Output length field</th>
+<th>Base URL (on this host)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Chat Completions</td>
+<td><code>POST /v1/chat/completions</code></td>
+<td><code>messages</code> (array of <code>&#123;role, content&#125;</code>)</td>
+<td><code>max_tokens</code> &#x2F; <code>max_completion_tokens</code></td>
+<td><code>https://llm.modellix.ai/v1</code></td>
+</tr>
+<tr>
+<td>Responses</td>
+<td><code>POST /v1/responses</code></td>
+<td><code>input</code> (a string or content array—not Chat Completions <code>messages</code>)</td>
+<td><code>max_output_tokens</code></td>
+<td><code>https://llm.modellix.ai/v1</code></td>
+</tr>
+<tr>
+<td>Anthropic Messages</td>
+<td><code>POST /v1/messages</code></td>
+<td><code>messages</code> (Anthropic roles) plus optional <code>system</code></td>
+<td><code>max_tokens</code> (required)</td>
+<td><code>https://llm.modellix.ai</code> (no <code>/v1</code>)</td>
+</tr>
+</tbody></table>
+<p>Two details in that table cause most integration bugs:</p>
+<p><strong>The <code>/v1</code> prefix is protocol-relative, not decorative.</strong> OpenAI-compatible clients expect a base URL that ends in <code>/v1</code>—the SDK appends <code>/chat/completions</code> to it. Anthropic-compatible clients do the opposite: they append <code>/v1/messages</code> themselves, so their base URL is the host <strong>without</strong> <code>/v1</code>. Paste the wrong shape into <code>ANTHROPIC_BASE_URL</code> or into an OpenAI client’s <code>base_url</code> and every request lands on a path that does not exist.</p>
+<p><strong>The body fields do not carry across.</strong> Chat Completions takes <code>messages</code>; Responses takes <code>input</code>; Anthropic Messages takes its own <code>messages</code> plus a separate <code>system</code>. Output caps are <code>max_tokens</code>&#x2F;<code>max_completion_tokens</code> on one protocol, <code>max_output_tokens</code> on another, and a <em>required</em> <code>max_tokens</code> on the third. Send a Chat Completions body to <code>/v1/responses</code> and the request is invalid on arrival—the gateway does not translate your payload. The API guide for the gateway used in this article says it outright:</p>
+<blockquote>
+<p>“The three endpoints use different URLs and body shapes. Do not mix fields across protocols.” — and, in its differences table: “Different bodies—changing only the URL is not enough.” (Modellix LLM API guide, checked September 2, 2026)</p>
+</blockquote>
+<p>So the correct mental model is: <strong>a base URL selects a protocol, and a protocol defines its own body.</strong> If you are pointing a tool at an OpenAI-compatible endpoint, keep everything OpenAI-shaped. If you switch a client to an Anthropic-shaped endpoint, expect to reshape the request, not just re-point the URL.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/openai-compatible-three-protocols.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/openai-compatible-three-protocols.png" alt="One LLM gateway routing requests to three protocol endpoints — chat completions, responses, and anthropic messages — each with its own path and request body fields" loading="lazy" />
+</picture>
+
+<p><em>One host, three protocol surfaces: each path carries its own request body, so re-pointing a client without reshaping the payload fails.</em></p>
+<h2 id="Where-“openai-completions”-comes-from"><a href="#Where-“openai-completions”-comes-from" class="headerlink" title="Where “openai-completions” comes from"></a>Where “openai-completions” comes from</h2><p>The harness string from the opening example is an <strong>adapter selector</strong>: <code>api: openai-completions</code> tells the DeepSeek Harness <code>llm-pi-ai</code> adapter to speak OpenAI Chat Completions to the configured base URL. DeepSeek Harness’s official <a target="_blank" rel="noopener" href="https://deepseek-harness.github.io/deepseek-harness/guide/providers">custom provider guide</a> defines the same mechanism generically; the Modellix documentation for that page fills in real values: provider ID <code>modellix</code>, <code>api: openai-completions</code>, <code>baseURL: https://llm.modellix.ai/v1</code>, and a <code>models</code> list whose <code>id</code> values are sent on the wire exactly as written.</p>
+<p>Why “completions” and not “responses”? Because Chat Completions is the endpoint the ecosystem standardized on first. It is the most widely implemented OpenAI-compatible surface: <a target="_blank" rel="noopener" href="https://creator.poe.com/docs/external-applications/openai-compatible-api">Poe’s API</a> documents both Chat Completions and Responses but calls Chat Completions “simpler and widely compatible,” and the Modular handbook notes that most compatible servers target Chat Completions because existing SDKs and frameworks support it broadly. OpenAI now recommends its newer Responses API for new applications hosted on OpenAI, but third-party compatibility coverage for Responses varies by provider and framework—so most gateways and tools lead with Chat Completions, and <code>openai-completions</code> is the value their configs expose.</p>
+<p>Two companion behaviors travel with an OpenAI-compatible setup:</p>
+<ul>
+<li><strong>Model discovery via <code>GET /v1/models</code>.</strong> An OpenAI-compatible host usually lets you list available model IDs at <code>/v1/models</code> on the same base URL. That is what a harness’s “fetch available models” button calls. It returns IDs in the form the <code>model</code> field expects (on gateways, often <code>provider/name</code>, such as <code>openai/gpt-5.6-sol</code>). Note that model discovery is a read API: on hosts that separate it, listing models consumes a query budget, not inference quota.</li>
+<li><strong>One key, several protocols.</strong> Because the key and the host are shared, the same credential can drive Chat Completions, Responses, and Anthropic Messages clients. That is the point of a gateway: your API key from the <a href="https://www.modellix.ai/console/api-key">Modellix console</a> works in an OpenAI SDK pointed at <code>/v1</code> and in Claude Code pointed at the host without <code>/v1</code>.</li>
+</ul>
+<h2 id="How-far-OpenAI-compatibility-goes"><a href="#How-far-OpenAI-compatibility-goes" class="headerlink" title="How far OpenAI compatibility goes"></a>How far OpenAI compatibility goes</h2><p>Compatibility is negotiated per field, not granted per endpoint. A provider can accept your OpenAI-shaped request and still differ from OpenAI on which documented fields do anything, which optional parameters exist, and how limits behave. The practical rule: <strong>check the provider’s field table, not its “OpenAI-compatible” badge.</strong></p>
+<p>The honest boundary shows up fastest on the fields developers ask about second—the extension layer that many agent workloads build on. These are heavily used in agent work, but they are an extension layer, not part of the core chat exchange, and OpenAI-compatible providers implement them unevenly or not at all. The Modellix LLM API guide is a clean example: its field tables document the core exchange (<code>model</code>, <code>messages</code>&#x2F;<code>input</code>, <code>stream</code>, <code>temperature</code>, the output-cap family) and leave everything beyond those entries unlisted in either direction—so treat anything outside the documented core as <strong>unknown</strong> there until you verify it against a working call or the provider’s answer, and verify before you rely on it anywhere. “It speaks Chat Completions” is a statement about the core exchange, not about the optional parameters that different providers handle differently.</p>
+<p>The same discipline applies to caching. A provider’s price table may list cached-read and cached-write rates (Modellix’s does), but a rate column is not a usage contract: if the docs do not explain how caching is triggered, what its TTL is, or whether a minimum prompt size applies, then you cannot rely on cache hits or optimize for them—you can only observe them in your <code>usage</code> response.</p>
+<p>None of this is an argument that Modellix is the most complete OpenAI-compatible gateway available—only that its documentation is a good specimen of the difference between “compatible” and “documented.” Compatibility is a floor you can stand on, not a wall you can lean on: SDK and auth patterns transfer, field-level guarantees do not.</p>
+<h2 id="Chat-Completions-or-Responses-pick-by-protocol-not-by-hype"><a href="#Chat-Completions-or-Responses-pick-by-protocol-not-by-hype" class="headerlink" title="Chat Completions or Responses: pick by protocol, not by hype"></a>Chat Completions or Responses: pick by protocol, not by hype</h2><p>If you are starting fresh on OpenAI’s own platform, the direction is unambiguous: OpenAI maintains a <a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/guides/migrate-to-responses">migration guide</a> and recommends the Responses API for new applications, and its <a target="_blank" rel="noopener" href="https://platform.openai.com/docs/api-reference/responses">Responses reference</a> is the catalog to read. Responses consolidates input, tool use, and state handling in ways Chat Completions grew into awkwardly.</p>
+<p>If you are pointing at a third-party OpenAI-compatible endpoint, the decision inverts:</p>
+<ol>
+<li><strong>Check what the provider documents.</strong> If its field tables only cover Chat Completions, the Responses path may be an alias, partial, or absent. On Modellix, both are documented endpoints, and both share the <code>/v1</code> base URL—but the bodies are different, per the table above.</li>
+<li><strong>Check what your tool expects.</strong> A harness configured with <code>api: openai-completions</code> is a Chat Completions client; a Responses client calls <code>/v1/responses</code>. Match the client to the provider’s documented surface rather than to the newest protocol name.</li>
+<li><strong>When in doubt, Chat Completions is the compatibility default.</strong> It is the most implemented endpoint across SDKs, frameworks, local servers, and gateways—the reason the config string in your harness is <code>openai-completions</code> in the first place.</li>
+</ol>
+<p>For reference on the OpenAI side of this choice, the <a target="_blank" rel="noopener" href="https://platform.openai.com/docs/api-reference/chat">Chat Completions API reference</a> and the <a target="_blank" rel="noopener" href="https://docs.anthropic.com/en/api/messages">Anthropic Messages reference</a> are the official field catalogs; the Modellix LLM API guide cited above documents all three protocols on one host.</p>
+<h2 id="The-OpenAI-compatible-ecosystem-in-practice"><a href="#The-OpenAI-compatible-ecosystem-in-practice" class="headerlink" title="The OpenAI-compatible ecosystem in practice"></a>The OpenAI-compatible ecosystem in practice</h2><p>In 2026, an “OpenAI-compatible” label appears on four kinds of things, and it helps to know which kind you are touching:</p>
+<ul>
+<li><strong>Official platforms</strong> (OpenAI, Google Gemini via its compatibility layer) that publish their own clients and docs.</li>
+<li><strong>Model gateways and aggregators</strong> that expose many models behind one key and one or more protocols—the category this article’s host belongs to. Picking between gateway products is a separate decision from picking a protocol; the OpenRouter-alternatives comparison linked in the introduction covers that choice.</li>
+<li><strong>Inference servers and frameworks</strong> (LM Studio, vLLM and its peers, and similar local&#x2F;self-hosted servers) that expose models you run yourself as <code>/v1/chat/completions</code> endpoints, often with a local-only key or none at all.</li>
+<li><strong>Clients and harnesses</strong> that consume compatible endpoints: OpenAI SDKs, LangChain, Vercel AI SDK, agent frameworks, IDE tools, and agent harnesses from Codex and Cursor to Cline and DeepSeek Harness.</li>
+</ul>
+<p>The minimal integration is the same against all four. Point the OpenAI SDK at the provider’s base URL with your key, and call it like any OpenAI client:</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/openai-compatible-sdk-config.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/openai-compatible-sdk-config.png" alt="OpenAI SDK client config lines for base URL, API key and model flowing into an OpenAI-compatible endpoint node" loading="lazy" />
+</picture>
+
+<p><em>The SDK config surface: a base URL, a key, and a model ID are the whole “compatibility” contract your client sees.</em></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openai <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">client = OpenAI(</span><br><span class="line">    base_url=<span class="string">&quot;https://llm.modellix.ai/v1&quot;</span>,   <span class="comment"># OpenAI-compatible base URL, /v1 included</span></span><br><span class="line">    api_key=<span class="string">&quot;YOUR_MODELLIX_KEY&quot;</span>,             <span class="comment"># not a vendor platform key</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">response = client.chat.completions.create(</span><br><span class="line">    model=<span class="string">&quot;openai/gpt-5.6-sol&quot;</span>,</span><br><span class="line">    messages=[&#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>, <span class="string">&quot;content&quot;</span>: <span class="string">&quot;Explain OpenAI-compatible APIs in one paragraph.&quot;</span>&#125;],</span><br><span class="line">)</span><br><span class="line"><span class="built_in">print</span>(response.choices[<span class="number">0</span>].message.content)</span><br></pre></td></tr></table></figure>
+
+<p>Two habits keep integrations honest: <strong>verify fields against the provider’s docs</strong> (the core exchange transfers; extensions do not), and <strong>match the base URL shape to the client’s protocol</strong> (<code>/v1</code> for OpenAI-shaped clients, no <code>/v1</code> for Anthropic-shaped ones). For a full map of which client type uses which base URL and protocol, the Modellix <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/overview">LLM overview</a> table is a useful reference.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Try All Three Protocols on One Key</h3><p class="view-docs-tag-desc">Create a Modellix API key and call Chat Completions, Responses, and Messages from the same console.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>What does “openai-completions” mean in a config file?</strong><br>It is an adapter selector: it tells the tool to speak OpenAI’s Chat Completions protocol (<code>POST /v1/chat/completions</code>) to the configured base URL. It is not a model name or a vendor label—the same config value appears in DeepSeek Harness custom providers and in many other tools that accept an “OpenAI-compatible” target.</p>
+<p><strong>Is an OpenAI-compatible API the same as OpenAI’s API?</strong><br>No. It mirrors OpenAI’s interface conventions—paths, request&#x2F;response shapes, authentication—so existing clients can be re-pointed at it. The models, field catalog, rate limits, and pricing behind that interface belong to the provider.</p>
+<p><strong>What base URL do I use for an OpenAI-compatible API?</strong><br>The provider publishes it; for OpenAI-shaped protocols it normally ends in <code>/v1</code> (for example <code>https://llm.modellix.ai/v1</code>). Anthropic-shaped endpoints use the host without <code>/v1</code>, because Anthropic clients append <code>/v1/messages</code> themselves. Copy the exact shape from the provider’s docs rather than guessing.</p>
+<p><strong>Is there a free OpenAI-compatible API?</strong><br>Free mostly means local: LM Studio, llama.cpp, and similar servers expose models you run on your own hardware as OpenAI-compatible endpoints at no per-token cost. Hosted providers are pay-as-you-go, and free-trial policies change frequently—Modellix, for instance, does not hand out automatic registration credit and grants trial credit on request instead. Check the provider’s current policy.</p>
+<p><strong>Can I use the official OpenAI SDK with any compatible API?</strong><br>Yes, for the core chat exchange: set <code>base_url</code> and <code>api_key</code> and the SDK’s chat calls reach the compatible endpoint. Beyond the core fields, what a given provider honors is per-provider—check its field table and verify against a working call before relying on anything outside the documented core.</p>
+<p><strong>When should I use the Responses API instead of Chat Completions?</strong><br>On OpenAI’s own platform, OpenAI recommends Responses for new applications. Against a third-party compatible endpoint, first confirm the provider documents Responses at all, then match your client to the documented surface. If both are supported, Responses is worth adopting for new OpenAI-hosted code; Chat Completions remains the safest default for portability.</p>
+<p><strong>Is Anthropic’s Messages API OpenAI-compatible?</strong><br>Not in the protocol sense. It is a separate family with its own path (<code>/v1/messages</code>), body shape, and base-URL convention—that is why the same gateway exposes it as a third protocol rather than as a variant of the OpenAI ones. The Anthropic-side configuration, including the no-<code>/v1</code> base URL, is covered in the Anthropic Base URL guide linked in the introduction.</p>
+<hr>
+<p><em>Protocol definitions, endpoint shapes, and provider policies change frequently; the details above reflect documentation and official pages as of September 2, 2026, so verify against each provider’s live docs before committing. Access image, video, and text-generation models through a single API key at <a target="_blank" rel="noopener" href="https://modellix.ai/">modellix.ai</a>.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Agents/" class="tag-pill tag-pill--sm">AI Agents</a>
+            
+              <a href="/blog/tags/LLM-API/" class="tag-pill tag-pill--sm">LLM API</a>
+            
+              <a href="/blog/tags/OpenAI-Compatible/" class="tag-pill tag-pill--sm">OpenAI Compatible</a>
+            
+              <a href="/blog/tags/API-Protocols/" class="tag-pill tag-pill--sm">API Protocols</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/anthropic-base-url/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://statics.mylandingpages.co/static/modellix/image/cover-anthropic-base-url.webp" alt="Anthropic Base URL: Claude Code and Harness, No /v1" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Anthropic Base URL: Claude Code and Harness, No /v1</h3>
+          <time class="related-article-date" datetime="2026-09-01T16:00:00.000Z">September 2, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/deepseek-harness-api-key/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-deepseek-harness-api-key.webp" alt="DeepSeek Harness API Key: Which Key Goes Where" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">DeepSeek Harness API Key: Which Key Goes Where</h3>
+          <time class="related-article-date" datetime="2026-08-31T16:00:00.000Z">September 1, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/deepseek-harness-error/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-deepseek-harness-error.webp" alt="DeepSeek Harness Provider Errors: UNKNOWN_MODEL and 401s" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">DeepSeek Harness Provider Errors: UNKNOWN_MODEL and 401s</h3>
+          <time class="related-article-date" datetime="2026-08-31T16:00:00.000Z">September 1, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/openai-compatible-api/&text=OpenAI%20Compatible%20API%3A%20What%20&#39;openai-completions&#39;%20Means" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/openai-compatible-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/openai-compatible-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

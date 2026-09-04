@@ -1,0 +1,536 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anthropic Base URL: Claude Code and Harness, No /v1 — Modellix Blog</title>
+  <meta name="description" content="Set ANTHROPIC_BASE_URL to https://llm.modellix.ai, never /v1: Claude Code settings.json and the harness anthropic-messages provider, plus the 401 auth traps.">
+  <meta name="keywords" content="anthropic base url, anthropic api base url, anthropic_base_url env, claude code base url, anthropic-messages provider, set custom anthropic endpoint, claude code custom base url">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/anthropic-base-url/">
+  <meta name="description" content="Set ANTHROPIC_BASE_URL to https:&#x2F;&#x2F;llm.modellix.ai, never &#x2F;v1: Claude Code settings.json and the harness anthropic-messages provider, plus the 401 auth traps.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Anthropic Base URL: Claude Code and Harness, No &#x2F;v1 — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/anthropic-base-url/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Set ANTHROPIC_BASE_URL to https:&#x2F;&#x2F;llm.modellix.ai, never &#x2F;v1: Claude Code settings.json and the harness anthropic-messages provider, plus the 401 auth traps.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-anthropic-base-url.webp">
+<meta property="article:published_time" content="2026-09-01T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-01T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="API Configuration">
+<meta property="article:tag" content="Anthropic">
+<meta property="article:tag" content="Claude Code">
+<meta property="article:tag" content="LLM API">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-anthropic-base-url.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Anthropic Base URL: Claude Code and Harness, No /v1","description":"Set ANTHROPIC_BASE_URL to https://llm.modellix.ai, never /v1: Claude Code settings.json and the harness anthropic-messages provider, plus the 401 auth traps.","datePublished":"2026-09-01T16:00:00.000Z","dateModified":"2026-09-01T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/anthropic-base-url/","image":"https://statics.mylandingpages.co/static/modellix/image/cover-anthropic-base-url.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Anthropic Base URL: Claude Code and Harness, No /v1</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/LLM-API/" class="category-tag category-tag--sm">LLM API</a>
+          
+        
+      </div>
+      <h1 class="post-title">Anthropic Base URL: Claude Code and Harness, No /v1</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-09-01T16:00:00.000Z">September 2, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/Claude-Code/" class="tag-pill tag-pill--sm">Claude Code</a>
+            
+              <a href="/blog/tags/Anthropic/" class="tag-pill tag-pill--sm">Anthropic</a>
+            
+              <a href="/blog/tags/LLM-API/" class="tag-pill tag-pill--sm">LLM API</a>
+            
+              <a href="/blog/tags/API-Configuration/" class="tag-pill tag-pill--sm">API Configuration</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.srcgptbots.com/blog/author/20260409/modellix-blog-author-official@2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>The Anthropic base URL for a gateway: one value, no /v1 If you are pointing Claude Code, the Anthropic SDK, or an agent harness at an Anthropic-compatible gateway, the anthropic base url question has a one-line answer: set ANTHROPIC_BASE_UR.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/cover-anthropic-base-url.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/cover-anthropic-base-url.png" alt="Anthropic base URL editorial cover: a wide amber configuration bar pointing into a glass-chrome gateway node with no /v1 suffix, MODELLIX wordmark, dark amber vignette" />
+</picture>
+
+<h2 id="The-Anthropic-base-URL-for-a-gateway-one-value-no-v1"><a href="#The-Anthropic-base-URL-for-a-gateway-one-value-no-v1" class="headerlink" title="The Anthropic base URL for a gateway: one value, no &#x2F;v1"></a>The Anthropic base URL for a gateway: one value, no &#x2F;v1</h2><p>If you are pointing Claude Code, the Anthropic SDK, or an agent harness at an Anthropic-compatible gateway, the anthropic base url question has a one-line answer: set <code>ANTHROPIC_BASE_URL</code> to <code>https://llm.modellix.ai</code> — <strong>without</strong> <code>/v1</code>. The gateway’s Messages endpoint is <code>POST /v1/messages</code>, and Anthropic-protocol clients append that path themselves. OpenAI-compatible clients are the ones that need the full <code>https://llm.modellix.ai/v1</code>. Mixing the two is the single most common configuration error in this setup, and this article gives you the exact values for both places the same variable appears: Claude Code and a DeepSeek Harness custom provider.</p>
+<p>Scope, stated up front: this article covers the <strong>Anthropic protocol side</strong> — what value to put where. Its OpenAI-protocol counterpart, covered in the <a href="https://www.modellix.ai/blog/openai-compatible-api/">OpenAI-compatible API guide</a>, owns the <code>/v1</code>-bearing Chat Completions and Responses endpoints. The harness’s main configuration path (the <code>openai-completions</code> route) is the DeepSeek Harness custom model guide; this page is the <code>anthropic-messages</code> variant of that same file, and that guide is linked in the harness section below. Whether to switch clients at all is a separate decision we do not relitigate here. Modellix operates the gateway used throughout, so we have a commercial interest in this configuration working; every value below was verified against docs.modellix.ai, code.claude.com, and the live Modellix LLM price page on September 2, 2026.</p>
+<h2 id="What-the-value-is-https-llm-modellix-ai-and-who-appends-v1"><a href="#What-the-value-is-https-llm-modellix-ai-and-who-appends-v1" class="headerlink" title="What the value is: https://llm.modellix.ai, and who appends &#x2F;v1"></a>What the value is: <a target="_blank" rel="noopener" href="https://llm.modellix.ai/">https://llm.modellix.ai</a>, and who appends &#x2F;v1</h2><p>The default Anthropic base URL — the one you get for free by doing nothing — is <code>https://api.anthropic.com</code>, the REST API documented in the <a target="_blank" rel="noopener" href="https://platform.claude.com/docs/en/api/overview">Claude API overview</a>. You only set <code>ANTHROPIC_BASE_URL</code> when you want requests to go somewhere else: a proxy, a gateway, or another provider’s Anthropic-compatible endpoint. When that “somewhere” is the Modellix LLM gateway, the value is:</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ANTHROPIC_BASE_URL</code></td>
+<td><code>https://llm.modellix.ai</code> — <strong>no <code>/v1</code></strong></td>
+</tr>
+<tr>
+<td>Endpoint it reaches</td>
+<td><code>POST /v1/messages</code> (appended by the client)</td>
+</tr>
+<tr>
+<td>OpenAI-compatible clients</td>
+<td><code>https://llm.modellix.ai/v1</code></td>
+</tr>
+</tbody></table>
+<p>The Modellix <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/agent/claude-code">Claude Code setup guide</a> states the rule and the reason in one line, and it is worth quoting in full:</p>
+<blockquote>
+<p>Do not append <code>/v1</code> to <code>ANTHROPIC_BASE_URL</code>. Claude Code &#x2F; the Anthropic SDK append <code>/v1/messages</code> themselves.</p>
+</blockquote>
+<p>That last clause is the mechanism. The gateway serves the Anthropic Messages protocol at <code>/v1/messages</code>, and the base URL you configure is the host — the client is responsible for the path. A raw check that exercises exactly this, from the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/api/api">API guide’s Messages reference</a>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">curl -sS <span class="string">&quot;https://llm.modellix.ai/v1/messages&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer &lt;your-modellix-key&gt;&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;model&quot;: &quot;anthropic/claude-sonnet-5&quot;,</span></span><br><span class="line"><span class="string">    &quot;max_tokens&quot;: 256,</span></span><br><span class="line"><span class="string">    &quot;messages&quot;: [&#123;&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;ping&quot;&#125;]</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>Note that the curl URL does carry <code>/v1/messages</code> — because curl is a raw client that appends nothing. The rule is about <em>configured</em> clients that append for you: Claude Code, the official Anthropic SDKs, and the harness. When a tool asks you for a base URL rather than a full endpoint, it is telling you it will do the appending — so you give it the host, no path.</p>
+<h2 id="Where-the-v1-mistake-comes-from"><a href="#Where-the-v1-mistake-comes-from" class="headerlink" title="Where the &#x2F;v1 mistake comes from"></a>Where the &#x2F;v1 mistake comes from</h2><p>Two conventions collide here, and both look right until they fail. OpenAI-compatible clients (the OpenAI SDK, Cursor, most chat UIs) expect <code>https://llm.modellix.ai/v1</code> and send <code>POST /v1/chat/completions</code>. Anthropic-protocol clients expect the bare host and append <code>/v1/messages</code>. If you take the OpenAI habit — or a value you copied from an OpenAI-compatible setup — and point an Anthropic client at <code>https://llm.modellix.ai/v1</code>, the client produces a doubled path, <code>https://llm.modellix.ai/v1/v1/messages</code>, and the request dies with a 404 that looks like a gateway outage.</p>
+<p>The confusion is not yours alone; the two main Anthropic SDK families genuinely disagree about this variable. The official <code>@anthropic-ai/sdk</code> defaults to the bare <code>https://api.anthropic.com</code> and builds <code>$&#123;baseURL&#125;/v1/messages</code> internally, while Vercel’s <code>@ai-sdk/anthropic</code> defaults to <code>https://api.anthropic.com/v1</code> and appends the raw <code>/messages</code> — a documented incompatibility tracked in <a target="_blank" rel="noopener" href="https://github.com/vercel/ai/issues/15542">vercel&#x2F;ai issue #15542</a>. Claude Code follows the official convention and injects the bare-host form into its child processes, which is why the Modellix documentation and this article both use the no-<code>/v1</code> value: it is the form the official SDK and Claude Code expect. Python users get the same behavior for free — the official Python SDK appends <code>/v1/messages</code> itself, so <code>client = Anthropic(base_url=&quot;https://llm.modellix.ai&quot;)</code> is the whole anthropic base url python change.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/base-url-routing.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/base-url-routing.png" alt="Routing diagram: Claude Code and an anthropic-messages harness provider point at the base URL llm.modellix.ai with no /v1 suffix, while OpenAI-compatible clients add /v1" loading="lazy" />
+</picture>
+
+<p><em>Who appends what: Anthropic-protocol clients take the bare host and reach <code>/v1/messages</code>; OpenAI-compatible clients take the <code>/v1</code> form. The doubled-path 404 happens when the two are crossed.</em></p>
+<h2 id="Claude-Code-two-variables-one-value-and-where-it-persists"><a href="#Claude-Code-two-variables-one-value-and-where-it-persists" class="headerlink" title="Claude Code: two variables, one value, and where it persists"></a>Claude Code: two variables, one value, and where it persists</h2><p>Configure Claude Code the same way you would with any Anthropic-compatible gateway, per the Modellix <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/agent/claude-code">Claude Code setup docs</a>. First create a key in the <a href="https://www.modellix.ai/console/api-key">Modellix console</a> — the docs are explicit that it must be a Modellix key, “not a vendor platform key,” because a key from Anthropic’s own console authenticates Anthropic’s billing, not the gateway’s. Then:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> ANTHROPIC_API_KEY=<span class="string">&quot;mdlx-xxxxxxxx&quot;</span></span><br><span class="line"><span class="built_in">export</span> ANTHROPIC_BASE_URL=<span class="string">&quot;https://llm.modellix.ai&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>Claude Code maps <code>ANTHROPIC_API_KEY</code> to the Anthropic-style <code>x-api-key</code> header. For tools that expect Bearer auth instead, the docs prescribe the second variable:</p>
+<blockquote>
+<p>If the tool expects Bearer auth, use <code>ANTHROPIC_AUTH_TOKEN</code> instead of <code>ANTHROPIC_API_KEY</code>. Do not set both to different values.</p>
+</blockquote>
+<p>Sending both headers with different values is not a “first one wins” situation — the gateway returns <code>401</code>. The API guide states it as an invariant: “Both headers are equivalent. If both are sent, they must be the same key.” If your Claude Code session uses <code>ANTHROPIC_AUTH_TOKEN</code> (some gateway setups do), keep <code>ANTHROPIC_API_KEY</code> unset rather than holding a stale value.</p>
+<p>Environment variables work for the shell that launched Claude Code. To make the config stick across restarts, write the same two values into <code>~/.claude/settings.json</code>, in the <code>env</code> block that Claude Code merges into every session:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;env&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;ANTHROPIC_BASE_URL&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://llm.modellix.ai&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;ANTHROPIC_API_KEY&quot;</span><span class="punctuation">:</span> <span class="string">&quot;mdlx-xxxxxxxx&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>Replace <code>mdlx-xxxxxxxx</code> with your real key. Two details from the docs are worth carrying forward. First, the model must be a full Modellix catalog ID — <code>anthropic/claude-sonnet-5</code>, not a bare console name; the Claude Agent SDK docs warn that bare names “are not Modellix catalog IDs,” and the gateway routes on the <code>provider/name</code> form. Second, Claude Code’s own <a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/env-vars">environment variables reference</a> defines <code>ANTHROPIC_BASE_URL</code> as the override “to route requests through a proxy or gateway,” and notes that pointing it at a non-first-party host disables MCP tool search by default — a behavior difference worth knowing before you move a heavy tool-using setup. The Claude Agent SDK takes the same two variables, and the Modellix <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/sdk/claude-agent-sdk">Claude Agent SDK docs</a> are explicit that this SDK targets Anthropic-compatible endpoints only: do not set <code>OPENAI_BASE_URL</code> or <code>https://llm.modellix.ai/v1</code> for it.</p>
+<p>One more Claude Code nuance, from the official <a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/llm-gateway">LLM gateway docs</a>: setting <code>ANTHROPIC_BASE_URL</code> alone does not replace your subscription login — requests route through the gateway, but a saved claude.ai login remains the active credential until a gateway credential variable (<code>ANTHROPIC_API_KEY</code> or an <code>apiKeyHelper</code>) is present. If you intend per-token gateway billing, set the key; do not rely on the URL alone.</p>
+<h2 id="The-same-variable-in-a-DeepSeek-Harness-api-anthropic-messages"><a href="#The-same-variable-in-a-DeepSeek-Harness-api-anthropic-messages" class="headerlink" title="The same variable in a DeepSeek Harness: api: anthropic-messages"></a>The same variable in a DeepSeek Harness: api: anthropic-messages</h2><p>The same value appears a second time in agent harness configuration, and the same no-<code>/v1</code> rule applies. DeepSeek Harness lets you declare an Anthropic-protocol route against the gateway; the Modellix <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/agent/deepseek-harness">DeepSeek Harness docs</a> describe the variant in one sentence:</p>
+<blockquote>
+<p>If you prefer the Anthropic wire protocol, set <code>api: anthropic-messages</code> and <code>baseURL: https://llm.modellix.ai</code> (no <code>/v1</code>)—but model discovery (<code>Fetch available models</code>) only reads OpenAI-compatible <code>GET /models</code> endpoints, so enter models by hand in that case.</p>
+</blockquote>
+<p>In <code>$DSH_HOME/settings.yaml</code>, that variant looks like this — note both differences from the main path at once:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">llm-pi-ai:</span></span><br><span class="line">  <span class="attr">providers:</span></span><br><span class="line">    <span class="attr">modellix:</span></span><br><span class="line">      <span class="attr">apiKeyEnv:</span> <span class="string">MODELLIX_API_KEY</span></span><br><span class="line">      <span class="attr">api:</span> <span class="string">anthropic-messages</span></span><br><span class="line">      <span class="attr">baseURL:</span> <span class="string">https://llm.modellix.ai</span></span><br><span class="line">      <span class="attr">models:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">anthropic/claude-sonnet-5</span></span><br><span class="line">          <span class="attr">name:</span> <span class="string">Claude</span> <span class="string">Sonnet</span> <span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<p>The <code>api: anthropic-messages</code> field selects the Anthropic wire protocol instead of <code>openai-completions</code>, and <code>baseURL</code> drops the <code>/v1</code> that the OpenAI route uses. Two consequences follow, and both are traps if missed:</p>
+<ul>
+<li><strong>Leave <code>/v1</code> in <code>baseURL</code> and requests double the path.</strong> The harness appends <code>/v1/messages</code> to whatever base URL you give it, so <code>https://llm.modellix.ai/v1</code> becomes <code>https://llm.modellix.ai/v1/v1/messages</code> — the same 404 you would see in Claude Code. The value is <code>https://llm.modellix.ai</code>, full stop.</li>
+<li><strong>Model discovery stops working, so the list is yours to fill.</strong> “Fetch available models” reads OpenAI-compatible <code>GET /models</code> endpoints only. On the <code>anthropic-messages</code> route there is nothing to fetch, and the harness’s troubleshooting table says exactly that: enter models manually. Your <code>models:</code> entries are the route’s whole catalog — an empty list on this protocol means no models at all, and a full <code>provider/name</code> ID like <code>anthropic/claude-sonnet-5</code> is required in each entry.</li>
+</ul>
+<p>Everything else about the route — <code>apiKeyEnv</code> resolving the credential, the key being a Modellix console key rather than an Anthropic platform key, the <code>models</code> list replacing rather than extending the catalog — matches the main path documented in the <a href="https://www.modellix.ai/blog/deepseek-harness-custom-model/">DeepSeek Harness custom model guide</a>. If your client is OpenAI-protocol instead, the endpoint rules for that side live in the OpenAI-compatible API guide linked in the opening section.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Claude Code and Harness Base URL Docs</h3><p class="view-docs-tag-desc">Point Claude Code, the Claude Agent SDK, or a DeepSeek Harness at the Modellix LLM gateway with the exact ANTHROPIC_BASE_URL value and the anthropic-messages provider block.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="What-pointing-here-costs-three-Claude-models-at-3-off-the-listed-price"><a href="#What-pointing-here-costs-three-Claude-models-at-3-off-the-listed-price" class="headerlink" title="What pointing here costs: three Claude models at 3% off the listed price"></a>What pointing here costs: three Claude models at 3% off the listed price</h2><p>Pricing matters at this decision point, so here is the dated figure rather than a vague “competitive.” On the <a href="https://www.modellix.ai/llm">Modellix LLM price page</a>, fetched September 2, 2026, the three Anthropic models each carry a discount label rendered verbatim as <strong><code>3% OFF</code></strong> next to their per-million-token rates:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Input</th>
+<th>Output</th>
+<th>Discount label (page verbatim)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>anthropic/claude-opus-5</code></td>
+<td><del>$5.00</del> $4.85</td>
+<td><del>$25.00</del> $24.25</td>
+<td><code>3% OFF</code></td>
+</tr>
+<tr>
+<td><code>anthropic/claude-sonnet-5</code></td>
+<td><del>$2.00</del> $1.94</td>
+<td><del>$10.00</del> $9.70</td>
+<td><code>3% OFF</code></td>
+</tr>
+<tr>
+<td><code>anthropic/claude-haiku-4.5</code></td>
+<td><del>$1.00</del> $0.97</td>
+<td><del>$5.00</del> $4.85</td>
+<td><code>3% OFF</code></td>
+</tr>
+</tbody></table>
+<p>The struck-through figure is the official list price as shown on the page, and the Modellix rate is what you pay — 3% lower than that listed price, not a claim about being the cheapest option anywhere. Rates are in USD per 1 million tokens, all three models are flat-rate, and prices move, so treat the table as a snapshot and the live page as the source of truth. Two boundaries belong next to the numbers: the LLM gateway is a text gateway — output is text, and image generation stays on the separate media API — and Modellix publishes no RPM guarantees, so plan rate limits from your own usage rather than a promise.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Create Your Modellix API Key</h3><p class="view-docs-tag-desc">Log in to the Modellix console to generate your API key and check today&#39;s live Claude per-million-token rates before you switch your base URL.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Where-this-fits-in-the-series"><a href="#Where-this-fits-in-the-series" class="headerlink" title="Where this fits in the series"></a>Where this fits in the series</h2><p>The value in this article is deliberately narrow, and the surrounding decisions have their own pages. If you are weighing whether to leave Claude Code for another client at all, the <a href="https://www.modellix.ai/blog/claude-code-alternatives/">Claude Code alternatives article</a> compares staying versus switching. If you are configuring a harness and want the OpenAI-protocol main path rather than the Anthropic variant, the DeepSeek Harness custom model guide linked above has the full five-field form and <code>settings.yaml</code> walkthrough. A dedicated per-model pricing breakdown for Claude is planned as a follow-up article; until it publishes, the live price page linked above is the reference. The series hub — the <a href="https://www.modellix.ai/blog/deepseek-harness/">DeepSeek Harness article</a> — ties the whole cluster together: key ownership, model sources, plugins, and error recovery.</p>
+<p>Your next three steps: create a key in the Modellix console, set <code>ANTHROPIC_BASE_URL=https://llm.modellix.ai</code> in exactly one of the two places above (Claude Code’s <code>env</code> block or the harness provider), and confirm a <code>POST /v1/messages</code> call succeeds. When you later add OpenAI-protocol models alongside, the <code>/v1</code>-bearing base URL from the sibling guide coexists on the same gateway — just never in the same <code>ANTHROPIC_BASE_URL</code>.</p>
+<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>What is the default Anthropic base URL?</strong><br>The default is <code>https://api.anthropic.com</code>, and the Claude API serves <code>POST /v1/messages</code> at that host. You set <code>ANTHROPIC_BASE_URL</code> only to override it — for a proxy, a gateway, or another Anthropic-compatible endpoint. When the endpoint is the Modellix LLM gateway, the override is <code>https://llm.modellix.ai</code>.</p>
+<p><strong>Does ANTHROPIC_BASE_URL need &#x2F;v1 at the end?</strong><br>No — for Anthropic-protocol clients, appending <code>/v1</code> is the most common mistake and produces a doubled path (<code>/v1/v1/messages</code>) that fails with a 404. Claude Code, the official Anthropic SDK, and the harness’s <code>anthropic-messages</code> provider append <code>/v1/messages</code> themselves. OpenAI-compatible clients are the ones that need <code>https://llm.modellix.ai/v1</code>.</p>
+<p><strong>What is the difference between ANTHROPIC_API_KEY and ANTHROPIC_AUTH_TOKEN?</strong><br>They are two ways to send the same credential: <code>ANTHROPIC_API_KEY</code> is sent as the <code>x-api-key</code> header (what Claude Code uses), and <code>ANTHROPIC_AUTH_TOKEN</code> is sent as a Bearer token for tools that expect that form. The gateway treats both headers as equivalent — but if both are sent with different values, the request fails with 401. Set one, and never the two to different values.</p>
+<p><strong>Why does my harness show no models after I set api: anthropic-messages?</strong><br>Model discovery reads OpenAI-compatible <code>GET /models</code> endpoints only, and an Anthropic-protocol route has none. “Fetch available models” cannot auto-list anything, so enter model IDs by hand in the <code>models:</code> list — full <code>anthropic/claude-sonnet-5</code>-style IDs, which are the route’s entire catalog.</p>
+<p><strong>Is there a free Modellix API key for Claude models?</strong><br>There is no automatic free tier today. Modellix is pay-as-you-go, and the $1 signup credit that new accounts previously received was removed on August 19, 2026; trial credit requires an email request to the team. A free Anthropic console account does not grant gateway access either — the gateway authenticates a Modellix key.</p>
+<p><strong>Is Modellix affiliated with Anthropic?</strong><br>No. Modellix is a distribution and access layer that resells access to models from multiple vendors; it does not speak for Anthropic, and nothing here implies an official partnership. Anthropic’s own gateway documentation is blunt on this point: it does not “endorse, maintain, or audit third-party gateway products.” <code>ANTHROPIC_BASE_URL</code> is simply the supported mechanism for pointing Anthropic-protocol clients at whatever endpoint you choose.</p>
+<hr>
+<p><em>Base URL conventions, auth rules, model IDs, and prices reflect Modellix public documentation and the live Modellix LLM price page as of September 2, 2026, and change as both the gateway and upstream providers evolve; validate against the live price page before committing. Modellix operates the gateway described here and has a commercial interest in it. The Modellix LLM gateway is a text gateway — image and video generation run on the separate media API, all reachable through a single API key at <a target="_blank" rel="noopener" href="https://modellix.ai/">modellix.ai</a>.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/Claude-Code/" class="tag-pill tag-pill--sm">Claude Code</a>
+            
+              <a href="/blog/tags/Anthropic/" class="tag-pill tag-pill--sm">Anthropic</a>
+            
+              <a href="/blog/tags/LLM-API/" class="tag-pill tag-pill--sm">LLM API</a>
+            
+              <a href="/blog/tags/API-Configuration/" class="tag-pill tag-pill--sm">API Configuration</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/openai-compatible-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://statics.mylandingpages.co/static/modellix/image/cover-openai-compatible-api.webp" alt="OpenAI Compatible API: What &#39;openai-completions&#39; Means" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">OpenAI Compatible API: What &#39;openai-completions&#39; Means</h3>
+          <time class="related-article-date" datetime="2026-09-01T16:00:00.000Z">September 2, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/deepseek-harness-api-key/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-deepseek-harness-api-key.webp" alt="DeepSeek Harness API Key: Which Key Goes Where" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">DeepSeek Harness API Key: Which Key Goes Where</h3>
+          <time class="related-article-date" datetime="2026-08-31T16:00:00.000Z">September 1, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/deepseek-harness-error/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-deepseek-harness-error.webp" alt="DeepSeek Harness Provider Errors: UNKNOWN_MODEL and 401s" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">DeepSeek Harness Provider Errors: UNKNOWN_MODEL and 401s</h3>
+          <time class="related-article-date" datetime="2026-08-31T16:00:00.000Z">September 1, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/anthropic-base-url/&text=Anthropic%20Base%20URL%3A%20Claude%20Code%20and%20Harness%2C%20No%20%2Fv1" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/anthropic-base-url/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/anthropic-base-url/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
