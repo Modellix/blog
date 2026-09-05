@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="Modellix Blog">
 <meta property="og:description" content="Choose the right agent observability layer: gateway request logs show every model call, token count, and cost per end-user, but not tool calls or agent loops.">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-agent-observability.webp">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-agent-observability.webp">
 <meta property="article:published_time" content="2026-09-03T16:00:00.000Z">
 <meta property="article:modified_time" content="2026-09-03T16:00:00.000Z">
 <meta property="article:author" content="Alen Hu">
@@ -35,10 +35,10 @@
 <meta property="article:tag" content="LLM Observability">
 <meta property="article:tag" content="Token Usage">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-agent-observability.webp">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-agent-observability.webp">
   
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Agent Observability: What Your Coding Agent Called and Spent","description":"Choose the right agent observability layer: gateway request logs show every model call, token count, and cost per end-user, but not tool calls or agent loops.","datePublished":"2026-09-03T16:00:00.000Z","dateModified":"2026-09-03T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/agent-observability/","image":"https://statics.mylandingpages.co/static/modellix/image/cover-agent-observability.webp"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Agent Observability: What Your Coding Agent Called and Spent","description":"Choose the right agent observability layer: gateway request logs show every model call, token count, and cost per end-user, but not tool calls or agent loops.","datePublished":"2026-09-03T16:00:00.000Z","dateModified":"2026-09-03T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/agent-observability/","image":"https://img.modellix.ai/en/article/cover-agent-observability.webp"}]}</script>
 
   <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -142,7 +142,7 @@
     
 <div class="post-author-card">
   
-    <img src="https://img.srcgptbots.com/blog/author/20260409/modellix-blog-author-official@2x.webp" alt="Modellix Team" class="post-author-avatar">
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
   
   <div class="post-author-info">
     <span class="post-author-name">Modellix Team</span>
@@ -167,8 +167,8 @@
 
         <div class="post-content">
           <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
-  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/cover-agent-observability.webp" />
-  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/cover-agent-observability.png" alt="Editorial cover: a coding agent feeding model calls into a gateway request-log panel with cost, tokens, and user chips, amber copper and cyan" />
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-agent-observability.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-agent-observability.png" alt="Editorial cover: a coding agent feeding model calls into a gateway request-log panel with cost, tokens, and user chips, amber copper and cyan" />
 </picture>
 
 <p>Your team runs a coding agent inside DeepSeek Harness. It edits files, runs tests, retries failed steps, and by Friday the invoice arrives with a total nobody can explain. The agent’s own logs live on the developer’s laptop, so “what did it actually call, and who spent what” has no answer that survives a handover — and the question is only going to get more expensive as more of your work happens through agents.</p>
@@ -188,8 +188,8 @@
 <p><strong>Layer 3 — an SDK-based tracing platform.</strong> Langfuse, Arize, Datadog, and the rest of that category add an SDK or OpenTelemetry instrumentation to your agent code, and traces of the agent’s execution — spans for model calls, tool calls, retrieval steps — stream to a dashboard with evals, alerts, and team workflows. This layer is the only one that can show you Layer-1-style loop detail <em>centrally</em>, but it is also the only one that demands you build the plumbing: instrument every agent you want to see, keep the SDKs maintained, and send it whatever you decide is worth sending.</p>
 <p>Most agent observability content assumes Layer 3 is the only real option — instrument, trace, evaluate. That assumption skips a cheaper question: <em>what do you already hold?</em> If your agents already run through a gateway, Layer 2 exists on day one with zero SDK work. The honest framing is a trade, not a hierarchy: Layer 3 shows you the loop; Layer 2 shows you the money. Deciding which of those you actually need is the whole selection problem.</p>
 <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
-  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/visibility-layers.webp" />
-  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/visibility-layers.png" alt="Three-layer visibility model: local client logs, gateway request logs, and SDK tracing each see a different slice of an agent run" loading="lazy" />
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/visibility-layers.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/visibility-layers.png" alt="Three-layer visibility model: local client logs, gateway request logs, and SDK tracing each see a different slice of an agent run" loading="lazy" />
 </picture>
 
 <p><em>Three layers, three views: the client sees the whole loop but only locally; the gateway sees every model call server-side without instrumentation; tracing platforms see instrumented spans centrally.</em></p>
@@ -234,8 +234,8 @@
 <p>Now the boundary, which is the part expert readers will check: <strong>this layer sees the model-call layer and nothing above it.</strong> Tool calls, agent loop iterations, retrieval steps, and the reasoning that chose a path are not in gateway logs — the gateway never sees them, because they happen inside the agent before and between model calls. A <code>cost</code> spike in the logs tells you <em>that</em> a step burned tokens; it does not tell you <em>which</em> tool or <em>why</em>. Anyone who presents gateway logs as complete agent observability is overstating the layer, and this article does not: for loop-level questions you need Layer 3 instrumentation, and the two layers complement rather than replace each other.</p>
 <p>Three documented caveats matter if you build on top of these logs. First, <code>input</code> and <code>result</code> are conditional — “when retained” — and Modellix’s documentation does not state how long payloads are retained, whether retention can be disabled, or whether retained payloads are used for training, all of which are undocumented as of September 3, 2026. If your use case is prompt-level audit, treat the token counts and <code>cost</code> as the reliable core and verify retention with the vendor before committing. Second, rate-limit behavior is published as a category, not a guarantee: 429 responses <em>may include</em> <code>X-RateLimit-*</code> headers and <code>Retry-After</code>. Modellix’s entitlements documentation lists rate-limit tiers by account top-up, but it does not state that those figures apply to the LLM gateway’s inference or query quota, and the gateway documentation publishes no RPM figure for this logs endpoint — reading logs consumes query quota, separate from inference, but exact limits for the endpoint are not documented. Third, there is no published SLA, uptime commitment, or upstream-failure fallback description for the gateway, so a reliability column on this layer would be blank by documentation. The full field-by-field walkthrough of this endpoint — runnable query included — is the subject of the DeepSeek Harness token usage article linked in the introduction, which is the how-to companion to this selection guide.</p>
 <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
-  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/gateway-log-boundary.webp" />
-  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/gateway-log-boundary.png" alt="Gateway log panel with per-request model, token, and cost rows, and a shaded zone marking tool calls and agent loops as not visible" loading="lazy" />
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/gateway-log-boundary.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/gateway-log-boundary.png" alt="Gateway log panel with per-request model, token, and cost rows, and a shaded zone marking tool calls and agent loops as not visible" loading="lazy" />
 </picture>
 
 <p><em>The boundary in one image: gateway logs reach every model call that crosses them — and stop at the agent loop that made the calls.</em></p>
@@ -372,10 +372,10 @@
         </div>
       </a>
     
-      <a href="/blog/deepseek-harness-error/" class="related-article-card">
+      <a href="/blog/deepseek-harness-api-key/" class="related-article-card">
         
           <div class="related-article-cover">
-            <img src="https://img.modellix.ai/en/article/cover-deepseek-harness-error.webp" alt="DeepSeek Harness Provider Errors: UNKNOWN_MODEL and 401s" loading="lazy">
+            <img src="https://img.modellix.ai/en/article/cover-deepseek-harness-api-key.webp" alt="DeepSeek Harness API Key: Which Key Goes Where" loading="lazy">
           </div>
         
         <div class="related-article-body">
@@ -386,7 +386,7 @@
               
             </div>
           
-          <h3 class="related-article-name">DeepSeek Harness Provider Errors: UNKNOWN_MODEL and 401s</h3>
+          <h3 class="related-article-name">DeepSeek Harness API Key: Which Key Goes Where</h3>
           <time class="related-article-date" datetime="2026-08-31T16:00:00.000Z">September 1, 2026</time>
         </div>
       </a>
