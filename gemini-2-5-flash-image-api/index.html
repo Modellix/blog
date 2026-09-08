@@ -1,0 +1,554 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gemini 2.5 Flash Image API Guide: Pricing &amp; Code — Modellix Blog</title>
+  <meta name="description" content="Gemini 2.5 Flash Image (Nano Banana) API guide: shutdown date October 2, 2026, $0.039/image pricing pulled today, working curl and Python, plus migration code.">
+  <meta name="keywords" content="gemini 2.5 flash image api, nano banana api, gemini 2.5 flash image api pricing, nano banana api deprecated, gemini 2.5 flash image shutdown, gemini 2.5 flash image api key, gemini 3.1 flash image api, nano banana api python">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/gemini-2-5-flash-image-api/">
+  <meta name="description" content="Gemini 2.5 Flash Image (Nano Banana) API guide: shutdown date October 2, 2026, $0.039&#x2F;image pricing pulled today, working curl and Python, plus migration code.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gemini 2.5 Flash Image API Guide: Pricing &amp; Code — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/gemini-2-5-flash-image-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Gemini 2.5 Flash Image (Nano Banana) API guide: shutdown date October 2, 2026, $0.039&#x2F;image pricing pulled today, working curl and Python, plus migration code.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-gemini-2-5-flash-image-api.webp">
+<meta property="article:published_time" content="2026-09-05T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-05T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="Gemini">
+<meta property="article:tag" content="Google">
+<meta property="article:tag" content="Image API">
+<meta property="article:tag" content="Integration">
+<meta property="article:tag" content="Nano Banana">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-gemini-2-5-flash-image-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Gemini 2.5 Flash Image API Guide: Pricing & Code","description":"Gemini 2.5 Flash Image (Nano Banana) API guide: shutdown date October 2, 2026, $0.039/image pricing pulled today, working curl and Python, plus migration code.","datePublished":"2026-09-05T16:00:00.000Z","dateModified":"2026-09-05T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/gemini-2-5-flash-image-api/","image":"https://img.modellix.ai/en/article/cover-gemini-2-5-flash-image-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Gemini 2.5 Flash Image API Guide: Pricing &amp; Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Gemini 2.5 Flash Image API Guide: Pricing &amp; Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-09-05T16:00:00.000Z">September 6, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/Integration/" class="tag-pill tag-pill--sm">Integration</a>
+            
+              <a href="/blog/tags/Gemini/" class="tag-pill tag-pill--sm">Gemini</a>
+            
+              <a href="/blog/tags/Google/" class="tag-pill tag-pill--sm">Google</a>
+            
+              <a href="/blog/tags/Nano-Banana/" class="tag-pill tag-pill--sm">Nano Banana</a>
+            
+              <a href="/blog/tags/Image-API/" class="tag-pill tag-pill--sm">Image API</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>Yes — the Gemini 2.5 Flash Image API is real, documented, and callable today under the model id gemini-2.5-flash-image, better known as Nano Banana. It costs $0.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-gemini-2-5-flash-image-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-gemini-2-5-flash-image-api.png" alt="Editorial cover for the Gemini 2.5 Flash Image API integration guide with a two-line title and spec capsule over an amber-key glass pipeline" />
+</picture>
+
+<p>Yes — the Gemini 2.5 Flash Image API is real, documented, and callable today under the model id <code>gemini-2.5-flash-image</code>, better known as <strong>Nano Banana</strong>. It costs $0.039 per image on Google’s standard tier, works through the same Gemini API as the text models, and still does both text-to-image and conversational image editing. It is also, as of this article, a model with a <strong>scheduled shutdown date of October 2, 2026</strong> — 26 days away — after Google retired the whole Gemini 2.5 family in its July 2026 announcement. Every number here was re-pulled from Google’s official pages on September 6, 2026.</p>
+<p>One honest disclosure before the code: Modellix is an AI model API aggregator and has a commercial interest in this article. Google’s image models on Modellix are catalogued under the Nano Banana family names — <code>google/nano-banana</code> (the original fast creative model, live at $0.0351&#x2F;image) and <code>google/nano-banana-2</code> (explicitly labeled Gemini 3.1 Flash Image) — and the older <code>/models/google/gemini-2.5-flash-image</code> page now renders “Model Not Found.” We say exactly where that leaves you in the routing section rather than pretending the literal model page still exists. Everything before that is vendor-neutral integration material that works with or without us.</p>
+<h2 id="What-Gemini-2-5-Flash-Image-is-in-September-2026"><a href="#What-Gemini-2-5-Flash-Image-is-in-September-2026" class="headerlink" title="What Gemini 2.5 Flash Image is in September 2026"></a>What Gemini 2.5 Flash Image is in September 2026</h2><p>Gemini 2.5 Flash Image is Google’s native image generation and editing model — “Nano Banana” is the product name, <code>gemini-2.5-flash-image</code> is the API id. It went through a preview from May 2025, reached general availability on October 2, 2025, and was the model that made conversational, multi-turn image editing a mainstream API feature. Google’s <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/models/gemini-2.5-flash-image">official model card</a> still describes it in the present tense: “our best engine for high-velocity visual creation,” best for high-volume generation, conversational image editing, and low-latency creative workflows.</p>
+<p>The model card facts that matter for integration, read September 6, 2026:</p>
+<ul>
+<li><strong>Model code</strong>: exactly <code>gemini-2.5-flash-image</code>. The <code>-preview</code> variant was shut down January 15, 2026.</li>
+<li><strong>Inputs &#x2F; outputs</strong>: image and text in, image and text out. No thinking mode, no function calling, no context caching, no search grounding — check the card’s capability list before you plan around those.</li>
+<li><strong>Token limits</strong>: 65,536 input tokens, 32,768 output tokens.</li>
+<li><strong>Output size</strong>: fixed ~1K band — 1024×1024 on 1:1, with ten aspect ratios (1:1, 2:3, 3:2, 3:4, 4:3, 4:5, 5:4, 9:16, 16:9, 21:9). There is no 2K&#x2F;4K output mode; resolution tiers arrived with the Gemini 3 image models.</li>
+<li><strong>Batch API</strong>: supported, and the only discount route (more below). Flex and Priority inference are listed as not supported for this model.</li>
+<li><strong>Watermarking</strong>: every generated image carries a SynthID watermark.</li>
+</ul>
+<p>Google now positions it inside the four-model “Nano Banana” line on the <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/image-generation">image generation guide</a>: Nano Banana 2 Lite, Nano Banana 2, Nano Banana Pro — and <strong>Nano Banana (Gemini 2.5 Flash Image), “the legacy pioneer of the Nano Banana series.”</strong> Google’s own guide is explicit that the model is a workhorse you should plan to leave, which is the single most important fact most tutorials from earlier this year still miss.</p>
+<h2 id="Gemini-2-5-Flash-Image-API-pricing-pulled-today"><a href="#Gemini-2-5-Flash-Image-API-pricing-pulled-today" class="headerlink" title="Gemini 2.5 Flash Image API pricing, pulled today"></a>Gemini 2.5 Flash Image API pricing, pulled today</h2><p>The rates below come from Google’s <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/pricing">Gemini API pricing page</a>, fetched September 6, 2026. Image models bill per image, not per token, on output:</p>
+<table>
+<thead>
+<tr>
+<th>Service class</th>
+<th align="right">Input (text&#x2F;image)</th>
+<th align="right">Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Standard</td>
+<td align="right">$0.30 per 1M tokens</td>
+<td align="right"><strong>$0.039 per image</strong></td>
+</tr>
+<tr>
+<td>Batch API</td>
+<td align="right">$0.15 per 1M tokens</td>
+<td align="right">$0.0195 per image</td>
+</tr>
+</tbody></table>
+<p>How the per-image number works: image output is priced at $30 per 1M tokens, and any 1K-class image — whatever its aspect ratio — consumes 1,290 output tokens. 1,290 × $30&#x2F;1M &#x3D; $0.039. The pricing page also shows Flex and Priority columns ($0.0195 and $0.0702 per image), but the model card lists Flex and Priority inference as unsupported for this model, so treat Standard versus Batch as the real comparison.</p>
+<p>A worked example: 10,000 images on Standard &#x3D; $390. The same volume through the Batch API &#x3D; $195, because batch halves both the input rate and the per-image output price. Input barely registers: 10,000 prompts of ~300 tokens each is 3M input tokens — $0.90 at the standard input rate. Text output (when the model returns commentary alongside an image) follows Gemini 2.5 Flash text pricing.</p>
+<p>Two billing notes worth writing down: there is <strong>no free tier</strong> for this model on the current pricing page, and per-image pricing is flat — you cannot save by dropping resolution the way you can with the resolution-tiered Gemini 3 image models.</p>
+<h2 id="The-shutdown-what-October-2-2026-means"><a href="#The-shutdown-what-October-2-2026-means" class="headerlink" title="The shutdown: what October 2, 2026 means"></a>The shutdown: what October 2, 2026 means</h2><p>Google announced in its July 2026 release notes that the entire Gemini 2.5 family would be retired in October 2026 — <code>gemini-2.5-pro</code>, <code>gemini-2.5-flash</code>, <code>gemini-2.5-flash-lite</code>, and <code>gemini-2.5-flash-image</code>. The <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/deprecations">deprecations page</a> tracks the dates, and for the image model the entry is unambiguous:</p>
+<ul>
+<li><code>gemini-2.5-flash-image</code> — released October 2, 2025 — <strong>shutdown date October 2, 2026</strong>, the same date on both the Gemini Developer API and the enterprise platform, with no “unless you have a contract” carve-out listed.</li>
+</ul>
+<p>Two nuances keep this honest. First, Google frames deprecation dates as the <em>earliest</em> retirement — “may move later, but not earlier” is how independent trackers read it — so October 2 is the planning date, not a guarantee of exactly-then. Second, the deprecations table’s own “recommended replacement” column still names <code>gemini-3.1-flash-image-preview</code>, which is stale: that preview model was itself shut down on June 25, 2026. The live GA successor you actually migrate to is <strong><code>gemini-3.1-flash-image</code></strong> (Nano Banana 2, GA since May 28, 2026, no shutdown date announced). Google’s image generation guide makes the same point in product terms when it recommends moving to Nano Banana 2 — or Nano Banana 2 Lite if cost is the driver.</p>
+<p>What changes on the day: a request using a shut-down model name returns a 404-style “model not found” error. Nothing else about your pipeline breaks — you swap the model string and re-test, which is the whole migration story in section seven.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/gemini25-flash-image-lifecycle.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/gemini25-flash-image-lifecycle.png" alt="Lifecycle timeline of Gemini 2.5 Flash Image from 2025 preview to the October 2 2026 shutdown and its Gemini 3.1 Flash Image successor" loading="lazy" />
+</picture>
+
+<p><em>The Gemini 2.5 Flash Image lifecycle from preview to the announced October 2, 2026 shutdown, with Gemini 3.1 Flash Image as the GA successor. No prices here — they drift. Diagram generated September 6, 2026.</em></p>
+<h2 id="Getting-an-API-key-and-which-endpoint-to-call"><a href="#Getting-an-API-key-and-which-endpoint-to-call" class="headerlink" title="Getting an API key, and which endpoint to call"></a>Getting an API key, and which endpoint to call</h2><p>Keys for the Gemini API come from Google AI Studio: sign in, open <strong>Get API key</strong>, and create a key — the <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/api-key">API key guide</a> walks through it. There is no separate key type for image models; the same key that calls Gemini text models calls <code>gemini-2.5-flash-image</code>.</p>
+<p>One decision you need to make before writing code is which request surface to use, because Google’s image documentation has split in two:</p>
+<ul>
+<li><strong>generateContent</strong> — the classic stateless endpoint (<code>POST /v1beta/models/&#123;model&#125;:generateContent</code>). Google now labels it “legacy,” but it remains fully supported, and it is the surface the model shipped with. Google keeps a dedicated <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/generate-content/image-generation">legacy image generation page</a> that documents <code>gemini-2.5-flash-image</code> explicitly — this is the path for existing integrations and for this article’s code.</li>
+<li><strong>Interactions API</strong> — Google’s newer conversational surface, generally available since June 2026, and what the current image generation guide leads with. Its supported image models are the Gemini 3 line (<code>gemini-3-pro-image</code> and <code>gemini-3.1-flash-image</code>); the docs examples all target those, and <code>gemini-2.5-flash-image</code> is not listed there. For 2.5, the documented call surface is generateContent.</li>
+</ul>
+<p>If you are building fresh, follow Google’s direction of travel and use the Interactions API with <code>gemini-3.1-flash-image</code>. If you are maintaining a call that already works on 2.5, keep generateContent — the code below — and plan the string swap.</p>
+<h2 id="Calling-it-curl-and-Python-that-work-today"><a href="#Calling-it-curl-and-Python-that-work-today" class="headerlink" title="Calling it: curl and Python that work today"></a>Calling it: curl and Python that work today</h2><p><strong>Text-to-image with curl</strong> — one request, one 1K image back inside the response as base64:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">curl -s -X POST \</span><br><span class="line">  <span class="string">&quot;https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;x-goog-api-key: ***&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;contents&quot;: [&#123;</span></span><br><span class="line"><span class="string">      &quot;parts&quot;: [&#123;&quot;text&quot;: &quot;A minimalist 2D vector illustration of a banana on a deep amber background&quot;&#125;]</span></span><br><span class="line"><span class="string">    &#125;],</span></span><br><span class="line"><span class="string">    &quot;generationConfig&quot;: &#123;</span></span><br><span class="line"><span class="string">      &quot;responseModalities&quot;: [&quot;TEXT&quot;, &quot;IMAGE&quot;]</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>The image arrives in <code>candidates[0].content.parts</code> as <code>inline_data</code> (base64) next to any text part. Save it with <code>base64 -d</code>.</p>
+<p><strong>The same call in Python</strong> with the official SDK:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> google <span class="keyword">import</span> genai</span><br><span class="line"><span class="keyword">from</span> google.genai <span class="keyword">import</span> types</span><br><span class="line"></span><br><span class="line">client = genai.Client(api_key=os.environ[<span class="string">&quot;GEMINI_API_KEY&quot;</span>])</span><br><span class="line"></span><br><span class="line">response = client.models.generate_content(</span><br><span class="line">    model=<span class="string">&quot;gemini-2.5-flash-image&quot;</span>,</span><br><span class="line">    contents=<span class="string">&quot;A minimalist 2D vector illustration of a banana on a deep amber background&quot;</span>,</span><br><span class="line">    config=types.GenerateContentConfig(</span><br><span class="line">        response_modalities=[<span class="string">&quot;TEXT&quot;</span>, <span class="string">&quot;IMAGE&quot;</span>],</span><br><span class="line">        response_format=&#123;<span class="string">&quot;image&quot;</span>: &#123;<span class="string">&quot;aspect_ratio&quot;</span>: <span class="string">&quot;16:9&quot;</span>&#125;&#125;,</span><br><span class="line">    ),</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> part <span class="keyword">in</span> response.candidates[<span class="number">0</span>].content.parts:</span><br><span class="line">    <span class="keyword">if</span> part.text <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="built_in">print</span>(part.text)</span><br><span class="line">    <span class="keyword">elif</span> part.inline_data <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;output.png&quot;</span>, <span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">            f.write(base64.b64decode(part.inline_data.data))</span><br></pre></td></tr></table></figure>
+
+<p>Two configuration notes specific to this model: <code>response_format</code> only takes <code>aspect_ratio</code> — there is no <code>image_size</code> field on 2.5, because output is fixed at the 1K band (the <code>image_size</code> option is a Gemini 3 image model addition). And the aspect ratio list is the ten ratios from the model card.</p>
+<p><strong>Image editing</strong> is the same endpoint with image parts added to <code>contents</code> — the model takes text plus up to three reference images:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">response = client.models.generate_content(</span><br><span class="line">    model=<span class="string">&quot;gemini-2.5-flash-image&quot;</span>,</span><br><span class="line">    contents=[</span><br><span class="line">        types.Part.from_bytes(data=<span class="built_in">open</span>(<span class="string">&quot;product.png&quot;</span>, <span class="string">&quot;rb&quot;</span>).read(), mime_type=<span class="string">&quot;image/png&quot;</span>),</span><br><span class="line">        <span class="string">&quot;Replace the background with a gradient sunset sky and keep the product exactly as it is&quot;</span>,</span><br><span class="line">    ],</span><br><span class="line">    config=types.GenerateContentConfig(response_modalities=[<span class="string">&quot;TEXT&quot;</span>, <span class="string">&quot;IMAGE&quot;</span>]),</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/gemini25-flash-request-flow.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/gemini25-flash-request-flow.png" alt="Request flow diagram of a Gemini 2.5 Flash Image API call: prompt and optional reference image in, text and a base64 inline image part out" loading="lazy" />
+</picture>
+
+<p><em>Text-to-image and image-to-image both go through <code>:generateContent</code>; output comes back as an inline_data part you decode and save. Diagram generated September 6, 2026.</em></p>
+<p>For multi-turn editing, send the whole conversation — earlier turns including any returned images — as the next request’s contents; the model’s editing strength is that conversational loop. Google’s <a target="_blank" rel="noopener" href="https://github.com/google-gemini/cookbook">cookbook</a> has worked notebooks for both paths.</p>
+<h2 id="Errors-limits-and-the-gotchas-nobody-pages-warn-about"><a href="#Errors-limits-and-the-gotchas-nobody-pages-warn-about" class="headerlink" title="Errors, limits, and the gotchas nobody pages warn about"></a>Errors, limits, and the gotchas nobody pages warn about</h2><p>Four failure modes cover almost everything you will hit:</p>
+<ul>
+<li><strong><code>404 NOT_FOUND</code> &#x2F; model-not-found</strong> — after October 2, 2026 this is what every call returns; before that date it usually means a typo (<code>gemini-2.5-flash-image</code> is case-sensitive) or a region&#x2F;endpoint mismatch.</li>
+<li><strong><code>400 INVALID_ARGUMENT</code></strong> — malformed <code>response_format</code> (for example, sending <code>image_size</code> to this model) or an unsupported MIME type on input images (png, jpeg, webp, heic, heif are supported).</li>
+<li><strong><code>429 RESOURCE_EXHAUSTED</code></strong> — rate limit. Back off with exponential delay and retry; batch workloads should use the Batch API instead of hammering the online endpoint.</li>
+<li><strong>Safety blocks</strong> — refusal responses and aggressive filtering on realistic human content were the model’s known weak spots since launch; budget prompts accordingly.</li>
+</ul>
+<p>And four gotchas that cost real time:</p>
+<ol>
+<li><strong>Feature freeze is already in effect.</strong> Everything interesting Google has added to image generation since — thinking mode, search grounding, 4K output, video-to-image, up to 14 reference images — landed on the Gemini 3 image models, not on 2.5. If your roadmap needs any of those, 2.5 is a dead end by design, not by accident.</li>
+<li><strong>The docs have quietly demoted it.</strong> The current image generation guide’s model list calls it the “legacy pioneer,” and the deprecations table’s replacement column is itself out of date (it points at a preview that shut down in June). Read both pages through that lens before copy-pasting model ids from them.</li>
+<li><strong>No free tier.</strong> The watermark-free free experimentation period ran through the <code>-preview</code> endpoint, which shut down January 15, 2026. The pricing page lists “Free Tier: Not available” for this model today.</li>
+<li><strong>Budget for migration in the price.</strong> At $0.039&#x2F;image standard, 2.5 is not cheaper than its successors for most jobs — the cost argument cuts the other way, toward Nano Banana 2 Lite.</li>
+</ol>
+<h2 id="Which-model-should-you-call-instead"><a href="#Which-model-should-you-call-instead" class="headerlink" title="Which model should you call instead?"></a>Which model should you call instead?</h2><p>The migration is a three-step change, not a rewrite:</p>
+<ol>
+<li><strong>Swap the model string</strong>: <code>gemini-2.5-flash-image</code> → <code>gemini-3.1-flash-image</code> (the GA successor). If you need the absolute cheapest output, evaluate <code>gemini-3.1-flash-lite-image</code> (Nano Banana 2 Lite), which Google’s guide explicitly suggests for 2.5 users trading up on cost.</li>
+<li><strong>Add <code>image_size</code> only if you want it</strong>: on the Gemini 3 image models, <code>response_format</code> accepts <code>512</code> &#x2F; <code>1K</code> &#x2F; <code>2K</code> &#x2F; <code>4K</code>. Leaving it off keeps 1K output and the closest behavior parity with 2.5.</li>
+<li><strong>Regression-test the things that matter for your workload</strong>: character consistency across edits, text rendering inside images, and prompt-adherence on your own prompt corpus. Outputs are not pixel-identical between generations, so re-baseline your quality checks rather than diffing against old images.</li>
+</ol>
+<p>When 2.5 still makes sense: you are inside the October window and cannot touch the pipeline, your prompts are tuned against its exact quirks, or you are explicitly holding for a legacy client. When it does not: any new build, anything needing 2K&#x2F;4K or search-grounded images, anything with a roadmap past October. One scope note on the alternatives: if your Gemini usage has historically run through <strong>Vertex AI</strong> (enterprise deployments) or you are migrating off the retired <strong>Imagen 4</strong> endpoints (shut down August 17, 2026 on the Gemini API), the same successor applies — Google maps Imagen 4 standard&#x2F;fast to <code>gemini-3.1-flash-image</code> and Imagen 4 ultra to <code>gemini-3-pro-image</code>, so the Gemini 3 image family is the common landing spot. For the same decision on the Modellix catalog — where the family carries different names — the next section is your map.</p>
+<h2 id="Where-Modellix-fits-the-Nano-Banana-family-one-key"><a href="#Where-Modellix-fits-the-Nano-Banana-family-one-key" class="headerlink" title="Where Modellix fits: the Nano Banana family, one key"></a>Where Modellix fits: the Nano Banana family, one key</h2><p>Here is the part that confuses people searching our site for the literal model: the Modellix page at <code>/models/google/gemini-2.5-flash-image</code> returns “Model Not Found” as of September 6, 2026. We checked before writing this. Google’s image line on Modellix is now catalogued under the Nano Banana family names, and those pages are live:</p>
+<ul>
+<li><a href="https://www.modellix.ai/models/google/nano-banana"><strong>google&#x2F;nano-banana</strong></a> — “the original fast creative image model,” $0.0351 per image flat on our price sheet (pulled September 6, 2026). This is the family position Google calls Nano Banana &#x2F; Gemini 2.5 Flash Image. Honest caveat: Modellix model pages do not expose the upstream Google model string, and this card does not claim to run <code>gemini-2.5-flash-image</code> under the hood — it is the same <em>product position</em> in the family, listed under the name Google itself now leads with.</li>
+<li><a href="https://www.modellix.ai/models/google/nano-banana-2"><strong>google&#x2F;nano-banana-2</strong></a> — explicitly labeled Gemini 3.1 Flash Image, and the routing default the whole family points to. Priced per resolution on our price sheet (pulled September 6, 2026): $0.0405 (512), $0.0603 (1K), $0.0909 (2K), $0.1359 (4K) per image.</li>
+<li>The <a href="https://www.modellix.ai/providers/google">Google provider page</a> lists the full family, including nano-banana-pro (Gemini 3 Pro Image) and the edit&#x2F;lite variants — the equivalent of the four-model lineup Google’s guide describes.</li>
+</ul>
+<p>If you came to Modellix specifically to keep calling the original Nano Banana, the google&#x2F;nano-banana model page above is where you land, and at $0.0351 it sits ~10% under Google’s $0.039 standard per-image rate — though the two price sheets are different billing systems (Google adds per-token input; Modellix bills a flat per-image price), so compare your real bill, not the headline. If you came to migrate forward, <code>google/nano-banana-2</code> is the direct counterpart of the model Google is pushing everyone toward. A call through Modellix is an asynchronous task, per the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api">Modellix REST API docs</a>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST https://api.modellix.ai/api/v1/google/nano-banana-2/async \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$MODELLIX_API_KEY</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;&quot;prompt&quot;: &quot;A glass sculpture of a banana catching amber light, studio shot&quot;, &quot;aspectRatio&quot;: &quot;1:1&quot;, &quot;imageSize&quot;: &quot;1K&quot;&#125;&#x27;</span></span><br><span class="line"><span class="comment"># → &#123; &quot;code&quot;: 0, &quot;data&quot;: &#123; &quot;task_id&quot;: &quot;task-...&quot;, &quot;get_result&quot;: &#123; &quot;url&quot;: &quot;https://api.modellix.ai/api/v1/tasks/task-...&quot; &#125; &#125; &#125;</span></span><br></pre></td></tr></table></figure>
+
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Nano Banana Family API Reference</h3><p class="view-docs-tag-desc">Model-by-model reference for google/nano-banana, nano-banana-2 and the edit and lite variants — parameters, async task contract, and per-size pricing.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<p>One key and one bill cover the whole family — and 210+ other image, video, and LLM models from many vendors — which is the practical reason an aggregator route survives a model rename like this one: the URL you call changes with the catalog, but your auth, billing, and polling code do not. For the pricing deep-dive across the family, our <a href="https://www.modellix.ai/blog/nano-banana-price/">Nano Banana price guide</a> explains how per-size billing is structured, and the <a href="https://www.modellix.ai/blog/nano-banana-2-api/">Nano Banana 2 API guide</a> is the integration walkthrough for the successor.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Run Google Image Models on One Key</h3><p class="view-docs-tag-desc">Log in to Modellix to call Nano Banana, Nano Banana 2, and 210+ other image and video models with one API key.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>Does Gemini 2.5 Flash Image still have an API?</strong></p>
+<p>Yes, as of September 6, 2026. The model id <code>gemini-2.5-flash-image</code> is live and stable on the Gemini API, documented on its official model card, and callable through the generateContent surface it shipped with (the newer Interactions API lists only the Gemini 3 image models). It carries a scheduled shutdown date of October 2, 2026.</p>
+<p><strong>Is Gemini 2.5 Flash Image the same as Nano Banana?</strong></p>
+<p>Yes. Nano Banana is the product name for Google’s Gemini 2.5 Flash Image model; <code>gemini-2.5-flash-image</code> is its API id. “Nano Banana” is also now a four-model family name — Nano Banana 2 (Gemini 3.1 Flash Image), Nano Banana Pro (Gemini 3 Pro Image), and Nano Banana 2 Lite are its successors.</p>
+<p><strong>How much does the Gemini 2.5 Flash Image API cost?</strong></p>
+<p>On Google’s standard tier, $0.039 per image plus $0.30 per 1M input tokens (text or image), per the pricing page fetched September 6, 2026. The Batch API halves both to $0.0195 per image and $0.15 per 1M input tokens. There is no free tier.</p>
+<p><strong>How do I get a Gemini 2.5 Flash Image API key?</strong></p>
+<p>Create a key in Google AI Studio under <strong>Get API key</strong>. The same key works for image and text models — there is no image-specific key type.</p>
+<p><strong>What happens when Gemini 2.5 Flash Image shuts down?</strong></p>
+<p>Requests to the model return a not-found error, and the endpoint goes away for good. Google’s deprecations page lists October 2, 2026 as the shutdown date. Migrate by swapping the model string to <code>gemini-3.1-flash-image</code> and re-testing your prompts.</p>
+<p><strong>Can I call it through Modellix?</strong></p>
+<p>The literal <code>/models/google/gemini-2.5-flash-image</code> page no longer resolves — it renders “Model Not Found.” Modellix serves Google’s image models under the Nano Banana family names: google&#x2F;nano-banana at $0.0351 per image (page linked above), with google&#x2F;nano-banana-2 (Gemini 3.1 Flash Image) as the family’s routing default.</p>
+<hr>
+<p><em>Gemini model status and pricing reflect public Google documentation as of September 6, 2026, and change frequently — the shutdown date is a deprecation schedule that Google can move, and Modellix list prices are our own sheet, not Google’s. Re-validate against the official model, deprecations, and pricing pages before committing spend. This article was written by Modellix, an API aggregator with a commercial interest in the Nano Banana models it routes; the Gemini API integration material above is vendor-neutral. Access 210+ image, video, and LLM models — including the Nano Banana family — through one API key at <a target="_blank" rel="noopener" href="https://modellix.ai/">modellix.ai</a>.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/Integration/" class="tag-pill tag-pill--sm">Integration</a>
+            
+              <a href="/blog/tags/Gemini/" class="tag-pill tag-pill--sm">Gemini</a>
+            
+              <a href="/blog/tags/Google/" class="tag-pill tag-pill--sm">Google</a>
+            
+              <a href="/blog/tags/Nano-Banana/" class="tag-pill tag-pill--sm">Nano Banana</a>
+            
+              <a href="/blog/tags/Image-API/" class="tag-pill tag-pill--sm">Image API</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/minimax-api-platform/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-minimax-api-platform.webp" alt="MiniMax API Platform: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">MiniMax API Platform: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-09-07T16:00:00.000Z">September 8, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/seedream-5-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-seedream-5-api.webp" alt="Seedream 5.0 API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Seedream 5.0 API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-09-07T16:00:00.000Z">September 8, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/veo-3-1-api-key/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-veo-3-1-api-key.webp" alt="Veo 3.1 API Key: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Veo 3.1 API Key: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-09-07T16:00:00.000Z">September 8, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/gemini-2-5-flash-image-api/&text=Gemini%202.5%20Flash%20Image%20API%20Guide%3A%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/gemini-2-5-flash-image-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/gemini-2-5-flash-image-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

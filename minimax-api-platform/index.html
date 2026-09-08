@@ -1,0 +1,597 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MiniMax API Platform: Integration Guide, Pricing &amp; Code — Modellix Blog</title>
+  <meta name="description" content="What the MiniMax API platform is, how its console, keys, model families and billing work in 2026, and when to integrate direct versus via an aggregator.">
+  <meta name="keywords" content="minimax api platform, minimax api, minimax developer platform, minimax open platform, minimax api console, minimax multimodal api, minimax api tutorial, minimax api get started">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/minimax-api-platform/">
+  <meta name="description" content="What the MiniMax API platform is, how its console, keys, model families and billing work in 2026, and when to integrate direct versus via an aggregator.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MiniMax API Platform: Integration Guide, Pricing &amp; Code — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/minimax-api-platform/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="What the MiniMax API platform is, how its console, keys, model families and billing work in 2026, and when to integrate direct versus via an aggregator.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-minimax-api-platform.webp">
+<meta property="article:published_time" content="2026-09-07T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-07T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="API Platform">
+<meta property="article:tag" content="Integration">
+<meta property="article:tag" content="MiniMax">
+<meta property="article:tag" content="Pricing">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-minimax-api-platform.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"MiniMax API Platform: Integration Guide, Pricing & Code","description":"What the MiniMax API platform is, how its console, keys, model families and billing work in 2026, and when to integrate direct versus via an aggregator.","datePublished":"2026-09-07T16:00:00.000Z","dateModified":"2026-09-07T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/minimax-api-platform/","image":"https://img.modellix.ai/en/article/cover-minimax-api-platform.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">MiniMax API Platform: Integration Guide, Pricing &amp; Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">MiniMax API Platform: Integration Guide, Pricing &amp; Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-09-07T16:00:00.000Z">September 8, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+              <a href="/blog/tags/Integration/" class="tag-pill tag-pill--sm">Integration</a>
+            
+              <a href="/blog/tags/MiniMax/" class="tag-pill tag-pill--sm">MiniMax</a>
+            
+              <a href="/blog/tags/API-Platform/" class="tag-pill tag-pill--sm">API Platform</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>You have heard that MiniMax&#39;s models are worth evaluating — the M3 language model for coding, MiniMax H3 for video, a TTS line that is genuinely good — and you want to see the platform before you commit an integration.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-minimax-api-platform.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-minimax-api-platform.png" alt="Editorial MiniMax API platform cover: a glowing amber API key reaching glass model panels for text, image, video, and speech" />
+</picture>
+
+<p>You have heard that MiniMax’s models are worth evaluating — the M3 language model for coding, MiniMax H3 for video, a TTS line that is genuinely good — and you want to see the platform before you commit an integration. Then you hit the wall that every developer hits with MiniMax: the docs live under <code>platform.minimax.io</code>, the marketing site is <code>minimax.io</code>, there is a separate mainland-China console, and the pricing page talks about tokens, seconds, images, characters, and “Credits” in the same breath. None of it is wrong; none of it is one simple on-ramp either.</p>
+<p>This guide is an orientation to the MiniMax API platform as it actually works in September 2026: what the platform is, what one account gives you, which models sit behind one key, the base URLs and SDKs you will type into real code, how billing is structured, and — because Modellix is an aggregator with a commercial interest in the answer — when integrating direct with MiniMax makes sense versus going through a gateway like ours. Every price and policy below was read from the official pages on September 8, 2026, and will drift; the linked official pages are the live source of truth.</p>
+<h2 id="What-the-MiniMax-API-platform-is-—-and-the-four-things-that-confuse-newcomers"><a href="#What-the-MiniMax-API-platform-is-—-and-the-four-things-that-confuse-newcomers" class="headerlink" title="What the MiniMax API platform is — and the four things that confuse newcomers"></a>What the MiniMax API platform is — and the four things that confuse newcomers</h2><p>The MiniMax API platform is the developer-facing home of MiniMax’s models: an account and billing system, a console, and the official documentation, all reachable at <code>platform.minimax.io</code>. It is where you create keys, top up a balance, and read the reference for every model MiniMax sells as an API. One account key is designed to reach every model family — text, image, video, and speech: text models are served through OpenAI- or Anthropic-compatible endpoints, while image, video, and speech run through MiniMax’s dedicated REST endpoints. That breadth under one key is unusual for a single provider and is the core of the platform’s appeal.</p>
+<p>Four distinctions clear up most of the confusion on first visit:</p>
+<ol>
+<li><strong><code>minimax.io</code> (marketing) is not <code>platform.minimax.io</code> (developer platform).</strong> The first is the product home page; the second is where you actually register, create keys, and pay.</li>
+<li><strong>The API platform is not a chat app.</strong> There is no consumer chat interface here — you call models over HTTP with an API key, and you bring your own product around them.</li>
+<li><strong>There are two separate platforms by region.</strong> International accounts live on <code>platform.minimax.io</code>; mainland-China accounts use a separate platform at <code>platform.minimax.cn</code> (the older <code>platform.minimaxi.com</code> domains are migrating to <code>.cn</code> per the official docs). A key created on one will not authenticate against the other, and the China platform has its own pricing and billing rules.</li>
+<li><strong>There are two billing tracks, not one.</strong> Pay-as-you-go usage draws from an account balance with a standard Open Platform API key; a Token Plan subscription (or purchased Credits) is consumed through a separate Subscription Key. More on that next.</li>
+</ol>
+<p>In short: the platform is the account-and-billing layer around a multimodal model catalog, and getting that layer straight is most of the battle — because the models themselves are the easy part.</p>
+<h2 id="What-one-account-gets-you-console-keys-and-the-two-billing-tracks"><a href="#What-one-account-gets-you-console-keys-and-the-two-billing-tracks" class="headerlink" title="What one account gets you: console, keys, and the two billing tracks"></a>What one account gets you: console, keys, and the two billing tracks</h2><p>When you register at <code>platform.minimax.io</code>, the console gives you three things you will actually use: <strong>API Keys</strong>, <strong>Billing</strong>, and the <strong>Token Plan</strong> area. MiniMax’s own Prerequisites guide walks the flow in three steps: register or log in, create a key, then add resources (top up, or buy a plan). The distinction that matters for cost is which key you create:</p>
+<table>
+<thead>
+<tr>
+<th>Track</th>
+<th>Key</th>
+<th>How usage is paid</th>
+<th>Best when</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Pay-as-you-go</td>
+<td>Standard Open Platform API key (API Keys &gt; Create new secret key)</td>
+<td>Drawn from your account balance at published unit rates</td>
+<td>Variable or prototype volume; you want per-call billing</td>
+</tr>
+<tr>
+<td>Token Plan &#x2F; Credits</td>
+<td>Subscription Key (<code>sk-cp</code> prefix, under Billing &gt; Token Plan)</td>
+<td>Consumed from a monthly plan quota or prepaid Credits balance</td>
+<td>Sustained volume, or you want a fixed monthly bill</td>
+</tr>
+</tbody></table>
+<p>The <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/guides/pricing-token-plan">Token Plan pricing page</a> currently lists three monthly tiers — Plus at $22&#x2F;month, Max at $55&#x2F;month, and Ultra at $132&#x2F;month — with model coverage across the main lineup (M3, M2.7, image, and speech). Note the fine print: special models such as MiniMax H3, voice design, and rapid voice cloning are <em>not</em> covered by the Token Plan; they are pay-as-you-go only. Credits are a separate prepaid balance, priced at 1,000 credits &#x3D; $1, and are spent through the same Subscription Key mechanism as a plan. Usage-monitoring and billing history live in the console’s Billing area — you can watch balance drawdown in near-real time rather than waiting for an invoice.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/minimax-api-platform-billing-tracks.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/minimax-api-platform-billing-tracks.png" alt="Two MiniMax billing tracks: a pay-as-you-go key drawing from account balance, and a Subscription Key spending Token Plan or Credits" loading="lazy" />
+</picture>
+
+<p><em>The two billing tracks on the MiniMax platform, as documented on the official pricing pages (September 2026). A pay-as-you-go key draws from balance; a Subscription Key consumes plan quota or Credits.</em></p>
+<p>For the mechanics of creating and securing keys — plus the exact error codes when a key misbehaves — our <a href="https://www.modellix.ai/blog/minimax-api-key">MiniMax API key guide</a> covers the full flow with code.</p>
+<h2 id="Four-model-families-behind-one-key-September-2026"><a href="#Four-model-families-behind-one-key-September-2026" class="headerlink" title="Four model families behind one key (September 2026)"></a>Four model families behind one key (September 2026)</h2><p>Four model families sit behind one key today — language, video, image, and audio — and the same key and base URL reach all of them. MiniMax’s <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/guides/models-intro">model documentation</a> lists the current lineup family by family (music generation, discontinued for new users on August 20, 2026, is covered below). The billing unit is different per family — that is the single most important thing to notice before you compare any price:</p>
+<table>
+<thead>
+<tr>
+<th>Family</th>
+<th>Current models</th>
+<th>Billed by</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Language (LLM)</td>
+<td>MiniMax-M3 (1M context), M2.7 and M2.7-highspeed; legacy M2.5 &#x2F; M2.1 &#x2F; M2</td>
+<td>Per million tokens</td>
+</tr>
+<tr>
+<td>Video</td>
+<td>MiniMax H3 (768P &#x2F; 2K), MiniMax H3 Max; legacy Hailuo 2.3 &#x2F; 2.3 Fast &#x2F; 02</td>
+<td>Per second (H3); per finished clip (legacy Hailuo)</td>
+</tr>
+<tr>
+<td>Image</td>
+<td>image-01</td>
+<td>Per image</td>
+</tr>
+<tr>
+<td>Audio</td>
+<td>speech-2.8-hd &#x2F; speech-2.8-turbo (TTS), speech recognition, voice design, voice cloning</td>
+<td>Per character, per audio hour, or per voice</td>
+</tr>
+</tbody></table>
+<p><strong>Language.</strong> MiniMax-M3 is the current flagship: a multimodal coding model with a 1M-token context window, priced at $0.30 per million input tokens and $1.20 per million output tokens in the standard tier (≤512k input; the &gt;512k tier doubles to $0.60&#x2F;$2.40). M2.7 and its highspeed variant sit below it at $0.30&#x2F;$1.20 and $0.60&#x2F;$2.40 respectively, with M2.5 and earlier models now in the legacy section. For deeper M3 coverage, the MiniMax-M3 integration guide on this blog walks its pricing and context handling; M2.5-era integrations are covered in the <a href="https://www.modellix.ai/blog/minimax-2-5-api">MiniMax M2.5 API guide</a>.</p>
+<p><strong>Video.</strong> MiniMax H3 is the current video line, billed per second of output — $0.08&#x2F;second at 768P and $0.13&#x2F;second at 2K. Watch the input-material rules: the first five reference images are free, then $0.04 per additional image, and input video is billed by duration at the same per-second rate. Newer still is MiniMax H3 Max, a high-speed model post-trained by fal.ai on H3 that supports text-to-video and image-to-video at $0.05&#x2F;second for 480P and $0.08&#x2F;second for 768P. The older Hailuo models (2.3, 2.3 Fast, 02) are listed as legacy and are billed per finished clip rather than per second — a 6- or 10-second fixed-duration quote, not a meter. Never compare a per-second rate with a per-clip rate without converting.</p>
+<p><strong>Image.</strong> <code>image-01</code> is the single current image model at $0.0035 per image — text-to-image and image-to-image, with standard aspect-ratio and quality parameters.</p>
+<p><strong>Audio.</strong> The speech line includes speech-2.8-hd ($100 per million characters) and speech-2.8-turbo ($60 per million characters) for text-to-speech, plus speech recognition at $0.38 per audio hour and one-off voice design ($3 per voice) and rapid voice cloning ($1.50 per voice) services.</p>
+<p><strong>Music has a date you need to know.</strong> Starting August 20, 2026, the paid Music Generation and Lyrics Generation APIs are no longer available to new users, and the free music endpoints (Music-3.0-free, Music-2.6-free, music-cover-free) have been discontinued; existing paying customers can continue. MiniMax now points new users to its <a target="_blank" rel="noopener" href="https://www.minimax.io/audio">MiniMax Audio</a> product or to the open-source MiniMax Music 3 model on Hugging Face. If you were planning an integration around MiniMax’s music API, that window has closed — plan around those two alternatives instead.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/minimax-api-platform-model-families.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/minimax-api-platform-model-families.png" alt="One MiniMax API key branching into four glass panels: language, image, video, and speech models" loading="lazy" />
+</picture>
+
+<p><em>One platform key reaches four model families. The models and their billing units change faster than this map does — re-check the official pages before budgeting.</em></p>
+<h2 id="Base-URLs-SDKs-and-a-working-first-call"><a href="#Base-URLs-SDKs-and-a-working-first-call" class="headerlink" title="Base URLs, SDKs, and a working first call"></a>Base URLs, SDKs, and a working first call</h2><p>All MiniMax API calls go through a small set of documented base URLs. The official docs currently specify:</p>
+<ul>
+<li><strong>OpenAI-compatible:</strong> <code>https://api.minimax.io/v1</code> — works with the OpenAI SDK by swapping base URL and key.</li>
+<li><strong>Anthropic-compatible:</strong> <code>https://api.minimax.io/anthropic</code> — for tools built around the Messages format.</li>
+<li><strong>Mainland-China platform:</strong> a separate console and API domain; keys do not cross platforms.</li>
+</ul>
+<p>Note the international base URL is <code>api.minimax.io</code> — some AI-generated summaries circulate <code>www.minimax.io/v1</code>, which is wrong. If you copy one thing from this article, copy that correction. MiniMax publishes official <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/guides/quickstart-sdk">quick-start guides</a> for the Anthropic SDK, the OpenAI SDK, and the AI SDK, so most teams can keep their existing client and swap in the MiniMax base URL and key.</p>
+<p>The <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/guides/quickstart-preparation">Prerequisites guide</a> shows the environment setup, and the <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/api-reference/text-openai-api">OpenAI-compatible API reference</a> is the current contract. A minimal working call against MiniMax-M3 with the OpenAI Python SDK looks like this:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openai <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">client = OpenAI(</span><br><span class="line">    api_key=<span class="string">&quot;YOUR_MINIMAX_API_KEY&quot;</span>,</span><br><span class="line">    base_url=<span class="string">&quot;https://api.minimax.io/v1&quot;</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">resp = client.chat.completions.create(</span><br><span class="line">    model=<span class="string">&quot;MiniMax-M3&quot;</span>,</span><br><span class="line">    messages=[&#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>, <span class="string">&quot;content&quot;</span>: <span class="string">&quot;Explain MiniMax rate limits in one sentence.&quot;</span>&#125;],</span><br><span class="line">)</span><br><span class="line"><span class="built_in">print</span>(resp.choices[<span class="number">0</span>].message.content)</span><br></pre></td></tr></table></figure>
+
+<p>Image generation uses a dedicated endpoint, documented in the <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/api-reference/image-generation-t2i">image generation API reference</a>. A curl example:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">curl https://api.minimax.io/v1/image_generation \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer YOUR_MINIMAX_API_KEY&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;model&quot;: &quot;image-01&quot;,</span></span><br><span class="line"><span class="string">    &quot;prompt&quot;: &quot;A glass cube on a dark surface, studio lighting&quot;,</span></span><br><span class="line"><span class="string">    &quot;response_format&quot;: &quot;url&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>Video generation is asynchronous: you submit a task and poll for the result, so plan a task-id-plus-polling pattern rather than a synchronous response. When a call fails, MiniMax returns errors inside the response body as <code>base_resp.status_code</code> — the codes that hit new integrations are 2049 (invalid API key), 1004 (not authorized), 1008 (insufficient balance), and 1002 (rate limit), all documented in the <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/api-reference/errorcode">official error code reference</a>.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">MiniMax API Reference on Modellix Docs</h3><p class="view-docs-tag-desc">See how to call MiniMax media models through one REST API and poll for task results.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="What-MiniMax-costs-in-September-2026-the-unit-map-not-a-price-list"><a href="#What-MiniMax-costs-in-September-2026-the-unit-map-not-a-price-list" class="headerlink" title="What MiniMax costs in September 2026: the unit map, not a price list"></a>What MiniMax costs in September 2026: the unit map, not a price list</h2><p>MiniMax’s pricing is best understood as a set of per-unit meters, each belonging to one checkout path. The full catalog lives on the official <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/guides/pricing-paygo">Pay-as-you-go page</a> — here is the anchor map, read from that page on September 8, 2026:</p>
+<table>
+<thead>
+<tr>
+<th>Model &#x2F; service</th>
+<th align="right">September 2026 rate</th>
+<th>Unit</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MiniMax-M3 (≤512k input)</td>
+<td align="right">$0.30 input &#x2F; $1.20 output</td>
+<td>per 1M tokens</td>
+</tr>
+<tr>
+<td>MiniMax-M3 (&gt;512k input)</td>
+<td align="right">$0.60 input &#x2F; $2.40 output</td>
+<td>per 1M tokens</td>
+</tr>
+<tr>
+<td>MiniMax H3 video</td>
+<td align="right">$0.08 (768P) &#x2F; $0.13 (2K)</td>
+<td>per second</td>
+</tr>
+<tr>
+<td>MiniMax H3 Max video</td>
+<td align="right">$0.05 (480P) &#x2F; $0.08 (768P)</td>
+<td>per second</td>
+</tr>
+<tr>
+<td>image-01</td>
+<td align="right">$0.0035</td>
+<td>per image</td>
+</tr>
+<tr>
+<td>speech-2.8-turbo</td>
+<td align="right">$60</td>
+<td>per 1M characters</td>
+</tr>
+</tbody></table>
+<p>Three rules keep this table honest. First, the M3 “≤512k” row carries a “permanent 50% off” label with struck-through list prices — treat that as marketing framing, not a deadline. Second, video has two unit families at once: H3 and H3 Max bill per second, legacy Hailuo bills per finished clip, and H3 charges extra input materials beyond five free images. Third, the Token Plan and Credits are a separate prepaid track from all of the above — a monthly plan price is not a per-token price. For a deeper walk through direct versus package pricing, including the video-package math, our <a href="https://www.modellix.ai/blog/minimax-pricing">MiniMax pricing breakdown</a> compares the routes unit by unit.</p>
+<p>The honest summary: MiniMax’s published headline rates are competitive, the model quality is the reason you are here, and the platform’s real cost risk is <em>unit confusion</em> — budgeting a per-clip quote as if it were a per-second meter, or assuming one billing track covers models it does not (H3 and voice services are not in the Token Plan). Keep units in separate columns and you will be fine.</p>
+<h2 id="Direct-MiniMax-or-an-aggregator-decide-by-workload-not-by-habit"><a href="#Direct-MiniMax-or-an-aggregator-decide-by-workload-not-by-habit" class="headerlink" title="Direct MiniMax or an aggregator: decide by workload, not by habit"></a>Direct MiniMax or an aggregator: decide by workload, not by habit</h2><p>Once you know the platform map, the remaining decision is the route: integrate directly with MiniMax, or call its models through an aggregator such as Modellix. This is a workflow decision first and a price decision second, and anyone who tells you one route is categorically cheaper is skipping the unit discipline above.</p>
+<p><strong>Go direct with MiniMax when:</strong> MiniMax is your only model vendor and you expect it to stay that way; you want the newest MiniMax releases the day they ship and direct support; or you specifically want the Token Plan &#x2F; Credits billing track. You are also fine running a second account and billing relationship alongside whatever else you use.</p>
+<p><strong>Consider an aggregator when:</strong> your product calls models from several vendors (MiniMax for video, another provider for images, another for LLMs) and you do not want one SDK, one key, and one invoice per vendor; you want to evaluate MiniMax routes without opening a new account and balance; or you want pay-as-you-go per-call billing on every route with per-task cost logs instead of mixing plans and meters. That is the case Modellix exists for: image and video models (including MiniMax’s H3 and speech routes) behind <a href="https://www.modellix.ai/providers/minimax">one API key and one bill across 12 provider brands</a>, with no mainland-China account required. If the aggregator concept is new, our <a href="https://www.modellix.ai/blog/unified-ai-api">unified AI API explainer</a> covers how one key reaches many providers and how per-route cost benchmarking works in practice.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/minimax-api-platform-direct-vs-aggregator.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/minimax-api-platform-direct-vs-aggregator.png" alt="Two routes side by side: separate consoles and keys per provider, or one aggregator key reaching many provider panels" loading="lazy" />
+</picture>
+
+<p><em>Direct integration means one account and key per vendor; an aggregator collapses many vendors behind one key and one bill. This is a workflow difference, not a price claim.</em></p>
+<p>Now the disclosure that keeps this honest: Modellix benefits commercially if you pick the aggregator route, and the numbers do not support a blanket “aggregator is cheaper” claim. On the routes we can compare like-for-like today, the displayed prices often track the official ones — Modellix lists its MiniMax H3 T2V route at $0.0800–$0.1300 per second and speech-2.8-turbo at $60 per million characters, matching MiniMax’s own published units — while MiniMax’s direct image-01 rate of $0.0035 per image is a low bar that makes image routing a genuine check-each-route decision. The correct method is the same either way: match the model, resolution, and billing unit, then add the operational value of the integration path you actually need.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Start Building with MiniMax Models on Modellix</h3><p class="view-docs-tag-desc">Log in to try MiniMax H3, image-01, and 210+ models on one Modellix key.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>What is the MiniMax API platform?</strong></p>
+<p>The MiniMax API platform is the developer portal at platform.minimax.io where you create an account, generate API keys, manage billing, and access documentation for MiniMax’s model APIs — text (M3, M2.7), video (H3, H3 Max), image (image-01), and speech models, all behind one key: text through OpenAI- or Anthropic-compatible endpoints, and image, video, and speech through MiniMax’s own REST endpoints.</p>
+<p><strong>Is the MiniMax API platform free?</strong></p>
+<p>Creating an account and an API key is free; using the API is pay-as-you-go against a topped-up balance or a Token Plan subscription. There is no general free tier, and the only previously free endpoints (music generation) were discontinued for new users on August 20, 2026. For what actually is free, see our <a href="https://www.modellix.ai/blog/minimax-free-api">MiniMax free API guide</a>.</p>
+<p><strong>Can one MiniMax API key call image and video models?</strong></p>
+<p>Yes. A standard Open Platform API key authenticates every model family — LLM, image, video, and speech — against the same base URL, though the billing unit differs per family (tokens, per image, per second or per clip, per character).</p>
+<p><strong>What is the MiniMax API base URL, and is it OpenAI-compatible?</strong></p>
+<p>The international OpenAI-compatible base URL is <code>https://api.minimax.io/v1</code>, and the Anthropic-compatible base URL is <code>https://api.minimax.io/anthropic</code>. Mainland-China accounts use a separate platform and key. Some AI summaries incorrectly cite <code>www.minimax.io/v1</code> — that is not the API endpoint.</p>
+<p><strong>Can I still use the MiniMax music API?</strong></p>
+<p>Not as a new user. Starting August 20, 2026, paid Music Generation and Lyrics Generation are unavailable to new accounts and the free music endpoints are discontinued; existing paying customers can continue. MiniMax directs new users to MiniMax Audio or the open-source MiniMax Music 3 model.</p>
+<p><strong>What is the difference between pay-as-you-go and the Token Plan?</strong></p>
+<p>Pay-as-you-go draws from your account balance at published per-token, per-second, per-image, or per-character rates using a standard API key. The Token Plan is a monthly subscription (Plus $22, Max $55, Ultra $132 per month) with shared quota, and Credits are prepaid balance (1,000 credits &#x3D; $1); both are consumed through a Subscription Key. Note some models — MiniMax H3, voice design, rapid voice cloning — are not covered by the Token Plan.</p>
+<p><strong>Is Modellix cheaper than MiniMax direct?</strong></p>
+<p>Not as a blanket statement — the only honest answer is route by route. Where units match, Modellix’s displayed rates often track MiniMax’s own (for example H3 T2V at $0.08–$0.13 per second), while MiniMax’s direct image-01 at $0.0035 per image can beat aggregator routes on that specific unit. Decide on matched model, resolution, and billing unit, then weigh the operational value of one key and one bill versus a direct account.</p>
+<hr>
+<p><em>MiniMax platform details, models, and pricing were read from the official pages (platform.minimax.io&#x2F;docs&#x2F;guides&#x2F;pricing-paygo, &#x2F;models-intro, &#x2F;quickstart-preparation, &#x2F;pricing-token-plan, &#x2F;api-reference&#x2F;errorcode) on September 8, 2026, and change frequently — validate against MiniMax’s live pages before committing budget. Modellix is an aggregator and has a commercial interest in the comparison above. Access image and video models, including the leading Chinese models, through a single API key at <a target="_blank" rel="noopener" href="https://modellix.ai/">modellix.ai</a>.</em></p>
+<p><em>Cover and diagrams are illustrative Modellix artwork, not MiniMax product screenshots or source evidence.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+              <a href="/blog/tags/Integration/" class="tag-pill tag-pill--sm">Integration</a>
+            
+              <a href="/blog/tags/MiniMax/" class="tag-pill tag-pill--sm">MiniMax</a>
+            
+              <a href="/blog/tags/API-Platform/" class="tag-pill tag-pill--sm">API Platform</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/seedream-5-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-seedream-5-api.webp" alt="Seedream 5.0 API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Seedream 5.0 API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-09-07T16:00:00.000Z">September 8, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/veo-3-1-api-key/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-veo-3-1-api-key.webp" alt="Veo 3.1 API Key: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Veo 3.1 API Key: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-09-07T16:00:00.000Z">September 8, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/gemini-2-5-flash-image-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-gemini-2-5-flash-image-api.webp" alt="Gemini 2.5 Flash Image API Guide: Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Gemini 2.5 Flash Image API Guide: Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-09-05T16:00:00.000Z">September 6, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/minimax-api-platform/&text=MiniMax%20API%20Platform%3A%20Integration%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/minimax-api-platform/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/minimax-api-platform/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

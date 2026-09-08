@@ -1,0 +1,622 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MiniMax M3 API: Integration Guide, Pricing &amp; Code — Modellix Blog</title>
+  <meta name="description" content="MiniMax M3 API guide: model ID, 1M-token context, official per-million pricing as of September 2026, both base URLs, working curl and SDK code, and M3 vs M2.7.">
+  <meta name="keywords" content="minimax m3 api, minimax m3 api pricing, minimax m3 api key, minimax m3 api base url, minimax m3 context window, minimax m3 1m context, minimax m3 vs m2.7, minimax m3 multimodal, minimax m3 openai compatible, minimax m3 anthropic compatible">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/minimax-m3-api/">
+  <meta name="description" content="MiniMax M3 API guide: model ID, 1M-token context, official per-million pricing as of September 2026, both base URLs, working curl and SDK code, and M3 vs M2.7.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MiniMax M3 API: Integration Guide, Pricing &amp; Code — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/minimax-m3-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="MiniMax M3 API guide: model ID, 1M-token context, official per-million pricing as of September 2026, both base URLs, working curl and SDK code, and M3 vs M2.7.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-minimax-m3-api.webp">
+<meta property="article:published_time" content="2026-09-05T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-05T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="LLM API">
+<meta property="article:tag" content="MiniMax">
+<meta property="article:tag" content="Tutorial">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-minimax-m3-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"MiniMax M3 API: Integration Guide, Pricing & Code","description":"MiniMax M3 API guide: model ID, 1M-token context, official per-million pricing as of September 2026, both base URLs, working curl and SDK code, and M3 vs M2.7.","datePublished":"2026-09-05T16:00:00.000Z","dateModified":"2026-09-05T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/minimax-m3-api/","image":"https://img.modellix.ai/en/article/cover-minimax-m3-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">MiniMax M3 API: Integration Guide, Pricing &amp; Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/LLM-API/" class="category-tag category-tag--sm">LLM API</a>
+          
+        
+      </div>
+      <h1 class="post-title">MiniMax M3 API: Integration Guide, Pricing &amp; Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-09-05T16:00:00.000Z">September 6, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/LLM-API/" class="tag-pill tag-pill--sm">LLM API</a>
+            
+              <a href="/blog/tags/Tutorial/" class="tag-pill tag-pill--sm">Tutorial</a>
+            
+              <a href="/blog/tags/MiniMax/" class="tag-pill tag-pill--sm">MiniMax</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>MiniMax M3 is MiniMax&#39;s current flagship M-series model, and it has a real, documented API you can call today with an OpenAI-compatible or Anthropic-compatible client.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-minimax-m3-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-minimax-m3-api.png" alt="MODELLIX editorial cover showing a glass M3 chip fed by text, image and video streams beside the headline MiniMax M3 API Integration Guide & Pricing" />
+</picture>
+
+<p>MiniMax M3 is MiniMax’s current flagship M-series model, and it has a real, documented API you can call today with an OpenAI-compatible or Anthropic-compatible client. The model string is <code>MiniMax-M3</code>, the context window is 1,000,000 tokens (input and output combined), the input accepts text, images, and video, and official pay-as-you-go pricing is $0.30 per million input tokens and $1.20 per million output tokens at the standard tier up to 512k input tokens — every number in this guide re-pulled from official sources on September 6, 2026.</p>
+<p>One honest disclosure before the code. Modellix is an AI model API aggregator and has a commercial interest in this article. MiniMax M3 is <strong>not</strong> available on Modellix’s LLM text gateway as of this date — we checked, and MiniMax text models are not listed there. What Modellix does route is MiniMax’s <em>media</em> family (Hailuo and MiniMax-H3 video, speech), and we say that plainly in the routing section instead of pretending the text model is in our catalog. Everything else here is vendor-neutral integration material you can use with or without us.</p>
+<h2 id="What-MiniMax-M3-is-and-why-it-matters"><a href="#What-MiniMax-M3-is-and-why-it-matters" class="headerlink" title="What MiniMax M3 is and why it matters"></a>What MiniMax M3 is and why it matters</h2><p>MiniMax launched M3 on June 1, 2026, as the successor to the M2 line (M2.5, M2.7), and the <a target="_blank" rel="noopener" href="https://www.minimax.io/blog/minimax-m3">launch announcement</a> is explicit about the three capabilities it is combining: frontier-level coding and agentic work, a 1-million-token context window, and native multimodal input. The architecture behind the long context is MiniMax Sparse Attention (MSA), a sparse-attention scheme that MiniMax says cuts per-token compute at 1M context to roughly one-twentieth of the previous generation’s full-attention design.</p>
+<p>What those claims mean for you as an API consumer, from the <a target="_blank" rel="noopener" href="https://www.minimax.io/models/text/m3">official model page</a> and the <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/api-reference/api-overview">API reference overview</a>, both fetched September 6, 2026:</p>
+<ul>
+<li><strong>Model ID</strong>: <code>MiniMax-M3</code> (case-sensitive), listed as the current M-series model for agentic reasoning, tool use, coding, and long-context tasks. M2.7 stays available alongside it; M2.5 and earlier are in MiniMax’s Legacy bucket.</li>
+<li><strong>Context window</strong>: 1,000,000 tokens total. MiniMax’s product page states a guaranteed minimum of 512K hosted context, and the API docs note that the 1M figure is the <em>combined</em> input-plus-output budget, not 1M of input with an unlimited answer on top.</li>
+<li><strong>Modalities</strong>: text, image, and video in; text out. This is the first M-series model trained multimodal from the start, so the vision input is not an add-on bolt-on.</li>
+<li><strong>Output speed</strong>: roughly 100+ tokens per second per MiniMax’s model table.</li>
+<li><strong>Open weights</strong>: MiniMax positions M3 as the first open-weight model with this capability combination, and the <a target="_blank" rel="noopener" href="https://huggingface.co/MiniMaxAI/MiniMax-M3">weights repository</a> is live on Hugging Face — useful to know for self-hosting conversations, though this guide sticks to the hosted API.</li>
+<li><strong>Benchmarks with a caveat</strong>: MiniMax reports strong coding numbers (for example 59.0% on SWE-Bench Pro, above GPT-5.5 at 58.6% in its own comparison). Those are vendor-reported figures from launch week, so treat them as directional and re-test on your own workloads — several independent reviewers have noted the gap between MiniMax’s headline runs and third-party agent evaluations.</li>
+</ul>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/minimax-m3-multimodal-in.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/minimax-m3-multimodal-in.png" alt="Text, image and video input cards feeding a central MiniMax-M3 chip, with a single text output stream" loading="lazy" />
+</picture>
+
+<p><em>M3 takes text, image, and video input but always answers in text — worth knowing before you design request payloads. Diagram generated September 6, 2026.</em></p>
+<p>If you are coming from the M2 generation, our <a href="https://www.modellix.ai/blog/minimax-2-5-api/">MiniMax 2.5 API guide</a> covers the legacy side of the family and why MiniMax still serves it; this article is about the model MiniMax wants you to build on now.</p>
+<h2 id="MiniMax-M3-API-pricing-pulled-September-6-2026"><a href="#MiniMax-M3-API-pricing-pulled-September-6-2026" class="headerlink" title="MiniMax M3 API pricing, pulled September 6, 2026"></a>MiniMax M3 API pricing, pulled September 6, 2026</h2><p>The rates below were read from the <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/guides/pricing-paygo">official pay-as-you-go pricing guide</a> on September 6, 2026, and are per 1M tokens. MiniMax labels the standard prices a permanent 50% discount from list, which is why you may see $0.60&#x2F;$2.40 struck through in the docs:</p>
+<table>
+<thead>
+<tr>
+<th>Service tier</th>
+<th align="right">Input length</th>
+<th align="right">Input &#x2F; M</th>
+<th align="right">Output &#x2F; M</th>
+<th align="right">Cache read &#x2F; M</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Standard</td>
+<td align="right">≤ 512k input tokens</td>
+<td align="right">$0.30</td>
+<td align="right">$1.20</td>
+<td align="right">$0.06</td>
+</tr>
+<tr>
+<td>Standard</td>
+<td align="right">&gt; 512k input tokens</td>
+<td align="right">$0.60</td>
+<td align="right">$2.40</td>
+<td align="right">$0.12</td>
+</tr>
+<tr>
+<td>Priority</td>
+<td align="right">≤ 512k input tokens</td>
+<td align="right">$0.45</td>
+<td align="right">$1.80</td>
+<td align="right">$0.09</td>
+</tr>
+<tr>
+<td>Priority</td>
+<td align="right">&gt; 512k input tokens</td>
+<td align="right">$0.90</td>
+<td align="right">$3.60</td>
+<td align="right">$0.18</td>
+</tr>
+</tbody></table>
+<p>Four readings of that table that are easy to miss:</p>
+<ol>
+<li><strong>The 512k cliff is the real cost story.</strong> M3 advertises a 1M window, but the price is not flat across it. A request whose input crosses 512k tokens lands in the above-512k band and pays double on input, output, and cache reads. If your agent workload routinely sends 600k-token repository snapshots, budget for the higher band — that is the difference between $0.30&#x2F;M and $0.60&#x2F;M on most of your input volume.</li>
+<li><strong>Priority is a routing tier, not a quality tier.</strong> Set <code>service_tier: &quot;priority&quot;</code> on a request and it costs 1.5× standard but gets priority admission — faster responses and fewer failures under load, per MiniMax’s docs. Same model, same output quality; you are paying for queue position.</li>
+<li><strong>Prompt caching is automatic and cheap.</strong> MiniMax’s passive caching needs no configuration: cache-hit input reads at $0.06&#x2F;M instead of $0.30&#x2F;M at the standard band. Keep your system prompt, tool definitions, and long reference material byte-stable at the front of the request and repeated calls get markedly cheaper.</li>
+<li><strong>A worked example.</strong> A 200k-token input with a 20k-token answer at Standard ≤512k costs 0.2 × $0.30 + 0.02 × $1.20 &#x3D; <strong>$0.084</strong>. If 150k of that input hits cache, input drops to 50k × $0.30 + 150k × $0.06 &#x3D; $0.024, for a total of <strong>$0.048</strong> — 43% cheaper on that request, and the gap grows with reuse.</li>
+</ol>
+<p>Marketplace routes set their own prices on top of these. The <a target="_blank" rel="noopener" href="https://openrouter.ai/minimax/minimax-m3">OpenRouter page for <code>minimax/minimax-m3</code></a> shows the official MiniMax row at $0.30&#x2F;$1.20 and several hosts undercutting from around $0.23&#x2F;$0.96, in exchange for an extra hop and their own rate limits. For the full picture of MiniMax’s pricing family across models and media — including the Token Plan subscription system, which bills through a separate Subscription Key — our <a href="https://www.modellix.ai/blog/minimax-pricing/">MiniMax pricing guide</a> has the complete table.</p>
+<h2 id="Getting-a-MiniMax-M3-API-key"><a href="#Getting-a-MiniMax-M3-API-key" class="headerlink" title="Getting a MiniMax M3 API key"></a>Getting a MiniMax M3 API key</h2><p>Keys live in the MiniMax platform console at <code>platform.minimax.io</code>. Per the <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/guides/quickstart-preparation">official prerequisites guide</a>: sign in, open <strong>API Keys</strong>, click <strong>Create new secret key</strong>, and copy the key immediately — it is displayed exactly once.</p>
+<p>Two distinctions matter more than the click path:</p>
+<ul>
+<li><strong>Pay-as-you-go vs Token Plan.</strong> The default secret key is billed per token against your balance. Token Plan is a separate monthly-quota subscription that issues its own <strong>Subscription Key</strong> (keys with the <code>sk-cp</code> prefix). The two are not interchangeable: a pay-as-you-go key cannot spend Token Plan quota, and a Subscription Key will fail against pay-as-you-go endpoints. MiniMax recommends pay-as-you-go for production. Creating a key does not require a credit card; you top up when you start spending.</li>
+<li><strong>Region isolation.</strong> The international platform (<code>platform.minimax.io</code>, API host <code>api.minimax.io</code>) and the China platform (<code>platform.minimaxi.com</code>) are separate — a key issued on one will not authenticate on the other. Export the key as an environment variable rather than pasting it into code:</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> MINIMAX_API_KEY=<span class="string">&quot;your-key-here&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>There is no official free tier for MiniMax M3 — no signup credits and no free quota on the text API as of this date. The only rate-limited free routes we know of are third-party ones such as OpenRouter’s <code>:free</code> variants of newer MiniMax models, which are fine for experiments and not for production. Our step-by-step <a href="https://www.modellix.ai/blog/minimax-api-key/">guide to getting a MiniMax API key</a> walks the console with screenshots if you want the visual tour.</p>
+<h2 id="Base-URLs-two-compatible-endpoints-one-model"><a href="#Base-URLs-two-compatible-endpoints-one-model" class="headerlink" title="Base URLs: two compatible endpoints, one model"></a>Base URLs: two compatible endpoints, one model</h2><p>MiniMax serves M3 through two interchangeable protocol surfaces on the same backend, per the official <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/guides/text-generation">model invocation guide</a>:</p>
+<table>
+<thead>
+<tr>
+<th>Compatibility</th>
+<th>Base URL</th>
+<th>Best fit</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Anthropic-compatible (MiniMax’s recommendation)</td>
+<td><code>https://api.minimax.io/anthropic</code></td>
+<td>Anthropic SDKs, Claude-style agents, interleaved thinking, prompt-cache benefits</td>
+</tr>
+<tr>
+<td>OpenAI-compatible</td>
+<td><code>https://api.minimax.io/v1</code></td>
+<td>OpenAI SDKs, Codex&#x2F;Cursor-style tooling, Chat Completions or Responses APIs</td>
+</tr>
+</tbody></table>
+<p>This “one model, two doors” design is the single biggest integration shortcut MiniMax offers: if you already have an OpenAI or Anthropic SDK client in production, switching models is a two-line change — swap <code>base_url</code> and <code>model</code> and your existing auth, retries, and streaming keep working. No MiniMax-specific SDK is required. Model-list endpoints exist on both surfaces (<code>GET /v1/models</code> and <code>GET /anthropic/v1/models</code>) so you can confirm availability programmatically. For the China region, replace the host with <code>api.minimaxi.com</code> and keep the same paths.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/minimax-m3-dual-endpoints.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/minimax-m3-dual-endpoints.png" alt="Two client nodes labeled OpenAI-compatible /v1 and Anthropic-compatible /anthropic feeding one central MiniMax-M3 gateway at api.minimax.io" loading="lazy" />
+</picture>
+
+<p><em>Both protocol doors hit the same MiniMax-M3 backend, so one key works with either SDK family. Diagram generated September 6, 2026.</em></p>
+<p>One warning that will save you a debugging session: MiniMax’s old native text endpoint (<code>POST /v1/text/chatcompletion_v2</code>) still appears in older examples and even on MiniMax’s own product page, but the API docs mark it deprecated. Start new integrations on the OpenAI Chat Completions or Anthropic Messages surfaces — that is where current parameters, thinking control, and multimodal content are documented. If you are new to the compatibility-layer pattern itself, our <a href="https://www.modellix.ai/blog/openai-compatible-api/">OpenAI-compatible API explainer</a> covers how these gateways map one model onto many SDKs.</p>
+<h2 id="Calling-MiniMax-M3-curl-and-SDK-examples"><a href="#Calling-MiniMax-M3-curl-and-SDK-examples" class="headerlink" title="Calling MiniMax M3: curl and SDK examples"></a>Calling MiniMax M3: curl and SDK examples</h2><p><strong>curl against the OpenAI-compatible endpoint</strong> — note <code>thinking</code> explicitly disabled for a direct answer, and <code>max_completion_tokens</code> as the modern length field:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">curl https://api.minimax.io/v1/chat/completions \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$MINIMAX_API_KEY</span>&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;model&quot;: &quot;MiniMax-M3&quot;,</span></span><br><span class="line"><span class="string">    &quot;messages&quot;: [</span></span><br><span class="line"><span class="string">      &#123;&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Explain the 512k pricing cliff in MiniMax M3 in two sentences.&quot;&#125;</span></span><br><span class="line"><span class="string">    ],</span></span><br><span class="line"><span class="string">    &quot;thinking&quot;: &#123;&quot;type&quot;: &quot;disabled&quot;&#125;,</span></span><br><span class="line"><span class="string">    &quot;max_completion_tokens&quot;: 512</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Python with the OpenAI SDK:</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> openai <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">client = OpenAI(</span><br><span class="line">    api_key=os.environ[<span class="string">&quot;MINIMAX_API_KEY&quot;</span>],</span><br><span class="line">    base_url=<span class="string">&quot;https://api.minimax.io/v1&quot;</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">resp = client.chat.completions.create(</span><br><span class="line">    model=<span class="string">&quot;MiniMax-M3&quot;</span>,</span><br><span class="line">    messages=[&#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>, <span class="string">&quot;content&quot;</span>: <span class="string">&quot;Draft a retry wrapper with exponential backoff.&quot;</span>&#125;],</span><br><span class="line">    max_completion_tokens=<span class="number">1024</span>,</span><br><span class="line">)</span><br><span class="line"><span class="built_in">print</span>(resp.choices[<span class="number">0</span>].message.content)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Python with the Anthropic SDK</strong> — MiniMax’s recommended route:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> anthropic <span class="keyword">import</span> Anthropic</span><br><span class="line"></span><br><span class="line">client = Anthropic(</span><br><span class="line">    api_key=os.environ[<span class="string">&quot;MINIMAX_API_KEY&quot;</span>],</span><br><span class="line">    base_url=<span class="string">&quot;https://api.minimax.io/anthropic&quot;</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">resp = client.messages.create(</span><br><span class="line">    model=<span class="string">&quot;MiniMax-M3&quot;</span>,</span><br><span class="line">    max_tokens=<span class="number">1024</span>,</span><br><span class="line">    messages=[&#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>, <span class="string">&quot;content&quot;</span>: <span class="string">&quot;Compare M3 and M2.7 context windows in one paragraph.&quot;</span>&#125;],</span><br><span class="line">)</span><br><span class="line"><span class="built_in">print</span>(resp.content[<span class="number">0</span>].text)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Multimodal input</strong> uses the standard content-array shape. Per the <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/api-reference/text-chat-openai">Chat Completions reference</a>, M3 message content can mix <code>text</code>, <code>image_url</code>, and <code>video_url</code> parts — on the OpenAI-compatible client, recreated here so this snippet runs standalone:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> openai <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">client = OpenAI(</span><br><span class="line">    api_key=os.environ[<span class="string">&quot;MINIMAX_API_KEY&quot;</span>],</span><br><span class="line">    base_url=<span class="string">&quot;https://api.minimax.io/v1&quot;</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">resp = client.chat.completions.create(</span><br><span class="line">    model=<span class="string">&quot;MiniMax-M3&quot;</span>,</span><br><span class="line">    messages=[&#123;</span><br><span class="line">        <span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>,</span><br><span class="line">        <span class="string">&quot;content&quot;</span>: [</span><br><span class="line">            &#123;<span class="string">&quot;type&quot;</span>: <span class="string">&quot;text&quot;</span>, <span class="string">&quot;text&quot;</span>: <span class="string">&quot;What is in this image and this video clip?&quot;</span>&#125;,</span><br><span class="line">            &#123;<span class="string">&quot;type&quot;</span>: <span class="string">&quot;image_url&quot;</span>, <span class="string">&quot;image_url&quot;</span>: &#123;<span class="string">&quot;url&quot;</span>: <span class="string">&quot;https://example.com/diagram.png&quot;</span>&#125;&#125;,</span><br><span class="line">            &#123;<span class="string">&quot;type&quot;</span>: <span class="string">&quot;video_url&quot;</span>, <span class="string">&quot;video_url&quot;</span>: &#123;<span class="string">&quot;url&quot;</span>: <span class="string">&quot;https://example.com/clip.mp4&quot;</span>&#125;&#125;,</span><br><span class="line">        ],</span><br><span class="line">    &#125;],</span><br><span class="line">    max_completion_tokens=<span class="number">1024</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>Images can be JPEG&#x2F;PNG&#x2F;GIF&#x2F;WebP up to 10 MB each, and image input consumes tokens roughly by a <code>detail</code> setting — <code>low</code> usually a few hundred tokens, <code>default</code> around 1k–3k, <code>high</code> several thousand up to 15k+. Videos run up to 50 MB as a URL or base64 payload (512 MB through the Files API via <code>mm_file://</code> references). That means multimodal requests can burn a meaningful chunk of your 1M context before the model says a word.</p>
+<p>Two behaviors to know before you tune prompts, from the <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/api-reference/text-openai-api">OpenAI SDK reference</a>:</p>
+<ul>
+<li><strong>Thinking is on by default for M3 on the OpenAI-compatible surface.</strong> If you omit <code>thinking</code>, responses include reasoning content and take longer. Set <code>thinking: &#123;&quot;type&quot;: &quot;disabled&quot;&#125;</code> for low-latency direct answers, or <code>&#123;&quot;type&quot;: &quot;adaptive&quot;&#125;</code> to keep thinking explicitly on. Pass <code>reasoning_split: true</code> to separate the reasoning into its own <code>reasoning_content</code> &#x2F; <code>reasoning_details</code> fields instead of <code>&lt;think&gt;</code> tags inline. (M2.x models cannot disable thinking — another quiet reason M3 is the better integration target.) One protocol difference to plan for: on the <strong>Anthropic-compatible</strong> surface (<code>/anthropic</code>, MiniMax’s recommended route), thinking is <strong>off by default</strong> and enabled with <code>thinking: &#123;&quot;type&quot;: &quot;adaptive&quot;&#125;</code> — the two doors ship opposite defaults, so read the qualifier on whichever endpoint you standardize on.</li>
+<li><strong>Use <code>max_completion_tokens</code>, not <code>max_tokens</code></strong>, for new integrations; the latter is the legacy field. Defaults worth knowing: <code>temperature</code> ranges [0, 2] with default 1, and <code>top_p</code> defaults to 0.95 for M3.</li>
+</ul>
+<p>Streaming and tool calling work through the standard flags — <code>stream: true</code> emits SSE chunks in the shapes your OpenAI or Anthropic client already handles, and <code>tools</code> accepts ordinary function schemas.</p>
+<h2 id="Errors-limits-and-gotchas-nobody-warns-about"><a href="#Errors-limits-and-gotchas-nobody-warns-about" class="headerlink" title="Errors, limits, and gotchas nobody warns about"></a>Errors, limits, and gotchas nobody warns about</h2><p>MiniMax returns application-level errors inside the response body as <code>base_resp.status_code</code> rather than as HTTP status codes. An HTTP 200 response can still be a failed business call, so validate the body, not just the transport. The codes below come from MiniMax’s <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/api-reference/errorcode">official error-code reference</a>:</p>
+<table>
+<thead>
+<tr>
+<th><code>base_resp.status_code</code></th>
+<th align="right">Meaning</th>
+<th>First action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2049</td>
+<td align="right">Invalid API key</td>
+<td>Re-copy the key — whitespace or line breaks are the usual culprit</td>
+</tr>
+<tr>
+<td>1004</td>
+<td align="right">Not authorized &#x2F; token mismatch</td>
+<td>Wrong key, revoked key, or region mismatch (intl vs China platform)</td>
+</tr>
+<tr>
+<td>1008</td>
+<td align="right">Insufficient balance</td>
+<td>Top up at Billing → Balance</td>
+</tr>
+<tr>
+<td>1002</td>
+<td align="right">Rate limit</td>
+<td>Back off and retry with exponential delay</td>
+</tr>
+<tr>
+<td>1039</td>
+<td align="right">Token limit</td>
+<td>Your request exceeds the context budget — trim input or output</td>
+</tr>
+</tbody></table>
+<p>Beyond the codes, five gotchas cost people real time:</p>
+<ol>
+<li><strong>The 1M window is shared between input and output.</strong> A 900k-token input leaves only ~100k tokens for the answer. Plan <code>max_completion_tokens</code> against what the input is already consuming, or the call fails at the limit you least expect.</li>
+<li><strong>The &gt;512k band is not an upsell — it is the same model.</strong> You do not get a “long-context version” above 512k; you get the same M3 at double the per-token rate. If a workload fits under 512k, there is no quality reason to cross the line.</li>
+<li><strong>Key types and regions are silently incompatible.</strong> <code>sk-cp</code> Subscription Keys fail on pay-as-you-go endpoints with 1004&#x2F;1008-style errors; an international key fails against <code>api.minimaxi.com</code>. Both failure modes look like “wrong key” and are actually “wrong key <em>system</em>.”</li>
+<li><strong>Old examples will steer you to a deprecated endpoint.</strong> MiniMax’s own marketing pages still show <code>chatcompletion_v2</code>; the docs call it deprecated. If a tutorial’s base URL does not look like <code>/v1</code> or <code>/anthropic</code>, treat the tutorial as stale.</li>
+<li><strong>Thinking doubles as a cost control.</strong> Thinking on by default on the OpenAI-compatible surface (and on whenever you set <code>adaptive</code> on the Anthropic surface) means your billable output includes reasoning tokens you may not need. For classification, extraction, and short transforms, disabling thinking — or staying on the default-off Anthropic route without enabling it — cuts both latency and spend.</li>
+</ol>
+<h2 id="MiniMax-M3-vs-M2-7-which-model-should-you-call"><a href="#MiniMax-M3-vs-M2-7-which-model-should-you-call" class="headerlink" title="MiniMax M3 vs M2.7: which model should you call?"></a>MiniMax M3 vs M2.7: which model should you call?</h2><p>M2.7 is not deprecated — MiniMax still lists it as an active model at 204,800 tokens context, text-and-tools input, same $0.30&#x2F;$1.20 standard rates, and it remains the right call for some workloads. The decision rule as of September 2026:</p>
+<ul>
+<li><strong>Choose MiniMax-M3</strong> when you need more than ~200k tokens of usable context, when image or video input matters, when you want controllable reasoning (thinking on&#x2F;off) for agentic pipelines, or when you want the model MiniMax is actively developing. At the ≤512k standard band the price is identical to M2.7, so the long-context capability is close to free until you actually use it.</li>
+<li><strong>Stay on MiniMax-M2.7</strong> for short, text-only, high-volume workloads that never approach 200k tokens and are already tuned and stable. Same token price, lower risk of surprise output-token spend from thinking, and a <code>-highspeed</code> variant exists if you want ~100 tps on that generation.</li>
+</ul>
+<p>The honest tiebreaker: if a teammate asks “why are we still calling the old model?”, the defensible answers are “our prompts are tuned against it and it is stable” or “we never exceed 200k tokens and do not need vision input.” If neither is true, M3 is the default for new integrations. The full M-series ladder — including when the M2.5 generation still earns its keep — is covered in the two MiniMax guides linked above if you are still deciding across generations.</p>
+<h2 id="MiniMax-M3-on-Modellix-the-honest-answer"><a href="#MiniMax-M3-on-Modellix-the-honest-answer" class="headerlink" title="MiniMax M3 on Modellix: the honest answer"></a>MiniMax M3 on Modellix: the honest answer</h2><p>We checked Modellix’s <a href="https://www.modellix.ai/llm">LLM text gateway</a> on September 6, 2026: MiniMax text models — MiniMax-M3 included — are not listed there, and we are not going to claim otherwise. Modellix’s MiniMax catalog is its media family, visible on the <a href="https://www.modellix.ai/providers/minimax">MiniMax provider page</a>: Hailuo and MiniMax-H3 video generation (text-to-video, image-to-video, first&#x2F;last-frame, video-to-video), speech synthesis, and voice cloning — 13 models as of September 2026, behind one unified REST API and one key.</p>
+<p>So where does Modellix actually fit for an M3 developer? Two honest answers — and one host-boundary note: Modellix runs two separate surfaces, the text gateway at <code>llm.modellix.ai</code> (which does not list MiniMax) and the media APIs at <code>api.modellix.ai</code> (where the MiniMax media family lives). Don’t blur the two hosts when you wire up either side.</p>
+<ol>
+<li><strong>If you pair an LLM with generated media</strong>, Modellix is the one-key route for the media half of that pipeline — call MiniMax-H3 for video and MiniMax Speech for voice alongside the rest of the 210+ model catalog without juggling vendor consoles. That workflow is exactly what our <a href="https://www.modellix.ai/blog/one-api-multiple-ai-video-models/">one-API multi-model article</a> walks through.</li>
+<li><strong>If you need MiniMax text models through an aggregator today</strong>, you want a gateway that actually lists them — OpenRouter and several others carry <code>minimax/minimax-m3</code> — and you should check their current status before wiring anything up, because model catalogs change monthly.</li>
+</ol>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Modellix REST API Reference</h3><p class="view-docs-tag-desc">One REST contract for 210+ image and video models — see the request, polling, and billing reference for the media APIs Modellix does serve.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Run MiniMax Media Models on One Key</h3><p class="view-docs-tag-desc">Log in to Modellix to call Hailuo and MiniMax-H3 video and speech alongside 210+ other image and video models with a single API key.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>Does MiniMax M3 have an API?</strong></p>
+<p>Yes. <code>MiniMax-M3</code> is served through MiniMax’s platform at <code>api.minimax.io</code> with two compatible surfaces: OpenAI-compatible (<code>/v1</code>) and Anthropic-compatible (<code>/anthropic</code>, recommended). No MiniMax-specific SDK is required — existing OpenAI or Anthropic clients work after swapping base URL and model string.</p>
+<p><strong>How do I get a MiniMax M3 API key?</strong></p>
+<p>Sign in to <code>platform.minimax.io</code>, open <strong>API Keys</strong>, and click <strong>Create new secret key</strong>. The key displays once, so copy it immediately. Pay-as-you-go keys and Token Plan Subscription Keys (<code>sk-cp</code>) are separate billing systems and are not interchangeable.</p>
+<p><strong>What is the MiniMax M3 API base URL?</strong></p>
+<p><code>https://api.minimax.io/v1</code> for OpenAI-compatible clients and <code>https://api.minimax.io/anthropic</code> for Anthropic-compatible clients. China-region accounts use <code>api.minimaxi.com</code> with the same paths.</p>
+<p><strong>How much does the MiniMax M3 API cost per million tokens?</strong></p>
+<p>As of September 6, 2026, at the standard tier with up to 512k input tokens: $0.30&#x2F;M input, $1.20&#x2F;M output, $0.06&#x2F;M cache read. Above 512k input tokens the rates double to $0.60&#x2F;$2.40&#x2F;$0.12. A Priority tier (<code>service_tier: &quot;priority&quot;</code>) costs 1.5× standard.</p>
+<p><strong>What is MiniMax M3’s context window?</strong></p>
+<p>1,000,000 tokens total — and that figure is the combined input-plus-output budget. MiniMax guarantees a hosted minimum of 512K context; inputs above 512k tokens are billed at the higher rate band.</p>
+<p><strong>Is MiniMax M3 multimodal?</strong></p>
+<p>Yes — it accepts text, image, and video input and returns text. Images up to 10 MB (JPEG&#x2F;PNG&#x2F;GIF&#x2F;WebP); videos up to 50 MB directly or 512 MB through the Files API.</p>
+<p><strong>Is there a free MiniMax M3 API?</strong></p>
+<p>No official free tier exists for MiniMax text models — no signup credits, no free quota. Third-party routes like OpenRouter’s <code>:free</code> variants of newer MiniMax models are rate-limited and suited to experiments only.</p>
+<p><strong>Can I call MiniMax M3 through Modellix?</strong></p>
+<p>Not the text model — as of September 6, 2026, MiniMax LLMs are not on Modellix’s LLM gateway. Modellix does serve MiniMax’s media models (Hailuo and MiniMax-H3 video, speech) through one API key.</p>
+<hr>
+<p><em>MiniMax model status, pricing, and endpoint details reflect public information as of September 6, 2026 and change frequently — MiniMax has moved models in and out of its lineup within a single quarter, and prices carry promotional labels that shift. Re-validate against the official pricing and model pages before committing budget. This article was written by Modellix, an API aggregator with a commercial interest in MiniMax media models; the M3 integration material above is vendor-neutral. Access 210+ image and video models, including MiniMax’s media family, through one API key at <a href="https://www.modellix.ai/">modellix.ai</a>.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/LLM-API/" class="tag-pill tag-pill--sm">LLM API</a>
+            
+              <a href="/blog/tags/Tutorial/" class="tag-pill tag-pill--sm">Tutorial</a>
+            
+              <a href="/blog/tags/MiniMax/" class="tag-pill tag-pill--sm">MiniMax</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/gpt-latest-model/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-gpt-latest-model.webp" alt="GPT Latest Model: What ~openai/gpt-latest Points At Now" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">GPT Latest Model: What ~openai/gpt-latest Points At Now</h3>
+          <time class="related-article-date" datetime="2026-09-07T16:00:00.000Z">September 8, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/agent-observability/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-agent-observability.webp" alt="Agent Observability: What Your Coding Agent Called and Spent" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Agent Observability: What Your Coding Agent Called and Spent</h3>
+          <time class="related-article-date" datetime="2026-09-03T16:00:00.000Z">September 4, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/anthropic-base-url/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-anthropic-base-url.webp" alt="Anthropic Base URL: Claude Code and Harness, No /v1" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Anthropic Base URL: Claude Code and Harness, No /v1</h3>
+          <time class="related-article-date" datetime="2026-09-01T16:00:00.000Z">September 2, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/minimax-m3-api/&text=MiniMax%20M3%20API%3A%20Integration%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/minimax-m3-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/minimax-m3-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
