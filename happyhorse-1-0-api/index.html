@@ -1,0 +1,631 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HappyHorse 1.0 API: Integration Guide, Pricing &amp; Code — Modellix Blog</title>
+  <meta name="description" content="HappyHorse 1.0 is GA on Alibaba Cloud Model Studio and API aggregators today. Working model IDs, request schema, Python and curl samples, and same-day pricing.">
+  <meta name="keywords" content="happyhorse 1.0 api, happyhorse 1.0 api pricing, happyhorse 1.0 pricing, happyhorse 1.0 api key, happyhorse api python, happyhorse 1.0 text to video api, happyhorse 1.0 image to video api, happyhorse 1.0 video edit api, happyhorse 1.1 api, alibaba happyhorse api">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/happyhorse-1-0-api/">
+  <meta name="description" content="HappyHorse 1.0 is GA on Alibaba Cloud Model Studio and API aggregators today. Working model IDs, request schema, Python and curl samples, and same-day pricing.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HappyHorse 1.0 API: Integration Guide, Pricing &amp; Code — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/happyhorse-1-0-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="HappyHorse 1.0 is GA on Alibaba Cloud Model Studio and API aggregators today. Working model IDs, request schema, Python and curl samples, and same-day pricing.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-happyhorse-1-0-api.webp">
+<meta property="article:published_time" content="2026-09-07T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-07T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video API">
+<meta property="article:tag" content="Alibaba">
+<meta property="article:tag" content="HappyHorse">
+<meta property="article:tag" content="developer-guide">
+<meta property="article:tag" content="text-to-video">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-happyhorse-1-0-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"HappyHorse 1.0 API: Integration Guide, Pricing & Code","description":"HappyHorse 1.0 is GA on Alibaba Cloud Model Studio and API aggregators today. Working model IDs, request schema, Python and curl samples, and same-day pricing.","datePublished":"2026-09-07T16:00:00.000Z","dateModified":"2026-09-07T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/happyhorse-1-0-api/","image":"https://img.modellix.ai/en/article/cover-happyhorse-1-0-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">HappyHorse 1.0 API: Integration Guide, Pricing &amp; Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">HappyHorse 1.0 API: Integration Guide, Pricing &amp; Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-09-07T16:00:00.000Z">September 8, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">developer-guide</a>
+            
+              <a href="/blog/tags/Alibaba/" class="tag-pill tag-pill--sm">Alibaba</a>
+            
+              <a href="/blog/tags/HappyHorse/" class="tag-pill tag-pill--sm">HappyHorse</a>
+            
+              <a href="/blog/tags/text-to-video/" class="tag-pill tag-pill--sm">text-to-video</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>If you searched &#39;happyhorse 1.0 api&#39; and the top results told you the model is still coming soon, you read April&#39;s internet. HappyHorse 1.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-happyhorse-1-0-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-happyhorse-1-0-api.png" alt="MODELLIX editorial cover reading HappyHorse 1.0 API with subtitle Integration Guide, Pricing and Code: amber key card and film frames feeding a glass video gateway" />
+</picture>
+
+<p>If you searched “happyhorse 1.0 api” and the top results told you the model is still coming soon, you read April’s internet. HappyHorse 1.0 — the video model that debuted on the Artificial Analysis Video Arena on April 7, 2026 and immediately took the top text-to-video and image-to-video spots — has been generally available through real APIs since late April. As of September 8, 2026 it is live on <a target="_blank" rel="noopener" href="https://www.alibabacloud.com/help/en/model-studio/happyhorse-text-to-video-api-reference">Alibaba Cloud Model Studio</a> (Alibaba’s first-party platform, where the model IDs below come from) and on API aggregators including Modellix, which is the company behind this blog and has a commercial interest in the route we describe. This guide covers what is actually documented about the model, the model IDs that work today, request schemas with runnable Python and curl, and per-second pricing by variant and resolution captured the same day — and it is honest about the gaps: HappyHorse is a new model family whose public documentation is thinner than established lines like Wan, so everything below is marked as either documented first-party or observable from live model catalogs.</p>
+<h2 id="What-the-HappyHorse-1-0-API-actually-is"><a href="#What-the-HappyHorse-1-0-API-actually-is" class="headerlink" title="What the HappyHorse 1.0 API actually is"></a>What the HappyHorse 1.0 API actually is</h2><p>HappyHorse 1.0 is a family of four video-generation models built by Alibaba — Alibaba formally claimed the model through its own channels in April 2026 (its Alibaba Cloud blog announced HappyHorse as developed by the Alibaba Token Hub (ATH) business unit, and Artificial Analysis has always labeled the family Alibaba-ATH). What remains genuinely unconfirmed is narrower: the original arena submission was pseudonymous, and no Alibaba official has named the specific internal unit behind the model — reporting attributes the team to the Future Life Lab inside Alibaba’s Taotian Group, while Alibaba’s own announcement credits the ATH business unit — or the rumored lead, Zhang Di. What is not in dispute is the benchmark story: <a target="_blank" rel="noopener" href="https://artificialanalysis.ai/video/model-families/happyhorse">Artificial Analysis</a> added the model to its blind Video Arena in April 2026, where it hit the top of text-to-video and image-to-video, and it remains a top-tier model today. To be precise about current standing rather than repeating the April headline: on the text-to-video leaderboard pulled for this article, HappyHorse 1.0 sits around Elo 1,283 without audio (third) and 1,122 with audio (behind several 2026 models led by Wan 3.0 and Gemini Omni Flash) — still an elite model, no longer the number-one story the older pages claim.</p>
+<p>The four variants share one architecture trait that matters for your integration: the model generates video and audio jointly in a single pass, so an output clip arrives with synchronized native sound — no separate TTS or music pass. All four generate clips of 3–15 seconds, at 720P or 1080P on the aggregator surfaces checked here (Alibaba’s own docs additionally list a 480P tier), with text prompts in any language:</p>
+<table>
+<thead>
+<tr>
+<th>Variant</th>
+<th>Input</th>
+<th>What it is for</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>T2V</strong></td>
+<td>Text prompt</td>
+<td>Text-to-video: a scene description becomes a clip with audio</td>
+</tr>
+<tr>
+<td><strong>I2V</strong></td>
+<td>First-frame image + optional prompt</td>
+<td>Animating one image into motion while keeping the shot</td>
+</tr>
+<tr>
+<td><strong>R2V</strong></td>
+<td>Up to 9 reference images + prompt</td>
+<td>Character-consistent storytelling; the prompt dictates new action, references dictate who appears</td>
+</tr>
+<tr>
+<td><strong>Video Edit</strong></td>
+<td>Input video + instruction (optional reference images)</td>
+<td>Natural-language editing: restyle, replace, or alter an existing clip</td>
+</tr>
+</tbody></table>
+<p>If you are new to the family, the model pages on each access surface spell out the routing the way this table does. On Modellix, each variant has its own page under the <a href="https://www.modellix.ai/providers/alibaba">Alibaba provider hub</a>, which lists the current set alongside the newer HappyHorse 1.1 line.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/happyhorse-variant-map.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/happyhorse-variant-map.png" alt="Four HappyHorse 1.0 variants — text, image, reference and video-edit inputs — feeding one audio-native 3 to 15 second video output" loading="lazy" />
+</picture>
+
+<p><em>Figure: the four HappyHorse 1.0 API surfaces — one model family, one shared audio-native output contract, different inputs. Concept diagram generated for this article.</em></p>
+<p>There is one naming trap to clear before the code: “the HappyHorse API” does not exist as a single official thing. Alibaba Cloud Model Studio hosts the first-party HappyHorse endpoints under model IDs like <code>happyhorse-1.0-t2v</code>. Aggregators expose the same model under their own route IDs. Several pages that rank for this query are third-party documentation portals or wrapper repos that describe a <em>planned</em> surface — fal.ai’s own model page and tracking repo were still saying “coming soon” in April. Copying an ID from a page that predates general availability is the most common way to get a 404 on the first call, so treat the IDs below as the current ones and check the provider’s live model page before you deploy.</p>
+<h2 id="HappyHorse-1-0-model-IDs-that-work-today"><a href="#HappyHorse-1-0-model-IDs-that-work-today" class="headerlink" title="HappyHorse 1.0 model IDs that work today"></a>HappyHorse 1.0 model IDs that work today</h2><p>Two surfaces, two ID conventions — and both are live as of September 8, 2026:</p>
+<p><strong>Official — Alibaba Cloud Model Studio.</strong> The first-party API reference documents the model name as <code>happyhorse-1.0-t2v</code> (the same family also ships image-to-video (<code>happyhorse-1.0-i2v</code>), reference-to-video (<code>happyhorse-1.0-r2v</code>), and video-edit variants; the docs’ own examples now default to the newer <code>happyhorse-1.1-t2v</code>, which is a separate June 2026 model — out of scope here beyond this note). Requests go to a regional Model Studio endpoint, and the model, endpoint, and API key must belong to the same region — cross-region calls fail.</p>
+<p><strong>Aggregator — one-key routes.</strong> Aggregators license the model and expose it under their own REST routes. Modellix, for example, lists the four variants as <code>alibaba/happyhorse-1.0-t2v</code>, <code>alibaba/happyhorse-1.0-i2v</code>, <code>alibaba/happyhorse-1.0-r2v</code>, and <code>alibaba/happyhorse-1.0-video-edit</code>, each with its own <a href="https://www.modellix.ai/models/alibaba/happyhorse-1.0-t2v">model page</a> documenting the request schema and per-second price. Fal (which hosts the model as <code>alibaba/happy-horse/…</code>), OpenRouter, and kie.ai carry it under their own IDs too — that is normal for this market, and it is exactly why you should pin the ID to the surface you actually call.</p>
+<p>A related 2026 note for anyone building a roadmap: HappyHorse 1.1 shipped in June 2026 on the same surfaces and now ranks above 1.0 on the with-audio T2V leaderboard. If you are starting fresh, read a current 1.1 guide instead; this article stays scoped to 1.0 because that is the model the search results are asking about.</p>
+<h2 id="How-to-call-HappyHorse-1-0-the-async-task-pattern"><a href="#How-to-call-HappyHorse-1-0-the-async-task-pattern" class="headerlink" title="How to call HappyHorse 1.0: the async task pattern"></a>How to call HappyHorse 1.0: the async task pattern</h2><p>Every HappyHorse 1.0 surface — official and aggregator — uses the same asynchronous shape: <strong>submit a task, poll until it finishes, download the video</strong>. Video generation runs for tens of seconds, so no surface returns the clip in the HTTP response; they return a task handle.</p>
+<p><strong>The official route.</strong> Against Alibaba Cloud Model Studio, a text-to-video call is an async task submission. The reference’s curl sample uses an <code>X-DashScope-Async: enable</code> header and a region-scoped host that includes your workspace ID — the docs enumerate Singapore (<code>ap-southeast-1</code>), US Virginia (<code>us-east-1</code>), China Beijing (<code>cn-beijing</code>), and other regions, and the sample code applies to Singapore:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">curl <span class="string">&quot;https://&#123;WorkspaceId&#125;.ap-southeast-1.maas.aliyuncs.com/api/v1/services/aigc/video-generation/video-synthesis&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$MODEL_STUDIO_API_KEY</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;X-DashScope-Async: enable&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;model&quot;: &quot;happyhorse-1.0-t2v&quot;,</span></span><br><span class="line"><span class="string">    &quot;input&quot;: &#123; &quot;prompt&quot;: &quot;A miniature city built from cardboard and bottle caps comes to life at night, warm string lights, slow dolly in&quot; &#125;,</span></span><br><span class="line"><span class="string">    &quot;parameters&quot;: &#123; &quot;resolution&quot;: &quot;1080P&quot;, &quot;ratio&quot;: &quot;16:9&quot;, &quot;duration&quot;: 5 &#125;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>Replace <code>&#123;WorkspaceId&#125;</code> with your Model Studio workspace ID and the region segment with your key’s region — the model, endpoint, and API key must all belong to the same region. Polling uses the same host’s task endpoint (<code>/api/v1/tasks/&#123;task_id&#125;</code>) until the task completes. What is reliably documented is the model ID (<code>happyhorse-1.0-t2v</code>), the 3–15 second duration range with a default of 5, the default 1080P output, and that a watermark is on by default on the official surface (the docs list it as <code>watermark: true</code>, rendering “HappyHorse” in the lower-right corner — disable it in the request if your use case allows). Read the exact parameter casing and result schema from the reference for your region rather than copying this verbatim.</p>
+<p><strong>The aggregator route.</strong> The same model behind a Modellix key is a two-step call on <code>api.modellix.ai</code>: submit to the model’s async route, then poll the returned task URL:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">BASE = <span class="string">&quot;https://api.modellix.ai/api/v1&quot;</span></span><br><span class="line">HEADERS = &#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">&quot;Bearer YOUR_MODELLIX_API_KEY&quot;</span>, <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line">payload = &#123;</span><br><span class="line">    <span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;A lighthouse on a rocky coast at dusk, waves breaking, warm light in the lantern room&quot;</span>,</span><br><span class="line">    <span class="string">&quot;duration&quot;</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">&quot;ratio&quot;</span>: <span class="string">&quot;16:9&quot;</span>,</span><br><span class="line">    <span class="string">&quot;resolution&quot;</span>: <span class="string">&quot;1080P&quot;</span>,</span><br><span class="line">    <span class="string">&quot;seed&quot;</span>: <span class="number">42</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">resp = requests.post(<span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/alibaba/happyhorse-1.0-t2v/async&quot;</span>, headers=HEADERS, json=payload)</span><br><span class="line">data = resp.json()[<span class="string">&quot;data&quot;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;submitted:&quot;</span>, data[<span class="string">&quot;task_id&quot;</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">60</span>):</span><br><span class="line">    result = requests.get(data[<span class="string">&quot;get_result&quot;</span>][<span class="string">&quot;url&quot;</span>], headers=HEADERS).json()</span><br><span class="line">    <span class="keyword">if</span> result[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;status&quot;</span>] <span class="keyword">in</span> (<span class="string">&quot;success&quot;</span>, <span class="string">&quot;failed&quot;</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    time.sleep(<span class="number">5</span>)   <span class="comment"># exponential backoff in production</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;status:&quot;</span>, result[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;status&quot;</span>])</span><br></pre></td></tr></table></figure>
+
+<p>Both snippets are skeletons, not production modules — verify response field names against the current docs for the model ID you actually use. The Modellix per-model request schema is published on each model page; the live parameters for the four 1.0 variants, as listed there on September 8, 2026, are:</p>
+<table>
+<thead>
+<tr>
+<th>Variant</th>
+<th>Required input</th>
+<th>Notable optional parameters</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>T2V</td>
+<td><code>prompt</code></td>
+<td><code>duration</code> (3–15), <code>ratio</code>, <code>resolution</code> (720P&#x2F;1080P), <code>seed</code></td>
+</tr>
+<tr>
+<td>I2V</td>
+<td><code>first_frame_image</code> (public JPEG&#x2F;PNG&#x2F;WEBP URL, ≥300px, ≤10 MB)</td>
+<td><code>prompt</code>, <code>duration</code>, <code>resolution</code>, <code>seed</code></td>
+</tr>
+<tr>
+<td>R2V</td>
+<td><code>reference_images</code> (1–9 public image URLs, short edge ≥400px) + <code>prompt</code></td>
+<td>Reference images in order as <code>character1</code>, <code>character2</code>, …; <code>duration</code>, <code>ratio</code>, <code>resolution</code>, <code>seed</code></td>
+</tr>
+<tr>
+<td>Video Edit</td>
+<td><code>input_video_url</code> (MP4&#x2F;MOV, 3–60 s in, ≤100 MB) + <code>prompt</code> instruction</td>
+<td><code>audio_setting</code> (<code>auto</code>&#x2F;<code>origin</code>), <code>reference_images</code> (0–5), <code>resolution</code>, <code>seed</code></td>
+</tr>
+</tbody></table>
+<p>Two input rules bite people regardless of surface: every image and video URL must be publicly reachable over HTTP(S) — the API fetches it, it does not upload for you — and the input constraints are enforced by the model upstream, so a non-compliant asset surfaces as a delayed failure rather than an instant 400. For video editing, note the contract: the input clip can be up to 60 seconds, but the output is 3–15 seconds (longer inputs are truncated to the first 15 seconds of edited output on the listing checked here), and <code>audio_setting: origin</code> preserves the source audio while <code>auto</code> lets the model decide.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/happyhorse-task-lifecycle.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/happyhorse-task-lifecycle.png" alt="HappyHorse 1.0 async task lifecycle: submit the generation, receive a task id, poll, download the finished video" loading="lazy" />
+</picture>
+
+<p><em>Figure: every HappyHorse 1.0 call — official or aggregator — is submit, poll, download. Concept diagram generated for this article.</em></p>
+<p>For production workloads, prefer a webhook over polling when the surface supports one; both the official platform and aggregator routes accept callback registration so the result arrives instead of being fetched.</p>
+<h2 id="HappyHorse-1-0-pricing-pulled-September-8-2026"><a href="#HappyHorse-1-0-pricing-pulled-September-8-2026" class="headerlink" title="HappyHorse 1.0 pricing, pulled September 8, 2026"></a>HappyHorse 1.0 pricing, pulled September 8, 2026</h2><p>HappyHorse 1.0 is billed <strong>per second of output</strong>, and the rate depends on variant and resolution. The prices below are Modellix list prices pulled same-day (September 8, 2026) from its live model pages, where the pricing dimension is resolution:</p>
+<table>
+<thead>
+<tr>
+<th>Variant (Modellix ID)</th>
+<th>720P per second</th>
+<th>1080P per second</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>happyhorse-1.0-t2v</code></td>
+<td>$0.1400</td>
+<td>$0.2400</td>
+</tr>
+<tr>
+<td><code>happyhorse-1.0-i2v</code></td>
+<td>$0.1400</td>
+<td>$0.2400</td>
+</tr>
+<tr>
+<td><code>happyhorse-1.0-r2v</code></td>
+<td>$0.1400</td>
+<td>$0.2400</td>
+</tr>
+<tr>
+<td><code>happyhorse-1.0-video-edit</code></td>
+<td>$0.8400</td>
+<td>$1.4400</td>
+</tr>
+</tbody></table>
+<p>So a 5-second 1080P text-to-video clip lists at <strong>$1.20</strong>, a 5-second 720P clip at <strong>$0.70</strong>, and video editing runs six times the generation rate — $4.20 for a 5-second 720P edit — reflecting the longer input processing. Modellix lists video-edit billing on output duration like the rest of the family.</p>
+<p>Context on those numbers, with dates so you can judge drift: the market for this model has converged tightly. Public listings we checked the same day cluster near that spread — <a target="_blank" rel="noopener" href="https://openrouter.ai/alibaba/happyhorse-1.0">OpenRouter’s HappyHorse 1.0 page</a> shows from $0.0988&#x2F;second at 720p to $0.1694&#x2F;second at 1080p for its Alibaba Cloud provider row, and fal and kie publish $0.14–$0.28-per-second spreads of their own. Artificial Analysis lists the creator API near $13.20 per minute of 1080p video, which is roughly $0.22 per second. On the direct Alibaba channel, generous launch pricing on credit packs (a ¥4.50 list per credit) plus free-trial quota can undercut every USD aggregator per-video — free-quota terms differ by surface (Model Studio’s API pricing page has granted new users a one-time allowance — Alibaba’s campaign cites a free 10-second generation on activation — while daily free credits have been a Qwen consumer-facing credit-system feature; check the official pricing page for whichever surface you plan to use) — and that channel has its own account and region setup, covered in the next section. <strong>Do not treat any of these — including Modellix’s own table above — as a standing claim</strong>: aggregator and cloud list prices move, and the April-era blog posts that quote “no confirmed pricing” are describing a moment that ended months ago. Pin the date whenever you record a number, and re-check the live model page before you commit budget. Our <a href="https://www.modellix.ai/blog/alibaba-api-pricing/">Alibaba API pricing comparison</a> tracks the wider Alibaba catalog the same way.</p>
+<h2 id="Direct-vs-aggregator-which-HappyHorse-1-0-API-route-fits"><a href="#Direct-vs-aggregator-which-HappyHorse-1-0-API-route-fits" class="headerlink" title="Direct vs aggregator: which HappyHorse 1.0 API route fits"></a>Direct vs aggregator: which HappyHorse 1.0 API route fits</h2><p>The two routes differ in obligations, not just price. <strong>Direct (Alibaba Cloud Model Studio)</strong> gives you the vendor relationship: your account, your region, your key, first-party docs, and the cheapest per-video economics if you operate at volume through Alibaba’s credit system. The costs are operational: a Model Studio account and API key per region (the model, endpoint, and key must be in the same region), a watermark that is on by default, and Alibaba’s own billing unit and console. <strong>Aggregator (Modellix, or fal, OpenRouter, kie, and others)</strong> trades the direct relationship for a single key and one bill across many vendors — Modellix’s angle, stated plainly, is that HappyHorse 1.0 then sits next to Wan, Seedance, Kling, and Veo models behind the same key and the same request pattern, which matters if the model is one of several in your pipeline rather than your whole product.</p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Direct: Alibaba Cloud Model Studio</th>
+<th>Aggregator (e.g., Modellix)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Account</td>
+<td>Model Studio account + key per region</td>
+<td>One signup, one key</td>
+</tr>
+<tr>
+<td>Regional rules</td>
+<td>Model&#x2F;endpoint&#x2F;key must share a region</td>
+<td>None</td>
+</tr>
+<tr>
+<td>Model IDs</td>
+<td><code>happyhorse-1.0-t2v</code> etc.</td>
+<td><code>alibaba/happyhorse-1.0-t2v</code> etc.</td>
+</tr>
+<tr>
+<td>Billing</td>
+<td>Per output duration (credit packs or list)</td>
+<td>Per second, per resolution</td>
+</tr>
+<tr>
+<td>Watermark</td>
+<td>On by default (off via parameter)</td>
+<td>Follows the platform’s listing</td>
+</tr>
+<tr>
+<td>Scope</td>
+<td>Alibaba models only</td>
+<td>Many providers behind one key</td>
+</tr>
+</tbody></table>
+<p>A defensible rule of thumb: choose direct when HappyHorse is your product’s core model and you can absorb a per-region Alibaba account, or when volume makes Alibaba’s credit pricing decisive; choose an aggregator when you are evaluating HappyHorse <em>alongside</em> other video models and want one key, one bill, and no regional split. This is the same decision our <a href="https://www.modellix.ai/blog/unified-ai-api/">unified AI API explainer</a> and <a href="https://www.modellix.ai/blog/one-api-multiple-ai-video-models/">one-key multi-video-model guide</a> walk through generically. For the mechanics of image and reference inputs specifically, our <a href="https://www.modellix.ai/blog/image-to-video-api/">image-to-video API explainer</a> describes the shared patterns.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/happyhorse-route-decision.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/happyhorse-route-decision.png" alt="Two HappyHorse 1.0 API routes: official Alibaba Cloud Model Studio with region-bound keys, or one Modellix aggregator key" loading="lazy" />
+</picture>
+
+<p><em>Figure: the route decision in this guide — direct vendor account and region rules vs one aggregator key across many models. Concept diagram generated for this article.</em></p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">HappyHorse 1.0 on the Modellix API</h3><p class="view-docs-tag-desc">Live async task routes, per-variant request schemas, and per-second pricing for the four HappyHorse 1.0 models on one Modellix key.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Errors-limits-and-caveats"><a href="#Errors-limits-and-caveats" class="headerlink" title="Errors, limits, and caveats"></a>Errors, limits, and caveats</h2><p>The failures that waste the most time on a first HappyHorse integration, in rough order of frequency:</p>
+<ul>
+<li><strong>404 on the model ID</strong> — you copied an ID from a pre-GA page (fal’s April repo, third-party portal docs, wrapper examples) or mixed surfaces (official <code>happyhorse-1.0-t2v</code> vs an aggregator route slug). Use the ID for the surface you are actually calling.</li>
+<li><strong>Region mismatch on the official route</strong> — Alibaba’s docs are explicit: the model, the endpoint URL, and the API key must belong to the same region, and cross-region calls fail. This presents as an auth or routing error and is not a key typo.</li>
+<li><strong>Delayed failures on bad input</strong> — HappyHorse fetches your image and video URLs server-side. Non-public URLs, oversized files (images over ~10 MB, video over ~100 MB), or wrong formats fail upstream after submission rather than at request time.</li>
+<li><strong>Resolution strings are per-surface</strong> — the official docs enumerate 480P&#x2F;720P&#x2F;1080P and the aggregator listings checked here expose 720P&#x2F;1080P; send the exact enum value the surface documents.</li>
+<li><strong>Watermark on the official route</strong> — on by default. If you must ship without it, set it explicitly in the request and verify the output.</li>
+<li><strong>Content review failures</strong> — like other video models, generations can fail on safety review; a <code>failed</code> status is a normal outcome to handle, and Modellix-style aggregators do not bill failed tasks.</li>
+<li><strong>1.0 is stable but superseded</strong> — HappyHorse 1.1 (June 2026) scores higher and is the default in current official examples. If you are building new, weigh 1.1; if you must match 1.0 output, pin the model ID and re-check that it still lists before you scale.</li>
+</ul>
+<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>How much does the HappyHorse 1.0 API cost per second?</strong></p>
+<p>As of September 8, 2026, Modellix lists T2V, I2V, and R2V at $0.14&#x2F;second at 720P and $0.24&#x2F;second at 1080P, and Video Edit at $0.84&#x2F;$1.44 per second. Direct Alibaba pricing runs through Alibaba’s credit system, with free-trial quota that varies by surface (see the free-tier question below); list prices move, so check the live page for the surface you use.</p>
+<p><strong>Is there a free HappyHorse 1.0 API?</strong></p>
+<p>No free API tier on the aggregator surfaces checked for this article — billing starts on the first generation. Alibaba’s direct channel does have free-trial quota, but the terms differ by surface: Model Studio’s API pricing page grants new users a one-time allowance (Alibaba’s campaign cites a free 10-second generation on activation), while daily free credits have belonged to Qwen’s consumer-facing credit system. Launch-priced credit packs (¥4.50 per credit) have applied on top; terms change, so check the official pricing page for whichever surface you plan to use. The direct Model Studio route also requires the per-region setup described above.</p>
+<p><strong>Which model ID should I use for HappyHorse 1.0?</strong></p>
+<p><code>happyhorse-1.0-t2v</code> on Alibaba Cloud Model Studio; the aggregator route slug for your platform (e.g., <code>alibaba/happyhorse-1.0-t2v</code> on Modellix). IDs differ per surface and are the top source of first-call 404s.</p>
+<p><strong>Can HappyHorse 1.0 generate audio?</strong></p>
+<p>Yes — the model generates video and audio jointly in one pass, so output clips include synchronized native sound without a separate audio model. Video Edit’s <code>audio_setting</code> lets you keep the source audio (<code>origin</code>) or let the model decide (<code>auto</code>).</p>
+<p><strong>Does HappyHorse 1.0 API support image-to-video and video editing?</strong></p>
+<p>Yes, as separate variants: I2V animates a first-frame image, R2V keeps characters consistent across up to nine reference images, and Video Edit restyles or edits an input clip from a text instruction.</p>
+<p><strong>How long can a HappyHorse 1.0 clip be?</strong></p>
+<p>3 to 15 seconds on every variant (default 5). Video Edit accepts input clips up to 60 seconds but outputs 3–15 seconds of edited video.</p>
+<p><strong>Is HappyHorse 1.0 open source?</strong></p>
+<p>Public claims conflict — some pages say open weights are coming, others say the model ships as an API only. Alibaba has confirmed it built the model (through its own Alibaba Cloud blog and Artificial Analysis’s Alibaba-ATH labeling), but has said nothing official about open-sourcing it. This guide covers API access, not weights; do not base an architecture decision on the open-source claims until Alibaba formally confirms whether weights will ship.</p>
+<p><strong>What is the difference between HappyHorse 1.0 and 1.1?</strong></p>
+<p>HappyHorse 1.1 is a June 2026 follow-up on the same surfaces that currently ranks above 1.0 with audio on the Artificial Analysis leaderboard and appears as the default model in current official examples. This article is scoped to 1.0; treat 1.1 as the newer option if you are choosing fresh.</p>
+<hr>
+<p><em>HappyHorse 1.0 model status, availability, and pricing reflect public information and Modellix’s own listings as of September 8, 2026, and change frequently — the model is not yet a year old, Alibaba formally claimed ownership of HappyHorse through its own channels in April 2026 but has not officially named the specific internal unit behind it (its announcement credits the ATH business unit, while other reporting points to the Future Life Lab inside Taotian Group), and per-second rates shift across platforms without notice. Validate model IDs and prices against the specific provider’s live model page before committing budget. This article was written by Modellix, an AI model API aggregator with a commercial interest in the single-key route it describes; the Alibaba Cloud Model Studio material above is vendor documentation and the Modellix prices quoted are a same-day snapshot rather than a standing claim. Access 210+ image, video, and audio models through one API key at modellix.ai.</em></p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Start Generating with HappyHorse 1.0</h3><p class="view-docs-tag-desc">Log in to Modellix to call HappyHorse 1.0 and 210+ other image, video, and audio models through one API key.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">developer-guide</a>
+            
+              <a href="/blog/tags/Alibaba/" class="tag-pill tag-pill--sm">Alibaba</a>
+            
+              <a href="/blog/tags/HappyHorse/" class="tag-pill tag-pill--sm">HappyHorse</a>
+            
+              <a href="/blog/tags/text-to-video/" class="tag-pill tag-pill--sm">text-to-video</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/kling-api-documentation/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-kling-api-documentation.webp" alt="Kling API Documentation: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Kling API Documentation: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-09-07T16:00:00.000Z">September 8, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/minimax-api-platform/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-minimax-api-platform.webp" alt="MiniMax API Platform: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">MiniMax API Platform: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-09-07T16:00:00.000Z">September 8, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/seedream-5-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-seedream-5-api.webp" alt="Seedream 5.0 API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Seedream 5.0 API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-09-07T16:00:00.000Z">September 8, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/happyhorse-1-0-api/&text=HappyHorse%201.0%20API%3A%20Integration%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/happyhorse-1-0-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/happyhorse-1-0-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
