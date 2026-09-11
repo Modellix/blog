@@ -1,0 +1,610 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qwen-Image-Edit API: Integration Guide, Pricing &amp; Code — Modellix Blog</title>
+  <meta name="description" content="Qwen image edit API guide: model IDs, prices read September 9 2026, curl and Python examples, the Modellix route, and the errors that break first integrations.">
+  <meta name="keywords" content="qwen-image-edit api, qwen image edit api pricing, qwen-image-edit plus api, qwen image edit 2509 api, qwen image editing api, qwen image edit api tutorial, qwen image edit api example, qwen image edit api free">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/qwen-image-edit-api/">
+  <meta name="description" content="Qwen image edit API guide: model IDs, prices read September 9 2026, curl and Python examples, the Modellix route, and the errors that break first integrations.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Qwen-Image-Edit API: Integration Guide, Pricing &amp; Code — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/qwen-image-edit-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Qwen image edit API guide: model IDs, prices read September 9 2026, curl and Python examples, the Modellix route, and the errors that break first integrations.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-qwen-image-edit-api.webp">
+<meta property="article:published_time" content="2026-09-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-08T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Image API">
+<meta property="article:tag" content="Image Editing">
+<meta property="article:tag" content="Pricing">
+<meta property="article:tag" content="Qwen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-qwen-image-edit-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Qwen-Image-Edit API: Integration Guide, Pricing & Code","description":"Qwen image edit API guide: model IDs, prices read September 9 2026, curl and Python examples, the Modellix route, and the errors that break first integrations.","datePublished":"2026-09-08T16:00:00.000Z","dateModified":"2026-09-08T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/qwen-image-edit-api/","image":"https://img.modellix.ai/en/article/cover-qwen-image-edit-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Qwen-Image-Edit API: Integration Guide, Pricing &amp; Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Qwen-Image-Edit API: Integration Guide, Pricing &amp; Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-09-08T16:00:00.000Z">September 9, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
+            
+              <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+              <a href="/blog/tags/Image-Editing/" class="tag-pill tag-pill--sm">Image Editing</a>
+            
+              <a href="/blog/tags/Qwen/" class="tag-pill tag-pill--sm">Qwen</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>Alibaba sells image editing under three different naming layers at once.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-qwen-image-edit-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-qwen-image-edit-api.png" alt="MODELLIX editorial cover reading QWEN IMAGE EDIT API over the subtitle PRICING & INTEGRATION GUIDE, with a glass editing workstation turning one input photo into edited output variations" />
+</picture>
+
+<p>Alibaba sells image editing under three different naming layers at once. The open-weights lineage goes <code>Qwen-Image-Edit</code> → <code>-2509</code> → <code>-2511</code>; Alibaba Cloud Model Studio sells dedicated editing tiers called <code>qwen-image-edit</code>, <code>qwen-image-edit-plus</code>, and <code>qwen-image-edit-max</code>; and the newer <code>qwen-image-2.0</code> &#x2F; <code>2.0-pro</code> &#x2F; <code>3.0</code> generations fold editing into the same model IDs they use for generation. Reseller pages bill per image, per megapixel, or not at all — one provider’s “Qwen Image Edit API: Pricing” page currently consists of a single line saying the model is unavailable on its serverless API. If you just want to know which model ID to call, what one edited image costs today, and how to run a first request, the official documentation makes you assemble that from three pages in two regions.</p>
+<p>This guide does it in one pass as of September 9, 2026: what the Qwen image editing API actually is, the model lineup and naming map, official per-image prices read from the live pricing page today, runnable curl and Python for the direct Alibaba route, the parameter traps that cost the most debugging time, and the aggregator route through Modellix for when you do not want a per-vendor Alibaba project. One disclosure up front: Modellix operates this blog and has a commercial interest in the second route, so both sides carry their own prices and the comparison stays like-for-like. For the full family map — <code>qwen-image</code>, <code>plus</code>, <code>max</code>, and the 3.0 generation tiers — see our <a href="https://www.modellix.ai/blog/qwen-image-api/">Qwen Image API guide</a>; this article is the editing deep dive.</p>
+<h2 id="What-the-Qwen-image-editing-API-is-in-2026-one-capability-three-naming-layers"><a href="#What-the-Qwen-image-editing-API-is-in-2026-one-capability-three-naming-layers" class="headerlink" title="What the Qwen image editing API is in 2026: one capability, three naming layers"></a>What the Qwen image editing API is in 2026: one capability, three naming layers</h2><p>The Qwen image editing API is instruction-based editing: you send one to three images plus a sentence describing the change, and the model returns an edited PNG. No mask is required — unlike classic inpainting pipelines, there is no mask-drawing step, no separate segmentation pass, and no per-region prompt. You describe the edit (“change the background to a modern cafe”, “remove the person on the left”, “make the sign read ‘Grand Opening’ in the same font”) and the model handles localization itself. That mask-free workflow is the family’s defining trait and why editing calls reuse the generation API’s request shape.</p>
+<p>What editing models are <em>called</em> is where the confusion starts. Three naming layers describe overlapping capabilities, and most pages document only one of them:</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Model IDs you can call</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Open checkpoints</td>
+<td><code>Qwen-Image-Edit</code>, <code>-2509</code>, <code>-2511</code> (Hugging Face &#x2F; ModelScope)</td>
+<td>The open-weights releases. Not API names — platforms wrap them under their own IDs</td>
+</tr>
+<tr>
+<td>Dedicated editing tiers (Model Studio)</td>
+<td><code>qwen-image-edit</code>, <code>qwen-image-edit-plus</code>, <code>qwen-image-edit-max</code></td>
+<td>Editing-only models, priced per image, each pinned to a dated snapshot (e.g. <code>qwen-image-edit-max-2026-01-16</code>)</td>
+</tr>
+<tr>
+<td>Unified generation + editing (Model Studio)</td>
+<td><code>qwen-image-2.0</code>, <code>qwen-image-2.0-pro</code>, <code>qwen-image-3.0</code>, <code>qwen-image-3.0-pro</code></td>
+<td>One model ID does text-to-image and image editing; the 3.0 series bills input images separately</td>
+</tr>
+</tbody></table>
+<p>The dedicated tiers are the original editing lineup. <code>qwen-image-edit-plus</code> carries the cheapest bulk rate on the page ($0.03 per image, up to six outputs per call); <code>qwen-image-edit</code> is the minimal tier (single-image editing and multi-image fusion, fixed one output); <code>qwen-image-edit-max</code> is the top tier (industrial design, geometric reasoning, character consistency). Alibaba’s own <a target="_blank" rel="noopener" href="https://www.alibabacloud.com/help/en/model-studio/qwen-image-edit-api">editing API reference</a> documents all of them on one page with the same endpoint and the same parameter set. Since Qwen Image 3.0 launched in July 2026, the newer generations serve editing through the unified model IDs instead — <a target="_blank" rel="noopener" href="https://www.alibabacloud.com/help/en/model-studio/qwen-image-generation-and-editing-api-reference">Alibaba’s 3.0 reference</a> describes the same 1–3 input images plus instruction, with 3.0-series input images billed at $0.003 each. If you are integrating the 2.0 generation specifically, our <a href="https://www.modellix.ai/blog/qwen-image-2-0-api/">Qwen Image 2.0 API deep dive</a> covers its dated snapshot IDs and endpoint quirks.</p>
+<p>One disambiguation for the search-confused: Qwen-Image-<strong>2512</strong> is a <em>generation</em> checkpoint, not an editing one — the editing checkpoints are 2509 and 2511.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/qwen-image-edit-lineage.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/qwen-image-edit-lineage.png" alt="Qwen image editing naming layers: open checkpoints, dedicated edit tiers, and the unified 2.0 and 3.0 generations" loading="lazy" />
+</picture>
+
+<p><em>The three naming layers of Qwen image editing, as of September 9, 2026. Diagram generated for this article, not a screenshot of a console.</em></p>
+<h2 id="Qwen-image-edit-API-pricing-read-September-9-2026"><a href="#Qwen-image-edit-API-pricing-read-September-9-2026" class="headerlink" title="Qwen image edit API pricing, read September 9, 2026"></a>Qwen image edit API pricing, read September 9, 2026</h2><p>Official pricing is per successfully generated image — if a call returns three of four requested outputs, you pay for three, and failed calls cost nothing and do not consume free quota. The rates below were read from Alibaba’s <a target="_blank" rel="noopener" href="https://www.alibabacloud.com/help/en/model-studio/model-pricing">Model Studio pricing page</a> on September 9, 2026, Singapore (International) deployment — the one to use without a Chinese mainland account:</p>
+<table>
+<thead>
+<tr>
+<th>Model ID</th>
+<th align="right">Output price (Singapore)</th>
+<th align="right">Outputs per call</th>
+<th align="right">Free quota</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>qwen-image-edit</code></td>
+<td align="right">$0.045 &#x2F; image</td>
+<td align="right">Fixed 1</td>
+<td align="right">100 images</td>
+</tr>
+<tr>
+<td><code>qwen-image-edit-plus</code> (&#x3D; <code>-2025-10-30</code>; <code>-2025-12-15</code> snapshot also $0.03)</td>
+<td align="right">$0.03 &#x2F; image</td>
+<td align="right">1–6</td>
+<td align="right">100 images</td>
+</tr>
+<tr>
+<td><code>qwen-image-edit-max</code> (&#x3D; <code>-2026-01-16</code>)</td>
+<td align="right">$0.075 &#x2F; image</td>
+<td align="right">1–6</td>
+<td align="right">100 images</td>
+</tr>
+<tr>
+<td><code>qwen-image-2.0</code> &#x2F; <code>2.0-pro</code> (unified, edit &#x3D; same rate as generation)</td>
+<td align="right">$0.035 &#x2F; $0.075</td>
+<td align="right">1–6</td>
+<td align="right">100 images</td>
+</tr>
+<tr>
+<td><code>qwen-image-3.0</code></td>
+<td align="right">$0.03 output + $0.003 per input image</td>
+<td align="right">1–6</td>
+<td align="right">10 images</td>
+</tr>
+<tr>
+<td><code>qwen-image-3.0-pro</code></td>
+<td align="right">$0.04 (1K) &#x2F; $0.075 (2K) output + $0.003 per input image</td>
+<td align="right">1–6</td>
+<td align="right">10 images</td>
+</tr>
+</tbody></table>
+<p>Three reading notes. First, the free quota exists <strong>only in the Singapore region</strong>, is valid 90 days from account activation or the model’s release (whichever is later), and does not apply to other regions — Alibaba’s page says so explicitly for every editing model. Second, the two billing generations differ in structure: the dedicated editing tiers and the 2.0 series charge output only, while the 3.0 series adds a $0.003 input fee per image you send (so a single-image 3.0 edit at 1K costs $0.033, and a Pro edit at 2K costs $0.078). Third, treat the whole table as a dated snapshot — these prices move, and the <a href="https://www.modellix.ai/blog/alibaba-api-pricing/">Alibaba API pricing guide</a> tracks the provider catalog if you are budgeting across models.</p>
+<h2 id="Calling-the-Qwen-image-edit-API-directly-on-Alibaba-Cloud-Model-Studio"><a href="#Calling-the-Qwen-image-edit-API-directly-on-Alibaba-Cloud-Model-Studio" class="headerlink" title="Calling the Qwen image edit API directly on Alibaba Cloud Model Studio"></a>Calling the Qwen image edit API directly on Alibaba Cloud Model Studio</h2><p>You need three things: a Model Studio account, an API key, and the workspace ID embedded in the endpoint. The editing models are <strong>synchronous and single-turn</strong> — the API reference states “asynchronous interfaces are not supported”, and each request carries exactly one user message containing one to three images plus exactly one text instruction. Only the legacy text-to-image models <code>qwen-image</code> and <code>qwen-image-plus</code> support the async task workflow; every editing call on this family is a direct request-response.</p>
+<p><strong>Base URL and auth.</strong> Singapore: <code>POST https://&#123;WorkspaceId&#125;.ap-southeast-1.maas.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation</code>. Beijing is a separate deployment (<code>&#123;WorkspaceId&#125;.cn-beijing.maas.aliyuncs.com</code>) with its own API key — <strong>keys and endpoints are region-scoped and cannot be mixed</strong>; a Beijing key against a Singapore endpoint fails with an auth or service error. Input images can be public HTTPS URLs or Base64 (<code>data:image/jpeg;base64,...</code>), up to 10 MB each, in JPG&#x2F;JPEG&#x2F;PNG&#x2F;BMP&#x2F;TIFF&#x2F;WEBP&#x2F;GIF (animated GIFs: only the first frame is processed).</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">curl --location <span class="string">&#x27;https://&#123;WorkspaceId&#125;.ap-southeast-1.maas.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation&#x27;</span> \</span><br><span class="line">--header <span class="string">&#x27;Content-Type: application/json&#x27;</span> \</span><br><span class="line">--header <span class="string">&quot;Authorization: Bearer <span class="variable">$DASHSCOPE_API_KEY</span>&quot;</span> \</span><br><span class="line">--data <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;model&quot;: &quot;qwen-image-edit-max&quot;,</span></span><br><span class="line"><span class="string">    &quot;input&quot;: &#123;</span></span><br><span class="line"><span class="string">      &quot;messages&quot;: [</span></span><br><span class="line"><span class="string">        &#123;</span></span><br><span class="line"><span class="string">          &quot;role&quot;: &quot;user&quot;,</span></span><br><span class="line"><span class="string">          &quot;content&quot;: [</span></span><br><span class="line"><span class="string">            &#123; &quot;image&quot;: &quot;https://your-cdn.example.com/product-shot.png&quot; &#125;,</span></span><br><span class="line"><span class="string">            &#123; &quot;text&quot;: &quot;Change the background to a clean bright studio scene and keep the product pixel-identical.&quot; &#125;</span></span><br><span class="line"><span class="string">          ]</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">      ]</span></span><br><span class="line"><span class="string">    &#125;,</span></span><br><span class="line"><span class="string">    &quot;parameters&quot;: &#123;</span></span><br><span class="line"><span class="string">      &quot;n&quot;: 2,</span></span><br><span class="line"><span class="string">      &quot;negative_prompt&quot;: &quot;blurry, distorted, extra objects&quot;,</span></span><br><span class="line"><span class="string">      &quot;prompt_extend&quot;: true,</span></span><br><span class="line"><span class="string">      &quot;watermark&quot;: false,</span></span><br><span class="line"><span class="string">      &quot;size&quot;: &quot;1536*1024&quot;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>The response returns the edited images as temporary URLs:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;output&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;choices&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;finish_reason&quot;</span><span class="punctuation">:</span> <span class="string">&quot;stop&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;role&quot;</span><span class="punctuation">:</span> <span class="string">&quot;assistant&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;content&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="punctuation">&#123;</span> <span class="attr">&quot;image&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://dashscope-result-xxx.oss-cn-shenzhen.aliyuncs.com/xxx.png?Expires=...&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="punctuation">&#123;</span> <span class="attr">&quot;image&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://dashscope-result-xxx.oss-cn-shenzhen.aliyuncs.com/xxx.png?Expires=...&quot;</span> <span class="punctuation">&#125;</span></span><br><span class="line">          <span class="punctuation">]</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;usage&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;width&quot;</span><span class="punctuation">:</span> <span class="number">1536</span><span class="punctuation">,</span> <span class="attr">&quot;height&quot;</span><span class="punctuation">:</span> <span class="number">1024</span><span class="punctuation">,</span> <span class="attr">&quot;image_count&quot;</span><span class="punctuation">:</span> <span class="number">2</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;request_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;bf37ca26-0abe-98e4-8065-xxxxxx&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>The Python equivalent with the DashScope SDK is the same shape, with the region base URL set explicitly:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> dashscope</span><br><span class="line"><span class="keyword">from</span> dashscope <span class="keyword">import</span> MultiModalConversation</span><br><span class="line"></span><br><span class="line">dashscope.base_http_api_url = <span class="string">&quot;https://&#123;WorkspaceId&#125;.ap-southeast-1.maas.aliyuncs.com/api/v1&quot;</span>  <span class="comment"># Singapore; replace &#123;WorkspaceId&#125;</span></span><br><span class="line"></span><br><span class="line">response = MultiModalConversation.call(</span><br><span class="line">    api_key=os.getenv(<span class="string">&quot;DASHSCOPE_API_KEY&quot;</span>),</span><br><span class="line">    model=<span class="string">&quot;qwen-image-edit-max&quot;</span>,</span><br><span class="line">    messages=[&#123;</span><br><span class="line">        <span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>,</span><br><span class="line">        <span class="string">&quot;content&quot;</span>: [</span><br><span class="line">            &#123;<span class="string">&quot;image&quot;</span>: <span class="string">&quot;https://your-cdn.example.com/product-shot.png&quot;</span>&#125;,</span><br><span class="line">            &#123;<span class="string">&quot;text&quot;</span>: <span class="string">&quot;Change the background to a clean bright studio scene and keep the product pixel-identical.&quot;</span>&#125;,</span><br><span class="line">        ],</span><br><span class="line">    &#125;],</span><br><span class="line">    parameters=&#123;<span class="string">&quot;n&quot;</span>: <span class="number">2</span>, <span class="string">&quot;prompt_extend&quot;</span>: <span class="literal">True</span>, <span class="string">&quot;watermark&quot;</span>: <span class="literal">False</span>&#125;,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> response.status_code == <span class="number">200</span>:</span><br><span class="line">    urls = [c[<span class="string">&quot;image&quot;</span>] <span class="keyword">for</span> c <span class="keyword">in</span> response.output.choices[<span class="number">0</span>].message.content <span class="keyword">if</span> <span class="string">&quot;image&quot;</span> <span class="keyword">in</span> c]</span><br><span class="line">    <span class="built_in">print</span>(urls)  <span class="comment"># download these now — they expire in 24 hours</span></span><br></pre></td></tr></table></figure>
+
+<p>Download result URLs immediately: output images and task data are retained for <strong>24 hours</strong> and then purged. The <code>usage</code> object reports <code>image_count</code> — that is what you are billed on.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/qwen-image-edit-request-flow.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/qwen-image-edit-request-flow.png" alt="Qwen image edit API request flow: input images plus one instruction return edited PNG outputs from the synchronous endpoint" loading="lazy" />
+</picture>
+
+<p><em>Every Qwen editing call on the direct route is one synchronous request: images plus an instruction in, edited PNG URLs out. No mask, no async task, no second endpoint. Diagram generated for this article.</em></p>
+<h2 id="Qwen-image-edit-API-parameters-that-actually-matter"><a href="#Qwen-image-edit-API-parameters-that-actually-matter" class="headerlink" title="Qwen image edit API parameters that actually matter"></a>Qwen image edit API parameters that actually matter</h2><p>The parameter set is small and mostly optional, and four knobs change your results more than the rest:</p>
+<ul>
+<li><strong><code>n</code></strong> — number of output images, 1–6 on <code>edit-plus</code>, <code>edit-max</code>, and the 2.0&#x2F;3.0 unified models; <strong>fixed at 1 on <code>qwen-image-edit</code></strong>.</li>
+<li><strong><code>size</code></strong> — on <code>edit-plus</code>&#x2F;<code>edit-max</code>, each dimension can range 512–2048 (recommended presets for 1:1, 2:3, 3:2, 4:3, 9:16, 16:9, and 21:9 are documented on the reference page); on the 2.0 series, total pixels must land between 512² and 2048²; on <code>qwen-image-edit</code>, resolution is <strong>not customizable</strong> — output follows the input. Values snap to the nearest multiple of 16.</li>
+<li><strong><code>prompt_extend</code></strong> — defaults to <code>true</code> and silently rewrites your instruction for more detail. Leave it on for natural-language edits, off when you need tight composition control. Not supported on <code>qwen-image-edit</code>.</li>
+<li><strong><code>negative_prompt</code></strong> — up to 500 characters, supported on all tiers except the base <code>qwen-image-edit</code>. Useful for “low resolution, distorted hands, warped text”-style exclusions on batch edits.</li>
+</ul>
+<p>Three input constraints bite more often than the parameters do. <strong>Exactly one <code>text</code> object per request</strong> — the content array must contain one to three <code>image</code> objects and a single instruction; a second text object is an error, and multi-turn conversation is not supported, so wrap each edit in its own call. <strong>Image dimensions</strong> between 384 and 3072 pixels give the best results; smaller inputs come back blurry, larger ones just slow the call down. <strong>Prompt length</strong> is capped at 1,300 tokens for the 2.0 series and 800 tokens for the other editing models, with excess silently truncated — if a detailed instruction keeps losing its tail, that cap is why. And the base <code>qwen-image-edit</code> takes no <code>n</code>, no <code>size</code>, no <code>negative_prompt</code>, and no <code>prompt_extend</code> — it is the minimal fusion tier, not a cheaper copy of plus.</p>
+<h2 id="Calling-Qwen-image-editing-through-Modellix-the-two-3-0-Edit-endpoints"><a href="#Calling-Qwen-image-editing-through-Modellix-the-two-3-0-Edit-endpoints" class="headerlink" title="Calling Qwen image editing through Modellix: the two 3.0 Edit endpoints"></a>Calling Qwen image editing through Modellix: the two 3.0 Edit endpoints</h2><p>The direct Alibaba route is the whole story when Qwen editing is your only image workload. The aggregator route exists for the situation where you want Qwen image editing <em>and</em> other vendors’ models behind one key and one bill, without creating a per-vendor cloud account. Same disclosure as the top: Modellix runs this blog and has a commercial interest in this route. What follows is what Modellix’s own catalog shows today, not a claim about any other gateway.</p>
+<p>As of September 9, 2026, Modellix does <strong>not</strong> list the legacy dedicated tiers — requesting <code>qwen-image-edit</code>, <code>edit-plus</code>, or <code>edit-max</code> on its Alibaba provider renders “Model Not Found”. What it does list are the current-generation editing endpoints: <a href="https://www.modellix.ai/models/alibaba/qwen-image-3.0-edit">Qwen Image 3.0 Edit</a> at a displayed $0.0297&#x2F;image and <a href="https://www.modellix.ai/models/alibaba/qwen-image-3.0-pro-edit">Qwen Image 3.0 Pro Edit</a> at $0.0702&#x2F;image, each documented with the request shape below. Those are flat per-image list prices read from the model pages today — Modellix displays one rate where Alibaba’s 3.0 pricing decomposes into output plus a $0.003 input fee, so treat them as a same-day snapshot and re-verify before budgeting.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">curl --request POST \</span><br><span class="line">  --url https://api.modellix.ai/api/v1/alibaba/qwen-image-3.0-edit \</span><br><span class="line">  --header <span class="string">&#x27;Authorization: Bearer $MODELLIX_API_KEY&#x27;</span> \</span><br><span class="line">  --header <span class="string">&#x27;Content-Type: application/json&#x27;</span> \</span><br><span class="line">  --data <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;images&quot;: [</span></span><br><span class="line"><span class="string">      &quot;https://your-cdn.example.com/product-shot.png&quot;</span></span><br><span class="line"><span class="string">    ],</span></span><br><span class="line"><span class="string">    &quot;prompt&quot;: &quot;Change the background to a modern cafe&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>Media generation on Modellix is asynchronous, so the first call returns a task handle rather than an image; poll the returned <code>get_result</code> URL until the status is <code>success</code>, then download the output. If you prefer not to poll, send an <code>X-Webhook-URL</code> header and Modellix POSTs the result when the task finishes — the pattern is in the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api">Modellix API documentation</a> and on the per-model <a target="_blank" rel="noopener" href="https://docs.modellix.ai/alibaba/qwen-image-3-0-edit">Qwen Image 3.0 Edit reference</a>.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Qwen Image Edit on the Modellix API</h3><p class="view-docs-tag-desc">See the async task routes and request schema for the Qwen Image 3.0 Edit endpoints behind one Modellix key.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<p>Why pick the gateway over direct? The honest reasons: one key for Qwen editing <em>and</em> the rest of a multi-vendor media pipeline, no Chinese mainland account needed, per-call cost logs, and pay-as-you-go billing with no prepaid packages. The honest boundary: for a single editing model at high volume, direct Alibaba billing can still be cheaper per image — the Modellix trade is one key and one bill across many vendors, not a guaranteed lower unit price. When editing is one of ten models in a pipeline rather than the whole product, that trade usually wins; our <a href="https://www.modellix.ai/blog/unified-ai-api/">unified AI API explainer</a> covers the architecture.</p>
+<h2 id="Common-Qwen-image-edit-API-errors-and-how-to-fix-them"><a href="#Common-Qwen-image-edit-API-errors-and-how-to-fix-them" class="headerlink" title="Common Qwen image edit API errors and how to fix them"></a>Common Qwen image edit API errors and how to fix them</h2><p>The failures that burn the most time on a first integration are mostly naming and region problems, not model problems:</p>
+<ol>
+<li><strong>Region mismatch.</strong> A Beijing key against the Singapore endpoint fails, and vice versa. Keys, endpoints, and workspace IDs are region-scoped — pick one region and keep all three in sync.</li>
+<li><strong><code>InvalidApiKey</code>.</strong> The key is wrong, or it belongs to a different region&#x2F;deployment than the endpoint you called. Both arrive in the same <code>&#123;&quot;code&quot;, &quot;message&quot;, &quot;request_id&quot;&#125;</code> envelope — check the code before assuming the key is dead.</li>
+<li><strong>More than one <code>text</code> object in the content array.</strong> Exactly one instruction per request and no multi-turn conversation — each edit is its own call.</li>
+<li><strong><code>n</code> rejected on <code>qwen-image-edit</code>.</strong> The base tier is fixed at one output image and takes no custom size, negative prompt, or prompt extension. Sending those parameters returns an error, not a graceful ignore.</li>
+<li><strong>Dead image URL by deploy time.</strong> Result URLs and task data expire after 24 hours. Download to your own storage (S3, R2, your server) at generation time.</li>
+<li><strong>Instruction tail silently dropped.</strong> Prompts over 800 tokens (1,300 on the 2.0 series) are truncated without warning — cut length before blaming the model.</li>
+<li><strong>Image rejected at input.</strong> Over 10 MB or an unsupported format fails the request; keep input dimensions between 384 and 3072 pixels for best results.</li>
+</ol>
+<h2 id="Choosing-an-editing-model-and-a-route"><a href="#Choosing-an-editing-model-and-a-route" class="headerlink" title="Choosing an editing model and a route"></a>Choosing an editing model and a route</h2><p>Editing-model choice comes down to output flexibility and quality tier; route choice comes down to how many vendors your pipeline touches:</p>
+<table>
+<thead>
+<tr>
+<th>Your editing workload</th>
+<th>Start with</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Batch edits at the lowest price, 1–6 outputs per call</td>
+<td><code>qwen-image-edit-plus</code> ($0.03)</td>
+</tr>
+<tr>
+<td>Character&#x2F;object consistency, geometric or industrial edits</td>
+<td><code>qwen-image-edit-max</code> ($0.075)</td>
+</tr>
+<tr>
+<td>Multi-image fusion or single fixed output, minimal params</td>
+<td><code>qwen-image-edit</code> ($0.045) — or <code>qwen-image-edit-plus</code> at <code>n=1</code> ($0.03) when you only need a single output</td>
+</tr>
+<tr>
+<td>One model ID for generation <em>and</em> editing</td>
+<td><code>qwen-image-2.0</code>&#x2F;<code>2.0-pro</code>, or <code>qwen-image-3.0</code>&#x2F;<code>3.0-pro</code> if you also want the newest text rendering</td>
+</tr>
+<tr>
+<td>Many vendors’ models behind one key, no per-vendor account</td>
+<td>Modellix (<code>qwen-image-3.0-edit</code> &#x2F; <code>3.0-pro-edit</code>)</td>
+</tr>
+<tr>
+<td>Self-hosting on your own GPUs</td>
+<td>Open checkpoints (2509&#x2F;2511) on Hugging Face &#x2F; ModelScope</td>
+</tr>
+</tbody></table>
+<p>For the cross-vendor picture of production editing workflows, our <a href="https://www.modellix.ai/blog/image-manipulation-api-guide/">image manipulation API guide</a> maps how editing APIs fit into a pipeline end to end.</p>
+<p>A practical first step that costs a few cents: run the same edit instruction through both routes once, keep the outputs you trust, and log the per-image cost from each bill. Prices above were read on September 9, 2026; pin the date when you record a number and re-check the live pages before you scale.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Start Editing with Qwen on Modellix</h3><p class="view-docs-tag-desc">Log in to Modellix to call Qwen Image 3.0 Edit and 200+ other image and video models through one API key.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>What is the Qwen image editing API?</strong></p>
+<p>The Qwen image editing API is Alibaba’s hosted interface to Qwen’s instruction-based image editing models: send one to three images plus a natural-language instruction, and the model returns edited PNGs without any mask or segmentation step. It is available through Alibaba Cloud Model Studio (DashScope) with dedicated editing tiers (<code>qwen-image-edit</code>, <code>edit-plus</code>, <code>edit-max</code>), through the unified generation-and-editing models (<code>qwen-image-2.0</code>&#x2F;<code>2.0-pro</code>&#x2F;<code>3.0</code>&#x2F;<code>3.0-pro</code>), and through aggregators such as Modellix.</p>
+<p><strong>How much does the Qwen image edit API cost?</strong></p>
+<p>As of September 9, 2026, Singapore-region prices are $0.045 per image for <code>qwen-image-edit</code>, $0.03 for <code>edit-plus</code>, and $0.075 for <code>edit-max</code>, billed per successfully generated image; the 3.0 series charges $0.003 per input image plus $0.03–$0.075 per output depending on model and resolution. All editing models carry a free quota in the Singapore region only (100 images for the dedicated tiers and 2.0 series, 10 for the 3.0 series, valid 90 days).</p>
+<p><strong>Do I need a mask to edit with Qwen-Image-Edit?</strong></p>
+<p>No. Editing is instruction-based and mask-free: you describe the change in natural language and the model localizes it, unlike classic inpainting pipelines that require a drawn mask and a per-region prompt. It shares the generation API’s request shape for that reason.</p>
+<p><strong>What is the difference between qwen-image-edit, edit-plus, and edit-max?</strong></p>
+<p>They are quality tiers of the dedicated editing lineup. <code>qwen-image-edit</code> is the minimal tier: single-image editing and multi-image fusion, one fixed output, no size control. <code>qwen-image-edit-plus</code> ($0.03) adds 1–6 outputs and custom resolutions at the lowest price. <code>qwen-image-edit-max</code> ($0.075) is the top tier, positioned for industrial design, geometric reasoning, and character consistency.</p>
+<p><strong>Can Qwen image editing be called through Modellix?</strong></p>
+<p>Yes — but not every tier. As of September 9, 2026, Modellix’s catalog lists the current-generation endpoints Qwen Image 3.0 Edit ($0.0297&#x2F;image) and Qwen Image 3.0 Pro Edit ($0.0702&#x2F;image) on its Alibaba provider; the legacy <code>qwen-image-edit</code>&#x2F;<code>edit-plus</code>&#x2F;<code>edit-max</code> tiers are not listed. Calls use one API key, one async submit-and-poll pattern, and pay-as-you-go billing.</p>
+<p><strong>Is Qwen-Image-Edit open source?</strong></p>
+<p>The model family is open weights: the original Qwen-Image-Edit release and its 2509&#x2F;2511 checkpoints are distributed on Hugging Face and ModelScope under an Apache-2.0 license — <a target="_blank" rel="noopener" href="https://build.nvidia.com/qwen/qwen-image-edit">NVIDIA’s model card</a> lists Apache-2.0 and commercial use — which is why fal, Replicate, and others host it. Open weights mean you can self-host; the hosted APIs are still billed per image.</p>
+<p><strong>How many images can I edit per request?</strong></p>
+<p>One to three input images (used for editing and for multi-image fusion, with the last image setting the output aspect ratio) and one to six output images, except on the base <code>qwen-image-edit</code>, which accepts a single output only. The output format is always PNG.</p>
+<p><strong>Do I need a Chinese account for the Qwen image edit API?</strong></p>
+<p>No. The Singapore (International) region of Model Studio is open to international accounts and has its own API key and endpoint. Do not mix Singapore and Beijing keys — the two deployments are region-scoped and cross-region calls fail.</p>
+<hr>
+<p><em>Provider details and pricing reflect public information as of September 9, 2026 and change frequently — the editing models, their snapshots, and aggregator listings shift without notice. Validate against Alibaba’s official pricing page and the specific provider’s live model page before committing budget. This article was written by Modellix, an API aggregator with a commercial interest in the single-key route it describes; the official Alibaba integration material above is vendor-neutral, and the Modellix prices quoted are a same-day snapshot rather than a standing claim. Access image and video models, including the leading Chinese models, through a single API key at <a target="_blank" rel="noopener" href="https://modellix.ai/">modellix.ai</a>.</em></p>
+<p><em>Cover image: illustrative Modellix artwork; it is not an Alibaba product screenshot or source evidence.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
+            
+              <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+              <a href="/blog/tags/Image-Editing/" class="tag-pill tag-pill--sm">Image Editing</a>
+            
+              <a href="/blog/tags/Qwen/" class="tag-pill tag-pill--sm">Qwen</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/face-swap-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-face-swap-api.webp" alt="Face Swap API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Face Swap API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-09-08T16:00:00.000Z">September 9, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/nano-banana-gemini-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-nano-banana-gemini-api-v2.webp" alt="Nano Banana Gemini API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Nano Banana Gemini API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-09-08T16:00:00.000Z">September 9, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/openai-video-generation-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-openai-video-generation-api.webp" alt="OpenAI Video Generation API: Integration Guide &amp; Pricing" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">OpenAI Video Generation API: Integration Guide &amp; Pricing</h3>
+          <time class="related-article-date" datetime="2026-09-08T16:00:00.000Z">September 9, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/qwen-image-edit-api/&text=Qwen-Image-Edit%20API%3A%20Integration%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/qwen-image-edit-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/qwen-image-edit-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

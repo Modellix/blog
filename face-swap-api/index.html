@@ -1,0 +1,567 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Face Swap API: Integration Guide, Pricing &amp; Code — Modellix Blog</title>
+  <meta name="description" content="Compare face swap APIs by route and real cost per swap: PiAPI, Magic Hour, Akool, self-hosted inswapper, and Modellix, with a full REST integration example.">
+  <meta name="keywords" content="face swap api, face swap video api, video face swap api, ai face swap api, face swap api python, best face swap api, face swap api pricing, face swap api free">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/face-swap-api/">
+  <meta name="description" content="Compare face swap APIs by route and real cost per swap: PiAPI, Magic Hour, Akool, self-hosted inswapper, and Modellix, with a full REST integration example.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Face Swap API: Integration Guide, Pricing &amp; Code — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/face-swap-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Compare face swap APIs by route and real cost per swap: PiAPI, Magic Hour, Akool, self-hosted inswapper, and Modellix, with a full REST integration example.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-face-swap-api.webp">
+<meta property="article:published_time" content="2026-09-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-08T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI API">
+<meta property="article:tag" content="API Integration">
+<meta property="article:tag" content="Face Swap">
+<meta property="article:tag" content="Image Editing">
+<meta property="article:tag" content="developer-guide">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-face-swap-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Face Swap API: Integration Guide, Pricing & Code","description":"Compare face swap APIs by route and real cost per swap: PiAPI, Magic Hour, Akool, self-hosted inswapper, and Modellix, with a full REST integration example.","datePublished":"2026-09-08T16:00:00.000Z","dateModified":"2026-09-08T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/face-swap-api/","image":"https://img.modellix.ai/en/article/cover-face-swap-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Face Swap API: Integration Guide, Pricing &amp; Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Face Swap API: Integration Guide, Pricing &amp; Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-09-08T16:00:00.000Z">September 9, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">developer-guide</a>
+            
+              <a href="/blog/tags/Image-Editing/" class="tag-pill tag-pill--sm">Image Editing</a>
+            
+              <a href="/blog/tags/AI-API/" class="tag-pill tag-pill--sm">AI API</a>
+            
+              <a href="/blog/tags/Face-Swap/" class="tag-pill tag-pill--sm">Face Swap</a>
+            
+              <a href="/blog/tags/API-Integration/" class="tag-pill tag-pill--sm">API Integration</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>Every face swap API on the market sells you the same operation: you hand over a face and a target image or video, and the service composites one onto the other.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-face-swap-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-face-swap-api.png" alt="MODELLIX editorial cover reading Face Swap API over the subtitle Integration Guide, Pricing and Code, with a glass API gateway, two face thumbnails feeding an exchange node, and a poll loop" />
+</picture>
+
+<p>Every face swap API on the market sells you the same operation: you hand over a face and a target image or video, and the service composites one onto the other. The differences that actually decide your integration are the route you pick — dedicated hosted API, model marketplace, self-hosted stack, or aggregator — and what one swap really costs. Page one of Google won’t answer either in a comparable form: it is a wall of single-vendor pages with incompatible pricing, plus a Reddit thread asking which API is best.</p>
+<p>This guide covers the request shape every provider shares, compares the four routes with prices pulled on September 9, 2026, walks one complete face swap API integration end to end (REST and Python), and closes with the error modes, the consent line, and a three-question decision framework. Everything priced here carries its source and access date — re-verify before you commit budget, because per-image rates and tiers move.</p>
+<h2 id="Every-face-swap-API-shares-one-request-shape"><a href="#Every-face-swap-API-shares-one-request-shape" class="headerlink" title="Every face swap API shares one request shape"></a>Every face swap API shares one request shape</h2><p>Learn the shape once and any vendor’s docs become readable in minutes. A face swap call has two image inputs: the <strong>source</strong> (the face to use — some providers call it <code>swap_image</code>, others <code>source_image</code>) and the <strong>target</strong> (the image or video where the face lands). Behind the scenes the pipeline is detection → swap → blend, often with an enhancement pass such as CodeFormer-style restoration — which is why similar inputs can produce visibly different quality across providers.</p>
+<p>Delivery is where contracts diverge, and it is the first thing to check in any docs page:</p>
+<ul>
+<li><strong>Synchronous</strong>: one request returns the finished image URL. AI Engine’s API, listed on RapidAPI, works this way — “single synchronous request, result in seconds.”</li>
+<li><strong>Asynchronous (the norm)</strong>: you submit a task, get a <code>task_id</code>, then either poll a status endpoint until it completes or register a webhook. PiAPI, Akool, Replicate, and most aggregators use this shape. Video swaps are always async in practice because a job processes many frames.</li>
+<li><strong>Output retention</strong>: results are usually deleted after a window — PiAPI stores outputs on its CDN for three days; Modellix task results live about seven days. Download promptly or regenerate.</li>
+</ul>
+<p>Multi-face handling is the other axis: Akool’s docs cap swaps at 8 faces per job (code 1007), AI Engine targets one of up to 5 faces by index, and some APIs map each detected face to a different identity. If your product swaps a single face into photos, any of these work; group-photo or per-face mapping needs explicit multi-face support — check it before you integrate.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/face-swap-api-lifecycle.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/face-swap-api-lifecycle.png" alt="Face swap API lifecycle: a source face and target image enter a task queue; the client polls the task endpoint until done, then retrieves the result URL" loading="lazy" />
+</picture>
+
+<p><em>Figure: the submit–poll–retrieve lifecycle behind nearly every face swap API. Concept diagram generated for this article, not a screenshot of any vendor’s console.</em></p>
+<h2 id="Face-swap-API-options-the-four-routes-and-what-they-cost"><a href="#Face-swap-API-options-the-four-routes-and-what-they-cost" class="headerlink" title="Face swap API options: the four routes and what they cost"></a>Face swap API options: the four routes and what they cost</h2><p>Prices below are what each provider’s page or docs showed on September 9, 2026, and they are not directly comparable by design — that is the point of listing them side by side. PiAPI and AI Engine quote per-image or per-tier numbers; Magic Hour and Akool sell credits; self-hosting costs GPU time; Replicate prices per model run. “Which is cheapest” is only answerable for your volume and quality bar, so treat the table as a starting map, then verify on the live pages.</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Example</th>
+<th>Entry price (as of 2026-09-09)</th>
+<th>Best for</th>
+<th>Watch out</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Dedicated hosted face swap APIs</td>
+<td><a target="_blank" rel="noopener" href="https://piapi.ai/faceswap-api">PiAPI</a> — $0.02 per image swap; <a target="_blank" rel="noopener" href="https://ai-engine.net/apis/face-swap">AI Engine</a> — free 100 req&#x2F;mo, Pro $12.99&#x2F;mo for 10,000 req (RapidAPI); <a target="_blank" rel="noopener" href="https://magichour.ai/api/face-swap">Magic Hour</a> — $19–$99&#x2F;mo credit subscriptions</td>
+<td>PiAPI $0.02&#x2F;image; AI Engine ≈$0.0013&#x2F;request at full Pro-tier usage (derived from tier math)</td>
+<td>Simple, predictable per-unit cost; fastest time to first request</td>
+<td>Per-unit price says nothing about quality; video and multi-face are separate tiers or products</td>
+</tr>
+<tr>
+<td>Suites with image + video + multi-face</td>
+<td><a target="_blank" rel="noopener" href="https://docs.akool.com/ai-tools-suite/faceswap">Akool Face Swap Plus</a></td>
+<td>credit-based; per-unit not published on the docs page</td>
+<td>Video swaps, multi-face mapping, image and video behind one auth</td>
+<td>Per-unit cost opaque; v3 endpoints need a face-detect pre-call for landmarks</td>
+</tr>
+<tr>
+<td>Model-marketplace runtimes</td>
+<td><a target="_blank" rel="noopener" href="https://replicate.com/collections/face-swap">Replicate’s face-swap collection</a></td>
+<td>per-run, per-model pricing on Replicate</td>
+<td>Running ready-made community face-swap models (image and multi-face workflows) without owning GPUs</td>
+<td>Cost per run varies by model; you assemble the pipeline yourself</td>
+</tr>
+<tr>
+<td>Self-hosted open source</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/ashleykleynhans/faceswap-api">ashleykleynhans&#x2F;faceswap-api</a> — 14 models (inswapper, simswap, ghost, and more), insightface-based</td>
+<td>GPU time: ~5.3 GB of weights; the project’s own benchmark is ~11.6 s per swap on a 4090 Runpod pod</td>
+<td>Full control, data privacy, no per-call fees at very high volume</td>
+<td>You run and secure the infra; quality depends on the model you pick</td>
+</tr>
+<tr>
+<td>Aggregator image-edit route</td>
+<td>Modellix face swap collection</td>
+<td>Kling V3 Omni Image $0.0224–$0.0448&#x2F;image (same-day)</td>
+<td>Face swap as one feature in a multi-vendor media pipeline</td>
+<td>Not a dedicated face-swap model — see the route section below</td>
+</tr>
+</tbody></table>
+<p>One honest note on the derived numbers: AI Engine’s ≈$0.0013&#x2F;request only holds if you fully consume the Pro tier every month. Magic Hour’s and Akool’s credit systems tie per-swap cost to tier and output length — the exact reason a straight “price per swap” comparison is the gap this table only partially fills. When volume matters, put your own images through each shortlist candidate and divide the test bill by completed swaps.</p>
+<h2 id="Integration-example-one-face-swap-request-end-to-end"><a href="#Integration-example-one-face-swap-request-end-to-end" class="headerlink" title="Integration example: one face swap request, end to end"></a>Integration example: one face swap request, end to end</h2><p>The worked example uses PiAPI because its contract is public, its price is a flat $0.02 per image swap, and its submit–poll shape is the one most providers and aggregators share. You need a PiAPI account and API key (sign-up includes trial credits) plus two image URLs: the face you want to use and the target photo.</p>
+<p>The current REST contract, per PiAPI’s docs, is a generic task endpoint rather than a face-swap-specific route:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">API_KEY=<span class="string">&quot;your_piapi_key&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. Submit the swap and capture the task id</span></span><br><span class="line">curl -X POST <span class="string">&quot;https://api.piapi.ai/api/v1/task&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;X-API-Key: <span class="variable">$API_KEY</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;model&quot;: &quot;Qubico/image-toolkit&quot;,</span></span><br><span class="line"><span class="string">    &quot;task_type&quot;: &quot;face-swap&quot;,</span></span><br><span class="line"><span class="string">    &quot;input&quot;: &#123;</span></span><br><span class="line"><span class="string">      &quot;target_image&quot;: &quot;https://example.com/target-photo.jpg&quot;,</span></span><br><span class="line"><span class="string">      &quot;swap_image&quot;: &quot;https://example.com/source-face.jpg&quot;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br><span class="line"><span class="comment"># → &#123; &quot;code&quot;: 200, &quot;data&quot;: &#123; &quot;task_id&quot;: &quot;9d5a…&quot;, &quot;status&quot;: &quot;pending&quot; &#125; &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. Poll the task endpoint until it completes</span></span><br><span class="line">curl -X GET <span class="string">&quot;https://api.piapi.ai/api/v1/task/9d5a…&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;X-API-Key: <span class="variable">$API_KEY</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>The same flow in Python with <code>requests</code>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">API_KEY = <span class="string">&quot;your_piapi_key&quot;</span></span><br><span class="line">BASE = <span class="string">&quot;https://api.piapi.ai&quot;</span></span><br><span class="line">headers = &#123;<span class="string">&quot;X-API-Key&quot;</span>: API_KEY, <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. Submit</span></span><br><span class="line">resp = requests.post(</span><br><span class="line">    <span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/api/v1/task&quot;</span>,</span><br><span class="line">    headers=headers,</span><br><span class="line">    json=&#123;</span><br><span class="line">        <span class="string">&quot;model&quot;</span>: <span class="string">&quot;Qubico/image-toolkit&quot;</span>,</span><br><span class="line">        <span class="string">&quot;task_type&quot;</span>: <span class="string">&quot;face-swap&quot;</span>,</span><br><span class="line">        <span class="string">&quot;input&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;target_image&quot;</span>: <span class="string">&quot;https://example.com/target-photo.jpg&quot;</span>,</span><br><span class="line">            <span class="string">&quot;swap_image&quot;</span>: <span class="string">&quot;https://example.com/source-face.jpg&quot;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">).json()</span><br><span class="line">task_id = resp[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;task_id&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. Poll (task statuses PiAPI documents: &quot;pending&quot; on submit, &quot;completed&quot; when done)</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    data = requests.get(<span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/api/v1/task/<span class="subst">&#123;task_id&#125;</span>&quot;</span>, headers=headers).json()[<span class="string">&quot;data&quot;</span>]</span><br><span class="line">    <span class="keyword">if</span> data[<span class="string">&quot;status&quot;</span>] == <span class="string">&quot;completed&quot;</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    time.sleep(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(data)   <span class="comment"># completed tasks return the result under data[&quot;output&quot;]</span></span><br></pre></td></tr></table></figure>
+
+<p>The response object follows the same envelope as the submit call: <code>code</code>, <code>data</code> (with <code>task_id</code>, <code>status</code>, and an <code>output</code> object), and <code>message</code>. PiAPI’s docs example shows the output object empty, so log the response once during development and read the actual field names rather than hard-coding a path — task types differ across PiAPI’s catalog. On completion you get result image URLs that expire from PiAPI’s CDN after three days.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Where it lives</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>model</code></td>
+<td>body</td>
+<td><code>Qubico/image-toolkit</code> for face swap on PiAPI’s current task API</td>
+</tr>
+<tr>
+<td><code>task_type</code></td>
+<td>body</td>
+<td><code>face-swap</code> selects the operation</td>
+</tr>
+<tr>
+<td><code>target_image</code></td>
+<td><code>input</code></td>
+<td>URL of the photo receiving the face</td>
+</tr>
+<tr>
+<td><code>swap_image</code></td>
+<td><code>input</code></td>
+<td>URL of the source face</td>
+</tr>
+<tr>
+<td><code>X-API-Key</code></td>
+<td>header</td>
+<td>PiAPI workspace key; credits are consumed per completed swap</td>
+</tr>
+</tbody></table>
+<p>Cost accounting is the part most guides skip: at $0.02 per image swap, 1,000 swaps are $20 and 10,000 are $200 — no subscription tier to overshoot. PiAPI’s credits expire 180 days after purchase and refunds are not offered, which matters if you prepay for a project that stalls. For video output, check the vendor’s video endpoint instead: PiAPI documents a separate video faceswap task, and Akool’s Face Swap Plus handles image and video on one API.</p>
+<h2 id="When-the-aggregator-route-makes-sense"><a href="#When-the-aggregator-route-makes-sense" class="headerlink" title="When the aggregator route makes sense"></a>When the aggregator route makes sense</h2><p>Full disclosure up front: Modellix publishes this blog and has a commercial interest in you using its API. The facts below are a same-day snapshot of Modellix’s own pages, verified September 9, 2026 — not a claim that the aggregator route beats any provider.</p>
+<p>The honest starting point is that Modellix does not list a dedicated face-swap model in the inswapper sense. Its <a href="https://www.modellix.ai/collections/face-swap">face swap collection</a> — headlined “Best Face Swap AI Models in 2026,” four models — routes the task through multi-reference image-edit models: the closest fit is <code>kling/kling-v3-omni-image</code>, which accepts several reference images with <code>&lt;&lt;&lt;image_N&gt;&gt;&gt;</code> placeholders and is built for fusing a reference identity into a new image. Same-day list prices on that collection: Kling V3 Omni Image $0.0224–$0.0448 per image, Wan 2.7 Image Pro Edit $0.0675, Seedream 5.0 Lite Edit $0.0350, GPT Image 2 Edit $0.0360–$0.2250. An edit-model route is not identical to a purpose-built swapper, so test with the actual faces and angles your product will see before committing.</p>
+<p>The aggregator route earns its place when face swap is one feature among several in a media pipeline — avatar generation, lip sync, <a href="https://www.modellix.ai/blog/virtual-try-on-api/">virtual try-on</a>, image upscaling — and you want all of them behind one API key and one bill instead of a vendor account per model. Modellix runs the same submit–poll lifecycle shown above, with per-call cost logging, so “what did this feature actually cost us” stays answerable per request. If you are deciding whether a single-key architecture fits your stack at all, our <a href="https://www.modellix.ai/blog/unified-ai-api/">unified AI API explainer</a> covers the trade-offs in depth.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Modellix REST API documentation</h3><p class="view-docs-tag-desc">See the async task routes, model IDs, and per-call pricing for face-swap-capable image models behind one Modellix key.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Errors-retention-and-the-consent-line"><a href="#Errors-retention-and-the-consent-line" class="headerlink" title="Errors, retention, and the consent line"></a>Errors, retention, and the consent line</h2><p>The failures that cost time on a first face swap integration are predictable. Auth errors mean a bad key or expired session; quota errors mean an empty credit balance; parameter errors are usually a wrong field name or an input URL the service cannot fetch. Face-count limits bite on group photos — Akool rejects jobs over 8 faces (code 1007), and AI Engine targets one of up to 5 faces by index. A <code>failed</code> status usually means an obscured or heavily angled face in the target; the fix is well-lit, front-facing, high-resolution inputs.</p>
+<p>Retention windows deserve a place in your error handling: PiAPI deletes outputs after three days, Modellix task results last about seven days, and self-hosted stacks keep everything until you delete it. If your pipeline stores results, download from the provider’s CDN into your own storage inside that window and treat provider URLs as temporary.</p>
+<p>Then there is the line that is not an error code. Swap only faces you have the right to use — your own likeness, or someone who consented to the specific use — and do not build features whose purpose is deception, harassment, or fraud. This is not legal advice, and obligations vary by jurisdiction as deepfake and likeness laws evolve; the practical version for a developer is: put a consent step in your product flow, keep an audit trail of which faces were used for what, and read your app store and platform policies before shipping. It is also a business decision — the vendors that make the news for non-consensual swaps are the ones whose APIs get restricted.</p>
+<h2 id="Which-face-swap-API-should-a-new-integration-pick"><a href="#Which-face-swap-API-should-a-new-integration-pick" class="headerlink" title="Which face swap API should a new integration pick?"></a>Which face swap API should a new integration pick?</h2><p>Three questions decide the route. <strong>What media types does the feature need?</strong> Image-only lets you pick any dedicated API or the aggregator route; video and GIF support narrows you to suite providers (Akool, Magic Hour) or a video-specific endpoint. <strong>What is your volume and cost model?</strong> At a few thousand swaps a month, per-unit pricing like PiAPI’s $0.02&#x2F;image is trivially predictable; at hundreds of thousands, negotiate volume pricing or price a self-hosted stack — the faceswap-api project’s own benchmark of ~11.6 seconds per swap on a 4090-class pod is the number to start from, plus ~5.3 GB of model weights and the ops time. <strong>How much control and privacy do you need?</strong> Faces are biometric-adjacent data; if your contracts require data residency or zero third-party retention, self-hosting is the only route that guarantees it.</p>
+<p>For most first integrations: prototype on a dedicated hosted API with trial credits, measure real quality on your own images, and move to volume pricing or self-hosting only when the numbers justify the ops. If face swap is one feature in a larger AI media product, weigh the aggregator route before multiplying API accounts — one key and one bill is a feature of its own. And if the actual goal is generating avatars or identities from a face rather than swapping into a target, our <a href="https://www.modellix.ai/blog/ai-avatar-api/">AI avatar API guide</a> covers that adjacent problem.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Start building with face-swap-capable models</h3><p class="view-docs-tag-desc">Log in to Modellix to call image-edit models and 210+ other image and video models through one API key.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>Is there a free face swap API?</strong></p>
+<p>Most hosted providers give trial credits on signup rather than a permanent free tier — PiAPI includes credits with a new workspace, and Magic Hour offers free credits on signup with watermarked output on free usage. Trial credits are enough to validate quality; production-scale free tiers are rare, so budget from day one.</p>
+<p><strong>How much does a face swap API cost per image?</strong></p>
+<p>As of September 9, 2026: PiAPI lists $0.02 per image swap with pay-as-you-use credits; AI Engine’s RapidAPI tiers work out to roughly $0.0013 per request at the $12.99&#x2F;mo Pro tier only if fully consumed; Magic Hour and Akool sell credit subscriptions whose per-swap cost depends on tier and output; self-hosting costs GPU time. All figures are same-day snapshots — check the live pages.</p>
+<p><strong>Can I call a face swap API from Python?</strong></p>
+<p>Yes — the integration example above is a complete Python flow (submit with <code>requests</code>, poll the task endpoint, read the output). Some vendors also ship SDKs: Magic Hour publishes Python, Node.js, Go, and Rust clients.</p>
+<p><strong>Can I run face swap models myself instead of paying per call?</strong></p>
+<p>Yes. The open-source faceswap-api project linked in the route table packages 14 models — inswapper, simswap, ghost, hififace, and others — behind a FastAPI service with a serial GPU queue, CodeFormer restoration, and ~5.3 GB of downloads. You supply the GPU: its own benchmark is roughly 11.6 seconds per swap on a 4090-class pod. Marketplace runtimes such as Replicate’s face-swap collection sit in between — community models without you owning the GPU.</p>
+<p><strong>Does a face swap API support video and GIF?</strong></p>
+<p>Some do. Magic Hour handles photos, videos, and GIFs in one API; Akool’s Face Swap Plus covers image and video with multi-face mapping; PiAPI documents a separate video faceswap task. Video jobs process frame by frame, so they run longer and cost more than stills — check the video tier before promising your users real-time turnaround.</p>
+<p><strong>How long do face swap results stay available?</strong></p>
+<p>Typically days, not forever: PiAPI deletes outputs from its CDN after three days, and Modellix task results are retained about seven days. Download results into your own storage inside the retention window and treat provider URLs as temporary links.</p>
+<p><strong>Is it legal to offer face swapping in my product?</strong></p>
+<p>That depends on consent, likeness rights, and jurisdiction — this is not legal advice. The working rule for developers: only use faces you have permission to use for the specific purpose, add a consent step to your product flow, and check platform policies, since deepfake and likeness regulation is evolving in several regions.</p>
+<hr>
+<p><em>Provider details and pricing reflect public information as of September 9, 2026 and change frequently — per-image rates, credit systems, retention windows, and model IDs all move. Validate against each provider’s live pricing and docs before committing. Modellix, which publishes this article and has a commercial interest in its own route, verified its model prices on the same date; the third-party integration material above is vendor-neutral. Access image and video models, including the leading Chinese models, through a single API key at <a target="_blank" rel="noopener" href="https://modellix.ai/">modellix.ai</a>.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">developer-guide</a>
+            
+              <a href="/blog/tags/Image-Editing/" class="tag-pill tag-pill--sm">Image Editing</a>
+            
+              <a href="/blog/tags/AI-API/" class="tag-pill tag-pill--sm">AI API</a>
+            
+              <a href="/blog/tags/Face-Swap/" class="tag-pill tag-pill--sm">Face Swap</a>
+            
+              <a href="/blog/tags/API-Integration/" class="tag-pill tag-pill--sm">API Integration</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/nano-banana-gemini-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-nano-banana-gemini-api-v2.webp" alt="Nano Banana Gemini API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Nano Banana Gemini API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-09-08T16:00:00.000Z">September 9, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/openai-video-generation-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-openai-video-generation-api.webp" alt="OpenAI Video Generation API: Integration Guide &amp; Pricing" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">OpenAI Video Generation API: Integration Guide &amp; Pricing</h3>
+          <time class="related-article-date" datetime="2026-09-08T16:00:00.000Z">September 9, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/qwen-image-edit-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-qwen-image-edit-api.webp" alt="Qwen-Image-Edit API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Qwen-Image-Edit API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-09-08T16:00:00.000Z">September 9, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/face-swap-api/&text=Face%20Swap%20API%3A%20Integration%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/face-swap-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/face-swap-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
