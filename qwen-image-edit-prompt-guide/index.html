@@ -1,0 +1,653 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qwen-Image-Edit Prompt Guide: Patterns, Pricing &amp; Code — Modellix Blog</title>
+  <meta name="description" content="Qwen-Image-Edit prompt patterns drawn from the model&#39;s own prompt rewriter: five instruction slots, image numbering, six edit types, failure fixes, live prices.">
+  <meta name="keywords" content="qwen-image edit prompt guide, qwen image edit prompt, qwen image edit prompts, qwen prompting guide, qwen image edit instructions, how to use qwen image edit, qwen-image-edit prompting, qwen image edit character consistency">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/qwen-image-edit-prompt-guide/">
+  <meta name="description" content="Qwen-Image-Edit prompt patterns drawn from the model&#39;s own prompt rewriter: five instruction slots, image numbering, six edit types, failure fixes, live prices.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Qwen-Image-Edit Prompt Guide: Patterns, Pricing &amp; Code — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/qwen-image-edit-prompt-guide/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Qwen-Image-Edit prompt patterns drawn from the model&#39;s own prompt rewriter: five instruction slots, image numbering, six edit types, failure fixes, live prices.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-qwen-image-edit-prompt-guide.webp">
+<meta property="article:published_time" content="2026-09-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-09T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Image API">
+<meta property="article:tag" content="Image Editing">
+<meta property="article:tag" content="Prompt Engineering">
+<meta property="article:tag" content="Qwen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-qwen-image-edit-prompt-guide.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Qwen-Image-Edit Prompt Guide: Patterns, Pricing & Code","description":"Qwen-Image-Edit prompt patterns drawn from the model's own prompt rewriter: five instruction slots, image numbering, six edit types, failure fixes, live prices.","datePublished":"2026-09-09T16:00:00.000Z","dateModified":"2026-09-09T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/qwen-image-edit-prompt-guide/","image":"https://statics.mylandingpages.co/static/modellix/image/cover-qwen-image-edit-prompt-guide.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Qwen-Image-Edit Prompt Guide: Patterns, Pricing &amp; Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Qwen-Image-Edit Prompt Guide: Patterns, Pricing &amp; Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-09-09T16:00:00.000Z">September 10, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
+            
+              <a href="/blog/tags/Image-Editing/" class="tag-pill tag-pill--sm">Image Editing</a>
+            
+              <a href="/blog/tags/Qwen/" class="tag-pill tag-pill--sm">Qwen</a>
+            
+              <a href="/blog/tags/Prompt-Engineering/" class="tag-pill tag-pill--sm">Prompt Engineering</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.srcgptbots.com/blog/author/20260409/modellix-blog-author-official@2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>Qwen-Image-Edit does not need a better prompt. It needs a differently shaped one. You send one to three images plus a single instruction, and the model returns an edited PNG — no mask, no second pass.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/cover-qwen-image-edit-prompt-guide.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/cover-qwen-image-edit-prompt-guide.png" alt="MODELLIX editorial cover reading QWEN-IMAGE EDIT over the subtitle PROMPT GUIDE & CODE, with a glass editing module turning one instruction card and three reference frames into edited output images" />
+</picture>
+
+<p>Qwen-Image-Edit does not need a better prompt. It needs a <em>differently shaped</em> one. You send one to three images plus a single instruction, and the model returns an edited PNG — no mask, no second pass. When that goes wrong, the failure is almost never “the prompt was too plain.” It is that the instruction described a scene instead of a change, buried the change behind description, or never said which of the three images it meant. That is why a Qwen-Image-Edit prompt guide has to be about instruction <em>shape</em> rather than prompt length — and why one of the highest-ranking results on this topic is a forum thread asking for exactly that guide, still unanswered as of September 10, 2026.</p>
+<p>This article is the answer that thread never got. It is the prompt-craft half of a pair: model IDs, endpoints, parameters and the full price table live in our <a href="https://www.modellix.ai/blog/qwen-image-api/">Qwen Image API guide</a>; here we stay on the sentence you type. Every rule below traces to Qwen’s own repository or Alibaba’s official documentation, linked where it appears, and every dated fact carries the date it was read. One disclosure, up front: Modellix runs this blog and sells a single-key route to these models, so the route section at the end is not neutral. The prompt patterns are — they behave the same whichever door you come in through.</p>
+<h2 id="Why-most-Qwen-Image-Edit-prompt-guides-fail-and-why-a-longer-prompt-is-not-the-fix"><a href="#Why-most-Qwen-Image-Edit-prompt-guides-fail-and-why-a-longer-prompt-is-not-the-fix" class="headerlink" title="Why most Qwen-Image-Edit prompt guides fail (and why a longer prompt is not the fix)"></a>Why most Qwen-Image-Edit prompt guides fail (and why a longer prompt is not the fix)</h2><p>Qwen-Image-Edit is built on the 20B Qwen-Image base and reads your input through two paths at once — a vision-language encoder for semantics, a VAE encoder for appearance. That is why <a target="_blank" rel="noopener" href="https://qwenlm.github.io/blog/qwen-image-edit/">Qwen’s own launch post</a> splits editing into <strong>semantic editing</strong> (the whole frame may change; the meaning must survive) and <strong>appearance editing</strong> (change one thing; everything else stays pixel-stable). The distinction is the most useful thing on the official page, and it is announced rather than taught: the post ships 22 output images and not one prompt string.</p>
+<p>The practical consequence inverts what most guides say. A text-to-image model wants a rich description; an edit model wants an <em>instruction</em> plus a declaration of what must not move. Write it like a generator and two failures follow:</p>
+<ol>
+<li><strong>The instruction gets diluted.</strong> Three sentences of scene description with the verb at the end read as a target state, and the model repaints toward it — a background swap becomes a full restyle.</li>
+<li><strong>The instruction gets rewritten for you.</strong> Qwen’s hosted editing models run intelligent prompt rewriting by default (<code>prompt_extend: true</code>, documented as most effective for short or simple prompts). Missing information gets filled in — with a reasonable guess, not your intent.</li>
+</ol>
+<p>The fix is not length. It is completeness in a specific shape, and Qwen published that shape in code — in the <code>Edit Prompt Enhancer</code> that ships inside the model’s own repository.</p>
+<h2 id="What-a-Qwen-Image-Edit-prompt-is-made-of-the-five-slots"><a href="#What-a-Qwen-Image-Edit-prompt-is-made-of-the-five-slots" class="headerlink" title="What a Qwen-Image-Edit prompt is made of: the five slots"></a>What a Qwen-Image-Edit prompt is made of: the five slots</h2><p>The QwenLM organisation ships a sample prompt rewriter in its own repository — <a target="_blank" rel="noopener" href="https://github.com/QwenLM/Qwen-Image/blob/main/src/examples/tools/prompt_utils.py"><code>src/examples/tools/prompt_utils.py</code></a>, function <code>polish_edit_prompt()</code>. Its system prompt, <em>Edit Prompt Enhancer</em>, opens with the most valuable sentence in this topic:</p>
+<blockquote>
+<p>“If the instruction is clear (already includes <strong>task type, target entity, position, quantity, attributes</strong>), preserve the original intent and only refine the grammar. If the description is vague, supplement with minimal but sufficient details (category, color, size, orientation, position, etc.).”</p>
+</blockquote>
+<p>That parenthetical is a checklist. An edit instruction is complete when it carries five slots:</p>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Answers</th>
+<th>Weak</th>
+<th>Complete</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Task type</td>
+<td>add &#x2F; remove &#x2F; replace &#x2F; change</td>
+<td>“make it nicer”</td>
+<td>“Replace … with …”</td>
+</tr>
+<tr>
+<td>Target entity</td>
+<td>what is being edited</td>
+<td>“the thing on the left”</td>
+<td>“the person’s hat”</td>
+</tr>
+<tr>
+<td>Position</td>
+<td>where in the frame</td>
+<td><em>(missing)</em></td>
+<td>“in the bottom-right corner”</td>
+</tr>
+<tr>
+<td>Quantity</td>
+<td>how many</td>
+<td>“add animals”</td>
+<td>“add one cat”</td>
+</tr>
+<tr>
+<td>Attributes</td>
+<td>colour, size, material, orientation, style</td>
+<td>“a new bag”</td>
+<td>“a small canvas tote bag”</td>
+</tr>
+</tbody></table>
+<p>The official vague-versus-rewritten pair shows the gap concretely: <code>Add an animal</code> becomes <code>Add a light-gray cat in the bottom-right corner, sitting and facing the camera</code>. Same intent, four more slots. When your instruction already carries all five, the enhancer’s own instruction is to <em>leave it alone</em> — the strongest available argument against padding.</p>
+<p>Three more rules from the same file, worth knowing before you write:</p>
+<ul>
+<li><strong>Replacement has a canonical order.</strong> Say “Replace Y with X” and briefly describe X’s key visual features. “Change the statue to something else” leaves X undefined, so the model defines it.</li>
+<li><strong>Some edits are fixed templates.</strong> Colorization and old-photo restoration use <code>Restore and colorize the photo.</code> Inpainting and outpainting open with fixed lines (<code>Perform inpainting on this image. The original caption is: …</code>). Deviating is not creative; it is out of distribution.</li>
+<li><strong>Contradictions get corrected, not obeyed.</strong> The enhancer names the case outright (“remove all trees but keep all trees”). Expect the model to resolve a conflict its own way.</li>
+</ul>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/qwen-image-edit-instruction-shape.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/qwen-image-edit-instruction-shape.png" alt="Alibaba Cloud Model Studio's Qwen-Image-Edit guide, Input instructions section, showing that a request content array must contain one to three image objects and exactly one text editing instruction" loading="lazy" />
+</picture>
+
+<p><em>The hard constraint behind the five slots: the official guide states the request must carry one to three <code>image</code> objects and exactly one <code>text</code> editing instruction, with input frames in JPG, JPEG, PNG, BMP, TIFF, WEBP or GIF, sized between 384 and 3072 pixels and no larger than 10 MB each. Screenshot of the Alibaba Cloud Model Studio documentation, captured September 10, 2026.</em></p>
+<h2 id="Referring-to-images-by-number-how-the-model-knows-which-picture-you-mean"><a href="#Referring-to-images-by-number-how-the-model-knows-which-picture-you-mean" class="headerlink" title="Referring to images by number: how the model knows which picture you mean"></a>Referring to images by number: how the model knows which picture you mean</h2><p>Multi-image edits are where instructions break most often, and the fix is one paragraph of <a target="_blank" rel="noopener" href="https://www.alibabacloud.com/help/en/model-studio/qwen-image-edit-guide">Alibaba’s official editing guide</a> almost nobody quotes: <strong>image numbers correspond to array position.</strong> The first image in your array is “image 1”, the second is “image 2”, and you can bracket them — <code>[image 1]</code>, <code>[image 2]</code> — to remove ambiguity.</p>
+<p>That makes the useful unit of thought not “an image plus a prompt” but <strong>a role assignment per slot</strong>. Every official example sentence does the same two things: names the image each element comes from, and names the single thing that changes.</p>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Official example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Donor onto target</td>
+<td><code>The girl in Image 1 wears the black dress from Image 2 and sits in the pose from Image 3.</code></td>
+</tr>
+<tr>
+<td>Object into scene</td>
+<td><code>Place the alarm clock from image 1 next to the vase on the dining table in image 2.</code></td>
+</tr>
+<tr>
+<td>Accessory stacking</td>
+<td><code>The girl in Image 1 wears the necklace from Image 2 and carries the bag from Image 3 on her left shoulder.</code></td>
+</tr>
+</tbody></table>
+<p>The Qwen enhancer states the multi-image rule outright: rewritten prompts “must clearly point out which image’s element is being modified.” Its worked example adds the half most people omit — <code>Replace the girl of picture 1 with the boy of picture 2, **keeping picture 2&#39;s background unchanged**.</code> Target named, donor named, invariant stated.</p>
+<p>Two operational details bite in production. <strong>More is not better</strong>: <a target="_blank" rel="noopener" href="https://huggingface.co/Qwen/Qwen-Image-Edit-2509">Qwen’s model card for the 2509 generation</a> records that optimal performance is “currently achieved with 1 to 3 input images,” and both the official guide and the 3.0 reference cap input at three. And <strong>the last image can set your output frame</strong> — on the unified 2.0-series models the default output resolution is the same as the input image, and the documentation specifies the <em>last</em> one when several are sent; on the 3.0 series the documented default is a resolution chosen from the prompt instead. Either way, send a portrait donor last while expecting landscape and you will not get landscape. Set <code>size</code> explicitly when the frame matters. If you want the reference-image ceiling of the whole family side by side before choosing a tier, the <a href="https://www.modellix.ai/series/qwen-image/">Qwen Image series hub</a> lists what each generation accepts.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/qwen-image-edit-multi-image-fusion.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/qwen-image-edit-multi-image-fusion.png" alt="The official multi-image fusion example from Alibaba's Qwen-Image-Edit guide, showing three labelled input images feeding a single output image" loading="lazy" />
+</picture>
+
+<p><em>Alibaba’s official <em>Multi-image fusion</em> example block: Input image 1, 2 and 3 map to a single edited output — the arrangement the numbering rule in your prompt depends on. Screenshot of the Alibaba Cloud Model Studio documentation, captured September 10, 2026.</em></p>
+<h2 id="Instruction-patterns-that-work-edit-type-by-edit-type"><a href="#Instruction-patterns-that-work-edit-type-by-edit-type" class="headerlink" title="Instruction patterns that work, edit type by edit type"></a>Instruction patterns that work, edit type by edit type</h2><p>Every pattern below follows the same shape: the instruction, what it does, why the phrasing matters, and what it looks like when it breaks. Examples are the vendor’s own, quoted from the official guide unless noted.</p>
+<h3 id="Replacing-text-inside-the-image"><a href="#Replacing-text-inside-the-image" class="headerlink" title="Replacing text inside the image"></a>Replacing text inside the image</h3><p><strong>Instruction:</strong> <code>Replace &quot;HEALTH INSURANCE&quot; on the Scrabble tiles with &quot;Tomorrow Will Be Better&quot;.</code><br><strong>Why it works:</strong> literal text goes in ASCII double quotes with its original language and capitalisation kept — the enhancer’s text rule requires it, and it treats <em>adding</em> text as a replacement task too. Since 2509 this covers font, colour and material as well (<code>Change &quot;Qwen-Image&quot; to a black ink-drip font</code>, <code>Change the material of &quot;Qwen-Image&quot; to glass</code>).<br><strong>When it breaks:</strong> long strings, or several text regions in one call, come back as plausible-looking garbage. Shorten the string; keep one text region per call.</p>
+<h3 id="Adding-removing-and-moving-an-object"><a href="#Adding-removing-and-moving-an-object" class="headerlink" title="Adding, removing and moving an object"></a>Adding, removing and moving an object</h3><p><strong>Instruction:</strong> <code>Add a small wooden sign in front of the penguin that says &quot;Welcome to Penguin Beach&quot;.</code> &#x2F; <code>Remove the hair from the plate.</code><br><strong>Why it works:</strong> the object is named by category <em>and</em> position — exactly the slots the enhancer inserts when they are missing.<br><strong>When it breaks:</strong> <code>Remove the object</code> leaves the model to decide what “the object” is. Name it the way you would to a retoucher, and for removals say what should replace it, since the model must generate something where the object was.</p>
+<h3 id="Replacing-the-background-or-the-scene"><a href="#Replacing-the-background-or-the-scene" class="headerlink" title="Replacing the background or the scene"></a>Replacing the background or the scene</h3><p><strong>Instruction:</strong> <code>The air conditioner is placed in a living room next to a sofa.</code> plus a preservation clause.<br><strong>Why it works:</strong> background replacement is an appearance edit, and the difference between a clean composite and a cut-and-paste look is whether you declared the invariant. This is the highest-frequency edit type on this topic’s SERP, and the type where the semantic&#x2F;appearance split earns its keep.<br><strong>When it breaks:</strong> the subject drifts — new outfit, new pose, softened face. Add the preservation clause (<code>keep the person unchanged</code>, <code>keep the product pixel-identical</code>) and, if it still drifts, disable prompt rewriting for that call.</p>
+<h3 id="Transferring-a-style-from-a-reference-image"><a href="#Transferring-a-style-from-a-reference-image" class="headerlink" title="Transferring a style from a reference image"></a>Transferring a style from a reference image</h3><p><strong>Instruction:</strong> <code>Change the girl in Picture 1 to the ink-wash style of Picture 2 — rendered in black-and-white watercolor with soft color transitions.</code><br><strong>Why it works:</strong> the enhancer forbids naming a style and stopping. It asks for the reference’s key characteristics — colour, composition, texture, lighting, artistic style — spelled out. <code>Disco style</code> is weak; <code>1970s disco style: flashing lights, disco ball, mirrored walls, colorful tones</code> is the corrected form.<br><strong>When it breaks:</strong> you get a generic filter instead of the reference’s actual style, because the model had to guess which features you meant. If other changes are also wanted, the enhancer’s ordering rule applies: put the style description last.</p>
+<h3 id="Changing-pose-viewpoint-or-lighting"><a href="#Changing-pose-viewpoint-or-lighting" class="headerlink" title="Changing pose, viewpoint or lighting"></a>Changing pose, viewpoint or lighting</h3><p><strong>Instruction:</strong> <code>Get a front view.</code> &#x2F; <code>Face left.</code> &#x2F; <code>Get a rear view.</code><br><strong>Why it works:</strong> the official examples are two to four words. This is the clearest counter-example to “write more” — the change is unambiguous, so the instruction stays short.<br><strong>When it breaks:</strong> at large angle changes the identity drifts. Since 2509 the family accepts depth maps, edge maps and keypoint maps as ordinary reference images, which is the documented way to pin a pose instead of describing it.</p>
+<h3 id="Restoring-and-colorizing-an-old-photo"><a href="#Restoring-and-colorizing-an-old-photo" class="headerlink" title="Restoring and colorizing an old photo"></a>Restoring and colorizing an old photo</h3><p><strong>Instruction:</strong> <code>Restore and colorize the photo.</code> (fixed template)<br><strong>Why it works:</strong> the enhancer hard-codes that phrasing for colorization and restoration, making this the one place where the shortest instruction is also the correct one. The official showcase prompt adds a positive tail worth copying: <code>… remove scratches, reduce noise, enhance details, high resolution, realistic image, natural skin tone, clear facial features, no distortion.</code><br><strong>When it breaks:</strong> you stack creative instructions on top. Restoration wants the invariant preserved, not a redesign.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/qwen-image-edit-text-editing-examples.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/qwen-image-edit-text-editing-examples.png" alt="Alibaba's official text-editing example block, pairing input images with edited outputs for prompts that replace the words on Scrabble tiles and on a handwritten note" loading="lazy" />
+</picture>
+
+<p><em>The official text-editing examples, and the closest thing on the vendor’s site to an instruction paired with its result: <code>Replace &#39;HEALTH INSURANCE&#39; on the Scrabble tiles with &#39;Tomorrow Will Be Better&#39;</code> and <code>Change the phrase &quot;Take a Breather&quot; on the note to &quot;Relax and Recharge&quot;</code>. Screenshot of the Alibaba Cloud Model Studio documentation, captured September 10, 2026.</em></p>
+<p>Six edit types cover most production work, and the instruction for each is a variation on the same skeleton: name the target, name the change, name what must not move. Where those six sit next to the deterministic transforms you should not be prompting for at all — cropping, upscaling, colour correction — is mapped in our <a href="https://www.modellix.ai/blog/image-manipulation-api-guide/">image manipulation API guide</a>.</p>
+<h2 id="Keeping-the-subject-the-same-consistency-is-a-prompting-problem"><a href="#Keeping-the-subject-the-same-consistency-is-a-prompting-problem" class="headerlink" title="Keeping the subject the same: consistency is a prompting problem"></a>Keeping the subject the same: consistency is a prompting problem</h2><p>Consistency is usually sold as a capability. It behaves like an instruction problem, and the enhancer treats it like one: for any instruction touching a person it requires emphasis on that person’s “core visual consistency (ethnicity, gender, age, hairstyle, expression, outfit)”. Its worked example doubles as a template:</p>
+<blockquote>
+<p><code>Change the person&#39;s hat</code> → <code>Replace the man&#39;s hat with a dark brown beret; **keep smile, short hair, and gray jacket unchanged**.</code></p>
+</blockquote>
+<p>Two rules ride along. New elements must be consistent with the original style, and cosmetic changes — expression, beauty, makeup — “must be natural and subtle, never exaggerated.”</p>
+<p>The failure this prevents has a name in Qwen’s release notes. The 2511 generation lists <strong>mitigate image drift</strong> as its first enhancement over 2509, alongside improved character consistency — including multi-person group shots — and integrated LoRA capabilities, with stronger product consistency arriving a generation earlier in 2509. Drift is what happens when the instruction’s blast radius is left unspecified: the model obeys your verb and repaints the neighbourhood. The fix has the same shape in all four domains:</p>
+<ul>
+<li><strong>People:</strong> name the invariants (face, hair, expression, outfit), then the change.</li>
+<li><strong>Products:</strong> say the product must stay identifiable, then place it — the same mechanic that lets the model build a poster from a plain-background product shot.</li>
+<li><strong>Text:</strong> name the string, then the font, colour or material change.</li>
+<li><strong>Scenes:</strong> state what must not move before you state what must.</li>
+</ul>
+<p>If you take one habit from this article, take that ordering: <strong>invariant first, change second.</strong> It reads backwards to anyone used to writing image prompts, which is exactly why it works here. Consistency behaviour also moves between generations — the <a href="https://www.modellix.ai/blog/qwen-image-2-0-api/">Qwen Image 2.0 API deep dive</a> covers what the previous generation does differently when generation and editing share one model ID.</p>
+<h2 id="When-the-edit-goes-wrong-symptom-→-cause-→-rewrite"><a href="#When-the-edit-goes-wrong-symptom-→-cause-→-rewrite" class="headerlink" title="When the edit goes wrong: symptom → cause → rewrite"></a>When the edit goes wrong: symptom → cause → rewrite</h2><p>Most edit failures are diagnosable from the instruction alone. Keep this table open while iterating.</p>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>The rewrite</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Nothing changed</td>
+<td>Instruction buried after scene description, or two competing actions in one call</td>
+<td>Lead with the imperative verb; one action per call</td>
+</tr>
+<tr>
+<td>Far more changed than asked</td>
+<td>No preservation clause, and prompt rewriting filled the gaps</td>
+<td>Add “keep everything else unchanged”, naming the invariants; set <code>prompt_extend: false</code> when composition must hold</td>
+</tr>
+<tr>
+<td>Extra objects appeared</td>
+<td>Vague noun (“add something festive”)</td>
+<td>Add category, colour, size, orientation and position</td>
+</tr>
+<tr>
+<td>Text came back malformed</td>
+<td>String too long, or several text regions in one call</td>
+<td>Shorten it, quote it exactly, one region per call</td>
+</tr>
+<tr>
+<td>The edit landed on the wrong subject</td>
+<td>Element-to-image mapping left implicit</td>
+<td>Rewrite as “the X in image 1”, “the Y from image 2”</td>
+</tr>
+<tr>
+<td>The face or product drifted</td>
+<td>The changed region overlapped the identity</td>
+<td>Add the preservation clause; prefer the 2511-era models, which explicitly mitigate drift</td>
+</tr>
+<tr>
+<td>Unexpected output aspect ratio</td>
+<td>Default resolution follows the input — the last one, when several are sent (2.0 series); the 3.0 series picks it from the prompt</td>
+<td>Set <code>size</code> explicitly</td>
+</tr>
+<tr>
+<td>The instruction’s tail was ignored</td>
+<td>Instruction exceeded the documented budget</td>
+<td>The 3.0-series reference recommends a maximum of about 4,500 tokens; trim before blaming the model</td>
+</tr>
+<tr>
+<td>HTTP 400 on an agent-mode call</td>
+<td><code>prompt_extend_mode: agent</code> is text-to-image only and is rejected for editing</td>
+<td>Use <code>direct</code></td>
+</tr>
+<tr>
+<td>A second text object was rejected</td>
+<td>The request accepts exactly one instruction</td>
+<td>Wrap each edit in its own call — editing is single-turn</td>
+</tr>
+</tbody></table>
+<p>One structural note sits under all of it: because the request accepts exactly one instruction and no conversation, iteration means <em>another call</em>, not a follow-up message. That is also why the chained-editing technique in Qwen’s launch post matters — when one pass gets most of it right, re-select the specific failing region and instruct again on that region instead of re-rolling the whole edit. Chaining is cheap; a fresh full-image edit is not.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Qwen-Image-Edit Request Reference</h3><p class="view-docs-tag-desc">See the exact request body for the Qwen Image 3.0 Edit models, including the image array, prompt and rewrite flags.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Running-these-prompts-hosted-API-or-local-and-what-one-edit-costs"><a href="#Running-these-prompts-hosted-API-or-local-and-what-one-edit-costs" class="headerlink" title="Running these prompts: hosted API or local, and what one edit costs"></a>Running these prompts: hosted API or local, and what one edit costs</h2><p>The instruction shape above is the same everywhere. On a hosted single-key route the request is small enough to write by hand:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">curl --request POST \</span><br><span class="line">  --url https://api.modellix.ai/api/v1/alibaba/qwen-image-3.0-edit \</span><br><span class="line">  --header <span class="string">&#x27;Authorization: Bearer YOUR_API_KEY&#x27;</span> \</span><br><span class="line">  --header <span class="string">&#x27;Content-Type: application/json&#x27;</span> \</span><br><span class="line">  --data <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;images&quot;: [</span></span><br><span class="line"><span class="string">      &quot;https://your-cdn.example.com/product-shot.png&quot;,</span></span><br><span class="line"><span class="string">      &quot;https://your-cdn.example.com/new-backdrop.jpg&quot;</span></span><br><span class="line"><span class="string">    ],</span></span><br><span class="line"><span class="string">    &quot;prompt&quot;: &quot;Place the product from image 1 on the marble counter from image 2, keeping the product label and logo unchanged.&quot;,</span></span><br><span class="line"><span class="string">    &quot;negative_prompt&quot;: &quot;changed logo, altered label, extra objects, warped text&quot;,</span></span><br><span class="line"><span class="string">    &quot;n&quot;: 2,</span></span><br><span class="line"><span class="string">    &quot;prompt_extend&quot;: true,</span></span><br><span class="line"><span class="string">    &quot;prompt_extend_mode&quot;: &quot;direct&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>Media generation on Modellix is asynchronous: the first call returns a task handle and you poll the <code>get_result</code> URL until the status is <code>success</code>, or send an <code>X-Webhook-URL</code> header and let the platform call you. The parameter set is documented on the per-model <a target="_blank" rel="noopener" href="https://docs.modellix.ai/alibaba/qwen-image-3-0-edit">Qwen Image 3.0 Edit reference</a>; the async lifecycle itself is in the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api">Modellix API docs</a>.</p>
+<p>Locally the same instruction goes into <code>QwenImageEditPlusPipeline</code> from diffusers with the model card’s own settings — <code>true_cfg_scale 4.0</code>, <code>guidance_scale 1.0</code>, 40 steps, an empty negative prompt — which is why the <a target="_blank" rel="noopener" href="https://huggingface.co/Qwen/Qwen-Image-Edit-2511">2511 model card</a> is worth reading before concluding that prompting is your bottleneck.</p>
+<p>Prices, read on September 10, 2026, per edited image:</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Model</th>
+<th>Price today</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Modellix</td>
+<td><a href="https://www.modellix.ai/models/alibaba/qwen-image-3.0-edit/"><code>qwen-image-3.0-edit</code></a></td>
+<td>$0.0297 &#x2F; image</td>
+</tr>
+<tr>
+<td>Modellix</td>
+<td><code>qwen-image-3.0-pro-edit</code></td>
+<td>$0.0702 &#x2F; image</td>
+</tr>
+</tbody></table>
+<p>Billing follows successful outputs: ask for <code>n: 2</code> and you are buying two images. Prompt craft does not change that number — the levers are output count and the resolution tier you request. For the direct-Alibaba tier prices, the per-input-image fee on the 3.0 series and the free-quota rules, the Qwen Image Edit API guide carries the full table.</p>
+<p>Modellix operates this blog, so read that section with the commercial interest in view: those two figures are today’s list prices, not a claim that this is the cheapest way to edit an image, and at sustained volume on a single editing model direct Alibaba billing can still come out ahead per image. The patterns above do not depend on the answer.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Start Editing with Qwen on Modellix</h3><p class="view-docs-tag-desc">Log in to run these prompt patterns against Qwen Image 3.0 Edit and 200+ other image and video models on one key.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>How long can a Qwen-Image-Edit prompt be?</strong><br>The <a target="_blank" rel="noopener" href="https://www.alibabacloud.com/help/en/model-studio/qwen-image-generation-and-editing-api-reference">3.0-series reference</a> recommends a maximum of roughly 4,500 tokens and supports both Chinese and English; other models in the family document smaller budgets. There is no penalty for being short if the five slots are present — the official instruction examples are often two to four words.</p>
+<p><strong>Do I have to write the instruction in English?</strong><br>No. Alibaba’s own FAQ for the editing models states that the model supports Simplified Chinese and English, and that other languages can be attempted without a performance guarantee. The language of the <em>instruction</em> and the language of the <em>text rendered inside the image</em> are separate choices — the second should keep its original language and capitalisation.</p>
+<p><strong>Should I use a negative prompt with Qwen-Image-Edit?</strong><br>Yes — <code>negative_prompt</code> is a documented parameter (the base <code>qwen-image-edit</code> excepted) and is the right place for failure modes you keep seeing: warped text, altered labels, extra objects, low resolution. It is a second line of defence, not the first: an instruction that declares what must not change beats a list of things you dislike.</p>
+<p><strong>How many reference images can I send?</strong><br>One to three, on both the official editing route and the hosted route. Qwen’s model card records 1–3 as the current optimum, and the numbering in your prompt maps directly onto array order, so the practical ceiling is how many roles you can name clearly, not the API limit.</p>
+<p><strong>Why does the model change more than I asked it to?</strong><br>Almost always one of two reasons: the instruction left slots empty and intelligent prompt rewriting filled them in, or the change overlapped something you never declared invariant. Add the preservation clause, name the invariants, and disable prompt rewriting for calls where composition must hold exactly.</p>
+<p><strong>Do I need to draw a mask to edit with Qwen?</strong><br>No. Editing is instruction-based and mask-free — you describe the change in natural language. Selecting or boxing a region is still useful as a <em>reference</em>, which is how the official chained-editing demo isolates a failing component and instructs it again.</p>
+<p><strong>Can I edit the text inside an image and keep the font?</strong><br>Yes, from the 2509 generation onward: text editing covers content, and also font, colour and material. Quote the target string exactly as it appears, keep its original language and capitalisation, and change one text region per call.</p>
+<p><strong>Is Qwen-Image-Edit open source?</strong><br>The editing checkpoints are released under Apache 2.0 on Hugging Face and ModelScope, so self-hosting is a legitimate option; hosted APIs are still billed per image. For the family map — the generation-side models and how the versions relate — our Qwen Image API guide and the Qwen Image 2.0 API deep dive cover that side of the stack.</p>
+<hr>
+<p><em>Capabilities, model versions and prices reflect public information as of September 10, 2026 and change frequently — Qwen’s editing checkpoints and the hosted catalogues behind them both move without notice. Validate behaviour against the official Alibaba documentation and pricing against the provider’s live page before committing budget. This article was written by Modellix, an API aggregator with a commercial interest in the single-key route it describes; the prompt rules above are quoted from Qwen’s and Alibaba’s own material and hold independently of which route you choose. Access image and video models, including the leading Chinese models, through a single API key at <a target="_blank" rel="noopener" href="https://modellix.ai/">modellix.ai</a>.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
+            
+              <a href="/blog/tags/Image-Editing/" class="tag-pill tag-pill--sm">Image Editing</a>
+            
+              <a href="/blog/tags/Qwen/" class="tag-pill tag-pill--sm">Qwen</a>
+            
+              <a href="/blog/tags/Prompt-Engineering/" class="tag-pill tag-pill--sm">Prompt Engineering</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/minimax-api-url/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://statics.mylandingpages.co/static/modellix/image/cover-minimax-api-url.webp" alt="MiniMax API URL: Base URLs, Endpoints and Working Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">MiniMax API URL: Base URLs, Endpoints and Working Code</h3>
+          <time class="related-article-date" datetime="2026-09-12T16:00:00.000Z">September 13, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/veo-3-api-documentation/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://statics.mylandingpages.co/static/modellix/image/cover-veo-3-api-documentation.webp" alt="Veo 3 API Documentation: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Veo 3 API Documentation: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-09-12T16:00:00.000Z">September 13, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/veo-3-fast-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://statics.mylandingpages.co/static/modellix/image/cover-veo-3-fast-api.webp" alt="Veo 3 Fast API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Veo 3 Fast API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-09-12T16:00:00.000Z">September 13, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/qwen-image-edit-prompt-guide/&text=Qwen-Image-Edit%20Prompt%20Guide%3A%20Patterns%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/qwen-image-edit-prompt-guide/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/qwen-image-edit-prompt-guide/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

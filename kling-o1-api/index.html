@@ -1,0 +1,827 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kling O1 API: Integration Guide, Pricing &amp; Code — Modellix Blog</title>
+  <meta name="description" content="Kling O1 API guide: the four O1 model IDs, per-second and per-image prices read September 10, 2026, working curl and Python, and the O1 parameter traps.">
+  <meta name="keywords" content="kling o1 api, kling video o1 api, kling o1 api pricing, kling o1 api python, kling o1 api key, kling o1 api documentation, kling o1 image api, kling o1 reference to video, kling o1 video edit api">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/kling-o1-api/">
+  <meta name="description" content="Kling O1 API guide: the four O1 model IDs, per-second and per-image prices read September 10, 2026, working curl and Python, and the O1 parameter traps.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kling O1 API: Integration Guide, Pricing &amp; Code — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/kling-o1-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Kling O1 API guide: the four O1 model IDs, per-second and per-image prices read September 10, 2026, working curl and Python, and the O1 parameter traps.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-kling-o1-api.webp">
+<meta property="article:published_time" content="2026-09-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-09T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video API">
+<meta property="article:tag" content="API Integration">
+<meta property="article:tag" content="Kling">
+<meta property="article:tag" content="Kuaishou">
+<meta property="article:tag" content="Multimodal">
+<meta property="article:tag" content="Pricing">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://statics.mylandingpages.co/static/modellix/image/cover-kling-o1-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Kling O1 API: Integration Guide, Pricing & Code","description":"Kling O1 API guide: the four O1 model IDs, per-second and per-image prices read September 10, 2026, working curl and Python, and the O1 parameter traps.","datePublished":"2026-09-09T16:00:00.000Z","dateModified":"2026-09-09T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/kling-o1-api/","image":"https://statics.mylandingpages.co/static/modellix/image/cover-kling-o1-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Kling O1 API: Integration Guide, Pricing &amp; Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Kling O1 API: Integration Guide, Pricing &amp; Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-09-09T16:00:00.000Z">September 10, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+              <a href="/blog/tags/API-Integration/" class="tag-pill tag-pill--sm">API Integration</a>
+            
+              <a href="/blog/tags/Kling/" class="tag-pill tag-pill--sm">Kling</a>
+            
+              <a href="/blog/tags/Kuaishou/" class="tag-pill tag-pill--sm">Kuaishou</a>
+            
+              <a href="/blog/tags/Multimodal/" class="tag-pill tag-pill--sm">Multimodal</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.srcgptbots.com/blog/author/20260409/modellix-blog-author-official@2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>&#39;Kling O1&#39; is not one endpoint, and that gap between the model and the API is where integration time goes.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/cover-kling-o1-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/cover-kling-o1-api.png" alt="MODELLIX editorial cover for the Kling O1 API with the subtitle integration, pricing and code, above glass input panels feeding a reasoning core that emits a film strip" />
+</picture>
+
+<p>“Kling O1” is not one endpoint, and that gap between the model and the API is where integration time goes. Kuaishou ships O1 as a single unified multimodal system — it reads a text prompt, first and last frames, reference images, a reference clip and library elements inside one request — but you cannot call it as a single thing. On Kuaishou’s own platform it is two routes: an omni video endpoint and an omni image endpoint. On Modellix it is four model IDs, each with its own input set, its own field list and its own rate. Search for a Kling O1 API reference today and you land on a video page, a separate element-management page, an image page, and a scatter of aggregator listings that carry the model name without the parameter table behind it.</p>
+<p>This guide assembles the parts as they stood on <strong>September 10, 2026</strong>: which O1 model IDs exist and who exposes them, what each one costs per second or per image on that date, runnable submit-and-poll code for both the direct and aggregated routes, and — the section that saves the most debugging time — the O1-specific parameter constraints that return a <code>400</code> instead of a video. Two disclosures first. Modellix publishes this blog and sells the aggregated route described in the fifth section, so we have a commercial interest in one of the two paths; every Kuaishou figure below carries its own page and read date. Second, the near-synonym you may have typed — <code>kling video o1 api</code> — resolves to the same model as <code>kling o1 api</code>. There is no separate video-only SKU, so this page covers both instead of splitting them into two competing articles. If you want the wider map of Kuaishou’s developer surface before the O1 detail, our <a href="https://www.modellix.ai/blog/kling-api-documentation/">Kling API documentation guide</a> covers the whole family; this page is the O1-specific deep dive.</p>
+<h2 id="What-the-Kling-O1-API-actually-is-one-reasoning-model-four-endpoints"><a href="#What-the-Kling-O1-API-actually-is-one-reasoning-model-four-endpoints" class="headerlink" title="What the Kling O1 API actually is: one reasoning model, four endpoints"></a>What the Kling O1 API actually is: one reasoning model, four endpoints</h2><p>Kling O1 is Kuaishou’s reasoning-enhanced multimodal model. The company describes it as the first unified multimodal video model, built on a “Multi-modal Visual Language” concept: rather than one task per call, you write the task in natural language and mix input types — prompt text, a first frame, a last frame, reference images, a source clip — in the same request. Its sibling, <code>kling-image-o1</code>, applies the same reasoning treatment to images, including multi-image combinations. Kuaishou’s own user guide for the video model carries a publication date of December 15, 2025, which is the earliest first-party date we could verify for the line — worth knowing because a lot of coverage treats O1 as the newest Kling model, when it is in fact a parallel track running alongside the 2.x and 3.0 generations rather than above them.</p>
+<p>The functional difference from the 3.0 line is planning, and it is worth being precise about where that claim comes from. The phrase “performs deep planning over the prompt before generation” is <strong>Modellix’s own model-card wording for this route</strong>, not a Kuaishou quote — the vendor-neutral version of the same idea is Kuaishou’s Multi-modal Visual Language framing, in which diverse video tasks are integrated into a single unified architecture so that images, video, elements and text are understood together in one request. The practical consequence is the same either way: O1 is the model you reach for when a standard video model hallucinates the physics — liquid spilling, objects colliding, a sequence of actions that has to stay logically ordered. It is not the model you reach for when you want the longest clip or native audio; those are 3.0 and 3.0 Omni territory.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/kling-o1-api-reasoning-plan.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/kling-o1-api-reasoning-plan.png" alt="Kling O1 planning before rendering: a prompt slab feeds a faceted reasoning core whose internal lattice resolves into an output film strip" loading="lazy" />
+</picture>
+
+<p><em>Concept diagram: O1 resolves the prompt into an internal plan before rendering frames. Generated for this article; it is not a screenshot of Kuaishou’s console.</em></p>
+<p>That single model surfaces as <strong>four callable IDs on Modellix</strong> and <strong>two documented endpoints on Kuaishou’s platform</strong>. The mapping is not one-to-one, and it is the reason a copy-pasted request body from an aggregator page often fails against the official route:</p>
+<table>
+<thead>
+<tr>
+<th>What you are asking for</th>
+<th>Modellix model ID</th>
+<th>Kuaishou endpoint and input type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Video from text only</td>
+<td><code>kling/kling-video-o1-t2v</code></td>
+<td><code>POST /omni-video/kling-o1</code> — <code>contents</code> carries a <code>prompt</code> item only</td>
+</tr>
+<tr>
+<td>Video from one to seven images</td>
+<td><code>kling/kling-video-o1-i2v</code></td>
+<td>Same route — <code>first_frame</code> &#x2F; <code>last_frame</code> &#x2F; <code>refer_image</code> items</td>
+</tr>
+<tr>
+<td>Video restyled, edited or extended from a source clip</td>
+<td><code>kling/kling-video-o1</code></td>
+<td>Same route — <code>base_video</code> &#x2F; <code>feature_video</code> items</td>
+</tr>
+<tr>
+<td>Reasoning image generation and multi-image fusion</td>
+<td><code>kling/kling-image-o1</code></td>
+<td><code>POST /v1/images/omni-image</code> with <code>model_name: &quot;kling-image-o1&quot;</code></td>
+</tr>
+</tbody></table>
+<p>Because every host renames the model, here is the same request expressed as each platform’s identifier — the table almost nobody publishes, and the reason swapping providers usually means touching code:</p>
+<table>
+<thead>
+<tr>
+<th>Host</th>
+<th>The identifier you actually send</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Modellix</td>
+<td><code>kling/kling-video-o1-t2v</code>, <code>kling/kling-video-o1-i2v</code>, <code>kling/kling-video-o1</code>, <code>kling/kling-image-o1</code></td>
+</tr>
+<tr>
+<td>Kuaishou direct</td>
+<td>No model field on the video route — the path is the model (<code>/omni-video/kling-o1</code>); the image route takes <code>model_name: &quot;kling-image-o1&quot;</code></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://docs.leonardo.ai/docs/kling-o1">Leonardo</a></td>
+<td><code>kling-video-o-1</code> (note the hyphen before the digit, and <code>guidances</code> for the frame&#x2F;reference fields)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://aimlapi.com/models/kling-video-o1-video-to-video-reference">AI&#x2F;ML API</a></td>
+<td><code>kling-video/o1/video-to-video/reference</code> — the path segment encodes the input set as well as the model</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://openrouter.ai/kwaivgi/kling-video-o1">OpenRouter</a></td>
+<td><code>kwaivgi/kling-video-o1</code></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://replicate.com/kwaivgi/kling-o1">Replicate</a></td>
+<td><code>kwaivgi/kling-o1</code></td>
+</tr>
+</tbody></table>
+<p>Read that table before you copy a snippet from anywhere: a body that works on one host will fail on another if the identifier does not match, and the mismatch is a <code>404</code>, not a warning.</p>
+<p>Two naming traps have already cost readers, and they point in opposite directions. The “O1” label refers to the reasoning track and appears on both the video and image sides — it is a track, not a generation tier. The “O3” label is the reverse problem: it is not the name Kuaishou’s own documentation and pricing pages use. Kuaishou writes <code>Kling 3.0 Omni</code>, and this platform lists the same models as <code>kling-v3-omni-*</code>; “O3” is the shorthand aggregators market them under, and at least one vendor says so on its own page — <a target="_blank" rel="noopener" href="https://wavespeed.ai/blog/ai-models/kling-o3-4k-video-edit-video-reference/">WaveSpeedAI’s O3 write-up</a> states that “Kling O3 (also marketed as Kling 3.0 Omni)” is Kuaishou’s unified multimodal video model. So when you see an “O3” listing next to “O1”, you are looking at the 3.0 Omni line: a different track, not a newer version of O1. We covered the O1-versus-3.0 boundary in our <a href="https://www.modellix.ai/blog/kling-vs-runway/">Kling vs Runway comparison</a> and will not repeat it here. Separately, Kuaishou’s <a target="_blank" rel="noopener" href="https://kling.ai/quickstart/klingai-video-o1-user-guide">Kling VIDEO O1 user guide</a> — published December 15, 2025 — is the page that explains how the prompt syntax is meant to be written: how to reference an input (<code>@image_1</code>, <code>&lt;&lt;&lt;image_1&gt;&gt;&gt;</code>), how multi-subject fusion is expressed, and which task combinations can be stacked into one request. The API reference gives you the fields; that guide gives you the grammar.</p>
+<h2 id="Kling-O1-API-pricing-read-September-10-2026"><a href="#Kling-O1-API-pricing-read-September-10-2026" class="headerlink" title="Kling O1 API pricing, read September 10, 2026"></a>Kling O1 API pricing, read September 10, 2026</h2><p>Two billing models sit under the same model name, and they are not directly comparable until you convert Kuaishou’s units into dollars. Modellix meters in dollars per second of output (or per image); Kuaishou meters in prepaid units, where a video unit lists at $0.14 and an image unit at $0.0035.</p>
+<p><strong>On Modellix</strong>, the rates below were read from the four model pages on September 10, 2026 — for example the <a href="https://www.modellix.ai/models/kling/kling-video-o1-t2v">Kling Video O1 T2V model page</a>, which shows a rate for each resolution rather than a single headline number:</p>
+<table>
+<thead>
+<tr>
+<th>Model ID</th>
+<th>Billing unit</th>
+<th>720p</th>
+<th>1080p</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>kling/kling-video-o1-t2v</code></td>
+<td>per second of output</td>
+<td>$0.0672&#x2F;s</td>
+<td>$0.0896&#x2F;s</td>
+</tr>
+<tr>
+<td><code>kling/kling-video-o1-i2v</code></td>
+<td>per second of output</td>
+<td>$0.0672&#x2F;s</td>
+<td>$0.0896&#x2F;s</td>
+</tr>
+<tr>
+<td><code>kling/kling-video-o1</code> (reference video)</td>
+<td>per second of output</td>
+<td>$0.1008&#x2F;s</td>
+<td>$0.1344&#x2F;s</td>
+</tr>
+<tr>
+<td><code>kling/kling-image-o1</code></td>
+<td>per image</td>
+<td>$0.0224 (1K or 2K)</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<p><strong>On Kuaishou’s own developer platform</strong>, the same date, <a target="_blank" rel="noopener" href="https://kling.ai/dev/pricing">official pricing page</a>: the video API lists one unit at $0.14, sold as prepaid packages — 5,000 units for $700 with 180-day validity, larger tiers discounted to $0.126 per unit — and the image API lists one unit at $0.0035. Kling Image O1 appears in the image table at <strong>8 units, or $0.028 per image</strong>, at 1K and 2K. For how the rest of the family is priced — the 2.x generations, 3.0, 3.0 Turbo and 3.0 Omni — our <a href="https://www.modellix.ai/blog/kling-api-pricing/">Kling API pricing breakdown by model version</a> tracks the same per-second grid.</p>
+<p>The honest gap: Kuaishou’s public video price tables <strong>do not contain a Kling O1 row</strong> as of September 10, 2026. Its flagship table covers Kling 3.0 Turbo, 3.0 and 3.0 Omni; the “Other Models” table covers Motion Control and Avatar. O1 is documented in the API reference and priced somewhere in the unit system, but the per-second list rate is not published on the pricing page. We are not going to invent one, and any page quoting a single confident “Kling O1 API price per second” from that page is filling a blank. If you need Kuaishou’s own O1 rate, the reliable way to get it is empirical: submit one short task, then read what was actually deducted.</p>
+<p>What that works out to in real clips, using the Modellix rates:</p>
+<ul>
+<li>A 5-second 720p text-to-video clip: <strong>$0.336</strong>.</li>
+<li>A 10-second 1080p image-to-video clip, the model’s maximum: <strong>$0.896</strong>.</li>
+<li>Restyling a 5-second 1080p source clip through the reference-video route: <strong>$0.672</strong>.</li>
+<li>Ten reasoning image generations at 2K: <strong>$0.224</strong>.</li>
+</ul>
+<p>Per minute of finished output, the 720p text-to-video route lands at <strong>$4.03</strong> — and because O1’s ceiling is 10 seconds you reach that minute as six separate generations rather than one long take, so budget six requests, six poll cycles and six assets. A project figure follows from that: 60 ten-second 1080p clips is 600 seconds of output at about <strong>$53.76</strong>, before retakes. Retakes are the number that surprises teams, because O1 is chosen precisely for the shots that are hard to get right; multiply your first estimate accordingly.</p>
+<p>Two properties matter more than the headline rate. O1 video <strong>has no 4K tier</strong> — 720p and 1080p are the whole grid, so your worst case is bounded in a way 3.0’s $0.42&#x2F;s 4K cell is not. And <strong>audio does not change the bill on O1</strong>: unlike 3.0, where native audio adds 50%, O1’s audio field is not a paid upgrade, because on most O1 paths it is not an option at all.</p>
+<p>Other hosts quote a single per-second number for this model and none of them normalise it, so here is the normalisation for the closest like-for-like task, the reference-video route: <a target="_blank" rel="noopener" href="https://aimlapi.com/models/kling-video-o1-video-to-video-reference">AI&#x2F;ML API</a> lists <strong>$0.1638&#x2F;sec</strong> and <a target="_blank" rel="noopener" href="https://replicate.com/kwaivgi/kling-o1">Replicate</a> quotes an estimated <strong>$0.168&#x2F;sec</strong>. Both sit above the $0.1008&#x2F;s this platform charges for comparable 720p work. Hosts differ in what they bundle and how they measure output, so read any single number as directional, and check the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/changelog/new-models">new-models changelog</a> if you need to know whether an entry moved.</p>
+<h2 id="The-exact-Kling-O1-model-IDs-inputs-and-parameters"><a href="#The-exact-Kling-O1-model-IDs-inputs-and-parameters" class="headerlink" title="The exact Kling O1 model IDs, inputs, and parameters"></a>The exact Kling O1 model IDs, inputs, and parameters</h2><p>Everything below was read from the four Modellix model pages on September 10, 2026. They are worth reading field by field rather than skimmed, because the constraints live in the parameter notes, not in a separate “limitations” section.</p>
+<h3 id="kling-kling-video-o1-t2v-—-text-to-video"><a href="#kling-kling-video-o1-t2v-—-text-to-video" class="headerlink" title="kling/kling-video-o1-t2v — text to video"></a><code>kling/kling-video-o1-t2v</code> — text to video</h3><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>prompt</code></td>
+<td>yes</td>
+<td>string</td>
+<td>—</td>
+<td>1–2500 characters</td>
+</tr>
+<tr>
+<td><code>audio</code></td>
+<td>no</td>
+<td>enum</td>
+<td><code>off</code></td>
+<td>On this slice <code>off</code> is the only accepted value</td>
+</tr>
+<tr>
+<td><code>resolution</code></td>
+<td>no</td>
+<td>enum</td>
+<td><code>720p</code></td>
+<td><code>720p</code> or <code>1080p</code></td>
+</tr>
+<tr>
+<td><code>aspect_ratio</code></td>
+<td>no</td>
+<td>enum</td>
+<td><code>16:9</code></td>
+<td><code>16:9</code>, <code>9:16</code>, <code>1:1</code></td>
+</tr>
+<tr>
+<td><code>duration</code></td>
+<td>no</td>
+<td>integer</td>
+<td><code>5</code></td>
+<td>Any integer 3–10</td>
+</tr>
+</tbody></table>
+<h3 id="kling-kling-video-o1-i2v-—-image-to-video"><a href="#kling-kling-video-o1-i2v-—-image-to-video" class="headerlink" title="kling/kling-video-o1-i2v — image to video"></a><code>kling/kling-video-o1-i2v</code> — image to video</h3><p>Same fields as above except: <code>images</code> is <strong>required</strong> and accepts 1–7 URLs or Base64 strings, and there is <strong>no <code>aspect_ratio</code> field at all</strong> — the output follows the first frame’s aspect ratio. With exactly one input image, <code>duration</code> must be 5 or 10; with more than one, any value from 3 to 10 is accepted.</p>
+<h3 id="kling-kling-video-o1-—-reference-video-restyle-edit-extend"><a href="#kling-kling-video-o1-—-reference-video-restyle-edit-extend" class="headerlink" title="kling/kling-video-o1 — reference video (restyle, edit, extend)"></a><code>kling/kling-video-o1</code> — reference video (restyle, edit, extend)</h3><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>prompt</code></td>
+<td>yes</td>
+<td>string</td>
+<td>—</td>
+<td>1–2500 characters</td>
+</tr>
+<tr>
+<td><code>videos</code></td>
+<td>yes</td>
+<td>string[]</td>
+<td>—</td>
+<td>Exactly one reference video</td>
+</tr>
+<tr>
+<td><code>images</code></td>
+<td>no</td>
+<td>string[]</td>
+<td>—</td>
+<td>Up to 4 when a reference video is present</td>
+</tr>
+<tr>
+<td><code>audio</code></td>
+<td>no</td>
+<td>enum</td>
+<td><code>off</code></td>
+<td><code>original</code> or <code>off</code>; a feature video requires <code>off</code></td>
+</tr>
+<tr>
+<td><code>resolution</code></td>
+<td>no</td>
+<td>enum</td>
+<td><code>720p</code></td>
+<td><code>720p</code> or <code>1080p</code></td>
+</tr>
+<tr>
+<td><code>aspect_ratio</code></td>
+<td>no</td>
+<td>enum</td>
+<td><code>16:9</code></td>
+<td>Optional once a reference video is supplied</td>
+</tr>
+<tr>
+<td><code>duration</code></td>
+<td>no</td>
+<td>integer</td>
+<td><code>5</code></td>
+<td>3–10, not further restricted by the reference video</td>
+</tr>
+</tbody></table>
+<h3 id="kling-kling-image-o1-—-reasoning-image"><a href="#kling-kling-image-o1-—-reasoning-image" class="headerlink" title="kling/kling-image-o1 — reasoning image"></a><code>kling/kling-image-o1</code> — reasoning image</h3><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>prompt</code></td>
+<td>yes</td>
+<td>string</td>
+<td>—</td>
+<td>1–2500 characters; may reference inputs as <code>&lt;&lt;&lt;image_1&gt;&gt;&gt;</code></td>
+</tr>
+<tr>
+<td><code>images</code></td>
+<td>no</td>
+<td>string[]</td>
+<td>—</td>
+<td>1–10 when supplied; omit for pure text-to-image</td>
+</tr>
+<tr>
+<td><code>resolution</code></td>
+<td>no</td>
+<td>enum</td>
+<td><code>1k</code></td>
+<td><code>1k</code> or <code>2k</code> on O1</td>
+</tr>
+<tr>
+<td><code>aspect_ratio</code></td>
+<td>no</td>
+<td>enum</td>
+<td><code>1:1</code></td>
+<td><code>16:9</code>, <code>9:16</code>, <code>1:1</code>, <code>4:3</code>, <code>3:4</code>, <code>3:2</code>, <code>2:3</code>, <code>21:9</code></td>
+</tr>
+<tr>
+<td><code>n</code></td>
+<td>no</td>
+<td>integer</td>
+<td><code>1</code></td>
+<td>1–9 images per call</td>
+</tr>
+</tbody></table>
+<p>Each of those four tables is a digest of its own live reference page — <a target="_blank" rel="noopener" href="https://docs.modellix.ai/kling/kling-video-o1-t2v">kling-video-o1-t2v</a>, <a target="_blank" rel="noopener" href="https://docs.modellix.ai/kling/kling-video-o1-i2v">kling-video-o1-i2v</a>, <a target="_blank" rel="noopener" href="https://docs.modellix.ai/kling/kling-video-o1">kling-video-o1</a>, <a target="_blank" rel="noopener" href="https://docs.modellix.ai/kling/kling-image-o1">kling-image-o1</a> — and those pages are the ones to trust if a default or an enum ever drifts from what is written here. Note the split: the docs pages carry the field definitions, while the billed rate lives on the corresponding model page, linked in the pricing section above.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://statics.mylandingpages.co/static/modellix/image/kling-o1-api-endpoint-lanes.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://statics.mylandingpages.co/static/modellix/image/kling-o1-api-endpoint-lanes.png" alt="Four Kling O1 request lanes: prompt only, a single frame, a stack of frames, and a source clip, each producing its own output" loading="lazy" />
+</picture>
+
+<p><em>Concept diagram: the four O1 request shapes. The input set, not the prompt wording, is what determines which model ID you call. Generated for this article.</em></p>
+<p>If you are calling Kuaishou directly instead, the same four shapes collapse into two request bodies. The video route takes a <code>contents</code> array where each item declares a <code>type</code> — <code>prompt</code>, <code>first_frame</code>, <code>last_frame</code>, <code>refer_image</code>, <code>feature_video</code>, <code>base_video</code> or <code>element</code> — plus a <code>settings</code> object carrying <code>resolution</code>, <code>duration</code>, <code>audio</code> and <code>aspect_ratio</code>. The image route takes <code>model_name: &quot;kling-image-o1&quot;</code>, a <code>prompt</code>, and its own <code>image_list</code> and <code>element_list</code>. The two official pages to bookmark are the <a target="_blank" rel="noopener" href="https://kling.ai/document-api/api/video/o1/video-omni">Kling O1 video reference</a> and the <a target="_blank" rel="noopener" href="https://kling.ai/document-api/api/image/o1">Kling Image O1 reference</a>.</p>
+<h2 id="Making-your-first-Kling-O1-request-submit-poll-and-read-the-result"><a href="#Making-your-first-Kling-O1-request-submit-poll-and-read-the-result" class="headerlink" title="Making your first Kling O1 request: submit, poll, and read the result"></a>Making your first Kling O1 request: submit, poll, and read the result</h2><p>Every Kling route is asynchronous, on both paths. You submit a task, you get an identifier back, you poll until the task reaches a terminal state, then you download the asset. The difference between the two paths is only the shape of the envelope.</p>
+<p><strong>Modellix — submit a text-to-video task.</strong> The endpoint is the model ID under the platform’s <code>kling</code> path:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">curl --request POST \</span><br><span class="line">  --url https://api.modellix.ai/api/v1/kling/kling-video-o1-t2v \</span><br><span class="line">  --header <span class="string">&#x27;Authorization: Bearer $MODELLIX_API_KEY&#x27;</span> \</span><br><span class="line">  --header <span class="string">&#x27;Content-Type: application/json&#x27;</span> \</span><br><span class="line">  --data <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;prompt&quot;: &quot;A glass of water tips over and spills across a wooden table, slow motion, shallow depth of field&quot;,</span></span><br><span class="line"><span class="string">    &quot;resolution&quot;: &quot;1080p&quot;,</span></span><br><span class="line"><span class="string">    &quot;aspect_ratio&quot;: &quot;16:9&quot;,</span></span><br><span class="line"><span class="string">    &quot;duration&quot;: 5</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>The response is a task handle rather than a video — <code>code</code>, <code>message</code>, and a <code>data</code> object carrying <code>status: &quot;pending&quot;</code>, a <code>task_id</code>, and a <code>get_result</code> block that already contains the exact URL you should poll:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;success&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pending&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;task_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;task-o1-t2v-123&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;model_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;model-123&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;get_result&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;method&quot;</span><span class="punctuation">:</span> <span class="string">&quot;GET&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.modellix.ai/api/v1/tasks/task-o1-t2v-123&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Poll it</strong> with that URL. The same request shape works for the other three O1 IDs — swap the path segment and the body fields.</p>
+<p><strong>Python — the polling loop, with backoff.</strong> The task result endpoint is documented at <a target="_blank" rel="noopener" href="https://docs.modellix.ai/api/get-task-result">Query Task Result</a>; what it does not give you is the loop, so here is one that handles the two retryable classes properly:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os, time, requests</span><br><span class="line"></span><br><span class="line">BASE = <span class="string">&quot;https://api.modellix.ai/api/v1&quot;</span></span><br><span class="line">HEADERS = &#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;os.environ[<span class="string">&#x27;MODELLIX_API_KEY&#x27;</span>]&#125;</span>&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">submit_o1</span>(<span class="params">prompt, resolution=<span class="string">&quot;1080p&quot;</span>, duration=<span class="number">5</span>, model=<span class="string">&quot;kling-video-o1-t2v&quot;</span></span>):</span><br><span class="line">    r = requests.post(</span><br><span class="line">        <span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/kling/<span class="subst">&#123;model&#125;</span>&quot;</span>,</span><br><span class="line">        headers=&#123;**HEADERS, <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>&#125;,</span><br><span class="line">        json=&#123;<span class="string">&quot;prompt&quot;</span>: prompt, <span class="string">&quot;resolution&quot;</span>: resolution,</span><br><span class="line">              <span class="string">&quot;aspect_ratio&quot;</span>: <span class="string">&quot;16:9&quot;</span>, <span class="string">&quot;duration&quot;</span>: duration&#125;,</span><br><span class="line">        timeout=<span class="number">60</span>,</span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">if</span> r.status_code == <span class="number">429</span>:</span><br><span class="line">        reset = <span class="built_in">int</span>(r.headers.get(<span class="string">&quot;X-RateLimit-Reset&quot;</span>, <span class="number">0</span>))   <span class="comment"># Unix timestamp, not a delay</span></span><br><span class="line">        time.sleep(<span class="built_in">max</span>(<span class="number">1</span>, reset - <span class="built_in">int</span>(time.time())) <span class="keyword">if</span> reset <span class="keyword">else</span> <span class="number">60</span>)</span><br><span class="line">        <span class="keyword">return</span> submit_o1(prompt, resolution, duration, model)</span><br><span class="line">    r.raise_for_status()</span><br><span class="line">    <span class="keyword">return</span> r.json()[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;get_result&quot;</span>][<span class="string">&quot;url&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">wait_for_video</span>(<span class="params">task_url, timeout=<span class="number">900</span></span>):</span><br><span class="line">    deadline, backoff = time.time() + timeout, <span class="number">5</span></span><br><span class="line">    <span class="keyword">while</span> time.time() &lt; deadline:</span><br><span class="line">        q = requests.get(task_url, headers=HEADERS, timeout=<span class="number">60</span>)</span><br><span class="line">        <span class="keyword">if</span> q.status_code <span class="keyword">in</span> (<span class="number">500</span>, <span class="number">503</span>):</span><br><span class="line">            time.sleep(backoff); backoff = <span class="built_in">min</span>(backoff * <span class="number">2</span>, <span class="number">60</span>); <span class="keyword">continue</span></span><br><span class="line">        body = q.json()[<span class="string">&quot;data&quot;</span>]</span><br><span class="line">        <span class="keyword">if</span> body[<span class="string">&quot;status&quot;</span>] == <span class="string">&quot;success&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> body[<span class="string">&quot;result&quot;</span>][<span class="string">&quot;resources&quot;</span>][<span class="number">0</span>][<span class="string">&quot;url&quot;</span>]</span><br><span class="line">        <span class="keyword">if</span> body[<span class="string">&quot;status&quot;</span>] <span class="keyword">in</span> (<span class="string">&quot;failed&quot;</span>, <span class="string">&quot;canceled&quot;</span>):</span><br><span class="line">            <span class="keyword">raise</span> RuntimeError(body.get(<span class="string">&quot;error&quot;</span>, body[<span class="string">&quot;status&quot;</span>]))</span><br><span class="line">        time.sleep(<span class="number">10</span>)</span><br><span class="line">    <span class="keyword">raise</span> TimeoutError(<span class="string">&quot;O1 task did not finish inside the polling window&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(wait_for_video(submit_o1(<span class="string">&quot;A glass of water tips over and spills across a wooden table&quot;</span>)))</span><br></pre></td></tr></table></figure>
+
+<p>Two details in that loop are worth keeping even if you rewrite it. <code>X-RateLimit-Reset</code> on a <code>429</code> is a <strong>Unix timestamp</strong> for when the rate-limit window resets — not a number of seconds to wait — so subtract the current time before you sleep on it, or a literal reading of that header parks your worker for about fifty years. And the retry classes are narrower than they look: <code>500</code> and <code>503</code> are the failure statuses you retry as-is, while <code>429</code> takes the branch above, and a <code>400</code> or <code>402</code> will never fix itself.</p>
+<p>Neither route needs a model-specific SDK: both are plain REST, so any HTTP client you already have works. The Modellix model pages ship ready-made snippets in cURL, JavaScript, Python, Go, Java, PHP, Ruby, Swift and PowerShell, which means you can start in the language your service is already written in rather than adopting a new client library for one model.</p>
+<p><strong>Kuaishou direct — the same task, one different envelope.</strong> The video route is <code>POST https://api-singapore.klingai.com/omni-video/kling-o1</code> with a <code>contents</code> array instead of flat fields:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">curl --location <span class="string">&#x27;https://api-singapore.klingai.com/omni-video/kling-o1&#x27;</span> \</span><br><span class="line">--header <span class="string">&#x27;Authorization: Bearer $KLING_API_KEY&#x27;</span> \</span><br><span class="line">--header <span class="string">&#x27;Content-Type: application/json&#x27;</span> \</span><br><span class="line">--data-raw <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">  &quot;contents&quot;: [</span></span><br><span class="line"><span class="string">    &#123; &quot;type&quot;: &quot;prompt&quot;, &quot;text&quot;: &quot;A girl sat on the train, looking out the window, her head swaying with the train.&quot; &#125;,</span></span><br><span class="line"><span class="string">    &#123; &quot;type&quot;: &quot;first_frame&quot;, &quot;url&quot;: &quot;https://example.com/start.png&quot;, &quot;id&quot;: &quot;image_1&quot; &#125;</span></span><br><span class="line"><span class="string">  ],</span></span><br><span class="line"><span class="string">  &quot;settings&quot;: &#123; &quot;resolution&quot;: &quot;1080p&quot;, &quot;duration&quot;: 5, &quot;audio&quot;: &quot;off&quot; &#125;,</span></span><br><span class="line"><span class="string">  &quot;options&quot;: &#123; &quot;callback_url&quot;: &quot;&quot;, &quot;external_task_id&quot;: &quot;&quot; &#125;</span></span><br><span class="line"><span class="string">&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>Poll that route with <code>GET /tasks?task_ids=&lt;id&gt;</code>; the task states are <code>submitted</code>, <code>processing</code>, <code>succeeded</code> and <code>failed</code>. Set <code>options.callback_url</code> if you would rather be pushed than poll — the protocol is in Kuaishou’s <a target="_blank" rel="noopener" href="https://kling.ai/document-api/api/get-started/callbacks">callback documentation</a>. The image route is a different host path, <code>POST /v1/images/omni-image</code>, with <code>model_name</code> set to <code>kling-image-o1</code>.</p>
+<h2 id="Kling-O1-parameters-that-break-integrations-and-what-to-send-instead"><a href="#Kling-O1-parameters-that-break-integrations-and-what-to-send-instead" class="headerlink" title="Kling O1 parameters that break integrations (and what to send instead)"></a>Kling O1 parameters that break integrations (and what to send instead)</h2><p>These are the constraints that produce a <code>400</code> rather than a video, and most of them are unique to O1 — inheriting a 3.0 request body will trip several of them at once.</p>
+<ol>
+<li><strong>A single input image locks <code>duration</code> to 5 or 10.</strong> On <code>kling-video-o1-i2v</code>, one image means only 5s or 10s are accepted; want 6 or 8, send two or more images. This is the most common O1 surprise, because 3–10 looks like a free choice.</li>
+<li><strong>There is no <code>aspect_ratio</code> on the I2V slice.</strong> Output aspect follows the first frame. If your pipeline needs 9:16, the input image has to be 9:16 — there is no field to override it.</li>
+<li><strong><code>audio</code> is effectively <code>off</code> on most O1 paths.</strong> T2V and I2V accept <code>off</code> only. The reference-video slice accepts <code>original</code>, which preserves the source clip’s audio, but the O1 reference for this route notes that a <em>feature</em> video requires <code>off</code>. O1 does not generate audio — that is what 3.0’s native-audio tiers are for.</li>
+<li><strong>Ten seconds is a hard ceiling, and multi-shot is unavailable.</strong> O1 does not expose the <code>multi_shot</code> planning flag that 3.0 does. If the brief is a 30-second multi-scene advert, O1 is the wrong model and no parameter fixes that.</li>
+<li><strong>Reference images and elements share one budget:</strong> 7 combined when there is no reference video, 4 when there is one. Counting them separately and then adding a fifth element fails validation.</li>
+<li><strong>Last-frame-only is not supported.</strong> Send a first frame, or a first and a last frame — not a last frame alone. When you send both, you cannot add reference images on top.</li>
+<li><strong><code>kling-image-o1</code> defaults to a square.</strong> Omit <code>aspect_ratio</code> and the platform fills in <code>1:1</code>, not your input’s aspect. Set it explicitly.</li>
+<li><strong>O1 image resolution stops at 2K.</strong> Modellix’s O1 page documents <code>1k</code> and <code>2k</code>. Kuaishou’s parameter reference lists a <code>4k</code> enum on the shared omni-image endpoint, but that enum is governed per-model by its capability map, so treat 2K as the O1 ceiling until you have verified otherwise.</li>
+<li><strong>Element libraries are not carried over on the aggregated route.</strong> Modellix’s O1 image page states that element library IDs and series generation are not exposed, so if your workflow depends on reusable character elements, verify that path before you build around it rather than assuming the official element library carries over.</li>
+<li><strong>Input files have their own limits.</strong> Images: up to 50 MB, at least 300px per side, aspect ratio 1:2.5–2.5:1. Video: up to 200 MB, 3–10 seconds, 700–2160px per side, 24–60fps.</li>
+<li><strong>Watermarking is a request-time toggle, and custom watermarks are not supported.</strong> Kuaishou’s image route exposes <code>watermark_info.enabled</code>, and the video route’s <code>options</code> object covers the same setting. Set it explicitly rather than assuming a default.</li>
+<li><strong>The international host is region-specific.</strong> Kuaishou’s own examples use <code>api-singapore.klingai.com</code>, so the route most English-language documentation describes is the Singapore deployment. Keep the host in configuration alongside the model ID.</li>
+</ol>
+<p>A quick sanity pass on any O1 request: is the input set one of the four shapes above, is the duration legal for that exact input count, and is <code>audio</code> either omitted or one of the values that slice actually accepts. And if the brief turns out to need motion transfer rather than physical reasoning — making a character perform a specific reference clip’s movement — that is a different endpoint with different rules; our <a href="https://www.modellix.ai/blog/kling-motion-control-api/">Kling motion control API guide</a> covers that route.</p>
+<h2 id="Calling-Kling-O1-through-Modellix-one-key-four-routes"><a href="#Calling-Kling-O1-through-Modellix-one-key-four-routes" class="headerlink" title="Calling Kling O1 through Modellix: one key, four routes"></a>Calling Kling O1 through Modellix: one key, four routes</h2><p>Everything above works on both routes; the reason to pick the aggregated one is operational rather than technical. One key covers the four O1 IDs plus the rest of the Kling line and the wider catalog — the <a href="https://www.modellix.ai/models/kling/kling-video-o1">Kling Video O1 model page</a> lists the live rate for every parameter combination — billing is per call with no package to size or let expire, and the same async envelope and error format apply across every model, so the polling loop you just wrote does not need a second implementation when you add Veo, Seedance or Wan to the same product. Request history is filterable per end-user via an <code>X-Mdlx-User-Id</code> header attached at submit time, which makes per-tenant cost reporting possible without building your own ledger. If you would rather not poll at all, the platform accepts an <code>X-Webhook-URL</code> header on the submit call and POSTs the result once the task reaches a terminal state, with <code>X-Modellix-Delivery-ID</code> available for idempotent handling. The full workflow, including the File API for uploading your own reference frames, is in the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api">Modellix REST API guide</a>.</p>
+<p>Four operational facts to plan around. Asset expiry is attached to each result rather than promised as a fixed window — the task-result schema carries a <code>result_expires_at</code> value, and the published examples place it roughly 24 hours after submission, so drive your own cache expiry from that field instead of a hard-coded number. Uploaded input files are a separate limit: about 7 days of retention, up to 16 MB each, 10 files per team. An empty balance returns <code>402</code>, not a queue. And concurrency and requests-per-minute scale with the size of a single top-up, from 2 concurrent tasks and 100 RPM below $10 up to 100 and 1,000 RPM at $1,000, per the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started/entitlements">entitlements page</a>.</p>
+<p>Where the direct route still wins: <strong>for a single O1 model at predictable volume, buying Kuaishou’s prepaid units can land cheaper per second than a metered aggregator — the Modellix trade is one key and one bill across many vendors, not a guaranteed lower unit price.</strong> The unit price also falls to $0.126 once you commit to a larger package, and staying direct keeps you on Kuaishou’s newest capabilities the day they ship, including the element library this route does not expose. If O1 is the only model you will ever call, and you will call it steadily, price the packages before you default to a single key.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Kling O1 on the Modellix API</h3><p class="view-docs-tag-desc">See the request schema, parameter enums, and live per-second pricing for all four Kling O1 endpoints behind one key.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Errors-limits-and-what-to-do-about-them"><a href="#Errors-limits-and-what-to-do-about-them" class="headerlink" title="Errors, limits, and what to do about them"></a>Errors, limits, and what to do about them</h2><p>Both platforms return a flat JSON error envelope rather than an HTML error page, which is what you want in a pipeline. Modellix uses <code>code</code> and <code>message</code>, where <code>code</code> mirrors the HTTP status:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span> <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">400</span><span class="punctuation">,</span> <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Invalid parameters: parameter &#x27;prompt&#x27; is required&quot;</span> <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning on this route</th>
+<th>Retry?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>400</code></td>
+<td>Missing or invalid field — most often a duration&#x2F;input combination from the list above</td>
+<td>No, fix the body</td>
+</tr>
+<tr>
+<td><code>401</code></td>
+<td>Invalid, missing or expired key</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>402</code></td>
+<td>Balance exhausted</td>
+<td>No, fund the account</td>
+</tr>
+<tr>
+<td><code>404</code></td>
+<td>Task ID or model not found</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>429</code></td>
+<td>Rate or concurrency limit; read <code>X-RateLimit-Reset</code></td>
+<td>Yes, after the window</td>
+</tr>
+<tr>
+<td><code>500</code> &#x2F; <code>503</code></td>
+<td>Platform-side failure</td>
+<td>Yes, with exponential backoff (1s → 2s → 4s)</td>
+</tr>
+</tbody></table>
+<p>Kuaishou documents its own error taxonomy separately in its <a target="_blank" rel="noopener" href="https://kling.ai/document-api/api/get-started/error-codes">error code reference</a>, and a <code>failed</code> task carries a <code>message</code> explaining why. Treat <code>failed</code> as terminal for that task rather than retrying the identical request: the statuses worth retrying are the transport-level ones in the table above, and a task that has already reached a terminal state is not one of them.</p>
+<p>One integration decision worth making early: pick webhooks or polling, not both. Polling at a ten-second interval against a ten-second clip is fine; polling at one second across a hundred concurrent retries is how teams discover their RPM ceiling.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Start Building with Kling O1</h3><p class="view-docs-tag-desc">Log in to Modellix to call the four Kling O1 endpoints and 200+ other image and video models through one API key.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>What is the Kling O1 API?</strong></p>
+<p>It is Kuaishou’s reasoning-enhanced multimodal video API. You send a task description plus any mix of first frame, last frame, reference images and a source clip, and the model plans the sequence before rendering. Kuaishou exposes it as an omni video route and an omni image route; aggregators expose the same model as separate text-to-video, image-to-video, reference-video and image model IDs.</p>
+<p><strong>How much does the Kling O1 API cost?</strong></p>
+<p>On Modellix, as read on September 10, 2026: text-to-video and image-to-video at $0.0672&#x2F;s in 720p and $0.0896&#x2F;s in 1080p, the reference-video route at $0.1008&#x2F;s and $0.1344&#x2F;s, and image generation at $0.0224 per image. Kuaishou bills in prepaid units instead — $0.14 per video unit, $0.0035 per image unit — and lists Kling Image O1 at 8 units ($0.028) per image. Kuaishou’s public pricing page does not publish a per-second rate for the O1 video model, so there is no official number to compare the video rates against.</p>
+<p><strong>Is <code>kling o1 api</code> the same as <code>kling video o1 api</code>?</strong></p>
+<p>Yes. They resolve to the same model. Kuaishou’s naming puts “O1” on both the video and image sides of the reasoning track, and there is no separate video-only product, so both search phrasings describe the routes on this page.</p>
+<p><strong>What is the difference between Kling O1 and Kling 3.0?</strong></p>
+<p>O1 is the reasoning model: it plans before rendering, which is why it holds up on complex physical interaction and long, logically ordered prompts. Kling 3.0 and 3.0 Omni are the flagship generation line, and they are the ones that carry native audio, 4K output and multi-shot sequences. O1 caps at 10 seconds and 1080p with no multi-shot, so the two are complements rather than versions of each other — you route to O1 for the shots that have to be physically correct and to 3.0 for everything that needs length, sound or resolution. Our <a href="https://www.modellix.ai/blog/kling-3-0-api/">Kling 3.0 API guide</a> covers the other side of that split, and the Kling 2.x generations sit below both.</p>
+<p><strong>Why does my Kling O1 image-to-video request fail when I ask for 8 seconds?</strong></p>
+<p>Because you sent exactly one input image. On the O1 image-to-video slice, a single image restricts the duration to 5 or 10 seconds. Send two or more reference images and the full 3–10 second range becomes available.</p>
+<p><strong>Does the Kling O1 API support audio?</strong></p>
+<p>Not as a generated track. On the text-to-video and image-to-video slices the <code>audio</code> field accepts <code>off</code> only. The reference-video slice accepts <code>original</code>, which preserves the source clip’s existing audio, but not a generated soundtrack. For spoken or generated audio you want the 3.0 line.</p>
+<p><strong>Can I use Kling O1 for a reference-based edit of an existing clip?</strong></p>
+<p>Yes — that is the <code>kling/kling-video-o1</code> route, which takes exactly one reference video plus up to four images, and supports restyling and editing in natural language. Keep <code>audio</code> at <code>off</code> if the source clip is being used as a feature reference, and remember the ten-second ceiling applies to the output.</p>
+<p><strong>Which Kling O1 endpoints does Modellix expose?</strong></p>
+<p>Four, as of September 10, 2026: <code>kling/kling-video-o1-t2v</code>, <code>kling/kling-video-o1-i2v</code>, <code>kling/kling-video-o1</code> for reference-video work, and <code>kling/kling-image-o1</code>. They share one key, one asynchronous submit-and-poll pattern and per-call billing.</p>
+<p><strong>Is there a free Kling O1 API tier?</strong></p>
+<p>Not self-serve, on either route. Kuaishou sells prepaid unit packages, and the smallest ones are still paid commitments with an expiry clock. On Modellix, the signup credit was retired on August 19, 2026 — new accounts no longer receive a complimentary credit, and trial credit is requested by emailing <a href="mailto:&#115;&#x75;&#x70;&#x70;&#111;&#114;&#x74;&#x40;&#109;&#111;&#100;&#101;&#108;&#108;&#x69;&#120;&#x2e;&#x61;&#x69;">support@modellix.ai</a>, as recorded in the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/changelog/product-updates">Modellix changelog</a>. The cheapest way to evaluate O1 is one short 720p clip: at $0.0672 per second, a five-second test costs about thirty-four cents.</p>
+<hr>
+<p><em>Model IDs, endpoint behaviour and pricing reflect public information as of September 10, 2026 and change without notice — Kuaishou retires legacy models on its own schedule (a September 15, 2026 retirement list is already published, though Kling O1 is not on it), and aggregator catalogs shift with each release. Validate the specific model page and price before you commit budget. This article was written by Modellix, an API aggregator with a commercial interest in the single-key route it describes; the Kuaishou documentation summarised above is vendor-neutral, and the rates quoted are a same-day snapshot rather than a standing claim. Access Kling and 200+ other image and video models through one API key at <a target="_blank" rel="noopener" href="https://modellix.ai/">modellix.ai</a>.</em></p>
+<p><em>Cover image: illustrative Modellix artwork; it is not a Kuaishou product screenshot or source evidence.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+              <a href="/blog/tags/API-Integration/" class="tag-pill tag-pill--sm">API Integration</a>
+            
+              <a href="/blog/tags/Kling/" class="tag-pill tag-pill--sm">Kling</a>
+            
+              <a href="/blog/tags/Kuaishou/" class="tag-pill tag-pill--sm">Kuaishou</a>
+            
+              <a href="/blog/tags/Multimodal/" class="tag-pill tag-pill--sm">Multimodal</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/minimax-api-url/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://statics.mylandingpages.co/static/modellix/image/cover-minimax-api-url.webp" alt="MiniMax API URL: Base URLs, Endpoints and Working Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">MiniMax API URL: Base URLs, Endpoints and Working Code</h3>
+          <time class="related-article-date" datetime="2026-09-12T16:00:00.000Z">September 13, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/veo-3-api-documentation/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://statics.mylandingpages.co/static/modellix/image/cover-veo-3-api-documentation.webp" alt="Veo 3 API Documentation: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Veo 3 API Documentation: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-09-12T16:00:00.000Z">September 13, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/veo-3-fast-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://statics.mylandingpages.co/static/modellix/image/cover-veo-3-fast-api.webp" alt="Veo 3 Fast API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Veo 3 Fast API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-09-12T16:00:00.000Z">September 13, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/kling-o1-api/&text=Kling%20O1%20API%3A%20Integration%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/kling-o1-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/kling-o1-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
