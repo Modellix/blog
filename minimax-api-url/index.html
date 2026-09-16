@@ -373,7 +373,7 @@
 <h2 id="Frequently-Asked-Questions-About-the-MiniMax-API-URL"><a href="#Frequently-Asked-Questions-About-the-MiniMax-API-URL" class="headerlink" title="Frequently Asked Questions About the MiniMax API URL"></a>Frequently Asked Questions About the MiniMax API URL</h2><p><strong>What is the base URL for MiniMax?</strong> For OpenAI-compatible clients it is <code>https://api.minimax.io/v1</code>; for Anthropic-compatible clients it is <code>https://api.minimax.io/anthropic</code>, with no <code>/v1</code> appended. Video, image, speech and file endpoints live on the same <code>api.minimax.io</code> host under their own paths, listed in the table above.</p>
 <p><strong>Is the MiniMax API URL different if I use an aggregator?</strong> Yes, and not only the domain. Modellix answers media requests at <code>https://api.modellix.ai</code>, text at <code>https://llm.modellix.ai</code>, and web tools at <code>https://tool.modellix.ai</code>, and its documentation warns against mixing those hosts or their request fields.</p>
 <p><strong>Do I have to remove <code>/async</code> from my existing integration?</strong> No. Modellix removed the suffix from model paths on June 11, 2026 and states that existing integrations using <code>/async</code> “will continue to work seamlessly”. Write the current form in new code; leave working code alone until you touch it for another reason.</p>
-<p><strong>Is there a free MiniMax API?</strong> Not as an automatic allowance. MiniMax’s own documentation does not publish a standing free tier for the API, and Modellix ended its signup credit on August 19, 2026 — new registrations no longer receive a complimentary $1 credit. The only free line items MiniMax documents are bundled allowances inside its paid video packages (<a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/guides/pricing-paygo">its pay-as-you-go page</a> marks an <code>Audio</code> row <code>Free</code> under <code>MiniMax-H3</code>), not a free API tier, and the three free music endpoints it did document were discontinued from August 20, 2026. Trial credit is requested by emailing <a href="mailto:&#x73;&#x75;&#x70;&#x70;&#x6f;&#114;&#116;&#64;&#109;&#111;&#100;&#101;&#108;&#x6c;&#x69;&#120;&#46;&#97;&#105;">support@modellix.ai</a>, and neither host’s free-ness should be assumed when you budget; our <a href="https://www.modellix.ai/blog/minimax-free-api">MiniMax free API guide</a> keeps the two sides separate.</p>
+<p><strong>Is there a free MiniMax API?</strong> Not as an automatic allowance. MiniMax’s own documentation does not publish a standing free tier for the API, and Modellix ended its signup credit on August 19, 2026 — new registrations no longer receive a complimentary $1 credit. The only free line items MiniMax documents are bundled allowances inside its paid video packages (<a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/guides/pricing-paygo">its pay-as-you-go page</a> marks an <code>Audio</code> row <code>Free</code> under <code>MiniMax-H3</code>), not a free API tier, and the three free music endpoints it did document were discontinued from August 20, 2026. Trial credit is requested by emailing <a href="mailto:&#x73;&#x75;&#112;&#112;&#111;&#114;&#116;&#x40;&#x6d;&#111;&#x64;&#x65;&#108;&#108;&#x69;&#120;&#x2e;&#x61;&#105;">support@modellix.ai</a>, and neither host’s free-ness should be assumed when you budget; our <a href="https://www.modellix.ai/blog/minimax-free-api">MiniMax free API guide</a> keeps the two sides separate.</p>
 <p><strong>How do I find the exact URL for one specific MiniMax model?</strong> Call <code>GET https://www.modellix.ai/models/minimax/&lt;model&gt;/api_schema</code> — it is public, needs no API key, and returns <code>servers[0].url</code> plus the request body schema. From a terminal, <code>modellix-cli model get-schema minimax/&lt;model&gt; --quiet</code> prints the same inference URL.</p>
 <p><strong>How long do uploads and generated files stay available?</strong> About seven days by default on Modellix — uploads through the File API and generated results both. MiniMax’s video query endpoint likewise only serves tasks from the last seven days. Treat both as transit, and copy anything you need to keep.</p>
 <p><strong>Which auth header should I send?</strong> Either <code>Authorization: Bearer &lt;key&gt;</code> or <code>x-api-key: &lt;key&gt;</code> works on the gateway; send one, or send both with identical values. Use a Modellix key for Modellix hosts and a MiniMax key for MiniMax hosts — they are not interchangeable.</p>
@@ -435,25 +435,6 @@
         </div>
       </a>
     
-      <a href="/blog/veo-3-fast-api/" class="related-article-card">
-        
-          <div class="related-article-cover">
-            <img src="https://img.modellix.ai/en/article/cover-veo-3-fast-api.webp" alt="Veo 3 Fast API: Integration Guide, Pricing &amp; Code" loading="lazy">
-          </div>
-        
-        <div class="related-article-body">
-          
-            <div class="related-article-meta">
-              
-                <span class="category-tag category-tag--sm">Guides</span>
-              
-            </div>
-          
-          <h3 class="related-article-name">Veo 3 Fast API: Integration Guide, Pricing &amp; Code</h3>
-          <time class="related-article-date" datetime="2026-09-12T16:00:00.000Z">September 13, 2026</time>
-        </div>
-      </a>
-    
       <a href="/blog/veo-3-api-documentation/" class="related-article-card">
         
           <div class="related-article-cover">
@@ -469,6 +450,25 @@
             </div>
           
           <h3 class="related-article-name">Veo 3 API Documentation: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-09-12T16:00:00.000Z">September 13, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/veo-3-fast-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-veo-3-fast-api.webp" alt="Veo 3 Fast API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Veo 3 Fast API: Integration Guide, Pricing &amp; Code</h3>
           <time class="related-article-date" datetime="2026-09-12T16:00:00.000Z">September 13, 2026</time>
         </div>
       </a>
