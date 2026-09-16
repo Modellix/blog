@@ -1,0 +1,636 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeepSeek Flash V4 vs V4.1: Cheaper Input, Bigger Bill — Modellix Blog</title>
+  <meta name="description" content="DeepSeek Flash as of September 15, 2026: what the September 10 rename changed, both rate cards side by side, and the ratio where the new model costs more.">
+  <meta name="keywords" content="deepseek flash, deepseek v4.1 flash, deepseek v4 flash, deepseek flash latest, deepseek vision model, deepseek v4.1 flash api, deepseek flash context window">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/deepseek-flash/">
+  <meta name="description" content="DeepSeek Flash as of September 15, 2026: what the September 10 rename changed, both rate cards side by side, and the ratio where the new model costs more.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DeepSeek Flash V4 vs V4.1: Cheaper Input, Bigger Bill — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/deepseek-flash/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="DeepSeek Flash as of September 15, 2026: what the September 10 rename changed, both rate cards side by side, and the ratio where the new model costs more.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.modellix.ai/assets/tmp-migrate/cover-deepseek-flash.webp">
+<meta property="article:published_time" content="2026-09-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-14T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="API Cost">
+<meta property="article:tag" content="Cache">
+<meta property="article:tag" content="DeepSeek">
+<meta property="article:tag" content="LLM API">
+<meta property="article:tag" content="Model Migration">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.modellix.ai/assets/tmp-migrate/cover-deepseek-flash.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"DeepSeek Flash V4 vs V4.1: Cheaper Input, Bigger Bill","description":"DeepSeek Flash as of September 15, 2026: what the September 10 rename changed, both rate cards side by side, and the ratio where the new model costs more.","datePublished":"2026-09-14T16:00:00.000Z","dateModified":"2026-09-14T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/deepseek-flash/","image":"/assets/tmp-migrate/cover-deepseek-flash.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">DeepSeek Flash V4 vs V4.1: Cheaper Input, Bigger Bill</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/LLM-API/" class="category-tag category-tag--sm">LLM API</a>
+          
+        
+      </div>
+      <h1 class="post-title">DeepSeek Flash V4 vs V4.1: Cheaper Input, Bigger Bill</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-09-14T16:00:00.000Z">September 15, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/LLM-API/" class="tag-pill tag-pill--sm">LLM API</a>
+            
+              <a href="/blog/tags/DeepSeek/" class="tag-pill tag-pill--sm">DeepSeek</a>
+            
+              <a href="/blog/tags/Cache/" class="tag-pill tag-pill--sm">Cache</a>
+            
+              <a href="/blog/tags/API-Cost/" class="tag-pill tag-pill--sm">API Cost</a>
+            
+              <a href="/blog/tags/Model-Migration/" class="tag-pill tag-pill--sm">Model Migration</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>On September 10, 2026, the model name deepseek-flash stopped pointing at the model it used to point at. DeepSeek shipped V4.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="/assets/tmp-migrate/cover-deepseek-flash.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="/assets/tmp-migrate/cover-deepseek-flash.png" alt="Modellix cover: two-line title DeepSeek Flash and Why the Bill Can Rise over a glass input and output token rail crossing a chrome fulcrum, MODELLIX wordmark" />
+</picture>
+
+<p>On September 10, 2026, the model name <code>deepseek-flash</code> stopped pointing at the model it used to point at. DeepSeek shipped V4.1-Flash, retired V4-Flash and V4-Flash-Vision-Exp, and told everyone to “set your model to <code>deepseek-flash</code>“ (<a target="_blank" rel="noopener" href="https://www.deepseek.com/en/news/deepseek-v4-1-flash/">DeepSeek’s release post</a>). If you kept the old string in your config, you are now calling a different model at a different price and were never asked to change anything.</p>
+<p>The headline from that week was “prices have been reduced.” The rate card says something narrower. Against the previous Flash generation as this catalog lists it, <strong>input is 24% cheaper and output is 1% more expensive</strong>, so whether your bill falls depends on the shape of your traffic — specifically on how many output tokens you generate per cache-miss input token. This guide gives you that dividing line, both rate cards with a capture date on every figure, and a way to check what your own requests were actually billed. Every number below was read from a first-party page on <strong>September 15, 2026</strong>.</p>
+<p>One disclosure before the numbers: we run Modellix, a gateway that carries DeepSeek models alongside 8 other providers, so we have a commercial interest in the rows further down. On the newest DeepSeek Flash row our catalog price equals DeepSeek’s own peak rate — there is no discount to sell you, which makes this the rare guide where our commercial interest points at the boring answer.</p>
+<h2 id="What-DeepSeek-Flash-is-now-and-what-changed-on-September-10"><a href="#What-DeepSeek-Flash-is-now-and-what-changed-on-September-10" class="headerlink" title="What DeepSeek Flash is now, and what changed on September 10"></a>What DeepSeek Flash is now, and what changed on September 10</h2><p>For a reader arriving from an older page: <code>deepseek-flash</code> is DeepSeek-V4.1-Flash, a 552B-parameter mixture-of-experts model on a new Causal Encoder–Decoder architecture that activates 8B parameters per token during prefill and 16B during decode, with native image input (<a target="_blank" rel="noopener" href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash">model card</a>). <code>deepseek-v4-pro</code> is still served under its own name.</p>
+<p>The changes that matter to someone with the model string already in production, not to someone reading a benchmark chart:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>V4-Flash (retired)</th>
+<th>V4.1-Flash (current)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Model name to call</td>
+<td><code>deepseek-v4-flash</code> (temporarily routed)</td>
+<td><code>deepseek-flash</code></td>
+</tr>
+<tr>
+<td>Architecture &#x2F; active params</td>
+<td>previous MoE generation</td>
+<td>552B MoE, Causal Encoder–Decoder, 8B prefill &#x2F; 16B decode</td>
+</tr>
+<tr>
+<td>Image input</td>
+<td>separate <code>-vision-exp</code> model with its own ID</td>
+<td>native — one ID, no vision variant to choose</td>
+</tr>
+<tr>
+<td>KV cache footprint</td>
+<td>baseline</td>
+<td>1&#x2F;4 the HBM, 1&#x2F;8 the SSD storage</td>
+</tr>
+<tr>
+<td>Context &#x2F; max output</td>
+<td>1,050,000 in the gateway catalog; the vendor no longer lists the row</td>
+<td>1M context, 384K max output</td>
+</tr>
+<tr>
+<td>Cached-read rate (gateway row)</td>
+<td>$0.0126 per 1M</td>
+<td>$0.006 per 1M</td>
+</tr>
+</tbody></table>
+<p>The KV cache compression is the release’s own explanation for why the cached lane moves further than the headline rate: DeepSeek writes that cache-hit charges “often account for a large share of agent costs” and that compressing the cache cuts those costs, which is the thread that runs through the rest of this article.</p>
+<p>How much stronger the new generation is, is the vendor’s own claim rather than an independent finding: the release post says the new pretraining and larger-scale reinforcement post-training “deliver benchmark results ahead of flagship models, including DeepSeek-V4-Pro,” and the <a target="_blank" rel="noopener" href="https://api-docs.deepseek.com/updates">API changelog</a> lists the scores behind that sentence — GPQA Diamond 90.9, Terminal-Bench 2.1 at 90.6, DeepSWE v1.1 at 74.2. None of those numbers is reproduced here, and none of them moves a rate card, which is why this article stays on the billing side of the change.</p>
+<p>Three of those are operational rather than technical. First, the vision decision disappeared: before September 10 you chose between a text-only Flash and a separate deepseek vision model, and the two were separate IDs; now image input is part of the base model. Second, the retired names still resolve — DeepSeek’s pricing page states the legacy names “are still accepted, but the corresponding models have been retired, their requests are served by the DeepSeek-V4.1-Flash model and billed at the Flash price.” Both legacy names now return v4.1 generation output, even though a client on the old string never asked for it. Third, and least comfortably, the two DeepSeek pages do not agree about V4-Pro.</p>
+<p>The release post still says: “Starting at 04:00 UTC on Sept 14, 2026, all <code>deepseek-v4-pro</code> requests will route to V4.1-Flash at V4.1-Flash rates. This will continue until V4.1-Pro launches.” The <a target="_blank" rel="noopener" href="https://api-docs.deepseek.com/quick_start/pricing/">pricing page</a> and the <a target="_blank" rel="noopener" href="https://api-docs.deepseek.com/updates">API changelog</a>, both live on September 15, 2026, say the opposite in a footnote: “In response to user demand, we have decided to continue providing API services for DeepSeek V4 Pro after September 14, 2026, with the billing method remaining unchanged.”</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/deepseek-v4-pro-routing-notice.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/deepseek-v4-pro-routing-notice.png" alt="DeepSeek release page listing the V4-Flash retirement, the September 14 V4-Pro rerouting plan and its date, captured September 15, 2026" loading="lazy" />
+</picture>
+
+<p><em>The line that launched a thousand migration plans, still live on the release page on September 15, 2026 — five days after it was written, and contradicted by DeepSeek’s own pricing footnote. Captured from <a target="_blank" rel="noopener" href="https://www.deepseek.com/en/news/deepseek-v4-1-flash/">deepseek.com</a>.</em></p>
+<p>Both statements are on DeepSeek’s domain, both were readable on the same afternoon, and we are not going to pick a winner for you. If you build routing assumptions on V4-Pro today, read the pricing page first and confirm with the vendor — that is what we did, and it is why this article stops at Flash.</p>
+<h2 id="Why-cheaper-input-is-not-the-same-as-a-cheaper-bill"><a href="#Why-cheaper-input-is-not-the-same-as-a-cheaper-bill" class="headerlink" title="Why cheaper input is not the same as a cheaper bill"></a>Why cheaper input is not the same as a cheaper bill</h2><p>Here is the other card. This is the Modellix catalog, filtered to the DeepSeek rows, captured September 15, 2026, in USD per 1 million tokens:</p>
+<table>
+<thead>
+<tr>
+<th>Model ID</th>
+<th align="right">Context</th>
+<th align="right">Input</th>
+<th align="right">Output</th>
+<th align="right">Cached read</th>
+<th align="right">Discount</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>deepseek/deepseek-v4-flash</code></td>
+<td align="right">1.05M</td>
+<td align="right">$0.44 → <strong>$0.396</strong></td>
+<td align="right">$1.32 → <strong>$1.188</strong></td>
+<td align="right">$0.014 → <strong>$0.0126</strong></td>
+<td align="right">10% OFF</td>
+</tr>
+<tr>
+<td><code>deepseek/deepseek-v4-flash-vision</code></td>
+<td align="right">1.05M</td>
+<td align="right">$0.44</td>
+<td align="right">$1.32</td>
+<td align="right">$0.014</td>
+<td align="right">—</td>
+</tr>
+<tr>
+<td><code>deepseek/deepseek-v4-pro</code></td>
+<td align="right">1.05M</td>
+<td align="right">$1.33 → <strong>$1.197</strong></td>
+<td align="right">$3.96 → <strong>$3.564</strong></td>
+<td align="right">$0.044 → <strong>$0.0396</strong></td>
+<td align="right">10% OFF</td>
+</tr>
+<tr>
+<td><code>deepseek/deepseek-v4.1-flash</code></td>
+<td align="right">1M</td>
+<td align="right">$0.30</td>
+<td align="right">$1.20</td>
+<td align="right">$0.006</td>
+<td align="right">—</td>
+</tr>
+</tbody></table>
+<p>Two display details, because they change the arithmetic. The source page prints the discounted figures as $1.19, $1.20 and $3.56 (from $1.188, $1.197 and $3.564), while values that need no rounding keep their form — $0.396 and $0.0126, for instance. Each billed figure is exactly 90% of its list price ($0.44 × 0.9 &#x3D; $0.396, $1.32 × 0.9 &#x3D; $1.188), and the break-even below is computed from the unrounded pair, because $1.20 − $1.188 is the whole margin. The other detail is the <strong>cached-write</strong> column, which reads $0 for every DeepSeek row and is dealt with in the next section.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/modellix-deepseek-flash-rows.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/modellix-deepseek-flash-rows.png" alt="Modellix LLM price table filtered to the four DeepSeek rows, showing context, list and billed input and output, cached read and cached write columns and the discount column" loading="lazy" />
+</picture>
+
+<p><em>Four DeepSeek rows on one key, captured September 15, 2026. Two carry a 10% discount and two do not — and the newest row is one of the two that do not. The catalog table paginates six rows at a time, so these four rows were captured on two pages and stitched under the unchanged header. Captured from <a href="https://www.modellix.ai/llm">modellix.ai&#x2F;llm</a>.</em></p>
+<p>Read the two Flash rows against each other and <mark>the newer model is cheaper on input and slightly more expensive on output</mark>. Input falls from $0.396 to $0.30 per million (24% lower); output rises from $1.188 to $1.20 (1% higher). Cached reads halve, from $0.0126 to $0.006. The direction of the saving therefore depends entirely on your mix, and it is arithmetic rather than opinion:</p>
+<ul>
+<li>Every <strong>cache-miss input token</strong> you send on the new row saves $0.096 per million tokens and pays for <strong>8 output tokens</strong> at the new output rate.</li>
+<li>Every <strong>cached input token</strong> saves only $0.0066 per million and pays for <strong>0.55 of an output token</strong>.</li>
+</ul>
+<p>So the rule of thumb is: <strong>V4.1-Flash is cheaper than the older Flash row as long as your output tokens stay below 8× your cache-miss input tokens</strong>, with cached tokens adding about half a token of headroom each. Put two requests through it, at Modellix’s own rates:</p>
+<p>A request with 500 cache-miss input tokens and 4,000 output tokens — a short prompt and a long answer — costs <strong>$0.00495 on either row</strong>. That is the line exactly. Send 16,000 output tokens from the same 500-token prompt and the older row is cheaper: <strong>$0.019206 against $0.01935</strong>, about a hundredth of a cent apart, but in the direction opposite to the announcement.</p>
+<p>Now the shape most agent workloads actually have. Take 1,000,000 input tokens of which 900,000 hit the cache, plus 10,000 output tokens. The new row bills $0.0474; the older row bills $0.06282. <strong>V4.1-Flash is 24.5% cheaper on that request</strong>, and everything in that saving comes from the input lane. Same tokens, same model family, opposite conclusion — which is why “did prices go down” has no answer without a workload attached.</p>
+<p>Three request shapes, the three rates above, run through both rows:</p>
+<table>
+<thead>
+<tr>
+<th>Request shape</th>
+<th align="right">Cache-miss input</th>
+<th align="right">Cached input</th>
+<th align="right">Output</th>
+<th>Cheaper row</th>
+<th align="right">Difference on the bill</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Short prompt, long answer</td>
+<td align="right">500</td>
+<td align="right">0</td>
+<td align="right">16,000</td>
+<td>older Flash row</td>
+<td align="right">old row 0.7% cheaper</td>
+</tr>
+<tr>
+<td>Exactly on the line</td>
+<td align="right">500</td>
+<td align="right">0</td>
+<td align="right">4,000</td>
+<td>either — identical</td>
+<td align="right">$0</td>
+</tr>
+<tr>
+<td>Cache-heavy agent session</td>
+<td align="right">100,000</td>
+<td align="right">900,000</td>
+<td align="right">10,000</td>
+<td><code>deepseek-v4.1-flash</code></td>
+<td align="right">new row 24.5% cheaper</td>
+</tr>
+</tbody></table>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/deepseek-flash-rate-card-peak-offpeak.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/deepseek-flash-rate-card-peak-offpeak.png" alt="DeepSeek's published rate card showing off-peak and peak prices for cache-hit input, cache-miss input and output across the Flash and V4 Pro rows" loading="lazy" />
+</picture>
+
+<p><em>DeepSeek’s own card, captured September 15, 2026: three billing lanes — cache-hit input, cache-miss input and output — each split into an off-peak and a peak figure, with the peak window, the legacy model names and the V4-Pro note carried in footnotes further down the same page rather than inside this frame. Captured from <a target="_blank" rel="noopener" href="https://api-docs.deepseek.com/quick_start/pricing/">api-docs.deepseek.com</a>.</em></p>
+<p>One more thing about the vendor’s card, since it is the one your team will screenshot: it prices the same tokens <strong>by the clock</strong>. Off-peak rates are half of peak, and peak is defined verbatim as “Peak hours are 01:00 - 04:00 and 06:00 - 10:00 UTC, Monday through Friday (all other hours are off-peak).” The gateway table above carries a single rate per model and does not mention peak windows at all — a text search of that page for “off-peak” returns nothing. On the newest Flash row our listed rate sits exactly on DeepSeek’s peak tier: $0.30, $1.20, $0.006. If your workload can be scheduled into DeepSeek’s off-peak hours, that lever exists on the vendor’s side of the fence, and it is worth asking your provider what happens to it.</p>
+<h2 id="The-lanes-that-decide-it-cache-hits-cache-misses-and-a-0-column-nobody-explains"><a href="#The-lanes-that-decide-it-cache-hits-cache-misses-and-a-0-column-nobody-explains" class="headerlink" title="The lanes that decide it: cache hits, cache misses, and a $0 column nobody explains"></a>The lanes that decide it: cache hits, cache misses, and a $0 column nobody explains</h2><p>The input lane is where the two cards look most different and where the differences matter least per token, because DeepSeek prices cached input so aggressively that most of a production prompt can bill below one cent per million. Third-party telemetry shows how far that goes: OpenCode’s public dashboard for this model, read on September 15, 2026, reports <strong>7.3M average tokens per session, $0.08 average cost per session, and a cache ratio of 98% of input tokens</strong> (<a target="_blank" rel="noopener" href="https://opencode.ai/data/deepseek/deepseek-v4.1-flash">OpenCode data</a>). We are citing that as an observation from someone else’s traffic, not ours, and one dashboard is not a benchmark — but it is the only published cache ratio we could find for this model, and 98% changes the arithmetic: if almost all input bills at the cached rate, then the input lane’s <em>rate</em> barely moves a bill, and the output ratio decides nearly everything.</p>
+<p>That also explains why the cached-read figure matters more than it looks. At $0.006 per million, <code>deepseek/deepseek-v4.1-flash</code> has the lowest cached-read rate of any paid row in our catalog — but the saving it delivers is bounded by how much of your prompt repeats. A workload with a stable system prompt and a long tool schema caches well; a workload that feeds fresh documents every call does not, and for that workload the cache lane is not a lever at all.</p>
+<p>One column has no explanation available. Our price table lists a <strong>cached-write</strong> figure for every model, and for all four DeepSeek rows it reads exactly <strong>$0</strong>. DeepSeek’s own card has no cache-write line to cross-check against, and neither DeepSeek’s documentation nor ours states whether cache writes are unsupported or simply not charged. The honest reading is that the cell is blank in substance: do not build a cost model on it, and if you need it filled in, ask the provider.</p>
+<p>The other accounting question is images. Every page about this release leads with native visual understanding, and none of the pages we read for this article says how image tokens are billed — DeepSeek’s card prices input and output and does not itemise image input. If your prompts contain pictures, that is a second reason to read your own logs rather than a rate table.</p>
+<h2 id="Check-what-your-own-traffic-was-billed-at"><a href="#Check-what-your-own-traffic-was-billed-at" class="headerlink" title="Check what your own traffic was billed at"></a>Check what your own traffic was billed at</h2><p>Every guide on this keyword says the new model is cheaper. None of them tells you whether <strong>your</strong> requests came out ahead, which is the only version of the question that reaches a budget. On a gateway with per-request logging that check is arithmetic rather than faith: <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/get-llm-logs"><code>GET /v1/logs</code></a> returns one row per request with <code>prompt_tokens</code>, <code>completion_tokens</code>, <code>cached_tokens</code>, <code>cost</code>, the model that served it as <code>&#123; provider, model_name &#125;</code>, plus <code>status</code>, <code>latency_sec</code> and <code>tps</code>.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -sS <span class="string">&quot;https://llm.modellix.ai/v1/logs?start_time=1788739200&amp;end_time=1789430400&amp;page_size=100&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$MODELLIX_API_KEY</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>start_time</code> and <code>end_time</code> are required UNIX seconds and the window may span at most 30 days; <code>page_size</code> defaults to 10 and caps at 100. Three steps turn the output into an answer. First, divide <code>cached_tokens</code> by <code>prompt_tokens</code> per request — that is your real hit rate, and it is the number to hold against the 98% above. Second, reprice the same requests at the other Flash row’s three rates and compare, which is the calculation in the previous section run on real traffic instead of an example. Third, read <code>model.model_name</code>: it names the model that actually answered, which is how you find out whether a legacy string or a stable alias resolved to the row you expected.</p>
+<p>That last check matters more since September 10, because the catalog now ships a <strong>stable alias</strong>: <code>~deepseek/deepseek-flash-latest</code>, which on September 15, 2026 resolves to <code>deepseek/deepseek-v4.1-flash</code>. The mechanism is worth internalising beyond this model — <a href="https://www.modellix.ai/blog/gpt-latest-model/">how a gateway alias gets retargeted</a> covers the same behaviour for OpenAI’s family. The alias page is explicit that “when a new version ships, the alias changes target and your client stays unchanged,” and that pricing and capabilities “follow the current target.” An alias is a subscription to the vendor’s next release, and the next release’s rates. If your budget needs a frozen number, pin a concrete model ID — the same page says exactly that for evaluation and regression work. Documentation for request bodies, model-name form and the log endpoint is on the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/api/api">LLM API guide</a>; the DeepSeek V4.1 Flash API is reached over the same base URL as every other text model in the catalog, and for the same tokens measured per agent run, <a href="https://www.modellix.ai/blog/deepseek-harness-token-usage/">what one agent run is actually billed</a> walks through the token side.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/modellix-deepseek-flash-alias-table.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/modellix-deepseek-flash-alias-table.png" alt="Modellix stable alias table with the row routing the deepseek flash alias to deepseek-v4.1-flash highlighted" loading="lazy" />
+</picture>
+
+<p><em>Thirteen stable aliases on the gateway catalog, captured September 15, 2026. The highlighted row is the one that matters here: the Flash alias follows the newest concrete model in the family, which is why a client can stay unchanged while its bill cannot. Captured from <a href="https://www.modellix.ai/llm">modellix.ai&#x2F;llm</a>.</em></p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">DeepSeek Flash Model IDs and Request Logs</h3><p class="view-docs-tag-desc">Read the LLM gateway guide for model IDs and the /v1/logs reference for cached_tokens, the cost unit and the query parameters you need to price your own DeepSeek Flash traffic.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="When-the-older-Flash-row-is-still-the-cheaper-one"><a href="#When-the-older-Flash-row-is-still-the-cheaper-one" class="headerlink" title="When the older Flash row is still the cheaper one"></a>When the older Flash row is still the cheaper one</h2><p>Three conditions, and they are the whole decision:</p>
+<ol>
+<li><strong>Your output tokens exceed 8× your cache-miss input tokens.</strong> Long generations from short prompts — the shape of summarisation, rewriting and “produce a document” tasks — sit on this side of the line, and so does anything that lets the model reason at length: DeepSeek’s thinking mode is on by default, and the tokens it generates land in the output lane, which your own logs will show as <code>completion_tokens</code>.</li>
+<li><strong>Your cache-hit rate is low.</strong> Caching pays you $0.0066 per million tokens on the new row against $0.0126 on the old one. If nothing repeats, there is very little caching to be paid for, and the input-lane advantage shrinks to whatever your miss tokens are worth.</li>
+<li><strong>You are calling the older row through a catalog that still lists it separately.</strong> DeepSeek’s own card no longer carries a Flash row for the previous generation at all — it bills the legacy <em>name</em> at the current Flash price. So the cheap-old-row option is a property of the gateway catalog you are on, not of the vendor, and it can disappear from a catalog the way it disappeared from the vendor’s card.</li>
+</ol>
+<p>If none of those three holds — a cache-heavy agent workload, ordinary output ratios — the newer row is the cheaper one, usually by a wide margin, and the September 10 change did what the announcement said.</p>
+<p>What we cannot tell you is which side you are on. Our own numbers here are catalog rates, not measured traffic: we have not published an internal benchmark of the two rows on a shared workload, and this article does not pretend the examples above are one. Two more limits worth naming, because they are the ones people get burned by: the catalog lists the older rows with a 1,050,000-token context while the current row and DeepSeek’s own card both say 1M — we are reporting the two printed values rather than claiming a documented reduction, and the 1.05M window for the retired generation is not something we could verify on DeepSeek’s site; and neither card explains the $0 cached-write column. Treat both as open questions to put to your provider, not as settled facts.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Price Your Own DeepSeek Flash Traffic</h3><p class="view-docs-tag-desc">Log in to see the live DeepSeek rows and the rest of the catalog on one key, and to read cached_tokens and cost per request in your own traffic before you change a model string.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>What is DeepSeek Flash?</strong></p>
+<p><code>deepseek-flash</code> is DeepSeek’s current small-model API name. As of September 15, 2026 it serves DeepSeek-V4.1-Flash, a 552B-parameter mixture-of-experts model with native image input, a 1M-token context window and a 384K maximum output, billed per token from a topped-up balance with peak and off-peak rates.</p>
+<p><strong>What changed between DeepSeek V4 Flash and V4.1 Flash?</strong></p>
+<p>Four things with consequences. The architecture moved to a Causal Encoder–Decoder design with 8B active parameters during prefill and 16B during decode; image input moved into the base model instead of a separate vision ID; the KV cache footprint dropped to roughly a quarter of the previous generation’s HBM and an eighth of its SSD storage; and the price shape flipped, with a lower input rate and a marginally higher output rate than the previous Flash listing.</p>
+<p><strong>Did DeepSeek Flash get cheaper on September 10, 2026?</strong></p>
+<p>Yes on input, marginally no on output, against the previous generation as our catalog lists it: input $0.396 → $0.30 per million tokens, output $1.188 → $1.20, cached read $0.0126 → $0.006. That makes “cheaper” true for input-heavy or cache-heavy traffic and false for output-heavy traffic — the dividing line is output tokens above 8× cache-miss input tokens.</p>
+<p><strong>What happens if I keep calling <code>deepseek-v4-flash</code>?</strong></p>
+<p>On DeepSeek’s API the name still resolves: the pricing page states that the legacy names “are still accepted, but the corresponding models have been retired, their requests are served by the DeepSeek-V4.1-Flash model and billed at the Flash price.” What you are billed for is the current model, so the question is not whether it works but whether your logs show the model you think you are calling — <code>model.model_name</code> answers that.</p>
+<p><strong>Is DeepSeek V4 Flash free, or open source?</strong></p>
+<p>Two different questions with two different answers. The weights are open — the model card states it is “licensed under the MIT License” — but the hosted API is pay-per-token, billed against a topped-up or granted balance, and DeepSeek’s pricing page publishes no signup allowance. Self-hosting is a hardware commitment measured in GPUs, not a free tier.</p>
+<p><strong>Can DeepSeek Flash read images?</strong></p>
+<p>Yes, natively and under the same model ID. That is one of the real simplifications in this generation: V4-Flash and its vision experiment were separate models with separate names, so image work meant choosing a second ID, while V4.1-Flash takes text and image input on <code>deepseek-flash</code>. How image tokens are billed is not itemised on either rate card, so confirm that against your own logs.</p>
+<p><strong>What is DeepSeek Flash’s context window?</strong></p>
+<p>1M tokens, with a maximum output of 384K tokens — both printed on DeepSeek’s pricing page and captured on September 15, 2026. Our catalog lists the two older DeepSeek Flash rows at 1,050,000, and we are reporting that as the catalog’s own figure rather than as a documented change from the vendor.</p>
+<p><strong>How do I tell which model served a request?</strong></p>
+<p>From the request log. On this gateway <code>GET /v1/logs</code> returns <code>model.model_name</code> per request alongside <code>prompt_tokens</code>, <code>cached_tokens</code> and <code>cost</code>, which is how you confirm that a legacy ID or the stable alias <code>~deepseek/deepseek-flash-latest</code> resolved to <code>deepseek/deepseek-v4.1-flash</code> rather than to something else.</p>
+<hr>
+<p><em>Model availability and per-token rates change without notice. Every figure in this guide was captured on September 15, 2026 from <a target="_blank" rel="noopener" href="https://api-docs.deepseek.com/quick_start/pricing/">DeepSeek’s Models &amp; Pricing page</a>, the <a target="_blank" rel="noopener" href="https://www.deepseek.com/en/news/deepseek-v4-1-flash/">DeepSeek release post</a>, the <a target="_blank" rel="noopener" href="https://api-docs.deepseek.com/updates">DeepSeek API changelog</a>, the <a target="_blank" rel="noopener" href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash">DeepSeek-V4.1-Flash model card</a>, the <a href="https://www.modellix.ai/llm">Modellix LLM price page</a> and <a target="_blank" rel="noopener" href="https://opencode.ai/data/deepseek/deepseek-v4.1-flash">OpenCode’s usage data</a>; the wider catalog is in our <a href="https://www.modellix.ai/blog/llm-api-pricing-comparison/">cross-vendor LLM price table</a>. DeepSeek has moved its Flash rate card twice since mid-August, so verify current figures before committing spend. Modellix is an API aggregator with a commercial interest in the gateway rows above: on the newest DeepSeek Flash row its billed price equals the vendor’s peak rate, and the two rows that carry a discount are the older ones. It is not affiliated with DeepSeek. Route text models through one key at <a target="_blank" rel="noopener" href="https://modellix.ai/">modellix.ai</a>.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/LLM-API/" class="tag-pill tag-pill--sm">LLM API</a>
+            
+              <a href="/blog/tags/DeepSeek/" class="tag-pill tag-pill--sm">DeepSeek</a>
+            
+              <a href="/blog/tags/Cache/" class="tag-pill tag-pill--sm">Cache</a>
+            
+              <a href="/blog/tags/API-Cost/" class="tag-pill tag-pill--sm">API Cost</a>
+            
+              <a href="/blog/tags/Model-Migration/" class="tag-pill tag-pill--sm">Model Migration</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/gpt-latest-model/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-gpt-latest-model.webp" alt="GPT Latest Model: What ~openai/gpt-latest Points At Now" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">GPT Latest Model: What ~openai/gpt-latest Points At Now</h3>
+          <time class="related-article-date" datetime="2026-09-07T16:00:00.000Z">September 8, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/minimax-m3-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-minimax-m3-api.webp" alt="MiniMax M3 API: Integration Guide, Pricing &amp; Code" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">MiniMax M3 API: Integration Guide, Pricing &amp; Code</h3>
+          <time class="related-article-date" datetime="2026-09-05T16:00:00.000Z">September 6, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/agent-observability/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-agent-observability.webp" alt="Agent Observability: What Your Coding Agent Called and Spent" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">LLM API</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Agent Observability: What Your Coding Agent Called and Spent</h3>
+          <time class="related-article-date" datetime="2026-09-03T16:00:00.000Z">September 4, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/deepseek-flash/&text=DeepSeek%20Flash%20V4%20vs%20V4.1%3A%20Cheaper%20Input%2C%20Bigger%20Bill" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/deepseek-flash/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/deepseek-flash/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>

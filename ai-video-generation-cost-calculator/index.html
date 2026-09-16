@@ -1,0 +1,693 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Video Generation Cost Calculator: Per-Second Math — Modellix Blog</title>
+  <meta name="description" content="A working AI video generation cost calculator: how per-second rates become ranges, how to do the arithmetic on a clip, and how to verify the bill afterward.">
+  <meta name="keywords" content="ai video generation cost calculator, ai video generator pricing, ai video generation cost, ai video generator cost, how much does it cost to make an ai video, ai video cost, ai video pricing, cost of ai video generator, ai video generator cost comparison, kling ai cost per video, veo 3 ai video cost, sora ai cost per video">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/ai-video-generation-cost-calculator/">
+  <meta name="description" content="A working AI video generation cost calculator: how per-second rates become ranges, how to do the arithmetic on a clip, and how to verify the bill afterward.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI Video Generation Cost Calculator: Per-Second Math — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/ai-video-generation-cost-calculator/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="A working AI video generation cost calculator: how per-second rates become ranges, how to do the arithmetic on a clip, and how to verify the bill afterward.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-ai-video-generation-cost-calculator.webp">
+<meta property="article:published_time" content="2026-09-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-14T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video">
+<meta property="article:tag" content="API">
+<meta property="article:tag" content="Cost Calculator">
+<meta property="article:tag" content="Pricing">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-ai-video-generation-cost-calculator.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"AI Video Generation Cost Calculator: Per-Second Math","description":"A working AI video generation cost calculator: how per-second rates become ranges, how to do the arithmetic on a clip, and how to verify the bill afterward.","datePublished":"2026-09-14T16:00:00.000Z","dateModified":"2026-09-14T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/ai-video-generation-cost-calculator/","image":"https://img.modellix.ai/en/article/cover-ai-video-generation-cost-calculator.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">AI Video Generation Cost Calculator: Per-Second Math</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Pricing/" class="category-tag category-tag--sm">Pricing</a>
+          
+        
+      </div>
+      <h1 class="post-title">AI Video Generation Cost Calculator: Per-Second Math</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-09-14T16:00:00.000Z">September 15, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Video/" class="tag-pill tag-pill--sm">AI Video</a>
+            
+              <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+              <a href="/blog/tags/Cost-Calculator/" class="tag-pill tag-pill--sm">Cost Calculator</a>
+            
+              <a href="/blog/tags/API/" class="tag-pill tag-pill--sm">API</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>Almost every &#39;AI video generation cost calculator&#39; you can find does the same thing: take one per-second price, multiply it by a number of seconds, show a total. That arithmetic is correct. The input is usually wrong.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-ai-video-generation-cost-calculator.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-ai-video-generation-cost-calculator.png" alt="Modellix cover: two-line title AI VIDEO COST CALCULATOR and THE RANGE BEHIND EVERY PER-SECOND PRICE over a four-strata glass metering column, MODELLIX wordmark" />
+</picture>
+
+<p>Almost every “AI video generation cost calculator” you can find does the same thing: take one per-second price, multiply it by a number of seconds, show a total. That arithmetic is correct. The input is usually wrong. On the 112 video models listed on Modellix as of September 15, 2026, <strong><mark>88 charge more than one rate</mark></strong>, and the spread inside a single model can exceed 11× between its cheapest and most expensive tier. A calculator that collapses that into one number is not a calculator — it is a guess with a decimal point.</p>
+<p>So this page does the arithmetic honestly, with three inputs instead of one: the rate for the tier you actually rendered, the seconds you keep, and the attempts it takes to get them. It is written for developers paying per second through an API — not for people shopping for a subscription tool, and not to crown a winner. We run Modellix, so we have a commercial interest in the numbers below; they all come from model pages we also sell, captured on the date shown, and where we could not verify something we say so instead of filling the gap.</p>
+<h2 id="How-to-calculate-AI-video-generation-cost"><a href="#How-to-calculate-AI-video-generation-cost" class="headerlink" title="How to calculate AI video generation cost"></a>How to calculate AI video generation cost</h2><p>The calculation is one multiplication, but it has three inputs and only one of them is a price:</p>
+<p><strong>cost &#x3D; rate for the tier you rendered ($&#x2F;sec) × (seconds of output you keep × attempts per kept second)</strong></p>
+<p>Two of those inputs are yours. The rate is not. That split is the whole reason a cost estimate goes wrong:</p>
+<ul>
+<li><strong>The rate</strong> belongs to the model you picked <em>and</em> the tier you rendered at — resolution, or a mode flag, depending on the model. It is per second of <strong>generated</strong> video.</li>
+<li><strong>Seconds of output you keep</strong> is your finished runtime, which is the number you were probably already estimating from a script or a storyboard.</li>
+<li><strong>Attempts per kept second</strong> is the multiplier nobody puts in the calculator. A ten-second shot that takes four generations is 40 billed seconds, and your invoice will say 40, not 10.</li>
+</ul>
+<p>Two details matter when you go looking for the rate. First, it is on the model page, under a <strong>Pricing</strong> heading, listed per tier — not in the header chip, which shows only the span. Second, “tier” is not always resolution, and not every model has more than one. Both are covered below.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/ai-video-cost-model-inputs.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/ai-video-cost-model-inputs.png" alt="Diagram of a metering assembly with three gate modules labelled RATE TIER, SECONDS and ATTEMPTS feeding a graduated collection vessel labelled BILLED SECONDS" loading="lazy" />
+</picture>
+
+<p><em>Figure: the three inputs to an AI video generation cost estimate. The rate tier is set by the model; seconds and attempts are set by you. Captured 2026-09-15.</em></p>
+<h2 id="The-per-second-rate-is-a-range-not-a-number"><a href="#The-per-second-rate-is-a-range-not-a-number" class="headerlink" title="The per-second rate is a range, not a number"></a>The per-second rate is a range, not a number</h2><p>Of the 112 video models live in the Modellix catalog as of September 15, 2026, <strong>24 carry a single rate and 88 carry a range</strong> — the model page prints them as <code>$0.0430~$0.4670/sec</code> because the price depends on which tier you select. Catalog-wide, rates run from <strong>$0.0050&#x2F;sec</strong> (<code>vidu/viduq2-pro-digital-human</code>, a single-tier model) to <strong>$1.4400&#x2F;sec</strong> (<code>alibaba/happyhorse-1.0-video-edit</code> at 1080P) — a 288× spread across models that are all called by the same kind of request.</p>
+<p>Here is what six of those tier tables actually say, taken from each model page’s Pricing section on September 15, 2026:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Tier axis</th>
+<th>Tiers as published</th>
+<th>Top ÷ bottom</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>bytedance/seedance-2.0-t2v</code></td>
+<td>resolution</td>
+<td>480p 0.0700 · 720p 0.1500 · 1080p 0.3700 · 4k 0.7800</td>
+<td><strong>11.14×</strong></td>
+</tr>
+<tr>
+<td><code>bytedance/seedance-2.0-v2v</code></td>
+<td>resolution</td>
+<td>480p 0.0430 · 720p 0.0930 · 1080p 0.2280 · 4k 0.4670</td>
+<td>10.86×</td>
+</tr>
+<tr>
+<td><code>google/gemini-omni-1.1-flash-t2v</code></td>
+<td>resolution</td>
+<td>360p 0.0338 · 720p 0.1000 · 1080p 0.1520 · 4k 0.3041</td>
+<td>9.00×</td>
+</tr>
+<tr>
+<td><code>minimax/hailuo-02-i2v</code></td>
+<td>resolution</td>
+<td>512P 0.0153 · 768P 0.0504 · 1080P 0.0738</td>
+<td>4.82×</td>
+</tr>
+<tr>
+<td><code>alibaba/wan3.0-v2v</code></td>
+<td>resolution</td>
+<td>480P 0.3000 · 720P 0.6000 · 1080P 1.2000</td>
+<td>4.00×</td>
+</tr>
+<tr>
+<td><code>kling/kling-avatar</code></td>
+<td><strong>mode, not resolution</strong></td>
+<td>std 0.0448 · pro 0.0896</td>
+<td>2.00×</td>
+</tr>
+</tbody></table>
+<p>Two things in that table are worth more than the table itself.</p>
+<p><strong>The tier axis is not always resolution.</strong> <code>kling/kling-avatar</code> prices on a <code>mode</code> flag — <code>std</code> or <code>pro</code>. If your estimate assumes “1080p will cost more than 720p”, you will miss the models where the axis is something else entirely, and you will have no idea which tier you were even quoting.</p>
+<p><strong>More resolution is not always more money.</strong> <code>google/veo-3.1-t2v</code> prices 720p and 1080p at the <em>same</em> $0.3600&#x2F;sec, and only the 4k tier moves to $0.5400. The intuitive rule — “higher resolution, higher rate” — holds for <code>bytedance/seedance-2.0-t2v</code> and <code>alibaba/wan3.0-v2v</code> and fails here, which is why the tier table has to be read per model rather than assumed.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/bytedance-seedance-pricing-tiers.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/bytedance-seedance-pricing-tiers.png" alt="Screenshot of the Pricing section on the Modellix model page for bytedance/seedance-2.0-t2v, showing Unit: $/sec and four resolution tiers" loading="lazy" />
+</picture>
+
+<p><em>Figure: the Pricing table on <code>bytedance/seedance-2.0-t2v</code>, retrieved 2026-09-15 — four resolution tiers from 0.0700 to 0.7800 per second, the 11.14× span that the header price chip shows only as a range.</em></p>
+<p>Two of the calculators ranking on this query handle the problem in opposite ways. One keeps vendor units separate “instead of inventing a conversion between image outputs, video credits and exported minutes” (<a target="_blank" rel="noopener" href="https://www.aipricing.guru/ai-image-video-generation-pricing-calculator/">aipricing.guru</a>). The other pre-loads one rate per model and applies generic quality multipliers — HD as 1.5× and 4K as 2× the base rate (<a target="_blank" rel="noopener" href="https://abacktools.com/tools/ai/calculators/ai-video-generation-cost-calculator">abacktools</a>) — while stating that its data is “based on publicly available API and subscription rates as of 2025”, with a model list that still leads with Runway Gen-4, Kling 1.6, Pika 2.2 and Google Veo 2. A 1.5× step is a reasonable guess for some models and wrong by more than 7× for Seedance 2.0, whose real step from 480p to 4k is 11.1×.</p>
+<p>The units really are that heterogeneous. Google bills its Gemini video models <strong>by output tokens</strong> and publishes the conversion itself: 5,792 tokens per second of 720p video, which it translates to “an effective price of approximately $0.10 per second” (<a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/pricing">Gemini API pricing</a>). Runway meters the same category in credits, and one plan’s 625 credits buy 52 seconds of one model or 104 seconds of another (<a target="_blank" rel="noopener" href="https://runway.com/pricing">Runway pricing</a>) — so a credit is not a unit of video, it is a unit of a specific model. None of that is a defect; it just means a per-second figure is only comparable to another per-second figure when both were produced the same way.</p>
+<h2 id="Worked-example-one-5-second-clip-at-four-resolutions"><a href="#Worked-example-one-5-second-clip-at-four-resolutions" class="headerlink" title="Worked example: one 5-second clip at four resolutions"></a>Worked example: one 5-second clip at four resolutions</h2><p>Take a single 5-second clip on <code>bytedance/seedance-2.0-t2v</code>, the model whose tier table is in the screenshot above. Each line is the tier rate multiplied by 5, so you can check it against the table:</p>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Rate</th>
+<th>5 seconds</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>480p</td>
+<td>$0.0700&#x2F;sec</td>
+<td>5 × $0.0700 &#x3D; <strong>$0.3500</strong></td>
+</tr>
+<tr>
+<td>720p</td>
+<td>$0.1500&#x2F;sec</td>
+<td>5 × $0.1500 &#x3D; <strong>$0.7500</strong></td>
+</tr>
+<tr>
+<td>1080p</td>
+<td>$0.3700&#x2F;sec</td>
+<td>5 × $0.3700 &#x3D; <strong>$1.8500</strong></td>
+</tr>
+<tr>
+<td>4k</td>
+<td>$0.7800&#x2F;sec</td>
+<td>5 × $0.7800 &#x3D; <strong>$3.9000</strong></td>
+</tr>
+</tbody></table>
+<p>Same prompt, same model, same 5 seconds — <strong>11.14× apart</strong> purely from the tier. If your estimate said “about 35 cents for a 5-second clip”, it was right for 480p and wrong for everything you would actually ship.</p>
+<p>For contrast, the same 5 seconds on <code>google/veo-3.1-t2v</code> costs 5 × $0.3600 &#x3D; <strong>$1.80</strong> at 720p, 5 × $0.3600 &#x3D; <strong>$1.80</strong> at 1080p, and 5 × $0.5400 &#x3D; <strong>$2.70</strong> at 4k. Note that the 720p and 1080p figures are identical, because that model does not charge for the step — which is exactly the kind of thing a single “rate” column destroys.</p>
+<h2 id="Worked-example-60-seconds-and-the-two-minute-question"><a href="#Worked-example-60-seconds-and-the-two-minute-question" class="headerlink" title="Worked example: 60 seconds, and the two-minute question"></a>Worked example: 60 seconds, and the two-minute question</h2><p>A finished video is more than one clip, and every clip in it gets retried. Here is the arithmetic for a <strong>60-second finished video</strong>, stated so you can substitute your own numbers: 12 shots × 5 seconds &#x3D; 60 seconds of output you keep, × 3 attempts &#x3D; <strong>180 seconds of video actually generated</strong>. The bill is charged on 180, not 60.</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Tier</th>
+<th>Arithmetic</th>
+<th>Cost of the 60-second cut</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>bytedance/seedance-2.0-t2v</code></td>
+<td>480p</td>
+<td>180 × $0.0700</td>
+<td>$12.60</td>
+</tr>
+<tr>
+<td><code>bytedance/seedance-2.0-t2v</code></td>
+<td>720p</td>
+<td>180 × $0.1500</td>
+<td>$27.00</td>
+</tr>
+<tr>
+<td><code>bytedance/seedance-2.0-t2v</code></td>
+<td>1080p</td>
+<td>180 × $0.3700</td>
+<td>$66.60</td>
+</tr>
+<tr>
+<td><code>bytedance/seedance-2.0-t2v</code></td>
+<td>4k</td>
+<td>180 × $0.7800</td>
+<td>$140.40</td>
+</tr>
+<tr>
+<td><code>google/veo-3.1-t2v</code></td>
+<td>720p or 1080p</td>
+<td>180 × $0.3600</td>
+<td>$64.80</td>
+</tr>
+<tr>
+<td><code>google/veo-3.1-t2v</code></td>
+<td>4k</td>
+<td>180 × $0.5400</td>
+<td>$97.20</td>
+</tr>
+<tr>
+<td><code>google/gemini-omni-1.1-flash-t2v</code></td>
+<td>720p</td>
+<td>180 × $0.1000</td>
+<td>$18.00</td>
+</tr>
+<tr>
+<td><code>google/gemini-omni-1.1-flash-t2v</code></td>
+<td>1080p</td>
+<td>180 × $0.1520</td>
+<td>$27.36</td>
+</tr>
+<tr>
+<td><code>kling/kling-avatar</code></td>
+<td>std</td>
+<td>180 × $0.0448</td>
+<td>$8.06</td>
+</tr>
+<tr>
+<td><code>kling/kling-avatar</code></td>
+<td>pro</td>
+<td>180 × $0.0896</td>
+<td>$16.13</td>
+</tr>
+<tr>
+<td><code>minimax/hailuo-02-i2v</code></td>
+<td>512P</td>
+<td>180 × $0.0153</td>
+<td>$2.75</td>
+</tr>
+<tr>
+<td><code>minimax/hailuo-02-i2v</code></td>
+<td>1080P</td>
+<td>180 × $0.0738</td>
+<td>$13.28</td>
+</tr>
+<tr>
+<td><code>alibaba/wan3.0-v2v</code></td>
+<td>480P</td>
+<td>180 × $0.3000</td>
+<td>$54.00</td>
+</tr>
+<tr>
+<td><code>alibaba/happyhorse-1.0-video-edit</code></td>
+<td>1080P</td>
+<td>180 × $1.4400</td>
+<td>$259.20</td>
+</tr>
+</tbody></table>
+<p>The last row is the one you will not find on the calculators ranking on this query: they are built around text-to-video, and a 60-second cut is not where those costs land. Image-to-video (58 models) and video-to-video (28 models) together account for 86 of the 112 video models here, and they behave differently at the same resolution: <code>minimax/hailuo-02-i2v</code> at 512P is <strong>$2.75</strong> for the same 60 seconds that <code>alibaba/happyhorse-1.0-video-edit</code> bills at <strong>$259.20</strong>.</p>
+<p>The most-asked version of this question is about two minutes, so: a 2-minute finished video is 24 shots × 5 seconds × 3 attempts &#x3D; <strong>360 seconds generated</strong>. <code>bytedance/seedance-2.0-t2v</code> at 480p is 360 × $0.0700 &#x3D; <strong>$25.20</strong>; <code>google/gemini-omni-1.1-flash-t2v</code> at 720p is 360 × $0.1000 &#x3D; <strong>$36.00</strong>; <code>google/veo-3.1-t2v</code> at 720p is 360 × $0.3600 &#x3D; <strong>$129.60</strong>. Same runtime, 5× between the cheapest and dearest of those three.</p>
+<p>The attempt count deserves its own line, because it is the input you control and the one that scales everything. Holding the model and tier fixed at <code>bytedance/seedance-2.0-t2v</code> 720p and the finished video at 60 seconds:</p>
+<table>
+<thead>
+<tr>
+<th>Attempts per shot</th>
+<th>Seconds generated</th>
+<th>Arithmetic</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>60</td>
+<td>60 × $0.1500</td>
+<td>$9.00</td>
+</tr>
+<tr>
+<td>2</td>
+<td>120</td>
+<td>120 × $0.1500</td>
+<td>$18.00</td>
+</tr>
+<tr>
+<td>3</td>
+<td>180</td>
+<td>180 × $0.1500</td>
+<td>$27.00</td>
+</tr>
+<tr>
+<td>6</td>
+<td>360</td>
+<td>360 × $0.1500</td>
+<td>$54.00</td>
+</tr>
+</tbody></table>
+<p>Three versus six attempts is a <strong>$27 swing on a single 60-second cut</strong> — on the same model and tier, more than the step from 480p to 720p, and it costs nothing but prompt discipline to move it the other way. Picking the attempts number is your judgement call; publishing it as an assumption is ours. The 12-shot, 5-second, 3-attempt figures above are one worked example, not a standard. Others in this space assume three to ten attempts per usable shot (<a target="_blank" rel="noopener" href="https://ltx.io/blog/ai-video-generation-cost">LTX</a>) or three to five for complex motion, and the fact that two published estimates disagree by that much is the reason the number belongs in your inputs rather than in a vendor’s table.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Estimate Your Own Workload</h3><p class="view-docs-tag-desc">Log in to Modellix and run the same arithmetic on the models you actually plan to call.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="What-the-per-second-rate-does-not-include"><a href="#What-the-per-second-rate-does-not-include" class="headerlink" title="What the per-second rate does not include"></a>What the per-second rate does not include</h2><p><strong>Input assets.</strong> For image-to-video and video-to-video, the reference image or source video has to get somewhere the API can reach it. On Modellix that is the File API, a free, API-key-authenticated upload for image, video and audio assets that feeds directly into prediction requests — so a first frame is not a cost line in the estimate. It is not storage you should lean on, though: uploaded files are retained for about <strong>7 days</strong> by default, long enough for a production run and not long enough to treat as an archive. If you are multiplying a per-second rate to get a monthly figure, the input path is not part of it.</p>
+<p><strong>Account-level discounts are not rate discounts.</strong> The Modellix changelog lists a <strong>10% discount on the first top-up of each tier</strong> — that is money in your account balance, applied at checkout, and it is a different mechanism from any per-model discount published on a model page. If you are modelling cost per second, the top-up discount does not change the rate; it changes how far your balance goes. Do not multiply them together and do not treat one as evidence for the other.</p>
+<p><strong>Tasks that were not charged.</strong> The media request log records <code>cost</code> as <code>0</code> when nothing was billed, so the log — not an assumption — is where you check whether a failed or skipped generation cost you anything. Read the <code>status</code> and the <code>cost</code> on the same row.</p>
+<p><strong>Other vendors’ units.</strong> Do not convert a subscription plan’s credits into seconds and compare the result to a per-second API rate. Runway’s own plan page shows why: 625 credits is 52 seconds of Gen-4.5 or 104 seconds of Gen-4 Turbo, so the same credit buys two different amounts of video inside one vendor, let alone across two. The honest move is to keep the units apart, which is what one competitor’s calculator does as a matter of stated policy. One more honest caveat on catalog scope: <strong>OpenAI’s Sora 2 and its Videos API are not in the 112 models priced here</strong>, and OpenAI’s documentation states they are deprecated with a shutdown date of September 24, 2026 (<a target="_blank" rel="noopener" href="https://platform.openai.com/docs/guides/video-generation">OpenAI video generation guide</a>). A calculator that still lists Sora as a line item is quoting a model you cannot build on for much longer.</p>
+<p>Two linked skills carry the mechanics this page deliberately does not repeat: how a <a href="https://www.modellix.ai/blog/text-to-video-api/">text-to-video request</a> is submitted and polled, and the same for <a href="https://www.modellix.ai/blog/image-to-video-api/">image-to-video</a>, which is the path most product features actually take.</p>
+<h2 id="Compare-video-models-under-one-key"><a href="#Compare-video-models-under-one-key" class="headerlink" title="Compare video models under one key"></a>Compare video models under one key</h2><p>The reason this calculator can cover all 112 video models in one place is not that we are generous with data — it is that they are all callable with one credential. Switching models means changing a string in the request, not opening an account. That matters for costing specifically, because the only defensible way to compare per-second rates is to send the same prompt to several models at the same tier and compare what came back, and that comparison is impossible if each model sits behind a separate contract.</p>
+<p>If you would rather not hand-copy rates from model pages, the catalog is queryable: <code>GET /api/v1/models</code> returns the live model list with slugs, types and descriptions, and each model page carries its own Pricing table at a predictable path — <code>https://www.modellix.ai/models/bytedance/seedance-2.0-t2v</code>, and so on for every entry. The <a href="https://www.modellix.ai/models">full model directory</a> is the index; <a href="https://www.modellix.ai/blog/one-api-multiple-ai-video-models/">one API, many video models</a> covers what actually changes between them at the request level.</p>
+<p>I should be precise about what that buys you, and what it does not. <strong>It is not a claim that Modellix is the cheapest place to run any of these models.</strong> Some of the models above are cheaper elsewhere, some are not, and we have not run that comparison here. The claim is narrower: one key and one billing surface makes the <em>measurement</em> cheap, and measuring is the part most estimates skip.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Media API Reference</h3><p class="view-docs-tag-desc">See the request fields, the upload step, and how to read a task result for any video model.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Verify-the-estimate-against-the-actual-bill"><a href="#Verify-the-estimate-against-the-actual-bill" class="headerlink" title="Verify the estimate against the actual bill"></a>Verify the estimate against the actual bill</h2><p>Everything above is an estimate built from published rates. An estimate you cannot falsify is not worth much, so the last step is to check the arithmetic against what you were actually charged — and this is where the request log does the work. Modellix exposes media request logs at <code>GET https://api.modellix.ai/api/v1/logs</code>, paginated, with a time window of at most 30 days. Each entry carries the <code>task_id</code>, the <code>model</code> (<code>provider</code> and <code>model_name</code>), the <code>status</code>, the wall-clock <code>duration</code>, the <code>input</code> the task was submitted with, and — the field this whole page has been building toward — a <code>cost</code>.</p>
+<p>Read the unit before you reconcile anything, because <code>cost</code> is not in dollars. The <a target="_blank" rel="noopener" href="https://docs.modellix.ai/api/get-logs">Get Logs reference</a> documents it as the billed amount in <strong>sub-pennies, where 1 equals USD $0.0001</strong>, the same unit the console balance uses, to be divided by 10,000 for dollars, and <code>0</code> if the task was not charged. A log row reading <code>cost: 12</code> is $0.0012, not twelve dollars, and the fastest way to convince yourself your estimate is wrong is to skip that division.</p>
+<p>That one field turns the estimate into a closed loop: multiply the tier rate by the generated seconds, predict the number, then read the log row for the same task and compare. Where they disagree, the cause is almost always one of three inputs — a tier you mis-set, an attempt you forgot, or a duration the model clipped. All three are visible in the same log entry, because it records the input parameters each request was made with.</p>
+<p>The same loop is worth running on a video-to-video pass, which is where estimates drift furthest from reality: <a href="https://www.modellix.ai/blog/ai-video-upscale-api/">upscaling an existing clip</a> bills per second of output just like generation, but it sits in the video-to-video band where rates in this catalog range from $0.0120&#x2F;sec to $1.4400&#x2F;sec depending on the model and tier.</p>
+<h2 id="Frequently-Asked-Questions-About-AI-Video-Generation-Cost"><a href="#Frequently-Asked-Questions-About-AI-Video-Generation-Cost" class="headerlink" title="Frequently Asked Questions About AI Video Generation Cost"></a>Frequently Asked Questions About AI Video Generation Cost</h2><p><strong>How much does it cost to make an AI video?</strong><br>With a per-second API, the cost is the tier rate multiplied by the seconds of video generated — including retries. At rates measured September 15, 2026, a single 5-second clip runs from 5 × $0.0050 &#x3D; $0.025 at the cheapest tier in the catalog to 5 × $1.4400 &#x3D; $7.20 at the dearest. A 60-second finished video, assuming 12 shots of 5 seconds and 3 attempts each, works out to 180 billed seconds, which came to $12.60 at <code>bytedance/seedance-2.0-t2v</code> 480p and $259.20 at <code>alibaba/happyhorse-1.0-video-edit</code> 1080P on the same day.</p>
+<p><strong>How much does a 2-minute video cost to generate?</strong><br>Applying the same shape — 24 shots × 5 seconds × 3 attempts — gives 360 seconds of generated video. <code>bytedance/seedance-2.0-t2v</code> at 480p is 360 × $0.0700 &#x3D; $25.20; <code>google/gemini-omni-1.1-flash-t2v</code> at 720p is 360 × $0.1000 &#x3D; $36.00; <code>google/veo-3.1-t2v</code> at 720p is 360 × $0.3600 &#x3D; $129.60. Change the shot count, shot length or attempt count and every figure moves proportionally.</p>
+<p><strong>Why is one model listed as a price range like $0.0700~$0.7800&#x2F;sec?</strong><br>Because that model charges different rates for different tiers, and the header shows the span. The model page’s Pricing section lists each tier separately — for <code>bytedance/seedance-2.0-t2v</code>, 480p at 0.0700, 720p at 0.1500, 1080p at 0.3700 and 4k at 0.7800 per second, as published on September 15, 2026. Always estimate from the tier you will actually render.</p>
+<p><strong>Is the per-second rate always based on resolution?</strong><br>No. Most video models here tier on resolution, but not all — <code>kling/kling-avatar</code> tiers on a <code>mode</code> flag, with <code>std</code> at $0.0448&#x2F;sec and <code>pro</code> at $0.0896&#x2F;sec. Read the Pricing table for the specific model rather than assuming the axis.</p>
+<p><strong>Which AI video model is the cheapest?</strong><br>We do not answer that, and you should be sceptical of any single number that does. Rates vary by tier, tier axes differ, and 88 of the 112 video models here charge more than one rate, so “cheapest” is only meaningful once you fix the model, the resolution and the duration. Browsing <a href="https://www.modellix.ai/collections/ai-video-generator">the AI video generator collection</a> by output type is a more useful first move than sorting by price: picking the lowest rate in a catalog is a five-minute exercise, while picking the right model for a shot is the actual work, and the tables above give you the inputs to do it.</p>
+<p><strong>Does an AI video generator app cost the same as the API?</strong><br>No, and the two should not be converted into each other. Consumer apps meter in credits or monthly allowances where one credit buys different amounts of video depending on the model, while API access meters in seconds (or, at Google, in output tokens). This page covers the API side only.</p>
+<p><strong>Do failed generations get billed?</strong><br>Check the log row rather than assuming either way: the media request log records <code>cost</code> as <code>0</code> when a task was not charged, next to the <code>status</code> for that same task, so a failure’s actual cost is answerable per request on your own account.</p>
+<hr>
+<p><em>Provider rates, tier tables and model counts reflect Modellix catalog data captured on September 15, 2026 and change frequently — validate against each model page’s Pricing section before committing to a budget. Access image and video models, including the leading Chinese models, through a single API key at <a target="_blank" rel="noopener" href="https://modellix.ai/">modellix.ai</a>.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Video/" class="tag-pill tag-pill--sm">AI Video</a>
+            
+              <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+              <a href="/blog/tags/Cost-Calculator/" class="tag-pill tag-pill--sm">Cost Calculator</a>
+            
+              <a href="/blog/tags/API/" class="tag-pill tag-pill--sm">API</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/ai-image-model-api-pricing-comparison/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-ai-image-model-api-pricing.webp" alt="AI Image Model API Pricing Comparison (2026): 49 Routes" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Pricing</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">AI Image Model API Pricing Comparison (2026): 49 Routes</h3>
+          <time class="related-article-date" datetime="2026-09-15T01:00:00.000Z">September 15, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/ai-video-model-api-pricing-comparison/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-ai-video-model-api-pricing-comparison.webp" alt="AI Video Model API Pricing Comparison: 112 Models (2026)" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Pricing</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">AI Video Model API Pricing Comparison: 112 Models (2026)</h3>
+          <time class="related-article-date" datetime="2026-09-14T16:00:00.000Z">September 15, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/deepseek-api-pricing/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-deepseek-api-pricing.webp" alt="DeepSeek API Pricing (2026): Four Rows, Peak and Cache" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Pricing</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">DeepSeek API Pricing (2026): Four Rows, Peak and Cache</h3>
+          <time class="related-article-date" datetime="2026-09-14T16:00:00.000Z">September 15, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/ai-video-generation-cost-calculator/&text=AI%20Video%20Generation%20Cost%20Calculator%3A%20Per-Second%20Math" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/ai-video-generation-cost-calculator/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/ai-video-generation-cost-calculator/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
