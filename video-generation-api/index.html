@@ -1,0 +1,683 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Generation API: One Endpoint, Async Tasks, Fields — Modellix Blog</title>
+  <meta name="description" content="How a video generation API works — the submit, poll and retrieve lifecycle — plus a September 16, 2026 schema audit of where model request fields differ.">
+  <meta name="keywords" content="video generation api, ai video generation api, ai video generator api, ai video api, video generation api key, video generation api async, video generation api python, video generation sdk, image to video api, generate video programmatically, video generation api free">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/video-generation-api/">
+  <meta name="description" content="How a video generation API works — the submit, poll and retrieve lifecycle — plus a September 16, 2026 schema audit of where model request fields differ.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Video Generation API: One Endpoint, Async Tasks, Fields — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/video-generation-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="How a video generation API works — the submit, poll and retrieve lifecycle — plus a September 16, 2026 schema audit of where model request fields differ.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-video-generation-api.webp">
+<meta property="article:published_time" content="2026-09-16T11:42:00.000Z">
+<meta property="article:modified_time" content="2026-09-16T11:42:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video API">
+<meta property="article:tag" content="API Integration">
+<meta property="article:tag" content="Async Tasks">
+<meta property="article:tag" content="Developer Guide">
+<meta property="article:tag" content="Request Schema">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-video-generation-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Video Generation API: One Endpoint, Async Tasks, Fields","description":"How a video generation API works — the submit, poll and retrieve lifecycle — plus a September 16, 2026 schema audit of where model request fields differ.","datePublished":"2026-09-16T11:42:00.000Z","dateModified":"2026-09-16T11:42:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/video-generation-api/","image":"https://img.modellix.ai/en/article/cover-video-generation-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Video Generation API: One Endpoint, Async Tasks, Fields</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Video Generation API: One Endpoint, Async Tasks, Fields</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-09-16T11:42:00.000Z">September 16, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/API-Integration/" class="tag-pill tag-pill--sm">API Integration</a>
+            
+              <a href="/blog/tags/Developer-Guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
+            
+              <a href="/blog/tags/Async-Tasks/" class="tag-pill tag-pill--sm">Async Tasks</a>
+            
+              <a href="/blog/tags/Request-Schema/" class="tag-pill tag-pill--sm">Request Schema</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>The first bug in most video generation API integrations is not a bad prompt. It is a POST that returns in 200 milliseconds with no video in it — because media generation is asynchronous, and the first response is a receipt, not the result.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-video-generation-api.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-video-generation-api.png" alt="Modellix cover: a glass API gateway issuing a task_id that fans out to three parameter cards for duration, resolution and aspect ratio." />
+</picture>
+
+<p>The first bug in most video generation API integrations is not a bad prompt. It is a <code>POST</code> that returns in 200 milliseconds with no video in it — because media generation is asynchronous, and the first response is a receipt, not the result. Developers arriving from a chat completion API expect the payload to be the answer; here it is a <code>task_id</code>, a status of <code>pending</code>, and a URL to come back to later.</p>
+<p>This article covers the shape every video generation API shares — submit, poll, retrieve — and then the part where the models stop agreeing: the request body. On September 16, 2026 we pulled the published request schema for 22 video models across eight providers; that comparison, not the pricing, is where the integration cost lives. Two disclosures: we run Modellix, an API aggregator, so we have a commercial interest in the aggregator half of what follows; and this piece stops at “the first request works”, leaving batch runs, webhooks and log reconciliation to a separate topic linked at the end.</p>
+<h2 id="What-every-video-generation-API-has-in-common"><a href="#What-every-video-generation-API-has-in-common" class="headerlink" title="What every video generation API has in common"></a>What every video generation API has in common</h2><p>A video generation API is an HTTP interface that takes a prompt, and usually an image or a video, and returns a generated video file — never inside the response that submitted the job. The submit call returns a task identifier; a second call retrieves the output once rendering finishes. That two-call pattern, not any particular URL, is the interface you integrate against, on text-to-video, image-to-video and video-to-video routes alike.</p>
+<p>Authenticate with a bearer API key; <code>POST</code> a JSON body to <code>https://api.modellix.ai/api/v1/&#123;provider&#125;/&#123;model&#125;</code>; poll <code>GET /api/v1/tasks/&#123;task_id&#125;</code> until the status is terminal; read the media URLs and the task cost out of the result.</p>
+<p>One boundary trips people up first. Modellix runs three hosts that do not behave the same: <code>api.modellix.ai</code> is asynchronous media generation, <code>llm.modellix.ai</code> is synchronous text, <code>tool.modellix.ai</code> handles web search and fetch. The <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started/overview">platform overview</a> states the rule plainly: use “the host that matches the product”, and do not send “media jobs to the LLM gateway or chat requests to the media API”. The reason is this article’s subject: the media host answers with a task, the LLM host with a completion, and a client built for one misreads the other’s success.</p>
+<h2 id="Your-first-call-one-endpoint-a-task-ID-and-a-status-you-come-back-for"><a href="#Your-first-call-one-endpoint-a-task-ID-and-a-status-you-come-back-for" class="headerlink" title="Your first call: one endpoint, a task ID, and a status you come back for"></a>Your first call: one endpoint, a task ID, and a status you come back for</h2><p>Model differences are real; the envelope is not one of them. Every route is invoked the same way:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl --request POST \</span><br><span class="line">  --url https://api.modellix.ai/api/v1/google/veo-3.1-t2v \</span><br><span class="line">  --header <span class="string">&#x27;Authorization: Bearer &lt;your_api_key&gt;&#x27;</span> \</span><br><span class="line">  --header <span class="string">&#x27;Content-Type: application/json&#x27;</span> \</span><br><span class="line">  --data <span class="string">&#x27;&#123;&quot;prompt&quot;: &quot;A slow dolly shot through a rain-lit Tokyo alley at night&quot;&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>A successful submit answers with the receipt:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;success&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pending&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;task_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;task-abc123&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;model_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;veo-3.1-t2v&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;get_result&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;method&quot;</span><span class="punctuation">:</span> <span class="string">&quot;GET&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.modellix.ai/api/v1/tasks/task-abc123&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>Read it literally. <code>code: 0</code> means the submission was accepted, not that a video exists. <code>data.status</code> describes the task, and the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/api/get-task-result">task result reference</a> enumerates four values: <code>pending</code>, <code>processing</code>, <code>success</code> and <code>failed</code>. <code>get_result.url</code> is where to look next, returned so you never construct the URL yourself. The polling side is short:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os, time, requests</span><br><span class="line"></span><br><span class="line">API = <span class="string">&quot;https://api.modellix.ai/api/v1&quot;</span></span><br><span class="line">HEAD = &#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;os.environ[<span class="string">&#x27;MODELLIX_API_KEY&#x27;</span>]&#125;</span>&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line">submitted = requests.post(</span><br><span class="line">    <span class="string">f&quot;<span class="subst">&#123;API&#125;</span>/google/veo-3.1-t2v&quot;</span>, headers=&#123;**HEAD, <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>&#125;,</span><br><span class="line">    json=&#123;<span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;A slow dolly shot through a rain-lit Tokyo alley at night&quot;</span>&#125;,</span><br><span class="line">    timeout=<span class="number">30</span>,</span><br><span class="line">).json()[<span class="string">&quot;data&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:  <span class="comment"># &#123;&quot;success&quot;, &quot;failed&quot;&#125; are the terminal states</span></span><br><span class="line">    task = requests.get(<span class="string">f&quot;<span class="subst">&#123;API&#125;</span>/tasks/<span class="subst">&#123;submitted[<span class="string">&#x27;task_id&#x27;</span>]&#125;</span>&quot;</span>, headers=HEAD, timeout=<span class="number">30</span>).json()[<span class="string">&quot;data&quot;</span>]</span><br><span class="line">    <span class="keyword">if</span> task[<span class="string">&quot;status&quot;</span>] <span class="keyword">in</span> &#123;<span class="string">&quot;success&quot;</span>, <span class="string">&quot;failed&quot;</span>&#125;:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    time.sleep(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> task[<span class="string">&quot;status&quot;</span>] == <span class="string">&quot;failed&quot;</span>:</span><br><span class="line">    <span class="keyword">raise</span> RuntimeError(task.get(<span class="string">&quot;error&quot;</span>, <span class="string">&quot;generation failed&quot;</span>))</span><br><span class="line"><span class="keyword">for</span> resource <span class="keyword">in</span> task[<span class="string">&quot;result&quot;</span>][<span class="string">&quot;resources&quot;</span>]:</span><br><span class="line">    <span class="built_in">print</span>(resource[<span class="string">&quot;type&quot;</span>], resource[<span class="string">&quot;url&quot;</span>])</span><br></pre></td></tr></table></figure>
+
+<p>Two details matter more than they look. The terminal set includes <code>failed</code> — a client that only exits on <code>success</code> polls a dead task until its own timeout kills it, and the reason sits in <code>task[&quot;error&quot;]</code>. Five seconds is a starting interval, not a contract: cap the attempt count.</p>
+<p>If you inherited code posting to a path ending in <code>/async</code>, leave it alone. The suffix was removed from model invocation paths on June 11, 2026, and the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/changelog/product-updates">product changelog</a> states the old paths keep working with full backwards compatibility — the retired form still appears in the documentation’s own examples, below.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/modellix-media-api-submit-step.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/modellix-media-api-submit-step.png" alt="Modellix REST API documentation showing the Use the API step with a curl POST to the model endpoint, a bearer Authorization header, and a JSON prompt body, captured September 16, 2026" loading="lazy" />
+</picture>
+
+<p><em>The submit step as the vendor documents it, captured September 16, 2026 from <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api">docs.modellix.ai&#x2F;ways-to-use&#x2F;api</a>. The response block sits just below the fold, which is itself the point: the call you write first returns a task, not a file. The model path in this example still carries the retired <code>/async</code> suffix.</em></p>
+<h2 id="What-a-finished-task-returns-—-and-when-it-stops-being-there"><a href="#What-a-finished-task-returns-—-and-when-it-stops-being-there" class="headerlink" title="What a finished task returns — and when it stops being there"></a>What a finished task returns — and when it stops being there</h2><p>The retrieval call answers with a different shape, and one field in it has a shelf life:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>What it tells you</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>data.status</code></td>
+<td><code>success</code> or <code>failed</code> — the terminal states</td>
+</tr>
+<tr>
+<td><code>data.duration</code></td>
+<td>Wall-clock processing time in milliseconds, returned on completion or failure</td>
+</tr>
+<tr>
+<td><code>data.result.resources[]</code></td>
+<td>Outputs, each with <code>url</code>, <code>type</code>, plus <code>width</code>, <code>height</code>, <code>format</code> and <code>role</code></td>
+</tr>
+<tr>
+<td><code>data.billing</code></td>
+<td><code>status</code> (<code>pending</code> or <code>succeeded</code>) and the actual charge as <code>amount</code> in USD</td>
+</tr>
+<tr>
+<td><code>data.result_expires_at</code></td>
+<td>Unix millisecond timestamp for when the generated file is deleted</td>
+</tr>
+</tbody></table>
+<p>That last row is the one people skip. Generated media is retained for <strong>7 days</strong> — the documentation is direct: “Generated results are only saved for 7 days, so please make sure to save them promptly.” Store the bytes, not the URL: an integration that writes <code>resource.url</code> into a product database renders a broken player next week, and it looks like a CDN problem rather than a day-one design choice.</p>
+<p>One optional piece belongs on the submit call rather than the response. <code>X-Mdlx-User-Id</code> tags a task with your own end-user identifier so request logs can be filtered by user later; it must be 8 to 128 characters of ASCII letters, digits, hyphens and underscores, and an invalid value returns <code>400</code>. If your product serves several customers from one key, that header keeps their usage separable.</p>
+<p><code>data.billing.amount</code> is worth wiring up early: it is the billed figure for that call, and on resolution-priced models the only number that reconciles against an invoice. The <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started/pricing">pricing documentation</a> is explicit that a video model can cost more at 1080p than at 720p, so a headline rate drifts and the per-task amount does not. Our <a href="https://www.modellix.ai/blog/ai-video-generation-cost-calculator/">cost calculator for video generation</a> works that arithmetic through per model; the <a href="https://www.modellix.ai/pricing">live price table</a> is where the per-second rates live.</p>
+<h2 id="Where-the-models-stop-agreeing-the-request-body"><a href="#Where-the-models-stop-agreeing-the-request-body" class="headerlink" title="Where the models stop agreeing: the request body"></a>Where the models stop agreeing: the request body</h2><p>The envelope is uniform; the body is not. That is what produces a <code>400 Invalid parameters</code> on a request where you clearly did send the parameter — the field carrying duration, resolution or aspect ratio is named differently per provider.</p>
+<p>We queried the public schema endpoint — <code>GET https://www.modellix.ai/models/&#123;provider&#125;/&#123;slug&#125;/api_schema</code>, no account required — for 22 video models on September 16, 2026. Six providers are enough to show every naming convention in the set. One convention for reading it: each column is one provider, and where a value comes from that family’s image-to-video route rather than its text-to-video route, the cell says so.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Google (Veo 3.1)</th>
+<th>ByteDance (Seedance 2.5)</th>
+<th>Alibaba (Wan 3.0)</th>
+<th>Kling (v3)</th>
+<th>PixVerse (v6)</th>
+<th>xAI (Grok Imagine)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Casing</td>
+<td><code>aspectRatio</code>, <code>negativePrompt</code></td>
+<td><code>ratio</code></td>
+<td><code>ratio</code></td>
+<td><code>aspect_ratio</code></td>
+<td><code>aspect_ratio</code></td>
+<td><code>aspect_ratio</code></td>
+</tr>
+<tr>
+<td>Duration</td>
+<td>string enum <code>&quot;4&quot;</code>, <code>&quot;6&quot;</code>, <code>&quot;8&quot;</code></td>
+<td>integer enum 4–30</td>
+<td>integer enum 2–30</td>
+<td>integer enum 3–15 (t2v)</td>
+<td>integer 1–15</td>
+<td>integer 1–15</td>
+</tr>
+<tr>
+<td>Resolution field</td>
+<td><code>resolution</code>: <code>720p</code>, <code>1080p</code>, <code>4k</code></td>
+<td><code>resolution</code>: <code>480p</code>, <code>720p</code>, <code>1080p</code></td>
+<td><code>resolution</code>: <code>480P</code>, <code>720P</code>, <code>1080P</code></td>
+<td><code>resolution</code>: <code>720p</code>, <code>1080p</code>, <code>4k</code></td>
+<td><code>quality</code>: <code>360p</code> … <code>1080p</code></td>
+<td><code>resolution</code>: <code>480p</code>, <code>720p</code></td>
+</tr>
+<tr>
+<td>Audio field</td>
+<td>none on the T2V route</td>
+<td><code>generate_audio</code></td>
+<td><code>audio</code></td>
+<td><code>audio</code></td>
+<td><code>generate_audio_switch</code></td>
+<td>none</td>
+</tr>
+<tr>
+<td>Source frame (i2v routes)</td>
+<td><code>image</code> + <code>lastFrame</code></td>
+<td><code>first_frame_image</code> + <code>last_frame_image</code></td>
+<td><code>first_frame</code> + <code>last_frame</code></td>
+<td><code>image</code> + <code>image_tail</code></td>
+<td><code>image</code></td>
+<td><code>image</code></td>
+</tr>
+<tr>
+<td>Extra knobs</td>
+<td><code>personGeneration</code></td>
+<td><code>camera_fixed</code>, <code>return_last_frame</code></td>
+<td><code>seed</code>, <code>file_url</code>, <code>link_url</code></td>
+<td><code>multi_shot</code></td>
+<td><code>generate_multi_clip_switch</code>, <code>seed</code></td>
+<td>—</td>
+</tr>
+</tbody></table>
+<p>One note on the PixVerse column: the i2v route takes the source frame as <code>image</code>. <code>reference_images</code> belongs to <code>pixverse/v6-r2v</code>, a separate reference-to-video route, and is not a field this route accepts.</p>
+<p>Three things fall out of it, and each has cost somebody an afternoon.</p>
+<p><strong>Casing is not cosmetic and it is not consistent.</strong> Google’s video models take camelCase (<code>aspectRatio</code>, <code>negativePrompt</code>, <code>personGeneration</code>), as do its image routes; ByteDance, Alibaba, Kling, PixVerse, Vidu and xAI all take snake_case. A body copied between providers needs the key names changed, not just the values. (Google’s own <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/video">Gemini video documentation</a> splits its video work between two models with different workflows.)</p>
+<p><strong>The same logical value arrives in three shapes.</strong> <code>duration</code> is a <em>string</em> enum on Veo 3.1 (<code>&quot;4&quot;</code>, <code>&quot;6&quot;</code>, <code>&quot;8&quot;</code>), a closed integer enum on Seedance 2.5 (4 to 30) and Wan 3.0 (2 to 30), and a plain 1-to-15 integer range on PixVerse and xAI. Send <code>8</code> to Veo and it wants <code>&quot;8&quot;</code>.</p>
+<p><strong>Resolution differs in case and in name.</strong> Wan 3.0 accepts <code>480P</code>, <code>720P</code> and <code>1080P</code> with a capital P; MiniMax is inconsistent inside one provider, publishing <code>768P</code> and <code>1080P</code> on Hailuo 2.3 but <code>768P</code> and <code>2K</code> on H3; Seedance, Kling, Vidu and xAI take lowercase. PixVerse has no <code>resolution</code> field at all — it takes <code>quality</code>, with a <code>360p</code>-to-<code>1080p</code> enum. A helper that lowercases resolution breaks on two providers, one that assumes the field is called <code>resolution</code> breaks on a third, and one that caps at <code>1080p</code> is wrong on the routes that reach <code>2K</code> and <code>4k</code>. <mark>The comparison above is drawn from our own published schemas, which is a disclosure worth making twice: we sell aggregation, and we are not claiming the field names are worse elsewhere — only that they are different, and that the difference is the integration work.</mark></p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/veo-3-1-fast-i2v-request-schema.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/veo-3-1-fast-i2v-request-schema.png" alt="Request schema for an image-to-video model: a oneOf split into Image and Reference modes, with aspectRatio, duration, image and resolution." loading="lazy" />
+</picture>
+
+<p><em>The public schema for one image-to-video route, captured September 16, 2026 from <a href="https://www.modellix.ai/models/google/veo-3.1-fast-i2v/api_schema">modellix.ai&#x2F;models&#x2F;google&#x2F;veo-3.1-fast-i2v&#x2F;api_schema</a>. The JSON is re-formatted in the browser so the field names are legible at this size; the payload itself is the endpoint’s own response.</em></p>
+<h2 id="Required-fields-differ-more-than-the-names-do"><a href="#Required-fields-differ-more-than-the-names-do" class="headerlink" title="Required fields differ more than the names do"></a>Required fields differ more than the names do</h2><p>Names are the visible half. The required set decides whether your first request returns 200 or 400, and it varies more:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Required beyond <code>prompt</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>google/veo-3.1-t2v</code></td>
+<td>none — <code>prompt</code> alone is enough</td>
+</tr>
+<tr>
+<td><code>kling/kling-v3-t2v</code></td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>vidu/viduq3-pro-t2v</code></td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>xai/grok-imagine-video</code></td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>pixverse/v6-t2v</code></td>
+<td><code>aspect_ratio</code>, <code>duration</code>, <code>quality</code> — four fields total</td>
+</tr>
+<tr>
+<td><code>minimax/minimax-h3-v2v</code></td>
+<td><code>duration</code>, <code>resolution</code>, <code>reference_videos</code> — four fields total</td>
+</tr>
+</tbody></table>
+<p>A client that posts <code>&#123;&quot;prompt&quot;: &quot;...&quot;&#125;</code> and treats the rest as optional succeeds on roughly half the catalog and fails on the other half, one missing field at a time.</p>
+<p>Under the required set is a second layer: mutually exclusive modes. Several image-to-video routes are published as a <code>oneOf</code> with two branches, and the branch changes which fields exist <em>and</em> what values they accept. Veo 3.1’s fast route is the clearest case: Option 1 takes <code>image</code> plus an optional <code>lastFrame</code>, Option 2 takes <code>referenceImages</code>, and the two cannot be combined:</p>
+<table>
+<thead>
+<tr>
+<th>Branch</th>
+<th>Required</th>
+<th>Notably constrained</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Option 1 — Image mode</td>
+<td><code>prompt</code>, <code>image</code></td>
+<td><code>duration</code> allows <code>&quot;4&quot;</code>, <code>&quot;6&quot;</code>, <code>&quot;8&quot;</code>; using <code>lastFrame</code> forces <code>&quot;8&quot;</code></td>
+</tr>
+<tr>
+<td>Option 2 — Reference mode</td>
+<td><code>prompt</code>, <code>referenceImages</code></td>
+<td><code>duration</code> allows <code>&quot;8&quot;</code> only</td>
+</tr>
+</tbody></table>
+<p>Wan 3.0 splits the same way with one extra trap: <code>audio_urls</code> is valid only in reference mode, so a body carrying audio alongside a first frame is rejected even though both fields appear on the same page.</p>
+<p>Sound is the other place families diverge, and it is a product decision rather than a naming one. Some routes generate video with a synchronised soundtrack — Seedance calls it <code>generate_audio</code>, Kling and Wan call it <code>audio</code>, PixVerse calls it <code>generate_audio_switch</code> — while Google’s text-to-video route has no audio field at all. If your product promises a clip with sound, that narrows the shortlist before price or resolution gets a vote. MiniMax documents the same three-way structure — text-to-video, image-to-video, reference generation — so read its <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/guides/video-generation">H3 generation guide</a> next to the schema rather than instead of it. Our <a href="https://www.modellix.ai/blog/image-to-video-api/">image-to-video API guide</a> walks the first-frame and reference workflows model by model.</p>
+<h2 id="How-to-read-any-model’s-schema-before-you-write-the-body"><a href="#How-to-read-any-model’s-schema-before-you-write-the-body" class="headerlink" title="How to read any model’s schema before you write the body"></a>How to read any model’s schema before you write the body</h2><p>You do not have to guess or sign up. Two public endpoints and one CLI command cover it:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -s <span class="string">&quot;https://www.modellix.ai/models/bytedance/seedance-2.5-t2v/api_schema&quot;</span> \</span><br><span class="line">  | python3 -c <span class="string">&quot;import json,sys; d=json.load(sys.stdin); print(d[&#x27;servers&#x27;][0][&#x27;url&#x27;]); print(sorted(d[&#x27;post&#x27;][&#x27;requestBody&#x27;][&#x27;content&#x27;][&#x27;application/json&#x27;][&#x27;schema&#x27;][&#x27;properties&#x27;]))&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>Run against six models, that line produces the table above — which is the point. We publish the endpoint and have a commercial interest in you finding it useful; it needs no account, so nothing here asks you to trust us rather than check. The <a target="_blank" rel="noopener" href="https://docs.modellix.ai/api/get-schema">schema reference</a> notes the slug pattern is <code>provider/model</code>, the slash a literal path separator rather than <code>%2F</code>. Its sibling, the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/api/list-models">model list endpoint</a> at <code>GET https://api.modellix.ai/api/v1/models</code>, returns every active model with its <code>slug</code>, <code>type</code>, <code>docs_url</code>, <code>description</code> and a display price range — how “which models take a first frame” becomes a list instead of a memory.</p>
+<h2 id="REST-SDK-or-CLI-—-what-a-“video-generation-SDK”-question-is-really-asking"><a href="#REST-SDK-or-CLI-—-what-a-“video-generation-SDK”-question-is-really-asking" class="headerlink" title="REST, SDK, or CLI — what a “video generation SDK” question is really asking"></a>REST, SDK, or CLI — what a “video generation SDK” question is really asking</h2><p>Three different products get sold under one set of names. Ask for an “AI video generator API” and you may be handed a typed client library, a command-line tool, or an agent plugin — worth knowing which you want, because the AI video API underneath is the same in all three cases: plain JSON over HTTPS with one envelope. A <strong>REST API plus generated types</strong> makes a 20-line client a legitimate answer. A <strong>CLI</strong> suits batch submission and schema inspection, and is the only one that keeps a task history locally. An <strong>agent skill or plugin</strong> packages schema lookup for coding agents — useful when an agent writes the integration, irrelevant when a human does (<a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/cli">CLI documentation</a> covers <code>model get-schema</code>, <code>model list</code> and <code>task wait</code>).</p>
+<p>The SDK layer is thin because the API is small: a heavier client library does not remove the field-name problem, it relocates it.</p>
+<p>One boundary worth stating, because the query is ambiguous: searching for how to <em>generate video programmatically</em> also surfaces React-based rendering tools that compose video from code rather than generating it from a model. Both are legitimate, but if your goal is compositing, the <a href="https://www.modellix.ai/blog/text-to-video-api/">text-to-video API landscape</a> is not where you should be reading.</p>
+<h2 id="The-errors-worth-handling-before-you-ship"><a href="#The-errors-worth-handling-before-you-ship" class="headerlink" title="The errors worth handling before you ship"></a>The errors worth handling before you ship</h2><p>Every error returns the same JSON shape — <code>&#123;&quot;code&quot;: 400, &quot;message&quot;: &quot;...&quot;&#125;</code>, where <code>code</code> mirrors the HTTP status and <code>0</code> means success — so one handler covers the set if you branch on status.</p>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Retry?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>400</code></td>
+<td>Missing or invalid parameter</td>
+<td>No — fix the body</td>
+</tr>
+<tr>
+<td><code>401</code></td>
+<td>Invalid, missing or expired API key</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>402</code></td>
+<td>Insufficient balance</td>
+<td>No — the account needs funding</td>
+</tr>
+<tr>
+<td><code>404</code></td>
+<td>Task, model or provider not found</td>
+<td>No — check the identifier</td>
+</tr>
+<tr>
+<td><code>429</code></td>
+<td>Rate or concurrency limit exceeded</td>
+<td>Yes — read <code>X-RateLimit-Reset</code>, then back off</td>
+</tr>
+<tr>
+<td><code>500</code> &#x2F; <code>503</code></td>
+<td>Internal error, or service unavailable</td>
+<td>Yes — exponential backoff, 1s → 2s → 4s</td>
+</tr>
+</tbody></table>
+<p><code>402</code> deserves its own branch because it will not fix itself: the balance is empty and retries only add noise. <code>429</code> deserves care because two limits share it — concurrency caps how many async tasks run at once, RPM caps request rate, and both scale with the largest single top-up that funded the account, from 2 concurrent tasks and 100 RPM below $10 up to 100 and 1,000 at a $1,000 top-up, per the published <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started/entitlements">entitlements table</a>. Beyond the top tier it is a vendor conversation, not a config flag.</p>
+<h2 id="What-this-article-deliberately-leaves-out"><a href="#What-this-article-deliberately-leaves-out" class="headerlink" title="What this article deliberately leaves out"></a>What this article deliberately leaves out</h2><p>Everything past the first working request belongs to the production layer. <strong>Webhook delivery</strong>: sending <code>X-Webhook-URL</code> on submit makes the platform POST the result at a terminal state, so the polling loop can go away — retry rules and idempotency keys are a topic in themselves. <strong>Batch submission</strong>: hundreds of tasks means queueing and concurrency budgeting against the limits above. <strong>File inputs at scale</strong>: the File API accepts image, video and audio uploads free of charge, but files expire after about 7 days under a 16 MB per-file cap, 10 files per team and two concurrent uploads. For the pipeline question, our <a href="https://www.modellix.ai/blog/ai-video-model-api-pricing-comparison/">model API pricing comparison</a> and the <a href="https://www.modellix.ai/blog/best-ai-video-generation-apis-2026/">roundup of AI video generation APIs</a> are the right next reads.</p>
+<h2 id="Frequently-Asked-Questions-about-the-video-generation-API"><a href="#Frequently-Asked-Questions-about-the-video-generation-API" class="headerlink" title="Frequently Asked Questions about the video generation API"></a>Frequently Asked Questions about the video generation API</h2><p><strong>Which video generation API is best?</strong><br>No list answers that without your constraints. The productive version is which models accept the parameters you need — a 30-second clip, an audio track, a reference image, a specific aspect ratio — so pull the schemas, filter on those fields, then compare per-second cost. One live caveat: OpenAI’s <a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/guides/video-generation">video generation guide</a> opens with a notice that the Sora 2 models and the Videos API are deprecated and shut down on <strong>September 24, 2026</strong> (<a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/deprecations">deprecations page</a>) — worth knowing before a May-dated roundup lists one as an option. Our <a href="https://www.modellix.ai/blog/best-video-generation-model/">model-by-model comparison</a> treats selection in that order.</p>
+<p><strong>Is there a free video generation API?</strong><br>Modellix removed the signup credit on August 19, 2026, so new accounts no longer start with a balance; media generation is billed per call from a pay-as-you-go balance. A free tier is a property of a specific promotion, not of the category — anyone advertising free video generation API access is describing their own trial terms, not a general feature of the market.</p>
+<p><strong>Why does my request return a task instead of a video?</strong><br>Because generation is asynchronous and the submit response is an acknowledgement. Read <code>data.task_id</code> and <code>data.get_result.url</code>, then poll until <code>data.status</code> is <code>success</code> or <code>failed</code>. You are not wrong — you are one call early.</p>
+<p><strong>Do I need an API key to inspect a model’s request schema?</strong><br>No. The schema endpoint is public and the CLI’s <code>model get-schema</code> calls it without credentials. You need a key to submit a generation, not to learn what a valid body looks like.</p>
+<p><strong>How long do generated videos stay available?</strong><br>Seven days, with <code>result_expires_at</code> in the response as a Unix millisecond timestamp. Download and store the media; do not persist the URL as your only copy.</p>
+<p><strong>Can I generate video from Python?</strong><br>Yes — the API is plain JSON over HTTPS, so <code>requests</code> is enough and no vendor SDK is required. Any client that can set an <code>Authorization</code> header, POST a body and read a nested status field will work; the loop above is 15 lines.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Media Model Schema Reference</h3><p class="view-docs-tag-desc">Read any video model&#39;s request schema and the async task response shape before you write the next request body.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Run the Schema Check on a Real Model</h3><p class="view-docs-tag-desc">Log in to submit one video task on your own key and read the per-task amount and expiry from the response.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<hr>
+<p><em>Provider details, endpoint behaviour and pricing reflect public information as of September 2026 and change frequently. Validate against the live documentation and each provider’s current pricing before committing. Access image and video models, including the leading Chinese models, through a single API key at <a target="_blank" rel="noopener" href="https://modellix.ai/">modellix.ai</a>.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/AI-Video-API/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/API-Integration/" class="tag-pill tag-pill--sm">API Integration</a>
+            
+              <a href="/blog/tags/Developer-Guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
+            
+              <a href="/blog/tags/Async-Tasks/" class="tag-pill tag-pill--sm">Async Tasks</a>
+            
+              <a href="/blog/tags/Request-Schema/" class="tag-pill tag-pill--sm">Request Schema</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/ai-image-edit-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-ai-image-edit-api.webp" alt="AI Image Edit API: 16 References, Masks, Flare vs Sunburst" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">AI Image Edit API: 16 References, Masks, Flare vs Sunburst</h3>
+          <time class="related-article-date" datetime="2026-09-16T16:00:00.000Z">September 17, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/gpt-image-2-5-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-gpt-image-2-5-api.webp" alt="GPT Image 2.5 API: Flare vs Sunburst, Four Model IDs" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">GPT Image 2.5 API: Flare vs Sunburst, Four Model IDs</h3>
+          <time class="related-article-date" datetime="2026-09-16T16:00:00.000Z">September 17, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/best-video-generation-model/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-best-video-generation-model.webp" alt="Best Video Generation Model 2026: Duration, Audio, Price" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Best Video Generation Model 2026: Duration, Audio, Price</h3>
+          <time class="related-article-date" datetime="2026-09-14T16:00:00.000Z">September 15, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/video-generation-api/&text=Video%20Generation%20API%3A%20One%20Endpoint%2C%20Async%20Tasks%2C%20Fields" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/video-generation-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/video-generation-api/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
