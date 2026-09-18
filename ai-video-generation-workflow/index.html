@@ -1,0 +1,722 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4DECHYKQVT');
+  </script>
+  <!-- Contentsquare -->
+  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Video Generation Workflow: Async Tasks and Batch Runs — Modellix Blog</title>
+  <meta name="description" content="Most guides to an AI video generation workflow cover creative tools. This one covers the pipeline: input retention, callbacks, retries and batch limits.">
+  <meta name="keywords" content="ai video generation workflow, video generation webhook, batch video generation, async video generation api, poll task status api, video generation queue, scale video generation, production video generation, webhook vs polling">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/ai-video-generation-workflow/">
+  <meta name="description" content="Most guides to an AI video generation workflow cover creative tools. This one covers the pipeline: input retention, callbacks, retries and batch limits.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI Video Generation Workflow: Async Tasks and Batch Runs — Modellix Blog">
+<meta property="og:url" content="https://www.modellix.ai/blog/ai-video-generation-workflow/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Most guides to an AI video generation workflow cover creative tools. This one covers the pipeline: input retention, callbacks, retries and batch limits.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-ai-video-generation-workflow.webp">
+<meta property="article:published_time" content="2026-09-16T11:48:00.000Z">
+<meta property="article:modified_time" content="2026-09-16T11:48:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video">
+<meta property="article:tag" content="API Integration">
+<meta property="article:tag" content="Batch Processing">
+<meta property="article:tag" content="Video Generation API">
+<meta property="article:tag" content="Webhooks">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-ai-video-generation-workflow.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"AI Video Generation Workflow: Async Tasks and Batch Runs","description":"Most guides to an AI video generation workflow cover creative tools. This one covers the pipeline: input retention, callbacks, retries and batch limits.","datePublished":"2026-09-16T11:48:00.000Z","dateModified":"2026-09-16T11:48:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/ai-video-generation-workflow/","image":"https://img.modellix.ai/en/article/cover-ai-video-generation-workflow.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="/blog/../" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+      
+        <a href="/blog/../about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">AI Video Generation Workflow: Async Tasks and Batch Runs</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">AI Video Generation Workflow: Async Tasks and Batch Runs</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-09-16T11:48:00.000Z">September 16, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/API-Integration/" class="tag-pill tag-pill--sm">API Integration</a>
+            
+              <a href="/blog/tags/AI-Video/" class="tag-pill tag-pill--sm">AI Video</a>
+            
+              <a href="/blog/tags/Video-Generation-API/" class="tag-pill tag-pill--sm">Video Generation API</a>
+            
+              <a href="/blog/tags/Webhooks/" class="tag-pill tag-pill--sm">Webhooks</a>
+            
+              <a href="/blog/tags/Batch-Processing/" class="tag-pill tag-pill--sm">Batch Processing</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>Search for ai video generation workflow and almost every page you land on is about driving a creative tool: connect your models, arrange your scenes, export your cut.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-ai-video-generation-workflow.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-ai-video-generation-workflow.png" alt="Modellix cover: the AI Video Generation Workflow title over a chrome conveyor of glass task slabs with a cyan callback arc" />
+</picture>
+
+<p>Search for <code>ai video generation workflow</code> and almost every page you land on is about driving a creative tool: connect your models, arrange your scenes, export your cut. This page is about the other one — the pipeline you build when video generation is a feature inside your product, and the part you own is not the prompt but the queue.</p>
+<p><strong>The generation call is the one piece that already works.</strong> Everything that breaks after the first successful request sits around it — an input that expires, a task you have to be told about, a delivery that is not retried, a run size your own account decides, and a bill you cannot map back to a task. If you have not made your first call yet, start with the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api">REST API guide</a> instead; the rest of this page assumes a task ID has come back at least once.</p>
+<h2 id="Where-a-video-generation-workflow-actually-breaks"><a href="#Where-a-video-generation-workflow-actually-breaks" class="headerlink" title="Where a video generation workflow actually breaks"></a>Where a video generation workflow actually breaks</h2><p>The failures are boring and scheduled: a reference image that stops resolving a week later, mid-run, because uploads are retained for about seven days; a callback that arrives while the receiver is mid-deploy and is never retried; a loop that fires three hundred submissions, gets throttled somewhere in the forties, and exits without knowing which ones landed; an invoice with a total and no per-task mapping.</p>
+<p>The creative stages — script, storyboard, shot list, voiceover, review loop — are the part this SERP mostly writes about, and they matter here only as <strong>counted inputs</strong>. What changes at volume is their cardinality, not their craft: one approved script becomes forty prompt variants, one storyboard becomes a shot table with forty rows, one review decision becomes a rule applied to a batch instead of an eyeball applied to a file. The moment a creative decision is fixed and counted it enters a queue, and the queue has an expiry, a ceiling and a bill. For the two stages where cardinality is decided — a <strong>script or voiceover</strong> whose length fixes what a shot must hold, and a <strong>shot list</strong> whose row count <em>is</em> your task count — this page assumes the number is already known. If it is not, start with <a href="https://www.modellix.ai/blog/best-ai-video-generator/">best AI video generator</a> to choose the model and come back with a model ID and a shot count.</p>
+<h2 id="Step-1-get-the-inputs-in-and-start-the-retention-clock"><a href="#Step-1-get-the-inputs-in-and-start-the-retention-clock" class="headerlink" title="Step 1: get the inputs in, and start the retention clock"></a>Step 1: get the inputs in, and start the retention clock</h2><p>The first decision is where the input file lives. The File API exists so you do not have to host it: <code>POST https://api.modellix.ai/api/v1/media/files</code> takes one file as <code>multipart/form-data</code> under the field name <code>file</code>, authenticated with the same Bearer key as every other call, and returns a URL you pass into a prediction input field such as <code>image_url</code>.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl --request POST \</span><br><span class="line">  --url https://api.modellix.ai/api/v1/media/files \</span><br><span class="line">  --header <span class="string">&#x27;Authorization: Bearer ***&#x27;</span> \</span><br><span class="line">  --header <span class="string">&#x27;Content-Type: multipart/form-data&#x27;</span> \</span><br><span class="line">  --form file=<span class="string">&#x27;@reference-frame.png&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>The response carries <code>file_id</code>, <code>type</code>, <code>url</code>, <code>filename</code>, <code>size</code> and <code>created_at</code>. Uploads are <strong>not billed</strong> and not subject to balance admission, so staging assets costs nothing even on a thin balance; and they are <strong>time-boxed</strong>, retained about <strong>7 days</strong> by default.</p>
+<table>
+<thead>
+<tr>
+<th>Limit</th>
+<th>Default</th>
+<th>What it means for a pipeline</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Max file size</td>
+<td>16 MB</td>
+<td>fine for reference frames, tight for source video</td>
+</tr>
+<tr>
+<td>Files per team</td>
+<td><strong>10</strong></td>
+<td>the binding constraint on a reference-heavy run</td>
+</tr>
+<tr>
+<td>Concurrent uploads per team</td>
+<td>2</td>
+<td>two, not twenty — serialise your uploader</td>
+</tr>
+<tr>
+<td>Retention</td>
+<td>about 7 days</td>
+<td>the clock starts at upload, not at submit</td>
+</tr>
+</tbody></table>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/modellix-file-api-limits.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/modellix-file-api-limits.png" alt="Modellix docs listing File API default limits: 16 MB per file, 10 files per team, 2 concurrent uploads, 7-day retention" loading="lazy" />
+</picture>
+
+<p><em>The four numbers in the table above, as published, captured September 16, 2026. The admonition underneath is the operative one: files expire, and unused files should be deleted early if the per-team file count is close to the limit — the quota is counted in live files, not in uploads per day. Captured from <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api">docs.modellix.ai</a>.</em></p>
+<p>That ten-file ceiling is what changes architecture. A run of two hundred text-to-video tasks is unaffected. A run that puts a distinct reference frame behind every shot is not two hundred uploads — it is ten uploads plus a delete-and-reupload discipline, or a prompt-led design instead. <a target="_blank" rel="noopener" href="https://docs.modellix.ai/api/list-media-files">Listing the media files</a> shows what is still usable (page size defaults to 100, capped there); <a target="_blank" rel="noopener" href="https://docs.modellix.ai/api/delete-media-file">deleting a file</a> frees quota immediately, and <code>404</code>s if the file is already gone.</p>
+<p>The retention window cuts both ways. A three-day render queue and a seven-day input window are compatible. A “regenerate next month from the same reference frames” feature is not — it needs its own asset store, with the upload as transient staging. If your <a href="https://www.modellix.ai/blog/image-to-video-api/">image-to-video</a> or <a href="https://www.modellix.ai/blog/text-to-video-api/">text-to-video</a> path treats the uploaded URL as a permanent copy of your source material, that breaks on day eight with a <code>404</code>, after the job has been billed.</p>
+<h2 id="Step-2-submit-a-run-not-a-request"><a href="#Step-2-submit-a-run-not-a-request" class="headerlink" title="Step 2: submit a run, not a request"></a>Step 2: submit a run, not a request</h2><p>A submission returns immediately and hands you a handle, not a finished asset:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;success&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pending&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;task_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;task-abc123&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;model_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;model-123&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;get_result&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;method&quot;</span><span class="punctuation">:</span> <span class="string">&quot;GET&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.modellix.ai/api/v1/tasks/task-abc123&quot;</span> <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>One <code>GET</code> later you have the result. Two of these fields are the ones most implementations ignore on the first pass:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>What it is for</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>status</code></td>
+<td>the task state; terminal states are <code>success</code>, <code>failed</code> and <code>canceled</code></td>
+</tr>
+<tr>
+<td><code>task_id</code></td>
+<td>your join key to the logs and to the callback header</td>
+</tr>
+<tr>
+<td><code>model_id</code></td>
+<td>which model answered — the check that your routing did what you think</td>
+</tr>
+<tr>
+<td><code>duration</code></td>
+<td>wall-clock for the task, the number your run estimate needs</td>
+</tr>
+<tr>
+<td><code>billing.status</code> &#x2F; <code>billing.amount</code></td>
+<td>what this task cost, at the task level</td>
+</tr>
+<tr>
+<td><code>result.resources[]</code></td>
+<td><code>url</code>, <code>type</code>, <code>width</code>, <code>height</code>, <code>format</code>, <code>role</code> per output asset</td>
+</tr>
+<tr>
+<td><code>result.extensions.submit_time</code> &#x2F; <code>end_time</code></td>
+<td>epoch-ms start and end</td>
+</tr>
+<tr>
+<td><strong><code>result_expires_at</code></strong></td>
+<td><strong>when the result URL stops working</strong></td>
+</tr>
+</tbody></table>
+<p><mark>The generated result URL is not a permanent address any more than the uploaded input is</mark> — a pipeline that stores a <code>task_id</code> and expects to fetch the mp4 next quarter is wrong at both ends. Retrieve, persist to your own storage, keep the task ID as provenance rather than as a retrieval strategy. <code>model_id</code> earns its own check: if you route by duration, resolution or price, this field tells you whether the routing logic picked the model you thought — <a href="https://www.modellix.ai/blog/best-video-generation-model/">how to pick a video generation model</a> covers that decision.</p>
+<p>For volume, one JSON object per line is enough:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># tasks.jsonl — one JSON object per line</span></span><br><span class="line">&#123;<span class="string">&quot;modelSlug&quot;</span>:<span class="string">&quot;google/nano-banana-2&quot;</span>,<span class="string">&quot;body&quot;</span>:&#123;<span class="string">&quot;prompt&quot;</span>:<span class="string">&quot;shot 001&quot;</span>&#125;&#125;</span><br><span class="line">&#123;<span class="string">&quot;modelSlug&quot;</span>:<span class="string">&quot;google/nano-banana-2&quot;</span>,<span class="string">&quot;body&quot;</span>:&#123;<span class="string">&quot;prompt&quot;</span>:<span class="string">&quot;shot 002&quot;</span>&#125;&#125;</span><br><span class="line"></span><br><span class="line">modellix-cli model batch tasks.jsonl --max-tasks 200 --concurrency 4</span><br></pre></td></tr></table></figure>
+
+<p><code>model batch</code> validates every line — slugs and bodies — before the first POST, requires <code>--max-tasks</code> or an explicit <code>--yes</code> because each line can create a paid task, caps its own concurrency between 1 and 10, and caps one invocation at 1000 tasks. The wait primitives are <code>model run --wait --timeout</code> for one task and <code>task wait</code> for many (up to 1000 IDs; a local timeout exits <code>124</code> while the remote task may still be running). <code>task history</code> records successful submissions locally, which is the difference between “the process that submitted this died” and “the task is lost”. The client is open source, so the batching behaviour is inspectable rather than taken on faith (<a target="_blank" rel="noopener" href="https://github.com/Modellix/modellix-cli">modellix-cli on GitHub</a>).</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/modellix-cli-batch-task-caps.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/modellix-cli-batch-task-caps.png" alt="Modellix CLI docs showing the JSONL batch line shape and the model batch command with max-tasks and concurrency flags" loading="lazy" />
+</picture>
+
+<p><em>The batch contract, captured September 16, 2026: the JSONL line shape, the flags, and the safety guard that exists because every line is a paid task. Concurrency is limited to 1–10 and the absolute local limit is 1000 tasks per invocation. Captured from <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/cli">docs.modellix.ai</a>.</em></p>
+<p>One boundary: the 1–10 above is the <em>CLI’s own</em> ceiling, not what the API will accept. Your real ceiling is in Step 4.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/video-generation-task-lifecycle.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/video-generation-task-lifecycle.png" alt="Async video generation task lifecycle: input asset, submission node, a rack of queued tasks, a callback arc and a polling loop" loading="lazy" />
+</picture>
+
+<p><em>The lifecycle the previous two sections describe: input in, task identity out, two alternative return paths, and a finished asset that has to be moved into your own storage. Diagram generated for this article; the two expiry windows on that path are the ones the surrounding text names.</em></p>
+<h2 id="Step-3-callbacks-or-polling-—-pick-one-and-know-what-each-promises"><a href="#Step-3-callbacks-or-polling-—-pick-one-and-know-what-each-promises" class="headerlink" title="Step 3: callbacks or polling — pick one and know what each promises"></a>Step 3: callbacks or polling — pick one and know what each promises</h2><h3 id="The-decision"><a href="#The-decision" class="headerlink" title="The decision"></a>The decision</h3><p>Polling every few seconds is fine for one job and wasteful for four hundred: every poll is a request against a query path with its own rate limit, separate from your generation throughput. A callback turns that per-task cost into one inbound <code>POST</code>.</p>
+<h3 id="The-webhook-contract"><a href="#The-webhook-contract" class="headerlink" title="The webhook contract"></a>The webhook contract</h3><p>It is enabled per task, not per account: add an <code>X-Webhook-URL</code> header to the <em>prediction creation</em> request and the platform notifies you when that task reaches a terminal state. Callbacks fire on <code>success</code>, <code>failed</code> and <code>canceled</code>, and <strong>the callback body is identical to the task-result response</strong>, so one parser serves both paths. Six headers carry what your receiver needs:</p>
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Content-Type</code></td>
+<td>always <code>application/json</code></td>
+</tr>
+<tr>
+<td><code>User-Agent</code></td>
+<td>always <code>modellix-webhook/1.0</code></td>
+</tr>
+<tr>
+<td><code>X-Modellix-Event</code></td>
+<td><code>prediction.task.succeeded</code> &#x2F; <code>.failed</code> &#x2F; <code>.canceled</code></td>
+</tr>
+<tr>
+<td><code>X-Modellix-Task-ID</code></td>
+<td>the task ID to join against</td>
+</tr>
+<tr>
+<td><code>X-Modellix-Delivery-ID</code></td>
+<td><strong>unique per delivery attempt — your dedupe key</strong></td>
+</tr>
+<tr>
+<td><code>X-Modellix-Retry-Count</code></td>
+<td>how many retries this delivery has had; starts at <code>0</code></td>
+</tr>
+</tbody></table>
+<p>The endpoint must be publicly reachable over <strong>HTTPS</strong> — not <code>localhost</code>, not a private IP range, no credentials in the URL. Acknowledge with a <code>2xx</code>; the documented recommendation is <code>200</code> with a plain-text body of <code>ok</code>, or <code>204</code> empty, returning immediately after persisting the payload and doing the slow work off the request path.</p>
+<h3 id="The-retry-matrix"><a href="#The-retry-matrix" class="headerlink" title="The retry matrix"></a>The retry matrix</h3><table>
+<thead>
+<tr>
+<th>Retried</th>
+<th><strong>Not retried</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>429</code> Too Many Requests</td>
+<td><code>3xx</code> redirection</td>
+</tr>
+<tr>
+<td><code>5xx</code> server errors</td>
+<td><code>4xx</code> client errors <strong>except</strong> <code>429</code></td>
+</tr>
+<tr>
+<td>network timeouts</td>
+<td>invalid webhook URLs</td>
+</tr>
+<tr>
+<td>temporary network errors</td>
+<td>URLs pointing at private networks or <code>localhost</code></td>
+</tr>
+<tr>
+<td></td>
+<td>permanent connection errors — connection refused, unresolved DNS</td>
+</tr>
+</tbody></table>
+<p>Read the right-hand column as a list of quiet data losses. If your receiver answers <code>404</code> because a route was renamed, or cannot resolve because DNS was mid-change during a deploy, the platform will not try again — and the outcome is <strong>identical to a task that simply never finished: no callback.</strong> Nothing alerts you. Only a reconciliation sweep catches it: on a schedule, list tasks in the window and diff them against what your callback recorded.</p>
+<p>Two details, one documented and one conspicuously not:</p>
+<ul>
+<li><strong>Idempotency is documented.</strong> <code>X-Modellix-Delivery-ID</code> is unique per delivery attempt; <code>X-Modellix-Retry-Count</code> tells you a redelivery is happening. Deduplicate on the delivery ID and a retried callback cannot render, bill or publish twice — the discipline <a target="_blank" rel="noopener" href="https://www.rfc-editor.org/rfc/rfc9110.html">HTTP semantics define for idempotent retries</a>, applied to a delivery you did not initiate.</li>
+<li><strong>Signature verification is not documented.</strong> The docs advise verifying “the request source or signature (if signature verification is supported in a future update)” — a note about a possible future, not a scheme you can implement today. Treat the endpoint as an unauthenticated inbound route: an unguessable path segment or secret token in the registered URL, restricted at the network layer.</li>
+</ul>
+<p>Polling is still right sometimes — a short interactive job, or a team that will not run an inbound endpoint. <strong>Callback for runs, polling for singles.</strong> Either way keep the retrieval parser shared, because that is the piece both paths agree on.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Video Task, Webhook and File API Reference</h3><p class="view-docs-tag-desc">Read the endpoint reference for the X-Webhook-URL header, the callback headers and retry matrix, the task-result fields and the File API limits this article cites.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/webhook-retry-rules.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/webhook-retry-rules.png" alt="Modellix docs showing webhook retry rules, with non-retried errors such as 4xx responses and DNS failures highlighted" loading="lazy" />
+</picture>
+
+<p><em>The published retry rules, captured September 16, 2026. The orange block is the one worth reading twice: every line in it is a delivery that will never be retried, and none produces a signal you would notice. Captured from <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api">docs.modellix.ai</a>.</em></p>
+<h2 id="Step-4-size-the-run-against-the-limits-your-account-actually-has"><a href="#Step-4-size-the-run-against-the-limits-your-account-actually-has" class="headerlink" title="Step 4: size the run against the limits your account actually has"></a>Step 4: size the run against the limits your account actually has</h2><h3 id="The-entitlement-ladder"><a href="#The-entitlement-ladder" class="headerlink" title="The entitlement ladder"></a>The entitlement ladder</h3><p>Concurrency and rate limits are properties of the <strong>account</strong>, keyed to the largest single top-up, not properties of the model:</p>
+<table>
+<thead>
+<tr>
+<th>Single top-up</th>
+<th align="right">Concurrent tasks</th>
+<th align="right">Rate limit (RPM)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt; $10</code></td>
+<td align="right">2</td>
+<td align="right">100</td>
+</tr>
+<tr>
+<td><code>$10</code></td>
+<td align="right">10</td>
+<td align="right">100</td>
+</tr>
+<tr>
+<td><code>$100</code></td>
+<td align="right">20</td>
+<td align="right">200</td>
+</tr>
+<tr>
+<td><code>$200</code></td>
+<td align="right">30</td>
+<td align="right">300</td>
+</tr>
+<tr>
+<td><code>$500</code></td>
+<td align="right">50</td>
+<td align="right">500</td>
+</tr>
+<tr>
+<td><code>$1,000</code></td>
+<td align="right">100</td>
+<td align="right">1,000</td>
+</tr>
+<tr>
+<td>Custom</td>
+<td align="right">Custom</td>
+<td align="right">Custom</td>
+</tr>
+</tbody></table>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/modellix-concurrency-entitlements-table.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/modellix-concurrency-entitlements-table.png" alt="Modellix entitlements table: concurrent task and RPM limits for each single top-up tier, from under $10 to $1,000" loading="lazy" />
+</picture>
+
+<p><em>The published entitlement ladder, captured September 16, 2026, with the definition underneath it: concurrent tasks are asynchronous generation tasks running in parallel. The tier is set by a single top-up amount, so it is a spending decision before it is an engineering one. Captured from <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started/entitlements">docs.modellix.ai</a>.</em></p>
+<h3 id="Sizing-the-run"><a href="#Sizing-the-run" class="headerlink" title="Sizing the run"></a>Sizing the run</h3><p>Take <code>N</code> tasks, <code>C</code> concurrent tasks, and <code>T</code> — the time a task takes end-to-end, measured on your own runs. The floor for the run is roughly <code>N ÷ C × T</code>. The task-level <code>duration</code> in the task receipt reports that same quantity and is documented in <strong>milliseconds</strong> (<code>Processing time in milliseconds</code>, example <code>3500</code>), while the <code>duration</code> inside each <code>result.resources[]</code> entry is documented in <strong>seconds</strong> — that one is clip length, not wall-clock. Same field name, two units, one payload: read the task-level one for <code>T</code>, and do not read it as seconds, which would scale every estimate below by 1,000. <code>T</code> is also not clip length — a 40-second clip is a property of the delivered asset, while <code>T</code> is how long that task occupied a slot in your concurrency budget; measure the second and do not infer it from the first. Assume, purely for illustration, that a task takes 45 seconds end-to-end. On the <code>$100</code> tier — 20 concurrent, 200 RPM — a 400-task run lands near 15 minutes, and RPM is not the binding constraint at that size. On the <code>&lt; $10</code> tier, with 2 concurrent tasks, the same 400 tasks take about two and a half hours. <mark>The number that sets your throughput is a number on your last top-up, not a number in your prompt.</mark></p>
+<p>Two ceilings bite before concurrency does: <strong>2 concurrent uploads</strong> and <strong>10 retained files</strong> per team. A run needing a fresh reference frame per shot spends its time in the upload queue, not the generation queue, and the fix is a design change, not a bigger top-up. When you do hit the wall, rate and concurrency exhaustion return the same <code>429</code> — <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/429">the status code that means “you are being throttled” rather than “the request was wrong”</a> — and the documented remedy is exponential backoff:</p>
+<blockquote>
+<p>For <code>429</code> responses, check the <code>X-RateLimit-Reset</code> header to know when you can retry.</p>
+</blockquote>
+<p>That header is the difference between a backoff that works and one that guesses. The full error contract is worth reading once, because the <code>Retryable</code> column decides which of your failures are your code’s fault and which are the platform’s:</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/modellix-api-error-retry-table.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/modellix-api-error-retry-table.png" alt="Modellix API error table listing 400, 401, 402, 404, 429, 500 and 503 with a Retryable column for each" loading="lazy" />
+</picture>
+
+<p><em>The published error contract, captured September 16, 2026. <code>402</code> — insufficient balance — is explicitly not retryable and needs a recharge, which is why an unattended run should watch the balance rather than retry through it; <code>500</code> says retry up to three times; <code>429</code> and <code>503</code> both say use backoff. Captured from <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api">docs.modellix.ai</a>.</em></p>
+<p>One caveat: limits change without notice, the custom tier is a conversation rather than a number, and the only place showing <em>your</em> entitlements is your own console.</p>
+<h2 id="Step-5-reconstruct-the-bill-per-task-not-per-month"><a href="#Step-5-reconstruct-the-bill-per-task-not-per-month" class="headerlink" title="Step 5: reconstruct the bill per task, not per month"></a>Step 5: reconstruct the bill per task, not per month</h2><p>A batch run you cannot account for is one you cannot safely increase. <code>GET https://api.modellix.ai/api/v1/logs</code> returns paginated rows for the team that owns the key and requires a window of at most 30 days.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;requests&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;task_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;task-abc123&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;success&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;model&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;provider&quot;</span><span class="punctuation">:</span> <span class="string">&quot;alibaba&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;model_name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;qwen-image-plus&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;created_at&quot;</span><span class="punctuation">:</span> <span class="number">1700000100</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;cost&quot;</span><span class="punctuation">:</span> <span class="number">12</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;total&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span> <span class="attr">&quot;page&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span> <span class="attr">&quot;page_size&quot;</span><span class="punctuation">:</span> <span class="number">10</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><em>Log fields and the 30-day window read from the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/api/get-logs">Get Logs reference</a> on September 16, 2026.</em></p>
+<p><code>task_id</code> is the same join key the callback carries, which makes reconciliation a single pass. Diff three sets — submitted, callback-recorded, billed — and three failure classes separate cleanly: finished-and-billed but never delivered (a non-retried callback), submitted twice (a missing idempotency check), and failed but still carrying a billing row. None of those is visible from a monthly total.</p>
+<p>The log path has its own rate limit, separate from media generation RPM. For a multi-tenant product, tag each submission with an end-user identifier in the <code>X-Mdlx-User-Id</code> header — 8 to 128 characters, ASCII letters, digits, <code>-</code> and <code>_</code> — so cost is attributable per customer later; the log list does not echo that field back, so you filter by the matching query parameter. If you already log model calls, this is the same split as <a href="https://www.modellix.ai/blog/agent-observability/">agent observability</a>: one log line per unit of work, joined by an identifier you control.</p>
+<h3 id="One-number-worth-knowing-before-you-ship"><a href="#One-number-worth-knowing-before-you-ship" class="headerlink" title="One number worth knowing before you ship"></a>One number worth knowing before you ship</h3><p>Whether a generated asset carries a visible watermark is <strong>not documented per model</strong> on any page read for this article. If your product publishes output publicly, confirm watermarking behaviour per model before launch rather than assuming it, and check the terms that apply to your use — a product decision with a commercial dimension, and nothing here should be read as legal advice. The same caution covers what you <em>upload</em>: rights to a reference frame or a person’s likeness are yours to hold, and the File API does not check that for you.</p>
+<p>Reconstruction is not prediction. The estimating half belongs to the <a href="https://www.modellix.ai/blog/ai-video-generation-cost-calculator/">cost calculator</a> and the per-second table in the <a href="https://www.modellix.ai/blog/ai-video-model-api-pricing-comparison/">video model price comparison</a> — linked rather than reproduced, because a price table copied into an article is wrong within a week.</p>
+<h3 id="The-whole-run-end-to-end"><a href="#The-whole-run-end-to-end" class="headerlink" title="The whole run, end to end"></a>The whole run, end to end</h3><p>Every endpoint, header and field here is one documented above or in the reference:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. stage the input (not billed; expires in ~7 days)</span></span><br><span class="line">FILE_URL=$(curl -sS -X POST https://api.modellix.ai/api/v1/media/files \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$KEY</span>&quot;</span> -F file=@reference-frame.png | jq -r .data.url)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. submit with a callback attached — the header is what makes it async for you</span></span><br><span class="line">TASK=$(curl -sS -X POST https://api.modellix.ai/api/v1/&lt;provider&gt;/&lt;model&gt; \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$KEY</span>&quot;</span> -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;X-Webhook-URL: https://api.yourapp.com/hooks/modellix&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;X-Mdlx-User-Id: customer_8412&quot;</span> \</span><br><span class="line">  -d <span class="string">&quot;&#123;\&quot;prompt\&quot;: \&quot;...\&quot;, \&quot;image_url\&quot;: \&quot;<span class="variable">$FILE_URL</span>\&quot;&#125;&quot;</span> | jq -r .data.task_id)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. receiver: drop if X-Modellix-Delivery-ID was seen; else queue the payload</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. retrieve and persist before result_expires_at</span></span><br><span class="line">curl -sS <span class="string">&quot;https://api.modellix.ai/api/v1/tasks/<span class="variable">$TASK</span>&quot;</span> -H <span class="string">&quot;Authorization: Bearer <span class="variable">$KEY</span>&quot;</span> \</span><br><span class="line">  | jq -r <span class="string">&#x27;.data.result.resources[].url&#x27;</span> | xargs -n1 curl -sS -O</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. reconcile: submitted vs callback-recorded vs billed</span></span><br><span class="line">curl -sS <span class="string">&quot;https://api.modellix.ai/api/v1/logs?start_time=<span class="variable">$FROM</span>&amp;end_time=<span class="variable">$TO</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$KEY</span>&quot;</span> | jq <span class="string">&#x27;.requests[] | &#123;task_id, status, cost&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>Three things there are load-bearing and easy to drop in a refactor: the webhook header is set on the <strong>submission</strong>, not on your account, so it does not survive a code path that forgets it; step 3 must be idempotent, because the platform can redeliver; and step 4 is not optional if you intend to keep the file.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Check Your Own Concurrency Tier and Balance</h3><p class="view-docs-tag-desc">Log in to see the entitlements and balance on your team before you size a batch run, and to read per-task cost in your own request log.</p><a class="btn view-docs-tag-btn" href="../../console/login?utm_source=blog&utm_medium=login_tag" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="The-failure-modes-a-batch-run-will-actually-hit"><a href="#The-failure-modes-a-batch-run-will-actually-hit" class="headerlink" title="The failure modes a batch run will actually hit"></a>The failure modes a batch run will actually hit</h2><p>Following all of the above does not make a run safe. It makes the failures visible, which is more useful:</p>
+<ul>
+<li><strong>The silent callback loss.</strong> A non-retried <code>4xx</code> or a DNS failure during a deploy lands in the same observable state as a task that never finished.</li>
+<li><strong>The expired input.</strong> A run spanning more than about a week cannot rely on uploads made at its start.</li>
+<li><strong>The expired result.</strong> A pipeline that retrieves lazily eventually retrieves nothing.</li>
+<li><strong>The <code>402</code> mid-run.</strong> Insufficient balance arrives part-way through a run, leaving it half produced and half billed. Watch the balance on unattended schedules and set the console’s low-balance alert.</li>
+<li><strong>The ceiling you find at runtime.</strong> Concurrency exhaustion returns <code>429</code>, the same code as a rate limit, so it looks like provider trouble when it is usually your own tier.</li>
+</ul>
+<p>Two constraints here are limitations rather than features: ten retained files per team is small for reference-heavy work, and the absence of a documented webhook signature scheme means your receiver must be secured by other means. Nothing above argues that this contract is the best one available — the operational numbers come from one API’s documentation as read on <strong>September 16, 2026</strong>. What the single-key model is worth here is narrower and checkable: the same credential and the same submit-and-callback shape cover the image, video and audio models across the providers behind it, so a pipeline written once against these fields does not need a second auth path when a model changes.</p>
+<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>How do I automate AI video generation instead of doing it by hand?</strong></p>
+<p>Make the task submit itself and stop watching it. Upload inputs to a File API, submit each task with an <code>X-Webhook-URL</code> header so the platform calls you at a terminal state, deduplicate on <code>X-Modellix-Delivery-ID</code>, and reconcile submitted against billed tasks in <code>GET /api/v1/logs</code>. The generation step already works; the automation is the plumbing around it.</p>
+<p><strong>How do I generate an AI video step by step with an API?</strong></p>
+<p>Stage, submit, get notified, retrieve, reconcile. <code>POST /api/v1/media/files</code> returns a <code>url</code> for your input; <code>POST /api/v1/&lt;provider&gt;/&lt;model&gt;</code> with <code>X-Webhook-URL</code> returns a <code>task_id</code>; your receiver takes the callback and dedupes it; <code>GET /api/v1/tasks/&lt;task_id&gt;</code> returns <code>result.resources[]</code>, downloaded before <code>result_expires_at</code>; <code>GET /api/v1/logs</code> gives the billed <code>cost</code> per task.</p>
+<p><strong>How long does a video generation task take, and how long will a batch take?</strong></p>
+<p>Read per-task wall clock from <code>duration</code> (the task-level one is in milliseconds; the asset-level <code>duration</code> inside <code>result.resources[]</code> is in seconds) rather than assuming, then estimate <code>N ÷ C × T</code> for <code>N</code> tasks at <code>C</code> concurrent tasks and <code>T</code> seconds each. Concurrency comes from your entitlement tier, so the same run can be fifteen minutes on one tier and several hours on the entry tier. Neither number is published per model.</p>
+<p><strong>Should I use a webhook or poll for task status?</strong></p>
+<p>Callback for runs, polling for singles. A webhook costs one inbound request per task and takes pressure off a query path with its own rate limit; polling costs one request per interval per task and needs no inbound endpoint. The callback body and the task-result response are identical, so keep one parser.</p>
+<p><strong>What happens if my webhook endpoint is down when the task finishes?</strong></p>
+<p>It depends on the error, and the distinction is the operational risk. <code>429</code>, <code>5xx</code>, network timeouts and temporary network errors are retried. <code>3xx</code>, <code>4xx</code> other than <code>429</code>, invalid or private-network URLs and permanent connection errors are <strong>not</strong>, and a task hitting that list produces no callback at all — identical to a task that never completed. A reconciliation sweep is not optional.</p>
+<p><strong>How long do uploaded input files and generated results stay available?</strong></p>
+<p>Uploads are retained about seven days and are not billed; generated results have their own window, published on each task response as <code>result_expires_at</code>. Neither is permanent, so move anything you need to keep into your own storage as soon as the task completes.</p>
+<p><strong>How many video generation tasks can I run at once?</strong></p>
+<p>It is set by your entitlement tier, keyed to the largest single top-up — from 2 concurrent tasks and 100 requests per minute at entry up to 100 concurrent and 1,000 RPM at the top published tier. Rate-limit and concurrency exhaustion both return <code>429</code>, remedied by backoff with the reset time in <code>X-RateLimit-Reset</code>. Your current entitlements are in your own console.</p>
+<p><strong>How do I find out what a batch run cost?</strong></p>
+<p>Read <code>GET /api/v1/logs</code> over a window of at most 30 days; each row carries <code>task_id</code>, <code>status</code>, the serving <code>model.provider</code> and <code>model.model_name</code>, <code>created_at</code> and <code>cost</code>. Join those rows to the <code>task_id</code> values you submitted and to the ones your callbacks recorded to separate completed-and-billed, billed-but-lost and submitted-twice.</p>
+<hr>
+<p><em>Platform behaviour, limits and endpoints described here reflect first-party documentation read on September 16, 2026, and change without notice; verify against the live pages before building on any figure. The numbers and contracts come from the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api">REST API guide</a>, the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/api/upload-media-file">File API</a>, <a target="_blank" rel="noopener" href="https://docs.modellix.ai/api/get-task-result">query task result</a>, the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/api/get-logs">request log reference</a>, the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/cli">CLI documentation</a>, the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started/entitlements">team entitlements page</a> and the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/changelog/product-updates">product changelog</a>. Modellix is an API aggregator and the contract described is its own, which is why the figures are first-party and why two of the constraints named are limitations rather than features; it is not the only place these models can be called. Reach image, video and audio models through one key at <a target="_blank" rel="noopener" href="https://modellix.ai/">modellix.ai</a>.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/API-Integration/" class="tag-pill tag-pill--sm">API Integration</a>
+            
+              <a href="/blog/tags/AI-Video/" class="tag-pill tag-pill--sm">AI Video</a>
+            
+              <a href="/blog/tags/Video-Generation-API/" class="tag-pill tag-pill--sm">Video Generation API</a>
+            
+              <a href="/blog/tags/Webhooks/" class="tag-pill tag-pill--sm">Webhooks</a>
+            
+              <a href="/blog/tags/Batch-Processing/" class="tag-pill tag-pill--sm">Batch Processing</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="../../../console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/ai-image-edit-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-ai-image-edit-api.webp" alt="AI Image Edit API: 16 References, Masks, Flare vs Sunburst" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">AI Image Edit API: 16 References, Masks, Flare vs Sunburst</h3>
+          <time class="related-article-date" datetime="2026-09-16T16:00:00.000Z">September 17, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/gpt-image-2-5-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-gpt-image-2-5-api.webp" alt="GPT Image 2.5 API: Flare vs Sunburst, Four Model IDs" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">GPT Image 2.5 API: Flare vs Sunburst, Four Model IDs</h3>
+          <time class="related-article-date" datetime="2026-09-16T16:00:00.000Z">September 17, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/grok-api-keys/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-grok-api-keys.webp" alt="Grok API Keys: Two Ways to Get One and Call Grok 4.6" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Grok API Keys: Two Ways to Get One and Call Grok 4.6</h3>
+          <time class="related-article-date" datetime="2026-09-16T11:47:00.000Z">September 16, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="../../../console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/ai-video-generation-workflow/&text=AI%20Video%20Generation%20Workflow%3A%20Async%20Tasks%20and%20Batch%20Runs" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/ai-video-generation-workflow/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/ai-video-generation-workflow/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
+    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
+    <script>
+      (function () {
+        if (!window.mermaid) return;
+        var mermaidKeywords = [
+          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
+          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
+          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
+          'packet-beta', 'kanban', 'architecture'
+        ];
+
+        function looksLikeMermaid(source) {
+          if (!source) return false;
+          var trimmed = source.trim();
+          return mermaidKeywords.some(function (keyword) {
+            return trimmed.indexOf(keyword) === 0;
+          });
+        }
+
+        function extractCodeText(node) {
+          if (!node) return '';
+          if (node.matches('figure.highlight')) {
+            var figureCode = node.querySelector('td.code pre');
+            return figureCode ? figureCode.textContent || '' : '';
+          }
+          if (node.matches('pre > code')) {
+            return node.textContent || '';
+          }
+          if (node.matches('pre')) {
+            return node.textContent || '';
+          }
+          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
+          return nestedCode ? nestedCode.textContent || '' : '';
+        }
+
+        function normalizeMermaidBlocks() {
+          var candidates = document.querySelectorAll(
+            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
+          );
+
+          candidates.forEach(function (node) {
+            if (node.matches('pre.mermaid')) return;
+
+            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
+            if (!replaceTarget) return;
+
+            var source = extractCodeText(replaceTarget);
+            if (!looksLikeMermaid(source)) return;
+
+            var mermaidPre = document.createElement('pre');
+            mermaidPre.className = 'mermaid';
+            mermaidPre.textContent = source.trim();
+            replaceTarget.replaceWith(mermaidPre);
+          });
+        }
+
+        normalizeMermaidBlocks();
+
+        var mermaidNodes = document.querySelectorAll('pre.mermaid');
+        if (!mermaidNodes.length) return;
+        var optionsElement = document.getElementById('mermaid-options');
+        var mermaidOptions = {};
+        if (optionsElement) {
+          try {
+            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
+          } catch (err) {
+            mermaidOptions = {};
+          }
+        }
+        mermaid.initialize(mermaidOptions);
+        mermaid.run({ querySelector: 'pre.mermaid' });
+      })();
+    </script>
+  
+</body>
+</html>
