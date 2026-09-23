@@ -3,27 +3,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <!-- Production analytics start after the page load has settled. -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-4DECHYKQVT');
+    (function (document, window) {
+      if (window.location.hostname !== 'www.modellix.ai') return;
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-4DECHYKQVT');
+
+      var loaded = false;
+      function appendScript(src, crossOrigin) {
+        var script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        if (crossOrigin) script.crossOrigin = crossOrigin;
+        document.head.appendChild(script);
+      }
+      function loadAnalytics() {
+        if (loaded) return;
+        loaded = true;
+        appendScript('https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT');
+        appendScript('https://t.contentsquare.net/uxa/f39399cd2e27e.js', 'anonymous');
+        appendScript('https://app.rybbit.io/api/script.js?siteId=8a6874a918d7');
+      }
+      function scheduleAnalytics() {
+        window.setTimeout(function () {
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(loadAnalytics, { timeout: 3000 });
+          } else {
+            loadAnalytics();
+          }
+        }, 1500);
+      }
+
+      if (document.readyState === 'complete') scheduleAnalytics();
+      else window.addEventListener('load', scheduleAnalytics, { once: true });
+    })(document, window);
   </script>
-  <!-- Contentsquare -->
-  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HappyHorse-1.0 Explained: Open-Source AI Video, API Access, and 2026 Pricing — Modellix Blog</title>
-  <meta name="description" content="HappyHorse-1.0 leads open-source AI video benchmarks and is now available through production API access. See Elo data, architecture, and updated 720p and 1080p pricing.">
+  <title>HappyHorse-1.0 Explained: Open-Source AI Video, API Access, and 2026 Pricing</title>
   <meta name="keywords" content="happy horse ai">
   
   <link rel="canonical" href="https://www.modellix.ai/blog/happyhorse-ai/">
+  
+  
+  <meta name="description" content="HappyHorse-1.0 leads open-source AI video benchmarks and is now available through production API access. See Elo data, architecture, and updated 720p and 1080p pricing.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HappyHorse-1.0 Explained: Open-Source AI Video, API Access, and 2026 Pricing">
+<meta property="og:url" content="https://www.modellix.ai/blog/happyhorse-ai/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="HappyHorse-1.0 leads open-source AI video benchmarks and is now available through production API access. See Elo data, architecture, and updated 720p and 1080p pricing.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/happy-horse-1-0.webp">
+<meta property="article:published_time" content="2026-04-10T03:34:50.000Z">
+<meta property="article:modified_time" content="2026-06-26T06:04:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video Generation">
+<meta property="article:tag" content="Alibaba">
+<meta property="article:tag" content="HappyHorse">
+<meta property="article:tag" content="Model Benchmark">
+<meta property="article:tag" content="Open Source">
+<meta property="article:tag" content="Seedance">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/happy-horse-1-0.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"HappyHorse-1.0 Explained: Open-Source AI Video, API Access, and 2026 Pricing","description":"HappyHorse-1.0 leads open-source AI video benchmarks and is now available through production API access. See Elo data, architecture, and updated 720p and 1080p pricing.","datePublished":"2026-04-10T03:34:50.000Z","dateModified":"2026-06-26T06:04:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/happyhorse-ai/","image":"https://img.modellix.ai/en/article/happy-horse-1-0.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://img.modellix.ai" crossorigin>
   <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
   
     
@@ -40,19 +96,19 @@
     </a>
     <nav class="header-nav">
       
-        <a href="/blog/../" class="nav-link">Home</a>
+        <a href="https://www.modellix.ai/" class="nav-link">Home</a>
       
-        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started" class="nav-link">Documentation</a>
       
-        <a href="/blog/../about" class="nav-link">About Us</a>
+        <a href="https://www.modellix.ai/about" class="nav-link">About Us</a>
       
     </nav>
     <div class="header-actions">
       
-        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+        <a href="https://www.modellix.ai/console" class="btn btn-secondary">Console</a>
       
       
-        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+        <a href="https://www.modellix.ai/console/api-key" class="btn btn-primary">Get API Key</a>
       
       <button class="mobile-menu-toggle" aria-label="Toggle menu">
         <i data-lucide="menu"></i>
@@ -103,19 +159,19 @@
       </div>
       <h1 class="post-title">What Is HappyHorse-1.0? Why It Leads Open-Source AI Video in 2026</h1>
       <div class="post-header-bottom">
-        <time class="post-date">April 10, 2026</time>
+        <time class="post-date" datetime="2026-04-10T03:34:50.000Z">April 10, 2026</time>
         
           <div class="post-header-tags">
             
-              <a href="/blog/tags/AI-Video-Generation/" class="tag-pill tag-pill--sm">AI Video Generation</a>
-            
-              <a href="/blog/tags/HappyHorse/" class="tag-pill tag-pill--sm">HappyHorse</a>
-            
-              <a href="/blog/tags/Open-Source/" class="tag-pill tag-pill--sm">Open Source</a>
+              <a href="/blog/tags/seedance/" class="tag-pill tag-pill--sm">Seedance</a>
             
               <a href="/blog/tags/Alibaba/" class="tag-pill tag-pill--sm">Alibaba</a>
             
-              <a href="/blog/tags/Seedance/" class="tag-pill tag-pill--sm">Seedance</a>
+              <a href="/blog/tags/HappyHorse/" class="tag-pill tag-pill--sm">HappyHorse</a>
+            
+              <a href="/blog/tags/ai-video-generation/" class="tag-pill tag-pill--sm">AI Video Generation</a>
+            
+              <a href="/blog/tags/open-source/" class="tag-pill tag-pill--sm">Open Source</a>
             
               <a href="/blog/tags/Model-Benchmark/" class="tag-pill tag-pill--sm">Model Benchmark</a>
             
@@ -127,7 +183,7 @@
     
 <div class="post-author-card">
   
-    <img src="https://img.srcgptbots.com/blog/author/20260409/modellix-blog-author-official@2x.webp" alt="Modellix Team" class="post-author-avatar">
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
   
   <div class="post-author-info">
     <span class="post-author-name">Modellix Team</span>
@@ -191,16 +247,16 @@
 <td>#2</td>
 </tr>
 </tbody></table>
-<p><img src="https://img.srcgptbots.com/en/article/text-to-video-leaderboard-no-audio-artificial-analysis.png" alt="HappyHorse-1.0 ranks #1 in text-to-video (no audio) on Artificial Analysis Video Arena leaderboard"></p>
-<p><img src="https://img.srcgptbots.com/en/article/image-to-video-leaderboard-no-audio-artificial-analysis.png" alt="HappyHorse-1.0 ranks #1 in image-to-video (no audio) on Artificial Analysis Video Arena leaderboard"></p>
+<p><img src="https://img.modellix.ai/en/article/text-to-video-leaderboard-no-audio-artificial-analysis-e469182b.png" alt="HappyHorse-1.0 ranks #1 in text-to-video (no audio) on Artificial Analysis Video Arena leaderboard"></p>
+<p><img src="https://img.modellix.ai/en/article/image-to-video-leaderboard-no-audio-artificial-analysis-d5aecec1.png" alt="HappyHorse-1.0 ranks #1 in image-to-video (no audio) on Artificial Analysis Video Arena leaderboard"></p>
 <p>The previous #1 in text-to-video without audio was Seedance 2.0 at Elo 1,273. <mark style="background:#fef08a;padding:0 3px;border-radius:2px;">A 60 to 74 point gap is not statistical noise.</mark> In head-to-head matchups at that margin, the leading model wins roughly 58 to 60% of blind comparisons, which represents a consistent and meaningful difference. The image-to-video gap over Seedance 2.0 of 48 to 51 points is the widest any model has opened in that category on this leaderboard.</p>
 <p>Two honest caveats to keep calibrated. First, newly added models carry more volatile Elo scores than established ones. Seedance 2.0 has accumulated over 7,500 vote samples in text-to-video alone, while HappyHorse’s sample count is not publicly broken out. The gap may narrow as volume grows. Second, <mark style="background:#fecaca;padding:0 3px;border-radius:2px;">the audio categories tell a different story: with audio included, Seedance 2.0 holds first place by 14 points in T2V and 1 point in I2V.</mark> HappyHorse’s audio generation is competitive but not dominant.</p>
 <p>What the leaderboard data cannot tell you: whether this ranking reflects production-ready performance or optimization for the specific signals evaluators respond to. A technically sound concern raised in the Chinese AI research community (wuhu Animation, April 2026) is that models can be tuned toward the visible preference signals that blind evaluators respond to, such as facial expressiveness, audio sync, and motion sharpness, without that necessarily reflecting full-production robustness. The arena removes vendor self-reporting, but it does not eliminate the possibility of evaluation-specific tuning. Independent production testing, once weights are more widely distributed, will be the real signal.</p>
-<p><img src="https://img.srcgptbots.com/en/article/video-arena-quality-elo-happyhorse.png" alt="HappyHorse-1.0 Elo quality scores on Artificial Analysis Video Arena compared to competing models"></p>
+<p><img src="https://img.modellix.ai/en/article/video-arena-quality-elo-happyhorse-d4d0d7a3.png" alt="HappyHorse-1.0 Elo quality scores on Artificial Analysis Video Arena compared to competing models"></p>
 <hr>
 <h2 id="3-Technical-Reasons-HappyHorse-Generates-Video-Differently-Than-Competing-Models"><a href="#3-Technical-Reasons-HappyHorse-Generates-Video-Differently-Than-Competing-Models" class="headerlink" title="3 Technical Reasons HappyHorse Generates Video Differently Than Competing Models"></a>3 Technical Reasons HappyHorse Generates Video Differently Than Competing Models</h2><p>Most production AI video models use a staged pipeline: generate video frames, then align or synthesize audio in a separate pass. The timing mismatches that result are why lip sync tends to feel mechanical and ambient sound tends to feel layered on rather than native.</p>
 <p>HappyHorse-1.0 uses a different approach. The following technical specifications come from the team’s April 8 press release and official documentation, pending broader third-party verification now that weights are publicly available.</p>
-<p><img src="https://img.srcgptbots.com/en/article/happy-horse-model.png" alt="HappyHorse-1.0 model architecture , single unified Transformer for video, audio, image, and text modalities"></p>
+<p><img src="https://img.modellix.ai/en/article/happy-horse-model.png" alt="HappyHorse-1.0 model architecture , single unified Transformer for video, audio, image, and text modalities"></p>
 <p><strong>A single 40-layer Transformer for all modalities.</strong> Text tokens, image latents, video tokens, and audio tokens are processed together in one 40-layer self-attention Transformer with no cross-attention. The architecture uses a sandwich structure: layers 1 through 4 and layers 37 through 40 apply modality-specific projections, while layers 5 through 36 share parameters across all modalities in a single sequence. Video and audio are generated jointly in one forward pass.</p>
 <p><strong>15 billion parameters with 8-step inference.</strong> At 15B parameters, the model is lean relative to its benchmark performance. DMD-2 distillation reduces denoising to 8 steps with no classifier-free guidance required during inference. According to the team’s reported hardware numbers (April 2026), this produces a 5-second clip at 256p in approximately 2 seconds on a single H100, and a 1080p clip in approximately 38 seconds on the same hardware.</p>
 <p><strong>Seven-language native lip sync.</strong> Mandarin, Cantonese, English, Japanese, Korean, German, and French are supported natively for voice generation with lip sync, within the single-pass architecture rather than a separate voice model.</p>
@@ -217,7 +273,7 @@
 <hr>
 <h2 id="What-HappyHorse-1-0-Does-Well-and-Where-the-Limits-Are"><a href="#What-HappyHorse-1-0-Does-Well-and-Where-the-Limits-Are" class="headerlink" title="What HappyHorse-1.0 Does Well and Where the Limits Are"></a>What HappyHorse-1.0 Does Well and Where the Limits Are</h2><p>Based on third-party testing by AI researchers and content creators published in April 2026, not from team-provided demo materials:</p>
 <p><strong>Multi-shot narrative consistency.</strong> Prompts describing scene transitions are handled with persistent character identity across cuts. Testing by X researcher @venturetwins showed that detailed, instruction-heavy prompts produced high adherence to specified camera moves, lighting conditions, and character behaviors across scene breaks, which is a capability where most current models degrade significantly.</p>
-<p><img src="https://img.srcgptbots.com/en/article/happyHorse-venturetwins-test.png" alt="Third-party test of HappyHorse-1.0 by @venturetwins showing multi-shot narrative consistency and prompt adherence"></p>
+<p><img src="https://img.modellix.ai/en/article/happyhorse-venturetwins-test.png" alt="Third-party test of HappyHorse-1.0 by @venturetwins showing multi-shot narrative consistency and prompt adherence"></p>
 <p><strong>Motion physics on non-human subjects.</strong> Bat flight sequences and animal motion tests showed physical plausibility at a level reviewers compared favorably against Seedance 2.0 outputs on equivalent prompts.</p>
 <p><strong>Audio-video synchronization within the single-pass architecture.</strong> Because audio is not a post-processing step, temporal drift between lip movement and speech is reduced. Reviewers consistently noted this as a distinguishing factor versus models that synthesize audio separately.</p>
 <p><strong>Where the model shows limits:</strong> The team’s own demo material contains visible artifacts. A flying vehicle moving underwater with no bubble effects is the most cited example across multiple reviews. In the audio categories on the Artificial Analysis leaderboard, Seedance 2.0 holds first place, suggesting that combined audio quality has not yet surpassed the current leader. The question of evaluation-specific tuning (whether leaderboard performance corresponds to production robustness) remains open until broader independent testing produces results.</p>
@@ -289,9 +345,11 @@
 <h2 id="How-to-Integrate-Top-AI-Video-Models-Without-Rewriting-Your-Pipeline"><a href="#How-to-Integrate-Top-AI-Video-Models-Without-Rewriting-Your-Pipeline" class="headerlink" title="How to Integrate Top AI Video Models Without Rewriting Your Pipeline"></a>How to Integrate Top AI Video Models Without Rewriting Your Pipeline</h2><p>The release pattern playing out here (leaderboard debut, open-source announcement, then API access) is becoming a predictable cycle in AI video. Wan, HunyuanVideo, and LTX-2 all followed similar trajectories. Builders who waited for each API to be available separately absorbed more switching costs than teams that abstracted the model layer.</p>
 <p>The practical approach: build against a unified API layer that gives you access to HappyHorse, Seedance 1.5 Pro, Kling 3.0, Wan 2.6, and other production-ready video models today. When pricing, quality, or latency shifts, you change a model parameter, not your integration architecture.</p>
 <p>Modellix provides exactly this: a unified AI media API covering video, image, and audio generation across models, with transparent per-request pricing and no separate account management per provider. HappyHorse is now available at <strong>$0.128&#x2F;s for 720p</strong> and <strong>$0.229&#x2F;s for 1080p</strong>, after reductions from $0.18&#x2F;s and $0.30&#x2F;s respectively.</p>
-<p><img src="https://img.srcgptbots.com/en/article/modellix-one-unified-platform-for-all-ai-media-generation.png" alt="Modellix , one unified platform for all AI media generation including video, image, and audio models"></p>
+<p><img src="https://img.modellix.ai/en/article/modellix-one-unified-platform-for-all-ai-media-generation-4ad00ae2.png" alt="Modellix , one unified platform for all AI media generation including video, image, and audio models"></p>
 <p><strong>Start generating video through the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started/pricing">Modellix API</a></strong> , choose HappyHorse when you want the current open-source benchmark leader, or route to Seedance, Kling, Wan, and other video models from the same integration.</p>
 <hr>
+<section class="collection-cta collection-cta--wide" aria-labelledby="collection-cta-video-generator"><a class="collection-cta-media" href="https://www.modellix.ai/collections/ai-video-generator" data-cta="collection_cta" data-cta-campaign="video-generator" aria-label="Open Shortlist AI Video Models for Production"><img src="https://img.modellix.ai/en/article/creator-pipeline.webp" alt="Unified AI video production pipeline across multiple models" width="1536" height="1024" loading="lazy" decoding="async" data-no-zoom></a><div class="collection-cta-content"><div class="collection-cta-copy"><p class="collection-cta-eyebrow"><i data-lucide="layers-3" aria-hidden="true"></i> Modellix collection</p><h3 id="collection-cta-video-generator" class="collection-cta-title">Shortlist AI Video Models for Production</h3><p class="collection-cta-description">Compare text, image, and reference-led video workflows across multiple models from one production surface.</p></div><div class="collection-cta-actions"><p class="collection-cta-models"><strong>Good first tests:</strong> <a href="https://www.modellix.ai/models/bytedance/seedance-2.0-t2v" data-cta="collection_cta" data-cta-campaign="video-generator">Seedance 2.0</a><span aria-hidden="true">/</span><a href="https://www.modellix.ai/models/alibaba/wan2.7-t2v" data-cta="collection_cta" data-cta-campaign="video-generator">Wan 2.7</a><span aria-hidden="true">/</span><a href="https://www.modellix.ai/models/alibaba/happyhorse-1.1-t2v" data-cta="collection_cta" data-cta-campaign="video-generator">HappyHorse 1.1</a></p><a class="collection-cta-button" href="https://www.modellix.ai/collections/ai-video-generator" data-cta="collection_cta" data-cta-campaign="video-generator"><span>Explore the collection</span><i data-lucide="arrow-right" aria-hidden="true"></i></a></div></div></section>
+
 <!-- modellix-how-to-start -->
 <h2 id="How-to-Test-HappyHorse-Before-API-Integration"><a href="#How-to-Test-HappyHorse-Before-API-Integration" class="headerlink" title="How to Test HappyHorse Before API Integration"></a>How to Test HappyHorse Before API Integration</h2><p>Most readers should not start with code. Use the Modellix Playground to run one real HappyHorse job first, then move to API, Skill, or CLI only after the prompt, settings, cost, and output format are worth repeating. This keeps the guide useful for creators, product teams, and technical buyers, while developers still get a clean implementation path.</p>
 <div style="border:1px solid #D7DEFF; border-left:5px solid #6A5BFF; background:#F8FAFF; border-radius:8px; padding:22px 24px; margin:24px 0 30px; box-shadow:0 10px 24px rgba(50, 60, 140, 0.06);">
@@ -307,7 +365,7 @@
 <h3 id="Step-1-Create-or-Sign-In-and-Use-the-Included-1-Credit"><a href="#Step-1-Create-or-Sign-In-and-Use-the-Included-1-Credit" class="headerlink" title="Step 1: Create or Sign In and Use the Included $1 Credit"></a>Step 1: Create or Sign In and Use the Included $1 Credit</h3><p><a href="https://www.modellix.ai/console" target="_blank" rel="noopener noreferrer">Create or sign in to a Modellix account</a> before you test HappyHorse video generation. New users can use the included $1 credit to validate model behavior, prompt quality, output download, and request logging without committing to a full integration.</p>
 <figure style="margin:20px 0;">
   <picture style="aspect-ratio: 1440 / 818; width:100%; max-width:1440px;">
-    <img width="1440" height="818" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="/blog/assets/modellix-login-free-credit.png" alt="Modellix sign in screen for creating an account and using the included one dollar credit" />
+    <img width="1440" height="818" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="https://img.modellix.ai/en/article/modellix-login-free-credit.png" alt="Modellix sign in screen for creating an account and using the included one dollar credit" />
   </picture>
   <figcaption style="font-size:13px; color:#64748B; margin-top:6px;">Start with a free account so the first model test has real credit, billing, and request history behind it.</figcaption>
 </figure>
@@ -315,7 +373,7 @@
 <h3 id="Step-2-Open-the-Model-Page-and-Run-One-Prompt"><a href="#Step-2-Open-the-Model-Page-and-Run-One-Prompt" class="headerlink" title="Step 2: Open the Model Page and Run One Prompt"></a>Step 2: Open the Model Page and Run One Prompt</h3><p>After login, use the dashboard shortcuts or the <a href="https://www.modellix.ai/models" target="_blank" rel="noopener noreferrer">Modellix model catalog</a> to open <a href="https://www.modellix.ai/models/alibaba/happyhorse-1.0-t2v" target="_blank" rel="noopener noreferrer">HappyHorse 1.0 T2V model page</a>. For video models, start with a short clip, then check aspect ratio, duration, resolution, motion quality, and whether the output is worth repeating. This step is the fastest way to learn whether the model fits before you read more code.</p>
 <figure style="margin:20px 0;">
   <picture style="aspect-ratio: 1440 / 735; width:100%; max-width:1440px;">
-    <img width="1440" height="735" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="/blog/assets/modellix-dashboard-free-credit.png" alt="Modellix dashboard showing balance, model shortcuts, API key access, documentation, Skill, CLI, and featured models" />
+    <img width="1440" height="735" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="https://img.modellix.ai/en/article/modellix-dashboard-free-credit.png" alt="Modellix dashboard showing balance, model shortcuts, API key access, documentation, Skill, CLI, and featured models" />
   </picture>
   <figcaption style="font-size:13px; color:#64748B; margin-top:6px;">The dashboard routes non-technical users to Playground and technical users to API Key, Documentation, Skill, or CLI.</figcaption>
 </figure>
@@ -341,7 +399,7 @@
 <h3 id="Step-4-Create-an-API-Key-Only-When-the-Test-Needs-to-Repeat"><a href="#Step-4-Create-an-API-Key-Only-When-the-Test-Needs-to-Repeat" class="headerlink" title="Step 4: Create an API Key Only When the Test Needs to Repeat"></a>Step 4: Create an API Key Only When the Test Needs to Repeat</h3><p>Stay in Playground for one-off exploration. Create an API key when a backend service, agent, batch script, or CLI workflow needs to repeat the same prompt pattern. This keeps the mainstream testing flow simple while giving developers a clean handoff point.</p>
 <figure style="margin:20px 0;">
   <picture style="aspect-ratio: 1440 / 744; width:100%; max-width:1440px;">
-    <img width="1440" height="744" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="/blog/assets/modellix-create-api-key.png" alt="Modellix API key screen showing the create API key modal for backend, CLI, batch, and agent workflows" />
+    <img width="1440" height="744" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="https://img.modellix.ai/en/article/modellix-create-api-key.png" alt="Modellix API key screen showing the create API key modal for backend, CLI, batch, and agent workflows" />
   </picture>
   <figcaption style="font-size:13px; color:#64748B; margin-top:6px;">Create an API key after the Playground result proves the prompt and settings are worth automating.</figcaption>
 </figure>
@@ -349,7 +407,7 @@
 <h3 id="Step-5-Check-Logs-and-Save-the-Result-Before-Scaling"><a href="#Step-5-Check-Logs-and-Save-the-Result-Before-Scaling" class="headerlink" title="Step 5: Check Logs and Save the Result Before Scaling"></a>Step 5: Check Logs and Save the Result Before Scaling</h3><p>Before scaling from one manual run to repeated API, Skill, or CLI usage, review request history. Logs confirm the model slug, API key name, task status, request time, and result retention window, which makes the workflow easier to debug after it leaves Playground.</p>
 <figure style="margin:20px 0;">
   <picture style="aspect-ratio: 1440 / 743; width:100%; max-width:1440px;">
-    <img width="1440" height="743" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="/blog/assets/modellix-request-history.png" alt="Modellix request history showing successful model calls, model slugs, API key names, status, and request timestamps" />
+    <img width="1440" height="743" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="https://img.modellix.ai/en/article/modellix-request-history.png" alt="Modellix request history showing successful model calls, model slugs, API key names, status, and request timestamps" />
   </picture>
   <figcaption style="font-size:13px; color:#64748B; margin-top:6px;">Use request history to verify model calls, success status, and generated media retention before you scale.</figcaption>
 </figure>
@@ -372,7 +430,7 @@
 <p><strong>How does it compare to Seedance 2.0 in practical terms?</strong> In blind tests without audio, HappyHorse leads Seedance 2.0 by 60 to 74 Elo points in T2V and 48 to 51 points in I2V. With audio, Seedance 2.0 leads by 14 points in T2V and 1 point in I2V. Now that HappyHorse has API access and lower per-second pricing, the decision depends on whether your workflow values no-audio visual quality, audio-included performance, or specific latency and resolution requirements.</p>
 <p><strong>What hardware is needed to run it locally?</strong> A single NVIDIA H100 for optimal performance (approximately 38 seconds per 1080p clip, as reported by the team in April 2026). Consumer GPU community versions are in development.</p>
 <p><strong>Is HappyHorse-1.0 related to Alibaba’s Wan 2.7?</strong> No confirmed connection. Both are Alibaba-ecosystem projects but appear to be separate model lines with different architectures. The HappyHorse team’s stated architecture does not match publicly known Wan architecture.</p>
-<p><strong>What is the fastest way to access top AI video models via API today?</strong> Modellix provides a unified API covering HappyHorse, <a target="_blank" rel="noopener" href="https://docs.modellix.ai/bytedance/seedance-1-5-pro-t2v">Seedance 1.5 Pro</a>, Kling 3.0, Wan 2.6, and other leading models with a single integration. HappyHorse currently costs $0.128&#x2F;s for 720p and $0.229&#x2F;s for 1080p.</p>
+<p><strong>What is the fastest way to access top AI video models via API today?</strong> Modellix provides a unified API covering HappyHorse, <a href="https://www.modellix.ai/series/seedance">Seedance 1.5 Pro</a>, Kling 3.0, Wan 2.6, and other leading models with a single integration. HappyHorse currently costs $0.128&#x2F;s for 720p and $0.229&#x2F;s for 1080p.</p>
 <hr>
 <p><em>Published April 10, 2026. Updated May 13, 2026 with HappyHorse API availability and reduced pricing. Leaderboard data sourced from Artificial Analysis Video Arena. Team attribution sourced from official team press release (April 8 to 9, 2026) and wuhu Animation community reporting (April 9, 2026). Pricing data current as of May 13, 2026.</em></p>
 
@@ -381,15 +439,15 @@
         <div class="post-tags-bottom">
           
             
-              <a href="/blog/tags/AI-Video-Generation/" class="tag-pill tag-pill--sm">AI Video Generation</a>
-            
-              <a href="/blog/tags/HappyHorse/" class="tag-pill tag-pill--sm">HappyHorse</a>
-            
-              <a href="/blog/tags/Open-Source/" class="tag-pill tag-pill--sm">Open Source</a>
+              <a href="/blog/tags/seedance/" class="tag-pill tag-pill--sm">Seedance</a>
             
               <a href="/blog/tags/Alibaba/" class="tag-pill tag-pill--sm">Alibaba</a>
             
-              <a href="/blog/tags/Seedance/" class="tag-pill tag-pill--sm">Seedance</a>
+              <a href="/blog/tags/HappyHorse/" class="tag-pill tag-pill--sm">HappyHorse</a>
+            
+              <a href="/blog/tags/ai-video-generation/" class="tag-pill tag-pill--sm">AI Video Generation</a>
+            
+              <a href="/blog/tags/open-source/" class="tag-pill tag-pill--sm">Open Source</a>
             
               <a href="/blog/tags/Model-Benchmark/" class="tag-pill tag-pill--sm">Model Benchmark</a>
             
@@ -402,7 +460,7 @@
   <div class="post-cta-content">
     <h2 class="post-cta-title">Ready to Get Started?</h2>
     <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
-    <a href="../../../console" class="btn post-cta-btn">
+    <a href="https://www.modellix.ai/console" class="btn post-cta-btn">
       <span>Start for Free</span>
       <i data-lucide="arrow-right"></i>
     </a>
@@ -416,10 +474,10 @@
   <h2 class="related-articles-title">Related Articles</h2>
   <div class="related-articles-grid">
     
-      <a href="/blog/vidu-q3-challenge/" class="related-article-card">
+      <a href="/blog/gpt-image-2-5-flare-sunburst-on-modellix/" class="related-article-card">
         
           <div class="related-article-cover">
-            <img src="https://img.modellix.ai/en/article/Vidu_Q3_Challenge_on_Modellix.webp" alt="Vidu Q3 Challenge on Modellix — Win Up to $100 | 50% Off Campaign" loading="lazy">
+            <img src="https://img.modellix.ai/en/article/image_1789561132-ed24xduv.webp" alt="OpenAI GPT Image 2.5 Is Now on Modellix: Flare, Sunburst, and the Edit Variants Behind One API" loading="lazy">
           </div>
         
         <div class="related-article-body">
@@ -430,15 +488,15 @@
               
             </div>
           
-          <h3 class="related-article-name">Vidu Q3 Challenge on Modellix — Win Up to $100 | 50% Off Campaign</h3>
-          <time class="related-article-date">June 12, 2026</time>
+          <h3 class="related-article-name">OpenAI GPT Image 2.5 Is Now on Modellix: Flare, Sunburst, and the Edit Variants Behind One API</h3>
+          <time class="related-article-date" datetime="2026-09-16T02:00:00.000Z">September 16, 2026</time>
         </div>
       </a>
     
-      <a href="/blog/vidu-q3-mix-is-available/" class="related-article-card">
+      <a href="/blog/mai-image-2-6-on-modellix/" class="related-article-card">
         
           <div class="related-article-cover">
-            <img src="https://img.modellix.ai/en/article/vidu-q3-mix.webp" alt="Vidu Q3-Mix Is Now Available on Modellix" loading="lazy">
+            <img src="https://img.modellix.ai/en/article/c8dd1cca-32f2-4f85-b120-a4e3ad66565b.webp" alt="MAI Image 2.6 on Modellix: Top-2 Text-to-Image Model via One API" loading="lazy">
           </div>
         
         <div class="related-article-body">
@@ -449,15 +507,15 @@
               
             </div>
           
-          <h3 class="related-article-name">Vidu Q3-Mix Is Now Available on Modellix</h3>
-          <time class="related-article-date">June 12, 2026</time>
+          <h3 class="related-article-name">MAI Image 2.6 on Modellix: Top-2 Text-to-Image Model via One API</h3>
+          <time class="related-article-date" datetime="2026-09-09T02:00:00.000Z">September 9, 2026</time>
         </div>
       </a>
     
-      <a href="/blog/google-model-integrated/" class="related-article-card">
+      <a href="/blog/pixverse-v6-modellix-promotion-20-off/" class="related-article-card">
         
           <div class="related-article-cover">
-            <img src="https://img.modellix.ai/en/article/google-ai-suite-on-modellix-veo-imagen-nano-banana.webp" alt="Google AI Suite on Modellix: Veo 3.1, Imagen 4.0, and Nano Banana" loading="lazy">
+            <img src="https://img.modellix.ai/en/article/e29e4668-674a-4611-aece-307aefa283d9.webp" alt="PixVerse V6 on Modellix: 15s 1080p AI Video with Native Audio (20% OFF)" loading="lazy">
           </div>
         
         <div class="related-article-body">
@@ -468,8 +526,8 @@
               
             </div>
           
-          <h3 class="related-article-name">Google AI Suite on Modellix: Veo 3.1, Imagen 4.0, and Nano Banana</h3>
-          <time class="related-article-date">April 9, 2026</time>
+          <h3 class="related-article-name">PixVerse V6 on Modellix: 15s 1080p AI Video with Native Audio (20% OFF)</h3>
+          <time class="related-article-date" datetime="2026-08-07T16:00:00.000Z">August 8, 2026</time>
         </div>
       </a>
     
@@ -487,7 +545,7 @@
       <ul class="post-toc-list"></ul>
     </nav>
 
-    <a href="../../../console" class="sidebar-cta">
+    <a href="https://www.modellix.ai/console" class="sidebar-cta">
       <span class="sidebar-cta-text">
         <span class="sidebar-cta-title">Try Modellix</span>
         <span class="sidebar-cta-desc">Start creating with AI</span>
@@ -498,9 +556,9 @@
     <div class="post-share">
       <span class="post-share-label">Share this article</span>
       <div class="post-share-links">
-        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/happyhorse-ai/&text=HappyHorse-1.0%20Explained%3A%20Open-Source%20AI%20Video%2C%20API%20Access%2C%20and%202026%20Pricing" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/happyhorse-ai/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/happyhorse-ai/"><i class="fa-solid fa-link"></i></button>
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/happyhorse-ai/&text=HappyHorse-1.0%20Explained%3A%20Open-Source%20AI%20Video%2C%20API%20Access%2C%20and%202026%20Pricing" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/happyhorse-ai/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/happyhorse-ai/"><i class="fa-solid fa-link"></i></button>
       </div>
     </div>
   </div>
@@ -545,88 +603,12 @@
   </div>
 </footer>
 
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <script>lucide.createIcons();</script>
+  <script defer src="https://unpkg.com/lucide@1.47.0/dist/umd/lucide.min.js" onload="window.lucide && window.lucide.createIcons();"></script>
   
     
       <script src="/blog/js/modellix.js"></script>
     
   
-  
-    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
-    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
-    <script>
-      (function () {
-        if (!window.mermaid) return;
-        var mermaidKeywords = [
-          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
-          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
-          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
-          'packet-beta', 'kanban', 'architecture'
-        ];
-
-        function looksLikeMermaid(source) {
-          if (!source) return false;
-          var trimmed = source.trim();
-          return mermaidKeywords.some(function (keyword) {
-            return trimmed.indexOf(keyword) === 0;
-          });
-        }
-
-        function extractCodeText(node) {
-          if (!node) return '';
-          if (node.matches('figure.highlight')) {
-            var figureCode = node.querySelector('td.code pre');
-            return figureCode ? figureCode.textContent || '' : '';
-          }
-          if (node.matches('pre > code')) {
-            return node.textContent || '';
-          }
-          if (node.matches('pre')) {
-            return node.textContent || '';
-          }
-          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
-          return nestedCode ? nestedCode.textContent || '' : '';
-        }
-
-        function normalizeMermaidBlocks() {
-          var candidates = document.querySelectorAll(
-            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
-          );
-
-          candidates.forEach(function (node) {
-            if (node.matches('pre.mermaid')) return;
-
-            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
-            if (!replaceTarget) return;
-
-            var source = extractCodeText(replaceTarget);
-            if (!looksLikeMermaid(source)) return;
-
-            var mermaidPre = document.createElement('pre');
-            mermaidPre.className = 'mermaid';
-            mermaidPre.textContent = source.trim();
-            replaceTarget.replaceWith(mermaidPre);
-          });
-        }
-
-        normalizeMermaidBlocks();
-
-        var mermaidNodes = document.querySelectorAll('pre.mermaid');
-        if (!mermaidNodes.length) return;
-        var optionsElement = document.getElementById('mermaid-options');
-        var mermaidOptions = {};
-        if (optionsElement) {
-          try {
-            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
-          } catch (err) {
-            mermaidOptions = {};
-          }
-        }
-        mermaid.initialize(mermaidOptions);
-        mermaid.run({ querySelector: 'pre.mermaid' });
-      })();
-    </script>
   
 </body>
 </html>

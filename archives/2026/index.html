@@ -3,27 +3,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <!-- Production analytics start after the page load has settled. -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-4DECHYKQVT');
+    (function (document, window) {
+      if (window.location.hostname !== 'www.modellix.ai') return;
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-4DECHYKQVT');
+
+      var loaded = false;
+      function appendScript(src, crossOrigin) {
+        var script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        if (crossOrigin) script.crossOrigin = crossOrigin;
+        document.head.appendChild(script);
+      }
+      function loadAnalytics() {
+        if (loaded) return;
+        loaded = true;
+        appendScript('https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT');
+        appendScript('https://t.contentsquare.net/uxa/f39399cd2e27e.js', 'anonymous');
+        appendScript('https://app.rybbit.io/api/script.js?siteId=8a6874a918d7');
+      }
+      function scheduleAnalytics() {
+        window.setTimeout(function () {
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(loadAnalytics, { timeout: 3000 });
+          } else {
+            loadAnalytics();
+          }
+        }, 1500);
+      }
+
+      if (document.readyState === 'complete') scheduleAnalytics();
+      else window.addEventListener('load', scheduleAnalytics, { once: true });
+    })(document, window);
   </script>
-  <!-- Contentsquare -->
-  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Archives — Modellix Blog</title>
-  <meta name="description" content="Modellix Blog.">
+  <title>Archive: 2026 | Modellix</title>
   <meta name="keywords" content="modellix, blog">
   
   <link rel="canonical" href="https://www.modellix.ai/blog/archives/2026/">
+  
+  
+  <meta name="robots" content="noindex,follow">
+  
+  <meta name="description" content="Browse the Modellix Blog archive from 2026 for AI model news, API tutorials, technical comparisons, and production guidance.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Archive: 2026 | Modellix">
+<meta property="og:url" content="https://www.modellix.ai/blog/archives/2026/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Browse the Modellix Blog archive from 2026 for AI model news, API tutorials, technical comparisons, and production guidance.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.modellix.ai/blog/assets/public/logo.svg">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="modellix, blog">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.modellix.ai/blog/assets/public/logo.svg">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://img.modellix.ai" crossorigin>
   <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
   
     
@@ -40,19 +91,19 @@
     </a>
     <nav class="header-nav">
       
-        <a href="/blog/../" class="nav-link">Home</a>
+        <a href="https://www.modellix.ai/" class="nav-link">Home</a>
       
-        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started" class="nav-link">Documentation</a>
       
-        <a href="/blog/../about" class="nav-link">About Us</a>
+        <a href="https://www.modellix.ai/about" class="nav-link">About Us</a>
       
     </nav>
     <div class="header-actions">
       
-        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+        <a href="https://www.modellix.ai/console" class="btn btn-secondary">Console</a>
       
       
-        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+        <a href="https://www.modellix.ai/console/api-key" class="btn btn-primary">Get API Key</a>
       
       <button class="mobile-menu-toggle" aria-label="Toggle menu">
         <i data-lucide="menu"></i>
@@ -108,69 +159,9 @@
 
     <div class="timeline-posts">
       
-        <a href="/blog/text-to-video-api/" class="timeline-item">
-          <time class="timeline-date">Jun 25</time>
-          <span class="timeline-title">Text to Video API for Production Apps: Models, Pricing, Workflow</span>
-          
-            
-              <span class="category-tag category-tag--sm">API Guide</span>
-            
-          
-        </a>
-      
-        <a href="/blog/together-ai-alternatives/" class="timeline-item">
-          <time class="timeline-date">Jun 25</time>
-          <span class="timeline-title">Together AI Alternatives 2026: 7 APIs Compared for Builders</span>
-          
-            
-              <span class="category-tag category-tag--sm">Comparisons</span>
-            
-          
-        </a>
-      
-        <a href="/blog/vidu-q3-challenge/" class="timeline-item">
-          <time class="timeline-date">Jun 12</time>
-          <span class="timeline-title">Vidu Q3 Challenge on Modellix — Win Up to $100 | 50% Off Campaign</span>
-          
-            
-              <span class="category-tag category-tag--sm">Announcements</span>
-            
-          
-        </a>
-      
-        <a href="/blog/vidu-q3-mix-is-available/" class="timeline-item">
-          <time class="timeline-date">Jun 12</time>
-          <span class="timeline-title">Vidu Q3-Mix Is Now Available on Modellix</span>
-          
-            
-              <span class="category-tag category-tag--sm">Announcements</span>
-            
-          
-        </a>
-      
-        <a href="/blog/replicate-alternatives/" class="timeline-item">
-          <time class="timeline-date">Jun 12</time>
-          <span class="timeline-title">Best Replicate Alternatives in 2026: 6 APIs Compared</span>
-          
-            
-              <span class="category-tag category-tag--sm">Comparisons</span>
-            
-          
-        </a>
-      
-        <a href="/blog/veo-3-1-api/" class="timeline-item">
-          <time class="timeline-date">Jun 12</time>
-          <span class="timeline-title">Veo 3.1 API Guide: Pricing, Access, and How to Use It (2026)</span>
-          
-            
-              <span class="category-tag category-tag--sm">Model Guides</span>
-            
-          
-        </a>
-      
-        <a href="/blog/whats-new-in-ai-media-260611/" class="timeline-item">
-          <time class="timeline-date">Jun 11</time>
-          <span class="timeline-title">AI Media What&#39;s Hot - June 11, 2026</span>
+        <a href="/blog/hongguo-168m-dau-ai-micro-drama-2026/" class="timeline-item">
+          <time class="timeline-date" datetime="2026-09-18T02:00:00.000Z">Sep 18</time>
+          <span class="timeline-title">Hongguo&#39;s 168M DAU and the AI Micro-Drama Shift in 2026</span>
           
             
               <span class="category-tag category-tag--sm">Digests</span>
@@ -178,9 +169,39 @@
           
         </a>
       
-        <a href="/blog/wan-2-7-vs-seedance-2-0-creator-pipeline/" class="timeline-item">
-          <time class="timeline-date">Jun 9</time>
-          <span class="timeline-title">Image-to-Video Model Comparison: Wan 2.7 vs Seedance 2.0 for 720p–1080p Creators</span>
+        <a href="/blog/first-ai-feature-film-odysseus-2026/" class="timeline-item">
+          <time class="timeline-date" datetime="2026-09-17T02:00:00.000Z">Sep 17</time>
+          <span class="timeline-title">The First AI Feature Film Cost $25,000 — and Exposed AI Video&#39;s Real Ceiling</span>
+          
+            
+              <span class="category-tag category-tag--sm">Digests</span>
+            
+          
+        </a>
+      
+        <a href="/blog/gpt-image-2-5-pricing/" class="timeline-item">
+          <time class="timeline-date" datetime="2026-09-17T01:00:00.000Z">Sep 17</time>
+          <span class="timeline-title">GPT Image 2.5 Pricing: What Moves the $0.0053–$0.6390 Band</span>
+          
+            
+              <span class="category-tag category-tag--sm">Pricing</span>
+            
+          
+        </a>
+      
+        <a href="/blog/ai-image-edit-api/" class="timeline-item">
+          <time class="timeline-date" datetime="2026-09-16T16:00:00.000Z">Sep 17</time>
+          <span class="timeline-title">AI Image Edit API: 16 References, Masks, Flare vs Sunburst</span>
+          
+            
+              <span class="category-tag category-tag--sm">Guides</span>
+            
+          
+        </a>
+      
+        <a href="/blog/best-llms/" class="timeline-item">
+          <time class="timeline-date" datetime="2026-09-16T16:00:00.000Z">Sep 17</time>
+          <span class="timeline-title">Best LLMs in 2026: 30 Models by Price, Context and Modality</span>
           
             
               <span class="category-tag category-tag--sm">Comparisons</span>
@@ -188,22 +209,72 @@
           
         </a>
       
-        <a href="/blog/fal-ai-alternatives/" class="timeline-item">
-          <time class="timeline-date">Jun 1</time>
-          <span class="timeline-title">Best fal.ai Alternatives in 2026: 6 APIs Compared</span>
+        <a href="/blog/gpt-image-2-5-api/" class="timeline-item">
+          <time class="timeline-date" datetime="2026-09-16T16:00:00.000Z">Sep 17</time>
+          <span class="timeline-title">GPT Image 2.5 API: Flare vs Sunburst, Four Model IDs</span>
           
             
-              <span class="category-tag category-tag--sm">Comparisons</span>
+              <span class="category-tag category-tag--sm">Guides</span>
             
           
         </a>
       
-        <a href="/blog/hailuo-ai-api/" class="timeline-item">
-          <time class="timeline-date">Jun 1</time>
-          <span class="timeline-title">Hailuo AI API: Pricing, Hailuo 02 vs 2.3, Access (2026)</span>
+        <a href="/blog/ai-video-generation-workflow/" class="timeline-item">
+          <time class="timeline-date" datetime="2026-09-16T11:48:00.000Z">Sep 16</time>
+          <span class="timeline-title">AI Video Generation Workflow: Async Tasks and Batch Runs</span>
           
             
-              <span class="category-tag category-tag--sm">Model Guides</span>
+              <span class="category-tag category-tag--sm">Guides</span>
+            
+          
+        </a>
+      
+        <a href="/blog/grok-api-keys/" class="timeline-item">
+          <time class="timeline-date" datetime="2026-09-16T11:47:00.000Z">Sep 16</time>
+          <span class="timeline-title">Grok API Keys: Two Ways to Get One and Call Grok 4.6</span>
+          
+            
+              <span class="category-tag category-tag--sm">Guides</span>
+            
+          
+        </a>
+      
+        <a href="/blog/video-generation-api/" class="timeline-item">
+          <time class="timeline-date" datetime="2026-09-16T11:42:00.000Z">Sep 16</time>
+          <span class="timeline-title">Video Generation API: One Endpoint, Async Tasks, Fields</span>
+          
+            
+              <span class="category-tag category-tag--sm">Guides</span>
+            
+          
+        </a>
+      
+        <a href="/blog/ai-ugc-video-generator/" class="timeline-item">
+          <time class="timeline-date" datetime="2026-09-16T11:40:00.000Z">Sep 16</time>
+          <span class="timeline-title">AI UGC Video Generator: Build It on an API, Not a Seat</span>
+          
+            
+              <span class="category-tag category-tag--sm">Guides</span>
+            
+          
+        </a>
+      
+        <a href="/blog/ai-film-theater-blomkamp-seedance-2026/" class="timeline-item">
+          <time class="timeline-date" datetime="2026-09-16T02:00:00.000Z">Sep 16</time>
+          <span class="timeline-title">AI Films Hit a Traditional North American Theater — And a Hollywood Director Chose a Chinese Video Model</span>
+          
+            
+              <span class="category-tag category-tag--sm">Digests</span>
+            
+          
+        </a>
+      
+        <a href="/blog/gpt-image-2-5-flare-sunburst-on-modellix/" class="timeline-item">
+          <time class="timeline-date" datetime="2026-09-16T02:00:00.000Z">Sep 16</time>
+          <span class="timeline-title">OpenAI GPT Image 2.5 Is Now on Modellix: Flare, Sunburst, and the Edit Variants Behind One API</span>
+          
+            
+              <span class="category-tag category-tag--sm">Announcements</span>
             
           
         </a>
@@ -228,6 +299,66 @@
       
         
           <a href="/blog/page/2/" class="pagination-page">2</a>
+        
+      
+        
+          <a href="/blog/page/3/" class="pagination-page">3</a>
+        
+      
+        
+          <a href="/blog/page/4/" class="pagination-page">4</a>
+        
+      
+        
+          <a href="/blog/page/5/" class="pagination-page">5</a>
+        
+      
+        
+          <a href="/blog/page/6/" class="pagination-page">6</a>
+        
+      
+        
+          <a href="/blog/page/7/" class="pagination-page">7</a>
+        
+      
+        
+          <a href="/blog/page/8/" class="pagination-page">8</a>
+        
+      
+        
+          <a href="/blog/page/9/" class="pagination-page">9</a>
+        
+      
+        
+          <a href="/blog/page/10/" class="pagination-page">10</a>
+        
+      
+        
+          <a href="/blog/page/11/" class="pagination-page">11</a>
+        
+      
+        
+          <a href="/blog/page/12/" class="pagination-page">12</a>
+        
+      
+        
+          <a href="/blog/page/13/" class="pagination-page">13</a>
+        
+      
+        
+          <a href="/blog/page/14/" class="pagination-page">14</a>
+        
+      
+        
+          <a href="/blog/page/15/" class="pagination-page">15</a>
+        
+      
+        
+          <a href="/blog/page/16/" class="pagination-page">16</a>
+        
+      
+        
+          <a href="/blog/page/17/" class="pagination-page">17</a>
         
       
     </div>
@@ -280,88 +411,12 @@
   </div>
 </footer>
 
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <script>lucide.createIcons();</script>
+  <script defer src="https://unpkg.com/lucide@1.47.0/dist/umd/lucide.min.js" onload="window.lucide && window.lucide.createIcons();"></script>
   
     
       <script src="/blog/js/modellix.js"></script>
     
   
-  
-    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
-    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
-    <script>
-      (function () {
-        if (!window.mermaid) return;
-        var mermaidKeywords = [
-          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
-          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
-          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
-          'packet-beta', 'kanban', 'architecture'
-        ];
-
-        function looksLikeMermaid(source) {
-          if (!source) return false;
-          var trimmed = source.trim();
-          return mermaidKeywords.some(function (keyword) {
-            return trimmed.indexOf(keyword) === 0;
-          });
-        }
-
-        function extractCodeText(node) {
-          if (!node) return '';
-          if (node.matches('figure.highlight')) {
-            var figureCode = node.querySelector('td.code pre');
-            return figureCode ? figureCode.textContent || '' : '';
-          }
-          if (node.matches('pre > code')) {
-            return node.textContent || '';
-          }
-          if (node.matches('pre')) {
-            return node.textContent || '';
-          }
-          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
-          return nestedCode ? nestedCode.textContent || '' : '';
-        }
-
-        function normalizeMermaidBlocks() {
-          var candidates = document.querySelectorAll(
-            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
-          );
-
-          candidates.forEach(function (node) {
-            if (node.matches('pre.mermaid')) return;
-
-            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
-            if (!replaceTarget) return;
-
-            var source = extractCodeText(replaceTarget);
-            if (!looksLikeMermaid(source)) return;
-
-            var mermaidPre = document.createElement('pre');
-            mermaidPre.className = 'mermaid';
-            mermaidPre.textContent = source.trim();
-            replaceTarget.replaceWith(mermaidPre);
-          });
-        }
-
-        normalizeMermaidBlocks();
-
-        var mermaidNodes = document.querySelectorAll('pre.mermaid');
-        if (!mermaidNodes.length) return;
-        var optionsElement = document.getElementById('mermaid-options');
-        var mermaidOptions = {};
-        if (optionsElement) {
-          try {
-            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
-          } catch (err) {
-            mermaidOptions = {};
-          }
-        }
-        mermaid.initialize(mermaidOptions);
-        mermaid.run({ querySelector: 'pre.mermaid' });
-      })();
-    </script>
   
 </body>
 </html>

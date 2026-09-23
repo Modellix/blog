@@ -3,27 +3,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <!-- Production analytics start after the page load has settled. -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-4DECHYKQVT');
+    (function (document, window) {
+      if (window.location.hostname !== 'www.modellix.ai') return;
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-4DECHYKQVT');
+
+      var loaded = false;
+      function appendScript(src, crossOrigin) {
+        var script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        if (crossOrigin) script.crossOrigin = crossOrigin;
+        document.head.appendChild(script);
+      }
+      function loadAnalytics() {
+        if (loaded) return;
+        loaded = true;
+        appendScript('https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT');
+        appendScript('https://t.contentsquare.net/uxa/f39399cd2e27e.js', 'anonymous');
+        appendScript('https://app.rybbit.io/api/script.js?siteId=8a6874a918d7');
+      }
+      function scheduleAnalytics() {
+        window.setTimeout(function () {
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(loadAnalytics, { timeout: 3000 });
+          } else {
+            loadAnalytics();
+          }
+        }, 1500);
+      }
+
+      if (document.readyState === 'complete') scheduleAnalytics();
+      else window.addEventListener('load', scheduleAnalytics, { once: true });
+    })(document, window);
   </script>
-  <!-- Contentsquare -->
-  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Seedream API Guide: 4K Images, Pricing, and Variants (2026) — Modellix Blog</title>
-  <meta name="description" content="Compare Seedream API variants for 4K image generation, editing, multi-image fusion, and per-image pricing. See which model fits production workflows.">
+  <title>Seedream API Guide: 4K Images, Pricing, and Variants (2026)</title>
   <meta name="keywords" content="seedream api, seedream api pricing, byteplus seedream api, seedream 4.5 api, ai image generation api">
   
   <link rel="canonical" href="https://www.modellix.ai/blog/seedream-api/">
+  
+  
+  <meta name="description" content="Compare Seedream API variants for 4K image generation, editing, multi-image fusion, and per-image pricing. See which model fits production workflows.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Seedream API Guide: 4K Images, Pricing, and Variants (2026)">
+<meta property="og:url" content="https://www.modellix.ai/blog/seedream-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Compare Seedream API variants for 4K image generation, editing, multi-image fusion, and per-image pricing. See which model fits production workflows.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-seedream-api.webp">
+<meta property="article:published_time" content="2026-04-30T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-06-26T06:04:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Image">
+<meta property="article:tag" content="API">
+<meta property="article:tag" content="ByteDance">
+<meta property="article:tag" content="Seedream">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-seedream-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Seedream API Guide: 4K Images, Pricing, and Variants (2026)","description":"Compare Seedream API variants for 4K image generation, editing, multi-image fusion, and per-image pricing. See which model fits production workflows.","datePublished":"2026-04-30T02:00:00.000Z","dateModified":"2026-06-26T06:04:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/seedream-api/","image":"https://img.modellix.ai/en/article/cover-seedream-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://img.modellix.ai" crossorigin>
   <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
   
     
@@ -40,19 +94,19 @@
     </a>
     <nav class="header-nav">
       
-        <a href="/blog/../" class="nav-link">Home</a>
+        <a href="https://www.modellix.ai/" class="nav-link">Home</a>
       
-        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started" class="nav-link">Documentation</a>
       
-        <a href="/blog/../about" class="nav-link">About Us</a>
+        <a href="https://www.modellix.ai/about" class="nav-link">About Us</a>
       
     </nav>
     <div class="header-actions">
       
-        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+        <a href="https://www.modellix.ai/console" class="btn btn-secondary">Console</a>
       
       
-        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+        <a href="https://www.modellix.ai/console/api-key" class="btn btn-primary">Get API Key</a>
       
       <button class="mobile-menu-toggle" aria-label="Toggle menu">
         <i data-lucide="menu"></i>
@@ -97,23 +151,23 @@
       <div class="post-header-meta">
         
           
-            <a href="/blog/categories/Model-Guides/" class="category-tag category-tag--sm">Model Guides</a>
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
           
         
       </div>
       <h1 class="post-title">How to Use the Seedream API for 4K Image Generation and Editing</h1>
       <div class="post-header-bottom">
-        <time class="post-date">April 30, 2026</time>
+        <time class="post-date" datetime="2026-04-30T02:00:00.000Z">April 30, 2026</time>
         
           <div class="post-header-tags">
             
-              <a href="/blog/tags/API/" class="tag-pill tag-pill--sm">API</a>
-            
               <a href="/blog/tags/AI-Image/" class="tag-pill tag-pill--sm">AI Image</a>
             
-              <a href="/blog/tags/ByteDance/" class="tag-pill tag-pill--sm">ByteDance</a>
+              <a href="/blog/tags/api/" class="tag-pill tag-pill--sm">API</a>
             
-              <a href="/blog/tags/Seedream/" class="tag-pill tag-pill--sm">Seedream</a>
+              <a href="/blog/tags/bytedance/" class="tag-pill tag-pill--sm">ByteDance</a>
+            
+              <a href="/blog/tags/seedream/" class="tag-pill tag-pill--sm">Seedream</a>
             
           </div>
         
@@ -123,7 +177,7 @@
     
 <div class="post-author-card">
   
-    <img src="https://img.srcgptbots.com/blog/author/20260409/modellix-blog-author-official@2x.webp" alt="Modellix Team" class="post-author-avatar">
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
   
   <div class="post-author-info">
     <span class="post-author-name">Modellix Team</span>
@@ -312,7 +366,7 @@ flowchart LR
 
 <p><mark>One endpoint strategy:</mark> use Seedream for production image generation, Seedance for ByteDance video generation, and the same task polling logic for both. That keeps your retry, logging, usage tracking, and billing checks in one place.</p>
 <div style="display:flex; gap:12px; flex-wrap:wrap; margin:24px 0;">
-  <a href="https://modellix.ai/console/api-key" class="btn btn-primary" target="_blank" rel="noopener" style="color:#ffffff; text-decoration:none;">Get API Key</a>
+  <a href="https://www.modellix.ai/console/api-key" class="btn btn-primary" target="_blank" rel="noopener" style="color:#ffffff; text-decoration:none;">Get API Key</a>
   <a href="https://docs.modellix.ai/get-started/pricing" class="btn btn-secondary" target="_blank" rel="noopener" style="color:#1a1a2e; text-decoration:none;">View Image API Pricing</a>
 </div>
 
@@ -326,13 +380,15 @@ flowchart LR
 <li><strong>Fallback plan.</strong> Keep at least one alternate image model available for outages, rate limits, or prompt classes where another model performs better.</li>
 </ol>
 <p>The teams that get the most value from Seedream will not be the ones that generate the most images. They will be the teams that define what a good output means, measure retake rate by model, and route each job to the cheapest variant that meets the quality bar.</p>
+<section class="collection-cta collection-cta--wide" aria-labelledby="collection-cta-text-to-image"><a class="collection-cta-media" href="https://www.modellix.ai/category/text-to-image" data-cta="collection_cta" data-cta-campaign="text-to-image" aria-label="Open Compare Text-to-Image Models in One Playground"><img src="https://img.modellix.ai/en/article/image-manipulation-api-production-workflow.png" alt="Production workflow for generating and reviewing AI image assets" width="1440" height="810" loading="lazy" decoding="async" data-no-zoom></a><div class="collection-cta-content"><div class="collection-cta-copy"><p class="collection-cta-eyebrow"><i data-lucide="layers-3" aria-hidden="true"></i> Modellix collection</p><h3 id="collection-cta-text-to-image" class="collection-cta-title">Compare Text-to-Image Models in One Playground</h3><p class="collection-cta-description">Test the same production prompt across leading image models before choosing a workflow to automate.</p></div><div class="collection-cta-actions"><p class="collection-cta-models"><strong>Good first tests:</strong> <a href="https://www.modellix.ai/models/bytedance/seedream-5.0-pro" data-cta="collection_cta" data-cta-campaign="text-to-image">Seedream 5.0 Pro</a><span aria-hidden="true">/</span><a href="https://www.modellix.ai/models/openai/gpt-image-2" data-cta="collection_cta" data-cta-campaign="text-to-image">GPT Image 2</a><span aria-hidden="true">/</span><a href="https://www.modellix.ai/models/google/nano-banana-2-lite" data-cta="collection_cta" data-cta-campaign="text-to-image">Nano Banana 2 Lite</a></p><a class="collection-cta-button" href="https://www.modellix.ai/category/text-to-image" data-cta="collection_cta" data-cta-campaign="text-to-image"><span>Explore the collection</span><i data-lucide="arrow-right" aria-hidden="true"></i></a></div></div></section>
+
 <!-- modellix-how-to-start -->
 <h2 id="How-to-Test-Seedream-Before-API-Integration"><a href="#How-to-Test-Seedream-Before-API-Integration" class="headerlink" title="How to Test Seedream Before API Integration"></a>How to Test Seedream Before API Integration</h2><p>Most readers should not start with code. Use the Modellix Playground to run one real Seedream job first, then move to API, Skill, or CLI only after the prompt, settings, cost, and output format are worth repeating. This keeps the guide useful for creators, product teams, and technical buyers, while developers still get a clean implementation path.</p>
 <div style="border:1px solid #D7DEFF; border-left:5px solid #6A5BFF; background:#F8FAFF; border-radius:8px; padding:22px 24px; margin:24px 0 30px; box-shadow:0 10px 24px rgba(50, 60, 140, 0.06);">
   <p style="margin:0 0 6px; color:#5B5EEB; font-size:12px; font-weight:900; letter-spacing:0.08em; text-transform:uppercase;">Quick start guide</p>
   <h3 style="margin:0 0 16px; font-size:21px; line-height:1.35; color:#111827;">Choose the right entry point for Seedream</h3>
-  <p style="margin:0 0 14px; color:#374151; line-height:1.7;"><strong>Playground:</strong> Best for most readers and first-time tests. Open the Seedream model page and test the exact image size, reference-image requirement, and visual style you need: <a href="https://www.modellix.ai/models/bytedance/seedream-4.5-t2i" target="_blank" rel="noopener noreferrer">https://www.modellix.ai/models/bytedance/seedream-4.5-t2i</a>.</p>
-  <p style="margin:0 0 14px; color:#374151; line-height:1.7;"><strong>API docs:</strong> Use this when a developer is ready to turn the validated prompt into a backend, batch, or product workflow. Start with Seedream image generation parameters and the production API path: <a href="https://docs.modellix.ai/bytedance/seedream-4-5-t2i" target="_blank" rel="noopener noreferrer">https://docs.modellix.ai/bytedance/seedream-4-5-t2i</a>.</p>
+  <p style="margin:0 0 14px; color:#374151; line-height:1.7;"><strong>Playground:</strong> Best for most readers and first-time tests. Open a Seedream model page and test the exact image size, reference-image requirement, and visual style you need: <a href="https://www.modellix.ai/series/seedream" target="_blank" rel="noopener noreferrer">https://www.modellix.ai/series/seedream</a>.</p>
+  <p style="margin:0 0 14px; color:#374151; line-height:1.7;"><strong>API docs:</strong> Use this when a developer is ready to turn the validated prompt into a backend, batch, or product workflow. Start with Seedream image generation parameters and the production API path: <a href="https://www.modellix.ai/series/seedream" target="_blank" rel="noopener noreferrer">https://www.modellix.ai/series/seedream</a>.</p>
   <p style="margin:0 0 14px; color:#374151; line-height:1.7;"><strong>Skill:</strong> Use the Modellix Skill when an AI agent should create media from your workspace without hand-writing every request: <a href="https://docs.modellix.ai/ways-to-use/skill" target="_blank" rel="noopener noreferrer">https://docs.modellix.ai/ways-to-use/skill</a>.</p>
   <p style="margin:0; color:#374151; line-height:1.7;"><strong>CLI:</strong> Use the CLI for repeatable terminal commands, local scripts, or scheduled generation jobs: <a href="https://docs.modellix.ai/ways-to-use/cli" target="_blank" rel="noopener noreferrer">https://docs.modellix.ai/ways-to-use/cli</a>.</p>
 </div>
@@ -341,15 +397,15 @@ flowchart LR
 <h3 id="Step-1-Create-or-Sign-In-and-Use-the-Included-1-Credit"><a href="#Step-1-Create-or-Sign-In-and-Use-the-Included-1-Credit" class="headerlink" title="Step 1: Create or Sign In and Use the Included $1 Credit"></a>Step 1: Create or Sign In and Use the Included $1 Credit</h3><p><a href="https://www.modellix.ai/console" target="_blank" rel="noopener noreferrer">Create or sign in to a Modellix account</a> before you test Seedream image models. New users can use the included $1 credit to validate model behavior, prompt quality, output download, and request logging without committing to a full integration.</p>
 <figure style="margin:20px 0;">
   <picture style="aspect-ratio: 1440 / 818; width:100%; max-width:1440px;">
-    <img width="1440" height="818" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="/blog/assets/modellix-login-free-credit.png" alt="Modellix sign in screen for creating an account and using the included one dollar credit" />
+    <img width="1440" height="818" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="https://img.modellix.ai/en/article/modellix-login-free-credit.png" alt="Modellix sign in screen for creating an account and using the included one dollar credit" />
   </picture>
   <figcaption style="font-size:13px; color:#64748B; margin-top:6px;">Start with a free account so the first model test has real credit, billing, and request history behind it.</figcaption>
 </figure>
 
-<h3 id="Step-2-Open-the-Model-Page-and-Run-One-Prompt"><a href="#Step-2-Open-the-Model-Page-and-Run-One-Prompt" class="headerlink" title="Step 2: Open the Model Page and Run One Prompt"></a>Step 2: Open the Model Page and Run One Prompt</h3><p>After login, use the dashboard shortcuts or the <a href="https://www.modellix.ai/models" target="_blank" rel="noopener noreferrer">Modellix model catalog</a> to open <a href="https://www.modellix.ai/models/bytedance/seedream-4.5-t2i" target="_blank" rel="noopener noreferrer">Seedream 4.5 T2I model page</a>. For image models, check prompt clarity, output size, reference images, text rendering, and whether the result is good enough to download or edit again. This step is the fastest way to learn whether the model fits before you read more code.</p>
+<h3 id="Step-2-Open-the-Model-Page-and-Run-One-Prompt"><a href="#Step-2-Open-the-Model-Page-and-Run-One-Prompt" class="headerlink" title="Step 2: Open the Model Page and Run One Prompt"></a>Step 2: Open the Model Page and Run One Prompt</h3><p>After login, use the dashboard shortcuts or the <a href="https://www.modellix.ai/models" target="_blank" rel="noopener noreferrer">Modellix model catalog</a> to open a <a href="https://www.modellix.ai/series/seedream" target="_blank" rel="noopener noreferrer">Seedream model page</a>. For image models, check prompt clarity, output size, reference images, text rendering, and whether the result is good enough to download or edit again. This step is the fastest way to learn whether the model fits before you read more code.</p>
 <figure style="margin:20px 0;">
   <picture style="aspect-ratio: 1440 / 735; width:100%; max-width:1440px;">
-    <img width="1440" height="735" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="/blog/assets/modellix-dashboard-free-credit.png" alt="Modellix dashboard showing balance, model shortcuts, API key access, documentation, Skill, CLI, and featured models" />
+    <img width="1440" height="735" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="https://img.modellix.ai/en/article/modellix-dashboard-free-credit.png" alt="Modellix dashboard showing balance, model shortcuts, API key access, documentation, Skill, CLI, and featured models" />
   </picture>
   <figcaption style="font-size:13px; color:#64748B; margin-top:6px;">The dashboard routes non-technical users to Playground and technical users to API Key, Documentation, Skill, or CLI.</figcaption>
 </figure>
@@ -375,7 +431,7 @@ flowchart LR
 <h3 id="Step-4-Create-an-API-Key-Only-When-the-Test-Needs-to-Repeat"><a href="#Step-4-Create-an-API-Key-Only-When-the-Test-Needs-to-Repeat" class="headerlink" title="Step 4: Create an API Key Only When the Test Needs to Repeat"></a>Step 4: Create an API Key Only When the Test Needs to Repeat</h3><p>Stay in Playground for one-off exploration. Create an API key when a backend service, agent, batch script, or CLI workflow needs to repeat the same prompt pattern. This keeps the mainstream testing flow simple while giving developers a clean handoff point.</p>
 <figure style="margin:20px 0;">
   <picture style="aspect-ratio: 1440 / 744; width:100%; max-width:1440px;">
-    <img width="1440" height="744" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="/blog/assets/modellix-create-api-key.png" alt="Modellix API key screen showing the create API key modal for backend, CLI, batch, and agent workflows" />
+    <img width="1440" height="744" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="https://img.modellix.ai/en/article/modellix-create-api-key.png" alt="Modellix API key screen showing the create API key modal for backend, CLI, batch, and agent workflows" />
   </picture>
   <figcaption style="font-size:13px; color:#64748B; margin-top:6px;">Create an API key after the Playground result proves the prompt and settings are worth automating.</figcaption>
 </figure>
@@ -383,18 +439,18 @@ flowchart LR
 <h3 id="Step-5-Check-Logs-and-Save-the-Result-Before-Scaling"><a href="#Step-5-Check-Logs-and-Save-the-Result-Before-Scaling" class="headerlink" title="Step 5: Check Logs and Save the Result Before Scaling"></a>Step 5: Check Logs and Save the Result Before Scaling</h3><p>Before scaling from one manual run to repeated API, Skill, or CLI usage, review request history. Logs confirm the model slug, API key name, task status, request time, and result retention window, which makes the workflow easier to debug after it leaves Playground.</p>
 <figure style="margin:20px 0;">
   <picture style="aspect-ratio: 1440 / 743; width:100%; max-width:1440px;">
-    <img width="1440" height="743" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="/blog/assets/modellix-request-history.png" alt="Modellix request history showing successful model calls, model slugs, API key names, status, and request timestamps" />
+    <img width="1440" height="743" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="https://img.modellix.ai/en/article/modellix-request-history.png" alt="Modellix request history showing successful model calls, model slugs, API key names, status, and request timestamps" />
   </picture>
   <figcaption style="font-size:13px; color:#64748B; margin-top:6px;">Use request history to verify model calls, success status, and generated media retention before you scale.</figcaption>
 </figure>
 
-<h3 id="Try-Seedream-Next"><a href="#Try-Seedream-Next" class="headerlink" title="Try Seedream Next"></a>Try Seedream Next</h3><p>The practical next step is to run one real job from the official site, not to copy a complex code sample too early. Start from the <a href="https://www.modellix.ai/console" target="_blank" rel="noopener noreferrer">Modellix console</a>, open the <a href="https://www.modellix.ai/models/bytedance/seedream-4.5-t2i" target="_blank" rel="noopener noreferrer">Seedream 4.5 T2I model page</a>, and move to API, Skill, or CLI only after the output is good enough to repeat.</p>
+<h3 id="Try-Seedream-Next"><a href="#Try-Seedream-Next" class="headerlink" title="Try Seedream Next"></a>Try Seedream Next</h3><p>The practical next step is to run one real job from the official site, not to copy a complex code sample too early. Start from the <a href="https://www.modellix.ai/console" target="_blank" rel="noopener noreferrer">Modellix console</a>, open a <a href="https://www.modellix.ai/series/seedream" target="_blank" rel="noopener noreferrer">Seedream model page</a>, and move to API, Skill, or CLI only after the output is good enough to repeat.</p>
 <div style="border:1px solid #C7D2FE; background:#F8FAFF; border-radius:8px; padding:22px; margin:28px 0;">
   <p style="margin:0 0 8px; font-weight:900; color:#111827;">Check Seedream output before you build the image pipeline</p>
   <p style="margin:0 0 16px; color:#334155; line-height:1.65;">Open the official Seedream model page, test one prompt or reference-image job with the included credit, and confirm output quality before automating batch image generation.</p>
   <p style="margin:0;">
     <a href="https://www.modellix.ai/console" target="_blank" rel="noopener noreferrer" style="display:inline-block; background:#111827; color:#FFFFFF; padding:10px 14px; border-radius:7px; font-weight:900; text-decoration:none;">Start free with $1 credit</a>
-    <a href="https://www.modellix.ai/models/bytedance/seedream-4.5-t2i" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin-left:8px; background:#FFFFFF; color:#111827; border:1px solid #CBD5E1; padding:9px 13px; border-radius:7px; font-weight:900; text-decoration:none;">Try Seedream 4.5</a>
+    <a href="https://www.modellix.ai/series/seedream" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin-left:8px; background:#FFFFFF; color:#111827; border:1px solid #CBD5E1; padding:9px 13px; border-radius:7px; font-weight:900; text-decoration:none;">Try Seedream</a>
   </p>
 </div>
 <!-- modellix-how-to-end -->
@@ -419,13 +475,13 @@ flowchart LR
         <div class="post-tags-bottom">
           
             
-              <a href="/blog/tags/API/" class="tag-pill tag-pill--sm">API</a>
-            
               <a href="/blog/tags/AI-Image/" class="tag-pill tag-pill--sm">AI Image</a>
             
-              <a href="/blog/tags/ByteDance/" class="tag-pill tag-pill--sm">ByteDance</a>
+              <a href="/blog/tags/api/" class="tag-pill tag-pill--sm">API</a>
             
-              <a href="/blog/tags/Seedream/" class="tag-pill tag-pill--sm">Seedream</a>
+              <a href="/blog/tags/bytedance/" class="tag-pill tag-pill--sm">ByteDance</a>
+            
+              <a href="/blog/tags/seedream/" class="tag-pill tag-pill--sm">Seedream</a>
             
           
         </div>
@@ -436,7 +492,7 @@ flowchart LR
   <div class="post-cta-content">
     <h2 class="post-cta-title">Ready to Get Started?</h2>
     <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
-    <a href="../../../console" class="btn post-cta-btn">
+    <a href="https://www.modellix.ai/console" class="btn post-cta-btn">
       <span>Start for Free</span>
       <i data-lucide="arrow-right"></i>
     </a>
@@ -450,60 +506,60 @@ flowchart LR
   <h2 class="related-articles-title">Related Articles</h2>
   <div class="related-articles-grid">
     
-      <a href="/blog/veo-3-1-api/" class="related-article-card">
+      <a href="/blog/ai-image-edit-api/" class="related-article-card">
         
           <div class="related-article-cover">
-            <img src="https://img.modellix.ai/en/article/cover-veo-3-1-api.webp" alt="Veo 3.1 API Guide: Pricing, Access, and How to Use It (2026)" loading="lazy">
+            <img src="https://img.modellix.ai/en/article/cover-ai-image-edit-api.webp" alt="AI Image Edit API: 16 References, Masks, Flare vs Sunburst" loading="lazy">
           </div>
         
         <div class="related-article-body">
           
             <div class="related-article-meta">
               
-                <span class="category-tag category-tag--sm">Model Guides</span>
+                <span class="category-tag category-tag--sm">Guides</span>
               
             </div>
           
-          <h3 class="related-article-name">Veo 3.1 API Guide: Pricing, Access, and How to Use It (2026)</h3>
-          <time class="related-article-date">June 12, 2026</time>
+          <h3 class="related-article-name">AI Image Edit API: 16 References, Masks, Flare vs Sunburst</h3>
+          <time class="related-article-date" datetime="2026-09-16T16:00:00.000Z">September 17, 2026</time>
         </div>
       </a>
     
-      <a href="/blog/hailuo-ai-api/" class="related-article-card">
+      <a href="/blog/gpt-image-2-5-api/" class="related-article-card">
         
           <div class="related-article-cover">
-            <img src="https://img.modellix.ai/en/article/cover-hailuo-ai-api.webp" alt="Hailuo AI API: Pricing, Hailuo 02 vs 2.3, Access (2026)" loading="lazy">
+            <img src="https://img.modellix.ai/en/article/cover-gpt-image-2-5-api.webp" alt="GPT Image 2.5 API: Flare vs Sunburst, Four Model IDs" loading="lazy">
           </div>
         
         <div class="related-article-body">
           
             <div class="related-article-meta">
               
-                <span class="category-tag category-tag--sm">Model Guides</span>
+                <span class="category-tag category-tag--sm">Guides</span>
               
             </div>
           
-          <h3 class="related-article-name">Hailuo AI API: Pricing, Hailuo 02 vs 2.3, Access (2026)</h3>
-          <time class="related-article-date">June 1, 2026</time>
+          <h3 class="related-article-name">GPT Image 2.5 API: Flare vs Sunburst, Four Model IDs</h3>
+          <time class="related-article-date" datetime="2026-09-16T16:00:00.000Z">September 17, 2026</time>
         </div>
       </a>
     
-      <a href="/blog/wan-2-7-api/" class="related-article-card">
+      <a href="/blog/ai-video-generation-workflow/" class="related-article-card">
         
           <div class="related-article-cover">
-            <img src="https://img.modellix.ai/en/article/cover-wan-2-7-api.webp" alt="Wan 2.7 API Guide: Pricing, T2V and I2V Access (2026)" loading="lazy">
+            <img src="https://img.modellix.ai/en/article/cover-ai-video-generation-workflow.webp" alt="AI Video Generation Workflow: Async Tasks and Batch Runs" loading="lazy">
           </div>
         
         <div class="related-article-body">
           
             <div class="related-article-meta">
               
-                <span class="category-tag category-tag--sm">Model Guides</span>
+                <span class="category-tag category-tag--sm">Guides</span>
               
             </div>
           
-          <h3 class="related-article-name">Wan 2.7 API Guide: Pricing, T2V and I2V Access (2026)</h3>
-          <time class="related-article-date">May 29, 2026</time>
+          <h3 class="related-article-name">AI Video Generation Workflow: Async Tasks and Batch Runs</h3>
+          <time class="related-article-date" datetime="2026-09-16T11:48:00.000Z">September 16, 2026</time>
         </div>
       </a>
     
@@ -521,7 +577,7 @@ flowchart LR
       <ul class="post-toc-list"></ul>
     </nav>
 
-    <a href="../../../console" class="sidebar-cta">
+    <a href="https://www.modellix.ai/console" class="sidebar-cta">
       <span class="sidebar-cta-text">
         <span class="sidebar-cta-title">Try Modellix</span>
         <span class="sidebar-cta-desc">Start creating with AI</span>
@@ -532,9 +588,9 @@ flowchart LR
     <div class="post-share">
       <span class="post-share-label">Share this article</span>
       <div class="post-share-links">
-        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/seedream-api/&text=Seedream%20API%20Guide%3A%204K%20Images%2C%20Pricing%2C%20and%20Variants%20(2026)" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/seedream-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/seedream-api/"><i class="fa-solid fa-link"></i></button>
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/seedream-api/&text=Seedream%20API%20Guide%3A%204K%20Images%2C%20Pricing%2C%20and%20Variants%20(2026)" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/seedream-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/seedream-api/"><i class="fa-solid fa-link"></i></button>
       </div>
     </div>
   </div>
@@ -579,8 +635,7 @@ flowchart LR
   </div>
 </footer>
 
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <script>lucide.createIcons();</script>
+  <script defer src="https://unpkg.com/lucide@1.47.0/dist/umd/lucide.min.js" onload="window.lucide && window.lucide.createIcons();"></script>
   
     
       <script src="/blog/js/modellix.js"></script>

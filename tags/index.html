@@ -3,27 +3,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <!-- Production analytics start after the page load has settled. -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-4DECHYKQVT');
+    (function (document, window) {
+      if (window.location.hostname !== 'www.modellix.ai') return;
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-4DECHYKQVT');
+
+      var loaded = false;
+      function appendScript(src, crossOrigin) {
+        var script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        if (crossOrigin) script.crossOrigin = crossOrigin;
+        document.head.appendChild(script);
+      }
+      function loadAnalytics() {
+        if (loaded) return;
+        loaded = true;
+        appendScript('https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT');
+        appendScript('https://t.contentsquare.net/uxa/f39399cd2e27e.js', 'anonymous');
+        appendScript('https://app.rybbit.io/api/script.js?siteId=8a6874a918d7');
+      }
+      function scheduleAnalytics() {
+        window.setTimeout(function () {
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(loadAnalytics, { timeout: 3000 });
+          } else {
+            loadAnalytics();
+          }
+        }, 1500);
+      }
+
+      if (document.readyState === 'complete') scheduleAnalytics();
+      else window.addEventListener('load', scheduleAnalytics, { once: true });
+    })(document, window);
   </script>
-  <!-- Contentsquare -->
-  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tags — Modellix Blog</title>
-  <meta name="description" content="Modellix Blog.">
+  <title>Tags | Modellix</title>
   <meta name="keywords" content="modellix, blog">
   
   <link rel="canonical" href="https://www.modellix.ai/blog/tags/">
+  
+  
+  <meta name="description" content="Browse Modellix Blog topics by tag to find AI model guides, API tutorials, pricing comparisons, media workflows, and platform updates.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tags | Modellix">
+<meta property="og:url" content="https://www.modellix.ai/blog/tags/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Browse Modellix Blog topics by tag to find AI model guides, API tutorials, pricing comparisons, media workflows, and platform updates.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.modellix.ai/blog/assets/public/logo.svg">
+<meta property="article:published_time" content="2026-09-23T04:14:30.189Z">
+<meta property="article:modified_time" content="2026-09-23T04:14:30.189Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="modellix, blog">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.modellix.ai/blog/assets/public/logo.svg">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://img.modellix.ai" crossorigin>
   <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
   
     
@@ -40,19 +91,19 @@
     </a>
     <nav class="header-nav">
       
-        <a href="/blog/../" class="nav-link">Home</a>
+        <a href="https://www.modellix.ai/" class="nav-link">Home</a>
       
-        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started" class="nav-link">Documentation</a>
       
-        <a href="/blog/../about" class="nav-link">About Us</a>
+        <a href="https://www.modellix.ai/about" class="nav-link">About Us</a>
       
     </nav>
     <div class="header-actions">
       
-        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+        <a href="https://www.modellix.ai/console" class="btn btn-secondary">Console</a>
       
       
-        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+        <a href="https://www.modellix.ai/console/api-key" class="btn btn-primary">Get API Key</a>
       
       <button class="mobile-menu-toggle" aria-label="Toggle menu">
         <i data-lucide="menu"></i>
@@ -95,214 +146,1169 @@
 
     <div class="archive-header">
       <h1 class="archive-page-title">Tags</h1>
-      <p class="archive-page-desc">41 tags in total.</p>
+      <p class="archive-page-desc">232 tags in total.</p>
     </div>
 
     
       <div class="tag-cloud">
         
-          <a href="/blog/tags/API/" class="tag-cloud-item" style="font-size: 1.3rem">
+          <a href="/blog/tags/ai-video-api/" class="tag-cloud-item" style="font-size: 1.3rem">
+            <span class="tag-cloud-name">AI Video API</span>
+            <span class="tag-cloud-count">52</span>
+          </a>
+        
+          <a href="/blog/tags/Pricing/" class="tag-cloud-item" style="font-size: 1.239423076923077rem">
+            <span class="tag-cloud-name">Pricing</span>
+            <span class="tag-cloud-count">45</span>
+          </a>
+        
+          <a href="/blog/tags/AI-Image-API/" class="tag-cloud-item" style="font-size: 1.1788461538461539rem">
+            <span class="tag-cloud-name">AI Image API</span>
+            <span class="tag-cloud-count">38</span>
+          </a>
+        
+          <a href="/blog/tags/Comparison/" class="tag-cloud-item" style="font-size: 1.1096153846153847rem">
+            <span class="tag-cloud-name">Comparison</span>
+            <span class="tag-cloud-count">30</span>
+          </a>
+        
+          <a href="/blog/tags/ai-video/" class="tag-cloud-item" style="font-size: 1.0576923076923077rem">
+            <span class="tag-cloud-name">AI Video</span>
+            <span class="tag-cloud-count">24</span>
+          </a>
+        
+          <a href="/blog/tags/Google/" class="tag-cloud-item" style="font-size: 1.0490384615384616rem">
+            <span class="tag-cloud-name">Google</span>
+            <span class="tag-cloud-count">23</span>
+          </a>
+        
+          <a href="/blog/tags/developer-guide/" class="tag-cloud-item" style="font-size: 1.0317307692307693rem">
+            <span class="tag-cloud-name">Developer Guide</span>
+            <span class="tag-cloud-count">21</span>
+          </a>
+        
+          <a href="/blog/tags/nano-banana/" class="tag-cloud-item" style="font-size: 1.0317307692307693rem">
+            <span class="tag-cloud-name">Nano Banana</span>
+            <span class="tag-cloud-count">21</span>
+          </a>
+        
+          <a href="/blog/tags/integration/" class="tag-cloud-item" style="font-size: 1.0144230769230769rem">
+            <span class="tag-cloud-name">Integration</span>
+            <span class="tag-cloud-count">19</span>
+          </a>
+        
+          <a href="/blog/tags/OpenAI/" class="tag-cloud-item" style="font-size: 0.9971153846153846rem">
+            <span class="tag-cloud-name">OpenAI</span>
+            <span class="tag-cloud-count">17</span>
+          </a>
+        
+          <a href="/blog/tags/kling/" class="tag-cloud-item" style="font-size: 0.9884615384615385rem">
+            <span class="tag-cloud-name">Kling</span>
+            <span class="tag-cloud-count">16</span>
+          </a>
+        
+          <a href="/blog/tags/api/" class="tag-cloud-item" style="font-size: 0.9884615384615385rem">
             <span class="tag-cloud-name">API</span>
+            <span class="tag-cloud-count">16</span>
+          </a>
+        
+          <a href="/blog/tags/api-integration/" class="tag-cloud-item" style="font-size: 0.9798076923076923rem">
+            <span class="tag-cloud-name">API Integration</span>
+            <span class="tag-cloud-count">15</span>
+          </a>
+        
+          <a href="/blog/tags/API-Guide/" class="tag-cloud-item" style="font-size: 0.9711538461538461rem">
+            <span class="tag-cloud-name">API Guide</span>
+            <span class="tag-cloud-count">14</span>
+          </a>
+        
+          <a href="/blog/tags/pixverse/" class="tag-cloud-item" style="font-size: 0.9711538461538461rem">
+            <span class="tag-cloud-name">PixVerse</span>
+            <span class="tag-cloud-count">14</span>
+          </a>
+        
+          <a href="/blog/tags/LLM-API/" class="tag-cloud-item" style="font-size: 0.9711538461538461rem">
+            <span class="tag-cloud-name">LLM API</span>
+            <span class="tag-cloud-count">14</span>
+          </a>
+        
+          <a href="/blog/tags/bytedance/" class="tag-cloud-item" style="font-size: 0.9711538461538461rem">
+            <span class="tag-cloud-name">ByteDance</span>
+            <span class="tag-cloud-count">14</span>
+          </a>
+        
+          <a href="/blog/tags/seedance/" class="tag-cloud-item" style="font-size: 0.9625rem">
+            <span class="tag-cloud-name">Seedance</span>
+            <span class="tag-cloud-count">13</span>
+          </a>
+        
+          <a href="/blog/tags/video-generation/" class="tag-cloud-item" style="font-size: 0.9625rem">
+            <span class="tag-cloud-name">Video Generation</span>
+            <span class="tag-cloud-count">13</span>
+          </a>
+        
+          <a href="/blog/tags/Veo/" class="tag-cloud-item" style="font-size: 0.9538461538461538rem">
+            <span class="tag-cloud-name">Veo</span>
+            <span class="tag-cloud-count">12</span>
+          </a>
+        
+          <a href="/blog/tags/DeepSeek-Harness/" class="tag-cloud-item" style="font-size: 0.9451923076923077rem">
+            <span class="tag-cloud-name">DeepSeek Harness</span>
+            <span class="tag-cloud-count">11</span>
+          </a>
+        
+          <a href="/blog/tags/Tutorial/" class="tag-cloud-item" style="font-size: 0.9365384615384615rem">
+            <span class="tag-cloud-name">Tutorial</span>
+            <span class="tag-cloud-count">10</span>
+          </a>
+        
+          <a href="/blog/tags/api-key/" class="tag-cloud-item" style="font-size: 0.9365384615384615rem">
+            <span class="tag-cloud-name">API Key</span>
+            <span class="tag-cloud-count">10</span>
+          </a>
+        
+          <a href="/blog/tags/AI-API/" class="tag-cloud-item" style="font-size: 0.9365384615384615rem">
+            <span class="tag-cloud-name">AI API</span>
+            <span class="tag-cloud-count">10</span>
+          </a>
+        
+          <a href="/blog/tags/minimax/" class="tag-cloud-item" style="font-size: 0.9278846153846154rem">
+            <span class="tag-cloud-name">MiniMax</span>
+            <span class="tag-cloud-count">9</span>
+          </a>
+        
+          <a href="/blog/tags/Industry-Digest/" class="tag-cloud-item" style="font-size: 0.9192307692307692rem">
+            <span class="tag-cloud-name">Industry Digest</span>
             <span class="tag-cloud-count">8</span>
           </a>
         
-          <a href="/blog/tags/AI-Video/" class="tag-cloud-item" style="font-size: 1.24375rem">
-            <span class="tag-cloud-name">AI Video</span>
+          <a href="/blog/tags/image-generation/" class="tag-cloud-item" style="font-size: 0.9105769230769231rem">
+            <span class="tag-cloud-name">Image Generation</span>
             <span class="tag-cloud-count">7</span>
           </a>
         
-          <a href="/blog/tags/API-Guide/" class="tag-cloud-item" style="font-size: 1.01875rem">
-            <span class="tag-cloud-name">API Guide</span>
-            <span class="tag-cloud-count">3</span>
+          <a href="/blog/tags/Integration-Guide/" class="tag-cloud-item" style="font-size: 0.9105769230769231rem">
+            <span class="tag-cloud-name">Integration Guide</span>
+            <span class="tag-cloud-count">7</span>
           </a>
         
-          <a href="/blog/tags/Developer-Tools/" class="tag-cloud-item" style="font-size: 1.01875rem">
+          <a href="/blog/tags/seedream/" class="tag-cloud-item" style="font-size: 0.9105769230769231rem">
+            <span class="tag-cloud-name">Seedream</span>
+            <span class="tag-cloud-count">7</span>
+          </a>
+        
+          <a href="/blog/tags/Image-Editing/" class="tag-cloud-item" style="font-size: 0.9019230769230769rem">
+            <span class="tag-cloud-name">Image Editing</span>
+            <span class="tag-cloud-count">6</span>
+          </a>
+        
+          <a href="/blog/tags/Alibaba/" class="tag-cloud-item" style="font-size: 0.9019230769230769rem">
+            <span class="tag-cloud-name">Alibaba</span>
+            <span class="tag-cloud-count">6</span>
+          </a>
+        
+          <a href="/blog/tags/Gemini/" class="tag-cloud-item" style="font-size: 0.9019230769230769rem">
+            <span class="tag-cloud-name">Gemini</span>
+            <span class="tag-cloud-count">6</span>
+          </a>
+        
+          <a href="/blog/tags/Image-API/" class="tag-cloud-item" style="font-size: 0.9019230769230769rem">
+            <span class="tag-cloud-name">Image API</span>
+            <span class="tag-cloud-count">6</span>
+          </a>
+        
+          <a href="/blog/tags/Kuaishou/" class="tag-cloud-item" style="font-size: 0.9019230769230769rem">
+            <span class="tag-cloud-name">Kuaishou</span>
+            <span class="tag-cloud-count">6</span>
+          </a>
+        
+          <a href="/blog/tags/AI-Short-Drama/" class="tag-cloud-item" style="font-size: 0.8932692307692307rem">
+            <span class="tag-cloud-name">AI Short Drama</span>
+            <span class="tag-cloud-count">5</span>
+          </a>
+        
+          <a href="/blog/tags/Qwen/" class="tag-cloud-item" style="font-size: 0.8932692307692307rem">
+            <span class="tag-cloud-name">Qwen</span>
+            <span class="tag-cloud-count">5</span>
+          </a>
+        
+          <a href="/blog/tags/developer-tools/" class="tag-cloud-item" style="font-size: 0.8932692307692307rem">
             <span class="tag-cloud-name">Developer Tools</span>
-            <span class="tag-cloud-count">3</span>
+            <span class="tag-cloud-count">5</span>
           </a>
         
-          <a href="/blog/tags/Modellix/" class="tag-cloud-item" style="font-size: 1.01875rem">
+          <a href="/blog/tags/modellix/" class="tag-cloud-item" style="font-size: 0.8932692307692307rem">
             <span class="tag-cloud-name">Modellix</span>
+            <span class="tag-cloud-count">5</span>
+          </a>
+        
+          <a href="/blog/tags/Grok/" class="tag-cloud-item" style="font-size: 0.8932692307692307rem">
+            <span class="tag-cloud-name">Grok</span>
+            <span class="tag-cloud-count">5</span>
+          </a>
+        
+          <a href="/blog/tags/AI-Agents/" class="tag-cloud-item" style="font-size: 0.8846153846153846rem">
+            <span class="tag-cloud-name">AI Agents</span>
+            <span class="tag-cloud-count">4</span>
+          </a>
+        
+          <a href="/blog/tags/talking-avatar/" class="tag-cloud-item" style="font-size: 0.8846153846153846rem">
+            <span class="tag-cloud-name">Talking Avatar</span>
+            <span class="tag-cloud-count">4</span>
+          </a>
+        
+          <a href="/blog/tags/Digital-Human/" class="tag-cloud-item" style="font-size: 0.8846153846153846rem">
+            <span class="tag-cloud-name">Digital Human</span>
+            <span class="tag-cloud-count">4</span>
+          </a>
+        
+          <a href="/blog/tags/image-to-video/" class="tag-cloud-item" style="font-size: 0.8846153846153846rem">
+            <span class="tag-cloud-name">Image to Video</span>
+            <span class="tag-cloud-count">4</span>
+          </a>
+        
+          <a href="/blog/tags/API-Pricing/" class="tag-cloud-item" style="font-size: 0.8846153846153846rem">
+            <span class="tag-cloud-name">API Pricing</span>
+            <span class="tag-cloud-count">4</span>
+          </a>
+        
+          <a href="/blog/tags/AI-Media/" class="tag-cloud-item" style="font-size: 0.8846153846153846rem">
+            <span class="tag-cloud-name">AI Media</span>
+            <span class="tag-cloud-count">4</span>
+          </a>
+        
+          <a href="/blog/tags/AI-Anime/" class="tag-cloud-item" style="font-size: 0.8846153846153846rem">
+            <span class="tag-cloud-name">AI Anime</span>
+            <span class="tag-cloud-count">4</span>
+          </a>
+        
+          <a href="/blog/tags/AI-Image/" class="tag-cloud-item" style="font-size: 0.8846153846153846rem">
+            <span class="tag-cloud-name">AI Image</span>
+            <span class="tag-cloud-count">4</span>
+          </a>
+        
+          <a href="/blog/tags/wan/" class="tag-cloud-item" style="font-size: 0.8846153846153846rem">
+            <span class="tag-cloud-name">Wan</span>
+            <span class="tag-cloud-count">4</span>
+          </a>
+        
+          <a href="/blog/tags/Anthropic/" class="tag-cloud-item" style="font-size: 0.8846153846153846rem">
+            <span class="tag-cloud-name">Anthropic</span>
+            <span class="tag-cloud-count">4</span>
+          </a>
+        
+          <a href="/blog/tags/Comparisons/" class="tag-cloud-item" style="font-size: 0.8846153846153846rem">
+            <span class="tag-cloud-name">Comparisons</span>
+            <span class="tag-cloud-count">4</span>
+          </a>
+        
+          <a href="/blog/tags/llm-gateway/" class="tag-cloud-item" style="font-size: 0.8846153846153846rem">
+            <span class="tag-cloud-name">LLM Gateway</span>
+            <span class="tag-cloud-count">4</span>
+          </a>
+        
+          <a href="/blog/tags/GPT-Image/" class="tag-cloud-item" style="font-size: 0.8846153846153846rem">
+            <span class="tag-cloud-name">GPT Image</span>
+            <span class="tag-cloud-count">4</span>
+          </a>
+        
+          <a href="/blog/tags/xAI/" class="tag-cloud-item" style="font-size: 0.8846153846153846rem">
+            <span class="tag-cloud-name">xAI</span>
+            <span class="tag-cloud-count">4</span>
+          </a>
+        
+          <a href="/blog/tags/text-to-image/" class="tag-cloud-item" style="font-size: 0.8846153846153846rem">
+            <span class="tag-cloud-name">Text-to-Image</span>
+            <span class="tag-cloud-count">4</span>
+          </a>
+        
+          <a href="/blog/tags/gemini-api/" class="tag-cloud-item" style="font-size: 0.8846153846153846rem">
+            <span class="tag-cloud-name">Gemini API</span>
+            <span class="tag-cloud-count">4</span>
+          </a>
+        
+          <a href="/blog/tags/Sora/" class="tag-cloud-item" style="font-size: 0.8846153846153846rem">
+            <span class="tag-cloud-name">Sora</span>
+            <span class="tag-cloud-count">4</span>
+          </a>
+        
+          <a href="/blog/tags/Lip-Sync/" class="tag-cloud-item" style="font-size: 0.8759615384615385rem">
+            <span class="tag-cloud-name">Lip Sync</span>
             <span class="tag-cloud-count">3</span>
           </a>
         
-          <a href="/blog/tags/AI/" class="tag-cloud-item" style="font-size: 1.01875rem">
+          <a href="/blog/tags/AI-Film/" class="tag-cloud-item" style="font-size: 0.8759615384615385rem">
+            <span class="tag-cloud-name">AI Film</span>
+            <span class="tag-cloud-count">3</span>
+          </a>
+        
+          <a href="/blog/tags/Industry-Analysis/" class="tag-cloud-item" style="font-size: 0.8759615384615385rem">
+            <span class="tag-cloud-name">Industry Analysis</span>
+            <span class="tag-cloud-count">3</span>
+          </a>
+        
+          <a href="/blog/tags/Model-Comparison/" class="tag-cloud-item" style="font-size: 0.8759615384615385rem">
+            <span class="tag-cloud-name">Model Comparison</span>
+            <span class="tag-cloud-count">3</span>
+          </a>
+        
+          <a href="/blog/tags/GPT-6-Astra/" class="tag-cloud-item" style="font-size: 0.8759615384615385rem">
+            <span class="tag-cloud-name">GPT-6 Astra</span>
+            <span class="tag-cloud-count">3</span>
+          </a>
+        
+          <a href="/blog/tags/motion-control/" class="tag-cloud-item" style="font-size: 0.8759615384615385rem">
+            <span class="tag-cloud-name">Motion Control</span>
+            <span class="tag-cloud-count">3</span>
+          </a>
+        
+          <a href="/blog/tags/Video-Production/" class="tag-cloud-item" style="font-size: 0.8759615384615385rem">
+            <span class="tag-cloud-name">Video Production</span>
+            <span class="tag-cloud-count">3</span>
+          </a>
+        
+          <a href="/blog/tags/AIGC/" class="tag-cloud-item" style="font-size: 0.8759615384615385rem">
+            <span class="tag-cloud-name">AIGC</span>
+            <span class="tag-cloud-count">3</span>
+          </a>
+        
+          <a href="/blog/tags/Claude/" class="tag-cloud-item" style="font-size: 0.8759615384615385rem">
+            <span class="tag-cloud-name">Claude</span>
+            <span class="tag-cloud-count">3</span>
+          </a>
+        
+          <a href="/blog/tags/dsh-modellix/" class="tag-cloud-item" style="font-size: 0.8759615384615385rem">
+            <span class="tag-cloud-name">dsh-modellix</span>
+            <span class="tag-cloud-count">3</span>
+          </a>
+        
+          <a href="/blog/tags/fal-ai/" class="tag-cloud-item" style="font-size: 0.8759615384615385rem">
+            <span class="tag-cloud-name">fal.ai</span>
+            <span class="tag-cloud-count">3</span>
+          </a>
+        
+          <a href="/blog/tags/Replicate/" class="tag-cloud-item" style="font-size: 0.8759615384615385rem">
+            <span class="tag-cloud-name">Replicate</span>
+            <span class="tag-cloud-count">3</span>
+          </a>
+        
+          <a href="/blog/tags/AI/" class="tag-cloud-item" style="font-size: 0.8759615384615385rem">
             <span class="tag-cloud-name">AI</span>
             <span class="tag-cloud-count">3</span>
           </a>
         
-          <a href="/blog/tags/AI-API/" class="tag-cloud-item" style="font-size: 1.01875rem">
-            <span class="tag-cloud-name">AI API</span>
+          <a href="/blog/tags/Model-Aggregator/" class="tag-cloud-item" style="font-size: 0.8759615384615385rem">
+            <span class="tag-cloud-name">Model Aggregator</span>
             <span class="tag-cloud-count">3</span>
           </a>
         
-          <a href="/blog/tags/Comparison/" class="tag-cloud-item" style="font-size: 1.01875rem">
-            <span class="tag-cloud-name">Comparison</span>
-            <span class="tag-cloud-count">3</span>
-          </a>
-        
-          <a href="/blog/tags/Google/" class="tag-cloud-item" style="font-size: 0.9625rem">
-            <span class="tag-cloud-name">Google</span>
+          <a href="/blog/tags/Agent-Harness/" class="tag-cloud-item" style="font-size: 0.8673076923076923rem">
+            <span class="tag-cloud-name">Agent Harness</span>
             <span class="tag-cloud-count">2</span>
           </a>
         
-          <a href="/blog/tags/AI-Image/" class="tag-cloud-item" style="font-size: 0.9625rem">
-            <span class="tag-cloud-name">AI Image</span>
+          <a href="/blog/tags/Token-Usage/" class="tag-cloud-item" style="font-size: 0.8673076923076923rem">
+            <span class="tag-cloud-name">Token Usage</span>
             <span class="tag-cloud-count">2</span>
           </a>
         
-          <a href="/blog/tags/ByteDance/" class="tag-cloud-item" style="font-size: 0.9625rem">
-            <span class="tag-cloud-name">ByteDance</span>
+          <a href="/blog/tags/Microdrama/" class="tag-cloud-item" style="font-size: 0.8673076923076923rem">
+            <span class="tag-cloud-name">Microdrama</span>
             <span class="tag-cloud-count">2</span>
           </a>
         
-          <a href="/blog/tags/AI-Video-Generation/" class="tag-cloud-item" style="font-size: 0.9625rem">
+          <a href="/blog/tags/GPT-Image-2-5/" class="tag-cloud-item" style="font-size: 0.8673076923076923rem">
+            <span class="tag-cloud-name">GPT Image 2.5</span>
+            <span class="tag-cloud-count">2</span>
+          </a>
+        
+          <a href="/blog/tags/Claude-Code/" class="tag-cloud-item" style="font-size: 0.8673076923076923rem">
+            <span class="tag-cloud-name">Claude Code</span>
+            <span class="tag-cloud-count">2</span>
+          </a>
+        
+          <a href="/blog/tags/hailuo/" class="tag-cloud-item" style="font-size: 0.8673076923076923rem">
+            <span class="tag-cloud-name">Hailuo</span>
+            <span class="tag-cloud-count">2</span>
+          </a>
+        
+          <a href="/blog/tags/Business-Video/" class="tag-cloud-item" style="font-size: 0.8673076923076923rem">
+            <span class="tag-cloud-name">Business Video</span>
+            <span class="tag-cloud-count">2</span>
+          </a>
+        
+          <a href="/blog/tags/Model-Gateway/" class="tag-cloud-item" style="font-size: 0.8673076923076923rem">
+            <span class="tag-cloud-name">Model Gateway</span>
+            <span class="tag-cloud-count">2</span>
+          </a>
+        
+          <a href="/blog/tags/Model-Selection/" class="tag-cloud-item" style="font-size: 0.8673076923076923rem">
+            <span class="tag-cloud-name">Model Selection</span>
+            <span class="tag-cloud-count">2</span>
+          </a>
+        
+          <a href="/blog/tags/DeepSeek/" class="tag-cloud-item" style="font-size: 0.8673076923076923rem">
+            <span class="tag-cloud-name">DeepSeek</span>
+            <span class="tag-cloud-count">2</span>
+          </a>
+        
+          <a href="/blog/tags/Cache/" class="tag-cloud-item" style="font-size: 0.8673076923076923rem">
+            <span class="tag-cloud-name">Cache</span>
+            <span class="tag-cloud-count">2</span>
+          </a>
+        
+          <a href="/blog/tags/API-Cost/" class="tag-cloud-item" style="font-size: 0.8673076923076923rem">
+            <span class="tag-cloud-name">API Cost</span>
+            <span class="tag-cloud-count">2</span>
+          </a>
+        
+          <a href="/blog/tags/Web-Search/" class="tag-cloud-item" style="font-size: 0.8673076923076923rem">
+            <span class="tag-cloud-name">Web Search</span>
+            <span class="tag-cloud-count">2</span>
+          </a>
+        
+          <a href="/blog/tags/flux/" class="tag-cloud-item" style="font-size: 0.8673076923076923rem">
+            <span class="tag-cloud-name">FLUX</span>
+            <span class="tag-cloud-count">2</span>
+          </a>
+        
+          <a href="/blog/tags/ai-image-generation/" class="tag-cloud-item" style="font-size: 0.8673076923076923rem">
+            <span class="tag-cloud-name">AI Image Generation</span>
+            <span class="tag-cloud-count">2</span>
+          </a>
+        
+          <a href="/blog/tags/HappyHorse/" class="tag-cloud-item" style="font-size: 0.8673076923076923rem">
+            <span class="tag-cloud-name">HappyHorse</span>
+            <span class="tag-cloud-count">2</span>
+          </a>
+        
+          <a href="/blog/tags/text-to-video/" class="tag-cloud-item" style="font-size: 0.8673076923076923rem">
+            <span class="tag-cloud-name">text-to-video</span>
+            <span class="tag-cloud-count">2</span>
+          </a>
+        
+          <a href="/blog/tags/Market-Analysis/" class="tag-cloud-item" style="font-size: 0.8673076923076923rem">
+            <span class="tag-cloud-name">Market Analysis</span>
+            <span class="tag-cloud-count">2</span>
+          </a>
+        
+          <a href="/blog/tags/ai-video-generation/" class="tag-cloud-item" style="font-size: 0.8673076923076923rem">
             <span class="tag-cloud-name">AI Video Generation</span>
             <span class="tag-cloud-count">2</span>
           </a>
         
-          <a href="/blog/tags/Alibaba/" class="tag-cloud-item" style="font-size: 0.9625rem">
-            <span class="tag-cloud-name">Alibaba</span>
+          <a href="/blog/tags/imagen-4/" class="tag-cloud-item" style="font-size: 0.8673076923076923rem">
+            <span class="tag-cloud-name">Imagen 4</span>
             <span class="tag-cloud-count">2</span>
           </a>
         
-          <a href="/blog/tags/Vidu-Q3-Mix/" class="tag-cloud-item" style="font-size: 0.9625rem">
+          <a href="/blog/tags/Runway/" class="tag-cloud-item" style="font-size: 0.8673076923076923rem">
+            <span class="tag-cloud-name">Runway</span>
+            <span class="tag-cloud-count">2</span>
+          </a>
+        
+          <a href="/blog/tags/openrouter/" class="tag-cloud-item" style="font-size: 0.8673076923076923rem">
+            <span class="tag-cloud-name">OpenRouter</span>
+            <span class="tag-cloud-count">2</span>
+          </a>
+        
+          <a href="/blog/tags/Nano-Banana-Pro/" class="tag-cloud-item" style="font-size: 0.8673076923076923rem">
+            <span class="tag-cloud-name">Nano Banana Pro</span>
+            <span class="tag-cloud-count">2</span>
+          </a>
+        
+          <a href="/blog/tags/SkyReels/" class="tag-cloud-item" style="font-size: 0.8673076923076923rem">
+            <span class="tag-cloud-name">SkyReels</span>
+            <span class="tag-cloud-count">2</span>
+          </a>
+        
+          <a href="/blog/tags/Skywork/" class="tag-cloud-item" style="font-size: 0.8673076923076923rem">
+            <span class="tag-cloud-name">Skywork</span>
+            <span class="tag-cloud-count">2</span>
+          </a>
+        
+          <a href="/blog/tags/Vidu-Q3-Mix/" class="tag-cloud-item" style="font-size: 0.8673076923076923rem">
             <span class="tag-cloud-name">Vidu Q3-Mix</span>
             <span class="tag-cloud-count">2</span>
           </a>
         
-          <a href="/blog/tags/Model-Comparison/" class="tag-cloud-item" style="font-size: 0.90625rem">
-            <span class="tag-cloud-name">Model Comparison</span>
+          <a href="/blog/tags/LLM-Observability/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">LLM Observability</span>
             <span class="tag-cloud-count">1</span>
           </a>
         
-          <a href="/blog/tags/New-Models/" class="tag-cloud-item" style="font-size: 0.90625rem">
+          <a href="/blog/tags/Agent-Tracing/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Agent Tracing</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Film-Festival/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Film Festival</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Tencent/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Tencent</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Film-Production/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Film Production</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/AAIFF/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">AAIFF</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/AI-Media-API/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">AI Media API</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Model-Stack/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Model Stack</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/World-Models/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">World Models</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Hollywood/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Hollywood</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Generative-AI/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Generative AI</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Content-Pipeline/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Content Pipeline</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Funding/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Funding</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/short-drama/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">short-drama</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/anime/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">anime</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/reference-to-video/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Reference to Video</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/storyboard/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">storyboard</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/video-extend/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">video-extend</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/India/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">India</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Indonesia/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Indonesia</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Creative-Workflow/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Creative Workflow</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Seedance-2-5/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Seedance 2.5</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/DaVinci-Resolve/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">DaVinci Resolve</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Video-Generation-API/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Video Generation API</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Webhooks/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Webhooks</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Batch-Processing/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Batch Processing</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Cost-Planning/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Cost Planning</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Cost-Calculator/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Cost Calculator</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/API-Configuration/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">API Configuration</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/UGC/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">UGC</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Build-vs-Buy/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Build vs Buy</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Developer/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Developer</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/AI-Tools/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">AI Tools</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Video-Tools/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Video Tools</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Coding-Agent/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Coding Agent</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Model-Migration/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Model Migration</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Fable-5-1/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Fable 5.1</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Troubleshooting/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Troubleshooting</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Plugin/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Plugin</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/LLM-Billing/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">LLM Billing</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Plugin-Management/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Plugin Management</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/dsh-CLI/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">dsh CLI</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Face-Swap/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Face Swap</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Credentials/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Credentials</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/AI-TV-Drama/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">AI TV Drama</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Beyond-Wukong/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Beyond Wukong</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Long-form-AI-Drama/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Long-form AI Drama</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Production-Economics/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Production Economics</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Image-Editing-API/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Image Editing API</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Black-Forest-Labs/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Black Forest Labs</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/New-Models/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
             <span class="tag-cloud-name">New Models</span>
             <span class="tag-cloud-count">1</span>
           </a>
         
-          <a href="/blog/tags/MiniMax/" class="tag-cloud-item" style="font-size: 0.90625rem">
-            <span class="tag-cloud-name">MiniMax</span>
+          <a href="/blog/tags/Fountain-0/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Fountain 0</span>
             <span class="tag-cloud-count">1</span>
           </a>
         
-          <a href="/blog/tags/OpenAI/" class="tag-cloud-item" style="font-size: 0.90625rem">
-            <span class="tag-cloud-name">OpenAI</span>
+          <a href="/blog/tags/Micro-drama/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Micro-drama</span>
             <span class="tag-cloud-count">1</span>
           </a>
         
-          <a href="/blog/tags/Model-Guide/" class="tag-cloud-item" style="font-size: 0.90625rem">
+          <a href="/blog/tags/Virtual-Try-On-API/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Virtual Try-On API</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/GPT-5-6/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">GPT-5.6</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/GPT-6/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">GPT-6</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/GPT-Image-1-5/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">GPT Image 1.5</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/gpt-image-2/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">gpt-image-2</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Authentication/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Authentication</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Gateway/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Gateway</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Model-Aliasing/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Model Aliasing</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Model-Versioning/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Model Versioning</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Model-Guide/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
             <span class="tag-cloud-name">Model Guide</span>
             <span class="tag-cloud-count">1</span>
           </a>
         
-          <a href="/blog/tags/fal-ai/" class="tag-cloud-item" style="font-size: 0.90625rem">
-            <span class="tag-cloud-name">fal.ai</span>
+          <a href="/blog/tags/Hailuo-02/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Hailuo 02</span>
             <span class="tag-cloud-count">1</span>
           </a>
         
-          <a href="/blog/tags/CLI/" class="tag-cloud-item" style="font-size: 0.90625rem">
-            <span class="tag-cloud-name">CLI</span>
+          <a href="/blog/tags/AI-Micro-drama/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">AI Micro-drama</span>
             <span class="tag-cloud-count">1</span>
           </a>
         
-          <a href="/blog/tags/Product-Launch/" class="tag-cloud-item" style="font-size: 0.90625rem">
-            <span class="tag-cloud-name">Product Launch</span>
+          <a href="/blog/tags/Hongguo/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Hongguo</span>
             <span class="tag-cloud-count">1</span>
           </a>
         
-          <a href="/blog/tags/Kling/" class="tag-cloud-item" style="font-size: 0.90625rem">
-            <span class="tag-cloud-name">Kling</span>
+          <a href="/blog/tags/RedGuo/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">RedGuo</span>
             <span class="tag-cloud-count">1</span>
           </a>
         
-          <a href="/blog/tags/Video-Generation/" class="tag-cloud-item" style="font-size: 0.90625rem">
-            <span class="tag-cloud-name">Video Generation</span>
+          <a href="/blog/tags/How-to/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">How-to</span>
             <span class="tag-cloud-count">1</span>
           </a>
         
-          <a href="/blog/tags/Pricing/" class="tag-cloud-item" style="font-size: 0.90625rem">
-            <span class="tag-cloud-name">Pricing</span>
-            <span class="tag-cloud-count">1</span>
-          </a>
-        
-          <a href="/blog/tags/Seedream/" class="tag-cloud-item" style="font-size: 0.90625rem">
-            <span class="tag-cloud-name">Seedream</span>
-            <span class="tag-cloud-count">1</span>
-          </a>
-        
-          <a href="/blog/tags/HappyHorse/" class="tag-cloud-item" style="font-size: 0.90625rem">
-            <span class="tag-cloud-name">HappyHorse</span>
-            <span class="tag-cloud-count">1</span>
-          </a>
-        
-          <a href="/blog/tags/Open-Source/" class="tag-cloud-item" style="font-size: 0.90625rem">
+          <a href="/blog/tags/open-source/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
             <span class="tag-cloud-name">Open Source</span>
             <span class="tag-cloud-count">1</span>
           </a>
         
-          <a href="/blog/tags/Seedance/" class="tag-cloud-item" style="font-size: 0.90625rem">
-            <span class="tag-cloud-name">Seedance</span>
-            <span class="tag-cloud-count">1</span>
-          </a>
-        
-          <a href="/blog/tags/Model-Benchmark/" class="tag-cloud-item" style="font-size: 0.90625rem">
+          <a href="/blog/tags/Model-Benchmark/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
             <span class="tag-cloud-name">Model Benchmark</span>
             <span class="tag-cloud-count">1</span>
           </a>
         
-          <a href="/blog/tags/Replicate/" class="tag-cloud-item" style="font-size: 0.90625rem">
-            <span class="tag-cloud-name">Replicate</span>
+          <a href="/blog/tags/AI-Image-Editing/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">AI Image Editing</span>
             <span class="tag-cloud-count">1</span>
           </a>
         
-          <a href="/blog/tags/Vidu-Q3/" class="tag-cloud-item" style="font-size: 0.90625rem">
-            <span class="tag-cloud-name">Vidu Q3</span>
+          <a href="/blog/tags/Image-Upscaling/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Image Upscaling</span>
             <span class="tag-cloud-count">1</span>
           </a>
         
-          <a href="/blog/tags/cinematic-AI-video/" class="tag-cloud-item" style="font-size: 0.90625rem">
-            <span class="tag-cloud-name">cinematic AI video</span>
+          <a href="/blog/tags/google-imagen/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">google imagen</span>
             <span class="tag-cloud-count">1</span>
           </a>
         
-          <a href="/blog/tags/seedance-api/" class="tag-cloud-item" style="font-size: 0.90625rem">
-            <span class="tag-cloud-name">seedance api</span>
+          <a href="/blog/tags/imagen-api/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">imagen api</span>
             <span class="tag-cloud-count">1</span>
           </a>
         
-          <a href="/blog/tags/wan-video-api/" class="tag-cloud-item" style="font-size: 0.90625rem">
-            <span class="tag-cloud-name">wan video api</span>
+          <a href="/blog/tags/vertex-ai/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">vertex ai</span>
             <span class="tag-cloud-count">1</span>
           </a>
         
-          <a href="/blog/tags/Together-AI/" class="tag-cloud-item" style="font-size: 0.90625rem">
+          <a href="/blog/tags/google-ai/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">google ai</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/multimodal/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Multimodal</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/API-documentation/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">API documentation</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/AI-Avatar-API/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">AI Avatar API</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Live-Streaming/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Live Streaming</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/MAI-Image-2-6/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">MAI Image 2.6</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Microsoft-AI/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Microsoft AI</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/LiteLLM/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">LiteLLM</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/API-Platform/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">API Platform</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Endpoints/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Endpoints</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Developer-Guides/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Developer Guides</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/CLI/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">CLI</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Product-Launch/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Product Launch</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Modellix-Plugin/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Modellix Plugin</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Announcement/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Announcement</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/WaveSpeed/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">WaveSpeed</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Free-Tier/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Free Tier</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/API-Reference/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">API Reference</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Imagen/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Imagen</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Midjourney/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Midjourney</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Stable-Diffusion/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Stable Diffusion</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/openai-compatible/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">OpenAI Compatible</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/API-Protocols/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">API Protocols</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/DALL-E/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">DALL-E</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Overseas-Market/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Overseas Market</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/pixverse-ai/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">pixverse ai</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/ai-video-generator/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">ai video generator</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/pixverse-api/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">pixverse api</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/pixverse-v6/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">pixverse v6</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/pixverse-pricing/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">pixverse pricing</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/FL2V/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">FL2V</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/TTS/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">TTS</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Deals/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Deals</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/C1/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">C1</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Review/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Review</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/promotion/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">promotion</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/1080p-video/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">1080p-video</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/native-audio/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">native-audio</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Prompt-Engineering/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Prompt Engineering</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Reve-API/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Reve API</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Image-Generation-API/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Image Generation API</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Data-Report/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Data Report</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Video-API/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Video API</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Search-API/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Search API</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Unified-API/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Unified API</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Together-AI/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
             <span class="tag-cloud-name">Together AI</span>
             <span class="tag-cloud-count">1</span>
           </a>
         
-          <a href="/blog/tags/Video-Workflow/" class="tag-cloud-item" style="font-size: 0.90625rem">
-            <span class="tag-cloud-name">Video Workflow</span>
+          <a href="/blog/tags/Google-Veo/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Google Veo</span>
             <span class="tag-cloud-count">1</span>
           </a>
         
-          <a href="/blog/tags/AI-Media-Observability/" class="tag-cloud-item" style="font-size: 0.90625rem">
-            <span class="tag-cloud-name">AI Media Observability</span>
+          <a href="/blog/tags/Forecast/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Forecast</span>
             <span class="tag-cloud-count">1</span>
           </a>
         
-          <a href="/blog/tags/AI-drama/" class="tag-cloud-item" style="font-size: 0.90625rem">
+          <a href="/blog/tags/AI-drama/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
             <span class="tag-cloud-name">AI drama</span>
             <span class="tag-cloud-count">1</span>
           </a>
         
-          <a href="/blog/tags/video-consistency/" class="tag-cloud-item" style="font-size: 0.90625rem">
+          <a href="/blog/tags/video-consistency/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
             <span class="tag-cloud-name">video consistency</span>
             <span class="tag-cloud-count">1</span>
           </a>
         
-          <a href="/blog/tags/camera-control/" class="tag-cloud-item" style="font-size: 0.90625rem">
+          <a href="/blog/tags/camera-control/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
             <span class="tag-cloud-name">camera control</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Vidu/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Vidu</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Vidu-Q3/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Vidu Q3</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/cinematic-AI-video/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">cinematic AI video</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Virtual-Try-On/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Virtual Try-On</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Async-Tasks/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Async Tasks</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Request-Schema/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Request Schema</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/seedance-api/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">seedance api</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/wan-video-api/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">wan video api</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/Video-Workflow/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">Video Workflow</span>
+            <span class="tag-cloud-count">1</span>
+          </a>
+        
+          <a href="/blog/tags/AI-Media-Observability/" class="tag-cloud-item" style="font-size: 0.8586538461538461rem">
+            <span class="tag-cloud-name">AI Media Observability</span>
             <span class="tag-cloud-count">1</span>
           </a>
         
@@ -345,88 +1351,12 @@
   </div>
 </footer>
 
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <script>lucide.createIcons();</script>
+  <script defer src="https://unpkg.com/lucide@1.47.0/dist/umd/lucide.min.js" onload="window.lucide && window.lucide.createIcons();"></script>
   
     
       <script src="/blog/js/modellix.js"></script>
     
   
-  
-    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
-    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
-    <script>
-      (function () {
-        if (!window.mermaid) return;
-        var mermaidKeywords = [
-          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
-          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
-          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
-          'packet-beta', 'kanban', 'architecture'
-        ];
-
-        function looksLikeMermaid(source) {
-          if (!source) return false;
-          var trimmed = source.trim();
-          return mermaidKeywords.some(function (keyword) {
-            return trimmed.indexOf(keyword) === 0;
-          });
-        }
-
-        function extractCodeText(node) {
-          if (!node) return '';
-          if (node.matches('figure.highlight')) {
-            var figureCode = node.querySelector('td.code pre');
-            return figureCode ? figureCode.textContent || '' : '';
-          }
-          if (node.matches('pre > code')) {
-            return node.textContent || '';
-          }
-          if (node.matches('pre')) {
-            return node.textContent || '';
-          }
-          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
-          return nestedCode ? nestedCode.textContent || '' : '';
-        }
-
-        function normalizeMermaidBlocks() {
-          var candidates = document.querySelectorAll(
-            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
-          );
-
-          candidates.forEach(function (node) {
-            if (node.matches('pre.mermaid')) return;
-
-            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
-            if (!replaceTarget) return;
-
-            var source = extractCodeText(replaceTarget);
-            if (!looksLikeMermaid(source)) return;
-
-            var mermaidPre = document.createElement('pre');
-            mermaidPre.className = 'mermaid';
-            mermaidPre.textContent = source.trim();
-            replaceTarget.replaceWith(mermaidPre);
-          });
-        }
-
-        normalizeMermaidBlocks();
-
-        var mermaidNodes = document.querySelectorAll('pre.mermaid');
-        if (!mermaidNodes.length) return;
-        var optionsElement = document.getElementById('mermaid-options');
-        var mermaidOptions = {};
-        if (optionsElement) {
-          try {
-            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
-          } catch (err) {
-            mermaidOptions = {};
-          }
-        }
-        mermaid.initialize(mermaidOptions);
-        mermaid.run({ querySelector: 'pre.mermaid' });
-      })();
-    </script>
   
 </body>
 </html>

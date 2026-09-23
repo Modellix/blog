@@ -3,27 +3,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <!-- Production analytics start after the page load has settled. -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-4DECHYKQVT');
+    (function (document, window) {
+      if (window.location.hostname !== 'www.modellix.ai') return;
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-4DECHYKQVT');
+
+      var loaded = false;
+      function appendScript(src, crossOrigin) {
+        var script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        if (crossOrigin) script.crossOrigin = crossOrigin;
+        document.head.appendChild(script);
+      }
+      function loadAnalytics() {
+        if (loaded) return;
+        loaded = true;
+        appendScript('https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT');
+        appendScript('https://t.contentsquare.net/uxa/f39399cd2e27e.js', 'anonymous');
+        appendScript('https://app.rybbit.io/api/script.js?siteId=8a6874a918d7');
+      }
+      function scheduleAnalytics() {
+        window.setTimeout(function () {
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(loadAnalytics, { timeout: 3000 });
+          } else {
+            loadAnalytics();
+          }
+        }, 1500);
+      }
+
+      if (document.readyState === 'complete') scheduleAnalytics();
+      else window.addEventListener('load', scheduleAnalytics, { once: true });
+    })(document, window);
   </script>
-  <!-- Contentsquare -->
-  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Introducing Modellix: One API for All AI Media Generation — Modellix Blog</title>
-  <meta name="description" content="Modellix is now live — a unified MaaS platform giving you API access to 100+ AI models for image, video, and audio generation. One key, one dashboard, transparent pricing.">
+  <title>Introducing Modellix: One API for All AI Media Generation</title>
   <meta name="keywords" content="Modellix, AI API, AI media generation, text to image API, text to video API, unified AI platform, MaaS">
   
   <link rel="canonical" href="https://www.modellix.ai/blog/modellix-launched/">
+  
+  
+  <meta name="description" content="Modellix is now live — a unified MaaS platform giving you API access to 100+ AI models for image, video, and audio generation. One key, one dashboard, transparent pricing.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Introducing Modellix: One API for All AI Media Generation">
+<meta property="og:url" content="https://www.modellix.ai/blog/modellix-launched/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Modellix is now live — a unified MaaS platform giving you API access to 100+ AI models for image, video, and audio generation. One key, one dashboard, transparent pricing.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/logo-site-modellix-full-big-colored-2x.webp">
+<meta property="article:published_time" content="2026-04-02T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-02T02:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="API">
+<meta property="article:tag" content="Modellix">
+<meta property="article:tag" content="Product Launch">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/logo-site-modellix-full-big-colored-2x.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Introducing Modellix: One API for All AI Media Generation","description":"Modellix is now live — a unified MaaS platform giving you API access to 100+ AI models for image, video, and audio generation. One key, one dashboard, transparent pricing.","datePublished":"2026-04-02T02:00:00.000Z","dateModified":"2026-04-02T02:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/modellix-launched/","image":"https://img.modellix.ai/en/article/logo-site-modellix-full-big-colored-2x.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://img.modellix.ai" crossorigin>
   <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
   
     
@@ -40,19 +94,19 @@
     </a>
     <nav class="header-nav">
       
-        <a href="/blog/../" class="nav-link">Home</a>
+        <a href="https://www.modellix.ai/" class="nav-link">Home</a>
       
-        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started" class="nav-link">Documentation</a>
       
-        <a href="/blog/../about" class="nav-link">About Us</a>
+        <a href="https://www.modellix.ai/about" class="nav-link">About Us</a>
       
     </nav>
     <div class="header-actions">
       
-        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+        <a href="https://www.modellix.ai/console" class="btn btn-secondary">Console</a>
       
       
-        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+        <a href="https://www.modellix.ai/console/api-key" class="btn btn-primary">Get API Key</a>
       
       <button class="mobile-menu-toggle" aria-label="Toggle menu">
         <i data-lucide="menu"></i>
@@ -103,15 +157,15 @@
       </div>
       <h1 class="post-title">Modellix Is Live: One API Key for 100+ AI Media Models</h1>
       <div class="post-header-bottom">
-        <time class="post-date">April 2, 2026</time>
+        <time class="post-date" datetime="2026-04-02T02:00:00.000Z">April 2, 2026</time>
         
           <div class="post-header-tags">
             
-              <a href="/blog/tags/Modellix/" class="tag-pill tag-pill--sm">Modellix</a>
+              <a href="/blog/tags/api/" class="tag-pill tag-pill--sm">API</a>
+            
+              <a href="/blog/tags/modellix/" class="tag-pill tag-pill--sm">Modellix</a>
             
               <a href="/blog/tags/AI/" class="tag-pill tag-pill--sm">AI</a>
-            
-              <a href="/blog/tags/API/" class="tag-pill tag-pill--sm">API</a>
             
               <a href="/blog/tags/Product-Launch/" class="tag-pill tag-pill--sm">Product Launch</a>
             
@@ -123,7 +177,7 @@
     
 <div class="post-author-card">
   
-    <img src="https://img.srcgptbots.com/blog/author/20260409/modellix-blog-author-official@2x.webp" alt="Modellix Team" class="post-author-avatar">
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
   
   <div class="post-author-info">
     <span class="post-author-name">Modellix Team</span>
@@ -139,7 +193,7 @@
         
         
           <div class="post-cover">
-            <img src="https://img.srcgptbots.com/modellix/official/common/logo/20260324/logo-site-modellix-full-big-colored@2x.webp" alt="Modellix Is Live: One API Key for 100+ AI Media Models">
+            <img src="https://img.modellix.ai/en/article/logo-site-modellix-full-big-colored-2x.webp" alt="Modellix Is Live: One API Key for 100+ AI Media Models" loading="eager" fetchpriority="high">
           </div>
         
 
@@ -151,7 +205,7 @@
         
 
         <div class="post-content">
-          <p>We’re thrilled to announce that <strong><a target="_blank" rel="noopener" href="https://modellix.ai/">Modellix</a></strong> is officially live.</p>
+          <p>We’re thrilled to announce that <strong><a href="https://www.modellix.ai/">Modellix</a></strong> is officially live.</p>
 <p>Modellix is a Model-as-a-Service (MaaS) platform that brings the world’s top AI media models together under one roof. Instead of juggling multiple provider accounts, API keys, and incompatible parameter formats, you get a single API, a single dashboard, and a single billing view — for every model you need.</p>
 <h2 id="The-Problem-We-Set-Out-to-Solve"><a href="#The-Problem-We-Set-Out-to-Solve" class="headerlink" title="The Problem We Set Out to Solve"></a>The Problem We Set Out to Solve</h2><p>The AI media generation landscape is exploding. Dozens of providers now offer powerful models for creating images, videos, and audio — but integrating them is a different story. Each provider ships its own SDK, its own authentication scheme, and its own parameter structure. Scaling across providers means maintaining a patchwork of integrations, tracking costs in multiple dashboards, and debugging across disconnected logging systems.</p>
 <p>We built Modellix to eliminate that friction entirely.</p>
@@ -173,7 +227,7 @@
 <ul>
 <li><strong><a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/cli">CLI</a></strong> — Trigger models, manage tasks, and automate workflows from your terminal.</li>
 <li><strong><a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/skill">Agent Skill</a></strong> — Integrate Modellix seamlessly into AI agents and low-code workflows.</li>
-<li><strong><a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/mcp">MCP Server</a></strong> — Search Modellix documentation directly from your MCP-compatible clients.</li>
+<li><strong><a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/docs-search-mcp">MCP Server</a></strong> — Search Modellix documentation directly from your MCP-compatible clients.</li>
 </ul>
 <h2 id="Models-Available-at-Launch"><a href="#Models-Available-at-Launch" class="headerlink" title="Models Available at Launch"></a>Models Available at Launch</h2><p>We currently support models from <strong>5 leading AI providers</strong>:</p>
 <table>
@@ -220,16 +274,16 @@
 <h2 id="Free-Credits-for-New-Users"><a href="#Free-Credits-for-New-Users" class="headerlink" title="Free Credits for New Users"></a>Free Credits for New Users</h2><p>To celebrate our launch, we’re offering <strong>$10–$30 in free credits</strong> to every new user. That’s enough to generate hundreds of images or minutes of video across any model on the platform.</p>
 <p>Getting started takes three steps:</p>
 <ol>
-<li><strong>Sign up</strong> at <a target="_blank" rel="noopener" href="https://modellix.ai/">modellix.ai</a></li>
+<li><strong>Sign up</strong> at <a href="https://www.modellix.ai/">modellix.ai</a></li>
 <li><strong>Fill out</strong> the <a target="_blank" rel="noopener" href="https://forms.gle/VU8VAapGzYuEwiT79">credit request form</a></li>
 <li><strong>Start building</strong> — credits arrive quickly and work with any model</li>
 </ol>
 <h2 id="Get-Started"><a href="#Get-Started" class="headerlink" title="Get Started"></a>Get Started</h2><p>Whether you’re a developer integrating AI media generation into your product, or a creator exploring what’s possible with the latest models, Modellix gives you the simplest path to get there.</p>
 <ul>
-<li><strong>Website:</strong> <a target="_blank" rel="noopener" href="https://modellix.ai/">modellix.ai</a></li>
-<li><strong>Documentation:</strong> <a target="_blank" rel="noopener" href="https://docs.modellix.ai/">docs.modellix.ai</a></li>
+<li><strong>Website:</strong> <a href="https://www.modellix.ai/">modellix.ai</a></li>
+<li><strong>Documentation:</strong> <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started">docs.modellix.ai</a></li>
 <li><strong>Discord:</strong> <a target="_blank" rel="noopener" href="https://discord.com/invite/N2FbcB2cZT">Join our community</a></li>
-<li><strong>Support:</strong> <a href="mailto:&#115;&#117;&#x70;&#x70;&#111;&#114;&#x74;&#64;&#x6d;&#x6f;&#x64;&#x65;&#x6c;&#x6c;&#x69;&#120;&#x2e;&#97;&#x69;">support@modellix.ai</a></li>
+<li><strong>Support:</strong> <a href="mailto:&#115;&#117;&#112;&#x70;&#x6f;&#114;&#116;&#64;&#x6d;&#x6f;&#100;&#x65;&#x6c;&#x6c;&#105;&#120;&#x2e;&#97;&#105;">support@modellix.ai</a></li>
 </ul>
 <p>We can’t wait to see what you build.</p>
 
@@ -238,11 +292,11 @@
         <div class="post-tags-bottom">
           
             
-              <a href="/blog/tags/Modellix/" class="tag-pill tag-pill--sm">Modellix</a>
+              <a href="/blog/tags/api/" class="tag-pill tag-pill--sm">API</a>
+            
+              <a href="/blog/tags/modellix/" class="tag-pill tag-pill--sm">Modellix</a>
             
               <a href="/blog/tags/AI/" class="tag-pill tag-pill--sm">AI</a>
-            
-              <a href="/blog/tags/API/" class="tag-pill tag-pill--sm">API</a>
             
               <a href="/blog/tags/Product-Launch/" class="tag-pill tag-pill--sm">Product Launch</a>
             
@@ -255,7 +309,7 @@
   <div class="post-cta-content">
     <h2 class="post-cta-title">Ready to Get Started?</h2>
     <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
-    <a href="../../../console" class="btn post-cta-btn">
+    <a href="https://www.modellix.ai/console" class="btn post-cta-btn">
       <span>Start for Free</span>
       <i data-lucide="arrow-right"></i>
     </a>
@@ -269,10 +323,10 @@
   <h2 class="related-articles-title">Related Articles</h2>
   <div class="related-articles-grid">
     
-      <a href="/blog/vidu-q3-challenge/" class="related-article-card">
+      <a href="/blog/gpt-image-2-5-flare-sunburst-on-modellix/" class="related-article-card">
         
           <div class="related-article-cover">
-            <img src="https://img.modellix.ai/en/article/Vidu_Q3_Challenge_on_Modellix.webp" alt="Vidu Q3 Challenge on Modellix — Win Up to $100 | 50% Off Campaign" loading="lazy">
+            <img src="https://img.modellix.ai/en/article/image_1789561132-ed24xduv.webp" alt="OpenAI GPT Image 2.5 Is Now on Modellix: Flare, Sunburst, and the Edit Variants Behind One API" loading="lazy">
           </div>
         
         <div class="related-article-body">
@@ -283,15 +337,15 @@
               
             </div>
           
-          <h3 class="related-article-name">Vidu Q3 Challenge on Modellix — Win Up to $100 | 50% Off Campaign</h3>
-          <time class="related-article-date">June 12, 2026</time>
+          <h3 class="related-article-name">OpenAI GPT Image 2.5 Is Now on Modellix: Flare, Sunburst, and the Edit Variants Behind One API</h3>
+          <time class="related-article-date" datetime="2026-09-16T02:00:00.000Z">September 16, 2026</time>
         </div>
       </a>
     
-      <a href="/blog/vidu-q3-mix-is-available/" class="related-article-card">
+      <a href="/blog/mai-image-2-6-on-modellix/" class="related-article-card">
         
           <div class="related-article-cover">
-            <img src="https://img.modellix.ai/en/article/vidu-q3-mix.webp" alt="Vidu Q3-Mix Is Now Available on Modellix" loading="lazy">
+            <img src="https://img.modellix.ai/en/article/c8dd1cca-32f2-4f85-b120-a4e3ad66565b.webp" alt="MAI Image 2.6 on Modellix: Top-2 Text-to-Image Model via One API" loading="lazy">
           </div>
         
         <div class="related-article-body">
@@ -302,15 +356,15 @@
               
             </div>
           
-          <h3 class="related-article-name">Vidu Q3-Mix Is Now Available on Modellix</h3>
-          <time class="related-article-date">June 12, 2026</time>
+          <h3 class="related-article-name">MAI Image 2.6 on Modellix: Top-2 Text-to-Image Model via One API</h3>
+          <time class="related-article-date" datetime="2026-09-09T02:00:00.000Z">September 9, 2026</time>
         </div>
       </a>
     
-      <a href="/blog/happyhorse-ai/" class="related-article-card">
+      <a href="/blog/pixverse-v6-modellix-promotion-20-off/" class="related-article-card">
         
           <div class="related-article-cover">
-            <img src="https://img.modellix.ai/en/article/happy-horse-1-0.webp" alt="HappyHorse-1.0 Explained: Open-Source AI Video, API Access, and 2026 Pricing" loading="lazy">
+            <img src="https://img.modellix.ai/en/article/e29e4668-674a-4611-aece-307aefa283d9.webp" alt="PixVerse V6 on Modellix: 15s 1080p AI Video with Native Audio (20% OFF)" loading="lazy">
           </div>
         
         <div class="related-article-body">
@@ -321,8 +375,8 @@
               
             </div>
           
-          <h3 class="related-article-name">HappyHorse-1.0 Explained: Open-Source AI Video, API Access, and 2026 Pricing</h3>
-          <time class="related-article-date">April 10, 2026</time>
+          <h3 class="related-article-name">PixVerse V6 on Modellix: 15s 1080p AI Video with Native Audio (20% OFF)</h3>
+          <time class="related-article-date" datetime="2026-08-07T16:00:00.000Z">August 8, 2026</time>
         </div>
       </a>
     
@@ -340,7 +394,7 @@
       <ul class="post-toc-list"></ul>
     </nav>
 
-    <a href="../../../console" class="sidebar-cta">
+    <a href="https://www.modellix.ai/console" class="sidebar-cta">
       <span class="sidebar-cta-text">
         <span class="sidebar-cta-title">Try Modellix</span>
         <span class="sidebar-cta-desc">Start creating with AI</span>
@@ -351,9 +405,9 @@
     <div class="post-share">
       <span class="post-share-label">Share this article</span>
       <div class="post-share-links">
-        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/modellix-launched/&text=Introducing%20Modellix%3A%20One%20API%20for%20All%20AI%20Media%20Generation" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/modellix-launched/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/modellix-launched/"><i class="fa-solid fa-link"></i></button>
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/modellix-launched/&text=Introducing%20Modellix%3A%20One%20API%20for%20All%20AI%20Media%20Generation" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/modellix-launched/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/modellix-launched/"><i class="fa-solid fa-link"></i></button>
       </div>
     </div>
   </div>
@@ -398,88 +452,12 @@
   </div>
 </footer>
 
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <script>lucide.createIcons();</script>
+  <script defer src="https://unpkg.com/lucide@1.47.0/dist/umd/lucide.min.js" onload="window.lucide && window.lucide.createIcons();"></script>
   
     
       <script src="/blog/js/modellix.js"></script>
     
   
-  
-    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
-    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
-    <script>
-      (function () {
-        if (!window.mermaid) return;
-        var mermaidKeywords = [
-          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
-          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
-          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
-          'packet-beta', 'kanban', 'architecture'
-        ];
-
-        function looksLikeMermaid(source) {
-          if (!source) return false;
-          var trimmed = source.trim();
-          return mermaidKeywords.some(function (keyword) {
-            return trimmed.indexOf(keyword) === 0;
-          });
-        }
-
-        function extractCodeText(node) {
-          if (!node) return '';
-          if (node.matches('figure.highlight')) {
-            var figureCode = node.querySelector('td.code pre');
-            return figureCode ? figureCode.textContent || '' : '';
-          }
-          if (node.matches('pre > code')) {
-            return node.textContent || '';
-          }
-          if (node.matches('pre')) {
-            return node.textContent || '';
-          }
-          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
-          return nestedCode ? nestedCode.textContent || '' : '';
-        }
-
-        function normalizeMermaidBlocks() {
-          var candidates = document.querySelectorAll(
-            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
-          );
-
-          candidates.forEach(function (node) {
-            if (node.matches('pre.mermaid')) return;
-
-            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
-            if (!replaceTarget) return;
-
-            var source = extractCodeText(replaceTarget);
-            if (!looksLikeMermaid(source)) return;
-
-            var mermaidPre = document.createElement('pre');
-            mermaidPre.className = 'mermaid';
-            mermaidPre.textContent = source.trim();
-            replaceTarget.replaceWith(mermaidPre);
-          });
-        }
-
-        normalizeMermaidBlocks();
-
-        var mermaidNodes = document.querySelectorAll('pre.mermaid');
-        if (!mermaidNodes.length) return;
-        var optionsElement = document.getElementById('mermaid-options');
-        var mermaidOptions = {};
-        if (optionsElement) {
-          try {
-            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
-          } catch (err) {
-            mermaidOptions = {};
-          }
-        }
-        mermaid.initialize(mermaidOptions);
-        mermaid.run({ querySelector: 'pre.mermaid' });
-      })();
-    </script>
   
 </body>
 </html>

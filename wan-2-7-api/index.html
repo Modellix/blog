@@ -3,27 +3,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT"></script>
+  <!-- Production analytics start after the page load has settled. -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-4DECHYKQVT');
+    (function (document, window) {
+      if (window.location.hostname !== 'www.modellix.ai') return;
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-4DECHYKQVT');
+
+      var loaded = false;
+      function appendScript(src, crossOrigin) {
+        var script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        if (crossOrigin) script.crossOrigin = crossOrigin;
+        document.head.appendChild(script);
+      }
+      function loadAnalytics() {
+        if (loaded) return;
+        loaded = true;
+        appendScript('https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT');
+        appendScript('https://t.contentsquare.net/uxa/f39399cd2e27e.js', 'anonymous');
+        appendScript('https://app.rybbit.io/api/script.js?siteId=8a6874a918d7');
+      }
+      function scheduleAnalytics() {
+        window.setTimeout(function () {
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(loadAnalytics, { timeout: 3000 });
+          } else {
+            loadAnalytics();
+          }
+        }, 1500);
+      }
+
+      if (document.readyState === 'complete') scheduleAnalytics();
+      else window.addEventListener('load', scheduleAnalytics, { once: true });
+    })(document, window);
   </script>
-  <!-- Contentsquare -->
-  <script src="https://t.contentsquare.net/uxa/f39399cd2e27e.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wan 2.7 API Guide: Pricing, T2V and I2V Access (2026) — Modellix Blog</title>
-  <meta name="description" content="Wan 2.7 ships text-to-video and image-to-video APIs. See per-second pricing, the t2v vs i2v split, async setup, and how to access it via Modellix.">
+  <title>Wan 2.7 API Guide: Pricing, T2V and I2V Access (2026)</title>
   <meta name="keywords" content="wan 2.7 api, wan 2.7 text to video api, wan 2.7 image to video api, wan 2.7 api pricing, wan 2.7 vs wan 2.6, alibaba wan 2.7">
   
   <link rel="canonical" href="https://www.modellix.ai/blog/wan-2-7-api/">
+  
+  
+  <meta name="description" content="Wan 2.7 ships text-to-video and image-to-video APIs. See per-second pricing, the t2v vs i2v split, async setup, and how to access it via Modellix.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wan 2.7 API Guide: Pricing, T2V and I2V Access (2026)">
+<meta property="og:url" content="https://www.modellix.ai/blog/wan-2-7-api/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Wan 2.7 ships text-to-video and image-to-video APIs. See per-second pricing, the t2v vs i2v split, async setup, and how to access it via Modellix.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-wan-2-7-api.webp">
+<meta property="article:published_time" content="2026-05-29T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-06-26T06:04:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video">
+<meta property="article:tag" content="API">
+<meta property="article:tag" content="Alibaba">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-wan-2-7-api.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Wan 2.7 API Guide: Pricing, T2V and I2V Access (2026)","description":"Wan 2.7 ships text-to-video and image-to-video APIs. See per-second pricing, the t2v vs i2v split, async setup, and how to access it via Modellix.","datePublished":"2026-05-29T02:00:00.000Z","dateModified":"2026-06-26T06:04:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/wan-2-7-api/","image":"https://img.modellix.ai/en/article/cover-wan-2-7-api.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://img.modellix.ai" crossorigin>
   <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
   
     
@@ -40,19 +93,19 @@
     </a>
     <nav class="header-nav">
       
-        <a href="/blog/../" class="nav-link">Home</a>
+        <a href="https://www.modellix.ai/" class="nav-link">Home</a>
       
-        <a target="_blank" rel="noopener" href="https://docs.modellix.ai" class="nav-link">Documentation</a>
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started" class="nav-link">Documentation</a>
       
-        <a href="/blog/../about" class="nav-link">About Us</a>
+        <a href="https://www.modellix.ai/about" class="nav-link">About Us</a>
       
     </nav>
     <div class="header-actions">
       
-        <a href="/blog/../console" class="btn btn-secondary">Console</a>
+        <a href="https://www.modellix.ai/console" class="btn btn-secondary">Console</a>
       
       
-        <a href="/blog/../console/api-key" class="btn btn-primary">Get API Key</a>
+        <a href="https://www.modellix.ai/console/api-key" class="btn btn-primary">Get API Key</a>
       
       <button class="mobile-menu-toggle" aria-label="Toggle menu">
         <i data-lucide="menu"></i>
@@ -97,19 +150,19 @@
       <div class="post-header-meta">
         
           
-            <a href="/blog/categories/Model-Guides/" class="category-tag category-tag--sm">Model Guides</a>
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
           
         
       </div>
       <h1 class="post-title">How to Use the Wan 2.7 API: Pricing, Variants, and Production Access (2026)</h1>
       <div class="post-header-bottom">
-        <time class="post-date">May 29, 2026</time>
+        <time class="post-date" datetime="2026-05-29T02:00:00.000Z">May 29, 2026</time>
         
           <div class="post-header-tags">
             
-              <a href="/blog/tags/AI-Video/" class="tag-pill tag-pill--sm">AI Video</a>
+              <a href="/blog/tags/ai-video/" class="tag-pill tag-pill--sm">AI Video</a>
             
-              <a href="/blog/tags/API/" class="tag-pill tag-pill--sm">API</a>
+              <a href="/blog/tags/api/" class="tag-pill tag-pill--sm">API</a>
             
               <a href="/blog/tags/Alibaba/" class="tag-pill tag-pill--sm">Alibaba</a>
             
@@ -121,7 +174,7 @@
     
 <div class="post-author-card">
   
-    <img src="https://img.srcgptbots.com/blog/author/20260409/modellix-blog-author-official@2x.webp" alt="Modellix Team" class="post-author-avatar">
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
   
   <div class="post-author-info">
     <span class="post-author-name">Modellix Team</span>
@@ -164,12 +217,12 @@
 
 <video controls preload="metadata" title="Wan image-to-video sample generated with Wan 2.2 i2v-flash on Modellix" aria-label="Wan image-to-video sample generated with Wan 2.2 i2v-flash on Modellix" poster="https://img.modellix.ai/en/video/wan-2-7-demo/preview.jpg" style="aspect-ratio: 1280 / 720; width:100%; max-width: 1280px;">
   <source type="video/mp4" src="https://img.modellix.ai/en/video/wan-2-7-demo.mp4" />
-  <a href="https://img.modellix.ai/en/video/wan-2-7-demo.mp4" target="_blank">MP4</a>
+  <a href="https://img.modellix.ai/en/video/wan-2-7-demo.mp4" target="_blank" rel="noopener noreferrer">MP4</a>
 </video>
 
 <p><em>Sample generated through Modellix’s unified API: a first frame from Seedream 4.5, animated by the Wan series image-to-video model (Wan 2.2 i2v-flash). One API key, two models.</em></p>
 <p>Step back from the spec sheet and Wan 2.7’s place in the 2026 landscape is clear: it is the cost-performance route. Premium closed models like Google’s Veo still lead on raw fidelity, so if absolute output quality is the only metric that matters, that is where to look. Wan 2.7 competes on a different axis. Open weights create real price competition (the per-second rates below), the model is built for fast iteration, and a standard async API makes it straightforward to drop into an existing pipeline. For teams optimizing cost per usable clip instead of chasing the top of a quality benchmark, that is usually the better trade.</p>
-<h2 id="Wan-2-7-vs-Wan-2-6-What-Changed-and-Whether-It-Is-Worth-Switching"><a href="#Wan-2-7-vs-Wan-2-6-What-Changed-and-Whether-It-Is-Worth-Switching" class="headerlink" title="Wan 2.7 vs Wan 2.6: What Changed and Whether It Is Worth Switching"></a>Wan 2.7 vs Wan 2.6: What Changed and Whether It Is Worth Switching</h2><p>If your pipeline already runs <a target="_blank" rel="noopener" href="https://docs.modellix.ai/alibaba/wan-2-6-t2v">Wan 2.6</a>, the upgrade question comes down to three deltas.</p>
+<h2 id="Wan-2-7-vs-Wan-2-6-What-Changed-and-Whether-It-Is-Worth-Switching"><a href="#Wan-2-7-vs-Wan-2-6-What-Changed-and-Whether-It-Is-Worth-Switching" class="headerlink" title="Wan 2.7 vs Wan 2.6: What Changed and Whether It Is Worth Switching"></a>Wan 2.7 vs Wan 2.6: What Changed and Whether It Is Worth Switching</h2><p>If your pipeline already runs <a href="https://www.modellix.ai/series/wan">Wan 2.6</a>, the upgrade question comes down to three deltas.</p>
 <table>
 <thead>
 <tr>
@@ -296,12 +349,12 @@
 <p>To benchmark Wan 2.7 against another model, you change a slug in the endpoint path, not your architecture. Run the same prompt across Wan 2.7 and Seedance, compare task time and discard rate, then route by use case in production.</p>
 <p>From a procurement standpoint, Modellix’s parent company JG Group is NASDAQ-listed, which matters when a vendor-stability or audit-trail question lands on the integration. Full billing history and per-job cost logging are available in the dashboard without filing a support ticket.</p>
 <picture style="aspect-ratio: 1708 / 1107; width:100%; max-width: 1708px;">
-  <source type="image/webp" srcset="https://img.srcgptbots.com/en/article/modellix-one-unified-platform-for-all-ai-media-generation.webp" />
-  <img style="width: 100%; height: 100%;" src="https://img.srcgptbots.com/en/article/modellix-one-unified-platform-for-all-ai-media-generation.png" alt="Modellix unified platform routing Wan 2.7, Seedance, Kling, Seedream, and Hailuo through one API key" />
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/modellix-one-unified-platform-for-all-ai-media-generation-4ad00ae2.webp" />
+  <img style="width: 100%; height: 100%;" src="https://img.modellix.ai/en/article/modellix-one-unified-platform-for-all-ai-media-generation-4ad00ae2.png" alt="Modellix unified platform routing Wan 2.7, Seedance, Kling, Seedream, and Hailuo through one API key" />
 </picture>
 
 <div style="display:flex; gap:12px; flex-wrap:wrap; margin:24px 0;">
-  <a href="https://modellix.ai/console/api-key" class="btn btn-primary" target="_blank" rel="noopener" style="color:#ffffff; text-decoration:none;">Get Your API Key</a>
+  <a href="https://www.modellix.ai/console/api-key" class="btn btn-primary" target="_blank" rel="noopener" style="color:#ffffff; text-decoration:none;">Get Your API Key</a>
   <a href="https://docs.modellix.ai/get-started/pricing" class="btn btn-secondary" target="_blank" rel="noopener" style="color:#1a1a2e; text-decoration:none;">View Wan 2.7 Pricing</a>
 </div>
 
@@ -310,6 +363,8 @@
 <p><strong>Validate inputs locally before submitting.</strong> Confirm required fields and types, run a preflight HEAD request on every reference URL to check it resolves and meets size limits, and catch logical contradictions in the prompt before they cost a render.</p>
 <p><strong>Size timeouts for Thinking Mode.</strong> Wan 2.7 plans before it generates, so cold-start and complex-prompt latency runs higher than a direct-generation model. Set your first poll later and your overall timeout longer than you would for Wan 2.6.</p>
 <p><strong>Monitor cost slope, not just cost total.</strong> Log estimated cost per job including retries, then roll up P50 and P95 weekly. P95 cost-per-job tells you when a new resolution setting is quietly getting expensive before it shows up on the invoice.</p>
+<section class="collection-cta collection-cta--wide" aria-labelledby="collection-cta-video-generator"><a class="collection-cta-media" href="https://www.modellix.ai/collections/ai-video-generator" data-cta="collection_cta" data-cta-campaign="video-generator" aria-label="Open Shortlist AI Video Models for Production"><img src="https://img.modellix.ai/en/article/creator-pipeline.webp" alt="Unified AI video production pipeline across multiple models" width="1536" height="1024" loading="lazy" decoding="async" data-no-zoom></a><div class="collection-cta-content"><div class="collection-cta-copy"><p class="collection-cta-eyebrow"><i data-lucide="layers-3" aria-hidden="true"></i> Modellix collection</p><h3 id="collection-cta-video-generator" class="collection-cta-title">Shortlist AI Video Models for Production</h3><p class="collection-cta-description">Compare text, image, and reference-led video workflows across multiple models from one production surface.</p></div><div class="collection-cta-actions"><p class="collection-cta-models"><strong>Good first tests:</strong> <a href="https://www.modellix.ai/models/bytedance/seedance-2.0-t2v" data-cta="collection_cta" data-cta-campaign="video-generator">Seedance 2.0</a><span aria-hidden="true">/</span><a href="https://www.modellix.ai/models/alibaba/wan2.7-t2v" data-cta="collection_cta" data-cta-campaign="video-generator">Wan 2.7</a><span aria-hidden="true">/</span><a href="https://www.modellix.ai/models/alibaba/happyhorse-1.1-t2v" data-cta="collection_cta" data-cta-campaign="video-generator">HappyHorse 1.1</a></p><a class="collection-cta-button" href="https://www.modellix.ai/collections/ai-video-generator" data-cta="collection_cta" data-cta-campaign="video-generator"><span>Explore the collection</span><i data-lucide="arrow-right" aria-hidden="true"></i></a></div></div></section>
+
 <!-- modellix-how-to-start -->
 <h2 id="How-to-Test-Wan-2-7-Before-API-Integration"><a href="#How-to-Test-Wan-2-7-Before-API-Integration" class="headerlink" title="How to Test Wan 2.7 Before API Integration"></a>How to Test Wan 2.7 Before API Integration</h2><p>Most readers should not start with code. Use the Modellix Playground to run one real Wan 2.7 job first, then move to API, Skill, or CLI only after the prompt, settings, cost, and output format are worth repeating. This keeps the guide useful for creators, product teams, and technical buyers, while developers still get a clean implementation path.</p>
 <div style="border:1px solid #D7DEFF; border-left:5px solid #6A5BFF; background:#F8FAFF; border-radius:8px; padding:22px 24px; margin:24px 0 30px; box-shadow:0 10px 24px rgba(50, 60, 140, 0.06);">
@@ -325,7 +380,7 @@
 <h3 id="Step-1-Create-or-Sign-In-and-Use-the-Included-1-Credit"><a href="#Step-1-Create-or-Sign-In-and-Use-the-Included-1-Credit" class="headerlink" title="Step 1: Create or Sign In and Use the Included $1 Credit"></a>Step 1: Create or Sign In and Use the Included $1 Credit</h3><p><a href="https://www.modellix.ai/console" target="_blank" rel="noopener noreferrer">Create or sign in to a Modellix account</a> before you test Wan 2.7 video generation. New users can use the included $1 credit to validate model behavior, prompt quality, output download, and request logging without committing to a full integration.</p>
 <figure style="margin:20px 0;">
   <picture style="aspect-ratio: 1440 / 818; width:100%; max-width:1440px;">
-    <img width="1440" height="818" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="/blog/assets/modellix-login-free-credit.png" alt="Modellix sign in screen for creating an account and using the included one dollar credit" />
+    <img width="1440" height="818" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="https://img.modellix.ai/en/article/modellix-login-free-credit.png" alt="Modellix sign in screen for creating an account and using the included one dollar credit" />
   </picture>
   <figcaption style="font-size:13px; color:#64748B; margin-top:6px;">Start with a free account so the first model test has real credit, billing, and request history behind it.</figcaption>
 </figure>
@@ -333,7 +388,7 @@
 <h3 id="Step-2-Open-the-Model-Page-and-Run-One-Prompt"><a href="#Step-2-Open-the-Model-Page-and-Run-One-Prompt" class="headerlink" title="Step 2: Open the Model Page and Run One Prompt"></a>Step 2: Open the Model Page and Run One Prompt</h3><p>After login, use the dashboard shortcuts or the <a href="https://www.modellix.ai/models" target="_blank" rel="noopener noreferrer">Modellix model catalog</a> to open <a href="https://www.modellix.ai/models/alibaba/wan2.7-t2v" target="_blank" rel="noopener noreferrer">Wan 2.7 T2V model page</a>. For video models, start with a short clip, then check aspect ratio, duration, resolution, motion quality, and whether the output is worth repeating. This step is the fastest way to learn whether the model fits before you read more code.</p>
 <figure style="margin:20px 0;">
   <picture style="aspect-ratio: 1440 / 735; width:100%; max-width:1440px;">
-    <img width="1440" height="735" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="/blog/assets/modellix-dashboard-free-credit.png" alt="Modellix dashboard showing balance, model shortcuts, API key access, documentation, Skill, CLI, and featured models" />
+    <img width="1440" height="735" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="https://img.modellix.ai/en/article/modellix-dashboard-free-credit.png" alt="Modellix dashboard showing balance, model shortcuts, API key access, documentation, Skill, CLI, and featured models" />
   </picture>
   <figcaption style="font-size:13px; color:#64748B; margin-top:6px;">The dashboard routes non-technical users to Playground and technical users to API Key, Documentation, Skill, or CLI.</figcaption>
 </figure>
@@ -359,7 +414,7 @@
 <h3 id="Step-4-Create-an-API-Key-Only-When-the-Test-Needs-to-Repeat"><a href="#Step-4-Create-an-API-Key-Only-When-the-Test-Needs-to-Repeat" class="headerlink" title="Step 4: Create an API Key Only When the Test Needs to Repeat"></a>Step 4: Create an API Key Only When the Test Needs to Repeat</h3><p>Stay in Playground for one-off exploration. Create an API key when a backend service, agent, batch script, or CLI workflow needs to repeat the same prompt pattern. This keeps the mainstream testing flow simple while giving developers a clean handoff point.</p>
 <figure style="margin:20px 0;">
   <picture style="aspect-ratio: 1440 / 744; width:100%; max-width:1440px;">
-    <img width="1440" height="744" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="/blog/assets/modellix-create-api-key.png" alt="Modellix API key screen showing the create API key modal for backend, CLI, batch, and agent workflows" />
+    <img width="1440" height="744" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="https://img.modellix.ai/en/article/modellix-create-api-key.png" alt="Modellix API key screen showing the create API key modal for backend, CLI, batch, and agent workflows" />
   </picture>
   <figcaption style="font-size:13px; color:#64748B; margin-top:6px;">Create an API key after the Playground result proves the prompt and settings are worth automating.</figcaption>
 </figure>
@@ -367,7 +422,7 @@
 <h3 id="Step-5-Check-Logs-and-Save-the-Result-Before-Scaling"><a href="#Step-5-Check-Logs-and-Save-the-Result-Before-Scaling" class="headerlink" title="Step 5: Check Logs and Save the Result Before Scaling"></a>Step 5: Check Logs and Save the Result Before Scaling</h3><p>Before scaling from one manual run to repeated API, Skill, or CLI usage, review request history. Logs confirm the model slug, API key name, task status, request time, and result retention window, which makes the workflow easier to debug after it leaves Playground.</p>
 <figure style="margin:20px 0;">
   <picture style="aspect-ratio: 1440 / 743; width:100%; max-width:1440px;">
-    <img width="1440" height="743" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="/blog/assets/modellix-request-history.png" alt="Modellix request history showing successful model calls, model slugs, API key names, status, and request timestamps" />
+    <img width="1440" height="743" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="https://img.modellix.ai/en/article/modellix-request-history.png" alt="Modellix request history showing successful model calls, model slugs, API key names, status, and request timestamps" />
   </picture>
   <figcaption style="font-size:13px; color:#64748B; margin-top:6px;">Use request history to verify model calls, success status, and generated media retention before you scale.</figcaption>
 </figure>
@@ -394,20 +449,20 @@
 <p><strong>Does Wan 2.7 generate audio?</strong></p>
 <p>Yes. Wan 2.7 produces synchronized native audio in the same generation pass, rather than requiring a separate lip-sync or sound model. Pass <code>generate_audio: true</code> on the request when you want it.</p>
 <p><strong>How do I access Wan 2.7 on Modellix?</strong></p>
-<p>Get an API key at <a target="_blank" rel="noopener" href="https://modellix.ai/console/api-key">modellix.ai&#x2F;console&#x2F;api-key</a>. Both endpoints are available under the <code>alibaba/</code> namespace: <code>https://api.modellix.ai/api/v1/alibaba/wan-2.7-t2v/async</code> for text-to-video and <code>wan-2.7-i2v</code> for image-to-video. <mark>No separate Alibaba Cloud account required.</mark> The full Wan 2.7 family, including image models, is listed on the <a href="https://www.modellix.ai/series/wan-2-7">Wan 2.7 series page</a>.</p>
+<p>Get an API key at <a href="https://www.modellix.ai/console/api-key">modellix.ai&#x2F;console&#x2F;api-key</a>. Both endpoints are available under the <code>alibaba/</code> namespace: <code>https://api.modellix.ai/api/v1/alibaba/wan-2.7-t2v/async</code> for text-to-video and <code>wan-2.7-i2v</code> for image-to-video. <mark>No separate Alibaba Cloud account required.</mark> The full Wan 2.7 family, including image models, is listed on the <a href="https://www.modellix.ai/series/wan">Wan 2.7 series page</a>.</p>
 <p><strong>How does Modellix pricing compare to going direct to Alibaba Cloud?</strong></p>
 <p>As of May 2026, Modellix prices Wan 2.7 access at roughly 60% of Alibaba Cloud’s official rate, billed per request with transparent per-model pricing at <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started/pricing">docs.modellix.ai&#x2F;get-started&#x2F;pricing</a>. Beyond price, the value is one API key, one billing dashboard, and the same async pattern across Wan 2.7, Seedance, Kling, and Hailuo.</p>
 <hr>
-<p><em>Wan 2.7 specifications are based on Alibaba Tongyi Lab’s April 6, 2026 announcement. Provider pricing reflects public list prices as of May 2026 and changes frequently. Access Wan 2.7 text-to-video and image-to-video alongside Seedance, Kling, Seedream, and Hailuo through a single API key at <a target="_blank" rel="noopener" href="https://modellix.ai/">modellix.ai</a>.</em></p>
+<p><em>Wan 2.7 specifications are based on Alibaba Tongyi Lab’s April 6, 2026 announcement. Provider pricing reflects public list prices as of May 2026 and changes frequently. Access Wan 2.7 text-to-video and image-to-video alongside Seedance, Kling, Seedream, and Hailuo through a single API key at <a href="https://www.modellix.ai/">modellix.ai</a>.</em></p>
 
         </div>
 
         <div class="post-tags-bottom">
           
             
-              <a href="/blog/tags/AI-Video/" class="tag-pill tag-pill--sm">AI Video</a>
+              <a href="/blog/tags/ai-video/" class="tag-pill tag-pill--sm">AI Video</a>
             
-              <a href="/blog/tags/API/" class="tag-pill tag-pill--sm">API</a>
+              <a href="/blog/tags/api/" class="tag-pill tag-pill--sm">API</a>
             
               <a href="/blog/tags/Alibaba/" class="tag-pill tag-pill--sm">Alibaba</a>
             
@@ -420,7 +475,7 @@
   <div class="post-cta-content">
     <h2 class="post-cta-title">Ready to Get Started?</h2>
     <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
-    <a href="../../../console" class="btn post-cta-btn">
+    <a href="https://www.modellix.ai/console" class="btn post-cta-btn">
       <span>Start for Free</span>
       <i data-lucide="arrow-right"></i>
     </a>
@@ -434,60 +489,60 @@
   <h2 class="related-articles-title">Related Articles</h2>
   <div class="related-articles-grid">
     
-      <a href="/blog/veo-3-1-api/" class="related-article-card">
+      <a href="/blog/ai-image-edit-api/" class="related-article-card">
         
           <div class="related-article-cover">
-            <img src="https://img.modellix.ai/en/article/cover-veo-3-1-api.webp" alt="Veo 3.1 API Guide: Pricing, Access, and How to Use It (2026)" loading="lazy">
+            <img src="https://img.modellix.ai/en/article/cover-ai-image-edit-api.webp" alt="AI Image Edit API: 16 References, Masks, Flare vs Sunburst" loading="lazy">
           </div>
         
         <div class="related-article-body">
           
             <div class="related-article-meta">
               
-                <span class="category-tag category-tag--sm">Model Guides</span>
+                <span class="category-tag category-tag--sm">Guides</span>
               
             </div>
           
-          <h3 class="related-article-name">Veo 3.1 API Guide: Pricing, Access, and How to Use It (2026)</h3>
-          <time class="related-article-date">June 12, 2026</time>
+          <h3 class="related-article-name">AI Image Edit API: 16 References, Masks, Flare vs Sunburst</h3>
+          <time class="related-article-date" datetime="2026-09-16T16:00:00.000Z">September 17, 2026</time>
         </div>
       </a>
     
-      <a href="/blog/hailuo-ai-api/" class="related-article-card">
+      <a href="/blog/gpt-image-2-5-api/" class="related-article-card">
         
           <div class="related-article-cover">
-            <img src="https://img.modellix.ai/en/article/cover-hailuo-ai-api.webp" alt="Hailuo AI API: Pricing, Hailuo 02 vs 2.3, Access (2026)" loading="lazy">
+            <img src="https://img.modellix.ai/en/article/cover-gpt-image-2-5-api.webp" alt="GPT Image 2.5 API: Flare vs Sunburst, Four Model IDs" loading="lazy">
           </div>
         
         <div class="related-article-body">
           
             <div class="related-article-meta">
               
-                <span class="category-tag category-tag--sm">Model Guides</span>
+                <span class="category-tag category-tag--sm">Guides</span>
               
             </div>
           
-          <h3 class="related-article-name">Hailuo AI API: Pricing, Hailuo 02 vs 2.3, Access (2026)</h3>
-          <time class="related-article-date">June 1, 2026</time>
+          <h3 class="related-article-name">GPT Image 2.5 API: Flare vs Sunburst, Four Model IDs</h3>
+          <time class="related-article-date" datetime="2026-09-16T16:00:00.000Z">September 17, 2026</time>
         </div>
       </a>
     
-      <a href="/blog/gpt-image-2-api/" class="related-article-card">
+      <a href="/blog/ai-video-generation-workflow/" class="related-article-card">
         
           <div class="related-article-cover">
-            <img src="https://img.modellix.ai/en/article/cover-gpt-image-2-api.webp" alt="GPT Image 2 API: Pricing, All 4 OpenAI Image Models, and Production Setup (2026)" loading="lazy">
+            <img src="https://img.modellix.ai/en/article/cover-ai-video-generation-workflow.webp" alt="AI Video Generation Workflow: Async Tasks and Batch Runs" loading="lazy">
           </div>
         
         <div class="related-article-body">
           
             <div class="related-article-meta">
               
-                <span class="category-tag category-tag--sm">Model Guides</span>
+                <span class="category-tag category-tag--sm">Guides</span>
               
             </div>
           
-          <h3 class="related-article-name">GPT Image 2 API: Pricing, All 4 OpenAI Image Models, and Production Setup (2026)</h3>
-          <time class="related-article-date">May 14, 2026</time>
+          <h3 class="related-article-name">AI Video Generation Workflow: Async Tasks and Batch Runs</h3>
+          <time class="related-article-date" datetime="2026-09-16T11:48:00.000Z">September 16, 2026</time>
         </div>
       </a>
     
@@ -505,7 +560,7 @@
       <ul class="post-toc-list"></ul>
     </nav>
 
-    <a href="../../../console" class="sidebar-cta">
+    <a href="https://www.modellix.ai/console" class="sidebar-cta">
       <span class="sidebar-cta-text">
         <span class="sidebar-cta-title">Try Modellix</span>
         <span class="sidebar-cta-desc">Start creating with AI</span>
@@ -516,9 +571,9 @@
     <div class="post-share">
       <span class="post-share-label">Share this article</span>
       <div class="post-share-links">
-        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/blog/wan-2-7-api/&text=Wan%202.7%20API%20Guide%3A%20Pricing%2C%20T2V%20and%20I2V%20Access%20(2026)" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/blog/wan-2-7-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/blog/wan-2-7-api/"><i class="fa-solid fa-link"></i></button>
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/wan-2-7-api/&text=Wan%202.7%20API%20Guide%3A%20Pricing%2C%20T2V%20and%20I2V%20Access%20(2026)" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/wan-2-7-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/wan-2-7-api/"><i class="fa-solid fa-link"></i></button>
       </div>
     </div>
   </div>
@@ -563,88 +618,12 @@
   </div>
 </footer>
 
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <script>lucide.createIcons();</script>
+  <script defer src="https://unpkg.com/lucide@1.47.0/dist/umd/lucide.min.js" onload="window.lucide && window.lucide.createIcons();"></script>
   
     
       <script src="/blog/js/modellix.js"></script>
     
   
-  
-    <script src="https://unpkg.com/mermaid@11.12.0/dist/mermaid.min.js"></script>
-    <script type="application/json" id="mermaid-options">{"startOnLoad":false,"theme":"base","themeVariables":{"background":"#f8fafc","primaryColor":"#eef2ff","primaryBorderColor":"#6366f1","primaryTextColor":"#111827","lineColor":"#64748b","tertiaryColor":"#ffffff","fontFamily":"Roboto, sans-serif"}}</script>
-    <script>
-      (function () {
-        if (!window.mermaid) return;
-        var mermaidKeywords = [
-          'flowchart', 'graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram',
-          'stateDiagram-v2', 'erDiagram', 'journey', 'gantt', 'pie', 'mindmap',
-          'timeline', 'gitGraph', 'quadrantChart', 'xychart-beta', 'block-beta',
-          'packet-beta', 'kanban', 'architecture'
-        ];
-
-        function looksLikeMermaid(source) {
-          if (!source) return false;
-          var trimmed = source.trim();
-          return mermaidKeywords.some(function (keyword) {
-            return trimmed.indexOf(keyword) === 0;
-          });
-        }
-
-        function extractCodeText(node) {
-          if (!node) return '';
-          if (node.matches('figure.highlight')) {
-            var figureCode = node.querySelector('td.code pre');
-            return figureCode ? figureCode.textContent || '' : '';
-          }
-          if (node.matches('pre > code')) {
-            return node.textContent || '';
-          }
-          if (node.matches('pre')) {
-            return node.textContent || '';
-          }
-          var nestedCode = node.querySelector('td.code pre, pre > code, code, pre');
-          return nestedCode ? nestedCode.textContent || '' : '';
-        }
-
-        function normalizeMermaidBlocks() {
-          var candidates = document.querySelectorAll(
-            'pre.mermaid, figure.highlight, pre code.language-mermaid, pre code.language-plaintext'
-          );
-
-          candidates.forEach(function (node) {
-            if (node.matches('pre.mermaid')) return;
-
-            var replaceTarget = node.closest('figure.highlight') || node.closest('pre') || node;
-            if (!replaceTarget) return;
-
-            var source = extractCodeText(replaceTarget);
-            if (!looksLikeMermaid(source)) return;
-
-            var mermaidPre = document.createElement('pre');
-            mermaidPre.className = 'mermaid';
-            mermaidPre.textContent = source.trim();
-            replaceTarget.replaceWith(mermaidPre);
-          });
-        }
-
-        normalizeMermaidBlocks();
-
-        var mermaidNodes = document.querySelectorAll('pre.mermaid');
-        if (!mermaidNodes.length) return;
-        var optionsElement = document.getElementById('mermaid-options');
-        var mermaidOptions = {};
-        if (optionsElement) {
-          try {
-            mermaidOptions = JSON.parse(optionsElement.textContent || '{}');
-          } catch (err) {
-            mermaidOptions = {};
-          }
-        }
-        mermaid.initialize(mermaidOptions);
-        mermaid.run({ querySelector: 'pre.mermaid' });
-      })();
-    </script>
   
 </body>
 </html>

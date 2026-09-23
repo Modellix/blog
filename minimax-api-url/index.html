@@ -1,0 +1,588 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Production analytics start after the page load has settled. -->
+  <script>
+    (function (document, window) {
+      if (window.location.hostname !== 'www.modellix.ai') return;
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-4DECHYKQVT');
+
+      var loaded = false;
+      function appendScript(src, crossOrigin) {
+        var script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        if (crossOrigin) script.crossOrigin = crossOrigin;
+        document.head.appendChild(script);
+      }
+      function loadAnalytics() {
+        if (loaded) return;
+        loaded = true;
+        appendScript('https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT');
+        appendScript('https://t.contentsquare.net/uxa/f39399cd2e27e.js', 'anonymous');
+        appendScript('https://app.rybbit.io/api/script.js?siteId=8a6874a918d7');
+      }
+      function scheduleAnalytics() {
+        window.setTimeout(function () {
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(loadAnalytics, { timeout: 3000 });
+          } else {
+            loadAnalytics();
+          }
+        }, 1500);
+      }
+
+      if (document.readyState === 'complete') scheduleAnalytics();
+      else window.addEventListener('load', scheduleAnalytics, { once: true });
+    })(document, window);
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MiniMax API URL: Base URLs, Endpoints and Working Code</title>
+  <meta name="keywords" content="minimax api url, minimax api base url, minimax api endpoint, minimax api docs, minimax api documentation, minimax anthropic api, hailuo api, minimax api usage, minimax api free">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/minimax-api-url/">
+  
+  
+  <meta name="description" content="Every MiniMax API URL in one place: the base URLs for each protocol, the exact endpoint paths, the &#x2F;async change, and copy-ready code for every host you call.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MiniMax API URL: Base URLs, Endpoints and Working Code">
+<meta property="og:url" content="https://www.modellix.ai/blog/minimax-api-url/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Every MiniMax API URL in one place: the base URLs for each protocol, the exact endpoint paths, the &#x2F;async change, and copy-ready code for every host you call.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-minimax-api-url.webp">
+<meta property="article:published_time" content="2026-09-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-12T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="API Integration">
+<meta property="article:tag" content="Developer Guides">
+<meta property="article:tag" content="Endpoints">
+<meta property="article:tag" content="MiniMax">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-minimax-api-url.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"MiniMax API URL: Base URLs, Endpoints and Working Code","description":"Every MiniMax API URL in one place: the base URLs for each protocol, the exact endpoint paths, the /async change, and copy-ready code for every host you call.","datePublished":"2026-09-12T16:00:00.000Z","dateModified":"2026-09-12T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/minimax-api-url/","image":"https://img.modellix.ai/en/article/cover-minimax-api-url.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://img.modellix.ai" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="https://www.modellix.ai/" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started" class="nav-link">Documentation</a>
+      
+        <a href="https://www.modellix.ai/about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="https://www.modellix.ai/console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="https://www.modellix.ai/console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">MiniMax API URL: Base URLs, Endpoints and Working Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">MiniMax API URL: Base URLs, Endpoints and Working Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-09-12T16:00:00.000Z">September 13, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/api-integration/" class="tag-pill tag-pill--sm">API Integration</a>
+            
+              <a href="/blog/tags/minimax/" class="tag-pill tag-pill--sm">MiniMax</a>
+            
+              <a href="/blog/tags/Endpoints/" class="tag-pill tag-pill--sm">Endpoints</a>
+            
+              <a href="/blog/tags/Developer-Guides/" class="tag-pill tag-pill--sm">Developer Guides</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>Search for the MiniMax API URL and you get one answer, repeated: https://api.minimax.io/v1. That string is real — it is MiniMax&#39;s OpenAI-compatible base URL — but it is only one of the addresses a working integration needs.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-minimax-api-url.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-minimax-api-url.png" alt="Modellix editorial cover reading MINIMAX API URL over THREE HOSTS, ONE MAP, with three glass host panels feeding a single amber API key" />
+</picture>
+
+<p>Search for the MiniMax API URL and you get one answer, repeated: <code>https://api.minimax.io/v1</code>. That string is real — it is MiniMax’s OpenAI-compatible base URL — but it is only one of the addresses a working integration needs. Change the protocol and the host stays, the path prefix changes. Change the modality and you are on <code>v2/query/video_generation</code>. Route the same model through an aggregator and the host changes entirely, because the aggregator splits media, text, and tools across three different domains.</p>
+<p>This page is the URL and endpoint reference for all of those cases, read first-party on <strong>September 13, 2026</strong>. One disclosure: Modellix runs this blog and is an aggregator, so we have a commercial interest in the second half of this page. The MiniMax side is quoted from MiniMax’s own documentation with read dates; where we could not verify something first-party, this page says so rather than filling the gap.</p>
+<h2 id="The-MiniMax-API-URL-endpoint-by-endpoint-verified-September-13-2026"><a href="#The-MiniMax-API-URL-endpoint-by-endpoint-verified-September-13-2026" class="headerlink" title="The MiniMax API URL, endpoint by endpoint (verified September 13, 2026)"></a>The MiniMax API URL, endpoint by endpoint (verified September 13, 2026)</h2><p>MiniMax publishes a single primary international API host and separates the protocols by path rather than by domain — the one exception is a second host for latency-sensitive speech, noted below. These are the endpoints we could verify in MiniMax’s API reference on September 13, 2026:</p>
+<table>
+<thead>
+<tr>
+<th>What you are calling</th>
+<th>Base URL and path</th>
+<th>Source page</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>OpenAI-compatible text (Chat Completions)</td>
+<td><code>https://api.minimax.io/v1</code> → <code>POST /v1/chat/completions</code></td>
+<td><a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/api-reference/text-openai-api">OpenAI SDK</a></td>
+</tr>
+<tr>
+<td>Anthropic-compatible text (Messages)</td>
+<td><code>https://api.minimax.io/anthropic</code> → <code>POST /v1/messages</code></td>
+<td><a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/api-reference/text-anthropic-api">Anthropic SDK</a></td>
+</tr>
+<tr>
+<td>OpenAI-compatible text (Responses)</td>
+<td><code>https://api.minimax.io/v1</code> → <code>POST /v1/responses</code></td>
+<td><a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/api-reference/responses-create">Create Response</a></td>
+</tr>
+<tr>
+<td>Video generation (asynchronous)</td>
+<td><code>POST https://api.minimax.io/v2/video_generation</code></td>
+<td><a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/api-reference/video-generation-v2-create">Create video task</a></td>
+</tr>
+<tr>
+<td>Video result lookup</td>
+<td><code>GET https://api.minimax.io/v2/query/video_generation/&#123;task_id&#125;</code></td>
+<td><a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/api-reference/video-generation-v2-query">Query task</a></td>
+</tr>
+<tr>
+<td>Image generation</td>
+<td><code>POST https://api.minimax.io/v1/image_generation</code></td>
+<td><a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/api-reference/image-generation-t2i">Text to image</a></td>
+</tr>
+<tr>
+<td>Speech synthesis (T2A)</td>
+<td><code>POST https://api.minimax.io/v1/t2a_v2</code></td>
+<td><a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/api-reference/speech-t2a-http">T2A over HTTP</a></td>
+</tr>
+<tr>
+<td>File upload (inputs for other calls)</td>
+<td><code>POST https://api.minimax.io/v1/files/upload</code></td>
+<td><a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/api-reference/file-management-upload">File management</a></td>
+</tr>
+</tbody></table>
+<p>Two details inside that table cause most of the copy-paste errors we see. <strong>The Anthropic base URL has no <code>/v1</code>.</strong> Set <code>ANTHROPIC_BASE_URL=https://api.minimax.io/anthropic</code> and let the SDK append the Messages route; appending <code>/v1</code> yourself produces a 404 that looks like a model problem and is not one. <strong>Speech has a second host.</strong> Alongside <code>POST https://api.minimax.io/v1/t2a_v2</code>, MiniMax documents <code>https://api-uw.minimax.io/v1/t2a_v2</code> as an “Alternative Endpoint, Reduced Time to First Audio (TTFA)” — a latency trade, not a regional requirement.</p>
+<p>One thing we could not verify, and will not invent. The mainland-China API host: third-party guides publish a separate <code>api.minimaxi.com</code> base URL, but the MiniMax pages we read that day — eight API reference and guide pages plus the documentation index — contain <code>api.minimax.io</code> only. If you registered on the China-region platform, take the base URL from that console rather than from a blog. The protocol surface, by contrast, is documented and we corrected our own draft on it: MiniMax publishes <strong>three</strong> protocol surfaces on <code>api.minimax.io</code> — Chat Completions, Anthropic Messages, and the OpenAI Responses API (<code>POST /v1/responses</code>, plus <code>POST /v1/responses/input_tokens</code> for token estimation).</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/minimax-official-base-url.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/minimax-official-base-url.png" alt="MiniMax documentation page showing the OPENAI_BASE_URL environment variable set to api.minimax.io/v1" loading="lazy" />
+</picture>
+
+<p><em>MiniMax’s own OpenAI SDK page, captured September 13, 2026: the base URL is set as an environment variable, not as a full chat-completions URL. That distinction is the difference between a working client and a 404.</em></p>
+<h2 id="The-same-models-behind-a-different-base-URL-how-an-aggregator-splits-one-vendor-across-three-hosts"><a href="#The-same-models-behind-a-different-base-URL-how-an-aggregator-splits-one-vendor-across-three-hosts" class="headerlink" title="The same models behind a different base URL: how an aggregator splits one vendor across three hosts"></a>The same models behind a different base URL: how an aggregator splits one vendor across three hosts</h2><p>If you reach MiniMax through an aggregator instead of a MiniMax account, the base URL is not a swap — it is a split. Modellix, the aggregator behind this blog, runs three hosts, and each one answers a different kind of request:</p>
+<table>
+<thead>
+<tr>
+<th>Host</th>
+<th>What it serves</th>
+<th>Path shape</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>https://api.modellix.ai</code></td>
+<td>Asynchronous media generation — image, video, speech</td>
+<td><code>POST /api/v1/minimax/hailuo-2.3-t2v</code> → returns a <code>task_id</code>; <code>GET /api/v1/tasks/&#123;task_id&#125;</code> for the result</td>
+</tr>
+<tr>
+<td><code>https://llm.modellix.ai</code></td>
+<td>Text, synchronous, optional SSE streaming</td>
+<td><code>POST /v1/chat/completions</code> and <code>POST /v1/responses</code> (OpenAI-style); <code>POST /v1/messages</code> (Anthropic-style)</td>
+</tr>
+<tr>
+<td><code>https://tool.modellix.ai</code></td>
+<td>Web Search and Web Fetch</td>
+<td><code>POST /v1/web-search</code>, <code>POST /v1/web-fetch</code></td>
+</tr>
+</tbody></table>
+<p>The one rule that matters more than any individual path: do not mix them. <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/api/api">Modellix’s LLM API documentation</a> puts it flatly — media generation “uses <code>https://api.modellix.ai</code> and async tasks. <strong>Do not mix that host with the LLM gateway.</strong>“ The gateway host also carries the base-URL asymmetry: OpenAI-compatible clients use <code>https://llm.modellix.ai/v1</code>, while Anthropic-compatible clients use <code>https://llm.modellix.ai</code> with no <code>/v1</code>, because the SDK appends <code>/v1/messages</code> itself.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/modellix-hosts-base-url.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/modellix-hosts-base-url.png" alt="Modellix LLM API documentation showing the host, /v1 path prefix, and Bearer or x-api-key authentication" loading="lazy" />
+</picture>
+
+<p><em>Modellix’s LLM API page, captured September 13, 2026. Both auth headers are accepted; the base URL differs by client type — <code>/v1</code> for OpenAI-style clients, no <code>/v1</code> for Anthropic-style clients.</em></p>
+<p>Now the part most aggregator pages skip: which MiniMax models actually sit behind those URLs. On the Modellix side the current MiniMax catalogue is <strong>13 model pages, all video or speech</strong> — H3 in T2V, I2V, FL2V and V2V variants; Hailuo 2.3 and Hailuo 02; and the speech routes (speech-2.8-hd, speech-2.8-turbo, a voice-clone endpoint), grouped on our MiniMax speech series page — read from the <a href="https://www.modellix.ai/providers/minimax">MiniMax provider page</a> on September 13, 2026. The <code>/llm</code> price table that same day listed Anthropic, DeepSeek, Google, Moonshot, OpenAI, Qwen, xAI and ZAI prefixes, and <strong>no <code>minimax/*</code> model IDs at all</strong>. So MiniMax’s M-series text models are not reachable through the Modellix gateway — for those, the base URL in the first section is the one you want. Aggregators cover a vendor unevenly — MiniMax’s M3 text model, for example, is served by other aggregators rather than by this one (<a target="_blank" rel="noopener" href="https://openrouter.ai/minimax/minimax-m3">OpenRouter’s M3 page</a> is one instance) — and we would rather say that than let you discover it after planning around the wrong URL.</p>
+<p>To be clear about our own trade-off here: three hosts behind one key is a convenience, not a superiority claim. It means one credential, one bill, and per-request logs across media and text — and it also means one more hop between your request and the model, and a catalogue that changes week to week. Check the URL before you build on it.</p>
+<h2 id="The-async-suffix-is-gone-the-path-to-write-and-the-one-that-still-works"><a href="#The-async-suffix-is-gone-the-path-to-write-and-the-one-that-still-works" class="headerlink" title="The /async suffix is gone: the path to write, and the one that still works"></a>The <code>/async</code> suffix is gone: the path to write, and the one that still works</h2><p>Here is the change that makes half the tutorials on the internet look wrong while still working. On <strong>June 11, 2026</strong> Modellix removed the <code>/async</code> suffix from model invocation paths. The changelog wording is exact: “We have simplified all model API endpoints by removing the <code>/async</code> suffix. Existing integrations using <code>/async</code> will continue to work seamlessly.” The example it gives is <code>POST /alibaba/qwen-image-edit-plus/async</code>, now simply <code>POST /alibaba/qwen-image-edit-plus</code>, with “full backwards compatibility” stated explicitly.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Path for a MiniMax video route on Modellix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Current form</td>
+<td><code>POST https://api.modellix.ai/api/v1/minimax/hailuo-2.3-t2v</code></td>
+</tr>
+<tr>
+<td>Old form, still accepted</td>
+<td><code>POST https://api.modellix.ai/api/v1/minimax/hailuo-2.3-t2v/async</code></td>
+</tr>
+</tbody></table>
+<p>This is why documentation can look internally inconsistent: Modellix’s own REST tutorial still shows <code>/async</code> in its curl examples as of September 13, 2026, and both forms return a <code>task_id</code>. Copying from a page written before June 2026 is not a bug — but new code should write the current path, so the next refactor does not have to remove a suffix you added on purpose. The full entry is in the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/changelog/product-updates">product changelog</a>.</p>
+<p>The version segment is the other half of the lesson. MiniMax’s video creation endpoint sits at <code>v2</code> (<code>POST https://api.minimax.io/v2/video_generation</code>) with its query at <code>GET /v2/query/video_generation/&#123;task_id&#125;</code>. Take versions from the live API reference, not from a tutorial — we will not claim a URL you copy today resolves next quarter, on either host. That is why the dated changelog exists.</p>
+<h2 id="Working-code-for-each-host"><a href="#Working-code-for-each-host" class="headerlink" title="Working code for each host"></a>Working code for each host</h2><p>Three calls, one per surface. Substitute your own key in every case; on the MiniMax side it is a MiniMax key, on the Modellix side it is a Modellix key (<code>mdlx-…</code>) — a vendor platform key will not authenticate the gateway, and vice versa.</p>
+<p><strong>1. MiniMax, video, direct.</strong> Create the task, then poll <code>content.url</code> for the finished file:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create — fields per MiniMax&#x27;s Create Video Generation Task reference</span></span><br><span class="line">curl -sS https://api.minimax.io/v2/video_generation \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$MINIMAX_API_KEY</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;model&quot;: &quot;MiniMax-H3&quot;,</span></span><br><span class="line"><span class="string">    &quot;content&quot;: [&#123;&quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;A glass cube rotating on a dark surface, studio lighting&quot;&#125;],</span></span><br><span class="line"><span class="string">    &quot;resolution&quot;: &quot;768P&quot;,</span></span><br><span class="line"><span class="string">    &quot;duration&quot;: 5,</span></span><br><span class="line"><span class="string">    &quot;ratio&quot;: &quot;16:9&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Query by the task_id that comes back</span></span><br><span class="line">curl -sS <span class="string">&quot;https://api.minimax.io/v2/query/video_generation/<span class="variable">$TASK_ID</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$MINIMAX_API_KEY</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>2. Modellix, media, asynchronous.</strong> The same shape as any Modellix media route — one <code>prompt</code> is the only required field for Hailuo 2.3 T2V, per the public schema, and the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api">REST API tutorial</a> documents the <code>task_id</code> handshake. Note the path has no <code>/async</code>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">curl -sS https://api.modellix.ai/api/v1/minimax/hailuo-2.3-t2v \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$MODELLIX_API_KEY</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;&quot;prompt&quot;: &quot;A glass cube rotating on a dark surface, studio lighting&quot;&#125;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># → &#123;&quot;code&quot;:0,&quot;message&quot;:&quot;success&quot;,&quot;data&quot;:&#123;&quot;status&quot;:&quot;pending&quot;,&quot;task_id&quot;:&quot;task-abc123&quot;,</span></span><br><span class="line"><span class="comment">#    &quot;get_result&quot;:&#123;&quot;method&quot;:&quot;GET&quot;,&quot;url&quot;:&quot;https://api.modellix.ai/api/v1/tasks/task-abc123&quot;&#125;&#125;&#125;</span></span><br><span class="line"></span><br><span class="line">curl -sS https://api.modellix.ai/api/v1/tasks/task-abc123 \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$MODELLIX_API_KEY</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>3. Modellix, text, synchronous.</strong> Same key, different host, and — because this is the OpenAI-compatible surface — the base URL carries <code>/v1</code>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openai <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">client = OpenAI(api_key=<span class="string">&quot;mdlx-xxxxxxxx&quot;</span>, base_url=<span class="string">&quot;https://llm.modellix.ai/v1&quot;</span>)</span><br><span class="line"></span><br><span class="line">resp = client.chat.completions.create(</span><br><span class="line">    model=<span class="string">&quot;openai/gpt-5.6-sol&quot;</span>,</span><br><span class="line">    messages=[&#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>, <span class="string">&quot;content&quot;</span>: <span class="string">&quot;Say hello in one sentence.&quot;</span>&#125;],</span><br><span class="line">)</span><br><span class="line"><span class="built_in">print</span>(resp.choices[<span class="number">0</span>].message.content)</span><br></pre></td></tr></table></figure>
+
+<p>That third block is deliberately not a MiniMax model ID: the text gateway’s model list is <code>provider/name</code>, and MiniMax text models are not on it as of September 13, 2026 (see the provider section above). If you need MiniMax text, the base URL in the first block is the one you want.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Modellix REST API Reference</h3><p class="view-docs-tag-desc">See every media path, task query, webhook, and file endpoint before you wire the call up.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&amp;utm_medium=view_docs_tag" data-cta="view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Finding-any-model’s-exact-URL-without-an-API-key"><a href="#Finding-any-model’s-exact-URL-without-an-API-key" class="headerlink" title="Finding any model’s exact URL without an API key"></a>Finding any model’s exact URL without an API key</h2><p>Guessing paths is avoidable. Modellix publishes a <a target="_blank" rel="noopener" href="https://docs.modellix.ai/api/get-schema">public schema endpoint</a> that returns the exact inference base URL for a model, no credential required: <code>GET https://www.modellix.ai/models/&#123;provider&#125;/&#123;model&#125;/api_schema</code>. The response includes <code>servers[0].url</code> — the generate URL for that slug — plus the request body schema, so you can see required fields before writing them. One interpolation gotcha from the docs: keep the slash as a literal path separator, do not encode it as <code>%2F</code>.</p>
+<p>The same data is available from the command line, and this is the part worth remembering when an agent or a CI job needs it (<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/modellix-cli"><code>modellix-cli</code> on npm</a>):</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --global modellix-cli</span><br><span class="line">modellix-cli model get-schema minimax/minimax-h3-t2v --quiet   <span class="comment"># prints the inference URL</span></span><br></pre></td></tr></table></figure>
+
+<p><code>modellix-cli model get-schema</code> was added <strong>September 4, 2026</strong> and is documented as not requiring an API key — the changelog notes the Modellix Skill and Plugin use it “instead of guessing fields from documentation pages”. The same CLI has <code>model list</code> for discovery and <code>model batch</code> for JSONL batch submissions, if you are queueing work rather than calling once; the command set is in the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/cli">CLI documentation</a>.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/modellix-get-schema.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/modellix-get-schema.png" alt="Modellix Get Schema documentation showing the public GET /models/{model_slug}/api_schema endpoint that returns the inference base URL" loading="lazy" />
+</picture>
+
+<p><em>The public schema endpoint, captured September 13, 2026. It returns the model’s own inference base URL and request schema without an API key — the fastest way to stop guessing paths.</em></p>
+<p>For enumerating what exists rather than what you already know about, <a target="_blank" rel="noopener" href="https://docs.modellix.ai/api/list-models"><code>GET /api/v1/models</code></a> returns the active model list with slug, type, documentation URL and description; <code>featured=true</code> narrows it to featured models. Between those two endpoints you rarely need to read a documentation page again to build a path.</p>
+<h2 id="Auth-headers-uploads-and-the-two-defaults-that-bite"><a href="#Auth-headers-uploads-and-the-two-defaults-that-bite" class="headerlink" title="Auth headers, uploads, and the two defaults that bite"></a>Auth headers, uploads, and the two defaults that bite</h2><p>Authentication does not vary by path on either side. Modellix accepts <code>Authorization: Bearer &lt;key&gt;</code> or <code>x-api-key: &lt;key&gt;</code> and the docs state they are equivalent — “if both are sent, they must be the same key”, and mismatched values return <code>401</code>. MiniMax’s headers follow the same convention in its own examples, and its keys come from the pay-as-you-go API Keys page described in the <a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/guides/quickstart-preparation">platform prerequisites</a>, with a separate subscription key for the Token Plan billing track. Get the Modellix key from Modellix’s console, not from a vendor platform: a MiniMax key will not work on <code>api.modellix.ai</code>.</p>
+<p>The two defaults that catch people are retention windows, and they are both about seven days.</p>
+<p><strong>Uploads are not billed and expire.</strong> Modellix’s File API (<code>POST /api/v1/media/files</code>, multipart, field name <code>file</code>) accepts images, videos and audio, is not billed, and is retained for <strong>about 7 days</strong> as the default — with a 16 MB max file size, 10 files per team, and 2 concurrent uploads. It returns a <code>file_id</code> and a <code>url</code> that you pass into prediction calls, so you do not have to host inputs yourself; you also should not treat it as storage. Generated results carry the same warning: Modellix saves them for 7 days, and MiniMax’s own query endpoint only serves tasks from “the last 7 days”. Whatever you produce, persist it on your side.</p>
+<p>If you would rather not poll at all, Modellix’s media host supports push delivery: send <code>X-Webhook-URL</code> on a media prediction request and Modellix posts the result to that HTTPS endpoint once the task reaches <code>success</code>, <code>failed</code> or <code>canceled</code>, with event headers such as <code>X-Modellix-Event: prediction.task.succeeded</code>. MiniMax’s own video create endpoint takes an optional <code>callback_url</code>: MiniMax first sends a verification request carrying a <code>challenge</code> field, then POSTs a status update (<code>queued</code>, <code>running</code>, <code>succeeded</code>, <code>failed</code> or <code>cancelled</code>) to that URL whenever the task changes — so push delivery exists on both sides, expressed differently. For cost reconciliation, media logs live at <code>GET https://api.modellix.ai/api/v1/logs</code>, text logs at <code>https://llm.modellix.ai/v1/logs</code>, and tool logs at <code>https://tool.modellix.ai/v1/logs</code>; all three cap the window at 30 days, and the media and text logs accept an end-user identifier set with <code>X-Mdlx-User-Id</code> so you can attribute spend per customer. Two smaller endpoints worth knowing: <code>GET /api/v1/apikey/validate</code> to check a key without spending anything, and <code>GET /api/v1/team/balance</code> for the balance in USD. The key-handling mechanics — which key type to create, what each error code means — belong to our <a href="https://www.modellix.ai/blog/minimax-api-key/">MiniMax API key guide</a>, and the account-level view of keys, billing tracks and the console sits in our <a href="https://www.modellix.ai/blog/minimax-api-platform/">MiniMax API platform overview</a>; neither belongs to this page.</p>
+<h2 id="What-each-URL-bills-in-and-what-is-not-a-discount"><a href="#What-each-URL-bills-in-and-what-is-not-a-discount" class="headerlink" title="What each URL bills in, and what is not a discount"></a>What each URL bills in, and what is not a discount</h2><p>Billing follows the endpoint, not the account, and the units differ per modality — which is why a URL reference should tell you the unit next to the path. For the MiniMax media routes Modellix currently lists, the units and price ranges as of <strong>September 13, 2026</strong> are:</p>
+<table>
+<thead>
+<tr>
+<th>Modellix route</th>
+<th>Billed by</th>
+<th>Price range</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>minimax/minimax-h3-t2v</code>, <code>-i2v</code>, <code>-fl2v</code></td>
+<td>second</td>
+<td>$0.0800–$0.1300 &#x2F; sec</td>
+</tr>
+<tr>
+<td><code>minimax/minimax-h3-v2v</code></td>
+<td>second</td>
+<td>$0.1600–$0.2600 &#x2F; sec</td>
+</tr>
+<tr>
+<td><code>minimax/hailuo-2.3-t2v</code>, <code>-i2v</code>, <code>hailuo-02-t2v</code>, <code>-fl2v</code></td>
+<td>second</td>
+<td>$0.0504–$0.0738 &#x2F; sec</td>
+</tr>
+<tr>
+<td><code>minimax/hailuo-2.3-fast-i2v</code></td>
+<td>second</td>
+<td>$0.0288–$0.0495 &#x2F; sec</td>
+</tr>
+<tr>
+<td><code>minimax/hailuo-02-i2v</code></td>
+<td>second</td>
+<td>$0.0153–$0.0738 &#x2F; sec</td>
+</tr>
+<tr>
+<td><code>minimax/speech-2.8-hd</code></td>
+<td>million characters</td>
+<td>$100.0000 &#x2F; M chars</td>
+</tr>
+<tr>
+<td><code>minimax/speech-2.8-turbo</code></td>
+<td>million characters</td>
+<td>$60.0000 &#x2F; M chars</td>
+</tr>
+<tr>
+<td><code>minimax/minimax-voice-clone</code></td>
+<td>million characters</td>
+<td>$60.0000–$100.0000 &#x2F; M chars</td>
+</tr>
+</tbody></table>
+<p>Ranges are ranges because resolution and duration sit in different price tiers within one model — the same URL bills differently at 768P and 2K. Every figure was read from the individual model pages listed on the MiniMax provider page on September 13, 2026; prices here move, so re-check before you budget. On the text side the same gateway bills in USD per 1M tokens from the request’s token usage, with input-context tiers listed in the <a href="https://www.modellix.ai/llm">LLM price table</a>. Our <a href="https://www.modellix.ai/blog/minimax-pricing/">MiniMax pricing breakdown</a> owns the vendor comparison; this section only fixes which unit each URL answers in.</p>
+<p>Two things that get conflated, so we will separate them. The first: <strong>a model’s discount column is a unit price, not an account perk</strong> — when a model page shows a lower rate, that is the per-second or per-million-character rate you pay. The second: Modellix currently offers a <strong>10% discount on your first top-up in each tier</strong>, up to six times, per the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started/top-up">top-up documentation</a>; that is an account-level credit on a deposit, and it changes nothing about the unit rates above. Keeping those two straight is the difference between an accurate cost model and a surprise invoice.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Start calling MiniMax models</h3><p class="view-docs-tag-desc">Log in to run Hailuo, H3 and MiniMax speech routes on the same key as 200+ other media models.</p><a class="btn view-docs-tag-btn" href="https://www.modellix.ai/console/login" data-cta="login_tag" data-cta-target="login" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Frequently-Asked-Questions-About-the-MiniMax-API-URL"><a href="#Frequently-Asked-Questions-About-the-MiniMax-API-URL" class="headerlink" title="Frequently Asked Questions About the MiniMax API URL"></a>Frequently Asked Questions About the MiniMax API URL</h2><p><strong>What is the base URL for MiniMax?</strong> For OpenAI-compatible clients it is <code>https://api.minimax.io/v1</code>; for Anthropic-compatible clients it is <code>https://api.minimax.io/anthropic</code>, with no <code>/v1</code> appended. Video, image, speech and file endpoints live on the same <code>api.minimax.io</code> host under their own paths, listed in the table above.</p>
+<p><strong>Is the MiniMax API URL different if I use an aggregator?</strong> Yes, and not only the domain. Modellix answers media requests at <code>https://api.modellix.ai</code>, text at <code>https://llm.modellix.ai</code>, and web tools at <code>https://tool.modellix.ai</code>, and its documentation warns against mixing those hosts or their request fields.</p>
+<p><strong>Do I have to remove <code>/async</code> from my existing integration?</strong> No. Modellix removed the suffix from model paths on June 11, 2026 and states that existing integrations using <code>/async</code> “will continue to work seamlessly”. Write the current form in new code; leave working code alone until you touch it for another reason.</p>
+<p><strong>Is there a free MiniMax API?</strong> Not as an automatic allowance. MiniMax’s own documentation does not publish a standing free tier for the API, and Modellix ended its signup credit on August 19, 2026 — new registrations no longer receive a complimentary $1 credit. The only free line items MiniMax documents are bundled allowances inside its paid video packages (<a target="_blank" rel="noopener" href="https://platform.minimax.io/docs/guides/pricing-paygo">its pay-as-you-go page</a> marks an <code>Audio</code> row <code>Free</code> under <code>MiniMax-H3</code>), not a free API tier, and the three free music endpoints it did document were discontinued from August 20, 2026. Trial credit is requested by emailing <a href="mailto:&#x73;&#x75;&#112;&#x70;&#111;&#x72;&#x74;&#x40;&#109;&#x6f;&#100;&#x65;&#x6c;&#108;&#105;&#120;&#x2e;&#97;&#x69;">support@modellix.ai</a>, and neither host’s free-ness should be assumed when you budget; our <a href="https://www.modellix.ai/blog/minimax-pricing/">MiniMax free API guide</a> keeps the two sides separate.</p>
+<p><strong>How do I find the exact URL for one specific MiniMax model?</strong> Call <code>GET https://www.modellix.ai/models/minimax/&lt;model&gt;/api_schema</code> — it is public, needs no API key, and returns <code>servers[0].url</code> plus the request body schema. From a terminal, <code>modellix-cli model get-schema minimax/&lt;model&gt; --quiet</code> prints the same inference URL.</p>
+<p><strong>How long do uploads and generated files stay available?</strong> About seven days by default on Modellix — uploads through the File API and generated results both. MiniMax’s video query endpoint likewise only serves tasks from the last seven days. Treat both as transit, and copy anything you need to keep.</p>
+<p><strong>Which auth header should I send?</strong> Either <code>Authorization: Bearer &lt;key&gt;</code> or <code>x-api-key: &lt;key&gt;</code> works on the gateway; send one, or send both with identical values. Use a Modellix key for Modellix hosts and a MiniMax key for MiniMax hosts — they are not interchangeable.</p>
+<hr>
+<p><em>Base URLs, paths, limits and prices were read from MiniMax’s documentation, the Modellix documentation site, the product changelog, and live Modellix model pages on September 13, 2026. Both platforms change endpoints, catalogues and pricing without notice; this page is a dated snapshot, not a guarantee that a URL you copy today will resolve next quarter. Modellix operates this blog and is an aggregator, so we have a commercial interest in the routes described above — verify against each provider’s live documentation before you commit. Modellix exposes image, video and speech models, including the MiniMax media routes above, behind a single API key at <a href="https://www.modellix.ai/">modellix.ai</a>.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/api-integration/" class="tag-pill tag-pill--sm">API Integration</a>
+            
+              <a href="/blog/tags/minimax/" class="tag-pill tag-pill--sm">MiniMax</a>
+            
+              <a href="/blog/tags/Endpoints/" class="tag-pill tag-pill--sm">Endpoints</a>
+            
+              <a href="/blog/tags/Developer-Guides/" class="tag-pill tag-pill--sm">Developer Guides</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="https://www.modellix.ai/console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/ai-image-edit-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-ai-image-edit-api.webp" alt="AI Image Edit API: 16 References, Masks, Flare vs Sunburst" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">AI Image Edit API: 16 References, Masks, Flare vs Sunburst</h3>
+          <time class="related-article-date" datetime="2026-09-16T16:00:00.000Z">September 17, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/gpt-image-2-5-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-gpt-image-2-5-api.webp" alt="GPT Image 2.5 API: Flare vs Sunburst, Four Model IDs" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">GPT Image 2.5 API: Flare vs Sunburst, Four Model IDs</h3>
+          <time class="related-article-date" datetime="2026-09-16T16:00:00.000Z">September 17, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/ai-video-generation-workflow/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-ai-video-generation-workflow.webp" alt="AI Video Generation Workflow: Async Tasks and Batch Runs" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">AI Video Generation Workflow: Async Tasks and Batch Runs</h3>
+          <time class="related-article-date" datetime="2026-09-16T11:48:00.000Z">September 16, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="https://www.modellix.ai/console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/minimax-api-url/&text=MiniMax%20API%20URL%3A%20Base%20URLs%2C%20Endpoints%20and%20Working%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/minimax-api-url/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/minimax-api-url/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script defer src="https://unpkg.com/lucide@1.47.0/dist/umd/lucide.min.js" onload="window.lucide && window.lucide.createIcons();"></script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+</body>
+</html>

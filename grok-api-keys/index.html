@@ -1,0 +1,591 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Production analytics start after the page load has settled. -->
+  <script>
+    (function (document, window) {
+      if (window.location.hostname !== 'www.modellix.ai') return;
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-4DECHYKQVT');
+
+      var loaded = false;
+      function appendScript(src, crossOrigin) {
+        var script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        if (crossOrigin) script.crossOrigin = crossOrigin;
+        document.head.appendChild(script);
+      }
+      function loadAnalytics() {
+        if (loaded) return;
+        loaded = true;
+        appendScript('https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT');
+        appendScript('https://t.contentsquare.net/uxa/f39399cd2e27e.js', 'anonymous');
+        appendScript('https://app.rybbit.io/api/script.js?siteId=8a6874a918d7');
+      }
+      function scheduleAnalytics() {
+        window.setTimeout(function () {
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(loadAnalytics, { timeout: 3000 });
+          } else {
+            loadAnalytics();
+          }
+        }, 1500);
+      }
+
+      if (document.readyState === 'complete') scheduleAnalytics();
+      else window.addEventListener('load', scheduleAnalytics, { once: true });
+    })(document, window);
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grok API Keys: Two Ways to Get One and Call Grok 4.6</title>
+  <meta name="keywords" content="grok api keys, grok api key, xai api key, how to get grok api key, grok api console, grok api login, grok api key free, grok api pricing">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/grok-api-keys/">
+  
+  
+  <meta name="description" content="Two legitimate ways to get a Grok API key as of September 16, 2026: the xAI console, or a gateway key with no xAI account. Auth headers, rates, and 401 fixes.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Grok API Keys: Two Ways to Get One and Call Grok 4.6">
+<meta property="og:url" content="https://www.modellix.ai/blog/grok-api-keys/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Two legitimate ways to get a Grok API key as of September 16, 2026: the xAI console, or a gateway key with no xAI account. Auth headers, rates, and 401 fixes.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-grok-api-keys.webp">
+<meta property="article:published_time" content="2026-09-16T11:47:00.000Z">
+<meta property="article:modified_time" content="2026-09-16T11:47:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="API Key">
+<meta property="article:tag" content="Authentication">
+<meta property="article:tag" content="Gateway">
+<meta property="article:tag" content="Grok">
+<meta property="article:tag" content="xAI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-grok-api-keys.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Grok API Keys: Two Ways to Get One and Call Grok 4.6","description":"Two legitimate ways to get a Grok API key as of September 16, 2026: the xAI console, or a gateway key with no xAI account. Auth headers, rates, and 401 fixes.","datePublished":"2026-09-16T11:47:00.000Z","dateModified":"2026-09-16T11:47:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/grok-api-keys/","image":"https://img.modellix.ai/en/article/cover-grok-api-keys.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://img.modellix.ai" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="https://www.modellix.ai/" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started" class="nav-link">Documentation</a>
+      
+        <a href="https://www.modellix.ai/about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="https://www.modellix.ai/console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="https://www.modellix.ai/console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Grok API Keys: Two Ways to Get One and Call Grok 4.6</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Grok API Keys: Two Ways to Get One and Call Grok 4.6</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-09-16T11:47:00.000Z">September 16, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/api-key/" class="tag-pill tag-pill--sm">API Key</a>
+            
+              <a href="/blog/tags/Grok/" class="tag-pill tag-pill--sm">Grok</a>
+            
+              <a href="/blog/tags/xAI/" class="tag-pill tag-pill--sm">xAI</a>
+            
+              <a href="/blog/tags/Authentication/" class="tag-pill tag-pill--sm">Authentication</a>
+            
+              <a href="/blog/tags/Gateway/" class="tag-pill tag-pill--sm">Gateway</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>There are two legitimate ways to get a working set of Grok API keys, and only one of them requires an xAI account.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-grok-api-keys.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-grok-api-keys.png" alt="Modellix cover: two-line title Grok API Keys and Two Ways to Sign a Request over a glass auth header stack split between an amber console key and a cyan gateway key, MODELLIX wordmark" />
+</picture>
+
+<p>There are two legitimate ways to get a working set of Grok API keys, and only one of them requires an xAI account. The official route is the console: sign up, load the account with credits, and generate a key on the “API Keys” page (<a target="_blank" rel="noopener" href="https://docs.x.ai/developers/quickstart">xAI quickstart</a>). The other route is a gateway key — a credential issued by an aggregator that already holds vendor access and fronts the same model under its own authentication, so no xAI account is created at all. Both produce a string you paste into a header. Nothing about the model changes.</p>
+<p>Every figure and endpoint below was read from a first-party page on <strong>September 16, 2026</strong>, and the model name is the one live that day: <code>grok-4.6</code>, the current flagship, priced at $2.00 per million input tokens and $6.00 per million output tokens (<a target="_blank" rel="noopener" href="https://docs.x.ai/developers/models">xAI models page</a>, <a target="_blank" rel="noopener" href="https://x.ai/api">x.ai&#x2F;api</a>). One disclosure before the walkthrough: we run Modellix, a model gateway, so we have a commercial interest in the second route. It is not cheaper — on <code>xai/grok-4.6</code> our catalogue price is identical to the vendor’s own rate — and we will say so again where it matters.</p>
+<h2 id="What-a-Grok-API-key-is-and-what-it-is-not"><a href="#What-a-Grok-API-key-is-and-what-it-is-not" class="headerlink" title="What a Grok API key is, and what it is not"></a>What a Grok API key is, and what it is not</h2><p>A Grok API key is a bearer credential that authorises requests to xAI’s own API host. That is the whole definition, and it is worth stating plainly because the most common way to end up with the wrong key takes exactly one letter to do — and because the answer to how to get a Grok API key depends entirely on which of two consoles you want a relationship with.</p>
+<p><strong>Grok is not Groq.</strong> They are separate companies with separate consoles, separate hosts, and separate credentials. Groq is a separate company selling fast LLM inference, and it issues keys from <code>console.groq.com</code> for a service it calls GroqCloud (<a target="_blank" rel="noopener" href="https://console.groq.com/docs/overview">Groq docs</a>), read into an environment variable named <code>GROQ_API_KEY</code> (<a target="_blank" rel="noopener" href="https://console.groq.com/docs/quickstart">Groq quickstart</a>). xAI builds Grok, issues keys from the xAI console, and its quickstart exports <code>XAI_API_KEY</code>. This is not a pedantic distinction: on the day this article was written, a GroqCloud key page was ranking <strong>second in Google for “grok api keys”</strong>, above xAI’s own API landing page. The search result itself is part of the trap.</p>
+<p>So the first question to ask about any key you are handed is not “is it valid” but “which console issued it”. Everything else — the host, the header, the billing account your request hits — follows from that answer.</p>
+<p>The second thing a Grok API key is not: a licence. It authorises; it does not entitle. A key with a zero balance authenticates perfectly and still fails, which is why the console route starts with a top-up rather than a key.</p>
+<p>If you want Grok for images and video rather than text, that is the same console and a different product line — our <a href="https://www.modellix.ai/blog/grok-imagine-api/">Grok Imagine API walkthrough</a> covers the async image and video endpoints, which work on a submit-then-poll cycle rather than the synchronous text call described here.</p>
+<h2 id="Path-A-create-the-key-in-the-xAI-console"><a href="#Path-A-create-the-key-in-the-xAI-console" class="headerlink" title="Path A: create the key in the xAI console"></a>Path A: create the key in the xAI console</h2><p>This is the source-of-truth route and the one to take if you need xAI’s own account relationship — for billing, for team management, or because your procurement requires a direct vendor contract.</p>
+<ol>
+<li><strong>Create the account, and note where you will log in later.</strong> Sign up at <a target="_blank" rel="noopener" href="https://console.x.ai/">console.x.ai</a> — that same host is the Grok API login for every return visit, with <code>?mode=sign-up</code> selecting the registration form. The console describes itself as “your gateway to the Grok API and developer tools for building with AI”, and as of September 16, 2026 it brands itself <strong>SpaceXAI</strong> on both the sign-in page and the API landing page, so a name you do not recognise there is not a wrong turn.</li>
+<li><strong>Load the account with credits first.</strong> The quickstart is explicit that this precedes your first call: sign up, “then load it with credits to start using the API” (<a target="_blank" rel="noopener" href="https://docs.x.ai/developers/quickstart">xAI quickstart</a>). Neither page publishes an API credit allowance, so read carefully when a tutorial promises you free Grok calls. There is a free element in this product, and it is Playground access rather than API calls: the landing page offers a playground “to test the latest models before you write any integration code”, then states that “API usage is billed per token” (<a target="_blank" rel="noopener" href="https://x.ai/api">x.ai&#x2F;api</a>).</li>
+<li><strong>Open the API Keys page and create a key.</strong> The landing page condenses the flow to three steps — sign up, create a key on the “API Keys” page, set your base URL to <code>https://api.x.ai/v1</code> (<a target="_blank" rel="noopener" href="https://x.ai/api">x.ai&#x2F;api</a>). The Grok API console’s own capability list for that page is “Create, rotate, and revoke keys” (<a target="_blank" rel="noopener" href="https://console.x.ai/">console.x.ai</a>), which is also where you rotate or revoke one later.</li>
+<li><strong>Export it, do not paste it.</strong> The quickstart’s convention is <code>export XAI_API_KEY=&quot;your_api_key&quot;</code>, or a <code>.env</code> file next to your project. Both are better than a shell history entry.</li>
+</ol>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/xai-quickstart-account-and-api-key.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/xai-quickstart-account-and-api-key.png" alt="xAI quickstart: Step 1 create an account and load credits, Step 2 generate an API key and export it as XAI_API_KEY, captured September 16, 2026" loading="lazy" />
+</picture>
+
+<p><em>The prerequisite order, from xAI’s own quickstart: the account comes first, the credits come before the first call, and the key is generated on the “API Keys” page and exported as <code>XAI_API_KEY</code>. Captured from <a target="_blank" rel="noopener" href="https://docs.x.ai/developers/quickstart">docs.x.ai&#x2F;developers&#x2F;quickstart</a> on September 16, 2026 — the console pages themselves sit behind a sign-in wall, so the documented flow is the verifiable version.</em></p>
+<h2 id="Path-B-call-Grok-4-6-without-an-xAI-account"><a href="#Path-B-call-Grok-4-6-without-an-xAI-account" class="headerlink" title="Path B: call Grok 4.6 without an xAI account"></a>Path B: call Grok 4.6 without an xAI account</h2><p>A gateway key is not a workaround and it is not a scraped token. It is a key issued by a company that has its own vendor agreement and resells access under a single credential. We operate one, which is the commercial interest disclosed above, and the honest version of the trade is this: <strong>you are not buying a cheaper token, you are buying one fewer account.</strong></p>
+<p>The mechanics are a base-URL swap. On the Modellix LLM gateway the host is <code>https://llm.modellix.ai</code> with a <code>/v1</code> path prefix, and the credential is a key from the <a href="https://www.modellix.ai/console/api-key">Modellix console</a> — explicitly “not a vendor platform key” (<a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/api/api">LLM API guide</a>). Models are addressed as <code>provider/name</code>, so Grok 4.6 is <code>xai/grok-4.6</code>, and the catalogue also carries a <code>~xai/grok-latest</code> alias that follows the newest release in that series (<a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/overview">Modellix LLM overview</a>). On September 16, 2026 that catalogue held 30 text models across nine provider labels, and exactly two of them were xAI rows — <code>xai/grok-4.5</code> and <code>xai/grok-4.6</code>. The previous generation has already left the list, which is worth knowing before you go looking for it here.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/modellix-grok-46-gateway-row.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/modellix-grok-46-gateway-row.png" alt="Modellix LLM catalogue filtered to xAI rows: Grok 4.6, 500k context, image input, 2.00 input and 6.00 output dollars per million tokens" loading="lazy" />
+</picture>
+
+<p><em>The gateway’s own row for the vendor’s flagship. There is one figure per cell because the list price and the billed price are the same number, and the Discount column carries a dash to say so — on this model there is no discount to compare against. Captured from <a href="https://www.modellix.ai/llm">modellix.ai&#x2F;llm</a> on September 16, 2026.</em></p>
+<p>Two limits worth knowing before you choose this path. First, the gateway returns text: the same key also reaches the image, video and speech endpoints on a second host, <code>api.modellix.ai</code>, and those run as asynchronous tasks (<a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api">media API guide</a>) — the boundary the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/api/api">LLM API guide</a> states plainly: “Do not mix that host with the LLM gateway.” Second, a gateway is one more party in the request path — if your project needs a direct vendor contract or xAI-side team controls, Path A is the right answer regardless of convenience.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Grok 4.6 on the Modellix LLM gateway</h3><p class="view-docs-tag-desc">Base URLs, supported protocols, the xai/grok-4.6 model ID, error codes and token billing for one-key access to Grok.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&amp;utm_medium=view_docs_tag" data-cta="view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Which-key-goes-in-which-header"><a href="#Which-key-goes-in-which-header" class="headerlink" title="Which key goes in which header"></a>Which key goes in which header</h2><p>This is where “my key does not work” usually starts. Whichever credential you are holding — an xAI API key from the console, a gateway key, or a Groq key from a company you did not mean to sign up with — the failure is almost always that the header belongs to a different service than the key.</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Base URL</th>
+<th>Header the request carries</th>
+<th>Env var convention</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>xAI, direct</td>
+<td><code>https://api.x.ai/v1</code></td>
+<td><code>Authorization: Bearer &lt;key&gt;</code></td>
+<td><code>XAI_API_KEY</code></td>
+</tr>
+<tr>
+<td>Modellix LLM gateway</td>
+<td><code>https://llm.modellix.ai/v1</code></td>
+<td><code>Authorization: Bearer &lt;key&gt;</code> <strong>or</strong> <code>x-api-key: &lt;key&gt;</code></td>
+<td><code>OPENAI_API_KEY</code> on OpenAI-compatible clients</td>
+</tr>
+<tr>
+<td>Groq (a different company)</td>
+<td>—</td>
+<td>—</td>
+<td><code>GROQ_API_KEY</code></td>
+</tr>
+</tbody></table>
+<p>On the gateway, the two header styles are equivalent — “both headers are equivalent. If both are sent, they must be the same key” — and sending a <code>Bearer</code> value that disagrees with the <code>x-api-key</code> value is itself a <code>401</code> cause, not a tie-break. Base URL is the variable that decides which of these three tables your key lands in, which is the same mechanism behind our notes on <a href="https://www.modellix.ai/blog/anthropic-base-url/">switching the Anthropic base URL</a> — change the host, and the credential, the billing account and the model namespace all change with it. Your first request on either route looks like this:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl https://api.x.ai/v1/responses \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$XAI_API_KEY</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;&quot;model&quot;: &quot;grok-4.6&quot;, &quot;input&quot;: &quot;Explain what a bearer token is in one sentence.&quot;&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>That is the shape the quickstart itself uses, down to the <code>/v1/responses</code> path and the <code>input</code> field rather than <code>messages</code>. If you are switching to the gateway, change the host and the model string to <code>xai/grok-4.6</code> and keep everything else.</p>
+<h2 id="Grok-API-pricing-what-the-key-costs-and-the-200k-cliff"><a href="#Grok-API-pricing-what-the-key-costs-and-the-200k-cliff" class="headerlink" title="Grok API pricing: what the key costs, and the 200k cliff"></a>Grok API pricing: what the key costs, and the 200k cliff</h2><p>The key is free. The tokens are not, and the rate card has a step in it that catches people who scan only the first column.</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Context</th>
+<th>Short-context input &#x2F; cached &#x2F; output (per 1M)</th>
+<th>Long-context (≥200k prompt) input &#x2F; cached &#x2F; output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>grok-4.6</code></td>
+<td>500k</td>
+<td>$2.00 &#x2F; $0.50 &#x2F; $6.00</td>
+<td>$4.00 &#x2F; $1.00 &#x2F; $12.00</td>
+</tr>
+<tr>
+<td><code>grok-4.5</code></td>
+<td>500k</td>
+<td>$2.00 &#x2F; $0.30 &#x2F; $6.00</td>
+<td>$4.00 &#x2F; $0.60 &#x2F; $12.00</td>
+</tr>
+<tr>
+<td><code>grok-4.3</code></td>
+<td>1M</td>
+<td>$1.25 &#x2F; $0.20 &#x2F; $2.50</td>
+<td>$2.50 &#x2F; $0.40 &#x2F; $5.00</td>
+</tr>
+</tbody></table>
+<p>Figures read from xAI’s own pricing page on <strong>September 16, 2026</strong> (<a target="_blank" rel="noopener" href="https://docs.x.ai/developers/pricing">docs.x.ai&#x2F;developers&#x2F;pricing</a>). The step is not a surcharge on the tokens above the threshold. The page’s own note is worth quoting in full:</p>
+<blockquote>
+<p>Models with long context pricing bill the long context rates for all tokens in a request once its prompt reaches the model’s long context threshold.</p>
+</blockquote>
+<p>In plain numbers: a 199,000-token prompt on <code>grok-4.6</code> bills at $2 per million input tokens, and a 201,000-token prompt bills the entire 201,000 at $4. The rate doubles at that boundary, so crossing it by a single token — 199,000 tokens at $0.398 against 201,000 at $0.804 — raises the cost of the whole request by about 102%.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/grok-46-rate-card-short-long-context.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/grok-46-rate-card-short-long-context.png" alt="xAI price table with the grok-4.6 row outlined: 2.00, 0.50 and 6.00 dollars short context against 4.00, 1.00 and 12.00 long context" loading="lazy" />
+</picture>
+
+<p><em>The vendor’s own rate card with the <code>grok-4.6</code> row outlined. The long-context columns are the ones to read before you ship a retrieval pipeline — a prompt that crosses 200,000 tokens reprices every token in the request, not just the excess. Captured from <a target="_blank" rel="noopener" href="https://docs.x.ai/developers/pricing">docs.x.ai&#x2F;developers&#x2F;pricing</a> on September 16, 2026.</em></p>
+<p>Two more lines from the same page that do not fit a table cell: requests to the US regional endpoint bill at <strong>1.1× the global token rates</strong>, and cached input is a separate, cheaper lane — $0.50 per million on <code>grok-4.6</code> short context, $1.00 long. If your workload reuses a long system prompt, the cache column is where the real comparison lives.</p>
+<p>On the gateway that same row reads <code>$2.00 / $0.50 / $6.00</code> short context and <code>$4.00 / $1.00 / $12.00</code> long, with the vendor’s list price and the billed price identical — the discount column is empty, which is the specific sense in which this is not a pricing pitch. Across the rest of the catalogue, gateway rows do carry discounts against vendor list prices; on Grok 4.6 there is nothing to sell you, and pricing the whole catalogue in one place is a separate exercise covered in our <a href="https://www.modellix.ai/blog/llm-api-pricing-comparison/">cross-vendor LLM price comparison</a>.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Turn on one Grok key</h3><p class="view-docs-tag-desc">Create a key in the Modellix console and call xai/grok-4.6 alongside the rest of the text gateway with one credential.</p><a class="btn view-docs-tag-btn" href="https://www.modellix.ai/console/login" data-cta="login_tag" data-cta-target="login" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="When-the-key-stops-working-401-and-its-neighbours"><a href="#When-the-key-stops-working-401-and-its-neighbours" class="headerlink" title="When the key stops working: 401 and its neighbours"></a>When the key stops working: 401 and its neighbours</h2><p>Most “invalid key” reports are one of five things, and the status code narrows it immediately.</p>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>What it means on an API route</th>
+<th>What to check first</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>400</code></td>
+<td>Malformed request — and on xAI’s own table, an incorrect API key</td>
+<td>The request body first, then the key</td>
+</tr>
+<tr>
+<td><code>401</code></td>
+<td>Missing or invalid key; on the gateway, also conflicting auth headers</td>
+<td>That the key came from the console you think it did, and that you did not send two disagreeing headers</td>
+</tr>
+<tr>
+<td><code>402</code></td>
+<td>Authenticated but unfunded — the account has no balance</td>
+<td>The billing page, before the key. Worth knowing that xAI’s own error table does not list <code>402</code> at all</td>
+</tr>
+<tr>
+<td><code>403</code></td>
+<td>Key accepted, action refused — the key or its team lacks permission, or is blocked</td>
+<td>Your team’s role and the key’s scope, not the key’s spelling</td>
+</tr>
+<tr>
+<td><code>404</code></td>
+<td>Key accepted, resource missing — unknown model string, or a misspelled endpoint URL</td>
+<td>The model ID, including the <code>provider/</code> prefix on a gateway, then the path</td>
+</tr>
+<tr>
+<td><code>429</code></td>
+<td>Rate limit, or the model is temporarily unavailable</td>
+<td>Retry with backoff rather than rotating the key</td>
+</tr>
+<tr>
+<td><code>5xx</code></td>
+<td>Upstream error</td>
+<td>Retry; it is not a credential problem</td>
+</tr>
+</tbody></table>
+<p>The gateway’s own error table maps these to the same causes — <code>401</code> for a missing or invalid key or conflicting auth headers, <code>402</code> with an <code>insufficient_quota</code> type for an empty balance — and it is the fastest way to tell a credential problem from a funding problem (<a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/api/api">LLM API guide</a>). xAI draws the same line on the direct route, and its own <a target="_blank" rel="noopener" href="https://docs.x.ai/developers/debugging">error reference</a> is the place to check the rest: <code>401</code> is a key problem, <code>403</code> is a permissions problem for your team to solve, and <code>404</code> is the model name.</p>
+<h2 id="Keeping-it-out-of-your-repository"><a href="#Keeping-it-out-of-your-repository" class="headerlink" title="Keeping it out of your repository"></a>Keeping it out of your repository</h2><p>Three habits, in order of how much time they save.</p>
+<p><strong>Never inline the key.</strong> Both routes have an environment-variable convention — <code>XAI_API_KEY</code> on the direct route, <code>OPENAI_API_KEY</code> on the gateway when an OpenAI-compatible client is doing the reading — and both beat a literal in a source file. A key pasted into a notebook, a screenshot, or a support thread should be treated as compromised the same day.</p>
+<p><strong>Rotate on a schedule, not on an incident.</strong> The console supports rotation and revocation as first-class actions, which means a rotation is a two-minute task rather than a refactor. Newer keys in, older keys revoked, one deploy.</p>
+<p><strong>Know what an alias buys you.</strong> On the xAI side, <code>&lt;modelname&gt;</code> follows the latest <strong>stable</strong> release, <code>&lt;modelname&gt;-latest</code> follows the newest version including anything not yet settled, and <code>&lt;modelname&gt;-&lt;date&gt;</code> pins one release and never moves (<a target="_blank" rel="noopener" href="https://docs.x.ai/developers/models">models page</a>). The gateway carries the same idea as <code>~provider/series-latest</code>. Pinning is for reproducibility; following is for defaults. Pick per environment, not per preference — and if you are building the habit of holding one key for several vendors, a sibling walkthrough like our <a href="https://www.modellix.ai/blog/nano-banana-api-key/">Nano Banana API key guide</a> runs the same sequence against a different model family.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/modellix-grok-46-latest-alias.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/modellix-grok-46-latest-alias.png" alt="Modellix LLM latest model ID routing table with the tilde xai grok latest row outlined, routing it to xai slash grok-4.6" loading="lazy" />
+</picture>
+
+<p><em>A version-following alias is only as safe as its routing table. <code>~xai/grok-latest</code> resolves to <code>xai/grok-4.6</code>, and that is the line to re-read after any model release. Captured from <a href="https://www.modellix.ai/llm">modellix.ai&#x2F;llm</a> on September 16, 2026.</em></p>
+<h2 id="How-to-choose"><a href="#How-to-choose" class="headerlink" title="How to choose"></a>How to choose</h2><table>
+<thead>
+<tr>
+<th>If your main reason is</th>
+<th>Start with</th>
+<th>Because</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A direct vendor relationship, xAI-side team management, or invoice-based billing</td>
+<td><strong>Path A</strong>, the xAI console</td>
+<td>The account <em>is</em> the deliverable, and the credits prerequisite is part of it</td>
+</tr>
+<tr>
+<td>Calling Grok next to other vendors’ models from one credential</td>
+<td><strong>Path B</strong>, a gateway key</td>
+<td>One key and one bill across model families; the per-token rate on Grok 4.6 is unchanged</td>
+</tr>
+<tr>
+<td>Cheapest possible Grok tokens</td>
+<td><strong>Neither, yet</strong></td>
+<td>Both routes bill the same rate card for <code>grok-4.6</code>; the lever is prompt shape — stay under the 200k threshold and use the cached lane</td>
+</tr>
+</tbody></table>
+<p>Whichever you pick, do one thing before you build on it: send a single request with the model string you intend to ship, and log the <code>model</code> field that comes back. That one line tells you which route answered and which version actually served you, and it is the difference between debugging a key and debugging an assumption.</p>
+<h2 id="Frequently-Asked-Questions-About-Grok-API-Keys"><a href="#Frequently-Asked-Questions-About-Grok-API-Keys" class="headerlink" title="Frequently Asked Questions About Grok API Keys"></a>Frequently Asked Questions About Grok API Keys</h2><p><strong>Are Grok API keys free?</strong></p>
+<p>The key itself costs nothing on either route — you are never billed for the credential, only for the tokens a request consumes. So “free grok api key” is true about the key and false about the usage. What differs is the prerequisite: xAI’s quickstart tells you to load credits before your first call and publishes no API credit allowance, while a gateway key needs a funded gateway balance instead. Treat any claim of free unlimited Grok calls as a claim about someone else’s quota, not about your key.</p>
+<p><strong>How do I get a Grok API key?</strong></p>
+<p>Two documented routes. Create an xAI account at <code>console.x.ai</code>, load it with credits, and generate a key on the API Keys page; or create one key in a gateway console and call <code>xai/grok-4.6</code> on <code>https://llm.modellix.ai/v1</code> without ever registering with xAI.</p>
+<p><strong>What do Grok API keys cost to use?</strong></p>
+<p>Nothing per key, and $2.00 per million input tokens and $6.00 per million output tokens for <code>grok-4.6</code> while the prompt stays under 200,000 tokens. Over that line the long-context rates apply to every token in the request: $4.00 in and $12.00 out.</p>
+<p><strong>Why does my xAI key work in one tool and fail in another?</strong></p>
+<p>Because the tool is pointed at a different service. A <code>401</code> on a valid key most often means the base URL belongs to another host, or the client is sending <code>x-api-key</code> where a <code>Bearer</code> token is expected — and on a gateway, two disagreeing auth headers are their own <code>401</code> cause. Check the host first, then the header, then the key.</p>
+<p><strong>Is a Grok API key the same as a Groq API key?</strong></p>
+<p>No. Groq and xAI are separate companies with separate consoles and separate credentials — <code>GROQ_API_KEY</code> against <code>XAI_API_KEY</code> — and a key from one will not authenticate against the other. The names differ by one letter, which is why this is the most common wrong-key report in the first place.</p>
+<p><strong>Will my key keep working when xAI ships the next Grok version?</strong></p>
+<p>Only if you asked it to. A dated model string pins one release; on xAI’s side <code>&lt;modelname&gt;</code> tracks the latest stable release while <code>&lt;modelname&gt;-latest</code> tracks the newest version even before it settles, and <code>~provider/series-latest</code> does the same job on a gateway. Version-following behaviour is a configuration decision, so check which form is in your code before an upgrade surprises you.</p>
+<hr>
+<p><em>Endpoints, model names and per-token rates change without notice, and every figure in this guide was read from first-party pages on September 16, 2026 — xAI’s quickstart, models, pricing and error-reference pages, the API landing page at x.ai&#x2F;api, the xAI console, Groq’s documentation, and the Modellix LLM docs. Re-check the <a target="_blank" rel="noopener" href="https://docs.x.ai/developers/pricing">xAI rate card</a> and the <a target="_blank" rel="noopener" href="https://docs.x.ai/developers/models">xAI model list</a> before committing spend. Modellix is an API gateway with a commercial interest in the gateway route described above; on <code>xai/grok-4.6</code> its billed price equals xAI’s own published rate, so the argument for it is one credential across many models rather than a lower bill, and it is not affiliated with xAI. Route text models through one key at <a href="https://www.modellix.ai/">modellix.ai</a>.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/api-key/" class="tag-pill tag-pill--sm">API Key</a>
+            
+              <a href="/blog/tags/Grok/" class="tag-pill tag-pill--sm">Grok</a>
+            
+              <a href="/blog/tags/xAI/" class="tag-pill tag-pill--sm">xAI</a>
+            
+              <a href="/blog/tags/Authentication/" class="tag-pill tag-pill--sm">Authentication</a>
+            
+              <a href="/blog/tags/Gateway/" class="tag-pill tag-pill--sm">Gateway</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="https://www.modellix.ai/console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/ai-image-edit-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-ai-image-edit-api.webp" alt="AI Image Edit API: 16 References, Masks, Flare vs Sunburst" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">AI Image Edit API: 16 References, Masks, Flare vs Sunburst</h3>
+          <time class="related-article-date" datetime="2026-09-16T16:00:00.000Z">September 17, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/gpt-image-2-5-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-gpt-image-2-5-api.webp" alt="GPT Image 2.5 API: Flare vs Sunburst, Four Model IDs" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">GPT Image 2.5 API: Flare vs Sunburst, Four Model IDs</h3>
+          <time class="related-article-date" datetime="2026-09-16T16:00:00.000Z">September 17, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/ai-video-generation-workflow/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-ai-video-generation-workflow.webp" alt="AI Video Generation Workflow: Async Tasks and Batch Runs" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">AI Video Generation Workflow: Async Tasks and Batch Runs</h3>
+          <time class="related-article-date" datetime="2026-09-16T11:48:00.000Z">September 16, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="https://www.modellix.ai/console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/grok-api-keys/&text=Grok%20API%20Keys%3A%20Two%20Ways%20to%20Get%20One%20and%20Call%20Grok%204.6" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/grok-api-keys/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/grok-api-keys/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script defer src="https://unpkg.com/lucide@1.47.0/dist/umd/lucide.min.js" onload="window.lucide && window.lucide.createIcons();"></script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+</body>
+</html>

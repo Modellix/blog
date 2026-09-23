@@ -1,0 +1,686 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Production analytics start after the page load has settled. -->
+  <script>
+    (function (document, window) {
+      if (window.location.hostname !== 'www.modellix.ai') return;
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-4DECHYKQVT');
+
+      var loaded = false;
+      function appendScript(src, crossOrigin) {
+        var script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        if (crossOrigin) script.crossOrigin = crossOrigin;
+        document.head.appendChild(script);
+      }
+      function loadAnalytics() {
+        if (loaded) return;
+        loaded = true;
+        appendScript('https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT');
+        appendScript('https://t.contentsquare.net/uxa/f39399cd2e27e.js', 'anonymous');
+        appendScript('https://app.rybbit.io/api/script.js?siteId=8a6874a918d7');
+      }
+      function scheduleAnalytics() {
+        window.setTimeout(function () {
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(loadAnalytics, { timeout: 3000 });
+          } else {
+            loadAnalytics();
+          }
+        }, 1500);
+      }
+
+      if (document.readyState === 'complete') scheduleAnalytics();
+      else window.addEventListener('load', scheduleAnalytics, { once: true });
+    })(document, window);
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPT Image 2.5 Pricing: What Moves the $0.0053–$0.6390 Band</title>
+  <meta name="keywords" content="gpt image 2.5 pricing, gpt image 2.5 cost, gpt image 2.5 api pricing, flare vs sunburst price, gpt image 2.5 edit pricing, openai gpt image 2.5 pricing, gpt image 2.5 cost per image, gpt image 2.5 max quality">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/gpt-image-2-5-pricing/">
+  
+  
+  <meta name="description" content="GPT Image 2.5 pricing as of September 17, 2026: what moves the $0.0053–$0.6390 per-image band, why the Edit band starts at $0.0366, and worked budget math.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GPT Image 2.5 Pricing: What Moves the $0.0053–$0.6390 Band">
+<meta property="og:url" content="https://www.modellix.ai/blog/gpt-image-2-5-pricing/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="GPT Image 2.5 pricing as of September 17, 2026: what moves the $0.0053–$0.6390 per-image band, why the Edit band starts at $0.0366, and worked budget math.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-gpt-image-2-5-pricing.webp">
+<meta property="article:published_time" content="2026-09-17T01:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-17T01:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Image API">
+<meta property="article:tag" content="GPT Image">
+<meta property="article:tag" content="OpenAI">
+<meta property="article:tag" content="Pricing">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-gpt-image-2-5-pricing.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"GPT Image 2.5 Pricing: What Moves the $0.0053–$0.6390 Band","description":"GPT Image 2.5 pricing as of September 17, 2026: what moves the $0.0053–$0.6390 per-image band, why the Edit band starts at $0.0366, and worked budget math.","datePublished":"2026-09-17T01:00:00.000Z","dateModified":"2026-09-17T01:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/gpt-image-2-5-pricing/","image":"https://img.modellix.ai/en/article/cover-gpt-image-2-5-pricing.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://img.modellix.ai" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="https://www.modellix.ai/" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started" class="nav-link">Documentation</a>
+      
+        <a href="https://www.modellix.ai/about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="https://www.modellix.ai/console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="https://www.modellix.ai/console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">GPT Image 2.5 Pricing: What Moves the $0.0053–$0.6390 Band</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Pricing/" class="category-tag category-tag--sm">Pricing</a>
+          
+        
+      </div>
+      <h1 class="post-title">GPT Image 2.5 Pricing: What Moves the $0.0053–$0.6390 Band</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-09-17T01:00:00.000Z">September 17, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/OpenAI/" class="tag-pill tag-pill--sm">OpenAI</a>
+            
+              <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
+            
+              <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+              <a href="/blog/tags/GPT-Image/" class="tag-pill tag-pill--sm">GPT Image</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>GPT Image 2.5 pricing on Modellix reads as $0.0053~$0.6390 per image on the text-to-image models and $0.0366~$0.6718 per image on the edit models, measured on September 17, 2026. A range that wide is useless on its own.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-gpt-image-2-5-pricing.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-gpt-image-2-5-pricing.png" alt="Modellix artwork showing a GPT Image 2.5 price band widened by resolution and quality tiers rather than by model name" />
+</picture>
+
+<p>GPT Image 2.5 pricing on Modellix reads as <strong>$0.0053~$0.6390 per image</strong> on the text-to-image models and <strong>$0.0366~$0.6718 per image</strong> on the edit models, measured on September 17, 2026. A range that wide is useless on its own. Both ends are real, and the distance between them is not a discount, a promo, or a plan tier — it is <code>resolution</code> (1K&#x2F;2K&#x2F;4K), <code>quality</code> (low through max), and whether the request generates or edits. Pick a different cell of the grid and you move the price by up to 120×.</p>
+<p>Modellix publishes this grid and earns a fee when a call routes through it, so read every number here as first-party arithmetic, not a neutral audit. Every figure below was pulled from live pages on September 17, 2026 — OpenAI’s model pages and image-generation guide, and the four Modellix model pages for the 2.5 IDs — and every budget number is a multiplication you can redo with a calculator. Where a page did not state something, this article says so instead of filling the gap.</p>
+<p>If you want the routing logic — which of the four 2.5 model IDs to call, and when — that is the <a href="https://www.modellix.ai/blog/gpt-image-2-5-flare-sunburst-on-modellix/">GPT Image 2.5 Flare vs Sunburst guide</a> on this blog. This page is only about the money.</p>
+<h2 id="What-the-two-bands-actually-contain"><a href="#What-the-two-bands-actually-contain" class="headerlink" title="What the two bands actually contain"></a>What the two bands actually contain</h2><p>The headline ranges hide 15 cells each. Here is the full grid behind the T2I band, read from the <code>Pricing / Unit: $/img</code> table on the <a href="https://www.modellix.ai/models/openai/gpt-image-2.5-flare">GPT Image 2.5 Flare</a> and <a href="https://www.modellix.ai/models/openai/gpt-image-2.5-sunburst">GPT Image 2.5 Sunburst</a> model pages on September 17, 2026:</p>
+<table>
+<thead>
+<tr>
+<th>Quality</th>
+<th align="right">1K</th>
+<th align="right">2K</th>
+<th align="right">4K</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>low</td>
+<td align="right">$0.0053</td>
+<td align="right">$0.0107</td>
+<td align="right">$0.0178</td>
+</tr>
+<tr>
+<td>medium</td>
+<td align="right">$0.0124</td>
+<td align="right">$0.0241</td>
+<td align="right">$0.0401</td>
+</tr>
+<tr>
+<td>high</td>
+<td align="right">$0.0474</td>
+<td align="right">$0.0963</td>
+<td align="right">$0.1601</td>
+</tr>
+<tr>
+<td>xhigh</td>
+<td align="right">$0.0843</td>
+<td align="right">$0.1710</td>
+<td align="right">$0.2846</td>
+</tr>
+<tr>
+<td>max</td>
+<td align="right">$0.1890</td>
+<td align="right">$0.3780</td>
+<td align="right">$0.6390</td>
+</tr>
+</tbody></table>
+<p><em>Displayed per-image prices for both text-to-image 2.5 models, read September 17, 2026. Values are identical on both pages except for three cells noted in the next section.</em></p>
+<p>And the edit band, read from the <a href="https://www.modellix.ai/models/openai/gpt-image-2.5-flare-edit">Flare Edit</a> and <a href="https://www.modellix.ai/models/openai/gpt-image-2.5-sunburst-edit">Sunburst Edit</a> pages the same day — the two are cell-for-cell identical:</p>
+<table>
+<thead>
+<tr>
+<th>Quality</th>
+<th align="right">1K</th>
+<th align="right">2K</th>
+<th align="right">4K</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>low</td>
+<td align="right">$0.0366</td>
+<td align="right">$0.0420</td>
+<td align="right">$0.0491</td>
+</tr>
+<tr>
+<td>medium</td>
+<td align="right">$0.0432</td>
+<td align="right">$0.0554</td>
+<td align="right">$0.0714</td>
+</tr>
+<tr>
+<td>high</td>
+<td align="right">$0.0788</td>
+<td align="right">$0.1277</td>
+<td align="right">$0.1914</td>
+</tr>
+<tr>
+<td>xhigh</td>
+<td align="right">$0.1157</td>
+<td align="right">$0.2026</td>
+<td align="right">$0.3160</td>
+</tr>
+<tr>
+<td>max</td>
+<td align="right">$0.2210</td>
+<td align="right">$0.4167</td>
+<td align="right">$0.6718</td>
+</tr>
+</tbody></table>
+<p><em>Displayed per-image prices for both 2.5 edit models, read September 17, 2026.</em></p>
+<p>Two facts fall out of these tables immediately. The floor of the generate band is <strong>$0.0053</strong> — a low-quality 1K draft. The ceiling, <strong>$0.6390</strong>, is a max-quality 4K image. That is 120.6× the floor in the same model family. On the edit side the floor is <strong>$0.0366</strong> and the ceiling <strong>$0.6718</strong> — 18.4×. The edit band looks narrower only because its floor starts seven times higher.</p>
+<h2 id="Resolution-quality-and-generate-vs-edit-are-the-only-three-variables"><a href="#Resolution-quality-and-generate-vs-edit-are-the-only-three-variables" class="headerlink" title="Resolution, quality, and generate-vs-edit are the only three variables"></a>Resolution, quality, and generate-vs-edit are the only three variables</h2><p>Nothing else in the request moves the bill. The Flare and Sunburst pages list five quality levels (<code>low</code>, <code>medium</code>, <code>high</code>, <code>xhigh</code>, <code>max</code>) that can be set independently of three resolution tiers (<code>1K</code>, <code>2K</code>, <code>4K</code>), with aspect ratio left free — a 1:1 image at 1K is 1024×1024, a 1:1 at 4K is 2880×2880, and 16:9 at 4K is 3840×2160.</p>
+<p>The three axes behave very differently, and knowing which one you are paying for is the whole budget conversation:</p>
+<ul>
+<li><strong>Quality is the expensive axis.</strong> At a fixed 1K, moving from <code>low</code> to <code>max</code> multiplies the price by <strong>35.7×</strong> ($0.0053 → $0.1890). At a fixed 4K it is <strong>35.9×</strong> ($0.0178 → $0.6390). A quality step is not a small tweak: the four steps multiply the previous tier by 1.8× to 3.8× apiece.</li>
+<li><strong>Resolution is nearly flat.</strong> At a fixed quality, moving 1K → 4K multiplies by about <strong>3.4×</strong> — 3.36× at <code>low</code>, 3.38× at <code>max</code>. Within a quality tier, the 1K → 2K step is 2.0× and the 2K → 4K step is 1.7× at the top tier.</li>
+<li><strong>Editing carries a premium that shrinks as quality rises.</strong> At 1K: <code>low</code> edit&#x2F;generate &#x3D; 6.91×, <code>medium</code> 3.48×, <code>high</code> 1.66×, <code>xhigh</code> 1.37×, <code>max</code> 1.17×. Editing a low-quality draft to the same low-quality output is far more expensive relative to generating it; at <code>max</code> quality the two are within 17% of each other.</li>
+</ul>
+<p>That last pattern is the one most teams get wrong. A “cheap” edit pipeline built on <code>low</code> is not cheap in relative terms.</p>
+<p>Two request fields do <strong>not</strong> appear as axes in either grid, so they do not change the published price: <code>aspect_ratio</code> (a 16:9 4K image is priced in the same <code>4K</code> column as a 1:1 4K image) and <code>background</code> (a transparent PNG is priced in the same row as an opaque one). Width and transparency are choices about the output, not levers on the bill — the levers are the three above.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/gpt-image-2-5-price-drivers.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/gpt-image-2-5-price-drivers.png" alt="Diagram of three price axes widening one model family from a low-quality 1K draft to a max-quality 4K image" loading="lazy" />
+</picture>
+
+<p><em>Why one model ID spans 120×: quality tiers stack multiplicatively, resolution adds about 3.4× across the full range, and editing shifts the whole ladder upward.</em></p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">GPT Image 2.5 Request Schema</h3><p class="view-docs-tag-desc">Check the exact resolution, quality, and background fields the 2.5 endpoint accepts before you price a run.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&amp;utm_medium=view_docs_tag" data-cta="view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Flare-and-Sunburst-share-the-band-—-here-is-the-receipt"><a href="#Flare-and-Sunburst-share-the-band-—-here-is-the-receipt" class="headerlink" title="Flare and Sunburst share the band — here is the receipt"></a>Flare and Sunburst share the band — here is the receipt</h2><p>This is worth stating plainly because it is the most common mistake in second-hand write-ups: <strong>Flare and Sunburst are on the same price band.</strong> Both T2I pages display <code>$0.0053~$0.6390/img</code>, and both edit pages display <code>$0.0366~$0.6718/img</code>. The difference between the two models is speed versus quality, not dollars per image, and nothing in the grid is priced by the name in the model ID.</p>
+<p>Read cell by cell — not just the range — and the two T2I pages are identical in 12 of 15 cells. Three cells differ, and they are worth knowing before you assume the pages are interchangeable:</p>
+<table>
+<thead>
+<tr>
+<th>Cell</th>
+<th align="right">Flare page</th>
+<th align="right">Sunburst page</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>low &#x2F; 2K</td>
+<td align="right">$0.1072</td>
+<td align="right">$0.0107</td>
+</tr>
+<tr>
+<td>xhigh &#x2F; 4K</td>
+<td align="right">$0.2846</td>
+<td align="right">$0.2847</td>
+</tr>
+<tr>
+<td>max &#x2F; 2K</td>
+<td align="right">$0.3780</td>
+<td align="right">$0.3854</td>
+</tr>
+</tbody></table>
+<p><em>Read September 17, 2026. The <code>xhigh / 4K</code> pair differs by one hundredth of a cent and the <code>max / 2K</code> pair by 0.74 cents; the <code>low / 2K</code> pair does not reconcile.</em></p>
+<p>The first row is a reading we cannot explain from public pages, so we are flagging it instead of smoothing it over. On the Flare page, <code>low / 2K</code> reads <strong>$0.1072</strong> — higher than the same model’s <code>low / 4K</code> cell ($0.0178), and ten times the Sunburst page’s value for the identical parameters ($0.0107). A higher resolution tier costing less than half the price of the one below it, inside the same model, is not a pricing strategy; it is either a page-level data issue or a deliberate pass-through we do not have documentation for. Until it is confirmed, price <code>low / 2K</code> off the Sunburst page and verify on your own account before you commit a forecast to it.</p>
+<p>One more structural difference matters for budget work. On OpenAI’s side, the <a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/guides/image-generation">image-generation guide</a> describes <code>gpt-image-2.5-sunburst</code> and <code>gpt-image-2.5-flare</code> as models that both generate <strong>and</strong> edit images. Modellix exposes four callable IDs, splitting generation from editing. That is why there are two ladders here: <strong>the same underlying work has two prices depending on whether an input image is in the request.</strong></p>
+<h2 id="What-the-wider-band-does-—-and-does-not-—-mean-next-to-GPT-Image-2"><a href="#What-the-wider-band-does-—-and-does-not-—-mean-next-to-GPT-Image-2" class="headerlink" title="What the wider band does — and does not — mean next to GPT Image 2"></a>What the wider band does — and does not — mean next to GPT Image 2</h2><p>GPT Image 2 on Modellix displays <strong>$0.0054~$0.1899&#x2F;img</strong> and GPT Image 2 Edit displays <strong>$0.0360~$0.2250&#x2F;img</strong>, both read on September 17, 2026. Set side by side with the 2.5 numbers, three things are true at once, and you have to name the parameter to say which one you are talking about:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Displayed range (Sept 17, 2026)</th>
+<th align="right">Band width</th>
+<th>Quality tiers on the page</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GPT Image 2.5 (T2I)</td>
+<td>$0.0053 – $0.6390</td>
+<td align="right">120.6×</td>
+<td>low, medium, high, xhigh, max</td>
+</tr>
+<tr>
+<td>GPT Image 2.5 Edit</td>
+<td>$0.0366 – $0.6718</td>
+<td align="right">18.4×</td>
+<td>low, medium, high, xhigh, max</td>
+</tr>
+<tr>
+<td>GPT Image 2</td>
+<td>$0.0054 – $0.1899</td>
+<td align="right">35.2×</td>
+<td>low, medium, high</td>
+</tr>
+<tr>
+<td>GPT Image 2 Edit</td>
+<td>$0.0360 – $0.2250</td>
+<td align="right">6.3×</td>
+<td>low, medium, high</td>
+</tr>
+</tbody></table>
+<p><em>All four ranges read from Modellix model pages on September 17, 2026. The GPT Image 2 page lists quality rows without a resolution axis; the 2.5 pages list a resolution axis as well, so the rows are not tier-for-tier equivalents.</em></p>
+<ul>
+<li><strong>The floor barely moved.</strong> $0.0053 versus $0.0054 — one hundredth of a cent. If your workload is dominated by low-quality drafts at 1K, 2.5 does not change your unit economics, and “upgrading is more expensive” would be wrong for you.</li>
+<li><strong>The ceiling moved a lot — because two new tiers appeared.</strong> GPT Image 2’s page stops at <code>high</code> ($0.1899). GPT Image 2.5 adds <code>xhigh</code> ($0.0843–$0.2846) and <code>max</code> ($0.1890–$0.6390). The 2.5 ceiling is higher because there is more product to buy, not because the old rows got repriced. A “max” 1K image at $0.1890 sits nine hundredths of a cent under GPT Image 2’s single top row.</li>
+<li><strong>On the middle rows, 2.5 can be the cheaper one.</strong> GPT Image 2.5 at <code>high</code> prices <strong>$0.0474</strong> at 1K, <strong>$0.0963</strong> at 2K, and <strong>$0.1601</strong> at 4K. All three are below GPT Image 2’s <code>high</code> row of $0.1899. At 2K that is 49% lower; at 4K, 16% lower. Same label, different model, different grid.</li>
+</ul>
+<p>So the honest answer to “is 2.5 more expensive?” is: <strong>the floor is unchanged, the top end is a new product tier, and the middle rows are cheaper.</strong> If you are choosing between the two for a fixed resolution and quality, compare those two cells — not the two ranges. For what the models do differently beyond price, the <a href="https://www.modellix.ai/blog/gpt-image-2-api/">GPT Image 2 API guide</a> covers the capability side, and the <a href="https://www.modellix.ai/blog/openai-image-generation-api-pricing/">OpenAI image pricing overview</a> covers the wider OpenAI image line (GPT Image 1, 1.5, and 2) — this page prices 2.5 only.</p>
+<h2 id="The-edit-band-and-when-the-edit-premium-stops-mattering"><a href="#The-edit-band-and-when-the-edit-premium-stops-mattering" class="headerlink" title="The edit band, and when the edit premium stops mattering"></a>The edit band, and when the edit premium stops mattering</h2><p>Every edit cell is above every cell of the same quality and resolution on the generate side, and the gap narrows as quality climbs. At 1K, <code>low</code> editing costs $0.0366 against $0.0053 to generate (6.91×) while <code>max</code> editing costs $0.2210 against $0.1890 (1.17×). Across the full grid the edit floor is $0.0366 and the generate floor $0.0053 — 6.9× — but at the top of the ladder the two ladders nearly meet.</p>
+<p>The mechanism is documented even though the exact token counts are not. OpenAI bills an image request as text input tokens + image output tokens, <strong>plus image input tokens when the edits endpoint is used</strong>, and it prices image input at <strong>$8 per 1M tokens</strong> with cached input at $2. Both 2.5 model pages list that rate, along with $5 per 1M text input tokens, $1.25 cached, and $30 per 1M image output tokens — identical to GPT Image 2’s rates. Worked through the arithmetic: if an edit bills 1,000 input-image tokens, that adds 1,000 ÷ 1,000,000 × $8 &#x3D; <strong>$0.008</strong> to the call. Read your own counts from the response’s <code>usage</code> field rather than estimating them; source-image tokens scale with what you send, not with the output you ask for.</p>
+<p>That asymmetry is the practical takeaway: <strong>if editing is a small share of a high-quality pipeline, the edit premium is noise. If it is the whole pipeline at <code>low</code> quality, it is a 7× multiplier on your bill</strong> — which is what you would expect from that quality tier’s price in the first place, not from an “editing fee”.</p>
+<p>For the earlier generation, the <a href="https://www.modellix.ai/blog/gpt-image-1-5-pricing/">GPT Image 1.5 pricing breakdown</a> has the comparable ladder if you are modelling a migration.</p>
+<h2 id="Budget-math-you-can-reproduce"><a href="#Budget-math-you-can-reproduce" class="headerlink" title="Budget math you can reproduce"></a>Budget math you can reproduce</h2><p>Every number below is a multiplication. The rates are the September 17, 2026 displayed prices from the tables above.</p>
+<p><strong>One volume, three cells.</strong> 10,000 generated images:</p>
+<table>
+<thead>
+<tr>
+<th>Cell</th>
+<th align="right">Rate</th>
+<th align="right">10,000 images</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>low &#x2F; 1K</td>
+<td align="right">$0.0053</td>
+<td align="right">$53</td>
+</tr>
+<tr>
+<td>high &#x2F; 1K</td>
+<td align="right">$0.0474</td>
+<td align="right">$474</td>
+</tr>
+<tr>
+<td>max &#x2F; 4K</td>
+<td align="right">$0.6390</td>
+<td align="right">$6,390</td>
+</tr>
+<tr>
+<td>low &#x2F; 1K edit</td>
+<td align="right">$0.0366</td>
+<td align="right">$366</td>
+</tr>
+<tr>
+<td>max &#x2F; 4K edit</td>
+<td align="right">$0.6718</td>
+<td align="right">$6,718</td>
+</tr>
+</tbody></table>
+<p><em>Rate × 10,000. Generation only; prompt text tokens and, for edits, input-image tokens are additional.</em></p>
+<p><strong>A mixed pipeline, which is how most teams actually run.</strong> Say 10,000 images a month breaks down as 8,000 drafts at low&#x2F;1K, 1,500 finals at high&#x2F;2K, and 500 hero images at max&#x2F;4K:</p>
+<ul>
+<li>8,000 × $0.0053 &#x3D; <strong>$42.40</strong></li>
+<li>1,500 × $0.0963 &#x3D; <strong>$144.45</strong></li>
+<li>500 × $0.6390 &#x3D; <strong>$319.50</strong></li>
+<li>Total &#x3D; <strong>$506.35</strong> for the month</li>
+</ul>
+<p>Run the same 10,000 images all at max&#x2F;4K and the bill is 10,000 × $0.6390 &#x3D; <strong>$6,390</strong> — about <strong>12.6× more</strong>. The mixed pipeline is not a discount trick; it is what happens when drafts stay cheap and only the images you ship are expensive.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/gpt-image-2-5-budget-mix.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/gpt-image-2-5-budget-mix.png" alt="Stacked breakdown of a 10,000-image monthly mix showing drafts, finals, and hero images and their share of the bill" loading="lazy" />
+</picture>
+
+<p><em>The 500 hero images at max&#x2F;4K are 5% of the volume and 63% of the $506.35 bill. Volume is not what you are paying for — the top tier is.</em></p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Price Your Own GPT Image 2.5 Mix</h3><p class="view-docs-tag-desc">Log in to run the same request at a draft tier and a shipping tier and read the per-call cost from your own logs.</p><a class="btn view-docs-tag-btn" href="https://www.modellix.ai/console/login" data-cta="login_tag" data-cta-target="login" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Can-you-get-the-per-image-number-from-OpenAI’s-token-rates"><a href="#Can-you-get-the-per-image-number-from-OpenAI’s-token-rates" class="headerlink" title="Can you get the per-image number from OpenAI’s token rates?"></a>Can you get the per-image number from OpenAI’s token rates?</h2><p>Partly, and knowing where the arithmetic stops is useful. OpenAI publishes 2.5 as token rates only: the <a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/models/gpt-image-2.5-flare">Flare</a> and <a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst">Sunburst</a> model pages list $5 text input, $1.25 cached text, $8 image input, $2 cached image input, and $30 image output per 1M tokens, and note that the GPT Image 2 calculator does <strong>not</strong> estimate 2.5 consumption. Divide Modellix’s top-tier cells by the image-output rate and they land on whole numbers:</p>
+<ul>
+<li>$0.1890 ÷ ($30 ÷ 1,000,000) &#x3D; <strong>6,300</strong> image output tokens (max &#x2F; 1K)</li>
+<li>$0.3780 ÷ ($30 ÷ 1,000,000) &#x3D; <strong>12,600</strong> image output tokens (max &#x2F; 2K)</li>
+<li>$0.6390 ÷ ($30 ÷ 1,000,000) &#x3D; <strong>21,300</strong> image output tokens (max &#x2F; 4K)</li>
+</ul>
+<p>Three clean integers at the top of the ladder are consistent with output tokens being the driver at those tiers. The bottom of the ladder does not divide cleanly — $0.0053 implies 176.67 tokens at the same rate — so <strong>the grid is a platform-side per-image price, not a token count you can reconstruct at every cell.</strong> Treat the published price as the billing surface and use the response’s <code>usage</code> field when you need per-request attribution. We are not going to invent the missing token table.</p>
+<h2 id="Where-0-6390-sits-in-the-rest-of-the-catalog"><a href="#Where-0-6390-sits-in-the-rest-of-the-catalog" class="headerlink" title="Where $0.6390 sits in the rest of the catalog"></a>Where $0.6390 sits in the rest of the catalog</h2><p>The 2.5 ceiling is the highest displayed price among the image models listed below — it is not a typical per-image cost for this catalog. Displayed per-image ranges measured on the same day, September 17, 2026:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Displayed price</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Google Nano Banana Pro</td>
+<td>$0.1206 – $0.2160 &#x2F;img</td>
+</tr>
+<tr>
+<td>Google Nano Banana 2</td>
+<td>$0.0405 – $0.1359 &#x2F;img</td>
+</tr>
+<tr>
+<td>ByteDance Seedream 5.0 Pro</td>
+<td>$0.0810 &#x2F;img</td>
+</tr>
+<tr>
+<td>Microsoft MAI Image 2.5</td>
+<td>$0.0481 &#x2F;img</td>
+</tr>
+<tr>
+<td>xAI Grok Imagine Image (Quality)</td>
+<td>$0.0600 – $0.0840 &#x2F;img</td>
+</tr>
+<tr>
+<td>Kling V3 T2I</td>
+<td>$0.0224 &#x2F;img</td>
+</tr>
+</tbody></table>
+<p><em>Displayed prices on the corresponding Modellix model pages, read September 17, 2026. Flat values are models whose pages show a single price; ranges are models whose pages show several parameter combinations. These are different parameter sets and different providers — the table places 2.5 in the catalog, it does not rank these models against each other.</em></p>
+<p>A $0.6390 image is a deliberate purchase: you are paying more per image than every model in this list displays at any setting. That is a legitimate choice for a hero asset and an expensive habit for anything else — which is why the mixed-pipeline arithmetic above matters more than the band you quote to your finance team. If you are still choosing between providers, the <a href="https://www.modellix.ai/blog/ai-image-model-api-pricing-comparison/">image model API pricing comparison</a> puts the whole field side by side; this page exists to price one family properly.</p>
+<h2 id="Keeping-the-bill-where-you-intended-it"><a href="#Keeping-the-bill-where-you-intended-it" class="headerlink" title="Keeping the bill where you intended it"></a>Keeping the bill where you intended it</h2><ul>
+<li><strong>Pin <code>resolution</code> and <code>quality</code> on every call.</strong> Both parameters are optional and both change the price by multiples, not percentages. Defaults that suit a demo are the wrong defaults for a batch job.</li>
+<li><strong>Split draft from ship.</strong> Generation is cheap at <code>low</code> &#x2F; 1K ($0.0053) and expensive at <code>max</code> &#x2F; 4K ($0.6390). Two-pass workflows exist because of that 120× spread.</li>
+<li><strong>Discover the exact IDs before you bill against them.</strong> <code>GET /api/v1/models</code> returns every active model with its <code>slug</code>, <code>type</code>, and <code>docs_url</code>, so your cost table is generated from the live catalog instead of a spreadsheet — see the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/api/list-models">List Active Models reference</a>.</li>
+<li><strong>Read the request schema instead of guessing fields.</strong> <code>modellix-cli model get-schema &lt;provider/model&gt;</code> returns the request and response schema for a model and needs no API key; the endpoint is documented under <a target="_blank" rel="noopener" href="https://docs.modellix.ai/api/get-schema">Get Schema</a>. Model paths no longer carry an <code>/async</code> suffix (the change is recorded in the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/changelog/product-updates">product changelog</a>), and old paths still resolve.</li>
+<li><strong>Reconcile from logs, not from estimates.</strong> The <a target="_blank" rel="noopener" href="https://docs.modellix.ai/api/get-logs">request-logs endpoint</a> returns per-call log entries for your team inside a 30-day window, which is what turns a forecast into an actual.</li>
+<li><strong>Upload reference images instead of hosting them.</strong> The <a target="_blank" rel="noopener" href="https://docs.modellix.ai/api/upload-media-file">File API</a> takes an image, video, or audio file and returns a <code>file_id</code> you can pass into a prediction; uploads are free, capped at 16 MB by default, and <strong>retained for about 7 days</strong>, so re-upload anything your pipeline will still need next week.</li>
+<li><strong>One key across providers.</strong> Modellix routes media models from multiple vendors — the four 2.5 IDs landed on <strong>September 16, 2026</strong> per the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/changelog/new-models">new-model changelog</a> — so a model swap is a model-ID change, not a new account. Modellix does not operate its own image models; it passes through provider economics, and pricing here is per call rather than a subscription.</li>
+</ul>
+<p>On that last point, the honest limit: nothing above says Modellix is the cheapest or the best route to these models. A single key and per-call logs are an integration convenience while you are still comparing routes. If you need one vendor’s contractual SLA or first-party support, calling the provider directly is the simpler answer, and the numbers on this page are the same numbers you are comparing against.</p>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p><strong>How much does GPT Image 2.5 cost per image?</strong></p>
+<p>On Modellix, as of September 17, 2026, the text-to-image models display $0.0053–$0.6390 per image and the edit models $0.0366–$0.6718 per image. A single representative price does not exist: $0.0053 is a low-quality 1K draft and $0.6390 is a max-quality 4K image. Name the quality tier and resolution before quoting either end.</p>
+<p><strong>What are the five quality levels and what do they cost at 1K?</strong></p>
+<p><code>low</code> $0.0053, <code>medium</code> $0.0124, <code>high</code> $0.0474, <code>xhigh</code> $0.0843, <code>max</code> $0.1890 — for both text-to-image 2.5 models at 1K, read September 17, 2026. Each step multiplies the previous tier by 1.8× to 3.8×, and the full ladder is about 35.7× from bottom to top.</p>
+<p><strong>Does resolution or quality change the price more?</strong></p>
+<p>Quality, by an order of magnitude. At a fixed 1K, low → max multiplies price by 35.7×. At a fixed quality, 1K → 4K multiplies by about 3.4×. If you are optimizing one parameter, move quality first and resolution second.</p>
+<p><strong>Is Sunburst more expensive than Flare?</strong></p>
+<p>No. Both text-to-image models display the same $0.0053–$0.6390 band and both edit models display $0.0366–$0.6718, as of September 17, 2026. Twelve of the fifteen T2I cells are identical across the two pages, and the three that differ are cent-level except for one <code>low / 2K</code> cell that does not reconcile with its own model’s 4K row.</p>
+<p><strong>Is GPT Image 2.5 more expensive than GPT Image 2?</strong></p>
+<p>It depends on the cell, and the ranges mislead. GPT Image 2 displays $0.0054–$0.1899 and its edit model $0.0360–$0.2250 (September 17, 2026). The 2.5 floor is one hundredth of a cent higher; the 2.5 ceiling is higher because <code>xhigh</code> and <code>max</code> are new tiers rather than repriced old ones; and 2.5’s <code>high</code> rows at 1K, 2K, and 4K ($0.0474, $0.0963, $0.1601) all sit below GPT Image 2’s $0.1899.</p>
+<p><strong>How much do 1,000 images cost?</strong></p>
+<p>Multiply the cell: 1,000 low&#x2F;1K drafts cost 1,000 × $0.0053 &#x3D; $5.30; 1,000 max&#x2F;4K images cost 1,000 × $0.6390 &#x3D; $639. Mixing tiers is normal — a 10,000-image month split 8,000 drafts &#x2F; 1,500 finals &#x2F; 500 hero images comes to $506.35 at September 17, 2026 rates.</p>
+<p><strong>Is there a free tier for GPT Image 2.5?</strong></p>
+<p>No. OpenAI’s rate-limit table for the 2.5 models lists Free as “Not supported”, and both model pages price every output through token rates. Modellix has no free-credit promise for these models either — you fund an account and pay per call. If you have seen a cheaper-looking monthly figure elsewhere, check whether it is a ChatGPT subscription: that is a different product and it does not cover API calls.</p>
+<p><strong>Can I price an edit as generate plus a fixed surcharge?</strong></p>
+<p>Not as a single number. An edit request bills image input tokens at $8 per 1M on top of output tokens, and the size of that input depends on the source image you send. Relative to generation, the edit premium runs from 6.91× at <code>low</code> &#x2F; 1K down to 1.17× at <code>max</code> &#x2F; 1K — so the surcharge is a share of your input cost, not a fixed fee.</p>
+<hr>
+<p><em>Pricing sources accessed September 17, 2026: the Modellix model pages for <a href="https://www.modellix.ai/models/openai/gpt-image-2.5-flare">GPT Image 2.5 Flare</a>, <a href="https://www.modellix.ai/models/openai/gpt-image-2.5-sunburst">Sunburst</a>, <a href="https://www.modellix.ai/models/openai/gpt-image-2.5-flare-edit">Flare Edit</a>, <a href="https://www.modellix.ai/models/openai/gpt-image-2.5-sunburst-edit">Sunburst Edit</a>, <a href="https://www.modellix.ai/models/openai/gpt-image-2">GPT Image 2</a>, and <a href="https://www.modellix.ai/models/openai/gpt-image-2-edit">GPT Image 2 Edit</a>; OpenAI’s <a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/models/gpt-image-2.5-flare">GPT Image 2.5 Flare</a> and <a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst">Sunburst</a> model pages, <a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/guides/image-generation">image-generation guide</a>, and <a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/pricing">pricing page</a>; and the Modellix <a target="_blank" rel="noopener" href="https://docs.modellix.ai/changelog/new-models">new-model changelog</a> of September 16, 2026. Prices, availability, and model features change without notice — verify against the live pages before purchase. Modellix is an API aggregator with a commercial interest in this comparison and does not operate its own image models. Access image and video models, including the leading Chinese models, through a single API key at <a href="https://www.modellix.ai/">modellix.ai</a>.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/OpenAI/" class="tag-pill tag-pill--sm">OpenAI</a>
+            
+              <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
+            
+              <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+              <a href="/blog/tags/GPT-Image/" class="tag-pill tag-pill--sm">GPT Image</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="https://www.modellix.ai/console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/ai-image-model-api-pricing-comparison/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-ai-image-model-api-pricing.webp" alt="AI Image Model API Pricing Comparison (2026): 49 Routes" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Pricing</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">AI Image Model API Pricing Comparison (2026): 49 Routes</h3>
+          <time class="related-article-date" datetime="2026-09-15T01:00:00.000Z">September 15, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/ai-video-model-api-pricing-comparison/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-ai-video-model-api-pricing-comparison.webp" alt="AI Video Model API Pricing Comparison: 112 Models (2026)" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Pricing</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">AI Video Model API Pricing Comparison: 112 Models (2026)</h3>
+          <time class="related-article-date" datetime="2026-09-14T16:00:00.000Z">September 15, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/ai-video-generation-cost-calculator/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-ai-video-generation-cost-calculator.webp" alt="AI Video Generation Cost Calculator: Per-Second Math" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Pricing</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">AI Video Generation Cost Calculator: Per-Second Math</h3>
+          <time class="related-article-date" datetime="2026-09-14T16:00:00.000Z">September 15, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="https://www.modellix.ai/console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/gpt-image-2-5-pricing/&text=GPT%20Image%202.5%20Pricing%3A%20What%20Moves%20the%20%240.0053%E2%80%93%240.6390%20Band" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/gpt-image-2-5-pricing/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/gpt-image-2-5-pricing/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script defer src="https://unpkg.com/lucide@1.47.0/dist/umd/lucide.min.js" onload="window.lucide && window.lucide.createIcons();"></script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+</body>
+</html>

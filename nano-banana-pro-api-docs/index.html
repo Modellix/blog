@@ -1,0 +1,862 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Production analytics start after the page load has settled. -->
+  <script>
+    (function (document, window) {
+      if (window.location.hostname !== 'www.modellix.ai') return;
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-4DECHYKQVT');
+
+      var loaded = false;
+      function appendScript(src, crossOrigin) {
+        var script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        if (crossOrigin) script.crossOrigin = crossOrigin;
+        document.head.appendChild(script);
+      }
+      function loadAnalytics() {
+        if (loaded) return;
+        loaded = true;
+        appendScript('https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT');
+        appendScript('https://t.contentsquare.net/uxa/f39399cd2e27e.js', 'anonymous');
+        appendScript('https://app.rybbit.io/api/script.js?siteId=8a6874a918d7');
+      }
+      function scheduleAnalytics() {
+        window.setTimeout(function () {
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(loadAnalytics, { timeout: 3000 });
+          } else {
+            loadAnalytics();
+          }
+        }, 1500);
+      }
+
+      if (document.readyState === 'complete') scheduleAnalytics();
+      else window.addEventListener('load', scheduleAnalytics, { once: true });
+    })(document, window);
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nano Banana Pro API Docs: Endpoints, Parameters &amp; Limits</title>
+  <meta name="keywords" content="nano banana pro api docs, nano banana pro api reference, nano banana pro api parameters, nano banana pro api endpoint, nano banana api url, nano banana pro api error codes, nano banana pro api rate limits, nano banana pro api python, gemini-3-pro-image">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/nano-banana-pro-api-docs/">
+  
+  
+  <meta name="description" content="Nano Banana Pro API docs in one reference: endpoints, model IDs, parameters, raw request and response JSON, limits, error codes and daily-read per-image prices.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nano Banana Pro API Docs: Endpoints, Parameters &amp; Limits">
+<meta property="og:url" content="https://www.modellix.ai/blog/nano-banana-pro-api-docs/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Nano Banana Pro API docs in one reference: endpoints, model IDs, parameters, raw request and response JSON, limits, error codes and daily-read per-image prices.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-nano-banana-pro-api-docs.webp">
+<meta property="article:published_time" content="2026-09-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-09T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="API Reference">
+<meta property="article:tag" content="Gemini API">
+<meta property="article:tag" content="Image Generation">
+<meta property="article:tag" content="Integration">
+<meta property="article:tag" content="Nano Banana Pro">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-nano-banana-pro-api-docs.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Nano Banana Pro API Docs: Endpoints, Parameters & Limits","description":"Nano Banana Pro API docs in one reference: endpoints, model IDs, parameters, raw request and response JSON, limits, error codes and daily-read per-image prices.","datePublished":"2026-09-09T16:00:00.000Z","dateModified":"2026-09-09T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/nano-banana-pro-api-docs/","image":"https://img.modellix.ai/en/article/cover-nano-banana-pro-api-docs.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://img.modellix.ai" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="https://www.modellix.ai/" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started" class="nav-link">Documentation</a>
+      
+        <a href="https://www.modellix.ai/about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="https://www.modellix.ai/console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="https://www.modellix.ai/console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Nano Banana Pro API Docs: Endpoints, Parameters &amp; Limits</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Nano Banana Pro API Docs: Endpoints, Parameters &amp; Limits</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-09-09T16:00:00.000Z">September 10, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/image-generation/" class="tag-pill tag-pill--sm">Image Generation</a>
+            
+              <a href="/blog/tags/integration/" class="tag-pill tag-pill--sm">Integration</a>
+            
+              <a href="/blog/tags/gemini-api/" class="tag-pill tag-pill--sm">Gemini API</a>
+            
+              <a href="/blog/tags/Nano-Banana-Pro/" class="tag-pill tag-pill--sm">Nano Banana Pro</a>
+            
+              <a href="/blog/tags/API-Reference/" class="tag-pill tag-pill--sm">API Reference</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>Search &#39;nano banana pro api docs&#39; and the top organic result is a 13,000-word tutorial with 135 code blocks and 46 example images — and no consolidated parameter table, no error code, no rate limit, and no install line before the first from.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-nano-banana-pro-api-docs.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-nano-banana-pro-api-docs.png" alt="MODELLIX editorial cover reading NANO BANANA PRO API DOCS over ENDPOINTS · PARAMETERS · RESPONSES, with a glass request panel feeding a chrome core and two output tiles" />
+</picture>
+
+<p>Search “nano banana pro api docs” and the top organic result is a 13,000-word tutorial with 135 code blocks and 46 example images — and no consolidated parameter table, no error code, no rate limit, and no install line before the first <code>from google import genai</code>. A product page sitting in the top five advertises “endpoint references, parameter details, code samples” in its snippet and contains zero endpoints and zero code samples. Even the AI Overview hedges on the one string every integration actually needs: <em>model string <code>google/nano-banana-pro</code> — or equivalent provider strings depending on your API gateway.</em></p>
+<p>That hedge is the whole problem. This page is the reference those pages are not: the endpoints, the model IDs and how they map, every request parameter with its allowed values and its effect on price, the raw JSON that comes back on both routes, the limits and retention windows, the error codes and which ones to retry, and a dated per-image cost table. Read it top to bottom or jump to the table you need.</p>
+<p>Everything here was read from the providers’ own pages on <strong>September 10, 2026</strong> and is stamped as such; Google’s own pricing page carried a “Last updated 2026-09-08 UTC” footer when we pulled it. Modellix operates this blog and is one of the two routes described below, so treat its column as a disclosed commercial interest, not a neutral verdict. One scoping note against our own archive: the <a href="https://www.modellix.ai/blog/nano-banana-pro-api/">Nano Banana Pro API overview</a> already walks the call shape end to end, including a submit-and-poll loop, webhooks and error handling. What it does not carry — and what this page adds — is the reference layer: a consolidated parameter table per route, the per-model limits and reference-image ceilings, the raw request and response envelopes, the error-code table with a retry policy, and the funding-tier rate limits. Read that one for the narrative, this one when you are writing or debugging the integration.</p>
+<h2 id="Quick-reference-the-Nano-Banana-Pro-endpoints-and-model-IDs"><a href="#Quick-reference-the-Nano-Banana-Pro-endpoints-and-model-IDs" class="headerlink" title="Quick reference: the Nano Banana Pro endpoints and model IDs"></a>Quick reference: the Nano Banana Pro endpoints and model IDs</h2><p>“Nano Banana Pro” is a marketing name. Google’s model ID for it is <code>gemini-3-pro-image</code>; the same model is listed as <code>google/nano-banana-pro</code> in a gateway catalog. Those two strings are the difference between a request that works and a <code>404</code>, so map them once and stop guessing.</p>
+<table>
+<thead>
+<tr>
+<th>Marketing name</th>
+<th>Google model ID</th>
+<th>Gateway model string</th>
+<th>Family role</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Nano Banana Pro</td>
+<td><code>gemini-3-pro-image</code></td>
+<td><code>google/nano-banana-pro</code></td>
+<td>Highest-fidelity creative tier, 4K, thinking on by default</td>
+</tr>
+<tr>
+<td>Nano Banana Pro Edit</td>
+<td><code>gemini-3-pro-image</code></td>
+<td><code>google/nano-banana-pro-edit</code></td>
+<td>Instruction-based editing on the gateway edit route, 1–14 reference images</td>
+</tr>
+<tr>
+<td>Nano Banana 2</td>
+<td><code>gemini-3.1-flash-image</code></td>
+<td><code>google/nano-banana-2</code></td>
+<td>Speed-first generalist</td>
+</tr>
+<tr>
+<td>Nano Banana 2 Lite</td>
+<td><code>gemini-3.1-flash-lite-image</code></td>
+<td><code>google/nano-banana-2-lite</code></td>
+<td>Cheapest tier</td>
+</tr>
+<tr>
+<td>Nano Banana (legacy)</td>
+<td><code>gemini-2.5-flash-image</code></td>
+<td><code>google/nano-banana</code></td>
+<td>Original release; Google recommends migrating off it</td>
+</tr>
+</tbody></table>
+<p>The model IDs above are the ones Google’s <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/image-generation">Nano Banana image-generation documentation</a> uses as of September 10, 2026. Note what that page says about the legacy row and what it does not: it still documents <code>gemini-2.5-flash-image</code> as a selectable model and <em>recommends</em> transitioning to Nano Banana 2 Lite. It does not announce a shutdown date, and neither will this page. If the cheaper tier turns out to be the right call for your workload, our <a href="https://www.modellix.ai/blog/nano-banana-2-api/">Nano Banana 2 API guide</a> covers its endpoint surface and its own resolution ladder.</p>
+<p>Two endpoints reach Pro. Pick one; you do not need both.</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Method and path</th>
+<th>Auth header</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Google direct</td>
+<td><code>POST https://generativelanguage.googleapis.com/v1beta/interactions</code></td>
+<td><code>x-goog-api-key</code></td>
+<td>The finished image in the same response</td>
+</tr>
+<tr>
+<td>One-key gateway</td>
+<td><code>POST https://api.modellix.ai/api/v1/google/nano-banana-pro</code></td>
+<td><code>Authorization: Bearer</code></td>
+<td>A <code>task_id</code> you poll, or a webhook</td>
+</tr>
+<tr>
+<td>One-key gateway (task lookup)</td>
+<td><code>GET https://api.modellix.ai/api/v1/tasks/&#123;task_id&#125;</code></td>
+<td><code>Authorization: Bearer</code></td>
+<td>Status, result resources, actual billed amount</td>
+</tr>
+<tr>
+<td>One-key gateway (edit)</td>
+<td><code>POST https://api.modellix.ai/api/v1/google/nano-banana-pro-edit</code></td>
+<td><code>Authorization: Bearer</code></td>
+<td>Same task contract as generation</td>
+</tr>
+</tbody></table>
+<p>Here is an unhelpful habit worth breaking early: copy the path from the <strong>model’s own API page</strong>, not from a different model’s example. Modellix publishes a per-model OpenAPI spec — the one for <a target="_blank" rel="noopener" href="https://docs.modellix.ai/google/nano-banana-pro">Nano Banana Pro</a> declares <code>/api/v1/google/nano-banana-pro</code>, while quickstart examples elsewhere on the same docs site use a <code>/&#123;provider&#125;/&#123;model&#125;/async</code> form for other providers’ models. Pattern-matching the suffix across models is how you end up debugging a route that was never there.</p>
+<h2 id="Request-parameters-for-Nano-Banana-Pro-field-by-field"><a href="#Request-parameters-for-Nano-Banana-Pro-field-by-field" class="headerlink" title="Request parameters for Nano Banana Pro, field by field"></a>Request parameters for Nano Banana Pro, field by field</h2><p>Google’s page explains its parameters in prose and repeats them across Python, JavaScript, Java and REST tabs. Here they are in one place for the generation call.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Accepted values</th>
+<th>Default</th>
+<th>Effect on cost</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>model</code></td>
+<td>string</td>
+<td>Yes</td>
+<td><code>gemini-3-pro-image</code></td>
+<td>—</td>
+<td>Selects the Pro price tier</td>
+</tr>
+<tr>
+<td><code>input</code></td>
+<td>array or string</td>
+<td>Yes</td>
+<td>Text part, image part, or both</td>
+<td>—</td>
+<td>Each input image bills ~$0.0011</td>
+</tr>
+<tr>
+<td><code>response_format</code></td>
+<td>object</td>
+<td>No</td>
+<td><code>&#123;&quot;type&quot;:&quot;image&quot;&#125;</code></td>
+<td>Text-or-image</td>
+<td>Requesting an image is what triggers image billing</td>
+</tr>
+<tr>
+<td><code>response_format.aspect_ratio</code></td>
+<td>string</td>
+<td>No</td>
+<td>Ratio set below</td>
+<td>Provider default</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>response_format.image_size</code></td>
+<td>string</td>
+<td>No</td>
+<td><code>1K</code>, <code>2K</code>, <code>4K</code></td>
+<td><code>1K</code></td>
+<td><strong>4K roughly doubles the per-image price</strong></td>
+</tr>
+<tr>
+<td><code>tools</code></td>
+<td>array</td>
+<td>No</td>
+<td><code>[&#123;&quot;type&quot;:&quot;google_search&quot;&#125;]</code></td>
+<td>Off</td>
+<td>Grounding is billed separately, per search request</td>
+</tr>
+<tr>
+<td><code>generation_config</code></td>
+<td>object</td>
+<td>No</td>
+<td>Thinking-level controls</td>
+<td>Thinking on for Pro</td>
+<td>Thinking tokens bill as output text</td>
+</tr>
+</tbody></table>
+<p>The gateway exposes the same capability as four flat fields, which is the whole point of its request shape:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Accepted values</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>prompt</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Any text, minimum length 1</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>aspectRatio</code></td>
+<td>string</td>
+<td>No</td>
+<td><code>1:1</code>, <code>2:3</code>, <code>3:2</code>, <code>3:4</code>, <code>4:3</code>, <code>4:5</code>, <code>5:4</code>, <code>9:16</code>, <code>16:9</code>, <code>21:9</code></td>
+<td><code>1:1</code></td>
+</tr>
+<tr>
+<td><code>imageSize</code></td>
+<td>string</td>
+<td>No</td>
+<td><code>1K</code>, <code>2K</code>, <code>4K</code></td>
+<td>not stated in the model’s schema (Google’s route defaults to 1K)</td>
+</tr>
+<tr>
+<td><code>image</code></td>
+<td>string[]</td>
+<td>Yes on the edit route, absent on generation</td>
+<td>1–14 image URLs</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<p>Two field-level facts that decide most first-request failures. <strong>Pro has no 512px tier</strong> — the smallest output is 1K, so a request copied from a Nano Banana 2 example that sets a half-resolution size will not have a Pro equivalent. And <strong><code>image</code> is an array, not a string</strong>: the edit route takes one to fourteen URLs and treats all of them as reference context for a single instruction, so an editor UI that sends <code>image: &quot;https://...&quot;</code> fails validation rather than quietly working.</p>
+<h2 id="A-first-request-end-to-end-on-both-routes"><a href="#A-first-request-end-to-end-on-both-routes" class="headerlink" title="A first request, end to end, on both routes"></a>A first request, end to end, on both routes</h2><p>Start with the SDK, because the official page does not tell you to install it. Google’s <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/libraries">libraries page</a> is where the install lines live: <code>pip install google-genai</code> for Python, <code>npm install @google/genai</code> for JavaScript and TypeScript. Then set the key you created in <a target="_blank" rel="noopener" href="https://aistudio.google.com/apikey">Google AI Studio</a> as an environment variable so it never lands in your source tree.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> GEMINI_API_KEY=<span class="string">&quot;your-key-here&quot;</span></span><br><span class="line"></span><br><span class="line">curl -s -X POST <span class="string">&quot;https://generativelanguage.googleapis.com/v1beta/interactions&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;x-goog-api-key: <span class="variable">$GEMINI_API_KEY</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;model&quot;: &quot;gemini-3-pro-image&quot;,</span></span><br><span class="line"><span class="string">    &quot;input&quot;: [&#123;&quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;A labelled cutaway diagram of a two-stage gearbox, studio lighting&quot;&#125;],</span></span><br><span class="line"><span class="string">    &quot;response_format&quot;: &#123;&quot;type&quot;: &quot;image&quot;, &quot;aspect_ratio&quot;: &quot;4:3&quot;, &quot;image_size&quot;: &quot;2K&quot;&#125;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>The same call in Python, where the image arrives as base64 you have to decode and write yourself:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64, os</span><br><span class="line"><span class="keyword">from</span> google <span class="keyword">import</span> genai</span><br><span class="line"></span><br><span class="line">client = genai.Client(api_key=os.environ[<span class="string">&quot;GEMINI_API_KEY&quot;</span>])</span><br><span class="line"></span><br><span class="line">interaction = client.interactions.create(</span><br><span class="line">    model=<span class="string">&quot;gemini-3-pro-image&quot;</span>,</span><br><span class="line">    <span class="built_in">input</span>=<span class="string">&quot;A labelled cutaway diagram of a two-stage gearbox, studio lighting&quot;</span>,</span><br><span class="line">    response_format=&#123;<span class="string">&quot;type&quot;</span>: <span class="string">&quot;image&quot;</span>, <span class="string">&quot;aspect_ratio&quot;</span>: <span class="string">&quot;4:3&quot;</span>, <span class="string">&quot;image_size&quot;</span>: <span class="string">&quot;2K&quot;</span>&#125;,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;gearbox.png&quot;</span>, <span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(base64.b64decode(interaction.output_image.data))</span><br></pre></td></tr></table></figure>
+
+<p>The gateway route is a different shape because it is asynchronous: the submit call returns no image at all, just a handle. Set <code>MODELLIX_API_KEY</code> from the key you create once in the Modellix console, then submit and poll.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">curl --request POST \</span><br><span class="line">  --url https://api.modellix.ai/api/v1/google/nano-banana-pro \</span><br><span class="line">  --header <span class="string">&quot;Authorization: Bearer <span class="variable">$MODELLIX_API_KEY</span>&quot;</span> \</span><br><span class="line">  --header <span class="string">&#x27;Content-Type: application/json&#x27;</span> \</span><br><span class="line">  --data <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;prompt&quot;: &quot;A labelled cutaway diagram of a two-stage gearbox, studio lighting&quot;,</span></span><br><span class="line"><span class="string">    &quot;aspectRatio&quot;: &quot;4:3&quot;,</span></span><br><span class="line"><span class="string">    &quot;imageSize&quot;: &quot;2K&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br><span class="line"></span><br><span class="line">curl --request GET \</span><br><span class="line">  --url https://api.modellix.ai/api/v1/tasks/task-def456 \</span><br><span class="line">  --header <span class="string">&quot;Authorization: Bearer <span class="variable">$MODELLIX_API_KEY</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>The submit call answers with a task handle rather than an image:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;success&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pending&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;task_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;task-def456&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;model_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;google/nano-banana-pro&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;get_result&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;method&quot;</span><span class="punctuation">:</span> <span class="string">&quot;GET&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.modellix.ai/api/v1/tasks/task-def456&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>Do not spin on that second call in a tight loop. Back off — one second, then two, then four — or skip polling entirely by sending an <code>X-Webhook-URL</code> header on the submit call, in which case the gateway POSTs the result to your HTTPS endpoint when the task reaches a terminal state and expects any <code>2xx</code> back. The full lifecycle of both routes, including the states your job passes through and where each one leaves you, is laid out below.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/nano-banana-pro-api-docs-request-lifecycle.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/nano-banana-pro-api-docs-request-lifecycle.png" alt="Request lifecycle of both Nano Banana Pro routes, showing the single-call Google path against the gateway task lifecycle from pending through success" loading="lazy" />
+</picture>
+
+<p><em>How the two routes differ in shape, not in model: Google’s Interactions API answers a request with the finished image, while the gateway answers with a task handle that settles into <code>success</code> or <code>failed</code> and can be delivered by webhook instead of polling. Diagram generated for this article; not a console screenshot.</em></p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Nano Banana Pro endpoint reference</h3><p class="view-docs-tag-desc">See the parameters, request schema and task routes for google/nano-banana-pro and its edit variant.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&amp;utm_medium=view_docs_tag" data-cta="view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="The-response-envelope-what-actually-comes-back"><a href="#The-response-envelope-what-actually-comes-back" class="headerlink" title="The response envelope: what actually comes back"></a>The response envelope: what actually comes back</h2><p>This is the artifact no page in the top five prints, and it is the one you need if you are integrating over plain HTTP rather than through a vendor SDK. On Google’s route the image lives inside <code>steps</code>, not at the top level: the SDK convenience properties <code>output_image</code> and <code>output_text</code> are shortcuts over an array that can interleave text and image blocks when the model narrates its work.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;steps&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;model_output&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;content&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;text&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;text&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Here is the diagram you asked for.&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#123;</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;image&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;mime_type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;image/png&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&lt;base64&gt;&quot;</span> <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>Iterate <code>steps</code> and check each block’s <code>type</code> if you want both the caption and the file; reach for <code>output_image</code> only when you know the response contains exactly one image. On the gateway route the submit response is the task handle shown in the previous section, and the task lookup returns the payload below once the job finishes. Note <code>billing</code> and <code>result_expires_at</code> — the first tells you what was actually charged, the second tells you when to stop expecting the asset to exist.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;success&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;success&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;task_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;task-def456&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;model_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;google/nano-banana-pro&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;duration&quot;</span><span class="punctuation">:</span> <span class="number">3500</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;billing&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;succeeded&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;amount&quot;</span><span class="punctuation">:</span> <span class="number">0.1206</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;result&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;resources&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span> <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://cdn.example.com/images/abc123.png&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;image&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;width&quot;</span><span class="punctuation">:</span> <span class="number">2048</span><span class="punctuation">,</span> <span class="attr">&quot;height&quot;</span><span class="punctuation">:</span> <span class="number">1536</span><span class="punctuation">,</span> <span class="attr">&quot;format&quot;</span><span class="punctuation">:</span> <span class="string">&quot;png&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;role&quot;</span><span class="punctuation">:</span> <span class="string">&quot;primary&quot;</span> <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;metadata&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;image_count&quot;</span><span class="punctuation">:</span> <span class="number">1</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;extensions&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;submit_time&quot;</span><span class="punctuation">:</span> <span class="number">1757491200000</span><span class="punctuation">,</span> <span class="attr">&quot;end_time&quot;</span><span class="punctuation">:</span> <span class="number">1757491203500</span> <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;result_expires_at&quot;</span><span class="punctuation">:</span> <span class="number">1758096000000</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>The task <code>status</code> field takes <code>pending</code> or <code>processing</code> while a job is in flight and settles on one of three terminal values: <code>success</code>, <code>failed</code>, or <code>canceled</code>. <code>duration</code> is milliseconds and only appears on a finished task; <code>error</code> only appears on a failed one. A webhook delivery carries a body identical to this response — including <code>billing</code> — plus <code>X-Modellix-Event</code>, <code>X-Modellix-Task-ID</code>, <code>X-Modellix-Delivery-ID</code> and <code>X-Modellix-Retry-Count</code> headers, which is why deduplicating on <code>X-Modellix-Delivery-ID</code> is the one idempotency measure worth building on day one — and why a webhook handler must treat <code>canceled</code> as a completed delivery, not as a failure to retry. All of this is documented in the Modellix <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api">REST API guide</a> and the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/api/get-task-result">task-result schema</a>; it is also the part of the contract that appears on none of the pages competing for this query. The other Nano Banana models share the identical envelope, so once this shape is parsed you have parsed the family — our <a href="https://www.modellix.ai/blog/nano-banana-api-docs/">family-wide Nano Banana API docs guide</a> covers the parts that are common across all four.</p>
+<h2 id="Limits-resolutions-reference-images-retention-and-rate-limits"><a href="#Limits-resolutions-reference-images-retention-and-rate-limits" class="headerlink" title="Limits: resolutions, reference images, retention, and rate limits"></a>Limits: resolutions, reference images, retention, and rate limits</h2><p>Pro’s ceilings are real and they are not the family’s ceilings — the family page quotes the widest numbers across four models, which is how an integration ends up sized for a limit the model it calls does not have.</p>
+<table>
+<thead>
+<tr>
+<th>Limit</th>
+<th>Nano Banana Pro</th>
+<th>Where it is documented</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Output resolutions</td>
+<td><code>1K</code>, <code>2K</code>, <code>4K</code> — no 512px tier</td>
+<td>Pro parameter table; Google notes 512px is added by Nano Banana 2 only</td>
+</tr>
+<tr>
+<td>Default output size</td>
+<td>1K unless you set <code>image_size</code> &#x2F; <code>imageSize</code></td>
+<td>Google: “Gemini 3 image models generate 1K images by default”</td>
+</tr>
+<tr>
+<td>Pixel ceiling per tier</td>
+<td>1K &#x3D; 1024×1024; 2K &#x3D; up to 2048×2048; 4K &#x3D; up to 4096×4096</td>
+<td>Google pricing footnotes for image output</td>
+</tr>
+<tr>
+<td>Aspect ratios</td>
+<td>10 values, <code>1:1</code> through <code>21:9</code> (no ultra-wide bands)</td>
+<td>Pro parameter table</td>
+</tr>
+<tr>
+<td>Reference images, Google direct</td>
+<td>Up to 6 objects, 5 characters and 3 style references — the same 14, split by category</td>
+<td>Google’s per-model reference-image table</td>
+</tr>
+<tr>
+<td>Reference images, gateway edit route</td>
+<td>1–14 URLs per request, all treated as context</td>
+<td>Pro Edit parameter table</td>
+</tr>
+<tr>
+<td>Generated-result retention</td>
+<td>About 7 days</td>
+<td>REST API guide</td>
+</tr>
+<tr>
+<td>Uploaded input files</td>
+<td>16 MB per file, 10 files per team, 2 concurrent uploads</td>
+<td>File API limits</td>
+</tr>
+<tr>
+<td>Team rate limit</td>
+<td>100 RPM at the lowest funding tier, up to 1,000 RPM at a $1,000 top-up</td>
+<td>Team entitlements table</td>
+</tr>
+<tr>
+<td>Concurrent generation tasks</td>
+<td>2 at the lowest tier, up to 100 at a $1,000 top-up</td>
+<td>Team entitlements table</td>
+</tr>
+<tr>
+<td>Request-log window</td>
+<td>30 days maximum per query</td>
+<td>Logs endpoint</td>
+</tr>
+</tbody></table>
+<p>That reference-image row is the one worth re-reading, because it is where a Pro integration most often gets sized wrong. Google’s page does say “up to 14 reference images”, but that is the family-wide headline; the table underneath it separates the ceilings, and <strong>Pro’s are the tightest of the three Gemini 3 image models</strong> — six objects, five characters and three style references, which add up to the same 14 the family headline quotes. If you are porting a multi-reference pipeline from Nano Banana 2, those are the numbers that move. On the gateway’s edit route the documented input is a flat 1–14 array, so check which route your pipeline actually calls before you pick a limit.</p>
+<p>Rate limits and concurrency are not a single global number either. They scale with your team’s <strong>single top-up amount</strong>, published as a <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started/entitlements">funding-tier entitlements table</a> with no email required until you need something beyond it:</p>
+<table>
+<thead>
+<tr>
+<th>Single top-up</th>
+<th align="right">Concurrent tasks</th>
+<th align="right">Rate limit (RPM)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Under $10</td>
+<td align="right">2</td>
+<td align="right">100</td>
+</tr>
+<tr>
+<td>$10</td>
+<td align="right">10</td>
+<td align="right">100</td>
+</tr>
+<tr>
+<td>$100</td>
+<td align="right">20</td>
+<td align="right">200</td>
+</tr>
+<tr>
+<td>$200</td>
+<td align="right">30</td>
+<td align="right">300</td>
+</tr>
+<tr>
+<td>$500</td>
+<td align="right">50</td>
+<td align="right">500</td>
+</tr>
+<tr>
+<td>$1,000</td>
+<td align="right">100</td>
+<td align="right">1,000</td>
+</tr>
+<tr>
+<td>Custom</td>
+<td align="right">Custom</td>
+<td align="right">Custom</td>
+</tr>
+</tbody></table>
+<p>Two more of those rows deserve a sentence each. <strong>Retention is not a suggestion.</strong> Results live about seven days on the gateway, and Google’s route hands you base64 in a response body you have to persist yourself — either way, download to your own storage at generation time rather than at render time. And <strong>the RPM figure is a per-team ceiling with headers attached</strong>: a <code>429</code> carries <code>X-RateLimit-Limit</code>, <code>X-RateLimit-Remaining</code> and <code>X-RateLimit-Reset</code>, so the correct reaction is to read the reset timestamp rather than to sleep for a fixed interval and hope. Steady-state throughput, meanwhile, is usually governed by the concurrent-task column rather than by RPM — a 4K Pro job that runs for several seconds will hit two concurrent tasks long before it hits 100 requests in a minute.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/nano-banana-pro-api-docs-resolution-ratio-grid.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/nano-banana-pro-api-docs-resolution-ratio-grid.png" alt="Output geometry for Nano Banana Pro: aspect-ratio frames across three resolution tiers, the widest being 4K" loading="lazy" />
+</picture>
+
+<p><em>Aspect ratio and output size are the two knobs that move your bill, so they are worth fixing before you write the integration rather than after. Ratios and tiers as documented for Pro on September 10, 2026. Diagram generated for this article.</em></p>
+<h2 id="Error-codes-and-what-to-retry"><a href="#Error-codes-and-what-to-retry" class="headerlink" title="Error codes and what to retry"></a>Error codes and what to retry</h2><p>Every failure on the gateway route arrives in the same envelope, and the <code>message</code> is formatted as <code>&quot;&lt;Category&gt;: &lt;detail&gt;&quot;</code> — which means you can branch on the category string instead of pattern-matching prose.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span> <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">400</span><span class="punctuation">,</span> <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Invalid parameters: parameter &#x27;prompt&#x27; is required&quot;</span> <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Typical cause on this model</th>
+<th>Retry?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>400</code></td>
+<td>Bad Request</td>
+<td>Missing <code>prompt</code>, an <code>imageSize</code> outside <code>1K</code>&#x2F;<code>2K</code>&#x2F;<code>4K</code>, <code>image</code> sent as a string instead of an array</td>
+<td>No — fix the request</td>
+</tr>
+<tr>
+<td><code>401</code></td>
+<td>Unauthorized</td>
+<td>Missing, malformed, or revoked key</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>402</code></td>
+<td>Payment Required</td>
+<td>Balance exhausted</td>
+<td>No — top up</td>
+</tr>
+<tr>
+<td><code>404</code></td>
+<td>Not Found</td>
+<td>Wrong task ID, or a model string that is not in the catalog</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>413</code></td>
+<td>Payload Too Large</td>
+<td>Uploaded input file above 16 MB</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>429</code></td>
+<td>Too Many Requests</td>
+<td>Rate or concurrency ceiling hit; read <code>X-RateLimit-Reset</code></td>
+<td>Yes — back off</td>
+</tr>
+<tr>
+<td><code>500</code></td>
+<td>Internal Server Error</td>
+<td>Upstream processing error</td>
+<td>Yes — retry up to three times</td>
+</tr>
+<tr>
+<td><code>503</code></td>
+<td>Service Unavailable</td>
+<td>Service temporarily unavailable, or an open circuit breaker</td>
+<td>Yes — back off and retry</td>
+</tr>
+</tbody></table>
+<p>Every row above is the gateway’s own published error table, read on September 10, 2026 — including the <code>503</code> row — at the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api">Modellix REST API guide</a>. The rule that keeps a retry loop honest: <code>4xx</code> other than <code>429</code> is your bug and retrying it just burns quota, while <code>429</code> and <code>5xx</code> are transient and want exponential backoff. Google’s direct route has its own error surface with its own codes and its own quota page, so a retry policy written for one route will not transfer unchanged to the other — a detail worth deciding before you build the abstraction over both.</p>
+<h2 id="What-a-Nano-Banana-Pro-image-costs-read-September-10-2026"><a href="#What-a-Nano-Banana-Pro-image-costs-read-September-10-2026" class="headerlink" title="What a Nano Banana Pro image costs, read September 10, 2026"></a>What a Nano Banana Pro image costs, read September 10, 2026</h2><p>Google bills Pro on tokens and publishes the per-image equivalent in a footnote; the gateway bills per image with the tiered rate printed on the model page. Both sets of numbers below were read from the live pages today, and both move without notice.</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th align="right">1K</th>
+<th align="right">2K</th>
+<th align="right">4K</th>
+<th>Basis</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Google direct, Standard</td>
+<td align="right">$0.134</td>
+<td align="right">$0.134</td>
+<td align="right">$0.24</td>
+<td>$120 &#x2F; 1M image output tokens</td>
+</tr>
+<tr>
+<td>Google direct, Batch</td>
+<td align="right">$0.067</td>
+<td align="right">$0.067</td>
+<td align="right">$0.12</td>
+<td>50% reduction, up to 24h turnaround</td>
+</tr>
+<tr>
+<td>Gateway, <code>google/nano-banana-pro</code></td>
+<td align="right">$0.1206</td>
+<td align="right">$0.1206</td>
+<td align="right">$0.2160</td>
+<td>Displayed per-image list price</td>
+</tr>
+<tr>
+<td>Gateway, <code>google/nano-banana-pro-edit</code></td>
+<td align="right">$0.1215</td>
+<td align="right">$0.1215</td>
+<td align="right">$0.2169</td>
+<td>Displayed per-image list price</td>
+</tr>
+</tbody></table>
+<p>The Google column is the per-image equivalent Google itself prints on its <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/pricing">Gemini API pricing page</a>: image output is priced at $120 per million tokens, a 1K or 2K image consumes 1,120 tokens, and a 4K image consumes 2,000. Input images bill separately at roughly $0.0011 each, and there is no free tier for Pro on the paid API. The gateway column is what the <a href="https://www.modellix.ai/models/google/nano-banana-pro">Nano Banana Pro model page</a> displays, in <code>$/img</code> — the unit its <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started/pricing">pricing documentation</a> defines for every image model on the platform.</p>
+<p>Do the arithmetic for your own workload rather than someone else’s headline: a 1,000-image run at 2K is $134 on Google’s standard tier, $67 in batch, or $120.60 on the gateway; doubling the resolution instead of the volume roughly doubles the Google figure to $240. A note of honesty about the route choice, since a gateway blog recommending a gateway deserves one: <strong>for a workload that never leaves Google’s models and can absorb a 24-hour batch window, Google’s batch tier is simply cheaper — a gateway buys one key and one bill across vendors, not a lower unit price at every tier.</strong> Note the qualifier: strip the batch window out and the same table above shows the gateway undercutting Google’s standard 4K rate, so the two routes trade places depending on how you buy. What the key buys is breadth: the same credential and the same submit-poll contract reach the rest of the catalog, which our <a href="https://www.modellix.ai/blog/unified-ai-api/">unified AI API explainer</a> describes. The per-image depths, including why the widely copied “$0.15 an image” figure is wrong, are in our <a href="https://www.modellix.ai/blog/nano-banana-pro-pricing/">Nano Banana Pro pricing breakdown</a>.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Start Calling Nano Banana Pro</h3><p class="view-docs-tag-desc">Log in to Modellix to call google/nano-banana-pro and the rest of the image and video catalog through the same one API key.</p><a class="btn view-docs-tag-btn" href="https://www.modellix.ai/console/login" data-cta="login_tag" data-cta-target="login" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Where-the-official-documentation-stops"><a href="#Where-the-official-documentation-stops" class="headerlink" title="Where the official documentation stops"></a>Where the official documentation stops</h2><p>The gaps are not cosmetic. Each one costs an integrator a search, a support thread, or an hour of guessing, and every one of them was absent from all five top-ranking pages we read on September 10, 2026.</p>
+<ul>
+<li><strong>Parameters are documented in prose and in code, never in a table.</strong> Google’s page spreads <code>aspect_ratio</code>, <code>image_size</code> and grounding across four language tabs and roughly 150 sub-headings. If you need “what values does this field accept”, you are reading code samples to find out. The consolidated tables are above.</li>
+<li><strong>There is no first-party error-code reference on the model page.</strong> Failures on the Google route surface through generic Gemini API errors, and the gateway’s code table lives on a different page than its model pages. Both tables exist; neither is where you look first.</li>
+<li><strong>Rate limits live on a different page than the model.</strong> The tier table exists, but it is not on the model page and it is not on the parameters page either — so “how many Pro jobs can I run at once” takes three clicks to answer. The <code>X-RateLimit-*</code> headers on a <code>429</code> tell you your effective ceiling without any clicking at all.</li>
+<li><strong>No raw response body.</strong> The official page teaches SDK property access — <code>interaction.output_image</code> — which is fine until you are writing a service in a language without an official SDK, or debugging a truncated payload you cannot see.</li>
+<li><strong>No install line.</strong> The documentation begins at <code>from google import genai</code>. The install command is real and documented, just on a different page, which is a strange omission in a quickstart.</li>
+</ul>
+<p>Two smaller ones are worth knowing about before you file a ticket. <strong>Data residency is not stated</strong> on the model or parameters page for either route, so if your compliance posture depends on where generation runs, ask the specific provider before you build. And <strong>the family’s headline capability numbers are not the per-model ones</strong> — “up to 14 reference images” is the Gemini 3 headline, and Pro’s own slice of that 14 is split into narrower categories: six objects, five characters and three style references. The tier the flat “up to 14 images of objects” belongs to is Nano Banana 2 Lite, which is how a project gets sized against a limit the model it calls does not have.</p>
+<p>Use this section as a checklist rather than a complaint. If a docs page answers four of the five gaps above, bookmark it. On September 10, 2026, the top five answered none.</p>
+<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>Is there an official Nano Banana Pro API?</strong></p>
+<p>Yes. Nano Banana Pro is Google’s <code>gemini-3-pro-image</code> model, reachable on the Gemini API through the Interactions API endpoint. The same model is also served through unified API gateways under a <code>provider/model</code> string such as <code>google/nano-banana-pro</code>. There is no separate “Nano Banana Pro API” product — the name is a nickname for the model.</p>
+<p><strong>What is the Nano Banana Pro API endpoint?</strong></p>
+<p>Two routes qualify. Google direct: <code>POST https://generativelanguage.googleapis.com/v1beta/interactions</code> with an <code>x-goog-api-key</code> header. Gateway: <code>POST https://api.modellix.ai/api/v1/google/nano-banana-pro</code> with <code>Authorization: Bearer</code>, followed by <code>GET https://api.modellix.ai/api/v1/tasks/&#123;task_id&#125;</code>. Copy the path from the specific model’s own API page rather than from another model’s example.</p>
+<p><strong>Is the Nano Banana Pro API free?</strong></p>
+<p>No. Google’s pricing page lists no Free Tier for <code>gemini-3-pro-image</code> — the free column reads “not available” for both input and output at every tier. Gateway access is prepaid pay-as-you-go, billed per generated image. Google AI Studio’s web interface is free to use, but that is a browser playground, not API access.</p>
+<p><strong>How do I get a Nano Banana Pro API key?</strong></p>
+<p>There are two legitimate sources: a Gemini API key from Google AI Studio, or a key from a provider console that fronts the same model. The choice determines which auth header you send and whether you are billed per token or per image — our <a href="https://www.modellix.ai/blog/nano-banana-pro-api-key/">Nano Banana Pro API key guide</a> walks through both, including rotation and the <code>401</code>&#x2F;<code>403</code> failures each one produces.</p>
+<p><strong>What resolutions and aspect ratios does Nano Banana Pro support?</strong></p>
+<p><code>1K</code>, <code>2K</code> and <code>4K</code> output, with no 512px tier — that half-resolution option belongs to Nano Banana 2, not Pro. Ten aspect ratios are accepted: <code>1:1</code>, <code>2:3</code>, <code>3:2</code>, <code>3:4</code>, <code>4:3</code>, <code>4:5</code>, <code>5:4</code>, <code>9:16</code>, <code>16:9</code> and <code>21:9</code>. The ultra-wide bands some faster models accept are not in Pro’s enum.</p>
+<p><strong>How much does one Nano Banana Pro image cost?</strong></p>
+<p>As of September 10, 2026: $0.134 per image at 1K or 2K and $0.24 at 4K on Google’s standard tier, or about half that in batch mode, plus roughly $0.0011 per input image. The same model’s displayed per-image rate on Modellix is $0.1206 at 1K&#x2F;2K and $0.2160 at 4K. Both lists change without notice — re-read them before you budget.</p>
+<p><strong>Does the Nano Banana Pro API support webhooks or async tasks?</strong></p>
+<p>Google’s Interactions API returns the generated image in the response to a single request, so there is nothing to poll. The gateway route is asynchronous by design: submit returns a <code>task_id</code>, you either poll the task endpoint or send an <code>X-Webhook-URL</code> header and receive a callback that mirrors the task-result payload, including the amount actually billed.</p>
+<p><strong>What is the difference between <code>gemini-3-pro-image</code> and <code>google/nano-banana-pro</code>?</strong></p>
+<p>They are two strings for the same model. <code>gemini-3-pro-image</code> is Google’s own model identifier, used in the <code>model</code> field of a direct Gemini API call. <code>google/nano-banana-pro</code> is a gateway catalog slug in <code>provider/model</code> form, used in the request path. Mixing them — sending the slug to Google, or the raw ID to a gateway — is the most common cause of a <code>404</code> on a first integration.</p>
+<p><strong>How do the Nano Banana models differ across the family?</strong></p>
+<p>Pro is the fidelity tier at <code>gemini-3-pro-image</code>, and the only one of the three Gemini 3 image models with tighter reference-image ceilings than the family headline: six objects, five characters and three style references, against the ten and fourteen the Flash tiers allow. Nano Banana 2 is the speed-first generalist at <code>gemini-3.1-flash-image</code>; Nano Banana 2 Lite is the cheapest at <code>gemini-3.1-flash-lite-image</code>, and the only one capped at 1K output; and <code>gemini-2.5-flash-image</code> is the original release, still documented with a recommendation to migrate off it rather than a shutdown notice.</p>
+<hr>
+<p><em>Provider details, model IDs and pricing reflect public information as of September 10, 2026 and change frequently — re-read the live pages before you commit budget or ship an integration. Both routes described here were documented from their own first-party pages on that date; the Google material is vendor-neutral and the Modellix figures are a same-day snapshot of a displayed list price, not a standing claim. This article was written by Modellix, which operates this blog and has a commercial interest in the single-key route it describes. Access image and video models, including the leading Chinese models, through a single API key at <a href="https://www.modellix.ai/">modellix.ai</a>.</em></p>
+<p><em>Cover image: illustrative Modellix artwork; it is not a Google or Modellix product screenshot, and the two in-body figures are diagrams generated for this article.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/image-generation/" class="tag-pill tag-pill--sm">Image Generation</a>
+            
+              <a href="/blog/tags/integration/" class="tag-pill tag-pill--sm">Integration</a>
+            
+              <a href="/blog/tags/gemini-api/" class="tag-pill tag-pill--sm">Gemini API</a>
+            
+              <a href="/blog/tags/Nano-Banana-Pro/" class="tag-pill tag-pill--sm">Nano Banana Pro</a>
+            
+              <a href="/blog/tags/API-Reference/" class="tag-pill tag-pill--sm">API Reference</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="https://www.modellix.ai/console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/ai-image-edit-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-ai-image-edit-api.webp" alt="AI Image Edit API: 16 References, Masks, Flare vs Sunburst" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">AI Image Edit API: 16 References, Masks, Flare vs Sunburst</h3>
+          <time class="related-article-date" datetime="2026-09-16T16:00:00.000Z">September 17, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/gpt-image-2-5-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-gpt-image-2-5-api.webp" alt="GPT Image 2.5 API: Flare vs Sunburst, Four Model IDs" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">GPT Image 2.5 API: Flare vs Sunburst, Four Model IDs</h3>
+          <time class="related-article-date" datetime="2026-09-16T16:00:00.000Z">September 17, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/ai-video-generation-workflow/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-ai-video-generation-workflow.webp" alt="AI Video Generation Workflow: Async Tasks and Batch Runs" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">AI Video Generation Workflow: Async Tasks and Batch Runs</h3>
+          <time class="related-article-date" datetime="2026-09-16T11:48:00.000Z">September 16, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="https://www.modellix.ai/console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/nano-banana-pro-api-docs/&text=Nano%20Banana%20Pro%20API%20Docs%3A%20Endpoints%2C%20Parameters%20%26%20Limits" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/nano-banana-pro-api-docs/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/nano-banana-pro-api-docs/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script defer src="https://unpkg.com/lucide@1.47.0/dist/umd/lucide.min.js" onload="window.lucide && window.lucide.createIcons();"></script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+</body>
+</html>

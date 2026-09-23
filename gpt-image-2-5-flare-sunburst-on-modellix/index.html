@@ -1,0 +1,568 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Production analytics start after the page load has settled. -->
+  <script>
+    (function (document, window) {
+      if (window.location.hostname !== 'www.modellix.ai') return;
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-4DECHYKQVT');
+
+      var loaded = false;
+      function appendScript(src, crossOrigin) {
+        var script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        if (crossOrigin) script.crossOrigin = crossOrigin;
+        document.head.appendChild(script);
+      }
+      function loadAnalytics() {
+        if (loaded) return;
+        loaded = true;
+        appendScript('https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT');
+        appendScript('https://t.contentsquare.net/uxa/f39399cd2e27e.js', 'anonymous');
+        appendScript('https://app.rybbit.io/api/script.js?siteId=8a6874a918d7');
+      }
+      function scheduleAnalytics() {
+        window.setTimeout(function () {
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(loadAnalytics, { timeout: 3000 });
+          } else {
+            loadAnalytics();
+          }
+        }, 1500);
+      }
+
+      if (document.readyState === 'complete') scheduleAnalytics();
+      else window.addEventListener('load', scheduleAnalytics, { once: true });
+    })(document, window);
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenAI GPT Image 2.5 Is Now on Modellix: Flare, Sunburst, and the Edit Variants Behind One API</title>
+  <meta name="keywords" content="GPT Image 2.5, OpenAI image API, Modellix image API, Flare Sunburst, AI image generation, image editing API">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/gpt-image-2-5-flare-sunburst-on-modellix/">
+  
+  
+  <meta name="description" content="OpenAI GPT Image 2.5 — Flare (speed) and Sunburst (quality) — plus their image-editing counterparts are now on Modellix. This guide covers the four model IDs, shared parameters, the 16-reference-image">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenAI GPT Image 2.5 Is Now on Modellix: Flare, Sunburst, and the Edit Variants Behind One API">
+<meta property="og:url" content="https://www.modellix.ai/blog/gpt-image-2-5-flare-sunburst-on-modellix/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="OpenAI GPT Image 2.5 — Flare (speed) and Sunburst (quality) — plus their image-editing counterparts are now on Modellix. This guide covers the four model IDs, shared parameters, the 16-reference-image">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/image_1789561132-ed24xduv.webp">
+<meta property="article:published_time" content="2026-09-16T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-16T02:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Image Generation">
+<meta property="article:tag" content="GPT Image">
+<meta property="article:tag" content="Image API">
+<meta property="article:tag" content="Modellix">
+<meta property="article:tag" content="OpenAI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/image_1789561132-ed24xduv.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"OpenAI GPT Image 2.5 Is Now on Modellix: Flare, Sunburst, and the Edit Variants Behind One API","description":"OpenAI GPT Image 2.5 — Flare (speed) and Sunburst (quality) — plus their image-editing counterparts are now on Modellix. This guide covers the four model IDs, shared parameters, the 16-reference-image edit capability, and how to route each variant in a production pipeline.","datePublished":"2026-09-16T02:00:00.000Z","dateModified":"2026-09-16T02:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/gpt-image-2-5-flare-sunburst-on-modellix/","image":"https://img.modellix.ai/en/article/image_1789561132-ed24xduv.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://img.modellix.ai" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="https://www.modellix.ai/" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started" class="nav-link">Documentation</a>
+      
+        <a href="https://www.modellix.ai/about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="https://www.modellix.ai/console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="https://www.modellix.ai/console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">OpenAI GPT Image 2.5 Is Now on Modellix: Flare, Sunburst, and the Edit Variants Behind One API</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Announcements/" class="category-tag category-tag--sm">Announcements</a>
+          
+        
+      </div>
+      <h1 class="post-title">OpenAI GPT Image 2.5 Is Now on Modellix: Flare, Sunburst, and the Edit Variants Behind One API</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-09-16T02:00:00.000Z">September 16, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/OpenAI/" class="tag-pill tag-pill--sm">OpenAI</a>
+            
+              <a href="/blog/tags/Image-API/" class="tag-pill tag-pill--sm">Image API</a>
+            
+              <a href="/blog/tags/modellix/" class="tag-pill tag-pill--sm">Modellix</a>
+            
+              <a href="/blog/tags/GPT-Image/" class="tag-pill tag-pill--sm">GPT Image</a>
+            
+              <a href="/blog/tags/ai-image-generation/" class="tag-pill tag-pill--sm">AI Image Generation</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>OpenAI GPT Image 2.5 splits into Flare (speed) and Sunburst (quality) — each with a generation and edit variant. All four are now on Modellix behind one API. Here is the full parameter set, the routing logic, and first-party benchmarks.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 16 / 9; width:100%; max-width: 1200px;">
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/image_1789561132-ed24xduv.jpeg" alt="OpenAI GPT Image 2.5 Flare, Sunburst, and their edit variants on Modellix — editorial cover with indigo brand palette and a dual-lane creative pipeline motif" />
+</picture>
+
+<h2 id="OpenAI-GPT-Image-2-5-Is-Now-on-Modellix-Flare-Sunburst-and-the-Edit-Variants-Behind-One-API"><a href="#OpenAI-GPT-Image-2-5-Is-Now-on-Modellix-Flare-Sunburst-and-the-Edit-Variants-Behind-One-API" class="headerlink" title="OpenAI GPT Image 2.5 Is Now on Modellix: Flare, Sunburst, and the Edit Variants Behind One API"></a>OpenAI GPT Image 2.5 Is Now on Modellix: Flare, Sunburst, and the Edit Variants Behind One API</h2><p>If your team generates images at volume, you have lived with a single trade-off: one model, one latency, every task. Draft variants and final marketplace assets queue behind the same endpoint at the same speed. OpenAI just changed that shape. With <a target="_blank" rel="noopener" href="https://openai.com/index/introducing-chatgpt-images-2-5/">GPT Image 2.5</a>, released September 8, 2026, the image API splits into two separate model IDs for the first time — <strong>Flare</strong> for speed and <strong>Sunburst</strong> for precision — and each now ships in both a generation and an editing variant.</p>
+<p>The useful part is not any single headline number. It is that the latency-versus-fidelity trade-off is now a parameter you choose per task instead of a limitation you accept for the whole pipeline — a shift that matters to anyone building a production image pipeline, regardless of which provider they route through.</p>
+<h2 id="What-actually-changed-from-GPT-Image-2"><a href="#What-actually-changed-from-GPT-Image-2" class="headerlink" title="What actually changed from GPT Image 2"></a>What actually changed from GPT Image 2</h2><p>OpenAI describes the 2.5 generation as an improvement across four fronts. The one most teams will feel first is throughput: <a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/guides/image-generation">OpenAI’s API documentation</a> states generation latency up to 50% lower compared with the previous generation, and describes Flare as its fastest model for everyday high-quality generation. On top of that, the models produce more natural lighting and richer textures, and they preserve the subjects in reference photos more reliably. The vendor framing treats these as targets rather than audited benchmarks — so the next section checks them against independent measurement.</p>
+<p>That “up to 50%” figure is a vendor comparison, not a guaranteed time per image — and it undersells how much independent measurement now exists. OpenAI notes that complex prompts can take up to two minutes to process, while third-party trackers publish the medians the vendor figure omits:</p>
+<ul>
+<li><strong>Latency, measured independently.</strong> <a target="_blank" rel="noopener" href="https://artificialanalysis.ai/image/models">Artificial Analysis</a> records a median generation time of roughly <strong>17–20 seconds for Flare</strong> at best-provider settings, while third-party test runs put <strong>Sunburst at about 1.5–2× Flare</strong> on identical prompts (one 20-prompt run measured 24.8s vs. 40.0s). Independent comparisons at a matched output budget measured Flare at <strong>19.7s versus GPT Image 2’s 37.3s</strong> — about 47% faster, which broadly confirms OpenAI’s directional claim even though the exact percentage differs by workload.</li>
+<li><strong>Quality, measured independently.</strong> The <a target="_blank" rel="noopener" href="https://arena.ai/leaderboard/text-to-image">Arena text-to-image leaderboard</a> places GPT Image 2.5 <strong>Sunburst at 1,421 Elo and Flare at 1,399</strong>, both ahead of GPT Image 2 at 1,381. On the <a target="_blank" rel="noopener" href="https://arena.ai/leaderboard/image-edit">image-edit board</a>, Sunburst leads at <strong>1,520 Elo</strong> and Flare at <strong>1,491</strong>, again ahead of GPT Image 2’s 1,461. Note these are preliminary scores resting on relatively low vote counts, so treat the ranking as directional rather than settled.</li>
+</ul>
+<p>The takeaway is not that the vendor numbers are wrong — it is that the independent numbers give you something a press release cannot: a magnitude you can plan capacity around, and a rough sense of how much Sunburst costs you in wall-clock time versus Flare.</p>
+<p>The change that matters most for production, though, is multi-turn editing fidelity. Earlier editing models tended to drift — you asked for a background swap and the product label subtly re-rendered with it. This is not a marketing abstraction: independent research documents the failure mode in detail. A 2026 study of general diffusion-based editing identifies “unintended changes to non-target regions, texture inconsistencies, identity drift, and prompt sensitivity,” and notes these problems are “especially pronounced when edits are applied iteratively.” The <a target="_blank" rel="noopener" href="https://ar5iv.labs.arxiv.org/html/2505.11493">GIE-Bench evaluation</a> reports that GPT-Image-1 “frequently introduces unintended changes in areas unrelated to the instruction,” such as altered background textures or shifting lighting — precisely the kind of drift that forces manual review.</p>
+<p>GPT Image 2.5 is positioned as better at changing only the elements you asked it to change while leaving the rest of the composition intact. Independent arena data backs the direction of that claim: Sunburst’s +59-point gain over GPT Image 2 on the Arena single-image-edit board is larger than its +40-point gain on text-to-image, suggesting the editing-fidelity improvements are real rather than marketing polish. What the leaderboards do not yet tell you is how the model behaves on your specific asset with your specific mask, so the practical test remains your own before-and-after comparison.</p>
+<h2 id="The-four-model-variants"><a href="#The-four-model-variants" class="headerlink" title="The four model variants"></a>The four model variants</h2><p>Rather than one model with quality dials, you now route by task. The four variants share the same request shape, so switching lanes is a model-ID change rather than a new integration.</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Task</th>
+<th>Best fit</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>openai&#x2F;gpt-image-2.5-flare</td>
+<td>Text-to-image</td>
+<td>Speed-first generation — high-volume variants, social and campaign drafts, rapid iteration</td>
+</tr>
+<tr>
+<td>openai&#x2F;gpt-image-2.5-sunburst</td>
+<td>Text-to-image</td>
+<td>Quality-first generation — hero shots, product posters, assets that ship</td>
+</tr>
+<tr>
+<td>openai&#x2F;gpt-image-2.5-flare-edit</td>
+<td>Image-to-image editing</td>
+<td>High-throughput edit and retouching pipelines</td>
+</tr>
+<tr>
+<td>openai&#x2F;gpt-image-2.5-sunburst-edit</td>
+<td>Image-to-image editing</td>
+<td>Near-final assets where an edit must not disturb approved composition</td>
+</tr>
+</tbody></table>
+<p><em>Source: <a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/guides/image-generation">OpenAI API documentation</a>, retrieved September 16, 2026.</em></p>
+<h3 id="Shared-generation-parameters"><a href="#Shared-generation-parameters" class="headerlink" title="Shared generation parameters"></a>Shared generation parameters</h3><p>Both text-to-image variants take the same five parameters, which keeps prompt logic portable between them:</p>
+<ul>
+<li><code>aspect_ratio</code> — ten options: <code>1:1</code>, <code>3:2</code>, <code>2:3</code>, <code>3:4</code>, <code>4:3</code>, <code>4:5</code>, <code>5:4</code>, <code>9:16</code>, <code>16:9</code>, <code>21:9</code>. Defaults to <code>1:1</code>.</li>
+<li><code>resolution</code> — <code>1K</code>, <code>2K</code>, or <code>4K</code>. Defaults to <code>1K</code>. Set independently of aspect ratio.</li>
+<li><code>quality</code> — <code>low</code>, <code>medium</code>, <code>high</code>, <code>xhigh</code>, <code>max</code>. Defaults to <code>low</code>.</li>
+<li><code>background</code> — <code>auto</code>, <code>opaque</code>, or <code>transparent</code>. Transparent requests return PNG.</li>
+<li><code>prompt</code> — up to 32,000 Unicode characters.</li>
+</ul>
+<p>Aspect ratio and resolution compose, so the pixel output depends on both: <code>1:1</code> at <code>4K</code> returns 2880×2880, while <code>16:9</code> at <code>4K</code> returns 3840×2160. If you need transparent cutouts for compositing — icons, stickers, product overlays — set <code>background</code> to <code>transparent</code> and plan for PNG rather than JPEG.</p>
+<p>Two constraints worth writing into your request layer before you commit: the generation models are for creating images, not editing them, and neither exposes arbitrary pixel dimensions. You pick from the aspect-ratio and resolution enums, not from a width&#x2F;height pair.</p>
+<h3 id="Flare-vs-Sunburst-a-routing-decision-not-a-compromise"><a href="#Flare-vs-Sunburst-a-routing-decision-not-a-compromise" class="headerlink" title="Flare vs Sunburst: a routing decision, not a compromise"></a>Flare vs Sunburst: a routing decision, not a compromise</h3><p>A common mistake is reading Flare and Sunburst as two tiers of the same thing, where one is simply worse. They are better understood as two lanes for different volumes. The parameters are identical; the difference is what the model spends time on.</p>
+<p>The practical pattern is a two-phase pipeline. Route exploration to Flare: if you are generating twenty variants to pick three, the speed lane is where throughput beats marginal fidelity, and the output is disposable by design. Route the winners to Sunburst: once an asset is destined for a landing page, a marketplace listing, or a paid campaign, the extra generation time buys tighter detail and finer control, and you pay it once instead of twenty times.</p>
+<p>Defining that rule up front is what turns “GPT Image 2.5 is good” into a cost-predictable workflow. If the routing rule lives only in a team’s head, you end up with developers defaulting to the safer model for everything — and paying the latency tax on every draft.</p>
+<h2 id="Editing-16-reference-images-and-optional-masked-edits"><a href="#Editing-16-reference-images-and-optional-masked-edits" class="headerlink" title="Editing: 16 reference images and optional masked edits"></a>Editing: 16 reference images and optional masked edits</h2><p>The edit variants are where the 2.5 generation diverges most from what came before, and they are the part most third-party coverage skips.</p>
+<p>Both edit models add an <code>images</code> array of publicly reachable JPEG or PNG URLs. That array is required, and it accepts <strong>between 1 and 16 images</strong> — a notably high ceiling. In practice, that width lets you feed a product reference, a background reference, a lighting reference, and a brand-style reference in a single request instead of pre-compositing them yourself. For e-commerce and character-consistency work, where the goal is to hold a specific item or person stable across many variants, the upper end of that range is the operationally interesting part.</p>
+<p>The optional <code>mask</code> parameter is the sharper tool. It takes a PNG with an alpha channel, and the rule is easy to get backwards: <strong>transparent areas indicate the region to edit</strong>, and the mask must match the dimensions of the first input image. Everything outside the transparent region is meant to stay as it was. This is what turns a broad “retouch this asset” request into a precise one — swap one object, update a layout element, or remove a defect while leaving the approved composition untouched.</p>
+<p>Omit the mask and the model decides what to change based on the prompt alone. That is fine for style passes; it is riskier when a stakeholder has already signed off on everything except one corner.</p>
+<h3 id="Speed-vs-quality-in-editing"><a href="#Speed-vs-quality-in-editing" class="headerlink" title="Speed vs quality in editing"></a>Speed vs quality in editing</h3><p>The edit variants follow the same logic as generation. Use Flare Edit when you are plumbing out variations or correcting defects across a large source set — cost per edit and turnaround dominate. Use Sunburst Edit when a specific product, person, or brand mark must survive the change intact and the asset is close to final. One caveat applies to both: exact input-fidelity control is not exposed as a parameter, so if pixel-perfect preservation of a region is a hard requirement, verify it against your own asset rather than assuming it.</p>
+<h2 id="How-to-put-it-into-practice"><a href="#How-to-put-it-into-practice" class="headerlink" title="How to put it into practice"></a>How to put it into practice</h2><p>Whichever provider you route through, the integration path is short because the four variants share one request shape.</p>
+<ol>
+<li><strong>Pick your lane.</strong> Start with the Flare model ID for generation or a Sunburst edit variant for precision edits, and check the model documentation for the exact parameter set.</li>
+<li><strong>Test one real prompt before writing integration code.</strong> Run a prompt at your actual target size — <code>4:3</code> at <code>4K</code>, say, or <code>16:9</code> at <code>2K</code> — and confirm the output dimensions and, for text-heavy creative, the text fidelity.</li>
+<li><strong>Wire it in.</strong> Every variant uses the same asynchronous pattern: POST your request, receive a <code>task_id</code> and a poll URL in the response, then retrieve the finished image from that URL. Because the request shape is shared, moving a workload from Flare to Sunburst is a one-line model-ID change.</li>
+<li><strong>Lock the routing rule.</strong> Write the Flare-for-drafts, Sunburst-for-finals decision into your task configuration so it is enforced by code rather than convention.</li>
+</ol>
+<blockquote>
+<p><strong>Note</strong>: before you commit a resolution or a unit cost to a spec sheet, run one paid test image at your real target size and confirm the output against your own requirements. A <code>4K</code> <code>1:1</code> output is 2880×2880, not 4096×4096 — small assumptions like that are cheapest to catch early.</p>
+</blockquote>
+<h2 id="We-ran-all-four-models-on-the-same-prompt"><a href="#We-ran-all-four-models-on-the-same-prompt" class="headerlink" title="We ran all four models on the same prompt"></a>We ran all four models on the same prompt</h2><p>Everything above is what the vendor and the public leaderboards report. To check those claims against the API itself, the Modellix team ran the four models on one controlled task: an e-commerce packshot of a frosted glass skincare bottle with a brushed metal cap, seamless light grey background, soft studio light from the left, condensation droplets, sharp focus on the metal texture. Every generation used the same parameters — <code>aspect_ratio</code> <code>1:1</code>, <code>resolution</code> <code>4K</code>, and the quality setting noted per figure. Latency and price are read straight from the API response fields (<code>duration</code> in milliseconds and <code>billing.amount</code> in USD), not timed locally; settings marked * are the median of three independent runs, and everything else is a single run.</p>
+<picture style="aspect-ratio: 16 / 9; width:100%; max-width: 1200px;">
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/figure-1-ecpysjxu.png" alt="Side-by-side 4K xhigh generation comparison: GPT Image 2.5 Flare versus Sunburst on the same prompt" loading="lazy" />
+</picture>
+
+<p><em>Flare (left) and Sunburst (right), same prompt and same 1:1 · 4K · xhigh settings. Flare returned in 62.3s, Sunburst in 124.0s — the same output, roughly twice the wait.</em></p>
+<p>On that run, the vendor’s pricing model held up and the latency gap was real:</p>
+<table>
+<thead>
+<tr>
+<th>Run (same prompt, 1:1 · 4K)</th>
+<th>Settings</th>
+<th>Latency</th>
+<th>Price</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Flare</td>
+<td>xhigh *</td>
+<td>62.3s</td>
+<td>$0.2846</td>
+</tr>
+<tr>
+<td>Sunburst</td>
+<td>xhigh *</td>
+<td>124.0s</td>
+<td>$0.2847</td>
+</tr>
+<tr>
+<td>Flare Edit</td>
+<td>xhigh</td>
+<td>83.9s</td>
+<td>$0.316</td>
+</tr>
+<tr>
+<td>Sunburst Edit</td>
+<td>xhigh</td>
+<td>139.7s</td>
+<td>$0.316</td>
+</tr>
+</tbody></table>
+<p>* median of three runs. Edit runs are single runs.</p>
+<p><em>Source: Modellix team first-party benchmarks via the Modellix API, September 16, 2026.</em></p>
+<p>Two things stand out. First, at a matched quality setting, price is effectively identical between the speed and quality variants — Sunburst’s premium is time, not money, which is exactly what the routing decision above assumes. Second, the ratio is close to 2.0× for generation and about 1.67× for editing on this task. Your own ratio will move with prompt complexity and load, but the direction is consistent enough to plan around.</p>
+<h3 id="The-quality-dial-moves-further-than-the-model-name-does"><a href="#The-quality-dial-moves-further-than-the-model-name-does" class="headerlink" title="The quality dial moves further than the model name does"></a>The quality dial moves further than the model name does</h3><p>The more useful finding came from sweeping the <code>quality</code> parameter on a single model. The gap between Flare and Sunburst at the top setting is modest; the gap between <code>low</code> and <code>xhigh</code> on the <em>same</em> model is enormous.</p>
+<picture style="aspect-ratio: 16 / 9; width:100%; max-width: 1200px;">
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/figure-4-ecr2f8p2.png" alt="Quality-setting matrix: Flare and Sunburst across low, medium, and xhigh, with latency and price per cell" loading="lazy" />
+</picture>
+
+<p><em>Same prompt, 1:1 · 4K, across quality settings. Flare spans $0.018 to $0.285 on one model and one prompt — a 16× spread.</em></p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>quality</th>
+<th>Latency</th>
+<th>Price</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Flare</td>
+<td>low</td>
+<td>34.0s</td>
+<td>$0.018</td>
+</tr>
+<tr>
+<td>Flare</td>
+<td>medium</td>
+<td>40.8s</td>
+<td>$0.040</td>
+</tr>
+<tr>
+<td>Flare</td>
+<td>xhigh *</td>
+<td>62.3s</td>
+<td>$0.285</td>
+</tr>
+<tr>
+<td>Sunburst</td>
+<td>medium *</td>
+<td>55.9s</td>
+<td>$0.040</td>
+</tr>
+<tr>
+<td>Sunburst</td>
+<td>xhigh *</td>
+<td>124.0s</td>
+<td>$0.285</td>
+</tr>
+</tbody></table>
+<p>* median of three runs. Sunburst at <code>low</code> was not tested.</p>
+<p><em>Source: Modellix team first-party benchmarks via the Modellix API, September 16, 2026.</em></p>
+<p>The practical takeaway is that switching from <code>Flare · xhigh</code> to <code>Sunburst · medium</code> cut latency (62.3s to 55.9s) and cost roughly 7× ($0.285 to $0.040) — and by eye the two were hard to tell apart. Flare at <code>low</code> was the one setting we could clearly mark down: it lost material detail on the metal cap and droplets. So if your budget conversation stops at “which model,” you are optimising the smaller of the two levers. Pick the <code>quality</code> setting first, then the model.</p>
+<h3 id="What-the-magnified-crops-actually-show"><a href="#What-the-magnified-crops-actually-show" class="headerlink" title="What the magnified crops actually show"></a>What the magnified crops actually show</h3><p>At thumbnail size the Flare and Sunburst frames look nearly interchangeable. The difference only appears under magnification.</p>
+<picture style="aspect-ratio: 16 / 9; width:100%; max-width: 1200px;">
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/figure-2-ecsy5934.png" alt="4× detail crops of the brushed cap and condensation droplets for Flare versus Sunburst" loading="lazy" />
+</picture>
+
+<p><em>The framed region (cap plus droplets) shown 4× below each full frame.</em></p>
+<p>At 100% and 4× zoom, Sunburst resolved the droplets with more structure while Flare’s metal read slightly softer — a judgement made by eye, so treat it as an opinion, not a measurement. The honest conclusion on this task is that the quality premium is real but small, and only matters when the asset will be viewed close enough for it to show.</p>
+<h3 id="Editing-behaves-the-same-way"><a href="#Editing-behaves-the-same-way" class="headerlink" title="Editing behaves the same way"></a>Editing behaves the same way</h3><p>The edit variants followed the same pattern under a real instruction: replace the seamless background with a warm walnut wood surface lit by soft window light, and add a subtle contact shadow — while keeping the bottle, its brushed metal cap, and the label completely unchanged.</p>
+<picture style="aspect-ratio: 16 / 9; width:100%; max-width: 1200px;">
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/figure-3-ectnay2f.png" alt="Three-panel edit comparison: input image, Flare Edit output, and Sunburst Edit output on the same instruction" loading="lazy" />
+</picture>
+
+<p><em>Input (left), Flare Edit (middle), Sunburst Edit (right) — same input, same instruction. Flare Edit 83.9s, Sunburst Edit 139.7s, both $0.316.</em></p>
+<p>Both models kept the product and its label intact and diverged mainly on the new background edge — the closest thing to a controlled test of the editing-fidelity claim that we could run on one asset. It is one asset and one instruction, so it is directional rather than conclusive, but it lines up with the leaderboard signal: the edit task is where the quality-oriented variant earns its extra time.</p>
+<h2 id="What-to-evaluate-first"><a href="#What-to-evaluate-first" class="headerlink" title="What to evaluate first"></a>What to evaluate first</h2><p>GPT Image 2.5 is worth evaluating mainly because it makes your image pipeline explicit: which tasks tolerate latency, which ones need precision, and where a mask should constrain the model’s freedom. That clarity is the real deliverable — the quality improvements are the reason to test it.</p>
+<p>The caveat is that the leaderboard and vendor claims are still the weaker half of the evidence, and our own runs cover one prompt, one asset, and one edit instruction — enough to confirm the shape of the trade-off and the direction of the pricing, not enough to predict your exact numbers. What the first-party test does give you is a concrete starting point: latency roughly doubles from Flare to Sunburst at matched settings, price at matched settings is effectively flat, and the <code>quality</code> dial is the bigger lever of the two. From there, the most useful next step is a small, controlled test on your own assets: generate a handful of drafts on the speed lane, run one precision edit on a signed-off composition, and measure both against the workflow you use today. The numbers you gather yourself will be more useful to a procurement decision than any leaderboard Elo, because they reflect your prompts, your reference images, and your quality settings.</p>
+<p><em>How this article was sourced: the performance and parameter claims here are drawn from OpenAI’s official API documentation and from independent third-party benchmarks (Artificial Analysis, the Arena&#x2F;LMArena image leaderboards, and published evaluation research such as GIE-Bench). The measurements in “We ran all four models on the same prompt” are first-party: the Modellix team ran all four models on the Modellix API on a single controlled prompt, reading latency and price directly from the API response fields (<code>duration</code> in milliseconds and <code>billing.amount</code> in USD) rather than timing locally. Settings marked * are the median of three independent runs; all others are a single run. Visual comparisons were made by eye at 100% and 4× zoom and are labelled as opinions, not metrics. This test covers one prompt, one asset, and one edit instruction, so it is directional rather than exhaustive. On transparency: this article was written by the Modellix team, and Modellix is the API platform used for the tests. We carry the OpenAI image models alongside models from other providers, so we have a commercial interest in readers adopting a multi-model API — which is one reason the test method, the response fields used, and the run counts are stated in full above. The product subject is a generated test image, not a real brand. Vendor-stated figures are labelled as such throughout, and leaderboard scores are current as of mid-September 2026 with preliminary vote counts, so they may shift. Published September 16, 2026.</em></p>
+<hr>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/OpenAI/" class="tag-pill tag-pill--sm">OpenAI</a>
+            
+              <a href="/blog/tags/Image-API/" class="tag-pill tag-pill--sm">Image API</a>
+            
+              <a href="/blog/tags/modellix/" class="tag-pill tag-pill--sm">Modellix</a>
+            
+              <a href="/blog/tags/GPT-Image/" class="tag-pill tag-pill--sm">GPT Image</a>
+            
+              <a href="/blog/tags/ai-image-generation/" class="tag-pill tag-pill--sm">AI Image Generation</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="https://www.modellix.ai/console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/mai-image-2-6-on-modellix/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/c8dd1cca-32f2-4f85-b120-a4e3ad66565b.webp" alt="MAI Image 2.6 on Modellix: Top-2 Text-to-Image Model via One API" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Announcements</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">MAI Image 2.6 on Modellix: Top-2 Text-to-Image Model via One API</h3>
+          <time class="related-article-date" datetime="2026-09-09T02:00:00.000Z">September 9, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/pixverse-v6-modellix-promotion-20-off/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/e29e4668-674a-4611-aece-307aefa283d9.webp" alt="PixVerse V6 on Modellix: 15s 1080p AI Video with Native Audio (20% OFF)" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Announcements</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">PixVerse V6 on Modellix: 15s 1080p AI Video with Native Audio (20% OFF)</h3>
+          <time class="related-article-date" datetime="2026-08-07T16:00:00.000Z">August 8, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/vidu-q3-challenge/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/Vidu_Q3_Challenge_on_Modellix.webp" alt="Vidu Q3 Challenge on Modellix — Win Up to $100 | 50% Off Campaign" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Announcements</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Vidu Q3 Challenge on Modellix — Win Up to $100 | 50% Off Campaign</h3>
+          <time class="related-article-date" datetime="2026-06-12T14:03:15.000Z">June 12, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="https://www.modellix.ai/console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/gpt-image-2-5-flare-sunburst-on-modellix/&text=OpenAI%20GPT%20Image%202.5%20Is%20Now%20on%20Modellix%3A%20Flare%2C%20Sunburst%2C%20and%20the%20Edit%20Variants%20Behind%20One%20API" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/gpt-image-2-5-flare-sunburst-on-modellix/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/gpt-image-2-5-flare-sunburst-on-modellix/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script defer src="https://unpkg.com/lucide@1.47.0/dist/umd/lucide.min.js" onload="window.lucide && window.lucide.createIcons();"></script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+</body>
+</html>

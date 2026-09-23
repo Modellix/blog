@@ -1,0 +1,701 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Production analytics start after the page load has settled. -->
+  <script>
+    (function (document, window) {
+      if (window.location.hostname !== 'www.modellix.ai') return;
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-4DECHYKQVT');
+
+      var loaded = false;
+      function appendScript(src, crossOrigin) {
+        var script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        if (crossOrigin) script.crossOrigin = crossOrigin;
+        document.head.appendChild(script);
+      }
+      function loadAnalytics() {
+        if (loaded) return;
+        loaded = true;
+        appendScript('https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT');
+        appendScript('https://t.contentsquare.net/uxa/f39399cd2e27e.js', 'anonymous');
+        appendScript('https://app.rybbit.io/api/script.js?siteId=8a6874a918d7');
+      }
+      function scheduleAnalytics() {
+        window.setTimeout(function () {
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(loadAnalytics, { timeout: 3000 });
+          } else {
+            loadAnalytics();
+          }
+        }, 1500);
+      }
+
+      if (document.readyState === 'complete') scheduleAnalytics();
+      else window.addEventListener('load', scheduleAnalytics, { once: true });
+    })(document, window);
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veo 3 API Documentation: Integration Guide, Pricing &amp; Code</title>
+  <meta name="keywords" content="veo 3 api documentation, veo 3 api docs, veo 3 api endpoint, veo 3 api parameters, veo 3 api request, veo 3 api response, veo 3 api python, veo 3 api async, veo 3 api errors, veo 3 api rate limit, veo 3 api schema, veo 3 image to video api, how to use veo 3 api, veo 3 api free">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/veo-3-api-documentation/">
+  
+  
+  <meta name="description" content="The Veo 3 API&#39;s live endpoints, request schema, error codes and per-second rates, read on September 13, 2026, with runnable code and a worked cost example.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Veo 3 API Documentation: Integration Guide, Pricing &amp; Code">
+<meta property="og:url" content="https://www.modellix.ai/blog/veo-3-api-documentation/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="The Veo 3 API&#39;s live endpoints, request schema, error codes and per-second rates, read on September 13, 2026, with runnable code and a worked cost example.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-veo-3-api-documentation.webp">
+<meta property="article:published_time" content="2026-09-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-12T16:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video API">
+<meta property="article:tag" content="API Integration">
+<meta property="article:tag" content="Developer Guide">
+<meta property="article:tag" content="Google">
+<meta property="article:tag" content="Veo">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-veo-3-api-documentation.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Veo 3 API Documentation: Integration Guide, Pricing & Code","description":"The Veo 3 API's live endpoints, request schema, error codes and per-second rates, read on September 13, 2026, with runnable code and a worked cost example.","datePublished":"2026-09-12T16:00:00.000Z","dateModified":"2026-09-12T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/veo-3-api-documentation/","image":"https://img.modellix.ai/en/article/cover-veo-3-api-documentation.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://img.modellix.ai" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="https://www.modellix.ai/" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started" class="nav-link">Documentation</a>
+      
+        <a href="https://www.modellix.ai/about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="https://www.modellix.ai/console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="https://www.modellix.ai/console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Veo 3 API Documentation: Integration Guide, Pricing &amp; Code</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Veo 3 API Documentation: Integration Guide, Pricing &amp; Code</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-09-12T16:00:00.000Z">September 13, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/ai-video-api/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
+            
+              <a href="/blog/tags/api-integration/" class="tag-pill tag-pill--sm">API Integration</a>
+            
+              <a href="/blog/tags/Veo/" class="tag-pill tag-pill--sm">Veo</a>
+            
+              <a href="/blog/tags/Google/" class="tag-pill tag-pill--sm">Google</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>The most expensive mistake in a Veo 3 integration is not a wrong parameter. It is a wrong model ID. Google retired veo-3.0-generate-001 and veo-3.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-veo-3-api-documentation.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-veo-3-api-documentation.png" alt="MODELLIX editorial cover reading VEO 3 API DOCS over ENDPOINTS, SCHEMA & ERRORS, with a glass API gateway panel feeding three route cards into a contract grid" />
+</picture>
+
+<p>The most expensive mistake in a Veo 3 integration is not a wrong parameter. It is a wrong model ID. Google retired <code>veo-3.0-generate-001</code> and <code>veo-3.0-fast-generate-001</code> on <strong>June 30, 2026</strong> — the same day it retired Veo 2 — and its deprecations table now names <code>veo-3.1-generate-preview</code> as the replacement for both. If you came here for Veo 3 API documentation, that single line is the difference between a working integration and a 404. On September 13, 2026 we pulled page one for the query that gets you here: of the nineteen organic results, eight were aggregator or reseller pages, and several of those still present “Veo 3” as a product you can buy as named — including <a target="_blank" rel="noopener" href="https://www.together.ai/models/google-veo-3-0">one listing that still advertises the retired 3.0 model</a>.</p>
+<p>This page is the reference for what “Veo 3 API documentation” means today, verified against first-party sources on <strong>September 13, 2026</strong>: the live model IDs, the submit and poll endpoints, the complete request schema including the two mutually exclusive image-video modes, the error codes and which ones to retry, and the per-second rates with a worked 8-second example. One disclosure up front, because it belongs up here rather than in a footer: Modellix operates this blog and routes media models behind one API key, so we have a commercial interest in the aggregator half of what follows. We also <strong>do not carry Veo 3.0</strong> — those routes were retired from our catalogue on August 27, 2026 — so nothing below is an attempt to sell you one.</p>
+<h2 id="What-the-Veo-3-API-is-today-two-live-tier-names-and-one-retired-model-ID"><a href="#What-the-Veo-3-API-is-today-two-live-tier-names-and-one-retired-model-ID" class="headerlink" title="What the Veo 3 API is today: two live tier names and one retired model ID"></a>What the Veo 3 API is today: two live tier names and one retired model ID</h2><p>Google’s own deprecations table is the authority here, and it is unambiguous. <code>veo-3.0-generate-001</code> shipped September 9, 2025 and was shut down June 30, 2026, with <code>veo-3.1-generate-preview</code> listed as the recommended replacement; <code>veo-3.0-fast-generate-001</code> went the same day to <code>veo-3.1-fast-generate-preview</code>. The two earlier preview IDs, <code>veo-3.0-generate-preview</code> and <code>veo-3.0-fast-generate-preview</code>, had already been retired on November 12, 2025. The three IDs that answer today are <code>veo-3.1-generate-preview</code>, <code>veo-3.1-fast-generate-preview</code> and <code>veo-3.1-lite-generate-preview</code>, and none of them carries a shutdown date. That is the whole status question, and it takes about fifteen seconds to check — which is worth doing before you accept any parameter table, including the one below.</p>
+<table>
+<thead>
+<tr>
+<th>Model ID</th>
+<th>Released</th>
+<th>Shutdown</th>
+<th>Google’s stated replacement</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>veo-3.1-generate-preview</code></td>
+<td>October 15, 2025</td>
+<td>none announced</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>veo-3.1-fast-generate-preview</code></td>
+<td>October 15, 2025</td>
+<td>none announced</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>veo-3.1-lite-generate-preview</code></td>
+<td>March 31, 2026</td>
+<td>none announced</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>veo-3.0-generate-001</code></td>
+<td>September 9, 2025</td>
+<td><strong>June 30, 2026</strong></td>
+<td><code>veo-3.1-generate-preview</code></td>
+</tr>
+<tr>
+<td><code>veo-3.0-fast-generate-001</code></td>
+<td>September 9, 2025</td>
+<td><strong>June 30, 2026</strong></td>
+<td><code>veo-3.1-fast-generate-preview</code></td>
+</tr>
+<tr>
+<td><code>veo-2.0-generate-001</code></td>
+<td>April 9, 2025</td>
+<td><strong>June 30, 2026</strong></td>
+<td><code>veo-3.1-generate-preview</code></td>
+</tr>
+</tbody></table>
+<p>Two boundaries are worth stating plainly, because they change what you can build. First, the Gemini API is no longer where Google points video generation by default: its video overview now tells developers to “use Gemini Omni Flash as your default model for video generation” and keeps Veo 3.1 for scene extension, last-frame control and legacy pipelines. Second, Vertex AI and the Gemini Enterprise Agent Platform are a <strong>different integration surface</strong> from the Gemini API — the same model family, different endpoints, different price sheet. Everything from here on describes the REST API at a single base URL, not the Agent Platform’s <code>models.predict</code>.</p>
+<p>Modellix mirrors that picture rather than papering over it. Our catalogue on September 13, 2026 lists 178 live models in total and exactly six Veo routes, all of them 3.1 — <a href="https://www.modellix.ai/models/google/veo-3.1-t2v">google&#x2F;veo-3.1-t2v</a>, <a href="https://www.modellix.ai/models/google/veo-3.1-i2v">google&#x2F;veo-3.1-i2v</a>, <code>google/veo-3.1-fast-t2v</code>, <code>google/veo-3.1-fast-i2v</code>, <code>google/veo-3.1-lite-t2v</code> and <code>google/veo-3.1-lite-i2v</code>, all of them filed under <a href="https://www.modellix.ai/category/text-to-video">text-to-video</a> (the three <code>-t2v</code> routes) or <a href="https://www.modellix.ai/category/image-to-video">image-to-video</a> (the three <code>-i2v</code> routes). The four <code>google/veo-3-*</code> routes are gone from it, retired on August 27, 2026 and listed by ID in our <a target="_blank" rel="noopener" href="https://docs.modellix.ai/changelog/deprecated-models">deprecated models changelog</a>. The <a href="https://www.modellix.ai/series/veo-3">Veo 3 series page</a> still exists as a family landing page, and the routes that actually answer live under the <a href="https://www.modellix.ai/series/veo-3-1">Veo 3.1 series</a> and the <a href="https://www.modellix.ai/providers/google">Google provider page</a>.</p>
+<h2 id="Veo-3-API-endpoint-reference-one-base-URL-and-why-you-will-see-two-spellings"><a href="#Veo-3-API-endpoint-reference-one-base-URL-and-why-you-will-see-two-spellings" class="headerlink" title="Veo 3 API endpoint reference: one base URL and why you will see two spellings"></a>Veo 3 API endpoint reference: one base URL and why you will see two spellings</h2><p>Every media call goes to the same host, with your key in an <code>Authorization: Bearer</code> header. There are five endpoints you will actually touch:</p>
+<table>
+<thead>
+<tr>
+<th>Purpose</th>
+<th>Method and path</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Submit a generation task</td>
+<td><code>POST https://api.modellix.ai/api/v1/&#123;provider&#125;/&#123;model&#125;</code></td>
+</tr>
+<tr>
+<td>Fetch a task result</td>
+<td><code>GET https://api.modellix.ai/api/v1/tasks/&#123;task_id&#125;</code></td>
+</tr>
+<tr>
+<td>Per-request cost log</td>
+<td><code>GET https://api.modellix.ai/api/v1/logs</code></td>
+</tr>
+<tr>
+<td>Discover model slugs</td>
+<td><code>GET https://api.modellix.ai/api/v1/models</code></td>
+</tr>
+<tr>
+<td>Upload an input file</td>
+<td><code>POST https://api.modellix.ai/api/v1/media/files</code></td>
+</tr>
+</tbody></table>
+<p>If you have read an older tutorial, you may have seen the submit path written as <code>.../&#123;model&#125;/async</code>. Both work, and that is not a typo in either place. On <strong>June 11, 2026</strong> Modellix removed the <code>/async</code> suffix from every model invocation path — <code>POST /alibaba/qwen-image-edit-plus/async</code> became <code>POST /alibaba/qwen-image-edit-plus</code> — and shipped full backwards compatibility at the same time. The changelog wording is explicit: “If you are currently using the <code>/async</code> endpoints, your integrations will not be affected.” So <code>POST https://api.modellix.ai/api/v1/google/veo-3.1-t2v</code> is the path to write today, and an existing <code>/async</code> client is not broken. What is broken is an ID like <code>veo-3.0-generate-001</code> — that is a model retirement, not a path change, and no compatibility layer brings it back.</p>
+<h2 id="The-request-body-field-by-field-T2V-and-the-I2V-oneOf"><a href="#The-request-body-field-by-field-T2V-and-the-I2V-oneOf" class="headerlink" title="The request body field by field: T2V, and the I2V oneOf"></a>The request body field by field: T2V, and the I2V <code>oneOf</code></h2><p>Text-to-video is the simple case. The published schema for <code>google/veo-3.1-t2v</code> takes six fields, one of them required:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Accepted values</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>prompt</code></td>
+<td>string</td>
+<td><strong>Yes</strong></td>
+<td>free text, minimum length 1</td>
+</tr>
+<tr>
+<td><code>negativePrompt</code></td>
+<td>string</td>
+<td>No</td>
+<td>free text</td>
+</tr>
+<tr>
+<td><code>aspectRatio</code></td>
+<td>string</td>
+<td>No</td>
+<td><code>16:9</code> (default), <code>9:16</code></td>
+</tr>
+<tr>
+<td><code>duration</code></td>
+<td>string</td>
+<td>No</td>
+<td><code>&quot;4&quot;</code>, <code>&quot;6&quot;</code>, <code>&quot;8&quot;</code> — note the type</td>
+</tr>
+<tr>
+<td><code>resolution</code></td>
+<td>string</td>
+<td>No</td>
+<td><code>720p</code> (default), <code>1080p</code>, <code>4k</code></td>
+</tr>
+<tr>
+<td><code>personGeneration</code></td>
+<td>string</td>
+<td>No</td>
+<td><code>allow_all</code> (text-to-video)</td>
+</tr>
+</tbody></table>
+<p>Three details in that table cost people time. <code>duration</code> is a <strong>string</strong>, not an integer — <code>&quot;8&quot;</code> works, <code>8</code> is a parameter error. <code>resolution: 1080p</code> and <code>resolution: 4k</code> are only valid at 8 seconds, so a 4-second 1080p request is rejected rather than silently downgraded. And <code>personGeneration</code> is a single-value enum here: text-to-video accepts <code>allow_all</code>; image-to-video, interpolation and reference-image modes accept <code>allow_adult</code> only, and in EU, UK, CH and MENA locations <code>allow_adult</code> is the only value anywhere.</p>
+<p>Image-to-video is where the schema stops being a flat list of fields. The <code>google/veo-3.1-i2v</code> request is declared as a <code>oneOf</code> with two mutually exclusive shapes, and the schema says so in as many words: “Choose one option — <code>image</code> mode and <code>referenceImages</code> mode are mutually exclusive.”</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Image mode</th>
+<th>Reference mode</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Required</td>
+<td><code>prompt</code> + <code>image</code></td>
+<td><code>prompt</code> + <code>referenceImages</code></td>
+</tr>
+<tr>
+<td>Optional</td>
+<td><code>lastFrame</code>, <code>negativePrompt</code>, <code>personGeneration</code>, <code>aspectRatio</code>, <code>duration</code>, <code>resolution</code></td>
+<td><code>personGeneration</code>, <code>aspectRatio</code>, <code>duration</code>, <code>resolution</code></td>
+</tr>
+<tr>
+<td><code>duration</code></td>
+<td><code>&quot;4&quot;</code>, <code>&quot;6&quot;</code>, <code>&quot;8&quot;</code> — but <strong><code>&quot;8&quot;</code> if you pass <code>lastFrame</code></strong></td>
+<td><code>&quot;8&quot;</code> only</td>
+</tr>
+<tr>
+<td><code>negativePrompt</code></td>
+<td>supported</td>
+<td><strong>not supported</strong></td>
+</tr>
+<tr>
+<td>Availability</td>
+<td><code>google/veo-3.1-i2v</code> and <code>-fast-i2v</code> (the two routes this table’s <code>oneOf</code> covers); <code>google/veo-3.1-lite-i2v</code> also takes <code>image</code>&#x2F;<code>lastFrame</code> with a flat schema</td>
+<td>Veo 3.1 and Veo 3.1 Fast I2V only</td>
+</tr>
+</tbody></table>
+<p><code>referenceImages</code> takes up to three image URLs and exists to preserve a subject’s appearance across shots. The constraints are enforced upstream, not by us: <code>duration</code> must be exactly <code>&quot;8&quot;</code> in reference mode, <code>lastFrame</code> only works at <code>&quot;8&quot;</code>, and 4K costs more because it only runs at that length. A minimal image-mode call looks like this:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">curl --request POST \</span><br><span class="line">  --url https://api.modellix.ai/api/v1/google/veo-3.1-i2v \</span><br><span class="line">  --header <span class="string">&#x27;Authorization: Bearer YOUR_API_KEY&#x27;</span> \</span><br><span class="line">  --header <span class="string">&#x27;Content-Type: application/json&#x27;</span> \</span><br><span class="line">  --data <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;prompt&quot;: &quot;The character turns toward the window as daylight shifts to dusk&quot;,</span></span><br><span class="line"><span class="string">    &quot;image&quot;: &quot;https://file.modellix.ai/example/first-frame.png&quot;,</span></span><br><span class="line"><span class="string">    &quot;duration&quot;: &quot;8&quot;,</span></span><br><span class="line"><span class="string">    &quot;resolution&quot;: &quot;1080p&quot;,</span></span><br><span class="line"><span class="string">    &quot;aspectRatio&quot;: &quot;16:9&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>Swap in <code>&quot;lastFrame&quot;: &quot;https://file.modellix.ai/example/last-frame.png&quot;</code> and you get an interpolation between the two frames; swap <code>image</code> for <code>&quot;referenceImages&quot;: [&quot;...&quot;, &quot;...&quot;]</code> and you get reference mode — remembering to delete <code>negativePrompt</code> and pin <code>duration</code> to <code>&quot;8&quot;</code>.</p>
+<h2 id="How-to-get-an-authoritative-Veo-3-API-documentation-schema-without-an-API-key"><a href="#How-to-get-an-authoritative-Veo-3-API-documentation-schema-without-an-API-key" class="headerlink" title="How to get an authoritative Veo 3 API documentation schema without an API key"></a>How to get an authoritative Veo 3 API documentation schema without an API key</h2><p>Here is the part most parameter tables leave out: those fields are not stable enough to memorise, and the ones in this article will be as stale as the next aggregator’s the moment Google changes a constraint. So the workflow worth adopting is to fetch the contract instead of memorising it.</p>
+<p>The schema endpoint is public and requires no authentication: <code>GET https://www.modellix.ai/models/&#123;model_slug&#125;/api_schema</code>, documented in the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/api/get-schema">Get Schema reference</a>. Pass the slug in <code>provider/model</code> form with the slash as a literal path separator, and you get back an OpenAPI-style fragment — the model description, the JSON Schema for the request body, examples, and the async task responses. Use <code>servers[0].url</code> as the URL to POST to, and remember that the generate call itself still needs your Bearer key.</p>
+<p>If you would rather stay in the terminal, the CLI does the same lookup and skips the key requirement:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install --global modellix-cli@latest</span><br><span class="line">modellix-cli model list --provider google --output slugs</span><br><span class="line">modellix-cli model get-schema google/veo-3.1-t2v</span><br><span class="line">modellix-cli model get-schema google/veo-3.1-t2v --output human</span><br></pre></td></tr></table></figure>
+
+<p><code>--output human</code> prints a readable summary of the contract, and <code>--quiet</code> prints just the inference URL. This is the same path Modellix’s own agent Skill and Plugin use before a non-trivial submit — the changelog entry for September 4, 2026 puts the reasoning well: they read request-body schemas this way “instead of guessing from documentation”. Slugs for <code>model get-schema</code> come from <code>modellix-cli model list</code>, or from <code>GET /api/v1/models</code>, which returns each model’s <code>slug</code>, <code>type</code>, <code>docs_url</code> and a description.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/veo-3-api-schema-endpoint.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/veo-3-api-schema-endpoint.png" alt="Real documentation page for the Modellix Get Schema endpoint, showing the sentence that the endpoint is public and does not require an API key" loading="lazy" />
+</picture>
+
+<p><em>The schema endpoint is public: the page states the endpoint does not require an API key, and that only the <code>servers[0].url</code> generate call does. Captured September 13, 2026.</em></p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Media API Reference</h3><p class="view-docs-tag-desc">See the async task format, polling endpoint and result retrieval for every model, including the six Veo 3.1 routes.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&amp;utm_medium=view_docs_tag" data-cta="view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Submit-poll-and-read-the-async-response"><a href="#Submit-poll-and-read-the-async-response" class="headerlink" title="Submit, poll, and read the async response"></a>Submit, poll, and read the async response</h2><p>Generation is asynchronous: you submit, you get a handle, you poll. The submit response has four fields worth knowing by name.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;success&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pending&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;task_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;task-abc123&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;model_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;google/veo-3.1-t2v&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;get_result&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;method&quot;</span><span class="punctuation">:</span> <span class="string">&quot;GET&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.modellix.ai/api/v1/tasks/task-abc123&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>code: 0</code> means accepted, not finished — <code>status</code> starts at <code>pending</code> and moves through <code>processing</code>. The value you should actually use is <code>get_result.url</code>, because it is the authoritative poll address; building the URL yourself from <code>task_id</code> works today but assumes a URL shape the API has no obligation to keep. Poll until the task reaches a terminal state, of which there are three: <code>success</code>, <code>failed</code> and <code>canceled</code>. On success the payload carries <code>result.resources[]</code> with the asset URL, <code>result.extensions.submit_time</code> and <code>end_time</code>, and a <code>billing</code> block with the charged amount.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/veo-3-api-request-lifecycle.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/veo-3-api-request-lifecycle.png" alt="Generated conceptual render of an asynchronous request pipeline: a request particle entering a processing chamber and a result chip settling into a terminal-state ring" loading="lazy" />
+</picture>
+
+<p><em>The three stages above as a pipeline: one submit, one handle, one terminal state — the same shape as the <code>submit → poll → retrieve</code> cycle in the code. Generated illustration, September 13, 2026.</em></p>
+<p>Do not poll on a fixed two-second timer. Google’s own documentation for Veo 3.1 gives a latency band of <strong>11 seconds minimum to 6 minutes maximum</strong> during peak hours, so a tight loop mostly buys rate-limit pressure. A 5-to-10 second interval with a cap — and a webhook, below — is the sane configuration.</p>
+<h2 id="Error-handling-seven-status-codes-and-which-ones-to-retry"><a href="#Error-handling-seven-status-codes-and-which-ones-to-retry" class="headerlink" title="Error handling: seven status codes and which ones to retry"></a>Error handling: seven status codes and which ones to retry</h2><p>Errors come back in one shape, <code>&#123;&quot;code&quot;: &lt;http status&gt;, &quot;message&quot;: &quot;&lt;Category&gt;: &lt;detail&gt;&quot;&#125;</code>, so a single parser handles all of them. What matters operationally is which codes are retryable:</p>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Retry?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>400</td>
+<td>Invalid parameters — missing required field, wrong type</td>
+<td>No. <code>duration: 8</code> instead of <code>&quot;8&quot;</code> lands here</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Invalid, missing or expired API key</td>
+<td>No</td>
+</tr>
+<tr>
+<td>402</td>
+<td>Insufficient balance or account in arrears</td>
+<td>No — top up</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Task ID, model or provider not found</td>
+<td>No. A retired Veo 3.0 ID lands here</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Rate limit or concurrent-task limit exceeded</td>
+<td><strong>Yes — exponential backoff</strong></td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal processing error</td>
+<td><strong>Yes — up to 3 attempts</strong></td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service temporarily unavailable</td>
+<td><strong>Yes — with backoff</strong></td>
+</tr>
+</tbody></table>
+<p>For 429 the response carries <code>X-RateLimit-Limit</code>, <code>X-RateLimit-Remaining</code> and <code>X-RateLimit-Reset</code>; read the reset header rather than guessing at a sleep. For 500 and 503 the documented pattern is 1s → 2s → 4s. And note what is <em>not</em> on that list: a failed render is not a failed request. If Veo 3.1 blocks a video because of safety filters or a problem with the generated audio, you are not charged.</p>
+<p>Polling is not the only delivery mechanism. Any submit call can carry an <code>X-Webhook-URL</code> header, and Modellix will POST the terminal payload to your HTTPS endpoint with <code>X-Modellix-Event</code> set to <code>prediction.task.succeeded</code>, <code>prediction.task.failed</code> or <code>prediction.task.canceled</code>, plus <code>X-Modellix-Task-ID</code>, <code>X-Modellix-Delivery-ID</code> and <code>X-Modellix-Retry-Count</code>. Your receiver must return 2xx; 429, 5xx, timeouts and temporary network errors are retried, while 3xx and other 4xx are not. Deduplicate on <code>X-Modellix-Delivery-ID</code> — retries are real deliveries. Localhost and private IPs are rejected, so testing needs an ngrok-style tunnel, not a loopback address.</p>
+<p>On throughput, the limits scale with a single top-up rather than with account age: under $10 gets you 2 concurrent tasks and 100 requests per minute, $10 gets 10 and 100, $100 gets 20 and 200, and the ladder runs to 100 concurrent tasks and 1,000 RPM at $1,000. The current numbers live on the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started/entitlements">entitlements page</a>. For rate-limit behaviour you can also set a low-balance email alert in the console, which is cheaper than discovering a 402 in production.</p>
+<h2 id="Image-inputs-and-the-File-API’s-seven-day-window"><a href="#Image-inputs-and-the-File-API’s-seven-day-window" class="headerlink" title="Image inputs and the File API’s seven-day window"></a>Image inputs and the File API’s seven-day window</h2><p>Reference and image-to-video modes both need a picture that something else can fetch. You can host it yourself, or upload it once and let the API serve it: <code>POST /api/v1/media/files</code> with <code>multipart/form-data</code> and the field name <code>file</code> returns a <code>file_id</code>, a <code>type</code> and a <code>url</code> you can pass straight into the <code>image</code> field. Uploads are authenticated with the same key, free of charge, and scoped to your team.</p>
+<p>The constraints are the load-bearing part, because one of them is a hard limit rather than a quota:</p>
+<ul>
+<li><strong>Retention is about 7 days.</strong> Uploaded files expire; generated results are also only kept for 7 days on our side (Google keeps its own rendered videos for 2 days). Anything you need permanently must be copied to your own storage.</li>
+<li><strong>16 MB maximum file size</strong>, with <code>jpg</code>, <code>jpeg</code>, <code>png</code>, <code>webp</code>, <code>gif</code>, <code>bmp</code>, <code>tiff</code>, <code>tif</code>, <code>heic</code>, <code>heif</code> and the rest of the documented list accepted for images.</li>
+<li><strong>10 files per team and 2 concurrent uploads</strong> by default. Delete files you no longer need — deletion frees the quota immediately — rather than treating the File API as storage.</li>
+</ul>
+<p>A 7-day window is fine for a pipeline that uploads and submits in the same job, and wrong for anything that treats the upload as a durable asset. Plan accordingly rather than discovering it on day eight.</p>
+<h2 id="What-a-Veo-3-1-call-costs-and-a-worked-8-second-example"><a href="#What-a-Veo-3-1-call-costs-and-a-worked-8-second-example" class="headerlink" title="What a Veo 3.1 call costs, and a worked 8-second example"></a>What a Veo 3.1 call costs, and a worked 8-second example</h2><p>Veo bills per second of output, and the rate depends on resolution. These are the four live text-to-video and image-to-video rates we pulled from the catalogue on <strong>September 13, 2026</strong>, alongside the Google list price the catalogue shows for comparison:</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>720p</th>
+<th>1080p</th>
+<th>4K</th>
+<th>Google list (720p &#x2F; 1080p &#x2F; 4K)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>google/veo-3.1-t2v</code></td>
+<td>$0.3600&#x2F;sec</td>
+<td>$0.3600&#x2F;sec</td>
+<td>$0.5400&#x2F;sec</td>
+<td>$0.40 &#x2F; $0.40 &#x2F; $0.60</td>
+</tr>
+<tr>
+<td><code>google/veo-3.1-fast-t2v</code></td>
+<td>$0.0900&#x2F;sec</td>
+<td>$0.1080&#x2F;sec</td>
+<td>$0.2700&#x2F;sec</td>
+<td>$0.10 &#x2F; $0.12 &#x2F; $0.30</td>
+</tr>
+<tr>
+<td><code>google/veo-3.1-lite-t2v</code></td>
+<td>$0.0450&#x2F;sec</td>
+<td>$0.0720&#x2F;sec</td>
+<td>not supported</td>
+<td>$0.05 &#x2F; $0.08 &#x2F; —</td>
+</tr>
+<tr>
+<td><code>google/veo-3.1-i2v</code></td>
+<td>$0.3600&#x2F;sec</td>
+<td>$0.3600&#x2F;sec</td>
+<td>$0.5400&#x2F;sec</td>
+<td>$0.40 &#x2F; $0.40 &#x2F; $0.60</td>
+</tr>
+</tbody></table>
+<p>Arithmetic makes the tier choice concrete. One 8-second clip at 1080p costs <strong>$2.88</strong> on <code>veo-3.1-t2v</code>, <strong>$0.864</strong> on the Fast route and <strong>$0.36</strong> on Lite at 720p — a spread of roughly eight times for the same clip length, decided entirely by the route you name. The same clip at 4K is $4.32 on the standard route. That is the only cost lever with this much range, which is why the model ID belongs in configuration rather than in application logic. Google’s own rates are published on its <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/pricing">Gemini API pricing page</a>, and the comparison column above is the catalogue’s, not an independent measurement of Google’s billing.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/veo-3-api-model-page-pricing.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/veo-3-api-model-page-pricing.png" alt="Real Modellix model page for google/veo-3.1-t2v showing the parameter table and the per-resolution pricing table with Unit: $/sec" loading="lazy" />
+</picture>
+
+<p><em>The same numbers in their native form: the <code>google/veo-3.1-t2v</code> model page lists <code>prompt</code> through <code>resolution</code> in the parameter table and prices 720p and 1080p at 0.3600 and 4K at 0.5400 under <code>Unit: $/sec</code>. Captured September 13, 2026.</em></p>
+<p>Listed rates are not the whole bill story, so here is the part that is genuinely useful for a finance conversation. <code>GET /api/v1/logs</code> returns per-request rows with the <code>task_id</code>, the model, the status, the wall <code>duration</code> in milliseconds, the recorded <code>input</code>, and a <code>cost</code> field measured in sub-pennies — <strong><code>1</code> equals $0.0001</strong>, so divide by 10,000 for dollars and a row reading <code>cost: 12</code> is $0.0012. The window can be at most 30 days, and an optional <code>mdlx_user_id</code> filter matches the <code>X-Mdlx-User-Id</code> header you set on submit, which is how you attribute spend to your own end users. The full field list is in the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/api/get-logs">logs reference</a>.</p>
+<p>Two pricing notes that are easy to conflate and worth keeping apart. First, a <strong>register-level discount is not a unit price</strong>: Modellix offers a 10% first-purchase discount on a top-up tier (every tier, once) — that is money off a payment, and it is a different thing from the per-second <code>$/sec</code> figures in the table above, which are the price of the model itself. Second, there is no free tier to plan around: new accounts no longer receive signup credit as of <strong>August 19, 2026</strong>, when the $1 complimentary credit was withdrawn, and trial credit is now requested by email from support.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Check Current Veo 3.1 Rates</h3><p class="view-docs-tag-desc">Log in to see per-resolution rates for all six Veo 3.1 routes on one key — and the per-request cost log behind them.</p><a class="btn view-docs-tag-btn" href="https://www.modellix.ai/console/login" data-cta="login_tag" data-cta-target="login" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p><strong>Is there free Veo 3 API access?</strong><br>No. Google’s pricing page lists the free tier for every Veo 3.1 model as “Not available”, and the API has never had one. On the aggregator side there is no signup credit either: the $1 complimentary credit was withdrawn on August 19, 2026, and trial credit is now requested by email from Modellix support rather than granted automatically at registration.</p>
+<p><strong>Can I still call <code>veo-3.0-generate-001</code>?</strong><br>Not through Google. The model was shut down on June 30, 2026, along with <code>veo-3.0-fast-generate-001</code>, and a shut-down Gemini model has its endpoint removed. A third-party listing that still advertises Veo 3 under that name is either selling leftover capacity under a private alias or has not updated its page; either way the model code is no longer a Google code.</p>
+<p><strong>Do I need a different API key for Veo 3.1?</strong><br>No. The key, the base URL and the submit-poll lifecycle are unchanged from Veo 3.0. You are changing a model ID, which is exactly why the ID should live in configuration — if you are still deciding where the key itself should come from, our <a href="https://www.modellix.ai/blog/veo-3-1-api-key/">Veo 3.1 API key guide</a> covers that path separately.</p>
+<p><strong>What is the JSON body for a minimal Veo 3 call?</strong><br>For text-to-video, one field is enough: <code>&#123;&quot;prompt&quot;: &quot;A majestic eagle soaring over snow-capped mountain peaks at sunrise&quot;&#125;</code>. To pin quality, add <code>&quot;aspectRatio&quot;: &quot;16:9&quot;</code>, <code>&quot;duration&quot;: &quot;8&quot;</code> and <code>&quot;resolution&quot;: &quot;1080p&quot;</code> — remembering that duration is a string, and that 1080p and 4K are only valid at 8 seconds.</p>
+<p><strong>Is there a Veo 3 API key generator?</strong><br>No, and you should be wary of anything claiming to be one. Keys are created in the Modellix console under API Key and are shown once at creation, so save it then; Google issues its own keys through AI Studio. A “generator” that hands out keys is either a reseller proxy or a credential-harvesting page.</p>
+<p><strong>Why does my Veo 3 API request return 400 with a prompt error?</strong><br>The most common causes are a missing <code>prompt</code> on an image-to-video call that should have supplied one, <code>duration</code> sent as the integer <code>8</code> instead of the string <code>&quot;8&quot;</code>, <code>resolution: &quot;1080p&quot;</code> combined with a 4-second duration, and <code>negativePrompt</code> sent in reference mode where it is not supported. The message follows the <code>Category: detail</code> format, so read the detail rather than matching on the code alone.</p>
+<p><strong>How long do generated videos stay available?</strong><br>On the Google side, rendered videos are stored for two days; on the Modellix side, generated results and uploaded input files are retained for about 7 days. Neither is storage. Download the asset when the task completes and copy it somewhere you control. One related detail worth knowing before you ship output to customers: Google watermarks every Veo result with SynthID, its AI-content watermark, so generated video can be identified as generated downstream.</p>
+<p><strong>Where do I find the Veo 3 API documentation for a specific route?</strong><br>Each route has its own reference page — the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/google/veo-3-1-t2v">Veo 3.1 T2V page</a> is the one for text-to-video — and the same contract is machine-readable from <code>GET https://www.modellix.ai/models/&#123;model_slug&#125;/api_schema</code> or <code>modellix-cli model get-schema &lt;slug&gt;</code>, neither of which needs an API key. For a wider view of what a video pipeline costs beyond one tier, our <a href="https://www.modellix.ai/blog/veo-3-1-price/">Veo 3.1 price breakdown</a> works through the tier-by-tier comparison.</p>
+<h2 id="The-habit-that-outlives-this-page"><a href="#The-habit-that-outlives-this-page" class="headerlink" title="The habit that outlives this page"></a>The habit that outlives this page</h2><p>Model IDs retire on other people’s schedules. Veo 2 and both Veo 3.0 IDs all stopped answering on the same day in June 2026, and the integrations that survived it were the ones where the ID was a configuration value and the request schema was fetched rather than remembered. That is the durable part of this documentation: not the field list — which will drift, and which you can now re-pull in one command — but the three habits underneath it. Keep the model ID out of your code. Fetch the schema instead of trusting a table. And log the per-request cost from day one, so the first conversation about spend is a query rather than an argument.</p>
+<p>We should be explicit about what we are not claiming here. This page is not an argument that one platform’s Veo rates beat another’s — we have not benchmarked competitors’ billing, some of them quote per-clip prices that cannot be compared to a per-second rate at all, and the comparison column above is our own catalogue’s. What we can show you is the contract and the receipts behind one key.</p>
+<hr>
+<p><em>Endpoints, schema constraints, prices and catalogue status reflect first-party sources read on September 13, 2026: <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/deprecations">Gemini API deprecations</a>, the <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/veo">Veo 3.1 guide</a>, the <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/pricing">Gemini API pricing page</a>, the <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/video">video generation overview</a>, <a target="_blank" rel="noopener" href="https://docs.modellix.ai/changelog/product-updates">Modellix product updates</a>, the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/changelog/deprecated-models">deprecated models list</a>, the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api">REST API guide</a>, and the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/api/get-logs">logs reference</a>. Model availability and per-second rates change without notice; validate against the live schema and the model page before committing a workload. Modellix operates this blog and routes image and video models behind one API key.</em></p>
+<p>Re-pull the contract for whichever Veo 3.1 route you actually plan to ship — the schema is public, and the <a href="https://www.modellix.ai/series/veo-3-1">six live routes</a> are all on the same key.</p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/ai-video-api/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
+            
+              <a href="/blog/tags/api-integration/" class="tag-pill tag-pill--sm">API Integration</a>
+            
+              <a href="/blog/tags/Veo/" class="tag-pill tag-pill--sm">Veo</a>
+            
+              <a href="/blog/tags/Google/" class="tag-pill tag-pill--sm">Google</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="https://www.modellix.ai/console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/ai-image-edit-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-ai-image-edit-api.webp" alt="AI Image Edit API: 16 References, Masks, Flare vs Sunburst" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">AI Image Edit API: 16 References, Masks, Flare vs Sunburst</h3>
+          <time class="related-article-date" datetime="2026-09-16T16:00:00.000Z">September 17, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/gpt-image-2-5-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-gpt-image-2-5-api.webp" alt="GPT Image 2.5 API: Flare vs Sunburst, Four Model IDs" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">GPT Image 2.5 API: Flare vs Sunburst, Four Model IDs</h3>
+          <time class="related-article-date" datetime="2026-09-16T16:00:00.000Z">September 17, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/ai-video-generation-workflow/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-ai-video-generation-workflow.webp" alt="AI Video Generation Workflow: Async Tasks and Batch Runs" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">AI Video Generation Workflow: Async Tasks and Batch Runs</h3>
+          <time class="related-article-date" datetime="2026-09-16T11:48:00.000Z">September 16, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="https://www.modellix.ai/console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/veo-3-api-documentation/&text=Veo%203%20API%20Documentation%3A%20Integration%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/veo-3-api-documentation/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/veo-3-api-documentation/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script defer src="https://unpkg.com/lucide@1.47.0/dist/umd/lucide.min.js" onload="window.lucide && window.lucide.createIcons();"></script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+</body>
+</html>

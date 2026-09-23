@@ -1,0 +1,737 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Production analytics start after the page load has settled. -->
+  <script>
+    (function (document, window) {
+      if (window.location.hostname !== 'www.modellix.ai') return;
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-4DECHYKQVT');
+
+      var loaded = false;
+      function appendScript(src, crossOrigin) {
+        var script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        if (crossOrigin) script.crossOrigin = crossOrigin;
+        document.head.appendChild(script);
+      }
+      function loadAnalytics() {
+        if (loaded) return;
+        loaded = true;
+        appendScript('https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT');
+        appendScript('https://t.contentsquare.net/uxa/f39399cd2e27e.js', 'anonymous');
+        appendScript('https://app.rybbit.io/api/script.js?siteId=8a6874a918d7');
+      }
+      function scheduleAnalytics() {
+        window.setTimeout(function () {
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(loadAnalytics, { timeout: 3000 });
+          } else {
+            loadAnalytics();
+          }
+        }, 1500);
+      }
+
+      if (document.readyState === 'complete') scheduleAnalytics();
+      else window.addEventListener('load', scheduleAnalytics, { once: true });
+    })(document, window);
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI UGC Video Generator: Build It on an API, Not a Seat</title>
+  <meta name="keywords" content="ai ugc video generator, ugc video ai, ai ugc ads, white label ai video generator, ai video generator for marketing, ai video ads generator, build ugc generator, ai ugc creator, lip sync api">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/ai-ugc-video-generator/">
+  
+  
+  <meta name="description" content="An AI UGC video generator is four model calls, not one product. What a 30-second UGC ad costs per component, and where a per-seat tool still wins today.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI UGC Video Generator: Build It on an API, Not a Seat">
+<meta property="og:url" content="https://www.modellix.ai/blog/ai-ugc-video-generator/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="An AI UGC video generator is four model calls, not one product. What a 30-second UGC ad costs per component, and where a per-seat tool still wins today.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-ai-ugc-video-generator.webp">
+<meta property="article:published_time" content="2026-09-16T11:40:00.000Z">
+<meta property="article:modified_time" content="2026-09-16T11:40:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video API">
+<meta property="article:tag" content="Build vs Buy">
+<meta property="article:tag" content="Digital Human">
+<meta property="article:tag" content="Lip Sync">
+<meta property="article:tag" content="UGC">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-ai-ugc-video-generator.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"AI UGC Video Generator: Build It on an API, Not a Seat","description":"An AI UGC video generator is four model calls, not one product. What a 30-second UGC ad costs per component, and where a per-seat tool still wins today.","datePublished":"2026-09-16T11:40:00.000Z","dateModified":"2026-09-16T11:40:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/ai-ugc-video-generator/","image":"https://img.modellix.ai/en/article/cover-ai-ugc-video-generator.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://img.modellix.ai" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="https://www.modellix.ai/" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started" class="nav-link">Documentation</a>
+      
+        <a href="https://www.modellix.ai/about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="https://www.modellix.ai/console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="https://www.modellix.ai/console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">AI UGC Video Generator: Build It on an API, Not a Seat</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">AI UGC Video Generator: Build It on an API, Not a Seat</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-09-16T11:40:00.000Z">September 16, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/ai-video-api/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Lip-Sync/" class="tag-pill tag-pill--sm">Lip Sync</a>
+            
+              <a href="/blog/tags/Digital-Human/" class="tag-pill tag-pill--sm">Digital Human</a>
+            
+              <a href="/blog/tags/UGC/" class="tag-pill tag-pill--sm">UGC</a>
+            
+              <a href="/blog/tags/Build-vs-Buy/" class="tag-pill tag-pill--sm">Build vs Buy</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>If you searched &#39;AI UGC video generator&#39; looking for a tool to open this afternoon: the top ten results are eight products that will sell you a seat, and you should go pick one.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-ai-ugc-video-generator.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-ai-ugc-video-generator.png" alt="Modellix cover: AI UGC Video Generator over four copper model-call rails feeding one dark production line, MODELLIX wordmark" />
+</picture>
+
+<p>If you searched “AI UGC video generator” looking for a tool to open this afternoon: the top ten results are eight products that will sell you a seat, and you should go pick one. This page is not for you, and pretending otherwise would waste your time.</p>
+<p>It is for the other reader — the one who needs UGC-style video <em>inside something they are building</em>. A storefront that renders an ad for every product a merchant uploads. An agency tool that ships creatives under the client’s own brand. A marketplace that wants video in the listing flow. For that reader the question is not “which tool is best” but “what does this cost me per video, and is owning the pipeline worth it”. That question is arithmetic, and the arithmetic is public if you know where the four calls are.</p>
+<p>Because that is what the phrase actually names. <strong>An AI UGC video generator is not a product — it is four model calls and a job queue.</strong> Once you split it that way, build-versus-buy stops being a matter of taste.</p>
+<p>One disclosure before the numbers. We run Modellix, an API gateway that carries image, video and speech models from a dozen upstream providers on one key and one bill, so we have a commercial interest in the rows further down. Everything below is either a public price we read today or arithmetic you can redo yourself. All prices were read from live model pages on <strong>September 16, 2026</strong>; they move, so re-read them before you commit spend.</p>
+<h2 id="What-a-UGC-video-generator-actually-is-four-model-calls"><a href="#What-a-UGC-video-generator-actually-is-four-model-calls" class="headerlink" title="What a UGC video generator actually is: four model calls"></a>What a UGC video generator actually is: four model calls</h2><p>Strip the marketing pages back and every UGC ad you have ever seen is the same four things:</p>
+<ol>
+<li><strong>A spoken script.</strong> Thirty seconds of conversational English is roughly 75 words, or about 430 characters.</li>
+<li><strong>A person on camera saying it.</strong> Either a generated presenter (image-to-video) or an existing clip with its mouth re-synced (video-to-video, “lip-sync”).</li>
+<li><strong>Product footage and cutaways.</strong> A still of the product, then short image-to-video clips of it being held, opened, or used.</li>
+<li><strong>Assembly.</strong> An async job that uploads the source material, dispatches each call, waits for results, and records what it cost.</li>
+</ol>
+<p>None of that requires training a model, and none of it is one API call. It is four, with different pricing units — characters for speech, seconds for video, per-image for stills — which is precisely why the per-video cost is not obvious from any pricing page.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/ugc-pipeline-four-model-calls.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/ugc-pipeline-four-model-calls.png" alt="Diagram of a UGC video pipeline: script and voice generation, a presenter or lip-sync call, product still and B-roll generation, all converging into an async job queue" loading="lazy" />
+</picture>
+
+<p><em>The whole pipeline on one page: four independent model calls plus the job queue that dispatches them and records what each one cost.</em></p>
+<p>Two shapes recur in this market, and they set very different volume expectations. Dropshippers and DTC brands test one product at a time — a SKU, a hook, a variant — so their demand is spiky and measured in dozens per month. E-commerce operations with a live catalogue want an ad for every product in the feed, which is a different problem: that one needs a queue, not an interface.</p>
+<p>One thing this pipeline deliberately does not do is take a product URL and return a video. Several seat-priced tools on this SERP accept a link and read the listing, which is why their onboarding is a single text field. Reproducing that means fetching the product page, extracting the images worth animating and deciding which claims the script may make — a scraping and content-selection problem wearing a generation problem’s clothes. If your input is a URL, either build that extraction step yourself or use one of those tools.</p>
+<p>That pricing-unit mix is also why a single gateway carrying many video models matters here rather than being a nice-to-have: the four calls have to bill to one place if you want a per-video number at all, which is the thing <a href="https://www.modellix.ai/blog/unified-ai-api/">running several video models on one key</a> makes possible.</p>
+<h2 id="Step-1-generate-the-script-and-the-voice-track"><a href="#Step-1-generate-the-script-and-the-voice-track" class="headerlink" title="Step 1: generate the script and the voice track"></a>Step 1: generate the script and the voice track</h2><p>The cheapest step by an order of magnitude, and the one most worth outsourcing to a model rather than a person.</p>
+<p>Speech models on the catalogue bill per million characters, and the spread is wide. On <strong>September 16, 2026</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Speech model</th>
+<th align="right">Rate</th>
+<th align="right">Cost for 430 characters</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>alibaba/cosyvoice-v3-flash</code></td>
+<td align="right">$13.00 &#x2F; M chars</td>
+<td align="right"><strong>$0.0056</strong></td>
+</tr>
+<tr>
+<td><code>xai/grok-voice-tts</code></td>
+<td align="right">$15.00 &#x2F; M chars</td>
+<td align="right">$0.0065</td>
+</tr>
+<tr>
+<td><code>google/gemini-3.1-flash-tts</code></td>
+<td align="right">$40.00 &#x2F; M chars</td>
+<td align="right">$0.0172</td>
+</tr>
+<tr>
+<td><code>minimax/speech-2.8-turbo</code></td>
+<td align="right">$60.00 &#x2F; M chars</td>
+<td align="right">$0.0258</td>
+</tr>
+</tbody></table>
+<p>Read those numbers against a 30-second ad and the whole voice layer costs less than a cent on the cheap tier and about two and a half cents on the expensive one. <strong>Voice is not the line item you optimise.</strong></p>
+<p>Two things bite here that are not on any pricing page. First, voice cloning and stock voices are different products with different consent obligations, and the catalogue carries both (<code>alibaba/cosyvoice-clone</code> at $13.00–$26.00 &#x2F; M chars is the cloning route). You own that consent question; nothing in the API answers it for you. Second, if you want the same ad in more than one language, you are paying per character per language, which is the point at which a 430-character script stops being trivially cheap.</p>
+<p>If you would rather see how the presenter route behaves before committing to a script pipeline, the state of <a href="https://www.modellix.ai/blog/talking-avatar-api/">free talking-avatar tooling</a> is a reasonable place to calibrate your expectations first.</p>
+<h2 id="Step-2-put-a-person-on-screen"><a href="#Step-2-put-a-person-on-screen" class="headerlink" title="Step 2: put a person on screen"></a>Step 2: put a person on screen</h2><p>This is the step that decides your bill, and it is the step the SERP never prices.</p>
+<p>There are two structurally different routes and they cost very different amounts. Throughout this article “presenter”, “digital human” and “avatar” mean the same thing: a model that generates a talking person from a still image, as opposed to “lip-sync”, which re-times the mouth on footage you already have.</p>
+<p><strong>Generated presenter (image-to-video).</strong> You send a still or a prompt and get a person talking. Live rates, read September 16, 2026:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th align="right">Rate</th>
+<th align="right">30 seconds</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>vidu/viduq2-turbo-digital-human</code></td>
+<td align="right">$0.0050 &#x2F; sec</td>
+<td align="right"><strong>$0.150</strong></td>
+</tr>
+<tr>
+<td><code>vidu/viduq2-pro-digital-human</code></td>
+<td align="right">$0.0050 &#x2F; sec</td>
+<td align="right"><strong>$0.150</strong></td>
+</tr>
+<tr>
+<td><code>skywork/single-actor-avatar</code></td>
+<td align="right">$0.0480–$0.0720 &#x2F; sec</td>
+<td align="right">$1.44–$2.16</td>
+</tr>
+<tr>
+<td><code>kling/kling-avatar</code></td>
+<td align="right">$0.0448–$0.0896 &#x2F; sec</td>
+<td align="right">$1.34–$2.69</td>
+</tr>
+</tbody></table>
+<p><strong>Lip-sync an existing clip (video-to-video).</strong> You supply footage and a voice track; the model re-times the mouth:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th align="right">Rate</th>
+<th align="right">30 seconds</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>skywork/sky-lipsync</code></td>
+<td align="right">$0.0120 &#x2F; sec</td>
+<td align="right">$0.360</td>
+</tr>
+<tr>
+<td><code>vidu/lip-sync</code></td>
+<td align="right">$0.0200 &#x2F; sec</td>
+<td align="right">$0.600</td>
+</tr>
+<tr>
+<td><code>pixverse/lipsync</code></td>
+<td align="right">$0.0400 &#x2F; sec</td>
+<td align="right">$1.200</td>
+</tr>
+</tbody></table>
+<p><mark>The same 30 seconds of on-camera speech costs $0.150 on the cheapest presenter model and $2.688 on the most expensive one — a 17.9× spread for a line item most buyers never see quoted separately.</mark></p>
+<p>The lip-sync route is not the cheap one either: at <code>vidu/lip-sync</code> rates it costs four times what the turbo presenter model does. What it buys instead is fidelity to footage you already shot — and it forces a design decision early, because a video-to-video call needs a <em>source video</em> in the system before it can run. That means your upload path is a prerequisite of step 2, not a detail of step 4. Details of the lip-sync request shape are in the <a href="https://www.modellix.ai/blog/pixverse-lip-sync/">PixVerse lip-sync walkthrough</a>, and the wider presenter-model comparison lives in <a href="https://www.modellix.ai/blog/ai-avatar-api/">the avatar API overview</a>.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/modellix-avatar-lipsync-price-rows-sm.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/modellix-avatar-lipsync-price-rows-sm.jpg" alt="Modellix video-to-video catalogue page listing talking-head models with live per-second prices, skywork/sky-lipsync at $0.0120 per second among them" loading="lazy" />
+</picture>
+
+<p><em>The catalogue the rates above come from, captured September 16, 2026: every talking-head model on one page, priced per second, including <code>skywork/sky-lipsync</code> at $0.0120&#x2F;sec. Captured from <a href="https://www.modellix.ai/category/video-to-video">modellix.ai</a>.</em></p>
+<p>One editorial note, because this is the part of the keyword that attracts bad practice: do not generate a synthetic human face and present it as a real customer testimonial. It is the one thing on this list that is legally exposed rather than merely expensive, and it is covered below.</p>
+<p><strong>One expectation to reset before you pick a model.</strong> The pages ranking for this term sell realism harder than anything else — skin texture, pores, “real imperfections”, “doesn’t look like AI”. On a model API there is no realism dial. What differs between the models in the tables above is resolution, motion fidelity, and how well a still image survives being animated; what you control is the source still you feed in, the prompt template around it, and whether a human looks at the output before it ships. “It looks like a real person filmed it” is a claim you earn in your template and your review step, not a parameter you set.</p>
+<h2 id="Step-3-cut-in-the-product-and-the-B-roll"><a href="#Step-3-cut-in-the-product-and-the-B-roll" class="headerlink" title="Step 3: cut in the product and the B-roll"></a>Step 3: cut in the product and the B-roll</h2><p>Two more calls, both cheap relative to step 2.</p>
+<p><strong>The product still.</strong> One image call, then reused across however many cuts you need.</p>
+<table>
+<thead>
+<tr>
+<th>Image model</th>
+<th align="right">Rate</th>
+<th align="right">Per still</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>openai/gpt-image-2</code></td>
+<td align="right">$0.0054–$0.1899 &#x2F; img</td>
+<td align="right">$0.0054–$0.1899</td>
+</tr>
+<tr>
+<td><code>google/nano-banana-pro</code></td>
+<td align="right">$0.1206–$0.2160 &#x2F; img</td>
+<td align="right">$0.1206–$0.2160</td>
+</tr>
+</tbody></table>
+<p><strong>The B-roll.</strong> Fifteen seconds of cutaways, image-to-video:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th align="right">Rate</th>
+<th align="right">15 seconds</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>minimax/hailuo-02-i2v</code></td>
+<td align="right">$0.0153–$0.0738 &#x2F; sec</td>
+<td align="right">$0.230–$1.107</td>
+</tr>
+<tr>
+<td><code>vidu/viduq3-turbo-i2v</code></td>
+<td align="right">$0.0350–$0.0650 &#x2F; sec</td>
+<td align="right">$0.525–$0.975</td>
+</tr>
+<tr>
+<td><code>alibaba/wan2.7-i2v</code></td>
+<td align="right">$0.0900–$0.1350 &#x2F; sec</td>
+<td align="right">$1.350–$2.025</td>
+</tr>
+</tbody></table>
+<p>Three practical notes. The rate bands are real, not rounding — you get the top of the band when you ask for the top resolution or the longest clip, so a “cheap” model at 1080p can cost several times its floor. Fifteen seconds of B-roll is a production choice, not a constant: ad formats vary from a single cutaway to a full split-screen, and the arithmetic scales linearly. And the request shapes differ per model, which is the topic of <a href="https://www.modellix.ai/category/image-to-video">the image-to-video model catalog</a>.</p>
+<p>If you would rather not assemble this yourself, note that some catalogue models bundle the whole thing into one call — the <a href="https://www.modellix.ai/blog/wan-2-7-vs-seedance-2-0-creator-pipeline/">Wan 2.7 versus Seedance 2.0 creator-pipeline comparison</a> covers what those one-call routes trade away. They remove steps 1–3 and hand you the assembly problem anyway once you need it at volume.</p>
+<h2 id="Step-4-run-it-as-an-async-job-not-a-synchronous-call"><a href="#Step-4-run-it-as-an-async-job-not-a-synchronous-call" class="headerlink" title="Step 4: run it as an async job, not a synchronous call"></a>Step 4: run it as an async job, not a synchronous call</h2><p>This is the step that turns three demos into a product, and it is where the first attempt usually goes wrong.</p>
+<p>Media generation on this catalogue is <strong>asynchronous</strong>: you submit a task, get back a task reference, and retrieve the result later. The text models on the same account are synchronous. Conflating the two is the single most common integration mistake, because a <code>POST</code> that returns in 200 ms and a <code>POST</code> that returns in 90 seconds look identical in a tutorial and nothing alike in a request handler.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/ugc-async-task-flow.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/ugc-async-task-flow.png" alt="Flow diagram contrasting a synchronous text call with the asynchronous media path: upload, submit, poll or receive webhook, retrieve result, read cost from logs" loading="lazy" />
+</picture>
+
+<p><em>The media path in five steps across two side-by-side panels — upload, submit, then poll or take the callback, read the result, and read the cost — and, beneath both panels, the synchronous text call as a two-box exchange: that one is a function, this one is a job.</em></p>
+<p>Three pieces you need:</p>
+<p><strong>Upload the source material first.</strong> <code>POST https://api.modellix.ai/api/v1/media/files</code> takes the product image or the source clip and hands back a reference you pass into the prediction call. Uploads are <strong>not billed</strong>, and files are retained for a limited window — <strong>about 7 days</strong> by default. That retention figure is a production constraint, not a footnote: if your job queue can sit longer than the window, you must re-upload rather than reuse a stale reference. The <a target="_blank" rel="noopener" href="https://docs.modellix.ai/api/upload-media-file">upload media file reference</a> carries the request shape.</p>
+<p><strong>Dispatch, then wait.</strong> Each model has its own path — <code>POST https://api.modellix.ai/api/v1/vidu/lip-sync</code> for that one, and so on — and each returns a task reference. You then either poll <code>GET https://api.modellix.ai/api/v1/tasks/&#123;task_id&#125;</code>, which returns <code>status</code>, the output <code>url</code> and a <code>result_expires_at</code> timestamp, or you skip polling entirely by attaching an <code>X-Webhook-URL</code> header to the prediction call. The webhook fires <code>POST</code> to your endpoint on <code>prediction.task.succeeded</code>, <code>prediction.task.failed</code> or <code>prediction.task.canceled</code>, carries <code>X-Modellix-Task-ID</code> and <code>X-Modellix-Delivery-ID</code> headers, and expects a <code>2xx</code>. Deduplicate on the delivery id — webhook redelivery is a normal event, not an error. Both flows are described in <a target="_blank" rel="noopener" href="https://docs.modellix.ai/api/get-task-result">the task-result reference</a>.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/modellix-media-api-webhook-retention.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/modellix-media-api-webhook-retention.png" alt="Modellix REST API guide showing the X-Webhook-URL header for async media tasks and the callback event types" loading="lazy" />
+</picture>
+
+<p><em>The webhook path, as documented on September 16, 2026: one <code>X-Webhook-URL</code> header on the prediction call replaces polling. Captured from <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api">docs.modellix.ai</a>.</em></p>
+<p><strong>Record what it cost, per task.</strong> <code>GET https://api.modellix.ai/api/v1/logs</code> returns a row per request with the <code>task_id</code>, its <code>status</code> and a <code>cost</code> field, paginated at up to 100 per page. That is what makes the per-video figure below auditable rather than estimated — if you are pricing ads for a customer, this is the number you show them.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">UGC Video Pipeline API Reference</h3><p class="view-docs-tag-desc">See the upload, submit, webhook and task-result endpoints you need to run a UGC video pipeline: file retention window, task states, and the per-task cost field.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&amp;utm_medium=view_docs_tag" data-cta="view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="What-one-finished-30-second-UGC-ad-costs"><a href="#What-one-finished-30-second-UGC-ad-costs" class="headerlink" title="What one finished 30-second UGC ad costs"></a>What one finished 30-second UGC ad costs</h2><p>Put the four steps together. Every model below was priced on <strong>September 16, 2026</strong>; a column is a route, not a product tier.</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th align="right">Tier A — turbo presenter</th>
+<th align="right">Tier B — lip-sync an existing clip</th>
+<th align="right">Tier C — premium presenter</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Voice, 430 chars</td>
+<td align="right"><code>cosyvoice-v3-flash</code> — $0.006</td>
+<td align="right"><code>gemini-3.1-flash-tts</code> — $0.017</td>
+<td align="right"><code>gemini-3.1-flash-tts</code> — $0.017</td>
+</tr>
+<tr>
+<td>On camera, 30 s</td>
+<td align="right"><code>viduq2-turbo-digital-human</code> — $0.150</td>
+<td align="right"><code>skywork/sky-lipsync</code> — $0.360</td>
+<td align="right"><code>kling/kling-avatar</code> (top band) — $2.688</td>
+</tr>
+<tr>
+<td>Product still</td>
+<td align="right"><code>gpt-image-2</code> — $0.005</td>
+<td align="right"><code>nano-banana-pro</code> — $0.121</td>
+<td align="right"><code>nano-banana-pro</code> — $0.216</td>
+</tr>
+<tr>
+<td>B-roll, 15 s</td>
+<td align="right"><code>hailuo-02-i2v</code> — $0.230</td>
+<td align="right"><code>wan2.7-i2v</code> — $1.350</td>
+<td align="right"><code>wan2.7-i2v</code> (top band) — $2.025</td>
+</tr>
+<tr>
+<td><strong>Total per finished ad</strong></td>
+<td align="right"><strong>$0.39</strong></td>
+<td align="right"><strong>$1.85</strong></td>
+<td align="right"><strong>$4.95</strong></td>
+</tr>
+<tr>
+<td><strong>Per finished second</strong></td>
+<td align="right">$0.013</td>
+<td align="right">$0.062</td>
+<td align="right">$0.165</td>
+</tr>
+</tbody></table>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/ugc-ad-cost-breakdown.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/ugc-ad-cost-breakdown.png" alt="Stacked bar chart of cost per finished 30-second UGC ad by tier, split into voice track, on camera, product still and B-roll" loading="lazy" />
+</picture>
+
+<p><em>Where the money goes, at prices read September 16, 2026. The on-camera call is 38% of Tier A and 54% of Tier C; the voice track never reaches 4% of any tier.</em></p>
+<p>Three things to read out of that table.</p>
+<p>Two lines carry <strong>92% to 97% of every tier</strong>: the on-camera call (38% on Tier A, 19.5% on Tier B, 54% on Tier C) and the B-roll (58.8%, 73.1% and 40.9%). Those are the two worth negotiating — and on Tier B it is the B-roll, not the presenter, that sets the bill. Voice never exceeds 2% of the bill, and the product still never exceeds 7%. If you are optimising anywhere else, stop.</p>
+<p>The <strong>17.9× spread inside step 2 is the whole decision</strong>, not the difference between the tiers. Tier A and Tier C differ by 12.7× almost entirely because of one model choice, and the visible difference between them is resolution and motion fidelity — not whether the ad works.</p>
+<p>Nothing in that table includes the parts you cannot buy: the editing pass and the human who looks at the output before it runs. Those are real, and the section after next lists them. A fuller cross-model rate table, if you want to substitute models, is in the <a href="https://www.modellix.ai/blog/ai-video-model-api-pricing-comparison/">video model API pricing comparison</a>, and the <a href="https://www.modellix.ai/blog/ai-video-generation-cost-calculator/">cost calculator</a> does the same arithmetic interactively.</p>
+<h2 id="The-break-even-against-a-seat"><a href="#The-break-even-against-a-seat" class="headerlink" title="The break-even against a seat"></a>The break-even against a seat</h2><p>Per-seat tools and per-call APIs are priced on different axes, which is why “cheaper” has no answer without a volume attached. Seat pricing is <strong>per person per month</strong>; usage pricing is <strong>per finished video</strong>. So the comparison is:</p>
+<p><strong>cost per video, seat route &#x3D; monthly seat price ÷ videos produced that month</strong><br><strong>cost per video, usage route &#x3D; the tier total above</strong></p>
+<p>Take a seat at $39 per month — an assumption for illustration, not a quote from any vendor; check the current price of whichever tool you are considering, because they change their plans far more often than model prices change. Against that:</p>
+<table>
+<thead>
+<tr>
+<th align="right">Videos per month</th>
+<th align="right">Seat route ($39 &#x2F; month)</th>
+<th align="right">Usage, Tier A</th>
+<th align="right">Usage, Tier C</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">1</td>
+<td align="right">$39.00</td>
+<td align="right">$0.39</td>
+<td align="right">$4.95</td>
+</tr>
+<tr>
+<td align="right">10</td>
+<td align="right">$3.90</td>
+<td align="right">$0.39</td>
+<td align="right">$4.95</td>
+</tr>
+<tr>
+<td align="right">50</td>
+<td align="right">$0.78</td>
+<td align="right">$0.39</td>
+<td align="right">$4.95</td>
+</tr>
+<tr>
+<td align="right"><strong>100</strong></td>
+<td align="right"><strong>$0.39</strong></td>
+<td align="right"><strong>$0.39</strong></td>
+<td align="right">$4.95</td>
+</tr>
+<tr>
+<td align="right">200</td>
+<td align="right">$0.20</td>
+<td align="right">$0.39</td>
+<td align="right">$4.95</td>
+</tr>
+<tr>
+<td align="right">500</td>
+<td align="right">$0.08</td>
+<td align="right">$0.39</td>
+<td align="right">$4.95</td>
+</tr>
+</tbody></table>
+<p>Where the crossover sits depends on which tier you build — and above it the seat wins on unit price either way:</p>
+<ul>
+<li><strong>Tier A crosses at about 100 videos a month.</strong> Above that, the $39 seat is cheaper per video and stays cheaper — at 500 videos a month it is $0.08 against the usage route’s $0.39, roughly five times cheaper. Below that, the usage route wins on price instead: at a single video a month you pay $0.39 rather than $39.00.</li>
+<li><strong>Tier C crosses at about 8 videos a month.</strong> Past eight videos, the seat is cheaper per video and it stays cheaper. <strong>A premium self-build never wins on unit price at any realistic volume.</strong></li>
+</ul>
+<p>That second line is the honest one, and it is the answer the vendor pages on this SERP will not give you. If what you want is the highest-fidelity output and you are producing a few dozen videos a month, buying a seat is not the lazy choice — it is the cheaper one, by a wide margin, and no amount of engineering time changes that.</p>
+<p>The break-even also moves with the seat’s price. At $99 a month, Tier A crosses at roughly 254 videos; at $299 a month, roughly 766.</p>
+<p>One thing the arithmetic cannot see: cheaper is not the same as effective. A model that renders an unconvincing presenter produces an ad nobody watches, and an ad nobody watches has no ROAS worth computing, no matter what its per-second rate was. The practical pattern is the one the seat-priced tools have built their onboarding around — generate at the cheapest tier first, test hooks and scripts at volume, then move only the combinations that survive into the premium tier. That turns the two-tier spread from a quality decision into a two-stage funnel: cheap tier for the search, expensive tier for the winner. It also means your iteration loop, not your model choice, is what determines whether the pipeline pays for itself.</p>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/seat-vs-usage-break-even.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/seat-vs-usage-break-even.png" alt="Line chart comparing cost per video for a $39 monthly seat against flat usage pricing at $0.39 and $4.95 per ad across volumes from 1 to 500 videos" loading="lazy" />
+</picture>
+
+<p><em>The two crossovers, on one axis. The seat curve falls below the cheap build at about 100 videos a month — and below the premium build at about eight — and stays below both from there.</em></p>
+<p>What none of this captures is why most people reading this page would build anyway. If you are embedding generation in a product, the seat is not competing with your pipeline on cost — <strong>a seat cannot be embedded at all</strong>. You are not buying cheaper videos; you are buying a capability your product does not otherwise have, and the relevant comparison is against the revenue that capability unlocks, not against $39.</p>
+<p>If you can see your volume and your tier, the <a href="https://www.modellix.ai/blog/best-ai-video-generator/">best AI video generator</a> survey is the honest counterpart to this page — it covers the seat route on its own terms.</p>
+<h2 id="What-you-take-on-that-a-seat-product-absorbed-for-you"><a href="#What-you-take-on-that-a-seat-product-absorbed-for-you" class="headerlink" title="What you take on that a seat product absorbed for you"></a>What you take on that a seat product absorbed for you</h2><p>The four calls are the cheap part. The reason a $39 seat is a real business is that it absorbs five things you now own.</p>
+<p><strong>A review queue.</strong> Nothing in the API checks whether an ad is honest about the product, or whether the claim in the script matches what the footage shows. You will need a human step, and a human step is the thing that makes “10,000 videos a month” a fiction unless you have designed around it.</p>
+<p><strong>Disclosure, which is now a hard requirement rather than a courtesy.</strong> If these videos run as ads in the EU, Article 50 of the <a target="_blank" rel="noopener" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj">EU AI Act (Regulation (EU) 2024&#x2F;1689)</a> has been applicable since 2 August 2026: providers of systems that generate synthetic content must mark outputs in a machine-readable, detectable way, and deployers publishing deepfakes must disclose that the content is artificially generated. On <a target="_blank" rel="noopener" href="https://support.google.com/youtube/answer/14328491">YouTube</a>, altered or synthetic content that could be mistaken for real must be disclosed, and <a target="_blank" rel="noopener" href="https://www.meta.com/help/artificial-intelligence/355108217670024">Meta labels AI-generated or significantly AI-edited ad images</a> with an “AI info” label. Separately, the US FTC’s <a target="_blank" rel="noopener" href="https://www.ftc.gov/business-guidance/resources/consumer-reviews-testimonials-rule-questions-answers">Rule on the Use of Consumer Reviews and Testimonials</a> — 16 CFR Part 465, in effect since October 21, 2024 — reaches reviews and testimonials that misrepresent that they come from someone who does not exist, and expressly names AI-generated fakes. A synthetic person presented as a satisfied customer is the exact thing that rule addresses. This is not legal advice and we are not your counsel: confirm your obligations with your own advisers before you ship.</p>
+<p><strong>Likeness rights.</strong> Every avatar and voice model in the catalogue generates output from <em>somebody’s</em> likeness or voice, whether that is a licensed actor in the model’s training set or a clip you uploaded. Consent, licensing and the platform terms that govern the model you chose are yours to verify. The API returns a video; it does not return a release form.</p>
+<p><strong>Re-export per platform.</strong> TikTok, Instagram Reels, YouTube Shorts and a paid Meta placement each want their own cut: aspect ratio, duration caps, safe-area, burned-in captions, loudness. Your pipeline’s final stage is a transcoding and editing step — the assembly pass, the caption timing, the loudness normalisation, the per-placement re-encode — and it is the one nobody budgets for. A seat tool hands you a timeline and an export button; here you own the ffmpeg calls. Whether the export carries a watermark is likewise your transcoding decision, not a property of the model, and on an API route the answer is normally no.</p>
+<p><strong>Model turnover.</strong> The $0.0050-per-second presenter you built on can be deprecated, re-priced or superseded inside a quarter. If your pipeline hard-codes one model path, you inherit that churn. Keeping the model name a configuration value rather than a constant is the cheapest insurance you will buy — and per-second pricing itself moves, which is why the <a href="https://www.modellix.ai/blog/live-avatar-ai/">live-avatar API</a> and the rest of this cluster get re-checked rather than trusted from a screenshot.</p>
+<h2 id="When-buying-a-seat-is-the-right-answer"><a href="#When-buying-a-seat-is-the-right-answer" class="headerlink" title="When buying a seat is the right answer"></a>When buying a seat is the right answer</h2><p>Buy a seat, without hesitation, if any of these is true:</p>
+<ol>
+<li><strong>A person, not a system, is producing the ads.</strong> If a human is going to sit in front of a tool and make a video, a UI is the correct interface and an API is a worse one.</li>
+<li><strong>You want the premium tier and your volume is under a few hundred a month.</strong> Above eight videos a month the seat is cheaper per video and stays cheaper; above that, building is a way to spend engineering time to save nothing.</li>
+<li><strong>You need the other features in the bundle.</strong> Actor libraries, brand templates, caption styling, an editor, built-in publishing. Rebuilding those is a project of its own, and they are not what this article priced.</li>
+</ol>
+<p>Build, if any of these is true instead:</p>
+<ol>
+<li><strong>The videos have to come out of your own product or your client’s brand.</strong> This is the case a seat cannot serve at any price.</li>
+<li><strong>Your volume is in the hundreds per month.</strong> Not on unit price — above about 100 videos a month the $39 seat is the cheaper per-video route — but because hundreds of videos a month is more than a person can produce by hand, and a seat cannot be embedded in your product to produce them for you.</li>
+<li><strong>You need the costs attributable per customer, per task.</strong> This is where a metered API with a per-task log beats a seat outright — not on price, on the fact that you can bill for it.</li>
+</ol>
+<picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/build-vs-buy-decision-flow.webp" />
+  <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/build-vs-buy-decision-flow.png" alt="Decision flowchart placing buy-a-seat and build-on-an-API against volume, embedding requirement and per-customer cost attribution" loading="lazy" />
+</picture>
+
+<p><em>The three questions that decide it. None of them is about unit price.</em></p>
+<p>Two shapes fit neither list, and both are worth naming: white-label operations, where you are reselling the capability under your own brand to clients who never see a model name, and agency workflows, where the marginal cost of the tenth variant matters more than the cost of the first. Both are the API-shaped answer, which is why “white label AI video generator” and “UGC video API” are the terms that actually describe this page rather than the head keyword.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Price Your Own UGC Video Pipeline</h3><p class="view-docs-tag-desc">Log in to read live per-second rates for the avatar, lip-sync and image-to-video models in this pipeline, and to see per-task cost in your own logs.</p><a class="btn view-docs-tag-btn" href="https://www.modellix.ai/console/login" data-cta="login_tag" data-cta-target="login" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
+
+<h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>What is an AI UGC video?</strong><br>A short, deliberately informal video ad that imitates the look of a customer or creator filming themselves — handheld framing, direct address, imperfect lighting — produced by AI models rather than shot with a camera. The informality is the point: it reads as a recommendation rather than as an advertisement.</p>
+<p><strong>Can UGC content be AI generated?</strong><br>Yes, and the models exist in three separate pieces: speech generation, a presenter or lip-sync model for the talking segment, and image-to-video for the product footage. The four-call breakdown above is exactly that. What AI cannot generate is the credibility — a synthetic presenter presented as a real customer is a misrepresentation, and in the United States the FTC’s rule on consumer reviews and testimonials addresses precisely that.</p>
+<p><strong>What is the best free UGC video generator?</strong><br>We do not offer a free tier — Modellix’s signup credit ended on 2026-08-19, so there is no free allowance to point you at, and we are not going to recommend a competitor’s free plan we have not tested. What we can tell you is the real price of the paid route: a 30-second ad costs $0.39 to $4.95 in model calls depending on the tier, so the voice and still-image components are effectively free at any volume — the presenter call and the B-roll between them carry 92% to 97% of every tier.</p>
+<p><strong>How do I create a UGC video with an API?</strong><br>Upload your product image or source clip, generate the voice track, run a presenter or lip-sync call for the talking segment, run image-to-video for cutaways, and assemble. The one architectural decision that matters: treat every media call as an asynchronous task with a status you poll or a webhook you receive, and keep the per-task cost log — the text models on the same account are synchronous and behave differently.</p>
+<p><strong>How much does it cost to build one instead of buying a seat?</strong><br>Model calls: $0.39 per 30-second ad on the cheap tier, $4.95 on the premium tier, as of September 16, 2026. Against an illustrative $39-per-month seat, the cheap tier crosses over at about 100 videos a month and the premium tier at about eight. The number that decides it is your volume, not your taste.</p>
+<p><strong>Does this replace a human UGC creator?</strong><br>No, and the framing is worth resisting. It replaces a <em>shoot</em> — the crew, the location, the scheduling — for the specific case where you need many variants of one script at low cost. Creators bring a real person’s credibility, and the disclosure rules above exist precisely because the two are not equivalent.</p>
+<p><strong>Which model should I use for the talking segment?</strong><br>Start with the cheapest presenter model and only move up if the output fails review. The spread between the cheapest and most expensive 30 seconds of on-camera speech is 17.9×, so the default should be the bottom of that range and every upgrade should be justified by something visible in the output.</p>
+<p><strong>Can I run this in more than one language?</strong><br>Yes, and it is a per-character cost per language on the voice layer, so a 430-character script in five languages bills five times. The visual side does not need regenerating, which makes localisation one of the few places where the marginal cost stays genuinely low.</p>
+<hr>
+<p><em>Model availability and per-second rates change without notice. Every price in this article was read from a live model page on <strong>September 16, 2026</strong> and will drift; the seat price used for the break-even is an illustrative assumption, not a quote from any vendor. We run Modellix, so we have a commercial interest in the gateway rows above — the four-call decomposition and the break-even both cut against us at low volumes, and the premium tier never wins on unit price at any volume, which is the part we would rather you heard from us. Regulatory statements here are a summary of published primary sources for engineering planning, not legal advice; confirm your own obligations with your advisers and the platform terms you publish under. Route image, video and speech models through <a href="https://www.modellix.ai/">one key at modellix.ai</a>, and read the section-level rates for whichever model in the pipeline matters most through the <a href="https://www.modellix.ai/blog/best-video-generation-model/">live model catalogue</a>.</em></p>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/ai-video-api/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/Lip-Sync/" class="tag-pill tag-pill--sm">Lip Sync</a>
+            
+              <a href="/blog/tags/Digital-Human/" class="tag-pill tag-pill--sm">Digital Human</a>
+            
+              <a href="/blog/tags/UGC/" class="tag-pill tag-pill--sm">UGC</a>
+            
+              <a href="/blog/tags/Build-vs-Buy/" class="tag-pill tag-pill--sm">Build vs Buy</a>
+            
+          
+        </div>
+
+        
+<section class="post-cta">
+  <div class="post-cta-glow"></div>
+  <div class="post-cta-content">
+    <h2 class="post-cta-title">Ready to Get Started?</h2>
+    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
+    <a href="https://www.modellix.ai/console" class="btn post-cta-btn">
+      <span>Start for Free</span>
+      <i data-lucide="arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/ai-image-edit-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-ai-image-edit-api.webp" alt="AI Image Edit API: 16 References, Masks, Flare vs Sunburst" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">AI Image Edit API: 16 References, Masks, Flare vs Sunburst</h3>
+          <time class="related-article-date" datetime="2026-09-16T16:00:00.000Z">September 17, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/gpt-image-2-5-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-gpt-image-2-5-api.webp" alt="GPT Image 2.5 API: Flare vs Sunburst, Four Model IDs" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">GPT Image 2.5 API: Flare vs Sunburst, Four Model IDs</h3>
+          <time class="related-article-date" datetime="2026-09-16T16:00:00.000Z">September 17, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/ai-video-generation-workflow/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-ai-video-generation-workflow.webp" alt="AI Video Generation Workflow: Async Tasks and Batch Runs" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">AI Video Generation Workflow: Async Tasks and Batch Runs</h3>
+          <time class="related-article-date" datetime="2026-09-16T11:48:00.000Z">September 16, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="https://www.modellix.ai/console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/ai-ugc-video-generator/&text=AI%20UGC%20Video%20Generator%3A%20Build%20It%20on%20an%20API%2C%20Not%20a%20Seat" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/ai-ugc-video-generator/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/ai-ugc-video-generator/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script defer src="https://unpkg.com/lucide@1.47.0/dist/umd/lucide.min.js" onload="window.lucide && window.lucide.createIcons();"></script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+</body>
+</html>
