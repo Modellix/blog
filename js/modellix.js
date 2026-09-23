@@ -390,3 +390,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
   lucide.createIcons();
 });
+
+// CTA 点击上报 → GA4 事件 blog_cta_click
+// 博客直连 gtag.js（G-4DECHYKQVT），页面上没有 GTM 容器，所以不能靠 GTM 触发器，
+// 在这里监听所有带 data-cta 的链接。window.gtag 在 layout.ejs 的 head 里同步定义，
+// gtag.js 延迟加载前的点击会先排进 dataLayer，不会丢。
+// 文章是哪篇不用单独传：GA4 每个事件自动带 page_location。
+(function () {
+  if (window.location.hostname !== 'www.modellix.ai') return;
+  document.addEventListener('click', function (e) {
+    var el = e.target && e.target.closest ? e.target.closest('[data-cta]') : null;
+    if (!el || typeof window.gtag !== 'function') return;
+    window.gtag('event', 'blog_cta_click', {
+      cta_type: el.getAttribute('data-cta') || '',
+      cta_campaign: el.getAttribute('data-cta-campaign') || '',
+      cta_target: el.getAttribute('data-cta-target') || '',
+      link_url: el.href || '',
+      transport_type: 'beacon'
+    });
+  }, true);
+})();
