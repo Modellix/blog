@@ -161,9 +161,9 @@
         
           <div class="post-header-tags">
             
-              <a href="/blog/tags/ai-video/" class="tag-pill tag-pill--sm">AI Video</a>
-            
               <a href="/blog/tags/OpenAI/" class="tag-pill tag-pill--sm">OpenAI</a>
+            
+              <a href="/blog/tags/ai-video/" class="tag-pill tag-pill--sm">AI Video</a>
             
               <a href="/blog/tags/Comparison/" class="tag-pill tag-pill--sm">Comparison</a>
             
@@ -215,7 +215,7 @@
 <li><strong>After the export window</strong> — OpenAI says that once the final export window closes — if it is able to offer one — it will “permanently delete any data associated with your use of Sora”, and recommends exporting soon. The export lives at <code>sora.chatgpt.com/sunset</code>.</li>
 </ul>
 <p>Three details are worth pulling out before you plan the migration. First, the <a target="_blank" rel="noopener" href="https://platform.openai.com/docs/guides/video-generation">deprecation notice in OpenAI’s video generation guide</a> still documents the API in full, so anything you build against it works until the cutoff and then stops — there is no gradual degradation. Second, the price you are leaving is high at the top end: <a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/pricing">OpenAI’s published rates</a> are <strong>$0.10 per second</strong> for <code>sora-2</code> at 720p, and <strong>$0.30 &#x2F; $0.50 &#x2F; $0.70 per second</strong> for <code>sora-2-pro</code> at 720p, 1024p and 1080p, halved on the Batch tier. Third, the duration envelope was genuinely long: both models generate <strong>16- and 20-second clips</strong>, and extensions can add up to 20 seconds each up to six times, for a maximum of 120 seconds.</p>
-<p>If you were using Sora for its longest, highest-resolution jobs, that combination — 20 seconds at 1080p — is the single hardest thing to replace on this list, and it is the first thing to check in the table below. For the endpoint-level view of the API you are leaving, our notes on <a href="https://www.modellix.ai/blog/openai-video-generation-api/">OpenAI’s video generation API</a> cover what still works and what the deprecation covers.</p>
+<p>If you were using Sora for its longest, highest-resolution jobs, that combination — 20 seconds at 1080p — is the single hardest thing to replace on this list, and it is the first thing to check in the table below. For the endpoint-level view of the API you are leaving, our notes on <a href="https://www.modellix.ai/blog/openai-video-api/">OpenAI’s video generation API</a> cover what still works and what the deprecation covers.</p>
 <h2 id="What-you-actually-have-to-change-when-you-leave-Sora"><a href="#What-you-actually-have-to-change-when-you-leave-Sora" class="headerlink" title="What you actually have to change when you leave Sora"></a>What you actually have to change when you leave Sora</h2><p>The migration is smaller than it looks, because the request shapes are cousins. Sora’s Videos API takes four things that matter: <code>model</code>, <code>prompt</code>, <code>size</code> (for example <code>1280x720</code> or <code>1920x1080</code>) and <code>seconds</code> — and the docs show <code>seconds</code> as a <strong>string</strong>, like <code>&quot;8&quot;</code> or <code>&quot;20&quot;</code>. Everything else — polling, task states (<code>queued</code>, <code>in_progress</code>, <code>completed</code>, <code>failed</code>), the option to hand the job off rather than poll — is scaffolding you already have. If you want the short version of this section first, start with <a href="https://www.modellix.ai/blog/openai-video-api/">the five-point migration checklist</a>.</p>
 <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
   <source type="image/webp" srcset="https://img.modellix.ai/en/article/sora-alternative-request-field-map.webp" />
@@ -370,7 +370,7 @@
 
 <p><em>Each bar is the tier you would deliver at — 1080p where the model offers it, otherwise 720p — with Kling V3’s 4k (audio off) tier kept in as well, because that is where its highest rate sits. The two grey bars are Sora’s own published rates, kept in the same chart so the comparison is like-for-like.</em></p>
 <p>The spread is 16× at the extremes — Vidu Q3 Turbo’s $0.035&#x2F;s at 540p against Seedance 2.5’s $0.569&#x2F;s at 1080p; across the delivery tiers shown in the chart, the range is $0.065 to $0.569. The cheapest option is not the cheapest by accident, as the model notes below explain. If you want the same field read from a different angle, our <a href="https://www.modellix.ai/blog/best-ai-video-generation-apis-2026/">video API shortlist with per-second prices</a> benchmarks the same models on real clips.</p>
-<h2 id="The-alternatives-model-by-model"><a href="#The-alternatives-model-by-model" class="headerlink" title="The alternatives, model by model"></a>The alternatives, model by model</h2><p>Eight entries follow, in no ranking order — each one leads with the constraint it is best at, and each price is the tier you would actually ship. If you would rather see the whole field ranked by quality with sample clips, our <a href="https://www.modellix.ai/blog/best-ai-video-generators-2026/">roundup of the best AI video generators</a> covers that angle; this page stays on migration cost and field-level fit.</p>
+<h2 id="The-alternatives-model-by-model"><a href="#The-alternatives-model-by-model" class="headerlink" title="The alternatives, model by model"></a>The alternatives, model by model</h2><p>Eight entries follow, in no ranking order — each one leads with the constraint it is best at, and each price is the tier you would actually ship. If you would rather see the whole field ranked by quality with sample clips, our <a href="https://www.modellix.ai/blog/best-ai-video-generation-apis-2026/">roundup of the best AI video generators</a> covers that angle; this page stays on migration cost and field-level fit.</p>
 <h3 id="Veo-3-1-Google"><a href="#Veo-3-1-Google" class="headerlink" title="Veo 3.1 (Google)"></a>Veo 3.1 (Google)</h3><p>The closest thing to a Sora successor in kind: multilingual, cinematic, native audio, and available in three price tiers so you can trade quality for rate. Standard 3.1 is the premium pick at $0.36&#x2F;s (1080p) and $0.54&#x2F;s (4k); Veo 3.1 Fast lands at $0.09–$0.108&#x2F;s for 720p–1080p; Veo 3.1 Lite is the budget tier at $0.045–$0.072&#x2F;s with no 4k at all. The constraint to plan around: duration choices are 4, 6 or 8 seconds, and 1080p and 4k require the full 8. If Sora’s 20-second clips were load-bearing for you, Veo is a step down in length and a step up in per-second cost. Our <a href="https://www.modellix.ai/blog/veo-3-1-price/">Veo 3.1 price breakdown</a> walks the tiers.</p>
 <h3 id="Kling-V3-Kuaishou"><a href="#Kling-V3-Kuaishou" class="headerlink" title="Kling V3 (Kuaishou)"></a>Kling V3 (Kuaishou)</h3><p>The best match for Sora’s long-take ambition without the premium: 3–15 seconds as an integer, up to 4k, with multi-shot planning on by default and audio as a paid switch. Pick audio off and 1080p costs $0.0896&#x2F;s; turn native audio on and it is $0.1344&#x2F;s. Two honest caveats: there is no separate negative-prompt field (the model takes positive and negative descriptions in one prompt), and the 4k tier prices at $0.336&#x2F;s whether or not you want audio.</p>
 <h3 id="Seedance-2-0-and-2-5-ByteDance"><a href="#Seedance-2-0-and-2-5-ByteDance" class="headerlink" title="Seedance 2.0 and 2.5 (ByteDance)"></a>Seedance 2.0 and 2.5 (ByteDance)</h3><p>Seedance is where the price range is widest and the trade-off is clearest. Seedance 2.0 spans 4–15 seconds at 480p through 4k, with <code>generate_audio</code>, <code>seed</code>, <code>camera_fixed</code> and <code>return_last_frame</code> all exposed as parameters — but the T2V endpoint is text-only and rejects image, video and audio inputs, and 4k costs $0.78&#x2F;s. Its siblings are the value picks: Seedance 2.0 Fast at $0.06–$0.12&#x2F;s and Mini at $0.04–$0.08&#x2F;s, both capped at 720p. Seedance 2.5 buys the one thing Sora had and Veo cannot match — <strong>clips up to 30 seconds</strong> — at $0.103&#x2F;s (480p) to $0.569&#x2F;s (1080p).</p>
@@ -442,9 +442,9 @@
         <div class="post-tags-bottom">
           
             
-              <a href="/blog/tags/ai-video/" class="tag-pill tag-pill--sm">AI Video</a>
-            
               <a href="/blog/tags/OpenAI/" class="tag-pill tag-pill--sm">OpenAI</a>
+            
+              <a href="/blog/tags/ai-video/" class="tag-pill tag-pill--sm">AI Video</a>
             
               <a href="/blog/tags/Comparison/" class="tag-pill tag-pill--sm">Comparison</a>
             
@@ -492,25 +492,6 @@
         </div>
       </a>
     
-      <a href="/blog/best-ai-video-generator/" class="related-article-card">
-        
-          <div class="related-article-cover">
-            <img src="https://img.modellix.ai/en/article/cover-best-ai-video-generator.webp" alt="Best AI Video Generators (2026): 12 Models to Call by API" loading="lazy">
-          </div>
-        
-        <div class="related-article-body">
-          
-            <div class="related-article-meta">
-              
-                <span class="category-tag category-tag--sm">Comparisons</span>
-              
-            </div>
-          
-          <h3 class="related-article-name">Best AI Video Generators (2026): 12 Models to Call by API</h3>
-          <time class="related-article-date" datetime="2026-09-14T16:00:00.000Z">September 15, 2026</time>
-        </div>
-      </a>
-    
       <a href="/blog/claude-fable-vs-opus/" class="related-article-card">
         
           <div class="related-article-cover">
@@ -527,6 +508,25 @@
           
           <h3 class="related-article-name">Claude Fable 5.1 vs Opus 5: Run Cost, Not Benchmarks</h3>
           <time class="related-article-date" datetime="2026-09-03T16:00:00.000Z">September 4, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/litellm-vs-openrouter/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-litellm-vs-openrouter.webp" alt="LiteLLM vs OpenRouter: Self-Hosted Proxy or Hosted Gateway?" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Comparisons</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">LiteLLM vs OpenRouter: Self-Hosted Proxy or Hosted Gateway?</h3>
+          <time class="related-article-date" datetime="2026-09-01T16:00:00.000Z">September 2, 2026</time>
         </div>
       </a>
     

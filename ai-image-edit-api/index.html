@@ -161,9 +161,9 @@
         
           <div class="post-header-tags">
             
-              <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
-            
               <a href="/blog/tags/OpenAI/" class="tag-pill tag-pill--sm">OpenAI</a>
+            
+              <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
             
               <a href="/blog/tags/Image-Editing/" class="tag-pill tag-pill--sm">Image Editing</a>
             
@@ -386,7 +386,7 @@
 
 <p>The callback fires when the task reaches a terminal state — success, failed, or canceled — with headers to route on and deduplicate by: <code>X-Modellix-Event</code> (one of <code>prediction.task.succeeded</code>, <code>.failed</code>, <code>.canceled</code>), <code>X-Modellix-Task-ID</code>, <code>X-Modellix-Delivery-ID</code>, and <code>X-Modellix-Retry-Count</code>. The body matches the task-result response, so parsing code is shared between the polling and webhook paths. Two operational requirements: the URL must be publicly reachable HTTPS (no <code>localhost</code>, no private IP ranges, no embedded credentials), and your endpoint must answer 2xx to acknowledge receipt. For local development, the documentation suggests a tunnel such as <a target="_blank" rel="noopener" href="https://ngrok.com/">ngrok</a>.</p>
 <h2 id="How-this-compares-to-the-rest-of-the-edit-model-shelf"><a href="#How-this-compares-to-the-rest-of-the-edit-model-shelf" class="headerlink" title="How this compares to the rest of the edit-model shelf"></a>How this compares to the rest of the edit-model shelf</h2><p>The reason to route editing calls through an aggregator instead of one vendor’s API is not price and not model count — it is that the task lifecycle stops being something you rebuild per vendor. Submitting, polling, retrieving, logging cost, and handling failure keep the same shapes platform-wide, so switching which model handles a step is a change of model ID rather than a change of integration. A real but bounded advantage, and worth nothing if you only ever call one model.</p>
-<p>If you are already calling the OpenAI image edit API directly, the two shapes are close but not identical — OpenAI takes <code>size</code> strings and object-typed <code>images</code> and <code>mask</code> references, while this schema takes <code>aspect_ratio</code> and <code>resolution</code> tiers and a PNG mask URL, and only <code>prompt</code> and <code>background</code> carry over unchanged. What changes beyond the schema is the surrounding lifecycle, and whether that lifecycle is worth swapping out is your call. On the boundaries: if your editing work is built around Alibaba’s Qwen editing models, the field contract is different — those take a small number of input images with no mask step at all, and we cover that route separately in the <a href="https://www.modellix.ai/blog/qwen-image-edit-api/">Qwen Image Edit API guide</a>. If you are still deciding which generation of OpenAI’s image models to build on, the <a href="https://www.modellix.ai/blog/gpt-image-2-5-flare-sunburst-on-modellix/">GPT Image 2.5 model overview</a> covers all four model IDs, including the text-to-image pair, and the <a href="https://www.modellix.ai/models">model directory</a> lists what is currently callable alongside them.</p>
+<p>If you are already calling the OpenAI image edit API directly, the two shapes are close but not identical — OpenAI takes <code>size</code> strings and object-typed <code>images</code> and <code>mask</code> references, while this schema takes <code>aspect_ratio</code> and <code>resolution</code> tiers and a PNG mask URL, and only <code>prompt</code> and <code>background</code> carry over unchanged. What changes beyond the schema is the surrounding lifecycle, and whether that lifecycle is worth swapping out is your call. On the boundaries: if your editing work is built around Alibaba’s Qwen editing models, the field contract is different — those take a small number of input images with no mask step at all, and we cover that route separately in the <a href="https://www.modellix.ai/blog/qwen-image-edit-prompt-guide/">Qwen Image Edit API guide</a>. If you are still deciding which generation of OpenAI’s image models to build on, the <a href="https://www.modellix.ai/blog/gpt-image-2-5-flare-sunburst-on-modellix/">GPT Image 2.5 model overview</a> covers all four model IDs, including the text-to-image pair, and the <a href="https://www.modellix.ai/models">model directory</a> lists what is currently callable alongside them.</p>
 <p>If what you actually need is a hosted API photo editor you drive per request rather than a UI someone clicks, those endpoints are it — the difference is that every operation becomes a field you set. Modellix is a distribution layer for these models, not their author — so read the routing and the price band here as a map of what the endpoint accepts, not as a claim that this is the cheapest or the highest-quality edit path you can buy. The first-party documentation for each endpoint remains the contract of record.</p>
 <h2 id="Frequently-Asked-Questions-About-AI-Image-Edit-APIs"><a href="#Frequently-Asked-Questions-About-AI-Image-Edit-APIs" class="headerlink" title="Frequently Asked Questions About AI Image Edit APIs"></a>Frequently Asked Questions About AI Image Edit APIs</h2><p><strong>How many reference images can one edit call take?</strong><br>Up to 16, as documented in the <code>images</code> array (<code>minItems: 1</code>, <code>maxItems: 16</code>). The schema’s own limitations note says not to use these models for editing more than 16 input images.</p>
 <p><strong>Do I have to use a mask?</strong><br>No. <code>mask</code> is optional, and a request with just <code>images</code> and <code>prompt</code> is valid. Use it when you want the change confined to a region — it is the difference between “make this photo look better” and “change only this object”.</p>
@@ -404,9 +404,9 @@
         <div class="post-tags-bottom">
           
             
-              <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
-            
               <a href="/blog/tags/OpenAI/" class="tag-pill tag-pill--sm">OpenAI</a>
+            
+              <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
             
               <a href="/blog/tags/Image-Editing/" class="tag-pill tag-pill--sm">Image Editing</a>
             
@@ -454,25 +454,6 @@
         </div>
       </a>
     
-      <a href="/blog/ai-video-generation-workflow/" class="related-article-card">
-        
-          <div class="related-article-cover">
-            <img src="https://img.modellix.ai/en/article/cover-ai-video-generation-workflow.webp" alt="AI Video Generation Workflow: Async Tasks and Batch Runs" loading="lazy">
-          </div>
-        
-        <div class="related-article-body">
-          
-            <div class="related-article-meta">
-              
-                <span class="category-tag category-tag--sm">Guides</span>
-              
-            </div>
-          
-          <h3 class="related-article-name">AI Video Generation Workflow: Async Tasks and Batch Runs</h3>
-          <time class="related-article-date" datetime="2026-09-16T11:48:00.000Z">September 16, 2026</time>
-        </div>
-      </a>
-    
       <a href="/blog/grok-api-keys/" class="related-article-card">
         
           <div class="related-article-cover">
@@ -489,6 +470,25 @@
           
           <h3 class="related-article-name">Grok API Keys: Two Ways to Get One and Call Grok 4.6</h3>
           <time class="related-article-date" datetime="2026-09-16T11:47:00.000Z">September 16, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/video-generation-api/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-video-generation-api.webp" alt="Video Generation API: One Endpoint, Async Tasks, Fields" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Video Generation API: One Endpoint, Async Tasks, Fields</h3>
+          <time class="related-article-date" datetime="2026-09-16T11:42:00.000Z">September 16, 2026</time>
         </div>
       </a>
     

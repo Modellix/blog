@@ -162,11 +162,11 @@
         
           <div class="post-header-tags">
             
-              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
-            
               <a href="/blog/tags/Image-Editing/" class="tag-pill tag-pill--sm">Image Editing</a>
             
               <a href="/blog/tags/api-integration/" class="tag-pill tag-pill--sm">API Integration</a>
+            
+              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
             
               <a href="/blog/tags/AI-API/" class="tag-pill tag-pill--sm">AI API</a>
             
@@ -318,7 +318,7 @@
 <p>Cost accounting is the part most guides skip: at $0.02 per image swap, 1,000 swaps are $20 and 10,000 are $200 — no subscription tier to overshoot. PiAPI’s credits expire 180 days after purchase and refunds are not offered, which matters if you prepay for a project that stalls. For video output, check the vendor’s video endpoint instead: PiAPI documents a separate video faceswap task, and Akool’s Face Swap Plus handles image and video on one API.</p>
 <h2 id="When-the-aggregator-route-makes-sense"><a href="#When-the-aggregator-route-makes-sense" class="headerlink" title="When the aggregator route makes sense"></a>When the aggregator route makes sense</h2><p>Full disclosure up front: Modellix publishes this blog and has a commercial interest in you using its API. The facts below are a same-day snapshot of Modellix’s own pages, verified September 9, 2026 — not a claim that the aggregator route beats any provider.</p>
 <p>The honest starting point is that Modellix does not list a dedicated face-swap model in the inswapper sense. Its <a href="https://www.modellix.ai/collections/face-swap">face swap collection</a> — headlined “Best Face Swap AI Models in 2026,” four models — routes the task through multi-reference image-edit models: the closest fit is <code>kling/kling-v3-omni-image</code>, which accepts several reference images with <code>&lt;&lt;&lt;image_N&gt;&gt;&gt;</code> placeholders and is built for fusing a reference identity into a new image. Same-day list prices on that collection: Kling V3 Omni Image $0.0224–$0.0448 per image, Wan 2.7 Image Pro Edit $0.0675, Seedream 5.0 Lite Edit $0.0350, GPT Image 2 Edit $0.0360–$0.2250. An edit-model route is not identical to a purpose-built swapper, so test with the actual faces and angles your product will see before committing.</p>
-<p>The aggregator route earns its place when face swap is one feature among several in a media pipeline — avatar generation, lip sync, <a href="https://www.modellix.ai/blog/virtual-try-on-api/">virtual try-on</a>, image upscaling — and you want all of them behind one API key and one bill instead of a vendor account per model. Modellix runs the same submit–poll lifecycle shown above, with per-call cost logging, so “what did this feature actually cost us” stays answerable per request. If you are deciding whether a single-key architecture fits your stack at all, our <a href="https://www.modellix.ai/blog/unified-ai-api/">unified AI API explainer</a> covers the trade-offs in depth.</p>
+<p>The aggregator route earns its place when face swap is one feature among several in a media pipeline — avatar generation, lip sync, <a href="https://www.modellix.ai/blog/google-virtual-try-on-api/">virtual try-on</a>, image upscaling — and you want all of them behind one API key and one bill instead of a vendor account per model. Modellix runs the same submit–poll lifecycle shown above, with per-call cost logging, so “what did this feature actually cost us” stays answerable per request. If you are deciding whether a single-key architecture fits your stack at all, our <a href="https://www.modellix.ai/blog/unified-ai-api/">unified AI API explainer</a> covers the trade-offs in depth.</p>
 <section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Modellix REST API documentation</h3><p class="view-docs-tag-desc">See the async task routes, model IDs, and per-call pricing for face-swap-capable image models behind one Modellix key.</p><a class="btn view-docs-tag-btn" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&amp;utm_medium=view_docs_tag" data-cta="view_docs_tag" target="_blank" rel="noopener noreferrer"><span>View Docs </span><i data-lucide="arrow-right"></i></a></div></section>
 
 <h2 id="Errors-retention-and-the-consent-line"><a href="#Errors-retention-and-the-consent-line" class="headerlink" title="Errors, retention, and the consent line"></a>Errors, retention, and the consent line</h2><p>The failures that cost time on a first face swap integration are predictable. Auth errors mean a bad key or expired session; quota errors mean an empty credit balance; parameter errors are usually a wrong field name or an input URL the service cannot fetch. Face-count limits bite on group photos — Akool rejects jobs over 8 faces (code 1007), and AI Engine targets one of up to 5 faces by index. A <code>failed</code> status usually means an obscured or heavily angled face in the target; the fix is well-lit, front-facing, high-resolution inputs.</p>
@@ -350,11 +350,11 @@
         <div class="post-tags-bottom">
           
             
-              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
-            
               <a href="/blog/tags/Image-Editing/" class="tag-pill tag-pill--sm">Image Editing</a>
             
               <a href="/blog/tags/api-integration/" class="tag-pill tag-pill--sm">API Integration</a>
+            
+              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
             
               <a href="/blog/tags/AI-API/" class="tag-pill tag-pill--sm">AI API</a>
             
@@ -421,10 +421,10 @@
         </div>
       </a>
     
-      <a href="/blog/ai-video-generation-workflow/" class="related-article-card">
+      <a href="/blog/grok-api-keys/" class="related-article-card">
         
           <div class="related-article-cover">
-            <img src="https://img.modellix.ai/en/article/cover-ai-video-generation-workflow.webp" alt="AI Video Generation Workflow: Async Tasks and Batch Runs" loading="lazy">
+            <img src="https://img.modellix.ai/en/article/cover-grok-api-keys.webp" alt="Grok API Keys: Two Ways to Get One and Call Grok 4.6" loading="lazy">
           </div>
         
         <div class="related-article-body">
@@ -435,8 +435,8 @@
               
             </div>
           
-          <h3 class="related-article-name">AI Video Generation Workflow: Async Tasks and Batch Runs</h3>
-          <time class="related-article-date" datetime="2026-09-16T11:48:00.000Z">September 16, 2026</time>
+          <h3 class="related-article-name">Grok API Keys: Two Ways to Get One and Call Grok 4.6</h3>
+          <time class="related-article-date" datetime="2026-09-16T11:47:00.000Z">September 16, 2026</time>
         </div>
       </a>
     

@@ -161,9 +161,9 @@
         
           <div class="post-header-tags">
             
-              <a href="/blog/tags/GPT-6-Astra/" class="tag-pill tag-pill--sm">GPT-6 Astra</a>
-            
               <a href="/blog/tags/OpenAI/" class="tag-pill tag-pill--sm">OpenAI</a>
+            
+              <a href="/blog/tags/GPT-6-Astra/" class="tag-pill tag-pill--sm">GPT-6 Astra</a>
             
               <a href="/blog/tags/Model-Aliasing/" class="tag-pill tag-pill--sm">Model Aliasing</a>
             
@@ -338,7 +338,7 @@
 <ul>
 <li><strong>Keep following <code>~openai/gpt-latest</code></strong> when your code benefits from the newest model automatically — you never edit the client when a new GPT ships, and you accept that capability <em>and</em> price move together, with nothing for you to do.</li>
 <li><strong>Pin a concrete ID</strong> when a change would hurt more than it helps: evaluation and regression runs that must stay comparable across time, cost-sensitive pipelines, or anything with a budget you need to forecast. The gateway’s own docs point the same way — pinned IDs are for “evaluations or regression tests” — and OpenAI model versioning works fine with pinning: <code>gpt-5.6-sol</code> remains a callable snapshot with its own rate card.</li>
-<li><strong>Measure, don’t assume</strong>: on a weekly or monthly interval, pull <code>GET /v1/logs</code> and compare <code>model.model_name</code> and <code>cost</code> per day. If you cannot tell whether your target moved, you have not set up detection — and you may not learn that it moved until the bill does. This time it was more expensive; another time it may be cheaper or flat. The alias table above is the “what does it point at” check; the log is the “did it move” check. If you need more than one field’s worth of visibility, our <a href="https://www.modellix.ai/blog/agent-observability/">agent observability guide</a> covers full-stack options; here, one log field answers the question.</li>
+<li><strong>Measure, don’t assume</strong>: on a weekly or monthly interval, pull <code>GET /v1/logs</code> and compare <code>model.model_name</code> and <code>cost</code> per day. If you cannot tell whether your target moved, you have not set up detection — and you may not learn that it moved until the bill does. This time it was more expensive; another time it may be cheaper or flat. The alias table above is the “what does it point at” check; the log is the “did it move” check. If you need more than one field’s worth of visibility, our <a href="https://www.modellix.ai/blog/agent-harness/">agent observability guide</a> covers full-stack options; here, one log field answers the question.</li>
 </ul>
 <h2 id="If-the-new-target-is-too-expensive-the-fallback-is-one-string"><a href="#If-the-new-target-is-too-expensive-the-fallback-is-one-string" class="headerlink" title="If the new target is too expensive: the fallback is one string"></a>If the new target is too expensive: the fallback is one string</h2><p>The cost of reversing course is deliberately small, which is the other half of why following an alias is a reasonable experiment. The gateway puts 29 language models — OpenAI, Anthropic, Google, DeepSeek, Qwen, xAI, and more — behind the same key and protocol surface, so “this target is too expensive” is resolved by editing the <code>model</code> field, not by opening new accounts:</p>
 <ul>
@@ -368,9 +368,9 @@
         <div class="post-tags-bottom">
           
             
-              <a href="/blog/tags/GPT-6-Astra/" class="tag-pill tag-pill--sm">GPT-6 Astra</a>
-            
               <a href="/blog/tags/OpenAI/" class="tag-pill tag-pill--sm">OpenAI</a>
+            
+              <a href="/blog/tags/GPT-6-Astra/" class="tag-pill tag-pill--sm">GPT-6 Astra</a>
             
               <a href="/blog/tags/Model-Aliasing/" class="tag-pill tag-pill--sm">Model Aliasing</a>
             
@@ -437,10 +437,10 @@
         </div>
       </a>
     
-      <a href="/blog/agent-observability/" class="related-article-card">
+      <a href="/blog/anthropic-base-url/" class="related-article-card">
         
           <div class="related-article-cover">
-            <img src="https://img.modellix.ai/en/article/cover-agent-observability.webp" alt="Agent Observability: What Your Coding Agent Called and Spent" loading="lazy">
+            <img src="https://img.modellix.ai/en/article/cover-anthropic-base-url.webp" alt="Anthropic Base URL: Claude Code and Harness, No /v1" loading="lazy">
           </div>
         
         <div class="related-article-body">
@@ -451,8 +451,8 @@
               
             </div>
           
-          <h3 class="related-article-name">Agent Observability: What Your Coding Agent Called and Spent</h3>
-          <time class="related-article-date" datetime="2026-09-03T16:00:00.000Z">September 4, 2026</time>
+          <h3 class="related-article-name">Anthropic Base URL: Claude Code and Harness, No /v1</h3>
+          <time class="related-article-date" datetime="2026-09-01T16:00:00.000Z">September 2, 2026</time>
         </div>
       </a>
     

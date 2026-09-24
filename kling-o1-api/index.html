@@ -163,11 +163,11 @@
         
           <div class="post-header-tags">
             
+              <a href="/blog/tags/api-integration/" class="tag-pill tag-pill--sm">API Integration</a>
+            
               <a href="/blog/tags/ai-video-api/" class="tag-pill tag-pill--sm">AI Video API</a>
             
               <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
-            
-              <a href="/blog/tags/api-integration/" class="tag-pill tag-pill--sm">API Integration</a>
             
               <a href="/blog/tags/kling/" class="tag-pill tag-pill--sm">Kling</a>
             
@@ -213,7 +213,7 @@
 </picture>
 
 <p>“Kling O1” is not one endpoint, and that gap between the model and the API is where integration time goes. Kuaishou ships O1 as a single unified multimodal system — it reads a text prompt, first and last frames, reference images, a reference clip and library elements inside one request — but you cannot call it as a single thing. On Kuaishou’s own platform it is two routes: an omni video endpoint and an omni image endpoint. On Modellix it is four model IDs, each with its own input set, its own field list and its own rate. Search for a Kling O1 API reference today and you land on a video page, a separate element-management page, an image page, and a scatter of aggregator listings that carry the model name without the parameter table behind it.</p>
-<p>This guide assembles the parts as they stood on <strong>September 10, 2026</strong>: which O1 model IDs exist and who exposes them, what each one costs per second or per image on that date, runnable submit-and-poll code for both the direct and aggregated routes, and — the section that saves the most debugging time — the O1-specific parameter constraints that return a <code>400</code> instead of a video. Two disclosures first. Modellix publishes this blog and sells the aggregated route described in the fifth section, so we have a commercial interest in one of the two paths; every Kuaishou figure below carries its own page and read date. Second, the near-synonym you may have typed — <code>kling video o1 api</code> — resolves to the same model as <code>kling o1 api</code>. There is no separate video-only SKU, so this page covers both instead of splitting them into two competing articles. If you want the wider map of Kuaishou’s developer surface before the O1 detail, our <a href="https://www.modellix.ai/blog/kling-api-documentation/">Kling API documentation guide</a> covers the whole family; this page is the O1-specific deep dive.</p>
+<p>This guide assembles the parts as they stood on <strong>September 10, 2026</strong>: which O1 model IDs exist and who exposes them, what each one costs per second or per image on that date, runnable submit-and-poll code for both the direct and aggregated routes, and — the section that saves the most debugging time — the O1-specific parameter constraints that return a <code>400</code> instead of a video. Two disclosures first. Modellix publishes this blog and sells the aggregated route described in the fifth section, so we have a commercial interest in one of the two paths; every Kuaishou figure below carries its own page and read date. Second, the near-synonym you may have typed — <code>kling video o1 api</code> — resolves to the same model as <code>kling o1 api</code>. There is no separate video-only SKU, so this page covers both instead of splitting them into two competing articles. If you want the wider map of Kuaishou’s developer surface before the O1 detail, our <a href="https://www.modellix.ai/blog/kling-api-pricing/">Kling API documentation guide</a> covers the whole family; this page is the O1-specific deep dive.</p>
 <h2 id="What-the-Kling-O1-API-actually-is-one-reasoning-model-four-endpoints"><a href="#What-the-Kling-O1-API-actually-is-one-reasoning-model-four-endpoints" class="headerlink" title="What the Kling O1 API actually is: one reasoning model, four endpoints"></a>What the Kling O1 API actually is: one reasoning model, four endpoints</h2><p>Kling O1 is Kuaishou’s reasoning-enhanced multimodal model. The company describes it as the first unified multimodal video model, built on a “Multi-modal Visual Language” concept: rather than one task per call, you write the task in natural language and mix input types — prompt text, a first frame, a last frame, reference images, a source clip — in the same request. Its sibling, <code>kling-image-o1</code>, applies the same reasoning treatment to images, including multi-image combinations. Kuaishou’s own user guide for the video model carries a publication date of December 15, 2025, which is the earliest first-party date we could verify for the line — worth knowing because a lot of coverage treats O1 as the newest Kling model, when it is in fact a parallel track running alongside the 2.x and 3.0 generations rather than above them.</p>
 <p>The functional difference from the 3.0 line is planning, and it is worth being precise about where that claim comes from. The phrase “performs deep planning over the prompt before generation” is <strong>Modellix’s own model-card wording for this route</strong>, not a Kuaishou quote — the vendor-neutral version of the same idea is Kuaishou’s Multi-modal Visual Language framing, in which diverse video tasks are integrated into a single unified architecture so that images, video, elements and text are understood together in one request. The practical consequence is the same either way: O1 is the model you reach for when a standard video model hallucinates the physics — liquid spilling, objects colliding, a sequence of actions that has to stay logically ordered. It is not the model you reach for when you want the longest clip or native audio; those are 3.0 and 3.0 Omni territory.</p>
 <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
@@ -588,7 +588,7 @@
 <p><strong>Is <code>kling o1 api</code> the same as <code>kling video o1 api</code>?</strong></p>
 <p>Yes. They resolve to the same model. Kuaishou’s naming puts “O1” on both the video and image sides of the reasoning track, and there is no separate video-only product, so both search phrasings describe the routes on this page.</p>
 <p><strong>What is the difference between Kling O1 and Kling 3.0?</strong></p>
-<p>O1 is the reasoning model: it plans before rendering, which is why it holds up on complex physical interaction and long, logically ordered prompts. Kling 3.0 and 3.0 Omni are the flagship generation line, and they are the ones that carry native audio, 4K output and multi-shot sequences. O1 caps at 10 seconds and 1080p with no multi-shot, so the two are complements rather than versions of each other — you route to O1 for the shots that have to be physically correct and to 3.0 for everything that needs length, sound or resolution. Our <a href="https://www.modellix.ai/blog/kling-3-0-api/">Kling 3.0 API guide</a> covers the other side of that split, and the Kling 2.x generations sit below both.</p>
+<p>O1 is the reasoning model: it plans before rendering, which is why it holds up on complex physical interaction and long, logically ordered prompts. Kling 3.0 and 3.0 Omni are the flagship generation line, and they are the ones that carry native audio, 4K output and multi-shot sequences. O1 caps at 10 seconds and 1080p with no multi-shot, so the two are complements rather than versions of each other — you route to O1 for the shots that have to be physically correct and to 3.0 for everything that needs length, sound or resolution. Our <a href="https://www.modellix.ai/blog/kling-api-pricing/">Kling 3.0 API guide</a> covers the other side of that split, and the Kling 2.x generations sit below both.</p>
 <p><strong>Why does my Kling O1 image-to-video request fail when I ask for 8 seconds?</strong></p>
 <p>Because you sent exactly one input image. On the O1 image-to-video slice, a single image restricts the duration to 5 or 10 seconds. Send two or more reference images and the full 3–10 second range becomes available.</p>
 <p><strong>Does the Kling O1 API support audio?</strong></p>
@@ -598,7 +598,7 @@
 <p><strong>Which Kling O1 endpoints does Modellix expose?</strong></p>
 <p>Four, as of September 10, 2026: <code>kling/kling-video-o1-t2v</code>, <code>kling/kling-video-o1-i2v</code>, <code>kling/kling-video-o1</code> for reference-video work, and <code>kling/kling-image-o1</code>. They share one key, one asynchronous submit-and-poll pattern and per-call billing.</p>
 <p><strong>Is there a free Kling O1 API tier?</strong></p>
-<p>Not self-serve, on either route. Kuaishou sells prepaid unit packages, and the smallest ones are still paid commitments with an expiry clock. On Modellix, the signup credit was retired on August 19, 2026 — new accounts no longer receive a complimentary credit, and trial credit is requested by emailing <a href="mailto:&#x73;&#117;&#112;&#112;&#111;&#114;&#116;&#x40;&#x6d;&#x6f;&#100;&#x65;&#x6c;&#108;&#105;&#x78;&#x2e;&#97;&#x69;">support@modellix.ai</a>, as recorded in the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/changelog/product-updates">Modellix changelog</a>. The cheapest way to evaluate O1 is one short 720p clip: at $0.0672 per second, a five-second test costs about thirty-four cents.</p>
+<p>Not self-serve, on either route. Kuaishou sells prepaid unit packages, and the smallest ones are still paid commitments with an expiry clock. On Modellix, the signup credit was retired on August 19, 2026 — new accounts no longer receive a complimentary credit, and trial credit is requested by emailing <a href="mailto:&#115;&#x75;&#x70;&#112;&#111;&#x72;&#116;&#x40;&#x6d;&#111;&#x64;&#101;&#x6c;&#x6c;&#x69;&#x78;&#46;&#x61;&#105;">support@modellix.ai</a>, as recorded in the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/changelog/product-updates">Modellix changelog</a>. The cheapest way to evaluate O1 is one short 720p clip: at $0.0672 per second, a five-second test costs about thirty-four cents.</p>
 <hr>
 <p><em>Model IDs, endpoint behaviour and pricing reflect public information as of September 10, 2026 and change without notice — Kuaishou retires legacy models on its own schedule (a September 15, 2026 retirement list is already published, though Kling O1 is not on it), and aggregator catalogs shift with each release. Validate the specific model page and price before you commit budget. This article was written by Modellix, an API aggregator with a commercial interest in the single-key route it describes; the Kuaishou documentation summarised above is vendor-neutral, and the rates quoted are a same-day snapshot rather than a standing claim. Access Kling and 200+ other image and video models through one API key at <a href="https://www.modellix.ai/">modellix.ai</a>.</em></p>
 <p><em>Cover image: illustrative Modellix artwork; it is not a Kuaishou product screenshot or source evidence.</em></p>
@@ -608,11 +608,11 @@
         <div class="post-tags-bottom">
           
             
+              <a href="/blog/tags/api-integration/" class="tag-pill tag-pill--sm">API Integration</a>
+            
               <a href="/blog/tags/ai-video-api/" class="tag-pill tag-pill--sm">AI Video API</a>
             
               <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
-            
-              <a href="/blog/tags/api-integration/" class="tag-pill tag-pill--sm">API Integration</a>
             
               <a href="/blog/tags/kling/" class="tag-pill tag-pill--sm">Kling</a>
             
@@ -681,10 +681,10 @@
         </div>
       </a>
     
-      <a href="/blog/ai-video-generation-workflow/" class="related-article-card">
+      <a href="/blog/grok-api-keys/" class="related-article-card">
         
           <div class="related-article-cover">
-            <img src="https://img.modellix.ai/en/article/cover-ai-video-generation-workflow.webp" alt="AI Video Generation Workflow: Async Tasks and Batch Runs" loading="lazy">
+            <img src="https://img.modellix.ai/en/article/cover-grok-api-keys.webp" alt="Grok API Keys: Two Ways to Get One and Call Grok 4.6" loading="lazy">
           </div>
         
         <div class="related-article-body">
@@ -695,8 +695,8 @@
               
             </div>
           
-          <h3 class="related-article-name">AI Video Generation Workflow: Async Tasks and Batch Runs</h3>
-          <time class="related-article-date" datetime="2026-09-16T11:48:00.000Z">September 16, 2026</time>
+          <h3 class="related-article-name">Grok API Keys: Two Ways to Get One and Call Grok 4.6</h3>
+          <time class="related-article-date" datetime="2026-09-16T11:47:00.000Z">September 16, 2026</time>
         </div>
       </a>
     

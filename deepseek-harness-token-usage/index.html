@@ -160,9 +160,9 @@
         
           <div class="post-header-tags">
             
-              <a href="/blog/tags/Token-Usage/" class="tag-pill tag-pill--sm">Token Usage</a>
-            
               <a href="/blog/tags/DeepSeek-Harness/" class="tag-pill tag-pill--sm">DeepSeek Harness</a>
+            
+              <a href="/blog/tags/Token-Usage/" class="tag-pill tag-pill--sm">Token Usage</a>
             
               <a href="/blog/tags/LLM-Billing/" class="tag-pill tag-pill--sm">LLM Billing</a>
             
@@ -313,7 +313,7 @@
 <li><strong><code>X-Mdlx-User-Id</code></strong> — an end-user identifier, 8–128 characters, alphanumeric plus <code>-</code> and <code>_</code>. When requests carry it, the logs endpoint filters on it through the <code>mdlx_user_id</code> query parameter (exact match, same charset rules).</li>
 <li><strong><code>X-Mdlx-Session-Id</code></strong> — a session identifier with the same 8–128 character rules. It groups the requests of one agent run. The <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/api/api">API guide</a> documents a precedence rule worth knowing: some agent tools send their own session header — Claude Code sends <code>X-Claude-Code-Session-Id</code> — and when both are present, <code>X-Mdlx-Session-Id</code> takes precedence.</li>
 </ul>
-<p>In practice: give each developer a stable <code>X-Mdlx-User-Id</code> in their harness environment, and one query per user (<code>…&amp;mdlx_user_id=alice-dev</code>) returns that developer’s request rows for the window. Give each run a fresh <code>X-Mdlx-Session-Id</code> and the run’s total is a filter, not a spreadsheet exercise. The <a href="https://www.modellix.ai/blog/deepseek-harness-plugin/">dsh-modellix plugin</a> and the <a href="https://www.modellix.ai/blog/deepseek-harness-custom-model/">custom provider setup</a> both land on the same gateway, so whichever path you used, the same logs cover it.</p>
+<p>In practice: give each developer a stable <code>X-Mdlx-User-Id</code> in their harness environment, and one query per user (<code>…&amp;mdlx_user_id=alice-dev</code>) returns that developer’s request rows for the window. Give each run a fresh <code>X-Mdlx-Session-Id</code> and the run’s total is a filter, not a spreadsheet exercise. The <a href="https://www.modellix.ai/blog/dsh-plugin-add/">dsh-modellix plugin</a> and the <a href="https://www.modellix.ai/blog/deepseek-harness-custom-model/">custom provider setup</a> both land on the same gateway, so whichever path you used, the same logs cover it.</p>
 <h2 id="What-the-logs-will-and-will-not-tell-you"><a href="#What-the-logs-will-and-will-not-tell-you" class="headerlink" title="What the logs will and will not tell you"></a>What the logs will and will not tell you</h2><p>The endpoint is precise about what it stores, and the boundaries are documented — including the parts that are not. Read these before you build a dashboard on top of the logs:</p>
 <ul>
 <li><strong>Payloads are conditional.</strong> The <code>input</code> and <code>result</code> fields are returned only “when retained.” Modellix’s documentation does not state how long payloads are retained, whether retention can be opted out of, or whether retained payloads are used for training — the answers are undocumented as of September 1, 2026. If you need prompt text for audit trails, do not assume it will be there; the token counts and <code>cost</code> are the reliable part.</li>
@@ -347,9 +347,9 @@
         <div class="post-tags-bottom">
           
             
-              <a href="/blog/tags/Token-Usage/" class="tag-pill tag-pill--sm">Token Usage</a>
-            
               <a href="/blog/tags/DeepSeek-Harness/" class="tag-pill tag-pill--sm">DeepSeek Harness</a>
+            
+              <a href="/blog/tags/Token-Usage/" class="tag-pill tag-pill--sm">Token Usage</a>
             
               <a href="/blog/tags/LLM-Billing/" class="tag-pill tag-pill--sm">LLM Billing</a>
             

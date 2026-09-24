@@ -671,7 +671,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">modellix-cli model batch runs.jsonl --max-tasks 6 --concurrency 3 --<span class="built_in">wait</span></span><br></pre></td></tr></table></figure>
 
 <p>Batch submission requires either <code>--max-tasks</code> or an explicit <code>-y</code>, because every line can create a paid task; concurrency is limited to 1–10 and the local ceiling is 1,000 tasks. The batch file is parsed and validated before the first POST, so a malformed line aborts the run rather than halfway through a paid batch, so check the IDs first. That is the cheapest way to generate your own comparison data rather than borrowing someone else’s — including ours.</p>
-<p><strong>Four: reconcile the invoice against per-request logs.</strong> <code>GET /v1/logs</code> returns each request with <code>prompt_tokens</code>, <code>completion_tokens</code>, <code>cached_tokens</code>, and a <code>cost</code> field in the console’s billing unit, scoped to your team, with <code>page_size</code> up to 100 and a maximum window of 30 days. If a model’s billed cost surprises you, this is where you find out whether the cause was a tier crossing or a cache miss; <a href="https://www.modellix.ai/blog/agent-observability/">agent observability for gateway request logs</a> covers what this layer can and cannot show you. Two rate-limit classes are worth knowing here as well: inference requests and query requests (model listing, log listing) are separately metered, and 429 responses distinguish rate limits from temporarily unavailable models, the latter sometimes carrying <code>Retry-After</code>.</p>
+<p><strong>Four: reconcile the invoice against per-request logs.</strong> <code>GET /v1/logs</code> returns each request with <code>prompt_tokens</code>, <code>completion_tokens</code>, <code>cached_tokens</code>, and a <code>cost</code> field in the console’s billing unit, scoped to your team, with <code>page_size</code> up to 100 and a maximum window of 30 days. If a model’s billed cost surprises you, this is where you find out whether the cause was a tier crossing or a cache miss; <a href="https://www.modellix.ai/blog/agent-harness/">agent observability for gateway request logs</a> covers what this layer can and cannot show you. Two rate-limit classes are worth knowing here as well: inference requests and query requests (model listing, log listing) are separately metered, and 429 responses distinguish rate limits from temporarily unavailable models, the latter sometimes carrying <code>Retry-After</code>.</p>
 <p>Two honest gaps while you are in there. The gateway documentation does not describe structured output, JSON mode, or a tool-calling field — we could not confirm either support or absence, so do not plan around it without testing. And the catalogue’s two <code>$0.00</code> entries have no documentation page describing limits or availability, so treat them as priced entries you must probe, not as a supported free plan.</p>
 <p>Three things this page does not measure and the catalogue does not publish: accuracy or hallucination rates, latency or time to first token, and a moderation or safety policy. If any of those decides your choice, none of the numbers here will help you — and a page that supplied them without a reproducible method would be guessing on your behalf.</p>
 <section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Start calling these models</h3><p class="view-docs-tag-desc">Create a key and price your own workload across the same 30 models.</p><a class="btn view-docs-tag-btn" href="https://www.modellix.ai/console/login" data-cta="login_tag" data-cta-target="login" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
@@ -777,25 +777,6 @@
   <h2 class="related-articles-title">Related Articles</h2>
   <div class="related-articles-grid">
     
-      <a href="/blog/best-ai-video-generator/" class="related-article-card">
-        
-          <div class="related-article-cover">
-            <img src="https://img.modellix.ai/en/article/cover-best-ai-video-generator.webp" alt="Best AI Video Generators (2026): 12 Models to Call by API" loading="lazy">
-          </div>
-        
-        <div class="related-article-body">
-          
-            <div class="related-article-meta">
-              
-                <span class="category-tag category-tag--sm">Comparisons</span>
-              
-            </div>
-          
-          <h3 class="related-article-name">Best AI Video Generators (2026): 12 Models to Call by API</h3>
-          <time class="related-article-date" datetime="2026-09-14T16:00:00.000Z">September 15, 2026</time>
-        </div>
-      </a>
-    
       <a href="/blog/sora-alternative/" class="related-article-card">
         
           <div class="related-article-cover">
@@ -831,6 +812,25 @@
           
           <h3 class="related-article-name">Claude Fable 5.1 vs Opus 5: Run Cost, Not Benchmarks</h3>
           <time class="related-article-date" datetime="2026-09-03T16:00:00.000Z">September 4, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/litellm-vs-openrouter/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-litellm-vs-openrouter.webp" alt="LiteLLM vs OpenRouter: Self-Hosted Proxy or Hosted Gateway?" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Comparisons</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">LiteLLM vs OpenRouter: Self-Hosted Proxy or Hosted Gateway?</h3>
+          <time class="related-article-date" datetime="2026-09-01T16:00:00.000Z">September 2, 2026</time>
         </div>
       </a>
     

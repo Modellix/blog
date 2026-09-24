@@ -302,7 +302,7 @@
 </tbody></table>
 <p>Routing guidance, which mirrors what every tier-comparison page converges on: use <strong>Mini for prompt tests and timing checks</strong>, <strong>Fast for reference tests and shot planning</strong>, and the <strong>full model only for final 1080p&#x2F;4K output</strong> where consistency and polish pay the bill. The mistake to avoid is generating finals on a fast tier and calling it a quality comparison — resolution caps alone make that apples-to-oranges.</p>
 <h2 id="Seedance-2-0-vs-Seedance-2-5-should-you-hold-out"><a href="#Seedance-2-0-vs-Seedance-2-5-should-you-hold-out" class="headerlink" title="Seedance 2.0 vs Seedance 2.5: should you hold out?"></a>Seedance 2.0 vs Seedance 2.5: should you hold out?</h2><p>Seedance 2.5 shipped in August 2026 with a 30-second single-pass ceiling, a much larger reference budget (up to 30 images, 10 videos, 10 audio clips), and timestamp-level editing, per ByteDance’s <a target="_blank" rel="noopener" href="https://seed.bytedance.com/en/blog/one-take-creation-flexible-referencing-introducing-seedance-2-5">2.5 release post</a>. It is the hot comparison right now — four of the ranking pages for “seedance 2.0 vs” are 2.5-vs-2.0 articles published in the last three weeks.</p>
-<p>The practical stance for an API integrator: <strong>start with 2.0, evaluate 2.5 when your workload needs long single takes or heavy reference sets.</strong> Two facts push that way. First, 2.5’s resolution ceiling on the official route is 1080p — the 4K tier remains 2.0-only, so “newer” is not “higher-res.” Second, the official promo pricing tells the same story: as of today, Seedance 2.5’s 1080p promo runs at 72% of list (from ~USD 0.41&#x2F;sec, through September 17, 2026) while the 2.0 family promos run at 40–75% of list — 2.0 is the value-optimized tier this quarter. For model IDs and the 2.5-vs-2.0 API notes in one place, our <a href="https://www.modellix.ai/blog/seedance-2-0-api-access/">Seedance 2.0 API access guide</a> has the full family table.</p>
+<p>The practical stance for an API integrator: <strong>start with 2.0, evaluate 2.5 when your workload needs long single takes or heavy reference sets.</strong> Two facts push that way. First, 2.5’s resolution ceiling on the official route is 1080p — the 4K tier remains 2.0-only, so “newer” is not “higher-res.” Second, the official promo pricing tells the same story: as of today, Seedance 2.5’s 1080p promo runs at 72% of list (from ~USD 0.41&#x2F;sec, through September 17, 2026) while the 2.0 family promos run at 40–75% of list — 2.0 is the value-optimized tier this quarter. For model IDs and the 2.5-vs-2.0 API notes in one place, our <a href="https://www.modellix.ai/blog/seedance-2-0-api/">Seedance 2.0 API access guide</a> has the full family table.</p>
 <h2 id="Seedance-2-0-API-pricing-live-per-second-rates-August-2026"><a href="#Seedance-2-0-API-pricing-live-per-second-rates-August-2026" class="headerlink" title="Seedance 2.0 API pricing: live per-second rates (August 2026)"></a>Seedance 2.0 API pricing: live per-second rates (August 2026)</h2><p>Video APIs bill by the second of generated output, so a task costs rate × duration at your resolution. Two sets of numbers matter, and they are different contracts.</p>
 <p><strong>Official BytePlus promo pricing</strong> (from the <a target="_blank" rel="noopener" href="https://docs.byteplus.com/en/docs/ModelArk/1520757">Create a video generation task</a> API reference, accessed August 26, 2026):</p>
 <table>
@@ -376,7 +376,7 @@
 <p>The official BytePlus shape: <code>POST https://ark.ap-southeast.bytepluses.com/api/v3/contents/generations/tasks</code> with a Bearer key, then <code>GET .../tasks/&#123;id&#125;</code> until status is <code>succeeded</code> or <code>failed</code>. The Modellix shape is the same lifecycle flattened behind one key, and this is the shortest working skeleton — a text-to-video job with the parameters that matter (<code>resolution</code>, <code>ratio</code>, <code>duration</code>, <code>watermark</code>):</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">BASE = <span class="string">&quot;https://api.modellix.ai/api/v1&quot;</span></span><br><span class="line">HEADERS = &#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">&quot;Bearer YOUR_MODELLIX_API_KEY&quot;</span>, <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line">payload = &#123;</span><br><span class="line">    <span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;A long single take through a neon-lit night market, cinematic, consistent protagonist&quot;</span>,</span><br><span class="line">    <span class="string">&quot;resolution&quot;</span>: <span class="string">&quot;720p&quot;</span>,</span><br><span class="line">    <span class="string">&quot;ratio&quot;</span>: <span class="string">&quot;16:9&quot;</span>,</span><br><span class="line">    <span class="string">&quot;duration&quot;</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">&quot;watermark&quot;</span>: <span class="literal">False</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">resp = requests.post(<span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/bytedance/seedance-2.0-t2v/async&quot;</span>, headers=HEADERS, json=payload)</span><br><span class="line">task = resp.json()[<span class="string">&quot;data&quot;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;submitted:&quot;</span>, task[<span class="string">&quot;task_id&quot;</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">60</span>):</span><br><span class="line">    result = requests.get(task[<span class="string">&quot;get_result&quot;</span>][<span class="string">&quot;url&quot;</span>], headers=HEADERS).json()</span><br><span class="line">    <span class="keyword">if</span> result[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;status&quot;</span>] <span class="keyword">in</span> (<span class="string">&quot;success&quot;</span>, <span class="string">&quot;failed&quot;</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    time.sleep(<span class="number">5</span>)  <span class="comment"># exponential backoff in production, start ~2s, cap ~30s</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;status:&quot;</span>, result[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;status&quot;</span>])</span><br></pre></td></tr></table></figure>
 
-<p>Treat that as a starting skeleton, not a production module — verify response field names against the current docs for the model ID you use, and read your key from an environment variable, never from code. For image-to-video you pass a <code>first_frame</code> image (and optionally <code>last_frame</code>); for reference work you add <code>reference_image</code> &#x2F; <code>reference_video</code> &#x2F; <code>reference_audio</code> content entries. The official request schema, including the face-upload restriction and the asset-library path for portraits, is in the BytePlus API reference cited in the pricing section. For getting and managing the key itself — including the console paths and key-hygiene rules — see our <a href="https://www.modellix.ai/blog/seedance-2-0-api-key/">Seedance 2.0 API key guide</a>.</p>
+<p>Treat that as a starting skeleton, not a production module — verify response field names against the current docs for the model ID you use, and read your key from an environment variable, never from code. For image-to-video you pass a <code>first_frame</code> image (and optionally <code>last_frame</code>); for reference work you add <code>reference_image</code> &#x2F; <code>reference_video</code> &#x2F; <code>reference_audio</code> content entries. The official request schema, including the face-upload restriction and the asset-library path for portraits, is in the BytePlus API reference cited in the pricing section. For getting and managing the key itself — including the console paths and key-hygiene rules — see our <a href="https://www.modellix.ai/blog/seedance-2-0-api/">Seedance 2.0 API key guide</a>.</p>
 <p>The errors that actually hit first-time integrators, and what they mean:</p>
 <table>
 <thead>
@@ -504,25 +504,6 @@
         </div>
       </a>
     
-      <a href="/blog/best-ai-video-generator/" class="related-article-card">
-        
-          <div class="related-article-cover">
-            <img src="https://img.modellix.ai/en/article/cover-best-ai-video-generator.webp" alt="Best AI Video Generators (2026): 12 Models to Call by API" loading="lazy">
-          </div>
-        
-        <div class="related-article-body">
-          
-            <div class="related-article-meta">
-              
-                <span class="category-tag category-tag--sm">Comparisons</span>
-              
-            </div>
-          
-          <h3 class="related-article-name">Best AI Video Generators (2026): 12 Models to Call by API</h3>
-          <time class="related-article-date" datetime="2026-09-14T16:00:00.000Z">September 15, 2026</time>
-        </div>
-      </a>
-    
       <a href="/blog/sora-alternative/" class="related-article-card">
         
           <div class="related-article-cover">
@@ -539,6 +520,25 @@
           
           <h3 class="related-article-name">Sora Alternatives (2026): What Else Generates Video</h3>
           <time class="related-article-date" datetime="2026-09-14T16:00:00.000Z">September 15, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/claude-fable-vs-opus/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-claude-fable-vs-opus.webp" alt="Claude Fable 5.1 vs Opus 5: Run Cost, Not Benchmarks" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Comparisons</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Claude Fable 5.1 vs Opus 5: Run Cost, Not Benchmarks</h3>
+          <time class="related-article-date" datetime="2026-09-03T16:00:00.000Z">September 4, 2026</time>
         </div>
       </a>
     

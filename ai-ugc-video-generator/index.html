@@ -164,11 +164,11 @@
             
               <a href="/blog/tags/ai-video-api/" class="tag-pill tag-pill--sm">AI Video API</a>
             
-              <a href="/blog/tags/Lip-Sync/" class="tag-pill tag-pill--sm">Lip Sync</a>
+              <a href="/blog/tags/UGC/" class="tag-pill tag-pill--sm">UGC</a>
             
               <a href="/blog/tags/Digital-Human/" class="tag-pill tag-pill--sm">Digital Human</a>
             
-              <a href="/blog/tags/UGC/" class="tag-pill tag-pill--sm">UGC</a>
+              <a href="/blog/tags/Lip-Sync/" class="tag-pill tag-pill--sm">Lip Sync</a>
             
               <a href="/blog/tags/Build-vs-Buy/" class="tag-pill tag-pill--sm">Build vs Buy</a>
             
@@ -455,7 +455,7 @@
 <p>Three things to read out of that table.</p>
 <p>Two lines carry <strong>92% to 97% of every tier</strong>: the on-camera call (38% on Tier A, 19.5% on Tier B, 54% on Tier C) and the B-roll (58.8%, 73.1% and 40.9%). Those are the two worth negotiating — and on Tier B it is the B-roll, not the presenter, that sets the bill. Voice never exceeds 2% of the bill, and the product still never exceeds 7%. If you are optimising anywhere else, stop.</p>
 <p>The <strong>17.9× spread inside step 2 is the whole decision</strong>, not the difference between the tiers. Tier A and Tier C differ by 12.7× almost entirely because of one model choice, and the visible difference between them is resolution and motion fidelity — not whether the ad works.</p>
-<p>Nothing in that table includes the parts you cannot buy: the editing pass and the human who looks at the output before it runs. Those are real, and the section after next lists them. A fuller cross-model rate table, if you want to substitute models, is in the <a href="https://www.modellix.ai/blog/ai-video-model-api-pricing-comparison/">video model API pricing comparison</a>, and the <a href="https://www.modellix.ai/blog/ai-video-generation-cost-calculator/">cost calculator</a> does the same arithmetic interactively.</p>
+<p>Nothing in that table includes the parts you cannot buy: the editing pass and the human who looks at the output before it runs. Those are real, and the section after next lists them. A fuller cross-model rate table, if you want to substitute models, is in the <a href="https://www.modellix.ai/blog/ai-video-model-api-pricing-comparison/">video model API pricing comparison</a>, and the <a href="https://www.modellix.ai/blog/ai-video-model-api-pricing-comparison/">cost calculator</a> does the same arithmetic interactively.</p>
 <h2 id="The-break-even-against-a-seat"><a href="#The-break-even-against-a-seat" class="headerlink" title="The break-even against a seat"></a>The break-even against a seat</h2><p>Per-seat tools and per-call APIs are priced on different axes, which is why “cheaper” has no answer without a volume attached. Seat pricing is <strong>per person per month</strong>; usage pricing is <strong>per finished video</strong>. So the comparison is:</p>
 <p><strong>cost per video, seat route &#x3D; monthly seat price ÷ videos produced that month</strong><br><strong>cost per video, usage route &#x3D; the tier total above</strong></p>
 <p>Take a seat at $39 per month — an assumption for illustration, not a quote from any vendor; check the current price of whichever tool you are considering, because they change their plans far more often than model prices change. Against that:</p>
@@ -520,13 +520,13 @@
 
 <p><em>The two crossovers, on one axis. The seat curve falls below the cheap build at about 100 videos a month — and below the premium build at about eight — and stays below both from there.</em></p>
 <p>What none of this captures is why most people reading this page would build anyway. If you are embedding generation in a product, the seat is not competing with your pipeline on cost — <strong>a seat cannot be embedded at all</strong>. You are not buying cheaper videos; you are buying a capability your product does not otherwise have, and the relevant comparison is against the revenue that capability unlocks, not against $39.</p>
-<p>If you can see your volume and your tier, the <a href="https://www.modellix.ai/blog/best-ai-video-generator/">best AI video generator</a> survey is the honest counterpart to this page — it covers the seat route on its own terms.</p>
+<p>If you can see your volume and your tier, the <a href="https://www.modellix.ai/blog/best-ai-video-generation-apis-2026/">best AI video generator</a> survey is the honest counterpart to this page — it covers the seat route on its own terms.</p>
 <h2 id="What-you-take-on-that-a-seat-product-absorbed-for-you"><a href="#What-you-take-on-that-a-seat-product-absorbed-for-you" class="headerlink" title="What you take on that a seat product absorbed for you"></a>What you take on that a seat product absorbed for you</h2><p>The four calls are the cheap part. The reason a $39 seat is a real business is that it absorbs five things you now own.</p>
 <p><strong>A review queue.</strong> Nothing in the API checks whether an ad is honest about the product, or whether the claim in the script matches what the footage shows. You will need a human step, and a human step is the thing that makes “10,000 videos a month” a fiction unless you have designed around it.</p>
 <p><strong>Disclosure, which is now a hard requirement rather than a courtesy.</strong> If these videos run as ads in the EU, Article 50 of the <a target="_blank" rel="noopener" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj">EU AI Act (Regulation (EU) 2024&#x2F;1689)</a> has been applicable since 2 August 2026: providers of systems that generate synthetic content must mark outputs in a machine-readable, detectable way, and deployers publishing deepfakes must disclose that the content is artificially generated. On <a target="_blank" rel="noopener" href="https://support.google.com/youtube/answer/14328491">YouTube</a>, altered or synthetic content that could be mistaken for real must be disclosed, and <a target="_blank" rel="noopener" href="https://www.meta.com/help/artificial-intelligence/355108217670024">Meta labels AI-generated or significantly AI-edited ad images</a> with an “AI info” label. Separately, the US FTC’s <a target="_blank" rel="noopener" href="https://www.ftc.gov/business-guidance/resources/consumer-reviews-testimonials-rule-questions-answers">Rule on the Use of Consumer Reviews and Testimonials</a> — 16 CFR Part 465, in effect since October 21, 2024 — reaches reviews and testimonials that misrepresent that they come from someone who does not exist, and expressly names AI-generated fakes. A synthetic person presented as a satisfied customer is the exact thing that rule addresses. This is not legal advice and we are not your counsel: confirm your obligations with your own advisers before you ship.</p>
 <p><strong>Likeness rights.</strong> Every avatar and voice model in the catalogue generates output from <em>somebody’s</em> likeness or voice, whether that is a licensed actor in the model’s training set or a clip you uploaded. Consent, licensing and the platform terms that govern the model you chose are yours to verify. The API returns a video; it does not return a release form.</p>
 <p><strong>Re-export per platform.</strong> TikTok, Instagram Reels, YouTube Shorts and a paid Meta placement each want their own cut: aspect ratio, duration caps, safe-area, burned-in captions, loudness. Your pipeline’s final stage is a transcoding and editing step — the assembly pass, the caption timing, the loudness normalisation, the per-placement re-encode — and it is the one nobody budgets for. A seat tool hands you a timeline and an export button; here you own the ffmpeg calls. Whether the export carries a watermark is likewise your transcoding decision, not a property of the model, and on an API route the answer is normally no.</p>
-<p><strong>Model turnover.</strong> The $0.0050-per-second presenter you built on can be deprecated, re-priced or superseded inside a quarter. If your pipeline hard-codes one model path, you inherit that churn. Keeping the model name a configuration value rather than a constant is the cheapest insurance you will buy — and per-second pricing itself moves, which is why the <a href="https://www.modellix.ai/blog/live-avatar-ai/">live-avatar API</a> and the rest of this cluster get re-checked rather than trusted from a screenshot.</p>
+<p><strong>Model turnover.</strong> The $0.0050-per-second presenter you built on can be deprecated, re-priced or superseded inside a quarter. If your pipeline hard-codes one model path, you inherit that churn. Keeping the model name a configuration value rather than a constant is the cheapest insurance you will buy — and per-second pricing itself moves, which is why the <a href="https://www.modellix.ai/blog/ai-avatar-api/">live-avatar API</a> and the rest of this cluster get re-checked rather than trusted from a screenshot.</p>
 <h2 id="When-buying-a-seat-is-the-right-answer"><a href="#When-buying-a-seat-is-the-right-answer" class="headerlink" title="When buying a seat is the right answer"></a>When buying a seat is the right answer</h2><p>Buy a seat, without hesitation, if any of these is true:</p>
 <ol>
 <li><strong>A person, not a system, is producing the ads.</strong> If a human is going to sit in front of a tool and make a video, a UI is the correct interface and an API is a worse one.</li>
@@ -557,7 +557,7 @@
 <p><strong>Which model should I use for the talking segment?</strong><br>Start with the cheapest presenter model and only move up if the output fails review. The spread between the cheapest and most expensive 30 seconds of on-camera speech is 17.9×, so the default should be the bottom of that range and every upgrade should be justified by something visible in the output.</p>
 <p><strong>Can I run this in more than one language?</strong><br>Yes, and it is a per-character cost per language on the voice layer, so a 430-character script in five languages bills five times. The visual side does not need regenerating, which makes localisation one of the few places where the marginal cost stays genuinely low.</p>
 <hr>
-<p><em>Model availability and per-second rates change without notice. Every price in this article was read from a live model page on <strong>September 16, 2026</strong> and will drift; the seat price used for the break-even is an illustrative assumption, not a quote from any vendor. We run Modellix, so we have a commercial interest in the gateway rows above — the four-call decomposition and the break-even both cut against us at low volumes, and the premium tier never wins on unit price at any volume, which is the part we would rather you heard from us. Regulatory statements here are a summary of published primary sources for engineering planning, not legal advice; confirm your own obligations with your advisers and the platform terms you publish under. Route image, video and speech models through <a href="https://www.modellix.ai/">one key at modellix.ai</a>, and read the section-level rates for whichever model in the pipeline matters most through the <a href="https://www.modellix.ai/blog/best-video-generation-model/">live model catalogue</a>.</em></p>
+<p><em>Model availability and per-second rates change without notice. Every price in this article was read from a live model page on <strong>September 16, 2026</strong> and will drift; the seat price used for the break-even is an illustrative assumption, not a quote from any vendor. We run Modellix, so we have a commercial interest in the gateway rows above — the four-call decomposition and the break-even both cut against us at low volumes, and the premium tier never wins on unit price at any volume, which is the part we would rather you heard from us. Regulatory statements here are a summary of published primary sources for engineering planning, not legal advice; confirm your own obligations with your advisers and the platform terms you publish under. Route image, video and speech models through <a href="https://www.modellix.ai/">one key at modellix.ai</a>, and read the section-level rates for whichever model in the pipeline matters most through the <a href="https://www.modellix.ai/blog/best-ai-video-generation-apis-2026/">live model catalogue</a>.</em></p>
 
         </div>
 
@@ -566,11 +566,11 @@
             
               <a href="/blog/tags/ai-video-api/" class="tag-pill tag-pill--sm">AI Video API</a>
             
-              <a href="/blog/tags/Lip-Sync/" class="tag-pill tag-pill--sm">Lip Sync</a>
+              <a href="/blog/tags/UGC/" class="tag-pill tag-pill--sm">UGC</a>
             
               <a href="/blog/tags/Digital-Human/" class="tag-pill tag-pill--sm">Digital Human</a>
             
-              <a href="/blog/tags/UGC/" class="tag-pill tag-pill--sm">UGC</a>
+              <a href="/blog/tags/Lip-Sync/" class="tag-pill tag-pill--sm">Lip Sync</a>
             
               <a href="/blog/tags/Build-vs-Buy/" class="tag-pill tag-pill--sm">Build vs Buy</a>
             
@@ -635,10 +635,10 @@
         </div>
       </a>
     
-      <a href="/blog/ai-video-generation-workflow/" class="related-article-card">
+      <a href="/blog/grok-api-keys/" class="related-article-card">
         
           <div class="related-article-cover">
-            <img src="https://img.modellix.ai/en/article/cover-ai-video-generation-workflow.webp" alt="AI Video Generation Workflow: Async Tasks and Batch Runs" loading="lazy">
+            <img src="https://img.modellix.ai/en/article/cover-grok-api-keys.webp" alt="Grok API Keys: Two Ways to Get One and Call Grok 4.6" loading="lazy">
           </div>
         
         <div class="related-article-body">
@@ -649,8 +649,8 @@
               
             </div>
           
-          <h3 class="related-article-name">AI Video Generation Workflow: Async Tasks and Batch Runs</h3>
-          <time class="related-article-date" datetime="2026-09-16T11:48:00.000Z">September 16, 2026</time>
+          <h3 class="related-article-name">Grok API Keys: Two Ways to Get One and Call Grok 4.6</h3>
+          <time class="related-article-date" datetime="2026-09-16T11:47:00.000Z">September 16, 2026</time>
         </div>
       </a>
     

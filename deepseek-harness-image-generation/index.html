@@ -161,11 +161,11 @@
         
           <div class="post-header-tags">
             
-              <a href="/blog/tags/image-generation/" class="tag-pill tag-pill--sm">Image Generation</a>
-            
               <a href="/blog/tags/DeepSeek-Harness/" class="tag-pill tag-pill--sm">DeepSeek Harness</a>
             
               <a href="/blog/tags/Tutorial/" class="tag-pill tag-pill--sm">Tutorial</a>
+            
+              <a href="/blog/tags/image-generation/" class="tag-pill tag-pill--sm">Image Generation</a>
             
               <a href="/blog/tags/dsh-modellix/" class="tag-pill tag-pill--sm">dsh-modellix</a>
             
@@ -207,7 +207,7 @@
 </picture>
 
 <h2 id="DeepSeek-Harness-Image-Generation-Adding-Image-Video-and-Audio-Output-via-a-Plugin"><a href="#DeepSeek-Harness-Image-Generation-Adding-Image-Video-and-Audio-Output-via-a-Plugin" class="headerlink" title="DeepSeek Harness Image Generation: Adding Image, Video and Audio Output via a Plugin"></a>DeepSeek Harness Image Generation: Adding Image, Video and Audio Output via a Plugin</h2><p>If you want DeepSeek Harness (dsh) to produce images, video, or audio, a plugin is not an optional extra—it is the only path. The 28 language models the harness connects to on the Modellix LLM gateway all have text-only output, and the official DeepSeek Harness itself generates no media. Adding media generation to dsh means installing a plugin that brings its own media pipeline into the harness, which is exactly what the <strong>Design module</strong> of the Modellix plugin for DeepSeek Harness does.</p>
-<p>This is a walkthrough of that module: how to install the plugin, connect your key, and generate a first image—and, because this is the part every listicle skips, what happens at the billing and irreversibility boundaries when you do. It does not cover the pure-configuration path for swapping text models (that is the <a href="https://www.modellix.ai/blog/deepseek-harness-custom-model/">custom model configuration</a> article), and it does not re-explain the plugin mechanism in general (that is the <a href="https://www.modellix.ai/blog/modellix-deepseek-harness-plugin/">DeepSeek Harness plugin</a> article).</p>
+<p>This is a walkthrough of that module: how to install the plugin, connect your key, and generate a first image—and, because this is the part every listicle skips, what happens at the billing and irreversibility boundaries when you do. It does not cover the pure-configuration path for swapping text models (that is the <a href="https://www.modellix.ai/blog/deepseek-harness-custom-model/">custom model configuration</a> article), and it does not re-explain the plugin mechanism in general (that is the <a href="https://www.modellix.ai/blog/dsh-plugin-add/">DeepSeek Harness plugin</a> article).</p>
 <p>One disclosure up front: Modellix operates the media API and the plugin used in these examples, so we have a commercial interest in this working for you. The instructions below come from the plugin’s own README and Modellix documentation, and the numbers are dated September 1, 2026.</p>
 <h2 id="Why-image-generation-in-dsh-requires-a-plugin"><a href="#Why-image-generation-in-dsh-requires-a-plugin" class="headerlink" title="Why image generation in dsh requires a plugin"></a>Why image generation in dsh requires a plugin</h2><p>The structural reason is simple: the harness is a text agent. Every model in the Modellix LLM catalog—28 models across 9 provider labels, from <code>openai/gpt-5.6-sol</code> to <code>deepseek/deepseek-v4-flash</code>—advertises <strong>text</strong> as its output modality. The gateway that serves them returns text; that is its contract. So inside the harness, no model you select can emit an image, no matter what you prompt it with. The <a href="https://www.modellix.ai/blog/deepseek-harness/">DeepSeek Harness</a> guide covers how the harness gets its model source at all.</p>
 <p>The community hit this wall within days of the <a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness">official repository</a>‘s release. The answer Google’s AI Overview now cites first is a developer who built a plugin precisely because “DeepSeek Harness didn’t have ChatGPT-style image generation”—proof that “how do I make dsh generate an image” is a real, unanswered question, and that the answer everyone finds is a plugin. If you search for a deepseek harness image generation plugin today, you get community projects and CLI skills like the two below, plus the workspace route this article covers.</p>
@@ -217,7 +217,7 @@
 <li><strong>CLI skills</strong> like the WaveSpeed skill: the agent drives a command-line client (<code>wavespeed run &lt;model-id&gt;</code>) to find, inspect, and run media models.</li>
 <li><strong>Workspace-style plugins</strong> like Modellix’s Design module: a schema-driven two-pane workspace inside the harness UI where you pick a model, edit parameters, and review results, with the API call handled by the plugin.</li>
 </ul>
-<p>This article walks through the third route. If you want to decide between plugin routes first, the <a href="https://www.modellix.ai/blog/modellix-deepseek-harness-plugin/">Modellix plugin for DeepSeek Harness</a> article explains how bundles work and when you do or don’t need one.</p>
+<p>This article walks through the third route. If you want to decide between plugin routes first, the <a href="https://www.modellix.ai/blog/dsh-plugin-add/">Modellix plugin for DeepSeek Harness</a> article explains how bundles work and when you do or don’t need one.</p>
 <h2 id="Two-hosts-one-key-the-boundary-you-must-not-mix"><a href="#Two-hosts-one-key-the-boundary-you-must-not-mix" class="headerlink" title="Two hosts, one key: the boundary you must not mix"></a>Two hosts, one key: the boundary you must not mix</h2><p>Before any generation happens, understand where the media request actually goes—because it is a different service from the text gateway, with different billing.</p>
 <table>
 <thead>
@@ -325,11 +325,11 @@
         <div class="post-tags-bottom">
           
             
-              <a href="/blog/tags/image-generation/" class="tag-pill tag-pill--sm">Image Generation</a>
-            
               <a href="/blog/tags/DeepSeek-Harness/" class="tag-pill tag-pill--sm">DeepSeek Harness</a>
             
               <a href="/blog/tags/Tutorial/" class="tag-pill tag-pill--sm">Tutorial</a>
+            
+              <a href="/blog/tags/image-generation/" class="tag-pill tag-pill--sm">Image Generation</a>
             
               <a href="/blog/tags/dsh-modellix/" class="tag-pill tag-pill--sm">dsh-modellix</a>
             

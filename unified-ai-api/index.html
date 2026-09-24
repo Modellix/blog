@@ -166,9 +166,9 @@
             
               <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
             
-              <a href="/blog/tags/integration/" class="tag-pill tag-pill--sm">Integration</a>
-            
               <a href="/blog/tags/modellix/" class="tag-pill tag-pill--sm">Modellix</a>
+            
+              <a href="/blog/tags/integration/" class="tag-pill tag-pill--sm">Integration</a>
             
               <a href="/blog/tags/Model-Aggregator/" class="tag-pill tag-pill--sm">Model Aggregator</a>
             
@@ -275,7 +275,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">API_KEY = <span class="string">&quot;YOUR_API_KEY&quot;</span></span><br><span class="line">BASE = <span class="string">&quot;https://api.modellix.ai/api/v1&quot;</span></span><br><span class="line">HEADERS = &#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;API_KEY&#125;</span>&quot;</span>, <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">generate</span>(<span class="params">model: <span class="built_in">str</span>, payload: <span class="built_in">dict</span>, poll_seconds: <span class="built_in">int</span> = <span class="number">5</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Submit an async generation task and poll until it reaches a terminal state.&quot;&quot;&quot;</span></span><br><span class="line">    resp = requests.post(<span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/<span class="subst">&#123;model&#125;</span>/async&quot;</span>, headers=HEADERS, json=payload)</span><br><span class="line">    resp.raise_for_status()</span><br><span class="line">    task_id = resp.json()[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;task_id&quot;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        result = requests.get(<span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/tasks/<span class="subst">&#123;task_id&#125;</span>&quot;</span>, headers=HEADERS).json()</span><br><span class="line">        status = result[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;status&quot;</span>]</span><br><span class="line">        <span class="keyword">if</span> status <span class="keyword">in</span> (<span class="string">&quot;success&quot;</span>, <span class="string">&quot;failed&quot;</span>, <span class="string">&quot;canceled&quot;</span>):</span><br><span class="line">            <span class="keyword">return</span> result</span><br><span class="line">        time.sleep(poll_seconds)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Same key, same function, different model:</span></span><br><span class="line">image = generate(<span class="string">&quot;google/nano-banana&quot;</span>, &#123;<span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;A matte black smartwatch on stone&quot;</span>&#125;)</span><br><span class="line">clip = generate(<span class="string">&quot;kling/kling-v3-t2v&quot;</span>, &#123;<span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;A matte black smartwatch rotating on a turntable&quot;</span>&#125;)</span><br><span class="line">clip = generate(<span class="string">&quot;alibaba/wan2.7-t2v&quot;</span>, &#123;<span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;A cinematic pan across a city skyline at dusk&quot;</span>&#125;)</span><br></pre></td></tr></table></figure>
 
 <p><strong>Step 3 — skip polling entirely with a webhook.</strong> For production pipelines, polling every few seconds wastes requests. The platform accepts an <code>X-Webhook-URL</code> header on the creation call and POSTs the task result to your endpoint when the task reaches <code>success</code>, <code>failed</code>, or <code>canceled</code> — the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api">REST API reference</a> documents the event headers and retry behavior.</p>
-<p>One caution: the exact response field names and status strings can differ between platforms. Treat the snippet as the pattern, and check the target platform’s task-result reference — <a target="_blank" rel="noopener" href="https://docs.modellix.ai/api/get-task-result">Modellix documents its get-task-result endpoint</a> — before shipping. The structural point holds everywhere: submit once, poll once, switch models by identifier. For the video-specific version of this walkthrough, our <a href="https://www.modellix.ai/blog/unified-ai-api/">one API for multiple AI video models guide</a> goes deeper into multi-model video fallbacks.</p>
+<p>One caution: the exact response field names and status strings can differ between platforms. Treat the snippet as the pattern, and check the target platform’s task-result reference — <a target="_blank" rel="noopener" href="https://docs.modellix.ai/api/get-task-result">Modellix documents its get-task-result endpoint</a> — before shipping. The structural point holds everywhere: submit once, poll once, switch models by identifier. For the video-specific version of this walkthrough, our one API for multiple AI video models guide goes deeper into multi-model video fallbacks.</p>
 <p>To run this pattern yourself: create a key in the <a href="https://www.modellix.ai/console/api-key">Modellix console</a>, paste it into the snippet, and watch one task go from submit to result. The whole flow takes minutes, and it is the fastest way to see whether a unified key fits your pipeline.</p>
 <h2 id="Unified-AI-API-pricing-what-the-numbers-actually-look-like"><a href="#Unified-AI-API-pricing-what-the-numbers-actually-look-like" class="headerlink" title="Unified AI API pricing: what the numbers actually look like"></a>Unified AI API pricing: what the numbers actually look like</h2><p>An aggregator’s pricing is only useful if it is per-model and parameter-level. The range across media models is enormous — the following rows were read from <a href="https://www.modellix.ai/models">Modellix’s public models page</a> on August 14, 2026, the same place you would check them today:</p>
 <table>
@@ -374,9 +374,9 @@
             
               <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
             
-              <a href="/blog/tags/integration/" class="tag-pill tag-pill--sm">Integration</a>
-            
               <a href="/blog/tags/modellix/" class="tag-pill tag-pill--sm">Modellix</a>
+            
+              <a href="/blog/tags/integration/" class="tag-pill tag-pill--sm">Integration</a>
             
               <a href="/blog/tags/Model-Aggregator/" class="tag-pill tag-pill--sm">Model Aggregator</a>
             
@@ -443,10 +443,10 @@
         </div>
       </a>
     
-      <a href="/blog/ai-video-generation-workflow/" class="related-article-card">
+      <a href="/blog/grok-api-keys/" class="related-article-card">
         
           <div class="related-article-cover">
-            <img src="https://img.modellix.ai/en/article/cover-ai-video-generation-workflow.webp" alt="AI Video Generation Workflow: Async Tasks and Batch Runs" loading="lazy">
+            <img src="https://img.modellix.ai/en/article/cover-grok-api-keys.webp" alt="Grok API Keys: Two Ways to Get One and Call Grok 4.6" loading="lazy">
           </div>
         
         <div class="related-article-body">
@@ -457,8 +457,8 @@
               
             </div>
           
-          <h3 class="related-article-name">AI Video Generation Workflow: Async Tasks and Batch Runs</h3>
-          <time class="related-article-date" datetime="2026-09-16T11:48:00.000Z">September 16, 2026</time>
+          <h3 class="related-article-name">Grok API Keys: Two Ways to Get One and Call Grok 4.6</h3>
+          <time class="related-article-date" datetime="2026-09-16T11:47:00.000Z">September 16, 2026</time>
         </div>
       </a>
     
