@@ -204,7 +204,7 @@
 </picture>
 
 <h2 id="dsh-plugin-add-one-command-one-verification-one-rollback"><a href="#dsh-plugin-add-one-command-one-verification-one-rollback" class="headerlink" title="dsh plugin add: one command, one verification, one rollback"></a>dsh plugin add: one command, one verification, one rollback</h2><p>Installing a DeepSeek Harness bundle is three commands, but the middle one is the one everyone skips. <code>dsh plugin add</code> puts a bundle into a profile; <code>dsh --dump-config</code> proves it took effect; <code>dsh plugin remove</code> takes it back out. Run all three and “installed but not effective”, the most common failure state in this ecosystem, stops being a mystery and becomes a checkable line in the config tree.</p>
-<p>This article walks the full lifecycle with a real bundle, <a target="_blank" rel="noopener" href="https://github.com/Modellix/dsh-modellix">dsh-modellix</a>, so every command below is copy-pasteable. The same flow applies to any bundle. The <code>dsh</code> CLI itself is thin: per the <a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness">official repository</a>, it is “the sole supported Node application launcher”; profiles are ordered stacks of plugin-bundle patch layers, and <code>dsh plugin</code> manages them by forwarding arguments to pnpm in the profile directory.</p>
+<p>This article walks the full lifecycle with a real bundle, <a target="_blank" rel="noopener nofollow" href="https://github.com/Modellix/dsh-modellix">dsh-modellix</a>, so every command below is copy-pasteable. The same flow applies to any bundle. The <code>dsh</code> CLI itself is thin: per the <a target="_blank" rel="noopener nofollow" href="https://github.com/deepseek-ai/deepseek-harness">official repository</a>, it is “the sole supported Node application launcher”; profiles are ordered stacks of plugin-bundle patch layers, and <code>dsh plugin</code> manages them by forwarding arguments to pnpm in the profile directory.</p>
 <p>The core command surface, as documented in the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/agent/deepseek-harness">Modellix DeepSeek Harness docs</a> and the official CLI readme:</p>
 <table>
 <thead>
@@ -266,7 +266,7 @@
 <p>Start with configuration even if you plan to add a plugin. A working baseline makes a broken bundle much easier to diagnose, and on a prerelease harness every extra bundle is one more thing to break on upgrade.</p>
 <h2 id="Before-you-run-dsh-plugin-add-pinned-versions-and-prerelease-reality"><a href="#Before-you-run-dsh-plugin-add-pinned-versions-and-prerelease-reality" class="headerlink" title="Before you run dsh plugin add: pinned versions and prerelease reality"></a>Before you run dsh plugin add: pinned versions and prerelease reality</h2><p>Three version facts decide whether an install succeeds, and none of them are optional. The bundle you are installing was built and verified against specific versions of Harness and Node:</p>
 <ul>
-<li><strong>DeepSeek Harness is pinned at <code>0.1.1-rc.2</code>.</strong> The npm package <code>@deepseek-ai/dsh</code> currently publishes <code>0.1.1-rc.2</code> as <code>latest</code> (verified on the <a target="_blank" rel="noopener" href="https://registry.npmjs.org/@deepseek-ai/dsh">npm registry</a> on September 1, 2026). There is a newer GitHub tag, <code>0.1.2-alpha.1</code>, but it has no npm release, so treat <code>0.1.1-rc.2</code> as the current version.</li>
+<li><strong>DeepSeek Harness is pinned at <code>0.1.1-rc.2</code>.</strong> The npm package <code>@deepseek-ai/dsh</code> currently publishes <code>0.1.1-rc.2</code> as <code>latest</code> (verified on the <a target="_blank" rel="noopener nofollow" href="https://registry.npmjs.org/@deepseek-ai/dsh">npm registry</a> on September 1, 2026). There is a newer GitHub tag, <code>0.1.2-alpha.1</code>, but it has no npm release, so treat <code>0.1.1-rc.2</code> as the current version.</li>
 <li><strong>Published-package runtime: Node.js <code>^22.19.0 || &gt;=24.0.0</code>.</strong> This is the <code>engines</code> range in the package manifest.</li>
 <li><strong>Source development and release verification: Node.js <code>24.18.1</code> and pnpm <code>11.24.0</code></strong> (from <code>.nvmrc</code> and <code>packageManager</code>). If you build from source or verify a release, use these exact versions.</li>
 </ul>
@@ -328,7 +328,7 @@
 </picture>
 
 <p><em>The trusted-source path: frozen install, static release verification, pack, then add the artifact, the same file the release gate audited.</em></p>
-<p>The official <a target="_blank" rel="noopener" href="https://deepseek-harness.github.io/deepseek-harness/develop/basic/publish">publishing guide</a> documents the underlying mechanics generically: the <code>dsh.bundle.patch</code> field in a package’s <code>package.json</code> marks an npm package as an installable bundle, and the same <code>add</code> &#x2F; <code>--dump-config</code> loop applies to any of them.</p>
+<p>The official <a target="_blank" rel="noopener nofollow" href="https://deepseek-harness.github.io/deepseek-harness/develop/basic/publish">publishing guide</a> documents the underlying mechanics generically: the <code>dsh.bundle.patch</code> field in a package’s <code>package.json</code> marks an npm package as an installable bundle, and the same <code>add</code> &#x2F; <code>--dump-config</code> loop applies to any of them.</p>
 <h2 id="Start-the-profile-and-confirm-it-loads"><a href="#Start-the-profile-and-confirm-it-loads" class="headerlink" title="Start the profile and confirm it loads"></a>Start the profile and confirm it loads</h2><p>With the bundle verified in the tree, boot the profile:</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dsh --profile web</span><br></pre></td></tr></table></figure>
 
@@ -347,7 +347,7 @@
 <p>Uninstalling the plugin does not promise to remove external environment variables, upstream tasks, or every piece of persisted Harness data.</p>
 </blockquote>
 <p>Concretely, for the worked example: if you supplied the key as a <code>MODELLIX_API_KEY</code> environment variable, that variable lives in your launch environment, not in the profile; remove it there. Credentials stored through the Harness Credential service are a separate store from <code>modellix-cli</code>‘s keychain; the plugin does not read a CLI login automatically, and removal does not purge the Credential store entry. Upstream tasks (billed media jobs already submitted) keep running to completion upstream regardless of plugin state. If your policy requires cleanup, handle each system separately. The official publishing guide linked above shows the same remove flow for any bundle.</p>
-<h2 id="dsh-plugin-registry-where-bundles-come-from-and-how-to-judge-one"><a href="#dsh-plugin-registry-where-bundles-come-from-and-how-to-judge-one" class="headerlink" title="dsh plugin registry: where bundles come from, and how to judge one"></a>dsh plugin registry: where bundles come from, and how to judge one</h2><p>There is no official plugin marketplace. DeepSeek has not shipped one; community threads have explicitly asked for it, and the closest thing is the GitHub topic <code>dsh-plugin</code>, which the official readme suggests for discoverability. Everything else is third party: marketplaces like dshmarket.com or dsh-plugin.org, and community directories like <a target="_blank" rel="noopener" href="https://github.com/kejixiaoliang/awesome-dsh-plugins">awesome-dsh-plugins</a>. They are discovery channels, not attestations.</p>
+<h2 id="dsh-plugin-registry-where-bundles-come-from-and-how-to-judge-one"><a href="#dsh-plugin-registry-where-bundles-come-from-and-how-to-judge-one" class="headerlink" title="dsh plugin registry: where bundles come from, and how to judge one"></a>dsh plugin registry: where bundles come from, and how to judge one</h2><p>There is no official plugin marketplace. DeepSeek has not shipped one; community threads have explicitly asked for it, and the closest thing is the GitHub topic <code>dsh-plugin</code>, which the official readme suggests for discoverability. Everything else is third party: marketplaces like dshmarket.com or dsh-plugin.org, and community directories like <a target="_blank" rel="noopener nofollow" href="https://github.com/kejixiaoliang/awesome-dsh-plugins">awesome-dsh-plugins</a>. They are discovery channels, not attestations.</p>
 <p>Which makes the judgment checklist the real content of this section. Before you <code>dsh plugin add</code> something from a directory:</p>
 <ul>
 <li><strong>Peer dependencies are pinned to the Harness version you run.</strong> A bundle that declares <code>@deepseek-ai/dsh-*@0.1.1-rc.2</code> peers was built against the version the worked example uses. A bundle that does not pin peers is a compatibility risk, not a red flag; just verify it.</li>
@@ -490,8 +490,8 @@
     <div class="post-share">
       <span class="post-share-label">Share this article</span>
       <div class="post-share-links">
-        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/dsh-plugin-add/&text=dsh%20plugin%20add%3A%20Install%2C%20Verify%2C%20Remove%20Harness%20Bundles" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/dsh-plugin-add/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/dsh-plugin-add/&text=dsh%20plugin%20add%3A%20Install%2C%20Verify%2C%20Remove%20Harness%20Bundles" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/dsh-plugin-add/" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/dsh-plugin-add/"><i class="fa-solid fa-link"></i></button>
       </div>
     </div>
@@ -517,16 +517,16 @@
           <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
         
         
-          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener nofollow" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
         
         
-          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener nofollow" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
         
         
-          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener nofollow" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
         
         
-          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener nofollow" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         
       </div>
       

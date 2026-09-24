@@ -209,7 +209,7 @@
   <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-deepseek-api-pricing.png" alt="Modellix cover: two-line title DEEPSEEK API PRICING and PEAK, OFF-PEAK AND CACHE RATES over an amber glass billing matrix, MODELLIX wordmark" />
 </picture>
 
-<p>Search results for DeepSeek API pricing disagree with each other right now, and the disagreement is not cosmetic. DeepSeek changed two things in the past month: on <strong>August 16, 2026</strong> it moved to peak and off-peak billing with off-peak at half the peak rate, and on <strong>September 10, 2026</strong> it shipped DeepSeek-V4.1-Flash, retired the previous Flash generation, and cut API prices again (<a target="_blank" rel="noopener" href="https://api-docs.deepseek.com/updates">DeepSeek API changelog</a>). Pages updated in between quote numbers that were correct when they were written and are not on the rate card today.</p>
+<p>Search results for DeepSeek API pricing disagree with each other right now, and the disagreement is not cosmetic. DeepSeek changed two things in the past month: on <strong>August 16, 2026</strong> it moved to peak and off-peak billing with off-peak at half the peak rate, and on <strong>September 10, 2026</strong> it shipped DeepSeek-V4.1-Flash, retired the previous Flash generation, and cut API prices again (<a target="_blank" rel="noopener nofollow" href="https://api-docs.deepseek.com/updates">DeepSeek API changelog</a>). Pages updated in between quote numbers that were correct when they were written and are not on the rate card today.</p>
 <p>So this guide does one thing: it sets the current card down with a capture date on every figure, then adds what most pricing posts leave out — how to find out whether the caching discount you were promised actually landed on your bill. Every number below was read from first-party pages on <strong>September 15, 2026</strong>, not from a planning document. We run Modellix, an API gateway that carries DeepSeek models, so we have a commercial interest in the gateway rows further down; where our listed figure and DeepSeek’s differ, both are printed.</p>
 <h2 id="DeepSeek-API-pricing-as-of-September-15-2026"><a href="#DeepSeek-API-pricing-as-of-September-15-2026" class="headerlink" title="DeepSeek API pricing as of September 15, 2026"></a>DeepSeek API pricing as of September 15, 2026</h2><p>DeepSeek’s own pricing page now lists <strong>two model rows</strong> — <code>deepseek-flash</code> (DeepSeek-V4.1-Flash) and <code>deepseek-v4-pro</code> (DeepSeek-V4-Pro-0813) — and each row carries <strong>two prices</strong>, because billing is split by time of day. All figures are USD per 1 million tokens, captured September 15, 2026:</p>
 <table>
@@ -256,7 +256,7 @@
   <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/deepseek-official-pricing-table.png" alt="DeepSeek API documentation pricing block showing off-peak and peak rates for cache-hit input, cache-miss input and output, with the legacy model-name footnote" loading="lazy" />
 </picture>
 
-<p><em>DeepSeek’s published rate card on September 15, 2026: three dimensions, each with an off-peak and a peak figure, plus the footnotes that define the window and the retired model names. Captured from <a target="_blank" rel="noopener" href="https://api-docs.deepseek.com/quick_start/pricing/">api-docs.deepseek.com</a>.</em></p>
+<p><em>DeepSeek’s published rate card on September 15, 2026: three dimensions, each with an off-peak and a peak figure, plus the footnotes that define the window and the retired model names. Captured from <a target="_blank" rel="noopener nofollow" href="https://api-docs.deepseek.com/quick_start/pricing/">api-docs.deepseek.com</a>.</em></p>
 <p>Two footnotes on that page matter more than they look. The first defines the window verbatim: “Off-peak rates are half of the peak rates. Peak hours are <strong>01:00 - 04:00 and 06:00 - 10:00 UTC, Monday through Friday</strong> (all other hours are off-peak).” The second says the legacy names <code>deepseek-v4-flash</code> and <code>deepseek-v4-flash-vision-exp</code> are “still accepted, but the corresponding models have been retired, their requests are served by the DeepSeek-V4.1-Flash model and billed at the Flash price.” Both rows share a <strong>1M-token context window and 384K max output</strong>; only the Flash row accepts image input. Those are DeepSeek’s own specifications, quoted from the same page.</p>
 <p>Now the other card. On the <a href="https://www.modellix.ai/llm">Modellix LLM price page</a>, also captured September 15, 2026, the catalog carries <strong>four DeepSeek rows</strong>, not two, and lists one rate per row with the official list price struck through beside it:</p>
 <table>
@@ -360,7 +360,7 @@
 <p><strong>What does the $0 in the Cached Write column mean?</strong></p>
 <p>Only what it says: the column shows $0 for DeepSeek rows. The documentation does not state whether cache writes are unsupported or simply not charged, so do not treat the $0 as a confirmed rate. DeepSeek’s own card has no cache-write line to cross-check against — it prices cache hits and cache misses and nothing else on the input side.</p>
 <hr>
-<p><em>Pricing, model availability and rate cards change without notice. Every figure in this guide was captured on September 15, 2026 from <a target="_blank" rel="noopener" href="https://api-docs.deepseek.com/quick_start/pricing/">DeepSeek’s Models &amp; Pricing page</a>, the <a target="_blank" rel="noopener" href="https://api-docs.deepseek.com/updates">DeepSeek API changelog</a>, the <a href="https://www.modellix.ai/llm">Modellix LLM price page</a>, and the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/get-llm-logs">Modellix Get LLM logs reference</a>; a full 28-model snapshot of the same catalog as it stood on September 3, 2026 is available in our <a href="https://www.modellix.ai/blog/llm-api-pricing-comparison/">cross-vendor LLM API pricing comparison</a>, and the catalog has grown since. DeepSeek rate cards have moved twice in the past month, so verify current figures against the live sources before committing spend. Modellix is an API aggregator with a commercial interest in the gateway rows above and is not affiliated with DeepSeek; for two of the four DeepSeek rows its billed price equals the vendor’s peak rate. Calling a model through DeepSeek Harness and setting the model string is covered in its own guide.</em></p>
+<p><em>Pricing, model availability and rate cards change without notice. Every figure in this guide was captured on September 15, 2026 from <a target="_blank" rel="noopener nofollow" href="https://api-docs.deepseek.com/quick_start/pricing/">DeepSeek’s Models &amp; Pricing page</a>, the <a target="_blank" rel="noopener nofollow" href="https://api-docs.deepseek.com/updates">DeepSeek API changelog</a>, the <a href="https://www.modellix.ai/llm">Modellix LLM price page</a>, and the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/get-llm-logs">Modellix Get LLM logs reference</a>; a full 28-model snapshot of the same catalog as it stood on September 3, 2026 is available in our <a href="https://www.modellix.ai/blog/llm-api-pricing-comparison/">cross-vendor LLM API pricing comparison</a>, and the catalog has grown since. DeepSeek rate cards have moved twice in the past month, so verify current figures against the live sources before committing spend. Modellix is an API aggregator with a commercial interest in the gateway rows above and is not affiliated with DeepSeek; for two of the four DeepSeek rows its billed price equals the vendor’s peak rate. Calling a model through DeepSeek Harness and setting the model string is covered in its own guide.</em></p>
 
         </div>
 
@@ -485,8 +485,8 @@
     <div class="post-share">
       <span class="post-share-label">Share this article</span>
       <div class="post-share-links">
-        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/deepseek-api-pricing/&text=DeepSeek%20API%20Pricing%20(2026)%3A%20Four%20Rows%2C%20Peak%20and%20Cache" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/deepseek-api-pricing/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/deepseek-api-pricing/&text=DeepSeek%20API%20Pricing%20(2026)%3A%20Four%20Rows%2C%20Peak%20and%20Cache" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/deepseek-api-pricing/" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/deepseek-api-pricing/"><i class="fa-solid fa-link"></i></button>
       </div>
     </div>
@@ -512,16 +512,16 @@
           <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
         
         
-          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener nofollow" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
         
         
-          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener nofollow" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
         
         
-          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener nofollow" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
         
         
-          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener nofollow" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         
       </div>
       

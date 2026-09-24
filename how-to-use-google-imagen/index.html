@@ -173,6 +173,8 @@
             
               <a href="/blog/tags/ai-image-generation/" class="tag-pill tag-pill--sm">AI Image Generation</a>
             
+              <a href="/blog/tags/nano-banana/" class="tag-pill tag-pill--sm">Nano Banana</a>
+            
               <a href="/blog/tags/google-imagen/" class="tag-pill tag-pill--sm">google imagen</a>
             
               <a href="/blog/tags/imagen-api/" class="tag-pill tag-pill--sm">imagen api</a>
@@ -182,8 +184,6 @@
               <a href="/blog/tags/gemini-api/" class="tag-pill tag-pill--sm">Gemini API</a>
             
               <a href="/blog/tags/vertex-ai/" class="tag-pill tag-pill--sm">vertex ai</a>
-            
-              <a href="/blog/tags/nano-banana/" class="tag-pill tag-pill--sm">Nano Banana</a>
             
               <a href="/blog/tags/google-ai/" class="tag-pill tag-pill--sm">google ai</a>
             
@@ -228,17 +228,17 @@
 
 <h2 id="Imagen-is-shutting-down-—-here’s-what-that-means-for-you"><a href="#Imagen-is-shutting-down-—-here’s-what-that-means-for-you" class="headerlink" title="Imagen is shutting down — here’s what that means for you"></a>Imagen is shutting down — here’s what that means for you</h2><p>If you search “how to use google imagen” today, every guide on the first page is missing one critical fact: <strong>Google deprecated the Imagen models, and they shut down on August 17, 2026.</strong> The replacement is Nano Banana, accessed through the <code>gemini-2.5-flash-image</code> model name.</p>
 <p>This changes the question. “How to use Google Imagen” in late July 2026 isn’t just about picking an API endpoint — it’s about deciding whether to use the legacy Imagen API (still running, but on borrowed time), migrate to Nano Banana now, or route through a third-party API that abstracts the churn away from your codebase.</p>
-<p>This guide covers all three paths with working code, real pricing, and the migration plan. One thing before we start: this guide is about <a target="_blank" rel="noopener" href="https://deepmind.google/models/imagen/">Google DeepMind’s Imagen text-to-image model</a>, not the unrelated Imagen photo editing app — different product, different company.</p>
+<p>This guide covers all three paths with working code, real pricing, and the migration plan. One thing before we start: this guide is about <a target="_blank" rel="noopener nofollow" href="https://deepmind.google/models/imagen/">Google DeepMind’s Imagen text-to-image model</a>, not the unrelated Imagen photo editing app — different product, different company.</p>
 <h2 id="What-you-need-before-you-start"><a href="#What-you-need-before-you-start" class="headerlink" title="What you need before you start"></a>What you need before you start</h2><p>Before you write a single line of code, you need API access. Here’s exactly what each path requires:</p>
 <p><strong>Gemini API path (simplest direct access):</strong></p>
 <ul>
-<li>A <a target="_blank" rel="noopener" href="https://aistudio.google.com/">Google AI Studio</a> account</li>
-<li>A Gemini API key (free tier available — <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/google-ai-plans">Google AI Plans</a> lists current quotas)</li>
+<li>A <a target="_blank" rel="noopener nofollow" href="https://aistudio.google.com/">Google AI Studio</a> account</li>
+<li>A Gemini API key (free tier available — <a target="_blank" rel="noopener nofollow" href="https://ai.google.dev/gemini-api/docs/google-ai-plans">Google AI Plans</a> lists current quotas)</li>
 <li>The Google Gen AI SDK installed: <code>pip install google-genai</code></li>
 </ul>
 <p><strong>Vertex AI path (enterprise Google Cloud):</strong></p>
 <ul>
-<li>A <a target="_blank" rel="noopener" href="https://console.cloud.google.com/">Google Cloud project</a> with billing enabled</li>
+<li>A <a target="_blank" rel="noopener nofollow" href="https://console.cloud.google.com/">Google Cloud project</a> with billing enabled</li>
 <li>Vertex AI API enabled in your project</li>
 <li>Authentication set up via service account or <code>gcloud auth</code></li>
 </ul>
@@ -262,27 +262,27 @@
   <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/imagen-api-output-how-to-use-google-imagen.png" alt="A developer's terminal showing Imagen API Python code with a photorealistic AI-generated golden retriever image appearing as output, dark theme terminal with syntax highlighting" loading="lazy" />
 </picture>
 
-<p>The API returns base64-encoded PNG images inside a JSON response. Each generated image includes a <a target="_blank" rel="noopener" href="https://deepmind.google/technologies/synthid/">SynthID</a> digital watermark — invisible to the eye but detectable by Google’s verification tools. This is on by default and can’t be disabled.</p>
-<h3 id="Prompt-tips-that-actually-work"><a href="#Prompt-tips-that-actually-work" class="headerlink" title="Prompt tips that actually work"></a>Prompt tips that actually work</h3><p>The official <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/imagen#imagen-prompt-guide">Imagen prompt guide</a> recommends starting short and iterating. In practice:</p>
+<p>The API returns base64-encoded PNG images inside a JSON response. Each generated image includes a <a target="_blank" rel="noopener nofollow" href="https://deepmind.google/technologies/synthid/">SynthID</a> digital watermark — invisible to the eye but detectable by Google’s verification tools. This is on by default and can’t be disabled.</p>
+<h3 id="Prompt-tips-that-actually-work"><a href="#Prompt-tips-that-actually-work" class="headerlink" title="Prompt tips that actually work"></a>Prompt tips that actually work</h3><p>The official <a target="_blank" rel="noopener nofollow" href="https://ai.google.dev/gemini-api/docs/imagen#imagen-prompt-guide">Imagen prompt guide</a> recommends starting short and iterating. In practice:</p>
 <ul>
 <li><strong>Start with subject, context, style</strong>: “A ceramic coffee mug on a wooden desk, morning light through window blinds, product photography style”</li>
 <li><strong>Add negative details if needed</strong>: “No text, no logos, no people”</li>
 <li><strong>Imagen 4 handles text in images well</strong>: You can include prompts like “A storefront sign reading ‘Open’ in neon pink cursive”</li>
 <li><strong>Aspect ratios</strong>: Supported values are <code>1:1</code>, <code>3:4</code>, <code>4:3</code>, <code>9:16</code>, <code>16:9</code></li>
 </ul>
-<p>Rate limits depend on your <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/rate-limits">Google AI plan tier</a>. The free tier typically allows around 2-5 images per minute.</p>
+<p>Rate limits depend on your <a target="_blank" rel="noopener nofollow" href="https://ai.google.dev/gemini-api/docs/rate-limits">Google AI plan tier</a>. The free tier typically allows around 2-5 images per minute.</p>
 <h2 id="Generate-images-through-Vertex-AI"><a href="#Generate-images-through-Vertex-AI" class="headerlink" title="Generate images through Vertex AI"></a>Generate images through Vertex AI</h2><p>If you’re already in the Google Cloud ecosystem, Vertex AI gives you the same Imagen models with enterprise controls — IAM permissions, VPC service controls, and usage billing through your existing Cloud account.</p>
 <p>The code is nearly identical to the Gemini API path. The main differences:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> google <span class="keyword">import</span> genai</span><br><span class="line"><span class="keyword">from</span> google.genai <span class="keyword">import</span> types</span><br><span class="line"></span><br><span class="line"><span class="comment"># Vertex AI uses project/location instead of an API key</span></span><br><span class="line">client = genai.Client(</span><br><span class="line">    vertexai=<span class="literal">True</span>,</span><br><span class="line">    project=<span class="string">&quot;your-gcp-project-id&quot;</span>,</span><br><span class="line">    location=<span class="string">&quot;us-central1&quot;</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">response = client.models.generate_images(</span><br><span class="line">    model=<span class="string">&#x27;imagen-4.0-generate-001&#x27;</span>,</span><br><span class="line">    prompt=<span class="string">&#x27;Futuristic city skyline at dusk, cyberpunk aesthetic, wide angle&#x27;</span>,</span><br><span class="line">    config=types.GenerateImagesConfig(number_of_images=<span class="number">1</span>),</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">response.generated_images[<span class="number">0</span>].image.save(<span class="string">&#x27;skyline.png&#x27;</span>)</span><br></pre></td></tr></table></figure>
 
-<p>The trade-off: Vertex AI requires <a target="_blank" rel="noopener" href="https://cloud.google.com/vertex-ai/generative-ai/docs/samples/generativeaionvertexai-imagen-generate-image">billing enabled</a> on your Google Cloud project and the Vertex AI API enabled. This adds 5-10 minutes of setup but gives you production-grade infrastructure. For prototyping, the Gemini API with a free API key is faster.</p>
+<p>The trade-off: Vertex AI requires <a target="_blank" rel="noopener nofollow" href="https://cloud.google.com/vertex-ai/generative-ai/docs/samples/generativeaionvertexai-imagen-generate-image">billing enabled</a> on your Google Cloud project and the Vertex AI API enabled. This adds 5-10 minutes of setup but gives you production-grade infrastructure. For prototyping, the Gemini API with a free API key is faster.</p>
 <h2 id="Skip-the-setup-—-use-Imagen-through-an-API-aggregator"><a href="#Skip-the-setup-—-use-Imagen-through-an-API-aggregator" class="headerlink" title="Skip the setup — use Imagen through an API aggregator"></a>Skip the setup — use Imagen through an API aggregator</h2><p>The Google-native paths work, but they come with overhead: you’re managing Google Cloud projects, API keys, rate limits, and now — a deprecation deadline. When Imagen shuts down on August 17, every line of code that calls <code>imagen-4.0-generate-001</code> breaks.</p>
 <p>API aggregators solve this differently. Instead of calling Google directly, you call a single API that routes your request to the model — and when the underlying model changes, the aggregator updates the routing, not your code.</p>
 <p><a href="https://www.modellix.ai/">Modellix</a> is one such aggregator (full disclosure: we run it). We <a href="https://www.modellix.ai/blog/google-model-integrated/">integrated Imagen 4.0 alongside Nano Banana and Veo 3.1</a> in June 2026. It offers Imagen 4 through the same REST API as 210+ other image and video models. Here’s what that looks like:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST <span class="string">&quot;https://api.modellix.ai/v1/images/generate&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer YOUR_MODELLIX_KEY&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;model&quot;: &quot;google/imagen-4.0&quot;,</span></span><br><span class="line"><span class="string">    &quot;prompt&quot;: &quot;A photorealistic golden retriever at golden hour&quot;,</span></span><br><span class="line"><span class="string">    &quot;n&quot;: 1,</span></span><br><span class="line"><span class="string">    &quot;size&quot;: &quot;1792x1024&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
 
 <p>The key difference: no Google Cloud project, no SDK installation, no per-platform API key. One key, one REST endpoint, and transparent per-call pricing that shows you exactly what each generation costs before you run it. When Google transitions Imagen to Nano Banana, the model name on Modellix updates — your integration code doesn’t change.</p>
-<p>Other aggregators like <a target="_blank" rel="noopener" href="https://replicate.com/">Replicate</a> also host Imagen models, with per-run pricing around $0.04&#x2F;image at the time of writing.</p>
+<p>Other aggregators like <a target="_blank" rel="noopener nofollow" href="https://replicate.com/">Replicate</a> also host Imagen models, with per-run pricing around $0.04&#x2F;image at the time of writing.</p>
 <picture style="aspect-ratio: 16 / 9; width:100%; max-width: 1200px;">
   <source type="image/webp" srcset="https://img.modellix.ai/en/article/api-architecture-comparison-how-to-use-google-imagen.webp" />
   <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/api-architecture-comparison-how-to-use-google-imagen.png" alt="Architecture comparison: direct Google API path (multiple keys, SDK dependency, per-platform setup) vs aggregator path (single REST key, no SDK, platform-agnostic)" loading="lazy" />
@@ -323,7 +323,7 @@
 <td>~$0.04&#x2F;image</td>
 </tr>
 </tbody></table>
-<p><em>Pricing checked July 2026. Google’s official rates are on the <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/pricing">Gemini API pricing page</a>. Aggregator prices change — check their current model pages.</em></p>
+<p><em>Pricing checked July 2026. Google’s official rates are on the <a target="_blank" rel="noopener nofollow" href="https://ai.google.dev/gemini-api/docs/pricing">Gemini API pricing page</a>. Aggregator prices change — check their current model pages.</em></p>
 <p>The free tier through Google AI Studio is the cheapest way to experiment. For production workloads, the cost differences between channels are negligible at low volume. The real cost isn’t per-image pricing — it’s the engineering time to set up and maintain each integration. That’s where the aggregator path saves money: zero setup, zero maintenance when Google deprecates models.</p>
 <h2 id="After-August-17-2026-—-migrating-to-Nano-Banana"><a href="#After-August-17-2026-—-migrating-to-Nano-Banana" class="headerlink" title="After August 17, 2026 — migrating to Nano Banana"></a>After August 17, 2026 — migrating to Nano Banana</h2><p>When Imagen shuts down, Google’s replacement is Nano Banana, accessed through the Gemini API using the model name <code>gemini-2.5-flash-image</code>. The migration involves three changes to your code:</p>
 <p><strong>1. Model name changes:</strong></p>
@@ -334,7 +334,7 @@
 
 <p><strong>3. Response handling:</strong> Nano Banana returns image data inside standard content parts, not a dedicated <code>generated_images</code> array. You’ll need to extract the image from <code>response.candidates[0].content.parts</code>.</p>
 <p>If you’re using an API aggregator like Modellix, none of these changes affect your code — the aggregator handles the model transition behind its API. Your integration keeps working with the same endpoint and authentication.</p>
-<p>The <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/imagen#migration-to-nano-banana">official migration guide</a> has more detail on response structure changes. If you’re considering whether to stick with Google’s migration path or explore <a href="https://www.modellix.ai/blog/nano-banana-alternative/">alternatives to the Nano Banana API</a>, we’ve compared the options — including staying on Imagen through an aggregator that abstracts the transition.</p>
+<p>The <a target="_blank" rel="noopener nofollow" href="https://ai.google.dev/gemini-api/docs/imagen#migration-to-nano-banana">official migration guide</a> has more detail on response structure changes. If you’re considering whether to stick with Google’s migration path or explore <a href="https://www.modellix.ai/blog/nano-banana-alternative/">alternatives to the Nano Banana API</a>, we’ve compared the options — including staying on Imagen through an aggregator that abstracts the transition.</p>
 <hr>
 <p><strong>If you want to skip the Google Cloud setup entirely</strong>, <a href="https://www.modellix.ai/">Modellix</a> gives you Imagen 4 (and 210+ other models) behind a single REST API key — no per-platform onboarding, transparent per-call pricing, and automatic model updates when providers deprecate endpoints. <a href="https://www.modellix.ai/">Sign up and get an API key</a> in under a minute.</p>
 
@@ -347,6 +347,8 @@
             
               <a href="/blog/tags/ai-image-generation/" class="tag-pill tag-pill--sm">AI Image Generation</a>
             
+              <a href="/blog/tags/nano-banana/" class="tag-pill tag-pill--sm">Nano Banana</a>
+            
               <a href="/blog/tags/google-imagen/" class="tag-pill tag-pill--sm">google imagen</a>
             
               <a href="/blog/tags/imagen-api/" class="tag-pill tag-pill--sm">imagen api</a>
@@ -356,8 +358,6 @@
               <a href="/blog/tags/gemini-api/" class="tag-pill tag-pill--sm">Gemini API</a>
             
               <a href="/blog/tags/vertex-ai/" class="tag-pill tag-pill--sm">vertex ai</a>
-            
-              <a href="/blog/tags/nano-banana/" class="tag-pill tag-pill--sm">Nano Banana</a>
             
               <a href="/blog/tags/google-ai/" class="tag-pill tag-pill--sm">google ai</a>
             
@@ -477,8 +477,8 @@
     <div class="post-share">
       <span class="post-share-label">Share this article</span>
       <div class="post-share-links">
-        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/how-to-use-google-imagen/&text=How%20To%20Use%20Google%20Imagen%3A%20Step-by-Step%20Integration%20Guide" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/how-to-use-google-imagen/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/how-to-use-google-imagen/&text=How%20To%20Use%20Google%20Imagen%3A%20Step-by-Step%20Integration%20Guide" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/how-to-use-google-imagen/" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/how-to-use-google-imagen/"><i class="fa-solid fa-link"></i></button>
       </div>
     </div>
@@ -504,16 +504,16 @@
           <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
         
         
-          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener nofollow" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
         
         
-          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener nofollow" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
         
         
-          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener nofollow" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
         
         
-          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener nofollow" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         
       </div>
       

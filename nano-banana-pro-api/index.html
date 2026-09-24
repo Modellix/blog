@@ -211,7 +211,7 @@
 <p>If you want to call the <strong>Nano Banana Pro API</strong> from your own code, the short version is this: “Nano Banana Pro” is Google’s name for the <code>gemini-3-pro-image</code> model (its highest-fidelity image model, built for text rendering, brand-accurate compositions, and 4K output), and you reach it one of two ways. You can call Google’s official Gemini API directly (billed per token), or call a unified API such as Modellix that fronts the same model behind one key (billed per image). Either way the code shape is identical: authenticate, submit an <em>asynchronous</em> task, then poll for the result or catch it on a webhook. This guide gives you the Pro-specific endpoint, parameters, a full submit-and-poll loop in code, the real per-image cost, and a straight answer on when Pro is worth it over the cheaper Nano Banana 2.</p>
 <p>Every number below was pulled from the providers’ own pages on <strong>July 25, 2026</strong>. Model IDs and prices move, so treat them as a dated snapshot and re-check the linked pages before you ship.</p>
 <h2 id="What-the-Nano-Banana-Pro-API-actually-is-and-when-to-use-it-over-Nano-Banana-2"><a href="#What-the-Nano-Banana-Pro-API-actually-is-and-when-to-use-it-over-Nano-Banana-2" class="headerlink" title="What the Nano Banana Pro API actually is (and when to use it over Nano Banana 2)"></a>What the Nano Banana Pro API actually is (and when to use it over Nano Banana 2)</h2><p>“Nano Banana Pro” is a nickname, not a separate product. On Google’s own pricing page it is listed as <strong>“Gemini 3 Pro Image (Nano Banana Pro)”</strong> with the model ID <strong><code>gemini-3-pro-image</code></strong>. Google is the model maker here; the API you call is just how you reach it.</p>
-<p>Google positions Pro as <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/image-generation">“the premium choice for the most complex visual tasks, offering the highest level of world knowledge, advanced localization, accurate brand consistency, and precision creative control.”</a> In practice, the Pro-specific strengths that matter for an integration are:</p>
+<p>Google positions Pro as <a target="_blank" rel="noopener nofollow" href="https://ai.google.dev/gemini-api/docs/image-generation">“the premium choice for the most complex visual tasks, offering the highest level of world knowledge, advanced localization, accurate brand consistency, and precision creative control.”</a> In practice, the Pro-specific strengths that matter for an integration are:</p>
 <ul>
 <li><strong>Legible text rendering:</strong> Google describes it as “capable of generating legible, stylized text for infographics, menus, diagrams, and marketing assets.” This is the one thing most image models still get wrong, and it’s Pro’s headline feature.</li>
 <li><strong>High resolution:</strong> 1K, 2K, and 4K output.</li>
@@ -250,7 +250,7 @@
 </tbody></table>
 <p>Use Pro when the output has to be <em>right</em>: an infographic with readable labels, a poster with correct brand type, a 4K hero image. Drop back to Nano Banana 2 when you’re iterating fast or generating in bulk and don’t need Pro’s ceiling; for a full end-to-end walkthrough of the default model, see the <a href="https://www.modellix.ai/blog/how-to-use-nano-banana/">how to use Nano Banana</a> guide. And to be clear about the boundary: Pro is Google’s model, and Modellix (used below) is one distribution layer that fronts it, not its maker.</p>
 <h2 id="Two-ways-to-call-the-Nano-Banana-Pro-API"><a href="#Two-ways-to-call-the-Nano-Banana-Pro-API" class="headerlink" title="Two ways to call the Nano Banana Pro API"></a>Two ways to call the Nano Banana Pro API</h2><p>There are two legitimate access paths, and picking the right one matters more than any single line of code.</p>
-<p><strong>Path A: Google’s official Gemini API.</strong> You call Google directly. You authenticate with a Gemini API key, request the model <code>gemini-3-pro-image</code> through the <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/image-generation">Interactions API</a>, and set a <code>response_format</code> (image type, aspect ratio, mime). Billing is token-based (see the cost section below).</p>
+<p><strong>Path A: Google’s official Gemini API.</strong> You call Google directly. You authenticate with a Gemini API key, request the model <code>gemini-3-pro-image</code> through the <a target="_blank" rel="noopener nofollow" href="https://ai.google.dev/gemini-api/docs/image-generation">Interactions API</a>, and set a <code>response_format</code> (image type, aspect ratio, mime). Billing is token-based (see the cost section below).</p>
 <p><strong>Path B: a unified API (Modellix).</strong> Instead of integrating one provider at a time, you call one endpoint with one key and swap the model name in the path: Nano Banana Pro today, a different image or video model tomorrow. Modellix is one such Model-as-a-Service layer; it is a distribution layer, not the model’s maker. Billing here is quoted per image, and every model uses the same asynchronous task interface.</p>
 <table>
 <thead>
@@ -324,7 +324,7 @@
 <p><em>The Modellix <code>google/nano-banana-pro</code> model page shows the endpoint’s per-image price ($0.1265 to $0.2093&#x2F;img) and the exact <code>prompt</code> &#x2F; <code>aspectRatio</code> &#x2F; <code>imageSize</code> parameters. Captured July 25, 2026.</em></p>
 <h2 id="Get-and-secure-a-Nano-Banana-Pro-API-key"><a href="#Get-and-secure-a-Nano-Banana-Pro-API-key" class="headerlink" title="Get and secure a Nano Banana Pro API key"></a>Get and secure a Nano Banana Pro API key</h2><p>There are two legitimate issuers, and the one you pick decides the header you send:</p>
 <ul>
-<li><strong>Google AI Studio.</strong> Open the <a target="_blank" rel="noopener" href="https://aistudio.google.com/apikey">API Keys page</a> and click <strong>Create API key</strong>; new keys are created as auth keys and stay retrievable in AI Studio. Send it as <code>x-goog-api-key</code>. For the SDKs, install <code>pip install google-genai</code> (Python) or <code>npm install @google/genai</code> (JavaScript), a step the image-generation page itself skips.</li>
+<li><strong>Google AI Studio.</strong> Open the <a target="_blank" rel="noopener nofollow" href="https://aistudio.google.com/apikey">API Keys page</a> and click <strong>Create API key</strong>; new keys are created as auth keys and stay retrievable in AI Studio. Send it as <code>x-goog-api-key</code>. For the SDKs, install <code>pip install google-genai</code> (Python) or <code>npm install @google/genai</code> (JavaScript), a step the image-generation page itself skips.</li>
 <li><strong>The Modellix console.</strong> Open <strong>API Key</strong> and create one. It is displayed only once, so store it the moment it appears. Send it as <code>Authorization: Bearer &lt;key&gt;</code>.</li>
 </ul>
 <p>A key in the wrong header returns a plain <code>401</code> that never mentions the header, so check that first. On “free” keys: Google lists no free API tier for <code>gemini-3-pro-image</code>, and the AI Studio playground’s free quota is a browser preview, not an API allowance. Sites offering “free unlimited” Pro access or a “key generator” route you through someone else’s platform and key, or harvest credentials.</p>
@@ -570,8 +570,8 @@
     <div class="post-share">
       <span class="post-share-label">Share this article</span>
       <div class="post-share-links">
-        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/nano-banana-pro-api/&text=Nano%20Banana%20Pro%20API%3A%20Integration%20Guide%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/nano-banana-pro-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/nano-banana-pro-api/&text=Nano%20Banana%20Pro%20API%3A%20Integration%20Guide%20%26%20Code" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/nano-banana-pro-api/" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/nano-banana-pro-api/"><i class="fa-solid fa-link"></i></button>
       </div>
     </div>
@@ -597,16 +597,16 @@
           <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
         
         
-          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener nofollow" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
         
         
-          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener nofollow" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
         
         
-          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener nofollow" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
         
         
-          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener nofollow" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         
       </div>
       

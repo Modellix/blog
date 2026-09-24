@@ -166,9 +166,9 @@
             
               <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
             
-              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
-            
               <a href="/blog/tags/pixverse/" class="tag-pill tag-pill--sm">PixVerse</a>
+            
+              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
             
               <a href="/blog/tags/TTS/" class="tag-pill tag-pill--sm">TTS</a>
             
@@ -211,7 +211,7 @@
 
 <p>Search for “pixverse lip sync” and you get the official API manual at the top, then a wall of product pages and aggregator model cards. What none of them say together is the part that decides your integration: the API takes a <strong>video plus exactly one audio source</strong>, the audio source is a choice between an uploaded track and a text-to-speech script, and that choice changes the field names, the limits, and the billing rule. Get that contract wrong and you spend a debugging cycle on error 400017 before your first synced clip.</p>
 <p>This guide walks the complete PixVerse lip sync API integration: what the endpoint accepts, the <code>audio_url</code> vs <code>speaker_id</code>+<code>tts_content</code> decision, credits-based pricing with units matched, a working request, and the failure modes that cost credits. All contract and pricing facts were read from PixVerse’s official platform documentation on August 3, 2026. Modellix is an API aggregator with a commercial interest in this topic; the official PixVerse Platform path is described as the neutral baseline, and the Modellix route is shown as one of several integration options — not as a claim that the aggregator is cheaper.</p>
-<h2 id="What-the-PixVerse-lip-sync-API-takes-as-input"><a href="#What-the-PixVerse-lip-sync-API-takes-as-input" class="headerlink" title="What the PixVerse lip sync API takes as input"></a>What the PixVerse lip sync API takes as input</h2><p>PixVerse’s lip sync capability is exposed as a <strong>Speech (LipSync)</strong> task: the model analyzes the audio and the speaker’s mouth movements in the input video and re-renders the lips so they match the audio precisely. The official endpoint is <code>https://app-api.pixverse.ai/openapi/v2/video/lip_sync/generate</code>, and the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/speechlip-sync-1268530m0">official Speech (Lip Sync) documentation</a> is the authoritative contract used in this article.</p>
+<h2 id="What-the-PixVerse-lip-sync-API-takes-as-input"><a href="#What-the-PixVerse-lip-sync-API-takes-as-input" class="headerlink" title="What the PixVerse lip sync API takes as input"></a>What the PixVerse lip sync API takes as input</h2><p>PixVerse’s lip sync capability is exposed as a <strong>Speech (LipSync)</strong> task: the model analyzes the audio and the speaker’s mouth movements in the input video and re-renders the lips so they match the audio precisely. The official endpoint is <code>https://app-api.pixverse.ai/openapi/v2/video/lip_sync/generate</code>, and the <a target="_blank" rel="noopener nofollow" href="https://docs.platform.pixverse.ai/speechlip-sync-1268530m0">official Speech (Lip Sync) documentation</a> is the authoritative contract used in this article.</p>
 <p>Two inputs are required, with documented limits (per the Speech (LipSync) guide):</p>
 <table>
 <thead>
@@ -235,7 +235,7 @@
 <blockquote>
 <p>Note: the separate Upload Video&#x2F;Audio reference page lists larger per-feature limits for its upload endpoint (up to 250 MB &#x2F; 300 seconds for lip sync in its feature table). The Speech (LipSync) guide’s 100 MB &#x2F; 60 second contract is used throughout this article because it is the authoritative reference for the generation request; if you hit the upload limits, confirm which contract your account’s endpoint enforces.</p>
 </blockquote>
-<p>The API reference is at <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/speechlipsync-generation-19094278e0">SpeechLipsync Generation</a>, and media uploads (video or audio) go through the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/upload-videoaudio-19094401e0">Upload Video&#x2F;Audio operation</a>, which returns a <code>media_id</code>. Authentication needs a valid API key plus a <strong>unique <code>Ai-Trace-Id</code> per request</strong>; the official docs call a reused trace ID the most common cause of jobs stuck in “Generating” status. For the wider PixVerse endpoint and authentication surface, our <a href="https://www.modellix.ai/blog/pixverse-api/">PixVerse API overview</a> walks the full request lifecycle.</p>
+<p>The API reference is at <a target="_blank" rel="noopener nofollow" href="https://docs.platform.pixverse.ai/speechlipsync-generation-19094278e0">SpeechLipsync Generation</a>, and media uploads (video or audio) go through the <a target="_blank" rel="noopener nofollow" href="https://docs.platform.pixverse.ai/upload-videoaudio-19094401e0">Upload Video&#x2F;Audio operation</a>, which returns a <code>media_id</code>. Authentication needs a valid API key plus a <strong>unique <code>Ai-Trace-Id</code> per request</strong>; the official docs call a reused trace ID the most common cause of jobs stuck in “Generating” status. For the wider PixVerse endpoint and authentication surface, our <a href="https://www.modellix.ai/blog/pixverse-api/">PixVerse API overview</a> walks the full request lifecycle.</p>
 <p>That is the whole surface: one endpoint, two inputs, one of them with two variants. The part integrations get wrong is the second input — an audio track and a TTS script are not interchangeable fields, even though both live inside the same request.</p>
 <h2 id="audio-url-vs-speaker-id-tts-content-the-two-audio-paths"><a href="#audio-url-vs-speaker-id-tts-content-the-two-audio-paths" class="headerlink" title="audio_url vs speaker_id + tts_content: the two audio paths"></a>audio_url vs speaker_id + tts_content: the two audio paths</h2><p>PixVerse’s own documentation expresses the choice as <code>audio_media_id</code> (a finished audio file you uploaded) <strong>or</strong> <code>lip_sync_tts_speaker_id</code> + <code>lip_sync_tts_content</code> (a TTS script). Aggregator routes expose the same decision under their own field names — Modellix’s route uses <code>audio_url</code> vs <code>speaker_id</code> + <code>tts_content</code>. Either way, the rule is the same: <strong>use exactly one of the two, never both and never neither.</strong></p>
 <table>
@@ -276,7 +276,7 @@
 <td>PixVerse Platform — lip sync</td>
 <td>4 credits</td>
 <td>per second of audio (round up), or per 15 bytes of TTS text after UTF-8 encoding</td>
-<td><a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/pricing-796039m0">Official pricing page</a></td>
+<td><a target="_blank" rel="noopener nofollow" href="https://docs.platform.pixverse.ai/pricing-796039m0">Official pricing page</a></td>
 </tr>
 <tr>
 <td>PixVerse Platform — Image Avatar (separate capability)</td>
@@ -288,13 +288,13 @@
 <td>Replicate <code>pixverse/lipsync</code></td>
 <td>$0.04</td>
 <td>per second of output video</td>
-<td><a target="_blank" rel="noopener" href="https://replicate.com/pixverse/lipsync">Replicate model page</a></td>
+<td><a target="_blank" rel="noopener nofollow" href="https://replicate.com/pixverse/lipsync">Replicate model page</a></td>
 </tr>
 <tr>
 <td>Eachlabs PixVerse lip sync (v4.5 route)</td>
 <td>$0.00627</td>
 <td>per credit</td>
-<td><a target="_blank" rel="noopener" href="https://www.eachlabs.ai/pixverse/pixverse-v4-5/pixverse-lip-sync">Eachlabs model page</a></td>
+<td><a target="_blank" rel="noopener nofollow" href="https://www.eachlabs.ai/pixverse/pixverse-v4-5/pixverse-lip-sync">Eachlabs model page</a></td>
 </tr>
 <tr>
 <td>Modellix <code>pixverse/lipsync</code></td>
@@ -317,7 +317,7 @@
 <p>For the TTS path, replace the body’s audio field with the script and speaker:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST <span class="string">&quot;https://app-api.pixverse.ai/openapi/v2/video/lip_sync/generate&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;API-KEY: <span class="variable">$PIXVERSE_API_KEY</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Ai-Trace-Id: <span class="subst">$(uuidgen)</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;video_media_id&quot;: 123456789,</span></span><br><span class="line"><span class="string">    &quot;lip_sync_tts_speaker_id&quot;: &quot;auto&quot;,</span></span><br><span class="line"><span class="string">    &quot;lip_sync_tts_content&quot;: &quot;Hello, this is a lip sync test.&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
 
-<p><em>The snippets above are written against the official API reference and the documented request shapes; they have not been executed against a live account. Field names and response keys follow the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/speechlipsync-generation-19094278e0">SpeechLipsync Generation reference</a>.</em></p>
+<p><em>The snippets above are written against the official API reference and the documented request shapes; they have not been executed against a live account. Field names and response keys follow the <a target="_blank" rel="noopener nofollow" href="https://docs.platform.pixverse.ai/speechlipsync-generation-19094278e0">SpeechLipsync Generation reference</a>.</em></p>
 <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
   <source type="image/webp" srcset="https://img.modellix.ai/en/article/pixverse-lip-sync-flow.webp" />
   <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/pixverse-lip-sync-flow.png" alt="Three-stage PixVerse lip sync workflow: upload the talking-head video and audio, submit the lip_sync/generate request with one audio source, poll status until the synced video is ready" loading="lazy" />
@@ -325,7 +325,7 @@
 
 <p><em>The three stages of a PixVerse lip sync task — prepare inputs, generate, poll to completion. Illustrative workflow created for this guide; the request shapes shown above follow the official API reference.</em></p>
 <p>The same decision surface exists on aggregator routes. On Modellix’s <code>pixverse/lipsync</code> route (linked in the pricing table above), the model takes a publicly accessible talking-video URL plus either <code>audio_url</code> or <code>speaker_id</code> + <code>tts_content</code> (up to 140 characters; speaker codes include <code>emily</code>, <code>james</code>, <code>isabella</code>, <code>liam</code>, <code>chloe</code>, <code>adrian</code>, <code>harper</code>, <code>ava</code>, <code>sophia</code>, <code>julia</code>, <code>mason</code>, <code>jack</code>, <code>oliver</code>, <code>ethan</code>, or <code>auto</code>), billed per second of output. Check the live model page for the current field list and price before integrating.</p>
-<h2 id="Status-codes-errors-and-the-two-failure-modes-that-cost-credits"><a href="#Status-codes-errors-and-the-two-failure-modes-that-cost-credits" class="headerlink" title="Status codes, errors, and the two failure modes that cost credits"></a>Status codes, errors, and the two failure modes that cost credits</h2><p>After submission you poll the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/get-video-generation-status-13016632e0">Get Video Generation Status API</a> with the returned <code>video_id</code>. The official status contract: <strong>1</strong> &#x3D; generation succeeded (the <code>url</code> field holds the video), <strong>5</strong> &#x3D; waiting for generation, <strong>7</strong> &#x3D; content moderation failure, <strong>8</strong> &#x3D; generation failed. Poll while status is 5; stop and handle 7 and 8 instead of polling forever.</p>
+<h2 id="Status-codes-errors-and-the-two-failure-modes-that-cost-credits"><a href="#Status-codes-errors-and-the-two-failure-modes-that-cost-credits" class="headerlink" title="Status codes, errors, and the two failure modes that cost credits"></a>Status codes, errors, and the two failure modes that cost credits</h2><p>After submission you poll the <a target="_blank" rel="noopener nofollow" href="https://docs.platform.pixverse.ai/get-video-generation-status-13016632e0">Get Video Generation Status API</a> with the returned <code>video_id</code>. The official status contract: <strong>1</strong> &#x3D; generation succeeded (the <code>url</code> field holds the video), <strong>5</strong> &#x3D; waiting for generation, <strong>7</strong> &#x3D; content moderation failure, <strong>8</strong> &#x3D; generation failed. Poll while status is 5; stop and handle 7 and 8 instead of polling forever.</p>
 <p>Two failure modes matter financially:</p>
 <ul>
 <li><strong>Status 7 (content moderation failure)</strong> — the official docs say credits used for filtered videos are <strong>automatically refunded</strong>, so a moderation rejection costs time, not money. Fix the input (content, or the speaker&#x2F;TTS material) and resubmit.</li>
@@ -382,7 +382,7 @@
 <h2 id="What-Modellix’s-pixverse-lipsync-is-—-and-is-not"><a href="#What-Modellix’s-pixverse-lipsync-is-—-and-is-not" class="headerlink" title="What Modellix’s pixverse&#x2F;lipsync is — and is not"></a>What Modellix’s pixverse&#x2F;lipsync is — and is not</h2><p>Modellix is an API aggregator: one key, one billing account, and a REST interface over models from multiple providers, with PixVerse among them. Its <code>pixverse/lipsync</code> route is <strong>lip re-synchronization on an existing talking video</strong>: you supply the video plus one audio source, and the model re-times the subject’s lips to match. That is the capability this article covers, and the only PixVerse lip-sync capability Modellix exposes.</p>
 <p>It is <strong>not</strong> several things that look similar in search results:</p>
 <ul>
-<li><strong>Not Image Avatar.</strong> PixVerse Platform’s <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/avatar-2266777m0">Image Avatar API</a> generates a talking video <em>from a still portrait</em> (<code>img_id</code>) plus a voice source — a photo-to-digital-human pipeline. Modellix does not carry an image-avatar route; its lipsync requires an existing video. If your use case is “turn a headshot into a presenter,” the official Avatar API is the documented path, not Modellix.</li>
+<li><strong>Not Image Avatar.</strong> PixVerse Platform’s <a target="_blank" rel="noopener nofollow" href="https://docs.platform.pixverse.ai/avatar-2266777m0">Image Avatar API</a> generates a talking video <em>from a still portrait</em> (<code>img_id</code>) plus a voice source — a photo-to-digital-human pipeline. Modellix does not carry an image-avatar route; its lipsync requires an existing video. If your use case is “turn a headshot into a presenter,” the official Avatar API is the documented path, not Modellix.</li>
 <li><strong>Not custom voice cloning.</strong> PixVerse Platform lets you upload a sample (under 30 seconds) and create a <code>speaker_id</code> for a cloned voice via <code>POST /openapi/v2/video/tts_speaker</code>. Modellix’s lipsync accepts a <strong>preset</strong> speaker list (<code>emily</code>, <code>james</code>, … <code>auto</code>) for TTS — no arbitrary clone upload. Treat voice cloning as a PixVerse Platform capability, not a Modellix one.</li>
 <li><strong>Not audio generation.</strong> Lip sync consumes audio as an input (a track or a TTS script); it does not generate standalone audio, and neither Modellix nor this guide claims audio-generation capability.</li>
 </ul>
@@ -416,9 +416,9 @@
             
               <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
             
-              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
-            
               <a href="/blog/tags/pixverse/" class="tag-pill tag-pill--sm">PixVerse</a>
+            
+              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
             
               <a href="/blog/tags/TTS/" class="tag-pill tag-pill--sm">TTS</a>
             
@@ -530,8 +530,8 @@
     <div class="post-share">
       <span class="post-share-label">Share this article</span>
       <div class="post-share-links">
-        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/pixverse-lip-sync/&text=PixVerse%20Lip%20Sync%20API%20Guide%3A%20Talking%20Video%20%26%20TTS" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/pixverse-lip-sync/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/pixverse-lip-sync/&text=PixVerse%20Lip%20Sync%20API%20Guide%3A%20Talking%20Video%20%26%20TTS" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/pixverse-lip-sync/" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/pixverse-lip-sync/"><i class="fa-solid fa-link"></i></button>
       </div>
     </div>
@@ -557,16 +557,16 @@
           <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
         
         
-          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener nofollow" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
         
         
-          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener nofollow" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
         
         
-          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener nofollow" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
         
         
-          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener nofollow" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         
       </div>
       

@@ -164,9 +164,9 @@
             
               <a href="/blog/tags/ai-video-api/" class="tag-pill tag-pill--sm">AI Video API</a>
             
-              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
-            
               <a href="/blog/tags/pixverse/" class="tag-pill tag-pill--sm">PixVerse</a>
+            
+              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
             
               <a href="/blog/tags/image-to-video/" class="tag-pill tag-pill--sm">Image to Video</a>
             
@@ -210,13 +210,13 @@
 </picture>
 
 <h2 id="The-short-answer-PixVerse-FL2V-is-a-two-frame-transition-API"><a href="#The-short-answer-PixVerse-FL2V-is-a-two-frame-transition-API" class="headerlink" title="The short answer: PixVerse FL2V is a two-frame transition API"></a>The short answer: PixVerse FL2V is a two-frame transition API</h2><p>The PixVerse first-last frame API — officially the “Transition (First-last frame)” feature — generates a video between two images you provide: a start frame and an end frame, plus a prompt describing the transition. It is a single asynchronous endpoint, <code>POST /openapi/v2/video/transition/generate</code>, and it follows the same submit–poll–retrieve loop as PixVerse’s text-to-video and image-to-video APIs, with one extra prerequisite: both frames must be uploaded first so you can pass their <code>img_id</code> values.</p>
-<p>Before the code, one terminology note, because the SERP mixes names for the same capability. PixVerse’s official <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/transitionfirst-last-frame-feature-882973m0">Transition (First-last frame) guide</a> calls it “Transition” or “First-last frame Feature”; the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/transitionfirst-last-frame-generation-15123014e0">API reference</a> names the endpoint “Transition(First-last frame) generation”; and the developer community — plus aggregator model cards — shortens it to FL2V (first-last-to-video), “Start-End-to-Video”, or “keyframe-to-video”. They are the same feature. Everything in this guide was read from the official pages on August 6, 2026; PixVerse iterates on parameters and prices quickly, so treat anything model- or price-specific as current as of that date.</p>
+<p>Before the code, one terminology note, because the SERP mixes names for the same capability. PixVerse’s official <a target="_blank" rel="noopener nofollow" href="https://docs.platform.pixverse.ai/transitionfirst-last-frame-feature-882973m0">Transition (First-last frame) guide</a> calls it “Transition” or “First-last frame Feature”; the <a target="_blank" rel="noopener nofollow" href="https://docs.platform.pixverse.ai/transitionfirst-last-frame-generation-15123014e0">API reference</a> names the endpoint “Transition(First-last frame) generation”; and the developer community — plus aggregator model cards — shortens it to FL2V (first-last-to-video), “Start-End-to-Video”, or “keyframe-to-video”. They are the same feature. Everything in this guide was read from the official pages on August 6, 2026; PixVerse iterates on parameters and prices quickly, so treat anything model- or price-specific as current as of that date.</p>
 <h2 id="What-you-need-before-you-call-it"><a href="#What-you-need-before-you-call-it" class="headerlink" title="What you need before you call it"></a>What you need before you call it</h2><p>The prerequisites match the rest of the PixVerse Platform API:</p>
 <ul>
 <li><strong>A valid API key</strong>, sent in the <code>API-KEY</code> header.</li>
 <li><strong>A unique <code>Ai-Trace-Id</code> per request</strong> — a UUID. The official docs flag reused trace ids as the most common cause of tasks stuck in “Generating”.</li>
 <li><strong>An active subscription with API credits.</strong> The API bills against your Platform credit balance; the web app’s free trial does not apply.</li>
-<li><strong>Two images — a first frame and a last frame</strong> — uploaded through the platform’s media API so you get an <code>img_id</code> for each. The official <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/upload-image-13016631e0">upload documentation</a> requires <code>png</code> &#x2F; <code>webp</code> &#x2F; <code>jpeg</code> &#x2F; <code>jpg</code>, files under 20MB, and dimensions up to 10000 pixels.</li>
+<li><strong>Two images — a first frame and a last frame</strong> — uploaded through the platform’s media API so you get an <code>img_id</code> for each. The official <a target="_blank" rel="noopener nofollow" href="https://docs.platform.pixverse.ai/upload-image-13016631e0">upload documentation</a> requires <code>png</code> &#x2F; <code>webp</code> &#x2F; <code>jpeg</code> &#x2F; <code>jpg</code>, files under 20MB, and dimensions up to 10000 pixels.</li>
 <li><strong>A model choice.</strong> The current family is V6 and C1 (both support first-last-frame with 1–15 second durations); the older ladder — V3.5&#x2F;V4&#x2F;V4.5, V5, V5.5&#x2F;V5.6 — also supports it with shorter fixed durations. Details in the next section.</li>
 </ul>
 <p>If you are new to the submit–poll–retrieve loop itself — keys, trace ids, and polling — our <a href="https://www.modellix.ai/blog/pixverse-api/">PixVerse API integration guide</a> walks through authentication and the general pattern end to end.</p>
@@ -226,8 +226,8 @@
 <p>The response returns the <code>img_id</code> you will pass to the generation endpoint:</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;ErrCode&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;ErrMsg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;Resp&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;img_id&quot;</span><span class="punctuation">:</span> <span class="number">123456789</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;img_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://...&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 
-<p>Two caveats from the official docs. First, the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/transitionfirst-last-frame-feature-882973m0">feature guide</a> warns that <strong>URL-based image uploads are currently not supported</strong> — use the file path form even though the upload API reference still documents an <code>image_url</code> field. Second, uploads go through moderation: a rejected image returns an error such as <code>500052</code> (“image failed moderation”), and you must re-upload a compliant file before generating. Upload both frames, keep both <code>img_id</code> values, and move to the generation call.</p>
-<h2 id="Calling-the-PixVerse-first-last-frame-API-parameters-and-code"><a href="#Calling-the-PixVerse-first-last-frame-API-parameters-and-code" class="headerlink" title="Calling the PixVerse first-last frame API: parameters and code"></a>Calling the PixVerse first-last frame API: parameters and code</h2><p>The request goes to <code>https://app-api.pixverse.ai/openapi/v2/video/transition/generate</code> with <code>API-KEY</code>, <code>Ai-Trace-Id</code>, and <code>Content-Type: application/json</code> headers. The official parameter set, from the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/transitionfirst-last-frame-generation-15123014e0">generation API reference</a>:</p>
+<p>Two caveats from the official docs. First, the <a target="_blank" rel="noopener nofollow" href="https://docs.platform.pixverse.ai/transitionfirst-last-frame-feature-882973m0">feature guide</a> warns that <strong>URL-based image uploads are currently not supported</strong> — use the file path form even though the upload API reference still documents an <code>image_url</code> field. Second, uploads go through moderation: a rejected image returns an error such as <code>500052</code> (“image failed moderation”), and you must re-upload a compliant file before generating. Upload both frames, keep both <code>img_id</code> values, and move to the generation call.</p>
+<h2 id="Calling-the-PixVerse-first-last-frame-API-parameters-and-code"><a href="#Calling-the-PixVerse-first-last-frame-API-parameters-and-code" class="headerlink" title="Calling the PixVerse first-last frame API: parameters and code"></a>Calling the PixVerse first-last frame API: parameters and code</h2><p>The request goes to <code>https://app-api.pixverse.ai/openapi/v2/video/transition/generate</code> with <code>API-KEY</code>, <code>Ai-Trace-Id</code>, and <code>Content-Type: application/json</code> headers. The official parameter set, from the <a target="_blank" rel="noopener nofollow" href="https://docs.platform.pixverse.ai/transitionfirst-last-frame-generation-15123014e0">generation API reference</a>:</p>
 <table>
 <thead>
 <tr>
@@ -277,7 +277,7 @@
 <td><code>true</code>&#x2F;<code>false</code>, default <code>false</code>; supported on V5.5&#x2F;V5.6&#x2F;V6&#x2F;C1</td>
 </tr>
 </tbody></table>
-<p>The two official pages disagree on one detail worth knowing: the feature guide’s parameter list still shows <code>motion_mode</code> and only models <code>v3.5</code>&#x2F;<code>v4</code>&#x2F;<code>v4.5</code>, while the generation API reference and the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/v6-2056814m0">V6 model overview</a> list the full model ladder and no <code>motion_mode</code>. When in doubt, follow the API reference for accepted values — it is the endpoint’s own schema, and it is the page that documents V6&#x2F;C1 support with 1–15 second durations.</p>
+<p>The two official pages disagree on one detail worth knowing: the feature guide’s parameter list still shows <code>motion_mode</code> and only models <code>v3.5</code>&#x2F;<code>v4</code>&#x2F;<code>v4.5</code>, while the generation API reference and the <a target="_blank" rel="noopener nofollow" href="https://docs.platform.pixverse.ai/v6-2056814m0">V6 model overview</a> list the full model ladder and no <code>motion_mode</code>. When in doubt, follow the API reference for accepted values — it is the endpoint’s own schema, and it is the page that documents V6&#x2F;C1 support with 1–15 second durations.</p>
 <p>Note also what the official endpoint does <em>not</em> take: there is no <code>aspect_ratio</code>, <code>camera_movement</code>, or <code>style</code> parameter in the transition schema. Those controls exist on the V6-native and aggregator routes (which accept frame URLs directly) — the route comparison later in this guide covers that difference.</p>
 <p>A minimal curl call, following the official example structure:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">curl --location <span class="string">&#x27;https://app-api.pixverse.ai/openapi/v2/video/transition/generate&#x27;</span> \</span><br><span class="line">  --header <span class="string">&#x27;Ai-Trace-Id: &#x27;</span><span class="string">&quot;<span class="subst">$(uuidgen)</span>&quot;</span> \</span><br><span class="line">  --header <span class="string">&#x27;API-KEY: YOUR_PIXVERSE_API_KEY&#x27;</span> \</span><br><span class="line">  --header <span class="string">&#x27;Content-Type: application/json&#x27;</span> \</span><br><span class="line">  --data <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;prompt&quot;: &quot;The car transforms into a spaceship, metallic panels sliding apart as it lifts off&quot;,</span></span><br><span class="line"><span class="string">    &quot;model&quot;: &quot;v6&quot;,</span></span><br><span class="line"><span class="string">    &quot;duration&quot;: 5,</span></span><br><span class="line"><span class="string">    &quot;quality&quot;: &quot;720p&quot;,</span></span><br><span class="line"><span class="string">    &quot;first_frame_img&quot;: 123456789,</span></span><br><span class="line"><span class="string">    &quot;last_frame_img&quot;: 987654321,</span></span><br><span class="line"><span class="string">    &quot;seed&quot;: 937433858</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
@@ -292,7 +292,7 @@
 </picture>
 
 <p><em>Figure 1: The PixVerse first-last frame flow — upload both frames, call transition&#x2F;generate, poll status until it reaches 1, then download. Diagram generated from the official Transition documentation on August 6, 2026.</em></p>
-<h2 id="Polling-for-the-result-and-handling-failures"><a href="#Polling-for-the-result-and-handling-failures" class="headerlink" title="Polling for the result and handling failures"></a>Polling for the result and handling failures</h2><p>Query the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/get-video-generation-status-882972m0">video status endpoint</a> with the returned <code>video_id</code> until it leaves processing:</p>
+<h2 id="Polling-for-the-result-and-handling-failures"><a href="#Polling-for-the-result-and-handling-failures" class="headerlink" title="Polling for the result and handling failures"></a>Polling for the result and handling failures</h2><p>Query the <a target="_blank" rel="noopener nofollow" href="https://docs.platform.pixverse.ai/get-video-generation-status-882972m0">video status endpoint</a> with the returned <code>video_id</code> until it leaves processing:</p>
 <table>
 <thead>
 <tr>
@@ -321,15 +321,15 @@
 
 <p>The failure cases that cost integrators the most time:</p>
 <ul>
-<li><strong>Task stuck in “Generating”.</strong> The official <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/faq-796042m0">FAQ</a> names a duplicate <code>Ai-Trace-Id</code> as the first thing to check — it explicitly warns that reusing one means you won’t get a new video. Generate a fresh trace id per request, including per poll.</li>
+<li><strong>Task stuck in “Generating”.</strong> The official <a target="_blank" rel="noopener nofollow" href="https://docs.platform.pixverse.ai/faq-796042m0">FAQ</a> names a duplicate <code>Ai-Trace-Id</code> as the first thing to check — it explicitly warns that reusing one means you won’t get a new video. Generate a fresh trace id per request, including per poll.</li>
 <li><strong>“Couldn’t find a matching img_id”.</strong> The frame was never uploaded, the upload was rejected, or the id belongs to a different media type. Re-upload and confirm both <code>img_id</code> values before generating.</li>
 <li><strong>Image moderation rejection (<code>500052</code>).</strong> The upload endpoint returns this when a frame fails review; the fix is a compliant re-upload, not a retry of the same file.</li>
 <li><strong>Weak or jittery morphs.</strong> FL2V interpolates between your two frames; if they are visually dissimilar or composed differently, the transition degrades. Matched composition, lighting, and framing between the two frames is the single biggest lever for a smooth transition between first frame and last frame.</li>
 </ul>
 <p>The polling loop is identical to the one PixVerse uses for its other video endpoints — if you have already integrated <a href="https://www.modellix.ai/models/pixverse/v6-video-extend">the PixVerse video extend route</a>, the status handling here is copy-paste compatible.</p>
-<p>One billing surprise: credits are consumed at submission, so a moderation failure (<code>7</code>) can look like a charge for nothing. The <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/faq-796042m0">FAQ</a> confirms credits are refunded automatically for failed generations — verify it in your balance history before contacting support.</p>
+<p>One billing surprise: credits are consumed at submission, so a moderation failure (<code>7</code>) can look like a charge for nothing. The <a target="_blank" rel="noopener nofollow" href="https://docs.platform.pixverse.ai/faq-796042m0">FAQ</a> confirms credits are refunded automatically for failed generations — verify it in your balance history before contacting support.</p>
 <h2 id="What-the-PixVerse-first-last-frame-API-costs"><a href="#What-the-PixVerse-first-last-frame-API-costs" class="headerlink" title="What the PixVerse first-last frame API costs"></a>What the PixVerse first-last frame API costs</h2><p>PixVerse bills FL2V in <strong>Platform credits</strong>, and the pricing page splits the family into two billing models — this is where most cost estimates go wrong. V6 and C1 are billed <strong>per second</strong>; the older versions (V5.5, V5, V4.5&#x2F;V4&#x2F;V3.5) are billed <strong>per clip</strong> at fixed durations.</p>
-<p>Per-second rates for V6 and C1 (read from the official <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/pricing-796039m0">pricing page</a> on August 6, 2026):</p>
+<p>Per-second rates for V6 and C1 (read from the official <a target="_blank" rel="noopener nofollow" href="https://docs.platform.pixverse.ai/pricing-796039m0">pricing page</a> on August 6, 2026):</p>
 <table>
 <thead>
 <tr>
@@ -429,7 +429,7 @@
 <p><strong>Is there a free way to use the PixVerse FL2V API?</strong> Not on the API side — it requires an API key and an active subscription with credits. The web app’s free tier does not apply to the Platform API. The one automatic refund is for moderation failures (status <code>7</code>), per the official docs.</p>
 <p><strong>Can I use image URLs instead of uploading frames?</strong> On the direct PixVerse API, the feature guide says URL uploads are currently not supported — you upload files and pass <code>img_id</code> values. Aggregator routes such as the <code>pixverse/v6-fl2v</code> route accept frame image URLs directly, which is the main integration-surface difference between the two routes.</p>
 <hr>
-<p><em>PixVerse facts, parameter tables, and credit prices above were read from the official <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/transitionfirst-last-frame-feature-882973m0">Transition (First-last frame) guide</a>, <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/transitionfirst-last-frame-generation-15123014e0">generation API reference</a>, <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/upload-image-13016631e0">upload documentation</a>, <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/get-video-generation-status-882972m0">status documentation</a>, <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/pricing-796039m0">pricing page</a>, and <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/v6-2056814m0">V6 model overview</a> on August 6, 2026. The v6-fl2v price table was read from the <a href="https://www.modellix.ai/models/pixverse/v6-fl2v">Modellix model page</a> the same day. Check those live pages before budgeting. Modellix currently lists image and video models from 11 providers, including PixVerse, behind one API key.</em></p>
+<p><em>PixVerse facts, parameter tables, and credit prices above were read from the official <a target="_blank" rel="noopener nofollow" href="https://docs.platform.pixverse.ai/transitionfirst-last-frame-feature-882973m0">Transition (First-last frame) guide</a>, <a target="_blank" rel="noopener nofollow" href="https://docs.platform.pixverse.ai/transitionfirst-last-frame-generation-15123014e0">generation API reference</a>, <a target="_blank" rel="noopener nofollow" href="https://docs.platform.pixverse.ai/upload-image-13016631e0">upload documentation</a>, <a target="_blank" rel="noopener nofollow" href="https://docs.platform.pixverse.ai/get-video-generation-status-882972m0">status documentation</a>, <a target="_blank" rel="noopener nofollow" href="https://docs.platform.pixverse.ai/pricing-796039m0">pricing page</a>, and <a target="_blank" rel="noopener nofollow" href="https://docs.platform.pixverse.ai/v6-2056814m0">V6 model overview</a> on August 6, 2026. The v6-fl2v price table was read from the <a href="https://www.modellix.ai/models/pixverse/v6-fl2v">Modellix model page</a> the same day. Check those live pages before budgeting. Modellix currently lists image and video models from 11 providers, including PixVerse, behind one API key.</em></p>
 <p><em>Cover image: illustrative Modellix artwork; it is not a PixVerse product screenshot or source evidence.</em></p>
 
         </div>
@@ -439,9 +439,9 @@
             
               <a href="/blog/tags/ai-video-api/" class="tag-pill tag-pill--sm">AI Video API</a>
             
-              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
-            
               <a href="/blog/tags/pixverse/" class="tag-pill tag-pill--sm">PixVerse</a>
+            
+              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
             
               <a href="/blog/tags/image-to-video/" class="tag-pill tag-pill--sm">Image to Video</a>
             
@@ -561,8 +561,8 @@
     <div class="post-share">
       <span class="post-share-label">Share this article</span>
       <div class="post-share-links">
-        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/pixverse-first-last-frame-api/&text=PixVerse%20First-Last%20Frame%20API%3A%20Integration%20Guide%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/pixverse-first-last-frame-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/pixverse-first-last-frame-api/&text=PixVerse%20First-Last%20Frame%20API%3A%20Integration%20Guide%20%26%20Code" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/pixverse-first-last-frame-api/" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/pixverse-first-last-frame-api/"><i class="fa-solid fa-link"></i></button>
       </div>
     </div>
@@ -588,16 +588,16 @@
           <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
         
         
-          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener nofollow" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
         
         
-          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener nofollow" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
         
         
-          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener nofollow" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
         
         
-          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener nofollow" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         
       </div>
       

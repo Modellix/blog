@@ -165,9 +165,9 @@
             
               <a href="/blog/tags/Tutorial/" class="tag-pill tag-pill--sm">Tutorial</a>
             
-              <a href="/blog/tags/image-generation/" class="tag-pill tag-pill--sm">Image Generation</a>
-            
               <a href="/blog/tags/dsh-modellix/" class="tag-pill tag-pill--sm">dsh-modellix</a>
+            
+              <a href="/blog/tags/image-generation/" class="tag-pill tag-pill--sm">Image Generation</a>
             
           </div>
         
@@ -210,7 +210,7 @@
 <p>This is a walkthrough of that module: how to install the plugin, connect your key, and generate a first image—and, because this is the part every listicle skips, what happens at the billing and irreversibility boundaries when you do. It does not cover the pure-configuration path for swapping text models (that is the <a href="https://www.modellix.ai/blog/deepseek-harness-custom-model/">custom model configuration</a> article), and it does not re-explain the plugin mechanism in general (that is the <a href="https://www.modellix.ai/blog/dsh-plugin-add/">DeepSeek Harness plugin</a> article).</p>
 <p>One disclosure up front: Modellix operates the media API and the plugin used in these examples, so we have a commercial interest in this working for you. The instructions below come from the plugin’s own README and Modellix documentation, and the numbers are dated September 1, 2026.</p>
 <h2 id="Why-image-generation-in-dsh-requires-a-plugin"><a href="#Why-image-generation-in-dsh-requires-a-plugin" class="headerlink" title="Why image generation in dsh requires a plugin"></a>Why image generation in dsh requires a plugin</h2><p>The structural reason is simple: the harness is a text agent. Every model in the Modellix LLM catalog—28 models across 9 provider labels, from <code>openai/gpt-5.6-sol</code> to <code>deepseek/deepseek-v4-flash</code>—advertises <strong>text</strong> as its output modality. The gateway that serves them returns text; that is its contract. So inside the harness, no model you select can emit an image, no matter what you prompt it with. The <a href="https://www.modellix.ai/blog/deepseek-harness/">DeepSeek Harness</a> guide covers how the harness gets its model source at all.</p>
-<p>The community hit this wall within days of the <a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness">official repository</a>‘s release. The answer Google’s AI Overview now cites first is a developer who built a plugin precisely because “DeepSeek Harness didn’t have ChatGPT-style image generation”—proof that “how do I make dsh generate an image” is a real, unanswered question, and that the answer everyone finds is a plugin. If you search for a deepseek harness image generation plugin today, you get community projects and CLI skills like the two below, plus the workspace route this article covers.</p>
+<p>The community hit this wall within days of the <a target="_blank" rel="noopener nofollow" href="https://github.com/deepseek-ai/deepseek-harness">official repository</a>‘s release. The answer Google’s AI Overview now cites first is a developer who built a plugin precisely because “DeepSeek Harness didn’t have ChatGPT-style image generation”—proof that “how do I make dsh generate an image” is a real, unanswered question, and that the answer everyone finds is a plugin. If you search for a deepseek harness image generation plugin today, you get community projects and CLI skills like the two below, plus the workspace route this article covers.</p>
 <p>Three plugin routes exist today, and they are structurally different:</p>
 <ul>
 <li><strong>Community tool plugins</strong> like <code>dsh-image-gen</code>: add a <code>generate_image</code> tool the agent can call, bring-your-own-key, OpenAI-compatible backends.</li>
@@ -265,7 +265,7 @@
 <p><strong>Install.</strong> With the harness installed, run:</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dsh plugin --profile web add dsh-modellix</span><br><span class="line">dsh --profile web --dump-config</span><br><span class="line">dsh --profile web</span><br></pre></td></tr></table></figure>
 
-<p>The <a target="_blank" rel="noopener" href="https://github.com/Modellix/dsh-modellix">dsh-modellix repository</a> is the package source of truth. <code>--dump-config</code> is the acceptance step: it should show the <code>dsh-modellix</code> Bundle layer and a plugin row whose id is <code>modellix</code>. The plugin is a Profile Bundle for the <code>web</code> profile (replace <code>web</code> if you use another profile). After any update, <strong>restart the profile</strong>—the README warns that reloading the browser alone does not load a new Client Bundle.</p>
+<p>The <a target="_blank" rel="noopener nofollow" href="https://github.com/Modellix/dsh-modellix">dsh-modellix repository</a> is the package source of truth. <code>--dump-config</code> is the acceptance step: it should show the <code>dsh-modellix</code> Bundle layer and a plugin row whose id is <code>modellix</code>. The plugin is a Profile Bundle for the <code>web</code> profile (replace <code>web</code> if you use another profile). After any update, <strong>restart the profile</strong>—the README warns that reloading the browser alone does not load a new Client Bundle.</p>
 <p><strong>Connect your key.</strong> On first start, wait for the “Connect Modellix” dialog. It has one API Key field plus Design, LLM, and Web switches (all on by default; this article only uses Design). The key can come from either of two sources:</p>
 <ul>
 <li><strong>Enter it in the dialog or in settings</strong>—the Harness Credential service stores it, and the browser never shows it again, only its status and source.</li>
@@ -329,9 +329,9 @@
             
               <a href="/blog/tags/Tutorial/" class="tag-pill tag-pill--sm">Tutorial</a>
             
-              <a href="/blog/tags/image-generation/" class="tag-pill tag-pill--sm">Image Generation</a>
-            
               <a href="/blog/tags/dsh-modellix/" class="tag-pill tag-pill--sm">dsh-modellix</a>
+            
+              <a href="/blog/tags/image-generation/" class="tag-pill tag-pill--sm">Image Generation</a>
             
           
         </div>
@@ -441,8 +441,8 @@
     <div class="post-share">
       <span class="post-share-label">Share this article</span>
       <div class="post-share-links">
-        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/deepseek-harness-image-generation/&text=DeepSeek%20Harness%20Image%20Generation%3A%20Media%20Output%20via%20Plugin" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/deepseek-harness-image-generation/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/deepseek-harness-image-generation/&text=DeepSeek%20Harness%20Image%20Generation%3A%20Media%20Output%20via%20Plugin" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/deepseek-harness-image-generation/" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/deepseek-harness-image-generation/"><i class="fa-solid fa-link"></i></button>
       </div>
     </div>
@@ -468,16 +468,16 @@
           <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
         
         
-          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener nofollow" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
         
         
-          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener nofollow" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
         
         
-          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener nofollow" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
         
         
-          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener nofollow" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         
       </div>
       

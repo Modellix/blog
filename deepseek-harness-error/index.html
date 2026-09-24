@@ -204,7 +204,7 @@
 </picture>
 
 <p>Your DeepSeek Harness agent was running fine against a custom provider, and then a request came back with <code>UNKNOWN_MODEL</code>. Or <code>MISSING_CREDENTIAL</code>. Or the model picker’s “Fetch available models” button returned 401. Each of those is a typed error from the provider layer, and each maps to one specific piece of configuration you can fix—which field, and how, is what this deepseek harness error guide covers.</p>
-<p>This is the troubleshooting counterpart to the <a href="https://www.modellix.ai/blog/deepseek-harness-custom-model/">custom model guide</a> (how to configure a provider correctly) and the finale for the provider side of this cluster: it takes the official troubleshooting table from the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/agent/deepseek-harness">Modellix DeepSeek Harness docs</a>, explains every row, and adds the credential-recovery semantics from the <a target="_blank" rel="noopener" href="https://github.com/Modellix/dsh-modellix">dsh-modellix README</a> that decide when a key is really invalid. The <a href="https://www.modellix.ai/blog/deepseek-harness/">pillar article for this cluster</a> covers what the harness is and how to run it. Modellix operates the gateway these examples use, so we have a commercial interest in this working for you. Every statement below was verified against the docs and the README on September 1, 2026.</p>
+<p>This is the troubleshooting counterpart to the <a href="https://www.modellix.ai/blog/deepseek-harness-custom-model/">custom model guide</a> (how to configure a provider correctly) and the finale for the provider side of this cluster: it takes the official troubleshooting table from the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/agent/deepseek-harness">Modellix DeepSeek Harness docs</a>, explains every row, and adds the credential-recovery semantics from the <a target="_blank" rel="noopener nofollow" href="https://github.com/Modellix/dsh-modellix">dsh-modellix README</a> that decide when a key is really invalid. The <a href="https://www.modellix.ai/blog/deepseek-harness/">pillar article for this cluster</a> covers what the harness is and how to run it. Modellix operates the gateway these examples use, so we have a commercial interest in this working for you. Every statement below was verified against the docs and the README on September 1, 2026.</p>
 <h2 id="DeepSeek-Harness-provider-errors-decoded"><a href="#DeepSeek-Harness-provider-errors-decoded" class="headerlink" title="DeepSeek Harness provider errors, decoded"></a>DeepSeek Harness provider errors, decoded</h2><p>When a request reaches a custom provider and fails, the harness reports a typed error rather than a bare HTTP status. The Modellix integration docs maintain a four-row troubleshooting table that is the complete set of provider-level errors on this path:</p>
 <table>
 <thead>
@@ -343,7 +343,7 @@
 <h2 id="When-the-error-is-not-the-provider"><a href="#When-the-error-is-not-the-provider" class="headerlink" title="When the error is not the provider"></a>When the error is not the provider</h2><p>Not every error you will see in DeepSeek Harness is a provider error, and the four rows above cover only the provider layer. The boundary matters because the fix differs in kind:</p>
 <ul>
 <li><strong>If the harness will not start, a plugin fails to load, or an install command errors</strong>, you are in install-time territory. The <a href="https://www.modellix.ai/blog/dsh-plugin-add/">plugin installation guide</a> covers install, verify, and remove, and the <a href="https://www.modellix.ai/blog/dsh-plugin-add/">plugin article</a> explains bundles, manifests, and why some errors are structural rather than configurable.</li>
-<li><strong>If requests reach the provider but fail in the agent loop</strong>—unknown tool names, <code>400 INVALID_REQUEST</code>-style tool-call rejections, replay errors—those are harness runtime errors, not provider errors. They are outside the four-row table, and this article deliberately does not interpret them; the official <a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness">DeepSeek Harness repository</a> and the harness’s <a target="_blank" rel="noopener" href="https://deepseek-harness.github.io/deepseek-harness/guide/providers">providers guide</a> are the right starting points.</li>
+<li><strong>If requests reach the provider but fail in the agent loop</strong>—unknown tool names, <code>400 INVALID_REQUEST</code>-style tool-call rejections, replay errors—those are harness runtime errors, not provider errors. They are outside the four-row table, and this article deliberately does not interpret them; the official <a target="_blank" rel="noopener nofollow" href="https://github.com/deepseek-ai/deepseek-harness">DeepSeek Harness repository</a> and the harness’s <a target="_blank" rel="noopener nofollow" href="https://deepseek-harness.github.io/deepseek-harness/guide/providers">providers guide</a> are the right starting points.</li>
 </ul>
 <p>For the generic “deepseek harness not working” case, the diagnostic order that resolves most reports is: read the exact error text (the harness reports typed errors, not bare status codes, and when the UI message is vague the session log carries the real status) → check whether it is one of the four rows above → if it involves the key, apply the 401 rule from the previous section → if it involves a model, check the models list → if none of those apply, treat it as a harness runtime issue rather than a gateway issue.</p>
 <p>That is not a claim that these four errors are the only errors you will see—the harness has plenty of its own. It is a scope statement: the provider layer’s errors are exactly the four rows, and the recovery semantics are exactly the 401 rule. For the wider category, the <a href="https://www.modellix.ai/blog/agent-harness/">agent harness overview</a> places this cluster in context, and the sibling guide on <a href="https://www.modellix.ai/blog/deepseek-harness-web-search/">web search and fetch</a> covers the web-tools seam where provider errors look similar.</p>
@@ -478,8 +478,8 @@
     <div class="post-share">
       <span class="post-share-label">Share this article</span>
       <div class="post-share-links">
-        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/deepseek-harness-error/&text=DeepSeek%20Harness%20Provider%20Errors%3A%20UNKNOWN_MODEL%20and%20401s" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/deepseek-harness-error/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/deepseek-harness-error/&text=DeepSeek%20Harness%20Provider%20Errors%3A%20UNKNOWN_MODEL%20and%20401s" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/deepseek-harness-error/" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/deepseek-harness-error/"><i class="fa-solid fa-link"></i></button>
       </div>
     </div>
@@ -505,16 +505,16 @@
           <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
         
         
-          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener nofollow" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
         
         
-          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener nofollow" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
         
         
-          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener nofollow" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
         
         
-          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener nofollow" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         
       </div>
       

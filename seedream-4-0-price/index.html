@@ -245,12 +245,12 @@
 <td>Not charged</td>
 </tr>
 </tbody></table>
-<p><em>Source: <a target="_blank" rel="noopener" href="https://docs.byteplus.com/en/docs/ModelArk/1824718">BytePlus ModelArk — Seedream 4.0 model page</a>, accessed August 26, 2026. ByteDance also publishes the model’s capabilities at <a target="_blank" rel="noopener" href="https://seed.bytedance.com/en/seedream4_0">seed.bytedance.com</a>.</em></p>
+<p><em>Source: <a target="_blank" rel="noopener nofollow" href="https://docs.byteplus.com/en/docs/ModelArk/1824718">BytePlus ModelArk — Seedream 4.0 model page</a>, accessed August 26, 2026. ByteDance also publishes the model’s capabilities at <a target="_blank" rel="noopener nofollow" href="https://seed.bytedance.com/en/seedream4_0">seed.bytedance.com</a>.</em></p>
 <p>Two details in that table matter more than the headline number. First, the price is flat across resolution: BytePlus’s own page says output resolution spans 1K to 4K under one unit price. Second, billing counts generated images, not requests — a request that fails produces no charge, which changes how you should think about retries in a batch pipeline.</p>
-<h2 id="What-the-0-03-covers-resolution-batch-and-billing-rules"><a href="#What-the-0-03-covers-resolution-batch-and-billing-rules" class="headerlink" title="What the $0.03 covers: resolution, batch, and billing rules"></a>What the $0.03 covers: resolution, batch, and billing rules</h2><p>Seedream 4.0 is a single model that handles both text-to-image generation and image editing, and the <a target="_blank" rel="noopener" href="https://docs.byteplus.com/en/docs/ModelArk/1541523">official API reference</a> (accessed August 26, 2026) spells out the parameters that interact with cost.</p>
+<h2 id="What-the-0-03-covers-resolution-batch-and-billing-rules"><a href="#What-the-0-03-covers-resolution-batch-and-billing-rules" class="headerlink" title="What the $0.03 covers: resolution, batch, and billing rules"></a>What the $0.03 covers: resolution, batch, and billing rules</h2><p>Seedream 4.0 is a single model that handles both text-to-image generation and image editing, and the <a target="_blank" rel="noopener nofollow" href="https://docs.byteplus.com/en/docs/ModelArk/1541523">official API reference</a> (accessed August 26, 2026) spells out the parameters that interact with cost.</p>
 <p><strong>Resolution.</strong> You can request 1K, 2K, or 4K directly, or pass explicit pixel dimensions within the range 1280×720 to 4096×4096 (default 2048×2048). Under the official pricing model, none of this changes the per-image rate — a 4K image and a 1K image bill identically. The official docs for newer Seedream versions note that some tiers share a price (for example, “1.5K has the same price as 1K” on Seedream 5.0 Pro); for Seedream 4.0 itself the published rule is one flat rate.</p>
 <p><strong>Batch &#x2F; Image Set generation.</strong> The API supports generating a set of related images in one request by setting <code>sequential_image_generation</code> to <code>auto</code>: up to 15 images from a text prompt, or up to 14 images from a single reference image plus prompt, with a combined input-plus-output cap of 15 images for multi-reference input (2–14 reference images). Billing counts each output image in the set, so a 10-image batch at 4K costs 10 × $0.03 &#x3D; $0.30 on the official route. The same reference documents a single-image mode (<code>sequential_image_generation</code> disabled) and multi-image fusion workflows for editing.</p>
-<p><strong>Billing mechanics.</strong> The <a target="_blank" rel="noopener" href="https://docs.byteplus.com/en/docs/ModelArk/1544106">official Model Service Billing page</a> states charges are based on the actual number of generated images, with no charge for failed generation. Inputs — prompts and reference images — are not billed separately; there is no token meter on this model, which is a meaningful difference from LLM-based image models like Gemini that bill per token. Prompt length is constrained (≤300 Chinese characters or 600 English words recommended) but that is a quality guideline, not a billing dimension.</p>
+<p><strong>Billing mechanics.</strong> The <a target="_blank" rel="noopener nofollow" href="https://docs.byteplus.com/en/docs/ModelArk/1544106">official Model Service Billing page</a> states charges are based on the actual number of generated images, with no charge for failed generation. Inputs — prompts and reference images — are not billed separately; there is no token meter on this model, which is a meaningful difference from LLM-based image models like Gemini that bill per token. Prompt length is constrained (≤300 Chinese characters or 600 English words recommended) but that is a quality guideline, not a billing dimension.</p>
 <p><strong>One caveat that applies to every number in this article:</strong> BytePlus adjusts model pricing over time, and the ModelArk billing pages change without notice. The $0.03 figure is what the official page showed on August 26, 2026; verify it live before you commit.</p>
 <h2 id="How-aggregators-list-Seedream-4-0-prices-—-and-why-they-differ"><a href="#How-aggregators-list-Seedream-4-0-prices-—-and-why-they-differ" class="headerlink" title="How aggregators list Seedream 4.0 prices — and why they differ"></a>How aggregators list Seedream 4.0 prices — and why they differ</h2><p>Once you leave the official page, “seedream 4.0 price” stops being one number. Every aggregator publishes its own listing, and they diverge both from BytePlus and from each other. The table below is a snapshot of what each page displayed on the retrieval date shown; treat it as a starting point, not a quote.</p>
 <table>
@@ -272,22 +272,22 @@
 <td>Per image for <code>seedream-4.0-t2i</code> and <code>seedream-4.0-i2i</code></td>
 </tr>
 <tr>
-<td><a target="_blank" rel="noopener" href="https://kie.ai/seedream-api">kie.ai</a></td>
+<td><a target="_blank" rel="noopener nofollow" href="https://kie.ai/seedream-api">kie.ai</a></td>
 <td align="right">~$0.025&#x2F;image (5 credits; 2026-08-26)</td>
 <td>Credit-based; page states price is independent of resolution</td>
 </tr>
 <tr>
-<td><a target="_blank" rel="noopener" href="https://www.segmind.com/models/seedream-4/pricing">Segmind</a></td>
+<td><a target="_blank" rel="noopener nofollow" href="https://www.segmind.com/models/seedream-4/pricing">Segmind</a></td>
 <td align="right">$0.035&#x2F;generation (2026-08-26)</td>
 <td>Serverless; universal credits across Segmind models</td>
 </tr>
 <tr>
-<td><a target="_blank" rel="noopener" href="https://wavespeed.ai/models/bytedance/seedream-v4">Wavespeed</a></td>
+<td><a target="_blank" rel="noopener nofollow" href="https://wavespeed.ai/models/bytedance/seedream-v4">Wavespeed</a></td>
 <td align="right">From $0.027&#x2F;run (2026-08-26)</td>
 <td>Base price; page says final charge scales with parameters</td>
 </tr>
 <tr>
-<td><a target="_blank" rel="noopener" href="https://evolink.ai/blog/seedream-pricing-guide-2026">EvoLink</a></td>
+<td><a target="_blank" rel="noopener nofollow" href="https://evolink.ai/blog/seedream-pricing-guide-2026">EvoLink</a></td>
 <td align="right">$0.018&#x2F;image (2026-04-13)</td>
 <td>Claims 40% below official $0.03</td>
 </tr>
@@ -499,8 +499,8 @@
     <div class="post-share">
       <span class="post-share-label">Share this article</span>
       <div class="post-share-links">
-        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/seedream-4-0-price/&text=Seedream%204.0%20Price%3A%20Full%20Pricing%20Breakdown%20(2026)" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/seedream-4-0-price/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/seedream-4-0-price/&text=Seedream%204.0%20Price%3A%20Full%20Pricing%20Breakdown%20(2026)" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/seedream-4-0-price/" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/seedream-4-0-price/"><i class="fa-solid fa-link"></i></button>
       </div>
     </div>
@@ -526,16 +526,16 @@
           <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
         
         
-          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener nofollow" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
         
         
-          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener nofollow" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
         
         
-          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener nofollow" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
         
         
-          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener nofollow" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         
       </div>
       

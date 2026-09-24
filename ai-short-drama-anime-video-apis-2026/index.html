@@ -172,8 +172,6 @@
             
               <a href="/blog/tags/talking-avatar/" class="tag-pill tag-pill--sm">Talking Avatar</a>
             
-              <a href="/blog/tags/motion-control/" class="tag-pill tag-pill--sm">Motion Control</a>
-            
               <a href="/blog/tags/ai-video/" class="tag-pill tag-pill--sm">AI Video</a>
             
               <a href="/blog/tags/short-drama/" class="tag-pill tag-pill--sm">short-drama</a>
@@ -183,6 +181,8 @@
               <a href="/blog/tags/reference-to-video/" class="tag-pill tag-pill--sm">Reference to Video</a>
             
               <a href="/blog/tags/storyboard/" class="tag-pill tag-pill--sm">storyboard</a>
+            
+              <a href="/blog/tags/motion-control/" class="tag-pill tag-pill--sm">Motion Control</a>
             
               <a href="/blog/tags/video-extend/" class="tag-pill tag-pill--sm">video-extend</a>
             
@@ -252,11 +252,11 @@
 <p>The third route is a <strong>cinema-style model</strong> that treats a sequence of panels as one scene with a director’s sense of continuity. <a href="https://www.modellix.ai/blog/pixverse-c1-api/">PixVerse C1’s cinematic storyboard mode</a> is a good example of a model tuned for film-like composition across a panel sequence, which suits anime’s panel-driven grammar particularly well.</p>
 <p>The baseline you will fall back on constantly is the animation entry point itself: <a href="https://www.modellix.ai/category/image-to-video">image-to-video API generation</a> turns a keyframe into motion, and it is the workhorse for turning storyboard stills into clips. The practical advice: use image-to-video for a single panel, first-last-frame for a planned beat with a clear start and end, and a cinema model when you need continuous composition across several panels.</p>
 <h2 id="4-Multi-Shot-Storytelling-Verified-Which-Models-Keep-Scene-Continuity"><a href="#4-Multi-Shot-Storytelling-Verified-Which-Models-Keep-Scene-Continuity" class="headerlink" title="4. Multi-Shot Storytelling Verified: Which Models Keep Scene Continuity"></a>4. Multi-Shot Storytelling Verified: Which Models Keep Scene Continuity</h2><p>Once you can keep a character consistent and turn panels into motion, the next question is whether a model can hold the story across multiple cuts. Multi-shot storytelling is the newest and most demanding axis — it asks a model to keep a character, location, and emotional beat coherent across a sequence of generated shots, not just within one clip.</p>
-<p>This is where seedance models have been pushing hardest. ByteDance pitches Seedance around native multi-shot storytelling on its official <a target="_blank" rel="noopener" href="https://seed.bytedance.com/en/seedance">Seedance product page</a>, and the <a href="https://www.modellix.ai/blog/seedance-2-0-api/">Seedance 2.0 API</a> is built for multi-modal, multi-shot work that has become the reference-driven backbone of branded character production. Because it accepts a mix of inputs, it can hold a scene across cuts more reliably than models that only take a single prompt.</p>
+<p>This is where seedance models have been pushing hardest. ByteDance pitches Seedance around native multi-shot storytelling on its official <a target="_blank" rel="noopener nofollow" href="https://seed.bytedance.com/en/seedance">Seedance product page</a>, and the <a href="https://www.modellix.ai/blog/seedance-2-0-api/">Seedance 2.0 API</a> is built for multi-modal, multi-shot work that has become the reference-driven backbone of branded character production. Because it accepts a mix of inputs, it can hold a scene across cuts more reliably than models that only take a single prompt.</p>
 <p>When you need a faster, cheaper pass for the same kind of storytelling, the <a href="https://www.modellix.ai/blog/seedance-pro-api/">Seedance Pro API</a> is worth comparing against the 2.0 line for length and speed trade-offs. And when you are planning the whole arc rather than a single scene, the <a href="https://www.modellix.ai/blog/text-to-video-api/">text-to-video API</a> overview is a good place to compare multi-shot options and pick the entry point that matches the length of story you are trying to hold.</p>
 <p>The honest caveat: multi-shot continuity is not guaranteed on the first pass. Teams plan for retakes on the most complex beats, and they regenerate only the broken shot rather than the episode. That is normal, and it is exactly why the artifact-based pipeline pays off — you can isolate the failure to a single shot.</p>
 <h2 id="5-Motion-Control-Compared-Fight-Scenes-Gestures-and-Camera-Moves"><a href="#5-Motion-Control-Compared-Fight-Scenes-Gestures-and-Camera-Moves" class="headerlink" title="5. Motion Control Compared: Fight Scenes, Gestures, and Camera Moves"></a>5. Motion Control Compared: Fight Scenes, Gestures, and Camera Moves</h2><p>Short drama leans hard on action, and action is where a bare text prompt fails most visibly. Fight scenes, gestures, and camera moves all need <em>motion control</em> — the ability to steer where and how things move, rather than letting the model improvise.</p>
-<p>The strongest tool for this is a dedicated motion-control capability. <a href="https://www.modellix.ai/blog/kling-motion-control-api/">Kling’s motion control API</a> is a reference point here because it exposes explicit control over character motion and camera behavior — the exact controls Kling’s own <a target="_blank" rel="noopener" href="https://kling.ai/quickstart">official user guide</a> documents as best practices for choreographed action — which is what you need for a camera-locked fight or a fixed action beat. When a shot must be reproducible — a specific punch landing, a specific pan across a scene — motion control beats re-prompting by a wide margin.</p>
+<p>The strongest tool for this is a dedicated motion-control capability. <a href="https://www.modellix.ai/blog/kling-motion-control-api/">Kling’s motion control API</a> is a reference point here because it exposes explicit control over character motion and camera behavior — the exact controls Kling’s own <a target="_blank" rel="noopener nofollow" href="https://kling.ai/quickstart">official user guide</a> documents as best practices for choreographed action — which is what you need for a camera-locked fight or a fixed action beat. When a shot must be reproducible — a specific punch landing, a specific pan across a scene — motion control beats re-prompting by a wide margin.</p>
 <p>The field is broader than a single vendor, though. <a href="https://www.modellix.ai/blog/ai-motion-control-api/">AI motion control options</a> compare the general approaches across providers, so you can judge which control style (trajectory, gesture, skeleton) fits the action you actually produce. For serialized content, prefer the control that reproduces a fixed action consistently, because that is what lets you reuse the same beat across episodes.</p>
 <h2 id="6-Dialogue-Scenes-Explained-Talking-Avatar-and-Lip-Sync-Options"><a href="#6-Dialogue-Scenes-Explained-Talking-Avatar-and-Lip-Sync-Options" class="headerlink" title="6. Dialogue Scenes Explained: Talking Avatar and Lip Sync Options"></a>6. Dialogue Scenes Explained: Talking Avatar and Lip Sync Options</h2><p>Serialized short drama is dialogue-heavy, and dialogue is the point where naive generation shows its limits. Most production teams render the visuals first, then add the spoken line in a second pass, rather than trying to generate perfect lip sync in one step.</p>
 <p>Two API capabilities cover this. A <strong>talking avatar API</strong> animates a speaking character or presenter from a single image — useful for narration-heavy sections where a character addresses the audience directly. The <a href="https://www.modellix.ai/blog/talking-avatar-api/">talking avatar API</a> is the entry point for this pattern. A broader <strong>AI avatar API</strong> covers the range of avatar generation and speech options if you need a fuller toolset. Either way, keep the spoken lines short and clean, and lean on subtitles for safety — face and mouth stability improves when the line is short.</p>
@@ -313,9 +313,9 @@
 <blockquote>
 <p><strong>Key Takeaway</strong>: The whole pipeline is one rule — build the asset, lock the plan, generate per shot, add dialogue, extend. Do that and the serialized episodes stop drifting.</p>
 </blockquote>
-<h2 id="Next-Steps"><a href="#Next-Steps" class="headerlink" title="Next Steps"></a>Next Steps</h2><p>The fast way to move from planning to shipping is to stop thinking in single models. If you want to compare model behavior side by side and route each shot type through the right API without managing a dozen provider accounts, <a href="https://www.modellix.ai/">Modellix models</a> give you a single key across the image, video, and audio generation you need for a serialized launch. Reach out at <a href="mailto:&#109;&#x61;&#114;&#107;&#x65;&#116;&#x69;&#x6e;&#103;&#x40;&#109;&#111;&#x64;&#x65;&#108;&#x6c;&#105;&#120;&#46;&#97;&#105;">marketing@modellix.ai</a> or join the <a target="_blank" rel="noopener" href="https://discord.com/invite/N2FBCb2cZT">Discord</a> if you want to test the pipeline against your own cast.</p>
+<h2 id="Next-Steps"><a href="#Next-Steps" class="headerlink" title="Next Steps"></a>Next Steps</h2><p>The fast way to move from planning to shipping is to stop thinking in single models. If you want to compare model behavior side by side and route each shot type through the right API without managing a dozen provider accounts, <a href="https://www.modellix.ai/">Modellix models</a> give you a single key across the image, video, and audio generation you need for a serialized launch. Reach out at <a href="mailto:&#x6d;&#x61;&#114;&#x6b;&#101;&#116;&#x69;&#x6e;&#x67;&#x40;&#x6d;&#111;&#100;&#101;&#108;&#x6c;&#105;&#120;&#46;&#97;&#x69;">marketing@modellix.ai</a> or join the <a target="_blank" rel="noopener nofollow" href="https://discord.com/invite/N2FBCb2cZT">Discord</a> if you want to test the pipeline against your own cast.</p>
 <hr>
-<p><em>All model capabilities and API behaviors referenced in this article are verified against official documentation from <a target="_blank" rel="noopener" href="https://seed.bytedance.com/en/seedance">Seedance</a>, <a target="_blank" rel="noopener" href="https://kling.ai/quickstart">Kling</a>, <a target="_blank" rel="noopener" href="https://pixverse.ai/">PixVerse</a>, and <a href="https://www.modellix.ai/">Modellix</a> as of August 25, 2026. Model capabilities, pricing, and availability change without notice — verify against the linked pages. Modellix offers Seedance, Kling, PixVerse, Wan, and other video generation models with unified API access and pay-as-you-go billing. We have a commercial interest in the comparisons above.</em></p>
+<p><em>All model capabilities and API behaviors referenced in this article are verified against official documentation from <a target="_blank" rel="noopener nofollow" href="https://seed.bytedance.com/en/seedance">Seedance</a>, <a target="_blank" rel="noopener nofollow" href="https://kling.ai/quickstart">Kling</a>, <a target="_blank" rel="noopener nofollow" href="https://pixverse.ai/">PixVerse</a>, and <a href="https://www.modellix.ai/">Modellix</a> as of August 25, 2026. Model capabilities, pricing, and availability change without notice — verify against the linked pages. Modellix offers Seedance, Kling, PixVerse, Wan, and other video generation models with unified API access and pay-as-you-go billing. We have a commercial interest in the comparisons above.</em></p>
 
         </div>
 
@@ -323,8 +323,6 @@
           
             
               <a href="/blog/tags/talking-avatar/" class="tag-pill tag-pill--sm">Talking Avatar</a>
-            
-              <a href="/blog/tags/motion-control/" class="tag-pill tag-pill--sm">Motion Control</a>
             
               <a href="/blog/tags/ai-video/" class="tag-pill tag-pill--sm">AI Video</a>
             
@@ -335,6 +333,8 @@
               <a href="/blog/tags/reference-to-video/" class="tag-pill tag-pill--sm">Reference to Video</a>
             
               <a href="/blog/tags/storyboard/" class="tag-pill tag-pill--sm">storyboard</a>
+            
+              <a href="/blog/tags/motion-control/" class="tag-pill tag-pill--sm">Motion Control</a>
             
               <a href="/blog/tags/video-extend/" class="tag-pill tag-pill--sm">video-extend</a>
             
@@ -452,8 +452,8 @@
     <div class="post-share">
       <span class="post-share-label">Share this article</span>
       <div class="post-share-links">
-        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/ai-short-drama-anime-video-apis-2026/&text=How%20to%20Produce%20AI%20Short%20Drama%20%26%20Anime%20Video%20with%20APIs%202026" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/ai-short-drama-anime-video-apis-2026/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/ai-short-drama-anime-video-apis-2026/&text=How%20to%20Produce%20AI%20Short%20Drama%20%26%20Anime%20Video%20with%20APIs%202026" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/ai-short-drama-anime-video-apis-2026/" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/ai-short-drama-anime-video-apis-2026/"><i class="fa-solid fa-link"></i></button>
       </div>
     </div>
@@ -479,16 +479,16 @@
           <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
         
         
-          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener nofollow" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
         
         
-          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener nofollow" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
         
         
-          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener nofollow" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
         
         
-          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener nofollow" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         
       </div>
       

@@ -164,9 +164,9 @@
             
               <a href="/blog/tags/OpenAI/" class="tag-pill tag-pill--sm">OpenAI</a>
             
-              <a href="/blog/tags/GPT-Image-2-5/" class="tag-pill tag-pill--sm">GPT Image 2.5</a>
-            
               <a href="/blog/tags/Image-API/" class="tag-pill tag-pill--sm">Image API</a>
+            
+              <a href="/blog/tags/GPT-Image-2-5/" class="tag-pill tag-pill--sm">GPT Image 2.5</a>
             
               <a href="/blog/tags/Model-Selection/" class="tag-pill tag-pill--sm">Model Selection</a>
             
@@ -212,7 +212,7 @@
 <p>Four model IDs answer to <code>gpt image 2.5</code>, and they divide along exactly one line: whether your request already contains an image. Text-to-image is <code>openai/gpt-image-2.5-flare</code> (speed) or <code>openai/gpt-image-2.5-sunburst</code> (quality). Anything that has to transform an image you already own is <code>openai/gpt-image-2.5-flare-edit</code> or <code>openai/gpt-image-2.5-sunburst-edit</code>. If you came here expecting a single endpoint with a quality dial, this is the page that explains why there isn’t one.</p>
 <p>The bandwidth also surprises people: <strong>Flare is not the cheaper model.</strong> Both text-to-image IDs sit on the same visible price band, $0.0053–$0.6390 per image, measured on the live model pages on September 17, 2026. The wide range is about your parameters, not about which of the two names you picked.</p>
 <p>One disclosure before anything else, because it belongs before any number: Modellix is an AI model API aggregator and has a commercial interest in this article. It routes OpenAI’s image models, so the prices below come from its own price sheet. Where a fact is OpenAI’s, it links to OpenAI. Where it can only be measured, it carries the date it was measured.</p>
-<h2 id="The-four-model-IDs-and-the-one-routing-rule-that-picks-between-them"><a href="#The-four-model-IDs-and-the-one-routing-rule-that-picks-between-them" class="headerlink" title="The four model IDs, and the one routing rule that picks between them"></a>The four model IDs, and the one routing rule that picks between them</h2><p><a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/guides/image-prompting">OpenAI documents</a> GPT Image 2.5 as two models: <code>gpt-image-2.5-flare</code>, the small model optimised for speed with quality comparable to GPT Image 2, and <code>gpt-image-2.5-sunburst</code>, the base model optimised for quality with higher image quality than its predecessor. The <a target="_blank" rel="noopener" href="https://openai.com/index/introducing-chatgpt-images-2-5/">launch announcement</a> introduced the pair on September 8, 2026. Both of those IDs handle generation <em>and</em> editing on the vendor’s API.</p>
+<h2 id="The-four-model-IDs-and-the-one-routing-rule-that-picks-between-them"><a href="#The-four-model-IDs-and-the-one-routing-rule-that-picks-between-them" class="headerlink" title="The four model IDs, and the one routing rule that picks between them"></a>The four model IDs, and the one routing rule that picks between them</h2><p><a target="_blank" rel="noopener nofollow" href="https://developers.openai.com/api/docs/guides/image-prompting">OpenAI documents</a> GPT Image 2.5 as two models: <code>gpt-image-2.5-flare</code>, the small model optimised for speed with quality comparable to GPT Image 2, and <code>gpt-image-2.5-sunburst</code>, the base model optimised for quality with higher image quality than its predecessor. The <a target="_blank" rel="noopener nofollow" href="https://openai.com/index/introducing-chatgpt-images-2-5/">launch announcement</a> introduced the pair on September 8, 2026. Both of those IDs handle generation <em>and</em> editing on the vendor’s API.</p>
 <p>The Modellix catalogue splits them differently, because its image catalogue separates text-to-image and image-to-image endpoints. That is where four IDs come from — each row below links to its own model reference:</p>
 <table>
 <thead>
@@ -286,7 +286,7 @@
 <li><strong>Edit starts about 6.9× above the generation floor</strong> — $0.0366 versus $0.0053 per image — and peaks at $0.6718, close to the generation ceiling. Conditioning on one to sixteen input images is more work than generating from a prompt, and the price sheet reflects it. This is a real budget argument for keeping editing out of pipelines that do not need it.</li>
 <li><strong>Compared with the <a href="https://www.modellix.ai/blog/gpt-image-2-api/">previous generation</a>, the floor barely moved and the ceiling roughly tripled</strong> — $0.1899 to $0.6390 per image on the text-to-image pair. The generation widened the top of the range rather than lifting the entry price. “Newer” is therefore not the same as “more expensive” or “cheaper”: a default 1K request on the 2.5 pair is priced in the same neighbourhood as the previous generation, and a maxed-out 4K request is not.</li>
 </ol>
-<p>OpenAI’s own developer guide makes the same point from the other direction, and it is worth quoting because aggregator pages tend to bury it: when you migrate, <em>“Confirm current pricing rather than assuming the faster model costs less.”</em> That sentence is the whole reason this section exists. Faster and cheaper are independent variables, and on this model pair the price is decided by your parameters. Rates on the <a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/pricing">OpenAI pricing page</a> and on Modellix’s own sheet are different billing systems — vendor per-token input plus per-image output versus flat per-image — so compare your real bill, not two headline numbers. For how the OpenAI image family priced out before this generation, the <a href="https://www.modellix.ai/blog/openai-image-generation-api-pricing/">image-generation API pricing overview</a> has the older rates in a dated snapshot (published 2026-08-25).</p>
+<p>OpenAI’s own developer guide makes the same point from the other direction, and it is worth quoting because aggregator pages tend to bury it: when you migrate, <em>“Confirm current pricing rather than assuming the faster model costs less.”</em> That sentence is the whole reason this section exists. Faster and cheaper are independent variables, and on this model pair the price is decided by your parameters. Rates on the <a target="_blank" rel="noopener nofollow" href="https://developers.openai.com/api/docs/pricing">OpenAI pricing page</a> and on Modellix’s own sheet are different billing systems — vendor per-token input plus per-image output versus flat per-image — so compare your real bill, not two headline numbers. For how the OpenAI image family priced out before this generation, the <a href="https://www.modellix.ai/blog/openai-image-generation-api-pricing/">image-generation API pricing overview</a> has the older rates in a dated snapshot (published 2026-08-25).</p>
 <h2 id="When-to-call-an-Edit-model-—-and-when-not-to"><a href="#When-to-call-an-Edit-model-—-and-when-not-to" class="headerlink" title="When to call an Edit model — and when not to"></a>When to call an Edit model — and when not to</h2><p>The Edit pair takes a required <code>images</code> array of <strong>1 to 16 public image URLs</strong> alongside the prompt. The ceiling is the operationally interesting part: you can send a product reference, a background reference and a lighting reference in one request instead of pre-compositing them yourself, which is what makes subject-consistency work feasible rather than fiddly.</p>
 <p>The <code>mask</code> parameter is optional, and its semantics are the opposite of what most people assume: it is a PNG with an alpha channel, <strong>transparent areas mark the region to edit</strong>, and it must match the dimensions of the first input image. Omit it and the model decides what to touch from the prompt alone — acceptable for a style pass, risky when a stakeholder has already signed off on everything except one corner. Modellix’s earlier walkthrough of the four variants covers masked-edit workflow patterns in more depth than this routing guide needs to.</p>
 <p>Both Edit models share the generation models’ <code>resolution</code>, <code>quality</code>, <code>aspect_ratio</code> and <code>background</code> support, including <code>transparent</code> output as PNG. Two documented limits belong in your design notes before you commit: the Edit models do not expose arbitrary pixel dimensions — you pick from the aspect-ratio and resolution enums — and <strong>exact input-fidelity control is not exposed as a parameter</strong>. If a specific region of a specific asset must survive untouched, that is something to verify against your own test image, not something to assume from the model’s reputation.</p>
@@ -382,9 +382,9 @@
             
               <a href="/blog/tags/OpenAI/" class="tag-pill tag-pill--sm">OpenAI</a>
             
-              <a href="/blog/tags/GPT-Image-2-5/" class="tag-pill tag-pill--sm">GPT Image 2.5</a>
-            
               <a href="/blog/tags/Image-API/" class="tag-pill tag-pill--sm">Image API</a>
+            
+              <a href="/blog/tags/GPT-Image-2-5/" class="tag-pill tag-pill--sm">GPT Image 2.5</a>
             
               <a href="/blog/tags/Model-Selection/" class="tag-pill tag-pill--sm">Model Selection</a>
             
@@ -498,8 +498,8 @@
     <div class="post-share">
       <span class="post-share-label">Share this article</span>
       <div class="post-share-links">
-        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/gpt-image-2-5-api/&text=GPT%20Image%202.5%20API%3A%20Flare%20vs%20Sunburst%2C%20Four%20Model%20IDs" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/gpt-image-2-5-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/gpt-image-2-5-api/&text=GPT%20Image%202.5%20API%3A%20Flare%20vs%20Sunburst%2C%20Four%20Model%20IDs" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/gpt-image-2-5-api/" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/gpt-image-2-5-api/"><i class="fa-solid fa-link"></i></button>
       </div>
     </div>
@@ -525,16 +525,16 @@
           <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
         
         
-          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener nofollow" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
         
         
-          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener nofollow" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
         
         
-          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener nofollow" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
         
         
-          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener nofollow" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         
       </div>
       

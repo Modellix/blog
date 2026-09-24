@@ -240,7 +240,7 @@
 <td>$0.1265–$0.2093 (1K→4K)</td>
 </tr>
 </tbody></table>
-<p><em>Sources: <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/pricing">Google Gemini API pricing</a> and <a href="https://www.modellix.ai/models/google/nano-banana-2">Modellix model pages</a>, both retrieved July 21, 2026. Google’s Batch API takes 50% off every row above — more on that below.</em></p>
+<p><em>Sources: <a target="_blank" rel="noopener nofollow" href="https://ai.google.dev/gemini-api/docs/pricing">Google Gemini API pricing</a> and <a href="https://www.modellix.ai/models/google/nano-banana-2">Modellix model pages</a>, both retrieved July 21, 2026. Google’s Batch API takes 50% off every row above — more on that below.</em></p>
 <h2 id="There-isn’t-one-Nano-Banana-—-there-are-four"><a href="#There-isn’t-one-Nano-Banana-—-there-are-four" class="headerlink" title="There isn’t one Nano Banana — there are four"></a>There isn’t one Nano Banana — there are four</h2><p>“Nano Banana” is a nickname for Google’s Gemini image models, and the naming is a genuine trap. There are four distinct models, and you cannot rank them by the number in the name:</p>
 <ul>
 <li><strong>Nano Banana</strong> — Gemini 2.5 Flash Image. The original, now superseded.</li>
@@ -251,7 +251,7 @@
 <p>Note the trap: “Pro” runs on Gemini <strong>3</strong>, while “2” runs on Gemini <strong>3.1</strong> — a higher version number. The “2” and “Pro” refer to product tiers, not model generations, so newer isn’t higher-numbered and pricier isn’t newer. Each of the four also has an <code>-edit</code> variant for image-to-image work — eight endpoints in total, which is why a single “Nano Banana price” was never going to be one number.</p>
 <p>The reason this matters for your bill: most articles ranking for “Nano Banana price” mention only two models and quote Pro’s figure. If you priced a high-volume product off that, you’d overestimate your cost by 2–4×, because the model you’d actually reach for — Nano Banana 2 or Lite — is far cheaper.</p>
 <h2 id="What-each-model-actually-costs-per-image"><a href="#What-each-model-actually-costs-per-image" class="headerlink" title="What each model actually costs per image"></a>What each model actually costs per image</h2><p>Google doesn’t bill per image. It bills <strong>per token</strong>, and image output consumes a fixed number of tokens per tier — a 1K image on Nano Banana 2 is billed as 1,120 output tokens, which at $60 per million tokens works out to $0.067. Google publishes that equivalent per-image price, which is what the table below uses. The token mechanism is why price scales with resolution: a 4K image is more tokens than a 512px one.</p>
-<p>Here is the full matrix at Google’s list (Standard) prices, retrieved from <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/pricing">Google’s pricing</a> and <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/image-generation">image generation docs</a> on July 21, 2026:</p>
+<p>Here is the full matrix at Google’s list (Standard) prices, retrieved from <a target="_blank" rel="noopener nofollow" href="https://ai.google.dev/gemini-api/docs/pricing">Google’s pricing</a> and <a target="_blank" rel="noopener nofollow" href="https://ai.google.dev/gemini-api/docs/image-generation">image generation docs</a> on July 21, 2026:</p>
 <table>
 <thead>
 <tr>
@@ -289,13 +289,13 @@
   <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/google-nb2-official-pricing.png" alt="Google pricing page: Nano Banana 2 output is $0.045, $0.067, $0.101, $0.151 per image at 512px, 1K, 2K, 4K; free tier Not available" />
 </picture>
 
-<p><em>Google’s own pricing page for Gemini 3.1 Flash Image (Nano Banana 2): $0.045 &#x2F; $0.067 &#x2F; $0.101 &#x2F; $0.151 per image at 512px &#x2F; 1K &#x2F; 2K &#x2F; 4K, with a 1K image billed as 1,120 tokens and the free tier listed as “Not available.” Captured from <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/pricing">ai.google.dev&#x2F;gemini-api&#x2F;docs&#x2F;pricing</a>, July 21, 2026.</em></p>
+<p><em>Google’s own pricing page for Gemini 3.1 Flash Image (Nano Banana 2): $0.045 &#x2F; $0.067 &#x2F; $0.101 &#x2F; $0.151 per image at 512px &#x2F; 1K &#x2F; 2K &#x2F; 4K, with a 1K image billed as 1,120 tokens and the free tier listed as “Not available.” Captured from <a target="_blank" rel="noopener nofollow" href="https://ai.google.dev/gemini-api/docs/pricing">ai.google.dev&#x2F;gemini-api&#x2F;docs&#x2F;pricing</a>, July 21, 2026.</em></p>
 <p>(Nano Banana 2 Lite is 1K-only; the original Nano Banana is a flat $0.039&#x2F;image on the older 2.5 Flash model.) Pro also adds a small input charge — about $0.0011 per image for the prompt tokens — which is negligible next to the output cost. Every image from every model carries an invisible SynthID watermark; that’s a Google policy, not a price line, but worth knowing before you build on it.</p>
 <p>So when someone says “Nano Banana costs $0.13,” they mean Nano Banana Pro at 1K–2K. At the other end, Nano Banana 2 Lite is $0.0336 and Nano Banana 2 at 1K is $0.067 — the same picture, a quarter to half the price, on a model that’s faster and built for volume.</p>
 <h2 id="The-four-price-layers-nobody-separates"><a href="#The-four-price-layers-nobody-separates" class="headerlink" title="The four price layers nobody separates"></a>The four price layers nobody separates</h2><p>Here’s the part that makes “Nano Banana price” so confusing to search for: there are <strong>four different prices</strong> for the same model depending on where you buy it, and almost no page distinguishes them.</p>
 <ol>
 <li><strong>Google API, Standard.</strong> The list prices above. Real-time, pay per token, no minimum. This is the reference price.</li>
-<li><strong>Google API, Batch.</strong> Google’s <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/batch-api">Batch API</a> runs the same models at <strong>50% off</strong> every price above, in exchange for asynchronous processing (results within 24 hours, not instant). This is the cheapest way to run Nano Banana at scale, and it’s the layer most comparisons never mention — Nano Banana Pro 4K drops from $0.24 to about $0.12, Nano Banana 2 Lite from $0.0336 to about $0.017.</li>
+<li><strong>Google API, Batch.</strong> Google’s <a target="_blank" rel="noopener nofollow" href="https://ai.google.dev/gemini-api/docs/batch-api">Batch API</a> runs the same models at <strong>50% off</strong> every price above, in exchange for asynchronous processing (results within 24 hours, not instant). This is the cheapest way to run Nano Banana at scale, and it’s the layer most comparisons never mention — Nano Banana Pro 4K drops from $0.24 to about $0.12, Nano Banana 2 Lite from $0.0336 to about $0.017.</li>
 <li><strong>Third-party subscription sites.</strong> Most of the first page of results for “nano banana” — sites on domains like nanobanana.io and similar — sell a <strong>monthly credit plan</strong>, not metered API access, and rarely disclose the underlying per-image cost. These are not Google, and their “unlimited” plans have per-day or per-minute caps in the fine print. If you’re building a product, this layer usually isn’t what you want.</li>
 <li><strong>Aggregators.</strong> Platforms like Modellix <a href="https://www.modellix.ai/blog/google-model-integrated/">resell Google’s endpoints</a> metered per image, at the flat rates in the first table. No monthly fee, pay-as-you-go.</li>
 </ol>
@@ -354,7 +354,7 @@
 <p><strong>Are the “unlimited” Nano Banana plans real?</strong><br>The unlimited-sounding plans come from third-party subscription sites, not Google, and carry per-day or per-minute caps in the fine print. There is no genuinely unlimited Nano Banana; if cost predictability matters, price your actual volume against the per-image rates above.</p>
 <p><strong>What’s the cheapest way to run Nano Banana at scale?</strong><br>Google’s Batch API, which takes 50% off every model and tier in exchange for asynchronous (up to 24-hour) processing. For real-time work, a metered aggregator sits below Google’s Standard list price per image, with no monthly fee.</p>
 <hr>
-<p><em>All prices and model details were retrieved from first-party vendor pages on July 21, 2026: <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/pricing">Google Gemini API pricing</a>, <a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/image-generation">Google image generation docs</a>, and <a href="https://www.modellix.ai/models/google/nano-banana-2">Modellix model pages</a>. Token-based pricing and vendor rates change without notice — verify against the linked pages before budgeting. Nano Banana is Google’s model family; Modellix is a distribution layer that resells Google’s endpoints and does not build these models.</em></p>
+<p><em>All prices and model details were retrieved from first-party vendor pages on July 21, 2026: <a target="_blank" rel="noopener nofollow" href="https://ai.google.dev/gemini-api/docs/pricing">Google Gemini API pricing</a>, <a target="_blank" rel="noopener nofollow" href="https://ai.google.dev/gemini-api/docs/image-generation">Google image generation docs</a>, and <a href="https://www.modellix.ai/models/google/nano-banana-2">Modellix model pages</a>. Token-based pricing and vendor rates change without notice — verify against the linked pages before budgeting. Nano Banana is Google’s model family; Modellix is a distribution layer that resells Google’s endpoints and does not build these models.</em></p>
 
         </div>
 
@@ -477,8 +477,8 @@
     <div class="post-share">
       <span class="post-share-label">Share this article</span>
       <div class="post-share-links">
-        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/nano-banana-price/&text=Nano%20Banana%20Price%3A%20What%20It%20Really%20Costs" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/nano-banana-price/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/nano-banana-price/&text=Nano%20Banana%20Price%3A%20What%20It%20Really%20Costs" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/nano-banana-price/" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/nano-banana-price/"><i class="fa-solid fa-link"></i></button>
       </div>
     </div>
@@ -504,16 +504,16 @@
           <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
         
         
-          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener nofollow" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
         
         
-          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener nofollow" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
         
         
-          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener nofollow" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
         
         
-          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener nofollow" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         
       </div>
       

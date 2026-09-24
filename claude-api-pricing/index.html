@@ -163,11 +163,11 @@
             
               <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
             
-              <a href="/blog/tags/Claude/" class="tag-pill tag-pill--sm">Claude</a>
-            
               <a href="/blog/tags/Anthropic/" class="tag-pill tag-pill--sm">Anthropic</a>
             
               <a href="/blog/tags/LLM-API/" class="tag-pill tag-pill--sm">LLM API</a>
+            
+              <a href="/blog/tags/Claude/" class="tag-pill tag-pill--sm">Claude</a>
             
           </div>
         
@@ -208,7 +208,7 @@
 
 <p>Searching “claude api pricing” in September 2026 surfaces an official subscription page, a Reddit thread arguing whether Pro or the API is cheaper, and cost-tracking sites that mostly describe models from the previous generation. None of that tells you what you actually came for: the current per-token rates for the Claude models you can call today, and how a real invoice is assembled from them. That is what this page covers, with every figure captured on September 3, 2026.</p>
 <p>Three Claude models are available for API use right now — <strong>Opus 5, Sonnet 5, and Haiku 4.5</strong> — and all three are flat-rate: one input price and one output price per million tokens, with no per-tier surcharge for long contexts. This article gives you the full table, explains the flat-rate and caching mechanics that decide your real bill, and closes with an honest route comparison for buying direct from Anthropic versus calling the same models through an aggregator. We run <a href="https://www.modellix.ai/">Modellix</a>, an API gateway that lists all three models (and routes the Anthropic Messages protocol), so we have a commercial interest when Modellix appears below; prices here were read from the Modellix LLM price page and Anthropic’s own pricing documentation on September 3, 2026, and we say so wherever a number could not be verified.</p>
-<h2 id="Claude-API-pricing-at-a-glance-September-3-2026"><a href="#Claude-API-pricing-at-a-glance-September-3-2026" class="headerlink" title="Claude API pricing at a glance (September 3, 2026)"></a>Claude API pricing at a glance (September 3, 2026)</h2><p>All rates are <strong>USD per 1 million tokens</strong>, which is the only unit Anthropic bills in. “Successful responses are billed from token usage” — a failed request is not a surprise line item. The table below is the current rate card for the three in-sale models, as displayed on the <a href="https://www.modellix.ai/llm">Modellix LLM price page</a> on September 3, 2026; Anthropic’s own <a target="_blank" rel="noopener" href="https://platform.claude.com/docs/en/about-claude/pricing">model pricing documentation</a> listed identical numbers on the same day, which we note because the two pages are maintained independently.</p>
+<h2 id="Claude-API-pricing-at-a-glance-September-3-2026"><a href="#Claude-API-pricing-at-a-glance-September-3-2026" class="headerlink" title="Claude API pricing at a glance (September 3, 2026)"></a>Claude API pricing at a glance (September 3, 2026)</h2><p>All rates are <strong>USD per 1 million tokens</strong>, which is the only unit Anthropic bills in. “Successful responses are billed from token usage” — a failed request is not a surprise line item. The table below is the current rate card for the three in-sale models, as displayed on the <a href="https://www.modellix.ai/llm">Modellix LLM price page</a> on September 3, 2026; Anthropic’s own <a target="_blank" rel="noopener nofollow" href="https://platform.claude.com/docs/en/about-claude/pricing">model pricing documentation</a> listed identical numbers on the same day, which we note because the two pages are maintained independently.</p>
 <table>
 <thead>
 <tr>
@@ -254,8 +254,8 @@
 <p><em>The source of the table above: Modellix’s “Models and pricing” list as captured September 3, 2026. Note the Discount column reads “—“ for every Anthropic row — see the route comparison section.</em></p>
 <p>Three things in this table are worth flagging before you compare it against an older article you bookmarked:</p>
 <ol>
-<li><strong>Sonnet 5 does not cost $3&#x2F;$15.</strong> It launched at $2&#x2F;$10 as “introductory” pricing, and several guides and forum posts still say it steps up to $3&#x2F;$15 on September 1, 2026. That increase was cancelled: Anthropic’s <a target="_blank" rel="noopener" href="https://www.anthropic.com/news/claude-sonnet-5">Sonnet 5 announcement</a> records (August 10, 2026 edit) that the $2&#x2F;$10 rate is now permanent, and the pricing docs state the scheduled increase “will not occur.” If a 2026 article tells you Sonnet 5 is about to get more expensive, it is stale.</li>
-<li><strong>Opus 5 carried its predecessor’s price.</strong> Anthropic’s <a target="_blank" rel="noopener" href="https://www.anthropic.com/news/claude-opus-5">Opus 5 announcement</a> confirms $5&#x2F;$25 — the same rate card Opus 4.8 carried, and one that makes the previous-generation model no cheaper than the current one. What changed with Opus 5 is not the sticker price.</li>
+<li><strong>Sonnet 5 does not cost $3&#x2F;$15.</strong> It launched at $2&#x2F;$10 as “introductory” pricing, and several guides and forum posts still say it steps up to $3&#x2F;$15 on September 1, 2026. That increase was cancelled: Anthropic’s <a target="_blank" rel="noopener nofollow" href="https://www.anthropic.com/news/claude-sonnet-5">Sonnet 5 announcement</a> records (August 10, 2026 edit) that the $2&#x2F;$10 rate is now permanent, and the pricing docs state the scheduled increase “will not occur.” If a 2026 article tells you Sonnet 5 is about to get more expensive, it is stale.</li>
+<li><strong>Opus 5 carried its predecessor’s price.</strong> Anthropic’s <a target="_blank" rel="noopener nofollow" href="https://www.anthropic.com/news/claude-opus-5">Opus 5 announcement</a> confirms $5&#x2F;$25 — the same rate card Opus 4.8 carried, and one that makes the previous-generation model no cheaper than the current one. What changed with Opus 5 is not the sticker price.</li>
 <li><strong>The context window is part of the price.</strong> Opus 5 and Sonnet 5 accept up to 1M tokens and bill every token at the same flat rate — a 900K-token request bills like a 9K one, no long-context surcharge. Haiku 4.5 tops out at 200K tokens. The window decides how much you can send in one request; it does not change the per-token rate.</li>
 </ol>
 <p>One newer model now sits above this table: <strong>Claude Fable 5.1</strong> (plus its limited-availability sibling Mythos 5.1) tops Anthropic’s rate card at $10 input &#x2F; $50 output per 1M tokens, with cache reads priced at a special $0.25 instead of the usual 0.1× rate. It is a new premium tier above Opus, not a replacement for these three, and this pricing guide keeps it as a boundary note rather than a fourth column.</p>
@@ -319,7 +319,7 @@
 <p><strong>Is the Claude API free?</strong></p>
 <p>No. Every successful request is billed from token usage. Anthropic’s pricing FAQ describes limited testing credits for new developer accounts; those do not make the API free. Modellix ended its automatic $1 signup credit on August 19, 2026. Its two $0-priced LLM rows, <code>modellix-ai/free-llm</code> and <code>zai/glm-4.7-flash</code>, are unrelated to Anthropic and are not a free way to call Claude.</p>
 <p><strong>Is the API cheaper than a Claude Pro or Max subscription?</strong></p>
-<p>They are different products with different cost structures, so the comparison only works per workload. Subscriptions (see <a target="_blank" rel="noopener" href="https://claude.com/pricing">claude.com&#x2F;pricing</a>) are flat monthly fees with usage caps on Anthropic’s chat and coding surfaces; the API is pay-per-token with no cap and a separate meter. Heavy interactive use inside a subscription’s limits is cheaper on a plan; programmatic, elastic, or capped-budget workloads are cheaper — or only possible — on the API. Which one minimizes <em>your</em> bill depends on whether your usage fits the plan’s envelope; we are not going to tell you to route around a subscription to save money, because the two meters do not share tokens.</p>
+<p>They are different products with different cost structures, so the comparison only works per workload. Subscriptions (see <a target="_blank" rel="noopener nofollow" href="https://claude.com/pricing">claude.com&#x2F;pricing</a>) are flat monthly fees with usage caps on Anthropic’s chat and coding surfaces; the API is pay-per-token with no cap and a separate meter. Heavy interactive use inside a subscription’s limits is cheaper on a plan; programmatic, elastic, or capped-budget workloads are cheaper — or only possible — on the API. Which one minimizes <em>your</em> bill depends on whether your usage fits the plan’s envelope; we are not going to tell you to route around a subscription to save money, because the two meters do not share tokens.</p>
 <p><strong>Which Claude model should I use for API calls?</strong></p>
 <p>Start with Sonnet 5 ($2&#x2F;$10) for most production work, use Haiku 4.5 ($1&#x2F;$5) for high-volume simple tasks, and reserve Opus 5 ($5&#x2F;$25) for the hardest reasoning and longest agent runs. This is a pricing guide, so treat capability claims as Anthropic’s, not ours.</p>
 <p><strong>Is Sonnet 5 really $2&#x2F;$10, or is it going up to $3&#x2F;$15?</strong></p>
@@ -333,7 +333,7 @@
 <section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Check Current Claude Model Pricing on Modellix</h3><p class="view-docs-tag-desc">Log in to compare the live listed rates for Opus 5, Sonnet 5, and Haiku 4.5 and see per-call cost logs on one key.</p><a class="btn view-docs-tag-btn" href="https://www.modellix.ai/console/login" data-cta="login_tag" data-cta-target="login" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
 
 <hr>
-<p><em>Pricing and model availability change without notice. Figures above were captured September 3, 2026 from the <a href="https://www.modellix.ai/llm">Modellix LLM price page</a> and from <a target="_blank" rel="noopener" href="https://platform.claude.com/docs/en/about-claude/pricing">Anthropic’s model pricing documentation</a>, with the Sonnet 5 pricing change cross-checked against <a target="_blank" rel="noopener" href="https://www.anthropic.com/news/claude-sonnet-5">Anthropic’s announcement</a>. Modellix is an API aggregator with a commercial interest in this guide and is not affiliated with Anthropic; verify current rates against the live sources before committing spend. Access language models from Anthropic, OpenAI, Google, DeepSeek, Qwen, and more through a single API key at <a href="https://www.modellix.ai/">modellix.ai</a>.</em></p>
+<p><em>Pricing and model availability change without notice. Figures above were captured September 3, 2026 from the <a href="https://www.modellix.ai/llm">Modellix LLM price page</a> and from <a target="_blank" rel="noopener nofollow" href="https://platform.claude.com/docs/en/about-claude/pricing">Anthropic’s model pricing documentation</a>, with the Sonnet 5 pricing change cross-checked against <a target="_blank" rel="noopener nofollow" href="https://www.anthropic.com/news/claude-sonnet-5">Anthropic’s announcement</a>. Modellix is an API aggregator with a commercial interest in this guide and is not affiliated with Anthropic; verify current rates against the live sources before committing spend. Access language models from Anthropic, OpenAI, Google, DeepSeek, Qwen, and more through a single API key at <a href="https://www.modellix.ai/">modellix.ai</a>.</em></p>
 
         </div>
 
@@ -342,11 +342,11 @@
             
               <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
             
-              <a href="/blog/tags/Claude/" class="tag-pill tag-pill--sm">Claude</a>
-            
               <a href="/blog/tags/Anthropic/" class="tag-pill tag-pill--sm">Anthropic</a>
             
               <a href="/blog/tags/LLM-API/" class="tag-pill tag-pill--sm">LLM API</a>
+            
+              <a href="/blog/tags/Claude/" class="tag-pill tag-pill--sm">Claude</a>
             
           
         </div>
@@ -456,8 +456,8 @@
     <div class="post-share">
       <span class="post-share-label">Share this article</span>
       <div class="post-share-links">
-        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/claude-api-pricing/&text=Claude%20API%20Pricing%20(2026)%3A%20Opus%205%2C%20Sonnet%205%2C%20Haiku%204.5%20Costs" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/claude-api-pricing/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/claude-api-pricing/&text=Claude%20API%20Pricing%20(2026)%3A%20Opus%205%2C%20Sonnet%205%2C%20Haiku%204.5%20Costs" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/claude-api-pricing/" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/claude-api-pricing/"><i class="fa-solid fa-link"></i></button>
       </div>
     </div>
@@ -483,16 +483,16 @@
           <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
         
         
-          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener nofollow" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
         
         
-          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener nofollow" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
         
         
-          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener nofollow" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
         
         
-          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener nofollow" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         
       </div>
       

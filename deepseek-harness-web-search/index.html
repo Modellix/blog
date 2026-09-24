@@ -165,9 +165,9 @@
             
               <a href="/blog/tags/Tutorial/" class="tag-pill tag-pill--sm">Tutorial</a>
             
-              <a href="/blog/tags/dsh-modellix/" class="tag-pill tag-pill--sm">dsh-modellix</a>
-            
               <a href="/blog/tags/Web-Search/" class="tag-pill tag-pill--sm">Web Search</a>
+            
+              <a href="/blog/tags/dsh-modellix/" class="tag-pill tag-pill--sm">dsh-modellix</a>
             
           </div>
         
@@ -206,11 +206,11 @@
   <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-deepseek-harness-web-search.png" alt="DeepSeek Harness web search editorial cover: native web_search and web_fetch tools routed through the Modellix provider to tool.modellix.ai, amber key with cyan rim light on dark copper" />
 </picture>
 
-<h2 id="Why-configuring-web-search-means-installing-a-plugin"><a href="#Why-configuring-web-search-means-installing-a-plugin" class="headerlink" title="Why configuring web_search means installing a plugin"></a>Why configuring web_search means installing a plugin</h2><p>DeepSeek Harness ships with two built-in web tools: <code>web_search</code>, which looks things up, and <code>web_fetch</code>, which opens a specific URL and returns its readable content. Together they cover the browsing loop every agent needs: find a source, read it, cite it. Out of the box, both run through DeepSeek’s official provider and authenticate with a DeepSeek API key; the <a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness">official repository</a> calls the whole product “everything is a plugin,” and web search is one of the plugin seams. The tools themselves are native; only the provider behind them is swappable.</p>
-<p>That seam is the thing people get stuck on. A <a target="_blank" rel="noopener" href="https://www.reddit.com/r/LocalLLaMA/comments/1vva30g/web_search_tool_in_deepseek_harness_needs_api_key/">r&#x2F;LocalLLaMA thread</a> that ranks first for “deepseek harness web_search api key” describes the exact failure: you point the harness at another model source, the model works, and then every <code>web_search</code> call still bills you as if it had called DeepSeek’s own model. The same issue shows up in the harness’s GitHub Discussions, where a ten-comment thread reports that <code>web_search</code> pins itself to the official endpoint, so users of self-configured gateways hit authentication failures on every search.</p>
+<h2 id="Why-configuring-web-search-means-installing-a-plugin"><a href="#Why-configuring-web-search-means-installing-a-plugin" class="headerlink" title="Why configuring web_search means installing a plugin"></a>Why configuring web_search means installing a plugin</h2><p>DeepSeek Harness ships with two built-in web tools: <code>web_search</code>, which looks things up, and <code>web_fetch</code>, which opens a specific URL and returns its readable content. Together they cover the browsing loop every agent needs: find a source, read it, cite it. Out of the box, both run through DeepSeek’s official provider and authenticate with a DeepSeek API key; the <a target="_blank" rel="noopener nofollow" href="https://github.com/deepseek-ai/deepseek-harness">official repository</a> calls the whole product “everything is a plugin,” and web search is one of the plugin seams. The tools themselves are native; only the provider behind them is swappable.</p>
+<p>That seam is the thing people get stuck on. A <a target="_blank" rel="noopener nofollow" href="https://www.reddit.com/r/LocalLLaMA/comments/1vva30g/web_search_tool_in_deepseek_harness_needs_api_key/">r&#x2F;LocalLLaMA thread</a> that ranks first for “deepseek harness web_search api key” describes the exact failure: you point the harness at another model source, the model works, and then every <code>web_search</code> call still bills you as if it had called DeepSeek’s own model. The same issue shows up in the harness’s GitHub Discussions, where a ten-comment thread reports that <code>web_search</code> pins itself to the official endpoint, so users of self-configured gateways hit authentication failures on every search.</p>
 <p>The reason is structural. The harness routes <code>web_search</code> and <code>web_fetch</code> through a <code>searchProvider</code> &#x2F; <code>fetchProvider</code> seam, and the default provider is DeepSeek’s own. The configuration-only path that swaps your model source, covered in the <a href="https://www.modellix.ai/blog/deepseek-harness-custom-model/">DeepSeek Harness custom model guide</a>, does not touch this seam. Swapping the search and fetch providers is one of the jobs that <a href="https://www.modellix.ai/blog/dsh-plugin-add/">needs a plugin rather than configuration</a>: a plugin can patch the seam, pure configuration cannot.</p>
 <p>This article walks through one concrete seam swap: the <code>dsh-modellix</code> plugin’s Web module, which registers Modellix as the search and fetch provider for the native tools. Modellix operates the search API used in these examples, so we have a commercial interest in this working for you. Endpoints and prices were verified against <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/agent/deepseek-harness">docs.modellix.ai</a> on August 31, 2026; plugin behaviors were verified against the dsh-modellix README (0.2.0).</p>
-<h2 id="What-the-Web-module-does-and-does-not-do"><a href="#What-the-Web-module-does-and-does-not-do" class="headerlink" title="What the Web module does (and does not do)"></a>What the Web module does (and does not do)</h2><p>The <code>dsh-modellix</code> profile bundle ships three modules: Design, LLM, and Web. The Web module’s entire job is to make web access run through Modellix. This article documents <strong>dsh-modellix 0.2.0</strong> (released August 31, 2026); the native-provider takeover introduced in 0.1.x remains. The <a target="_blank" rel="noopener" href="https://github.com/Modellix/dsh-modellix">plugin README</a> describes the current behavior verbatim:</p>
+<h2 id="What-the-Web-module-does-and-does-not-do"><a href="#What-the-Web-module-does-and-does-not-do" class="headerlink" title="What the Web module does (and does not do)"></a>What the Web module does (and does not do)</h2><p>The <code>dsh-modellix</code> profile bundle ships three modules: Design, LLM, and Web. The Web module’s entire job is to make web access run through Modellix. This article documents <strong>dsh-modellix 0.2.0</strong> (released August 31, 2026); the native-provider takeover introduced in 0.1.x remains. The <a target="_blank" rel="noopener nofollow" href="https://github.com/Modellix/dsh-modellix">plugin README</a> describes the current behavior verbatim:</p>
 <blockquote>
 <p>The explicit Modellix tools and the native Harness providers share the same underlying service, but the routing instruction prevents both tool families from being called for the same operation. Failed or unknown Web requests are not repeated automatically.</p>
 </blockquote>
@@ -293,12 +293,12 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><a target="_blank" rel="noopener" href="https://github.com/liustack/modsearch">ModSearch</a></td>
+<td><a target="_blank" rel="noopener nofollow" href="https://github.com/liustack/modsearch">ModSearch</a></td>
 <td>A skill with its own CLI and engine failover (Firecrawl, Tavily, Exa, Grok, local)</td>
 <td>A new capability called by name: a new tool, not a replacement for the native one</td>
 </tr>
 <tr>
-<td><a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness/discussions/2671">AnySearch provider</a></td>
+<td><a target="_blank" rel="noopener nofollow" href="https://github.com/deepseek-ai/deepseek-harness/discussions/2671">AnySearch provider</a></td>
 <td>A custom <code>WebSearchProvider</code> against AnySearch’s <code>/v1/search</code>, with its own settings section and credential flow</td>
 <td>At the seam, but community-built and maintained, and search only; fetch stays on the default provider</td>
 </tr>
@@ -373,9 +373,9 @@
             
               <a href="/blog/tags/Tutorial/" class="tag-pill tag-pill--sm">Tutorial</a>
             
-              <a href="/blog/tags/dsh-modellix/" class="tag-pill tag-pill--sm">dsh-modellix</a>
-            
               <a href="/blog/tags/Web-Search/" class="tag-pill tag-pill--sm">Web Search</a>
+            
+              <a href="/blog/tags/dsh-modellix/" class="tag-pill tag-pill--sm">dsh-modellix</a>
             
           
         </div>
@@ -485,8 +485,8 @@
     <div class="post-share">
       <span class="post-share-label">Share this article</span>
       <div class="post-share-links">
-        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/deepseek-harness-web-search/&text=DeepSeek%20Harness%20Web%20Search%3A%20web_search%20and%20web_fetch" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/deepseek-harness-web-search/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/deepseek-harness-web-search/&text=DeepSeek%20Harness%20Web%20Search%3A%20web_search%20and%20web_fetch" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/deepseek-harness-web-search/" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/deepseek-harness-web-search/"><i class="fa-solid fa-link"></i></button>
       </div>
     </div>
@@ -512,16 +512,16 @@
           <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
         
         
-          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener nofollow" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
         
         
-          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener nofollow" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
         
         
-          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener nofollow" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
         
         
-          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener nofollow" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         
       </div>
       

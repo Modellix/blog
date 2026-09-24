@@ -164,13 +164,13 @@
             
               <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
             
-              <a href="/blog/tags/bytedance/" class="tag-pill tag-pill--sm">ByteDance</a>
-            
-              <a href="/blog/tags/seedream/" class="tag-pill tag-pill--sm">Seedream</a>
-            
               <a href="/blog/tags/image-generation/" class="tag-pill tag-pill--sm">Image Generation</a>
             
               <a href="/blog/tags/api/" class="tag-pill tag-pill--sm">API</a>
+            
+              <a href="/blog/tags/bytedance/" class="tag-pill tag-pill--sm">ByteDance</a>
+            
+              <a href="/blog/tags/seedream/" class="tag-pill tag-pill--sm">Seedream</a>
             
           </div>
         
@@ -212,8 +212,8 @@
 <p>Yes, the Seedream 5 API exists, it is live, and it bills in dollars you can look up today. “Seedream 5” is the shorthand developers use for <strong>Seedream 5.0</strong>, ByteDance’s current image-generation family — two tiers, Lite and Pro, both for sale on the official cloud and both callable through third-party aggregators. As of September 7, 2026, the official international route (BytePlus ModelArk) lists Lite at <strong>$0.035 per generated image</strong> under model ID <code>seedream-5-0-lite-260128</code>, and Pro at <strong>$0.045 per image for output at 1.5K or lower</strong> (double above that) under the ID printed in BytePlus’s own pricing table. This guide gives you the four things the ranking pages scatter across a dozen tabs: the naming straight, the official pricing pulled today, working request code, and an honest answer to which tier and which route fit your workload. Full disclosure up front: Modellix publishes this blog and sells API access to Seedream 5.0 — we state our prices, compare them against the official list, and flag where the official route is cheaper.</p>
 <h2 id="Seedream-5-API-is-Seedream-5-0-naming-tiers-and-what-“current”-means"><a href="#Seedream-5-API-is-Seedream-5-0-naming-tiers-and-what-“current”-means" class="headerlink" title="Seedream 5 API is Seedream 5.0: naming, tiers, and what “current” means"></a>Seedream 5 API is Seedream 5.0: naming, tiers, and what “current” means</h2><p>If you searched “seedream 5 api,” you are looking at the <strong>Seedream 5.0</strong> generation. ByteDance’s image family runs Seedream 4.0 → 4.5 → 5.0, and version five ships as two API products rather than one model:</p>
 <ul>
-<li><strong>Seedream 5.0 Lite</strong> — the workhorse: text-to-image, image-to-image, editing, sequential batches, and output up to 4K. ByteDance’s <a target="_blank" rel="noopener" href="https://seed.bytedance.com/en/seedream5_0_lite">Lite product page</a> describes it as a unified multimodal model with deep thinking and online-search capabilities. In the API it is the tier that supports batch generation and streaming.</li>
-<li><strong>Seedream 5.0 Pro</strong> — the design-understanding flagship, added to the official catalog in mid-2026 (its model-ID date suffix is 260628): layer decomposition into up to 16 editable layers, coordinate-level interactive editing, native text in more languages, single-image generation up to 2K. See the <a target="_blank" rel="noopener" href="https://seed.bytedance.com/en/seedream5_0_pro">Pro product page</a> for the marketing view.</li>
+<li><strong>Seedream 5.0 Lite</strong> — the workhorse: text-to-image, image-to-image, editing, sequential batches, and output up to 4K. ByteDance’s <a target="_blank" rel="noopener nofollow" href="https://seed.bytedance.com/en/seedream5_0_lite">Lite product page</a> describes it as a unified multimodal model with deep thinking and online-search capabilities. In the API it is the tier that supports batch generation and streaming.</li>
+<li><strong>Seedream 5.0 Pro</strong> — the design-understanding flagship, added to the official catalog in mid-2026 (its model-ID date suffix is 260628): layer decomposition into up to 16 editable layers, coordinate-level interactive editing, native text in more languages, single-image generation up to 2K. See the <a target="_blank" rel="noopener nofollow" href="https://seed.bytedance.com/en/seedream5_0_pro">Pro product page</a> for the marketing view.</li>
 </ul>
 <p>Three naming traps trip up most first integrations, and this SERP mixes all of them:</p>
 <ol>
@@ -222,7 +222,7 @@
 <li><strong>Model IDs differ by region and tier</strong>: the international BytePlus route prints Pro as <code>dola-seedream-5-0-pro-260628</code> (BytePlus markets the international Pro as “Dola” — its own announcement says “Dola Seedream 5.0 Pro API is now available on BytePlus”), while the domestic Chinese route (Volcengine) uses <code>doubao-seedream-5-0-pro-260628</code>; Lite is <code>seedream-5-0-lite-260128</code> internationally and <code>doubao-seedream-5-0-lite-260128</code> domestically. Copy the ID from your own console rather than from a blog — ByteDance date-suffixes these IDs and rotates them on releases.</li>
 </ol>
 <p>Lite arrived in early 2026 and Pro followed mid-2026; both are current-generation today. If you hold a 4.0 or 4.5 pipeline, the “should you move” question is answered in the second-to-last section.</p>
-<h2 id="What-the-Seedream-5-0-API-does-Lite-vs-Pro-capabilities"><a href="#What-the-Seedream-5-0-API-does-Lite-vs-Pro-capabilities" class="headerlink" title="What the Seedream 5.0 API does: Lite vs Pro capabilities"></a>What the Seedream 5.0 API does: Lite vs Pro capabilities</h2><p>Both tiers share one API surface — the official <a target="_blank" rel="noopener" href="https://docs.byteplus.com/en/docs/ModelArk/1541523">image-generation API reference</a> (last updated August 12, 2026) documents Seedream 5.0 Pro, 5.0 Lite, 4.5, and 4.0 against the same endpoint. The split that matters is capability, not quality:</p>
+<h2 id="What-the-Seedream-5-0-API-does-Lite-vs-Pro-capabilities"><a href="#What-the-Seedream-5-0-API-does-Lite-vs-Pro-capabilities" class="headerlink" title="What the Seedream 5.0 API does: Lite vs Pro capabilities"></a>What the Seedream 5.0 API does: Lite vs Pro capabilities</h2><p>Both tiers share one API surface — the official <a target="_blank" rel="noopener nofollow" href="https://docs.byteplus.com/en/docs/ModelArk/1541523">image-generation API reference</a> (last updated August 12, 2026) documents Seedream 5.0 Pro, 5.0 Lite, 4.5, and 4.0 against the same endpoint. The split that matters is capability, not quality:</p>
 <table>
 <thead>
 <tr>
@@ -279,7 +279,7 @@
 
 <p><em>Figure: the Seedream 5.0 lineup — one API core, two tiers with different batch, resolution, and layer capabilities. Concept diagram generated for this article, not a screenshot.</em></p>
 <p>The practical reading: Lite is the throughput tier (related batches, streaming, larger output canvas); Pro is the precision tier (editing control and layered output for production design pipelines). ByteDance’s reference also recommends keeping prompts under roughly 300 Chinese characters or 600 English words across the family.</p>
-<h2 id="Seedream-5-0-API-pricing-pulled-September-7-2026"><a href="#Seedream-5-0-API-pricing-pulled-September-7-2026" class="headerlink" title="Seedream 5.0 API pricing, pulled September 7, 2026"></a>Seedream 5.0 API pricing, pulled September 7, 2026</h2><p>The authoritative numbers come from BytePlus’s <a target="_blank" rel="noopener" href="https://docs.byteplus.com/en/docs/ModelArk/1544106">model pricing page</a>, read today. BytePlus bills per successfully generated image — failed and moderation-rejected outputs are not charged — and input images are free on Lite. Pro prices are split by an output-pixel threshold: <strong>≤ 2.61 million pixels (1.5K or lower) vs above it</strong>.</p>
+<h2 id="Seedream-5-0-API-pricing-pulled-September-7-2026"><a href="#Seedream-5-0-API-pricing-pulled-September-7-2026" class="headerlink" title="Seedream 5.0 API pricing, pulled September 7, 2026"></a>Seedream 5.0 API pricing, pulled September 7, 2026</h2><p>The authoritative numbers come from BytePlus’s <a target="_blank" rel="noopener nofollow" href="https://docs.byteplus.com/en/docs/ModelArk/1544106">model pricing page</a>, read today. BytePlus bills per successfully generated image — failed and moderation-rejected outputs are not charged — and input images are free on Lite. Pro prices are split by an output-pixel threshold: <strong>≤ 2.61 million pixels (1.5K or lower) vs above it</strong>.</p>
 <table>
 <thead>
 <tr>
@@ -307,19 +307,19 @@
 <tr>
 <td>fal.ai (aggregator)</td>
 <td>not quoted here</td>
-<td><strong>from $0.0675</strong> (≤1536×1536; $0.135 up to 2048×2048, per fal’s <a target="_blank" rel="noopener" href="https://fal.ai/seedream-5.0">Seedream 5.0 page</a>)</td>
+<td><strong>from $0.0675</strong> (≤1536×1536; $0.135 up to 2048×2048, per fal’s <a target="_blank" rel="noopener nofollow" href="https://fal.ai/seedream-5.0">Seedream 5.0 page</a>)</td>
 <td>—</td>
 <td>None</td>
 </tr>
 <tr>
 <td>kie.ai (aggregator)</td>
-<td><strong>≈ $0.0275</strong> (5.5 credits, ~21% below official per kie’s <a target="_blank" rel="noopener" href="https://kie.ai/seedream5-0-lite">Lite page</a>)</td>
+<td><strong>≈ $0.0275</strong> (5.5 credits, ~21% below official per kie’s <a target="_blank" rel="noopener nofollow" href="https://kie.ai/seedream5-0-lite">Lite page</a>)</td>
 <td>separate Pro page</td>
 <td>—</td>
 <td>None; trial credits for new accounts</td>
 </tr>
 </tbody></table>
-<p>Two honesty notes on that table. First, this is a same-model, same-task comparison — it is <strong>not</strong> a claim that aggregators are generally cheaper. On Lite, Modellix lists the official price flat ($0.0350; re-verified against the live Lite model page on September 8, 2026, in both the server render and the JavaScript render) and kie undercuts both; on Pro, the official route’s 1.5K-and-below tier ($0.045) is cheaper than every aggregator flat rate we checked, because BytePlus prices small Pro output aggressively. Second, “from $0.0675” on fal is a starting price that scales with output size — the fair comparison for Pro is the $0.09 tier against fal’s $0.135 at 2048×2048, where aggregators narrow the gap. ByteDance’s international product page (<a target="_blank" rel="noopener" href="https://www.byteplus.com/en/product/Seedream">byteplus.com&#x2F;en&#x2F;product&#x2F;Seedream</a>) summarizes the same structure: “starting at $0.045&#x2F;image, first reference image free, additional from $0.003.” Volcengine, the domestic route, prices separately in local currency — if your infrastructure runs inside mainland China that is the page to read, not this table.</p>
+<p>Two honesty notes on that table. First, this is a same-model, same-task comparison — it is <strong>not</strong> a claim that aggregators are generally cheaper. On Lite, Modellix lists the official price flat ($0.0350; re-verified against the live Lite model page on September 8, 2026, in both the server render and the JavaScript render) and kie undercuts both; on Pro, the official route’s 1.5K-and-below tier ($0.045) is cheaper than every aggregator flat rate we checked, because BytePlus prices small Pro output aggressively. Second, “from $0.0675” on fal is a starting price that scales with output size — the fair comparison for Pro is the $0.09 tier against fal’s $0.135 at 2048×2048, where aggregators narrow the gap. ByteDance’s international product page (<a target="_blank" rel="noopener nofollow" href="https://www.byteplus.com/en/product/Seedream">byteplus.com&#x2F;en&#x2F;product&#x2F;Seedream</a>) summarizes the same structure: “starting at $0.045&#x2F;image, first reference image free, additional from $0.003.” Volcengine, the domestic route, prices separately in local currency — if your infrastructure runs inside mainland China that is the page to read, not this table.</p>
 <p>Doing the arithmetic on the official route: a 1,000-image catalog at Lite is $35; at Pro’s low tier it is $45 (or $90 if you push every output above 1.5K); layer-decomposing 1,000 images at the low tier is $22.50 plus the free first input image each.</p>
 <h2 id="The-official-route-BytePlus-ModelArk-step-by-step"><a href="#The-official-route-BytePlus-ModelArk-step-by-step" class="headerlink" title="The official route: BytePlus ModelArk, step by step"></a>The official route: BytePlus ModelArk, step by step</h2><p>BytePlus ModelArk is ByteDance’s international cloud — no China-region account required. Setup has two steps people underestimate, so the order matters:</p>
 <ol>
@@ -328,7 +328,7 @@
 <li><strong>Activate Seedream 5.0.</strong> Find the model in model management (Lite and Pro are separate activations) and activate it. This step refuses until step 1 is satisfied — the classic “my key is valid, why 401” trap.</li>
 <li><strong>Call the endpoint.</strong> Unlike ByteDance’s video models, image generation is a single synchronous request: one POST returns the image URL(s) in the response.</li>
 </ol>
-<p>The endpoint, from the official API reference: <code>POST &#123;base&#125;/images/generations</code> where the base URL depends on region — ap-southeast-1 at <code>https://ark.ap-southeast.bytepluses.com/api/v3</code> or eu-west-1 at <code>https://ark.eu-west.bytepluses.com/api/v3</code> for European workloads and data residency. The same reference notes that BytePlus exposes rate-limit and quota controls through model units &#x2F; Endpoint IDs rather than a fixed published number — create an Endpoint ID if you need guaranteed concurrency, and read your limit from the console. For the domestic route, Volcengine documents the same family under its <a target="_blank" rel="noopener" href="https://www.volcengine.com/docs/82379/1824121">doubao model IDs</a> (e.g., <code>doubao-seedream-5-0-pro-260628</code>).</p>
+<p>The endpoint, from the official API reference: <code>POST &#123;base&#125;/images/generations</code> where the base URL depends on region — ap-southeast-1 at <code>https://ark.ap-southeast.bytepluses.com/api/v3</code> or eu-west-1 at <code>https://ark.eu-west.bytepluses.com/api/v3</code> for European workloads and data residency. The same reference notes that BytePlus exposes rate-limit and quota controls through model units &#x2F; Endpoint IDs rather than a fixed published number — create an Endpoint ID if you need guaranteed concurrency, and read your limit from the console. For the domestic route, Volcengine documents the same family under its <a target="_blank" rel="noopener nofollow" href="https://www.volcengine.com/docs/82379/1824121">doubao model IDs</a> (e.g., <code>doubao-seedream-5-0-pro-260628</code>).</p>
 <h2 id="Working-code-curl-Python-and-a-layer-decomposition-call"><a href="#Working-code-curl-Python-and-a-layer-decomposition-call" class="headerlink" title="Working code: curl, Python, and a layer-decomposition call"></a>Working code: curl, Python, and a layer-decomposition call</h2><p><strong>curl — text-to-image on Lite.</strong> The official route takes a bearer key and a JSON body with <code>model</code>, <code>prompt</code>, and <code>size</code>:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">curl https://ark.ap-southeast.bytepluses.com/api/v3/images/generations \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$ARK_API_KEY</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;model&quot;: &quot;seedream-5-0-lite-260128&quot;,</span></span><br><span class="line"><span class="string">    &quot;prompt&quot;: &quot;A miniature tea house at night, warm lantern light, deep blue snow-covered garden&quot;,</span></span><br><span class="line"><span class="string">    &quot;size&quot;: &quot;2K&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
 
@@ -430,13 +430,13 @@
             
               <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
             
-              <a href="/blog/tags/bytedance/" class="tag-pill tag-pill--sm">ByteDance</a>
-            
-              <a href="/blog/tags/seedream/" class="tag-pill tag-pill--sm">Seedream</a>
-            
               <a href="/blog/tags/image-generation/" class="tag-pill tag-pill--sm">Image Generation</a>
             
               <a href="/blog/tags/api/" class="tag-pill tag-pill--sm">API</a>
+            
+              <a href="/blog/tags/bytedance/" class="tag-pill tag-pill--sm">ByteDance</a>
+            
+              <a href="/blog/tags/seedream/" class="tag-pill tag-pill--sm">Seedream</a>
             
           
         </div>
@@ -546,8 +546,8 @@
     <div class="post-share">
       <span class="post-share-label">Share this article</span>
       <div class="post-share-links">
-        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/seedream-5-api/&text=Seedream%205.0%20API%3A%20Integration%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/seedream-5-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/seedream-5-api/&text=Seedream%205.0%20API%3A%20Integration%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/seedream-5-api/" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/seedream-5-api/"><i class="fa-solid fa-link"></i></button>
       </div>
     </div>
@@ -573,16 +573,16 @@
           <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
         
         
-          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener nofollow" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
         
         
-          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener nofollow" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
         
         
-          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener nofollow" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
         
         
-          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener nofollow" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         
       </div>
       

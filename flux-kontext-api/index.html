@@ -164,9 +164,9 @@
         
           <div class="post-header-tags">
             
-              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
-            
               <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
             
               <a href="/blog/tags/flux/" class="tag-pill tag-pill--sm">FLUX</a>
             
@@ -218,7 +218,7 @@
 <li><strong>FLUX.1 Kontext [max]</strong> — a hosted variant with higher output quality, billed at twice the pro rate.</li>
 <li><strong>FLUX.1 Kontext [dev]</strong> — a 12B-parameter open-weight release under a non-commercial license, run locally or through inference providers such as Replicate and fal.ai.</li>
 </ul>
-<p>The API is asynchronous: you submit a task, get a task ID, then poll for the result (or receive a webhook). <a target="_blank" rel="noopener" href="https://bfl.ai/blog/flux-1-kontext">Black Forest Labs’ announcement</a> describes the model family and its capabilities; the <a target="_blank" rel="noopener" href="https://docs.bfl.ai/">official API docs</a> define the current request contract. If you are evaluating the Black Forest Labs flux API as a whole, Kontext is the editing family and FLUX.2 is the generation line — the last section of this guide covers the trade-off.</p>
+<p>The API is asynchronous: you submit a task, get a task ID, then poll for the result (or receive a webhook). <a target="_blank" rel="noopener nofollow" href="https://bfl.ai/blog/flux-1-kontext">Black Forest Labs’ announcement</a> describes the model family and its capabilities; the <a target="_blank" rel="noopener nofollow" href="https://docs.bfl.ai/">official API docs</a> define the current request contract. If you are evaluating the Black Forest Labs flux API as a whole, Kontext is the editing family and FLUX.2 is the generation line — the last section of this guide covers the trade-off.</p>
 <h2 id="Flux-Kontext-API-pricing-what-each-route-actually-costs"><a href="#Flux-Kontext-API-pricing-what-each-route-actually-costs" class="headerlink" title="Flux Kontext API pricing: what each route actually costs"></a>Flux Kontext API pricing: what each route actually costs</h2><p>Pricing is per output image, and the unit is not the same everywhere. BFL sells credits (1 credit &#x3D; $0.01) and deducts a fixed number per image; fal.ai and Replicate bill in dollars per image. The table below was checked against the live pages on <strong>August 11, 2026</strong>.</p>
 <table>
 <thead>
@@ -254,17 +254,17 @@
 <td>Priced per output image</td>
 </tr>
 </tbody></table>
-<p><em>Sources: <a target="_blank" rel="noopener" href="https://docs.bfl.ai/pricing">BFL pricing page</a>, <a target="_blank" rel="noopener" href="https://fal.ai/models/fal-ai/flux-pro/kontext/api">fal.ai Kontext API docs</a>, and the <a target="_blank" rel="noopener" href="https://replicate.com/black-forest-labs/flux-kontext-pro/api">Replicate flux-kontext-pro page</a>, all accessed August 11, 2026.</em></p>
+<p><em>Sources: <a target="_blank" rel="noopener nofollow" href="https://docs.bfl.ai/pricing">BFL pricing page</a>, <a target="_blank" rel="noopener nofollow" href="https://fal.ai/models/fal-ai/flux-pro/kontext/api">fal.ai Kontext API docs</a>, and the <a target="_blank" rel="noopener nofollow" href="https://replicate.com/black-forest-labs/flux-kontext-pro/api">Replicate flux-kontext-pro page</a>, all accessed August 11, 2026.</em></p>
 <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
   <source type="image/webp" srcset="https://img.modellix.ai/en/article/bfl-flux-kontext-model-page.webp" />
   <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/bfl-flux-kontext-model-page.png" alt="Official FLUX.1 Kontext model page on bfl.ai showing the in-context editing headline, tagline, and contextual understanding, character consistency, and typography capability sections" loading="lazy" />
 </picture>
 
 <p><em>The official FLUX.1 Kontext model page, captured from the live site on August 11, 2026. The capability sections (contextual understanding, character consistency, typography) are what you are paying for per image.</em></p>
-<p>Together AI also serves FLUX.1 Kontext [pro] as a serverless endpoint (<code>black-forest-labs/FLUX.1-kontext-pro</code>), but its <a target="_blank" rel="noopener" href="https://www.together.ai/models/flux-1-kontext-pro">model page</a> does not list a per-image rate in the page body, so there is no comparable number to put in this table. Check their pricing page before assuming parity.</p>
+<p>Together AI also serves FLUX.1 Kontext [pro] as a serverless endpoint (<code>black-forest-labs/FLUX.1-kontext-pro</code>), but its <a target="_blank" rel="noopener nofollow" href="https://www.together.ai/models/flux-1-kontext-pro">model page</a> does not list a per-image rate in the page body, so there is no comparable number to put in this table. Check their pricing page before assuming parity.</p>
 <p>Two pricing facts worth stating plainly:</p>
 <ol>
-<li><strong>There is no free tier for the hosted pro&#x2F;max models.</strong> The Reddit question “is flux kontext api free?” gets a consistent answer across providers: no. The open-weight <a target="_blank" rel="noopener" href="https://huggingface.co/black-forest-labs/FLUX.1-Kontext-dev">dev model</a> is the only free route, and it carries a non-commercial license.</li>
+<li><strong>There is no free tier for the hosted pro&#x2F;max models.</strong> The Reddit question “is flux kontext api free?” gets a consistent answer across providers: no. The open-weight <a target="_blank" rel="noopener nofollow" href="https://huggingface.co/black-forest-labs/FLUX.1-Kontext-dev">dev model</a> is the only free route, and it carries a non-commercial license.</li>
 <li><strong>Per-image price is not per-edit-session cost.</strong> A multi-turn editing workflow (edit → feed result back in → edit again) pays the per-image rate on every generation. At $0.04, ten iterations cost $0.40. Budget for the loop, not the single call.</li>
 </ol>
 <h2 id="Get-an-API-key-and-set-up-your-first-call"><a href="#Get-an-API-key-and-set-up-your-first-call" class="headerlink" title="Get an API key and set up your first call"></a>Get an API key and set up your first call</h2><p>Create an account at the BFL dashboard (dashboard.bfl.ai), add credits, and copy an API key from your profile. The key goes in the <code>x-key</code> header on every request.</p>
@@ -369,7 +369,7 @@
 <li><strong>Iterative editing quality matters more than raw resolution.</strong> Kontext’s multi-turn consistency is its signature strength, and it remains competitive on that specific job.</li>
 <li><strong>You want the $0.04 entry point.</strong> FLUX.2 pro starts at $0.03 for text-to-image but image editing starts at $0.045; Kontext pro editing at $0.04 is still the cheapest hosted editing tier in the family.</li>
 </ol>
-<p>What you should not do is pick Kontext reflexively because you found this guide. The official FLUX model comparison in the <a target="_blank" rel="noopener" href="https://docs.bfl.ai/">BFL API docs</a> now leads with FLUX.2 for generation and editing; for comparison, our <a href="https://www.modellix.ai/blog/gpt-image-1-5-api/">GPT Image 1.5 API guide</a> shows what a competing editing model looks like at the same price point. The <a href="https://www.modellix.ai/blog/text-to-image-api-guide/">text-to-image API guide</a> positions Kontext’s dual generation-editing capability against six dedicated generators.</p>
+<p>What you should not do is pick Kontext reflexively because you found this guide. The official FLUX model comparison in the <a target="_blank" rel="noopener nofollow" href="https://docs.bfl.ai/">BFL API docs</a> now leads with FLUX.2 for generation and editing; for comparison, our <a href="https://www.modellix.ai/blog/gpt-image-1-5-api/">GPT Image 1.5 API guide</a> shows what a competing editing model looks like at the same price point. The <a href="https://www.modellix.ai/blog/text-to-image-api-guide/">text-to-image API guide</a> positions Kontext’s dual generation-editing capability against six dedicated generators.</p>
 <h2 id="Get-started"><a href="#Get-started" class="headerlink" title="Get started"></a>Get started</h2><p>A disclosure first, because it changes what you should expect from this page: <strong>Modellix does not offer FLUX.1 Kontext.</strong> We are an API aggregator, and our model catalog currently has no Black Forest Labs provider. This guide exists because the model is worth integrating well, and the decision should not depend on who wrote the tutorial.</p>
 <p>Where Modellix does fit: if your product needs many image and video models behind one API key — 210+ models, pay-as-you-go, no monthly fee — the aggregator route is worth evaluating for everything Kontext is not. Start with the <a href="https://www.modellix.ai/models">Modellix models page</a>, where you can compare the editing and generation models we do carry, or use the <a href="https://www.modellix.ai/cli">Modellix CLI</a> to try routes from your terminal.</p>
 <p>The short version of this guide: Kontext pro is $0.04 per image on every major route (the flux kontext max api doubles that to $0.08 per image), the API is a submit-and-poll flow with multiref and iterative editing as the real capabilities, and BFL’s own recommendation has moved to FLUX.2 for new builds. Integrate accordingly.</p>
@@ -379,9 +379,9 @@
         <div class="post-tags-bottom">
           
             
-              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
-            
               <a href="/blog/tags/Pricing/" class="tag-pill tag-pill--sm">Pricing</a>
+            
+              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
             
               <a href="/blog/tags/flux/" class="tag-pill tag-pill--sm">FLUX</a>
             
@@ -497,8 +497,8 @@
     <div class="post-share">
       <span class="post-share-label">Share this article</span>
       <div class="post-share-links">
-        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/flux-kontext-api/&text=Flux%20Kontext%20API%3A%20Integration%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/flux-kontext-api/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/flux-kontext-api/&text=Flux%20Kontext%20API%3A%20Integration%20Guide%2C%20Pricing%20%26%20Code" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/flux-kontext-api/" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/flux-kontext-api/"><i class="fa-solid fa-link"></i></button>
       </div>
     </div>
@@ -524,16 +524,16 @@
           <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
         
         
-          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener nofollow" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
         
         
-          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener nofollow" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
         
         
-          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener nofollow" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
         
         
-          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener nofollow" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         
       </div>
       

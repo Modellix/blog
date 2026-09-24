@@ -240,7 +240,7 @@
 </picture>
 
 <p><em>The two sources side by side: a saved key is stored in the Credential service and shown redacted; an environment key stays outside the harness and needs a restart to change.</em></p>
-<h2 id="Where-the-key-lives-the-Credential-service-not-settings-yaml"><a href="#Where-the-key-lives-the-Credential-service-not-settings-yaml" class="headerlink" title="Where the key lives: the Credential service, not settings.yaml"></a>Where the key lives: the Credential service, not settings.yaml</h2><p>The storage detail that surprises people: your key is not in the deepseek harness provider configuration file, <code>settings.yaml</code>. The official <a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/user/guide/providers.md">providers guide</a> states it plainly:</p>
+<h2 id="Where-the-key-lives-the-Credential-service-not-settings-yaml"><a href="#Where-the-key-lives-the-Credential-service-not-settings-yaml" class="headerlink" title="Where the key lives: the Credential service, not settings.yaml"></a>Where the key lives: the Credential service, not settings.yaml</h2><p>The storage detail that surprises people: your key is not in the deepseek harness provider configuration file, <code>settings.yaml</code>. The official <a target="_blank" rel="noopener nofollow" href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/user/guide/providers.md">providers guide</a> states it plainly:</p>
 <blockquote>
 <p>Keys are write-only. The page receives a redacted descriptor after saving, never the literal secret. The key is stored in <code>$DSH_HOME/.credentials.yaml</code>, while settings retain only its credential reference.</p>
 </blockquote>
@@ -248,7 +248,7 @@
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">llm-pi-ai:</span></span><br><span class="line">  <span class="attr">providers:</span></span><br><span class="line">    <span class="attr">modellix:</span></span><br><span class="line">      <span class="attr">api:</span> <span class="string">openai-completions</span></span><br><span class="line">      <span class="attr">baseURL:</span> <span class="string">https://llm.modellix.ai/v1</span></span><br><span class="line">      <span class="attr">apiKeyEnv:</span> <span class="string">MODELLIX_API_KEY</span></span><br><span class="line">      <span class="attr">models:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">deepseek/deepseek-chat</span></span><br></pre></td></tr></table></figure>
 
 <p>There is no key literal anywhere in that file. <code>apiKeyEnv</code> names the environment variable whose value is resolved when a request is made—so the plaintext lives either in your environment or in the Credential service’s <code>$DSH_HOME/.credentials.yaml</code>, never in the configuration file itself.</p>
-<p>Why does the storage location matter in practice? Two reasons. First, if you back up, sync, or commit <code>$DSH_HOME</code> anywhere, the credential document is what you must protect—a GitHub discussion on the harness repository, <a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness/discussions/3503">Storage of API Key #3503</a>, notes the document is plaintext YAML protected only by file permissions (<code>0600</code> under a <code>0700</code> directory) and by keeping the path out of the model’s context. Second, when you are told to “check <code>$DSH_HOME/.credentials.yaml</code>“, it must exist and contain a <code>modellix</code> entry—if it does not, the key was never saved through the form, which usually means the harness is looking for <code>MODELLIX_API_KEY</code> instead.</p>
+<p>Why does the storage location matter in practice? Two reasons. First, if you back up, sync, or commit <code>$DSH_HOME</code> anywhere, the credential document is what you must protect—a GitHub discussion on the harness repository, <a target="_blank" rel="noopener nofollow" href="https://github.com/deepseek-ai/deepseek-harness/discussions/3503">Storage of API Key #3503</a>, notes the document is plaintext YAML protected only by file permissions (<code>0600</code> under a <code>0700</code> directory) and by keeping the path out of the model’s context. Second, when you are told to “check <code>$DSH_HOME/.credentials.yaml</code>“, it must exist and contain a <code>modellix</code> entry—if it does not, the key was never saved through the form, which usually means the harness is looking for <code>MODELLIX_API_KEY</code> instead.</p>
 <h2 id="One-key-three-hosts"><a href="#One-key-three-hosts" class="headerlink" title="One key, three hosts"></a>One key, three hosts</h2><p>A single Modellix key authenticates every host the harness can reach through Modellix. There is no separate “search key,” “image key,” or “model key” to create:</p>
 <table>
 <thead>
@@ -439,8 +439,8 @@
     <div class="post-share">
       <span class="post-share-label">Share this article</span>
       <div class="post-share-links">
-        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/deepseek-harness-api-key/&text=DeepSeek%20Harness%20API%20Key%3A%20Which%20Key%20Goes%20Where" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/deepseek-harness-api-key/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/deepseek-harness-api-key/&text=DeepSeek%20Harness%20API%20Key%3A%20Which%20Key%20Goes%20Where" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/deepseek-harness-api-key/" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/deepseek-harness-api-key/"><i class="fa-solid fa-link"></i></button>
       </div>
     </div>
@@ -466,16 +466,16 @@
           <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
         
         
-          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener nofollow" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
         
         
-          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener nofollow" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
         
         
-          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener nofollow" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
         
         
-          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener nofollow" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         
       </div>
       

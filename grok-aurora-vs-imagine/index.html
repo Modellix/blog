@@ -165,9 +165,9 @@
             
               <a href="/blog/tags/Comparison/" class="tag-pill tag-pill--sm">Comparison</a>
             
-              <a href="/blog/tags/Grok/" class="tag-pill tag-pill--sm">Grok</a>
-            
               <a href="/blog/tags/xAI/" class="tag-pill tag-pill--sm">xAI</a>
+            
+              <a href="/blog/tags/Grok/" class="tag-pill tag-pill--sm">Grok</a>
             
           </div>
         
@@ -208,8 +208,8 @@
 
 <p><strong>Grok Aurora vs Grok Imagine are not competing models.</strong> Aurora is xAI’s image-generation engine, released in December 2024 as a code-named model inside Grok. Grok Imagine is the image-and-video API product xAI has built around that engine since 2025. If you search for a head-to-head, you are really looking for a naming guide — and, if you are building something, a route decision: consumer subscription, xAI’s direct API, or an aggregator API. There is no <code>grok-aurora</code> endpoint in the xAI API; the models you can actually call are <code>grok-imagine-image*</code> for images and <code>grok-imagine-video*</code> for video.</p>
 <p>This is from Modellix, an API aggregator that resells Grok Imagine routes, so we have a commercial interest in the aggregator channel of this comparison. The goal is to sort out the naming confusion with first-party data, not to crown a winner — and where we are the more expensive route, we say so. All prices below were pulled from xAI’s official pages and Modellix’s model pages on August 26, 2026.</p>
-<h2 id="What-Aurora-and-Grok-Imagine-actually-are"><a href="#What-Aurora-and-Grok-Imagine-actually-are" class="headerlink" title="What Aurora and Grok Imagine actually are"></a>What Aurora and Grok Imagine actually are</h2><p>Aurora started as xAI’s image model. The <a target="_blank" rel="noopener" href="https://x.ai/news/grok-image-generation-release">official announcement from December 2024</a> describes it as an autoregressive mixture-of-experts network trained on interleaved text and image data, notable for photorealistic rendering, precise text rendering, and native image editing — it replaced the Flux-based generation that shipped with earlier Grok versions. At that stage it produced static pictures only.</p>
-<p>Grok Imagine is the product that grew out of that engine. It launched publicly in August 2025 as xAI’s image-and-video suite: the video pipeline first generates a high-resolution keyframe with an Aurora-derived image model, then animates it into clips of up to 15 seconds. By February 2026 xAI had shipped Grok Imagine 1.0, and xAI’s own product page now describes the Imagine API as “state-of-the-art video generation, video editing, and image creation, all in one API,” citing a top ranking in the Artificial Analysis text-to-video leaderboard. <a target="_blank" rel="noopener" href="https://x.ai/api/imagine">xAI’s Imagine API page</a> currently lists image output up to 2K, up to 10 images per request, video up to 15 seconds, and pricing from $0.02 per image.</p>
+<h2 id="What-Aurora-and-Grok-Imagine-actually-are"><a href="#What-Aurora-and-Grok-Imagine-actually-are" class="headerlink" title="What Aurora and Grok Imagine actually are"></a>What Aurora and Grok Imagine actually are</h2><p>Aurora started as xAI’s image model. The <a target="_blank" rel="noopener nofollow" href="https://x.ai/news/grok-image-generation-release">official announcement from December 2024</a> describes it as an autoregressive mixture-of-experts network trained on interleaved text and image data, notable for photorealistic rendering, precise text rendering, and native image editing — it replaced the Flux-based generation that shipped with earlier Grok versions. At that stage it produced static pictures only.</p>
+<p>Grok Imagine is the product that grew out of that engine. It launched publicly in August 2025 as xAI’s image-and-video suite: the video pipeline first generates a high-resolution keyframe with an Aurora-derived image model, then animates it into clips of up to 15 seconds. By February 2026 xAI had shipped Grok Imagine 1.0, and xAI’s own product page now describes the Imagine API as “state-of-the-art video generation, video editing, and image creation, all in one API,” citing a top ranking in the Artificial Analysis text-to-video leaderboard. <a target="_blank" rel="noopener nofollow" href="https://x.ai/api/imagine">xAI’s Imagine API page</a> currently lists image output up to 2K, up to 10 images per request, video up to 15 seconds, and pricing from $0.02 per image.</p>
 <p>The short version: <strong>Aurora is the engine. Grok Imagine is the product name for the API and the consumer suite.</strong> If you have seen both names in the same week, that is because xAI’s own 2024 announcement used “code-named Aurora,” and the community kept the name alive for the image model while the product moved on. For the API-side details — endpoints, model IDs, request shapes — we keep a separate <a href="https://www.modellix.ai/blog/grok-imagine-api/">Grok Imagine API model guide</a>, but the naming table below is all you need to decode what people mean.</p>
 <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
   <source type="image/webp" srcset="https://img.modellix.ai/en/article/grok-aurora-imagine-engines.webp" />
@@ -311,7 +311,7 @@
 <td align="right"><strong>$0.09</strong></td>
 </tr>
 </tbody></table>
-<p><em>Source: <a target="_blank" rel="noopener" href="https://docs.x.ai/developers/pricing">xAI API pricing</a>, accessed August 26, 2026. Input costs per image, output costs per image at the listed resolution tier.</em></p>
+<p><em>Source: <a target="_blank" rel="noopener nofollow" href="https://docs.x.ai/developers/pricing">xAI API pricing</a>, accessed August 26, 2026. Input costs per image, output costs per image at the listed resolution tier.</em></p>
 <p>The standard model charges the same $0.02 output whether you ask for 1K or 2K, which makes it the default for volume work. The quality model is roughly three times the standard model per image. The current-generation <code>grok-imagine-image-2.0</code> adds a quality knob (Low &#x2F; Medium) on top of resolution, landing between $0.05 and $0.09 — that is the model to test first if you care about output quality rather than cost.</p>
 <p>For comparison, here is what the same models cost through Modellix’s <a href="https://www.modellix.ai/providers/xai">xAI provider page</a>, scraped the same day:</p>
 <table>
@@ -362,7 +362,7 @@
 </tbody></table>
 <p><em>Source: xAI API pricing (docs.x.ai&#x2F;developers&#x2F;pricing), accessed August 26, 2026.</em></p>
 <p>A worked example makes the unit costs concrete. A 5-second 720p clip on <code>grok-imagine-video</code> costs $0.05 of input time plus $0.35 of output time — <strong>$0.40 total</strong> through the direct API. The same clip through Modellix’s listed <code>grok-imagine-video</code> route (a single $0.0805&#x2F;sec price) costs <strong>$0.4025</strong> — effectively identical on this row. A 5-second 1080p clip on <code>grok-imagine-video-1.5</code> costs $0.01 plus $1.25 — <strong>$1.26 direct</strong> — versus $1.5525 on our listed <code>grok-imagine-video-1.5-i2v</code> route, where the direct API is about 23% cheaper. The honest pattern: on single-model, single-resolution comparisons, the direct API is usually at or below what we charge; the aggregator’s value lives in the catalog, not in beating xAI on price for one model.</p>
-<p>On the consumer side, <a target="_blank" rel="noopener" href="https://x.ai/pricing">xAI’s pricing page</a> currently lists Free at $0, SuperGrok at $30&#x2F;month, and SuperGrok Plus at $100&#x2F;month with 1080p video. <a target="_blank" rel="noopener" href="https://morphed.app/blog/grok-imagine-vs-midjourney-vs-flux-vs-dalle">Third-party trackers report</a> that broad free image generation was removed around March 2026, which matches the API-first direction of the product — if you need predictable programmatic costs, the API is the only route with published unit prices. If you are not sure Grok is the right model family for your workload at all, our <a href="https://www.modellix.ai/blog/grok-imagine-alternative/">Grok Imagine alternatives</a> post covers the rest of the field — Google Veo and OpenAI Sora on the video side, the Flux family on the image side.</p>
+<p>On the consumer side, <a target="_blank" rel="noopener nofollow" href="https://x.ai/pricing">xAI’s pricing page</a> currently lists Free at $0, SuperGrok at $30&#x2F;month, and SuperGrok Plus at $100&#x2F;month with 1080p video. <a target="_blank" rel="noopener nofollow" href="https://morphed.app/blog/grok-imagine-vs-midjourney-vs-flux-vs-dalle">Third-party trackers report</a> that broad free image generation was removed around March 2026, which matches the API-first direction of the product — if you need predictable programmatic costs, the API is the only route with published unit prices. If you are not sure Grok is the right model family for your workload at all, our <a href="https://www.modellix.ai/blog/grok-imagine-alternative/">Grok Imagine alternatives</a> post covers the rest of the field — Google Veo and OpenAI Sora on the video side, the Flux family on the image side.</p>
 <h2 id="Direct-xAI-API-or-an-aggregator-—-what-actually-changes"><a href="#Direct-xAI-API-or-an-aggregator-—-what-actually-changes" class="headerlink" title="Direct xAI API or an aggregator — what actually changes"></a>Direct xAI API or an aggregator — what actually changes</h2><p>Once the naming is settled, the real decision is the access route. Three routes exist, and they answer different questions:</p>
 <table>
 <thead>
@@ -459,9 +459,9 @@
             
               <a href="/blog/tags/Comparison/" class="tag-pill tag-pill--sm">Comparison</a>
             
-              <a href="/blog/tags/Grok/" class="tag-pill tag-pill--sm">Grok</a>
-            
               <a href="/blog/tags/xAI/" class="tag-pill tag-pill--sm">xAI</a>
+            
+              <a href="/blog/tags/Grok/" class="tag-pill tag-pill--sm">Grok</a>
             
           
         </div>
@@ -571,8 +571,8 @@
     <div class="post-share">
       <span class="post-share-label">Share this article</span>
       <div class="post-share-links">
-        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/grok-aurora-vs-imagine/&text=Grok%20Aurora%20vs%20Imagine%3A%20Honest%20Comparison%20(2026)" target="_blank" rel="noopener" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/grok-aurora-vs-imagine/" target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/grok-aurora-vs-imagine/&text=Grok%20Aurora%20vs%20Imagine%3A%20Honest%20Comparison%20(2026)" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/grok-aurora-vs-imagine/" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/grok-aurora-vs-imagine/"><i class="fa-solid fa-link"></i></button>
       </div>
     </div>
@@ -598,16 +598,16 @@
           <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
         
         
-          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener nofollow" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
         
         
-          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener nofollow" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
         
         
-          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener nofollow" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
         
         
-          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener nofollow" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         
       </div>
       
