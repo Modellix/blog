@@ -162,11 +162,11 @@
         
           <div class="post-header-tags">
             
-              <a href="/blog/tags/api-integration/" class="tag-pill tag-pill--sm">API Integration</a>
-            
               <a href="/blog/tags/ai-video-api/" class="tag-pill tag-pill--sm">AI Video API</a>
             
               <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
+            
+              <a href="/blog/tags/api-integration/" class="tag-pill tag-pill--sm">API Integration</a>
             
               <a href="/blog/tags/Async-Tasks/" class="tag-pill tag-pill--sm">Async Tasks</a>
             
@@ -452,8 +452,8 @@
 <p><strong>Batch submission.</strong> <code>modellix-cli model batch tasks.jsonl --max-tasks 200 --concurrency 4</code> validates every line before the first POST, refuses to run without <code>--max-tasks</code> or <code>--yes</code> because each line is a paid task, and caps one invocation at 1,000 tasks with CLI concurrency of 1 to 10. <code>task history</code> records submissions locally, so a crashed submitter does not lose track of what landed.</p>
 <p><strong>Sizing the run.</strong> Wall time is roughly N tasks ÷ C concurrent × T per task. Read T from the task-level <code>duration</code> (milliseconds), not the clip-length <code>duration</code> inside <code>result.resources[]</code> (seconds). At an illustrative 45 seconds per task, 400 tasks take about 15 minutes at 20 concurrent and about 2.5 hours at 2. On reference-heavy runs the File API binds first: 16 MB per file, 10 live files per team, two concurrent uploads, and about 7 days of retention.</p>
 <p><strong>Reconciliation.</strong> <code>GET /api/v1/logs</code> (window of at most 30 days) returns <code>task_id</code>, <code>status</code>, the model that ran and <code>cost</code>, in units of $0.0001. Diff submitted, callback-recorded and billed task IDs to catch lost callbacks, double submissions and failed tasks that still billed.</p>
-<p>For budgeting, the <a href="https://www.modellix.ai/blog/ai-video-model-api-pricing-comparison/">model API pricing comparison</a> and the <a href="https://www.modellix.ai/blog/best-ai-video-generation-apis-2026/">roundup of AI video generation APIs</a> are the right next reads.</p>
-<h2 id="Frequently-Asked-Questions-about-the-video-generation-API"><a href="#Frequently-Asked-Questions-about-the-video-generation-API" class="headerlink" title="Frequently Asked Questions about the video generation API"></a>Frequently Asked Questions about the video generation API</h2><p><strong>Which video generation API is best?</strong><br>No list answers that without your constraints. The productive version is which models accept the parameters you need (a 30-second clip, an audio track, a reference image, a specific aspect ratio), so pull the schemas, filter on those fields, then compare per-second cost. One live caveat: OpenAI’s <a target="_blank" rel="noopener nofollow" href="https://developers.openai.com/api/docs/guides/video-generation">video generation guide</a> opens with a notice that the Sora 2 models and the Videos API are deprecated and shut down on <strong>September 24, 2026</strong> (<a target="_blank" rel="noopener nofollow" href="https://developers.openai.com/api/docs/deprecations">deprecations page</a>), which is worth knowing before any roundup lists one as an option. Our <a href="https://www.modellix.ai/blog/best-ai-video-generation-apis-2026/">model-by-model comparison</a> walks through those filters before price.</p>
+<p>For budgeting, the <a href="https://www.modellix.ai/blog/ai-video-model-api-pricing-comparison/">model API pricing comparison</a> and the <a href="https://www.modellix.ai/blog/best-ai-video-generation-apis/">roundup of AI video generation APIs</a> are the right next reads.</p>
+<h2 id="Frequently-Asked-Questions-about-the-video-generation-API"><a href="#Frequently-Asked-Questions-about-the-video-generation-API" class="headerlink" title="Frequently Asked Questions about the video generation API"></a>Frequently Asked Questions about the video generation API</h2><p><strong>Which video generation API is best?</strong><br>No list answers that without your constraints. The productive version is which models accept the parameters you need (a 30-second clip, an audio track, a reference image, a specific aspect ratio), so pull the schemas, filter on those fields, then compare per-second cost. One live caveat: OpenAI’s <a target="_blank" rel="noopener nofollow" href="https://developers.openai.com/api/docs/guides/video-generation">video generation guide</a> opens with a notice that the Sora 2 models and the Videos API are deprecated and shut down on <strong>September 24, 2026</strong> (<a target="_blank" rel="noopener nofollow" href="https://developers.openai.com/api/docs/deprecations">deprecations page</a>), which is worth knowing before any roundup lists one as an option. Our <a href="https://www.modellix.ai/blog/best-ai-video-generation-apis/">model-by-model comparison</a> walks through those filters before price.</p>
 <p><strong>Is there a free video generation API?</strong><br>Modellix removed the signup credit on August 19, 2026, so new accounts no longer start with a balance; media generation is billed per call from a pay-as-you-go balance. A free tier is a property of a specific promotion, not of the category. Anyone advertising free video generation API access is describing their own trial terms, not a general feature of the market.</p>
 <p><strong>Why does my request return a task instead of a video?</strong><br>Because generation is asynchronous and the submit response is an acknowledgement. Read <code>data.task_id</code> and <code>data.get_result.url</code>, then poll until <code>data.status</code> is <code>success</code> or <code>failed</code>. You are not wrong; you are one call early.</p>
 <p><strong>Do I need an API key to inspect a model’s request schema?</strong><br>No. The schema endpoint is public and the CLI’s <code>model get-schema</code> calls it without credentials. You need a key to submit a generation, not to learn what a valid body looks like.</p>
@@ -471,11 +471,11 @@
         <div class="post-tags-bottom">
           
             
-              <a href="/blog/tags/api-integration/" class="tag-pill tag-pill--sm">API Integration</a>
-            
               <a href="/blog/tags/ai-video-api/" class="tag-pill tag-pill--sm">AI Video API</a>
             
               <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
+            
+              <a href="/blog/tags/api-integration/" class="tag-pill tag-pill--sm">API Integration</a>
             
               <a href="/blog/tags/Async-Tasks/" class="tag-pill tag-pill--sm">Async Tasks</a>
             
