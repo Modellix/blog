@@ -257,7 +257,7 @@
 <td><a href="https://www.modellix.ai/blog/gpt-sol/">GPT-6 Sol</a> for multi-step coding and agent work</td>
 </tr>
 </tbody></table>
-<p>Specs and prices from OpenAI’s model page, checked September 24, 2026.</p>
+<p>Specs and prices from OpenAI’s model page.</p>
 <h2 id="What-Is-GPT-6-Luna"><a href="#What-Is-GPT-6-Luna" class="headerlink" title="What Is GPT-6 Luna?"></a>What Is GPT-6 Luna?</h2><p>GPT-6 has three tiers. Astra is the flagship, Sol is the general-purpose middle, and Luna is the volume tier.</p>
 <p>OpenAI trained Sol and Luna “with similar methods as GPT-6 Astra.” Luna does not get Astra’s depth, but it inherits the same family traits: better factuality, the same 1.05M context window, and the same tool list.</p>
 <p>It replaces GPT-5.6 Luna. The name is the same, the price is not.</p>
@@ -350,66 +350,15 @@
 </tbody></table>
 <p>These are our calculations from OpenAI list prices, excluding cache-write charges. The last row is billed at the &gt;272K rates for every token, so it costs about twice what the same prompt would below the line.</p>
 <p>A support queue of 100,000 tickets, each around 300 tokens in and 5 tokens out with reasoning off, costs about $3.25 on Luna. That is the kind of job the model exists for.</p>
-<h3 id="What-the-gateway-discount-adds-up-to"><a href="#What-the-gateway-discount-adds-up-to" class="headerlink" title="What the gateway discount adds up to"></a>What the gateway discount adds up to</h3><p>On Modellix, all three GPT-6 models bill 10% under OpenAI’s list price. At small volumes that is pocket change. At production volume it is not:</p>
-<table>
-<thead>
-<tr>
-<th>Monthly volume</th>
-<th>Model</th>
-<th align="right">OpenAI list</th>
-<th align="right">Modellix</th>
-<th align="right"><span style="color:#5145D8;">Saved per year</span></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>100M input + 20M output</td>
-<td>Luna</td>
-<td align="right">$20</td>
-<td align="right">$18</td>
-<td align="right"><span style="display:inline-block; padding:2px 8px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800;">$24</span></td>
-</tr>
-<tr>
-<td>100M input + 20M output</td>
-<td>Sol</td>
-<td align="right">$400</td>
-<td align="right">$360</td>
-<td align="right"><span style="display:inline-block; padding:2px 8px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800;">$480</span></td>
-</tr>
-<tr>
-<td>100M input + 20M output</td>
-<td>Astra</td>
-<td align="right">$2,000</td>
-<td align="right">$1,800</td>
-<td align="right"><span style="display:inline-block; padding:2px 8px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800;">$2,400</span></td>
-</tr>
-<tr>
-<td>1B input + 200M output</td>
-<td>Sol</td>
-<td align="right">$4,000</td>
-<td align="right">$3,600</td>
-<td align="right"><span style="display:inline-block; padding:2px 8px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800;">$4,800</span></td>
-</tr>
-<tr>
-<td>1B input + 200M output</td>
-<td>Astra</td>
-<td align="right">$20,000</td>
-<td align="right">$18,000</td>
-<td align="right"><span style="display:inline-block; padding:2px 8px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800;">$24,000</span></td>
-</tr>
-</tbody></table>
-<p>Our calculations at base-tier rates with no caching, using the rate card checked September 24, 2026. The discount applies to cached and long-context tiers too.</p>
-<div class="llm-gateway-benefits" style="border:1px solid #D7DEFF; border-left:5px solid #6A5BFF; background:#F8FAFF; border-radius:8px; padding:22px 24px; margin:24px 0 30px; box-shadow:0 10px 24px rgba(50, 60, 140, 0.06);"><p style="margin:0 0 6px; color:#5B5EEB; font-size:12px; font-weight:900; letter-spacing:0.08em; text-transform:uppercase;">One API for every model</p><p style="margin:0 0 10px; font-size:21px; line-height:1.35; font-weight:800; color:#111827;">Run GPT-6 Luna next to every other model on one key</p><p style="margin:0 0 16px; color:#374151; line-height:1.6;">Call GPT-6 Luna as <code>openai/gpt-6-luna</code> at <code>https://llm.modellix.ai/v1</code>.</p><div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; margin:0 0 18px;"><div style="border:1px solid #E4E1FF; background:#FFFFFF; border-radius:8px; padding:14px 16px;"><p style="margin:0 0 4px; font-weight:800; color:#111827;">One key, every model</p><p style="margin:0; color:#4B5563; font-size:15px; line-height:1.6;">GPT-6 Astra, Sol, and Luna, plus Claude, Gemini, Grok, DeepSeek, and Qwen. Switching models is a change to the <code>model</code> string.</p></div><div style="border:1px solid #E4E1FF; background:#FFFFFF; border-radius:8px; padding:14px 16px;"><p style="margin:0 0 4px; font-weight:800; color:#111827;">Drop-in for your client</p><p style="margin:0; color:#4B5563; font-size:15px; line-height:1.6;">OpenAI Chat Completions and Responses, plus Anthropic Messages. Works with the OpenAI and Anthropic SDKs, Codex, Claude Code, Cursor, and OpenCode.</p></div><div style="border:1px solid #E4E1FF; background:#FFFFFF; border-radius:8px; padding:14px 16px;"><p style="margin:0 0 4px; font-weight:800; color:#111827;">Below list price</p><p style="margin:0; color:#4B5563; font-size:15px; line-height:1.6;">GPT-6 and Claude models bill 10% under the vendor list price on the current rate card. Pay as you go, no subscription.</p></div><div style="border:1px solid #E4E1FF; background:#FFFFFF; border-radius:8px; padding:14px 16px;"><p style="margin:0 0 4px; font-weight:800; color:#111827;">Cost per request, in the logs</p><p style="margin:0; color:#4B5563; font-size:15px; line-height:1.6;">Every call is logged with tokens and cost, and can be tagged by end user, so you can see what an escalation actually cost.</p></div><div style="border:1px solid #E4E1FF; background:#FFFFFF; border-radius:8px; padding:14px 16px;"><p style="margin:0 0 4px; font-weight:800; color:#111827;">Pin or follow</p><p style="margin:0; color:#4B5563; font-size:15px; line-height:1.6;">Pin a fixed model ID for evaluations, or use a <code>-latest</code> alias that moves to the newest release.</p></div><div style="border:1px solid #E4E1FF; background:#FFFFFF; border-radius:8px; padding:14px 16px;"><p style="margin:0 0 4px; font-weight:800; color:#111827;">Media on the same key</p><p style="margin:0; color:#4B5563; font-size:15px; line-height:1.6;">The same account also calls image, video, and audio generation models through the Modellix media API.</p></div></div><div style="display:flex; gap:12px; flex-wrap:wrap;"><a class="btn btn-primary" href="https://www.modellix.ai/console/api-key" data-cta="gateway_benefits" data-cta-target="api-key" target="_blank" rel="noopener noreferrer">Get an API key</a><a class="btn btn-secondary" href="https://www.modellix.ai/llm" data-cta="gateway_benefits" data-cta-target="llm-pricing" target="_blank" rel="noopener noreferrer">See all LLM prices</a></div></div>
-
 <h2 id="GPT-6-Luna-Context-Window"><a href="#GPT-6-Luna-Context-Window" class="headerlink" title="GPT-6 Luna Context Window"></a>GPT-6 Luna Context Window</h2><p>Luna reads up to 1,050,000 tokens and writes up to 128,000. That is the same window as Sol and Astra.</p>
 <p>The number that matters for cost is 272K. Below it, you pay the base rate. One token above it, the whole request moves to 2x input and 1.5x output.</p>
 <p>So the useful rule is to keep repeated calls under 272K and cache the shared prefix. Save the long prompts for the occasional whole-document pass, where Luna’s low base price still keeps a 400K read under ten cents.</p>
-<h2 id="What-Is-GPT-6-Luna-Good-For"><a href="#What-Is-GPT-6-Luna-Good-For" class="headerlink" title="What Is GPT-6 Luna Good For?"></a>What Is GPT-6 Luna Good For?</h2><p>Luna fits work where the answer is short and checkable.</p>
+<h2 id="What-Can-You-Build-with-GPT-6-Luna"><a href="#What-Can-You-Build-with-GPT-6-Luna" class="headerlink" title="What Can You Build with GPT-6 Luna"></a>What Can You Build with GPT-6 Luna</h2><p>Luna earns its place in products where the model makes thousands of small, checkable decisions a day.</p>
 <ul>
-<li><strong>Classification:</strong> ticket queues, intent detection, content moderation labels.</li>
-<li><strong>Extraction:</strong> pulling fields from invoices, emails, or logs into JSON with structured outputs.</li>
-<li><strong>Routing:</strong> deciding which model, team, or tool handles a request.</li>
-<li><strong>Agent sub-steps:</strong> summarizing a tool result or picking the next action inside a larger loop.</li>
-<li><strong>First-pass drafts:</strong> short replies that a person or a bigger model reviews.</li>
+<li><strong>Support inbox triage.</strong> Every new ticket gets a label and a priority before a person opens it, and only the unclear ones reach a bigger model.</li>
+<li><strong>Catalog and invoice extraction.</strong> An e-commerce back office turns supplier PDFs and emails into clean JSON fields with structured outputs.</li>
+<li><strong>Moderation queues.</strong> A community app pre-sorts reports into “remove,” “review,” and “fine,” so moderators start with the hard cases.</li>
+<li><strong>Agent routers.</strong> Inside a coding or research assistant, Luna decides which tool or model handles the next step.</li>
 </ul>
 <h3 id="What-we-saw-in-a-small-test"><a href="#What-we-saw-in-a-small-test" class="headerlink" title="What we saw in a small test"></a>What we saw in a small test</h3><p>We sent 12 hand-written support tickets to <code>openai/gpt-6-luna</code> through the Modellix gateway, each with a fixed label set: billing, bug, feature request, or other.</p>
 <p>Luna labeled all 12 correctly, including two that could go either way (“My card was declined but the payment still shows as pending” and “Webhook retries stop after the first 500 error instead of backing off”). Each answer was five or six output tokens with nothing to strip.</p>
@@ -459,9 +408,54 @@
 <p>Here is a minimal call with the OpenAI Python SDK pointed at Modellix:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openai <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">client = OpenAI(base_url=<span class="string">&quot;https://llm.modellix.ai/v1&quot;</span>, api_key=<span class="string">&quot;YOUR_MODELLIX_KEY&quot;</span>)</span><br><span class="line"></span><br><span class="line">resp = client.responses.create(</span><br><span class="line">    model=<span class="string">&quot;openai/gpt-6-luna&quot;</span>,</span><br><span class="line">    reasoning=&#123;<span class="string">&quot;effort&quot;</span>: <span class="string">&quot;low&quot;</span>&#125;,</span><br><span class="line">    <span class="built_in">input</span>=<span class="string">&quot;Label this ticket as billing, bug, feature request, or other. &quot;</span></span><br><span class="line">          <span class="string">&quot;Reply with the label only. Ticket: I was charged twice in September.&quot;</span>,</span><br><span class="line">)</span><br><span class="line"><span class="built_in">print</span>(resp.output_text)</span><br></pre></td></tr></table></figure>
 
-<h2 id="Using-GPT-6-Luna-on-Modellix"><a href="#Using-GPT-6-Luna-on-Modellix" class="headerlink" title="Using GPT-6 Luna on Modellix"></a>Using GPT-6 Luna on Modellix</h2><p>On Modellix, Luna bills at $0.09 in and $0.45 out per million tokens. Pin <code>openai/gpt-6-luna</code> for evaluations, or use <code>~openai/gpt-luna-latest</code> to pick up future Luna releases without a code change.</p>
-<p>The practical win is the escalation test. Luna, <a href="https://www.modellix.ai/blog/gpt-sol/">Sol</a>, and <a href="https://www.modellix.ai/blog/gpt-6-astra/">Astra</a> share one key and one base URL, so trying “Luna first, Sol for the hard cases” is a one-line change.</p>
-<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Try GPT-6 Luna</h3><p class="view-docs-tag-desc">Create a Modellix key, run Luna on a batch you have already labeled, and compare the result with Sol before you route real traffic.</p><a class="btn view-docs-tag-btn" href="https://www.modellix.ai/console/api-key" data-cta="login_tag" data-cta-target="api-key" target="_blank" rel="noopener noreferrer"><span>Get API Key </span><i data-lucide="arrow-right"></i></a></div></section>
+<h2 id="Try-GPT-6-Luna-with-One-API-Key-for-Every-Model"><a href="#Try-GPT-6-Luna-with-One-API-Key-for-Every-Model" class="headerlink" title="Try GPT-6 Luna with One API Key for Every Model"></a>Try GPT-6 Luna with One API Key for Every Model</h2><p>Most teams that adopt Luna do it to route cheap calls away from a bigger model. That usually means Luna on one account, Claude or Gemini on another, and a third integration for image generation.</p>
+<p>However, on Modellix Luna sits behind the same API key as GPT-6 Sol, GPT-6 Astra, Claude, Gemini, and Grok. Set the base URL to <code>https://llm.modellix.ai/v1</code>, set <code>model</code> to <code>openai/gpt-6-luna</code>, and moving a ticket from Luna to Sol is a one-string change.</p>
+<h3 id="Same-tokens-lower-bill"><a href="#Same-tokens-lower-bill" class="headerlink" title="Same tokens, lower bill"></a>Same tokens, lower bill</h3><p>OpenAI’s <a target="_blank" rel="noopener nofollow" href="https://developers.openai.com/api/docs/pricing">official API pricing</a> lists GPT-6 Luna at $0.10 per million input tokens and $0.50 per million output tokens. For one call with 8,000 input tokens, 8,000 output tokens, and no cache, that is about <strong>$0.0048 on OpenAI</strong> and <strong>$0.00432 on Modellix</strong>, as the Modellix LLM calculator shows below.</p>
+<figure style="margin: 24px 0;">
+  <img src="/blog/assets/gpt-6-luna-price-calculator.png" alt="Modellix LLM cost calculator with GPT-6 Luna selected: 8,000 input tokens, 8,000 output tokens, no cached tokens, $0.00432 estimated cost versus about $0.0048 on OpenAI direct" width="1150" height="590" loading="lazy" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" />
+  <figcaption style="font-size:13px; color:#64748B; margin-top:6px;">Modellix LLM calculator for 8,000 input and 8,000 output tokens. Enter your own token mix on the <a href="https://www.modellix.ai/llm#pricing">live page</a>.</figcaption>
+</figure>
+
+<table>
+<thead>
+<tr>
+<th align="right">Calls at 8,000 in + 8,000 out</th>
+<th align="right">OpenAI direct</th>
+<th align="right">Modellix</th>
+<th align="right">Saved</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">1,000</td>
+<td align="right">$4.80</td>
+<td align="right">$4.32</td>
+<td align="right"><span style="display:inline-block; padding:2px 8px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800;">$0.48</span></td>
+</tr>
+<tr>
+<td align="right">10,000</td>
+<td align="right">$48</td>
+<td align="right">$43.20</td>
+<td align="right"><span style="display:inline-block; padding:2px 8px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800;">$4.80</span></td>
+</tr>
+<tr>
+<td align="right">100,000</td>
+<td align="right">$480</td>
+<td align="right">$432</td>
+<td align="right"><span style="display:inline-block; padding:2px 8px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800;">$48</span></td>
+</tr>
+<tr>
+<td align="right">1,000,000</td>
+<td align="right">$4,800</td>
+<td align="right">$4,320</td>
+<td align="right"><span style="display:inline-block; padding:2px 8px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800;">$480</span></td>
+</tr>
+</tbody></table>
+<p>At 1 million calls with that mix, Modellix bills <span style="display:inline-block; padding:2px 8px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800;">$480 less</span> than OpenAI direct. This is a price comparison at the same billed token counts, not a quality benchmark, and it stays inside the 272K input tier.</p>
+<div class="llm-gateway-benefits" style="border:1px solid #D7DEFF; border-left:5px solid #6A5BFF; background:#F8FAFF; border-radius:8px; padding:22px 24px; margin:24px 0 30px; box-shadow:0 10px 24px rgba(50, 60, 140, 0.06);"><p style="margin:0 0 6px; color:#5B5EEB; font-size:12px; font-weight:900; letter-spacing:0.08em; text-transform:uppercase;">One API for every model</p><p style="margin:0 0 10px; font-size:21px; line-height:1.35; font-weight:800; color:#111827;">Run GPT-6 Luna next to every other model on one key</p><p style="margin:0 0 16px; color:#374151; line-height:1.6;">Call GPT-6 Luna as <code>openai/gpt-6-luna</code> at <code>https://llm.modellix.ai/v1</code>.</p><div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; margin:0 0 18px;"><div style="border:1px solid #E4E1FF; background:#FFFFFF; border-radius:8px; padding:14px 16px;"><p style="margin:0 0 4px; font-weight:800; color:#111827;">One key, every model</p><p style="margin:0; color:#4B5563; font-size:15px; line-height:1.6;">GPT-6 Astra, Sol, and Luna, plus Claude, Gemini, Grok, DeepSeek, and Qwen. Switching models is a change to the <code>model</code> string.</p></div><div style="border:1px solid #E4E1FF; background:#FFFFFF; border-radius:8px; padding:14px 16px;"><p style="margin:0 0 4px; font-weight:800; color:#111827;">Drop-in for your client</p><p style="margin:0; color:#4B5563; font-size:15px; line-height:1.6;">OpenAI Chat Completions and Responses, plus Anthropic Messages. Works with the OpenAI and Anthropic SDKs, Codex, Claude Code, Cursor, and OpenCode.</p></div><div style="border:1px solid #E4E1FF; background:#FFFFFF; border-radius:8px; padding:14px 16px;"><p style="margin:0 0 4px; font-weight:800; color:#111827;">Below list price</p><p style="margin:0; color:#4B5563; font-size:15px; line-height:1.6;">GPT-6 and Claude models bill 10% under the vendor list price on the current rate card. Pay as you go, no subscription.</p></div><div style="border:1px solid #E4E1FF; background:#FFFFFF; border-radius:8px; padding:14px 16px;"><p style="margin:0 0 4px; font-weight:800; color:#111827;">Cost per request, in the logs</p><p style="margin:0; color:#4B5563; font-size:15px; line-height:1.6;">Every call is logged with tokens and cost, and can be tagged by end user, so you can see what an escalation actually cost.</p></div><div style="border:1px solid #E4E1FF; background:#FFFFFF; border-radius:8px; padding:14px 16px;"><p style="margin:0 0 4px; font-weight:800; color:#111827;">Pin or follow</p><p style="margin:0; color:#4B5563; font-size:15px; line-height:1.6;">Pin a fixed model ID for evaluations, or use a <code>-latest</code> alias that moves to the newest release.</p></div><div style="border:1px solid #E4E1FF; background:#FFFFFF; border-radius:8px; padding:14px 16px;"><p style="margin:0 0 4px; font-weight:800; color:#111827;">Media on the same key</p><p style="margin:0; color:#4B5563; font-size:15px; line-height:1.6;">The same account also calls image, video, and audio generation models through the Modellix media API.</p></div></div><div style="display:flex; gap:12px; flex-wrap:wrap;"><a class="btn btn-primary" href="https://www.modellix.ai/console/api-key" data-cta="gateway_benefits" data-cta-target="api-key" target="_blank" rel="noopener noreferrer">Get an API key</a><a class="btn btn-secondary" href="https://www.modellix.ai/llm" data-cta="gateway_benefits" data-cta-target="llm-pricing" target="_blank" rel="noopener noreferrer">See all LLM prices</a></div></div>
+
+<p>The same key reaches image and video models. A support team that uses Luna to spot recurring ticket themes can turn them into help-center visuals with <a href="https://www.modellix.ai/models/openai/gpt-image-2">GPT Image 2</a>, without another account.</p>
+<p>Pin <code>openai/gpt-6-luna</code> for evaluations, or use <code>~openai/gpt-luna-latest</code> to pick up future Luna releases without a code change.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Try GPT-6 Luna</h3><p class="view-docs-tag-desc">Create a Modellix key, run Luna on a batch you have already labeled, and move only the hard cases to Sol.</p><a class="btn view-docs-tag-btn" href="https://www.modellix.ai/console/api-key" data-cta="login_tag" data-cta-target="api-key" target="_blank" rel="noopener noreferrer"><span>Get API Key </span><i data-lucide="arrow-right"></i></a></div></section>
 
         </div>
 
