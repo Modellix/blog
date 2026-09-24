@@ -59,7 +59,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://img.modellix.ai/en/article/cover-wan-2-5-api-aa8d47f7.webp">
 <meta property="article:published_time" content="2026-08-18T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-23T16:00:00.000Z">
 <meta property="article:author" content="Alen Hu">
 <meta property="article:tag" content="AI Video API">
 <meta property="article:tag" content="Alibaba">
@@ -70,7 +70,7 @@
 <meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-wan-2-5-api-aa8d47f7.webp">
   
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Wan 2.5 API: Integration Guide, Pricing & Code","description":"Wan 2.5 API explained with live August 2026 pricing: model IDs, authentication, submit-poll-retrieve code, free quota, and when to pick Wan 2.7 instead.","datePublished":"2026-08-18T16:00:00.000Z","dateModified":"2026-08-18T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/wan-2-5-api/","image":"https://img.modellix.ai/en/article/cover-wan-2-5-api-aa8d47f7.webp"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Wan 2.5 API: Integration Guide, Pricing & Code","description":"Wan 2.5 API explained with live August 2026 pricing: model IDs, authentication, submit-poll-retrieve code, free quota, and when to pick Wan 2.7 instead.","datePublished":"2026-08-18T16:00:00.000Z","dateModified":"2026-09-23T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/wan-2-5-api/","image":"https://img.modellix.ai/en/article/cover-wan-2-5-api-aa8d47f7.webp"}]}</script>
 
   <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -292,18 +292,18 @@
 <tr>
 <td>Modellix <code>alibaba/wan2.5-t2v-preview</code></td>
 <td>USD &#x2F; second</td>
-<td>$0.025–$0.0917 (range across resolutions)</td>
+<td>$0.025–$0.0917 (historical range)</td>
 <td></td>
 <td></td>
-<td>$10–30 credit, no card</td>
+<td>No signup credit; verify route availability before use</td>
 </tr>
 <tr>
 <td>Modellix <code>alibaba/wan2.5-i2v-preview</code></td>
 <td>USD &#x2F; second</td>
-<td>$0.0305–$0.0917 (range across resolutions)</td>
+<td>$0.0305–$0.0917 (historical range)</td>
 <td></td>
 <td></td>
-<td>$10–30 credit, no card</td>
+<td>No signup credit; verify route availability before use</td>
 </tr>
 <tr>
 <td>EvoLink</td>
@@ -427,10 +427,10 @@
 <li><strong>Coding against 2.5’s parameter quirks as if they were stable.</strong> <code>wan2.5-t2v-preview</code> accepts a <code>size</code> parameter; the i2v variant uses <code>resolution</code>. Those enums differ across versions — if you later migrate to Wan 2.7, parameter names like <code>ratio</code> and <code>duration</code> (2–15 s) change. Pin your model ID explicitly instead of using “latest” aliases.</li>
 <li><strong>Polling too hot.</strong> Video tasks run 30 s–3 min; polling every second earns you 429s and burns request budget. Back off, or use webhooks.</li>
 </ol>
-<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p><strong>Is the Wan 2.5 API free?</strong> Partially. Alibaba Cloud Model Studio grants a one-time free quota of 50 seconds of video and 50 images per qualifying model, valid 90 days from activation. Modellix offers $10–30 of free credit on signup without a credit card. After that, it is pay-as-you-go at per-second or per-image rates.</p>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p><strong>Is the Wan 2.5 API free?</strong> Alibaba Cloud Model Studio has offered a one-time quota for qualifying accounts; check its current eligibility and expiry in the console. Modellix no longer grants signup credit. Its Wan 2.5 preview routes should be checked against the live model catalog before planning an integration.</p>
 <p><strong>How do I get a Wan 2.5 API key?</strong> Sign up at any provider hosting the model: Alibaba Cloud Model Studio, fal.ai, Replicate, WaveSpeed, or an aggregator like Modellix. The key is a static token you send in the authorization header. With an aggregator, one key covers Wan 2.5 and 210+ other models.</p>
 <p><strong>What’s the difference between Wan 2.5 T2V and I2V?</strong> T2V (<code>wan2.5-t2v-preview</code>) generates video from a text prompt. I2V (<code>wan2.5-i2v-preview</code>) animates a first-frame image, which gives you much tighter control over composition and character — at the cost of requiring a valid image URL or upload.</p>
-<p><strong>Wan 2.5 vs SkyReels: which should I use?</strong> SkyReels (ByteDance) and Wan 2.5 are both open Chinese video models popular on API platforms. SkyReels is stronger for consistent characters and human motion across shots; Wan 2.5’s edge is one-step synchronized audio and a lower entry price tier. For API work, the deciding factor is usually which model your platform routes and at what per-second price — compare live pages for <a href="https://www.modellix.ai/models/skywork/skyreels-t2v">SkyReels</a> and Wan 2.5 rather than going on benchmarks alone.</p>
+<p><strong>Wan 2.5 vs SkyReels: which should I use?</strong> They are different providers: Wan comes from Alibaba, and SkyReels comes from Skywork AI. If SkyReels V4’s reference-driven video workflow is the requirement, use the <a target="_blank" rel="noopener" href="https://www.skyreels.ai/api-platform">official SkyReels API</a>. SkyReels is no longer routed through Modellix. Check Wan’s currently listed model version and request schema before choosing it as an API alternative.</p>
 <p><strong>Is Wan 2.5 open source?</strong> The weights are openly distributed via Alibaba’s ModelScope platform for preview use, but the APIs that serve it are commercial — “open weights” does not mean free inference. If you need to self-host, the ModelScope repos are the starting point; if you just need an API, the provider routes above are faster.</p>
 <p><strong>Is Wan 2.5 still worth using in 2026?</strong> For new projects, mostly no — Wan 2.6&#x2F;2.7 are meaningfully better and only modestly more expensive. For existing integrations pinned to 2.5, it remains a cheap, stable option, and 480p output is still one of the cheapest open video tiers you can call over an API. Treat it as the budget&#x2F;legacy choice, not the state of the art.</p>
 <p><strong>How long does Wan 2.5 generation take?</strong> Roughly 1–3 minutes for a 10-second clip, less for 480p and 5-second jobs. The API returns a task ID immediately and the result asynchronously — plan your UX around polling or webhooks, not synchronous waits.</p>
@@ -457,6 +457,8 @@
         </div>
 
         
+        
+          
 <section class="post-cta">
   <div class="post-cta-glow"></div>
   <div class="post-cta-content">
@@ -469,6 +471,7 @@
   </div>
 </section>
 
+        
         
 
 

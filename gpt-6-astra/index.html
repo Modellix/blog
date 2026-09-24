@@ -59,7 +59,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://img.modellix.ai/en/article/cover-gpt-6-astra.webp">
 <meta property="article:published_time" content="2026-09-24T01:30:00.000Z">
-<meta property="article:modified_time" content="2026-09-24T01:30:00.000Z">
+<meta property="article:modified_time" content="2026-09-24T03:44:40.000Z">
 <meta property="article:author" content="Alen Hu">
 <meta property="article:tag" content="LLM API">
 <meta property="article:tag" content="Model Launch">
@@ -68,7 +68,7 @@
 <meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-gpt-6-astra.webp">
   
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"GPT-6 Astra Is Now Available on Modellix","description":"GPT-6 Astra is now available on Modellix. See what OpenAI's flagship brings for computer use, coding, and agents, then try it through the LLM gateway.","datePublished":"2026-09-24T01:30:00.000Z","dateModified":"2026-09-24T01:30:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/gpt-6-astra/","image":"https://img.modellix.ai/en/article/cover-gpt-6-astra.webp"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"GPT-6 Astra Is Now Available on Modellix","description":"GPT-6 Astra is now available on Modellix. See what OpenAI's flagship brings for computer use, coding, and agents, then try it through the LLM gateway.","datePublished":"2026-09-24T01:30:00.000Z","dateModified":"2026-09-24T03:44:40.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/gpt-6-astra/","image":"https://img.modellix.ai/en/article/cover-gpt-6-astra.webp"}]}</script>
 
   <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -213,16 +213,20 @@
 <h2 id="What-Can-You-Build-with-GPT-6-Astra"><a href="#What-Can-You-Build-with-GPT-6-Astra" class="headerlink" title="What Can You Build with GPT-6 Astra"></a>What Can You Build with GPT-6 Astra</h2><p>One application is a <strong>schema migration assistant</strong>: give Astra a table definition and a change request, and ask for the migration plus the one assumption most likely to change the result. That tests the behavior OpenAI highlights, stating assumptions instead of guessing silently, on output a developer can check line by line.</p>
 <p>We ran that step through the gateway on September 24, 2026, using <code>openai/gpt-6-astra</code> and the request below: a PostgreSQL 16 <code>orders</code> table with <code>paid_at</code>, <code>shipped_at</code>, and <code>cancelled_at</code> timestamps, and a request to add and backfill a <code>status</code> column. Astra opened with a single line stating its assumption (precedence of cancelled, then shipped, then paid, then pending when several timestamps are set, with new rows defaulting to pending), then returned one transaction that adds the column, backfills it with a <code>CASE</code> expression, sets the default and <code>NOT NULL</code>, and adds a <code>CHECK</code> constraint for the four allowed values.</p>
 <p>We checked the backfill logic on five sample rows covering each combination, and every row landed on the expected status. We did not run the full migration against a PostgreSQL instance, so test it on a copy of your data first. The call took about 46 seconds, most of it reasoning, which is the trade-off to expect from the flagship tier.</p>
-<h2 id="What-This-Means-for-Modellix-Users"><a href="#What-This-Means-for-Modellix-Users" class="headerlink" title="What This Means for Modellix Users"></a>What This Means for Modellix Users</h2><p>Astra runs on the same key, the same base URL, and the same billing view you already use for Sol, Luna, Claude, Gemini, and the rest of the catalog. Setting <code>model</code> to <code>openai/gpt-6-astra</code> is the only change.</p>
-<p>The practical pattern with the GPT-6 family is routing: send bulk calls to Luna, everyday difficult work to Sol, and reserve Astra for the tasks that justify flagship rates. OpenAI lists Astra at $10 per million input tokens and $50 per million output tokens; our <a href="https://www.modellix.ai/blog/gpt-6-astra-pricing/">GPT-6 Astra pricing guide</a> covers the 272K tier, cache rates, and Modellix pricing in detail.</p>
+<h2 id="What-This-Means-for-Modellix-Users"><a href="#What-This-Means-for-Modellix-Users" class="headerlink" title="What This Means for Modellix Users"></a>What This Means for Modellix Users</h2><p>Astra is available through the Modellix LLM gateway with one Modellix API key. The OpenAI-compatible Chat Completions and Responses endpoints use the fixed model ID <code>openai/gpt-6-astra</code>. Check the <a href="https://www.modellix.ai/llm#pricing">live LLM price calculator</a> before setting a budget; it applies the input-context tier for the token count you enter.</p>
+<p>For one comparable call, we entered 8,000 input tokens, 8,000 output tokens, and zero cached tokens. The calculator estimated $0.432 on Modellix against a displayed original price of about $0.48, a $0.048 difference per call. At 1,000 calls with the same token mix, that is about $48. The estimate is within the displayed 272K input-context tier; actual billing follows successful usage and current rates.</p>
+<figure style="margin: 24px 0;">
+  <img src="/blog/assets/gpt-6-astra-price-calculator.png" alt="Modellix LLM cost calculator with GPT-6 Astra selected: 8,000 input tokens, 8,000 output tokens, no cached tokens, $0.432 estimated cost versus about $0.48 original price" width="1150" height="590" loading="lazy" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" />
+  <figcaption style="font-size:13px; color:#64748B; margin-top:6px;">Modellix LLM calculator, checked September 24, 2026. Prices can change; enter your own token mix on the live page.</figcaption>
+</figure>
+
+<p>The practical GPT-6 routing pattern is to send bulk calls to Luna, everyday difficult work to Sol, and reserve Astra for tasks that justify flagship reasoning. The <a href="https://www.modellix.ai/blog/gpt-6-astra-pricing/">GPT-6 Astra pricing guide</a> covers its pricing tiers and cache rates.</p>
 <p>Two aliases point at Astra today: <code>~openai/gpt-astra-latest</code> follows the newest Astra release, and <code>~openai/gpt-latest</code> follows OpenAI’s current flagship. For evaluations and regression tests, pin <code>openai/gpt-6-astra</code> so a future release does not change what you are measuring. The <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/api/api?utm_source=blog&utm_medium=article_link&utm_campaign=gpt-6-astra">API guide</a> covers request paths and logs.</p>
 <h3 id="Try-GPT-6-Astra-on-Modellix"><a href="#Try-GPT-6-Astra-on-Modellix" class="headerlink" title="Try GPT-6 Astra on Modellix"></a>Try GPT-6 Astra on Modellix</h3><p>Here is a minimal Chat Completions request. Set <code>MODELLIX_API_KEY</code> to your Modellix key before running it:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">curl -sS <span class="string">&quot;https://llm.modellix.ai/v1/chat/completions&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$&#123;MODELLIX_API_KEY&#125;</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;model&quot;: &quot;openai/gpt-6-astra&quot;,</span></span><br><span class="line"><span class="string">    &quot;messages&quot;: [&#123;</span></span><br><span class="line"><span class="string">      &quot;role&quot;: &quot;user&quot;,</span></span><br><span class="line"><span class="string">      &quot;content&quot;: &quot;PostgreSQL 16. Table: orders(id bigint primary key, created_at timestamptz, paid_at timestamptz null, shipped_at timestamptz null, cancelled_at timestamptz null). Write a migration that adds a status column and backfills it for existing rows. If a decision could change the result, state the assumption you made in one line before the SQL.&quot;</span></span><br><span class="line"><span class="string">    &#125;]</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
 
 <p>Chat Completions and Responses use <code>https://llm.modellix.ai/v1</code>. The Anthropic Messages protocol uses <code>https://llm.modellix.ai</code> without <code>/v1</code>. Pick one protocol and do not mix their request fields.</p>
-<h2 id="Start-Building-with-GPT-6-Astra"><a href="#Start-Building-with-GPT-6-Astra" class="headerlink" title="Start Building with GPT-6 Astra"></a>Start Building with GPT-6 Astra</h2><p>The best way to judge Astra is on the long, multi-step task your team keeps postponing. Run it through the gateway, read the per-call cost in your logs, and decide which share of your work deserves the flagship.</p>
-<p>👉 <a href="https://www.modellix.ai/llm">Explore GPT-6 Astra on Modellix</a> to see current model IDs, context windows, and per-token rates.</p>
-<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Get your Modellix API key</h3><p class="view-docs-tag-desc">One key covers GPT-6 Astra, Sol, and Luna. Create it in the console and route between tiers without a second integration.</p><a class="btn view-docs-tag-btn" href="https://www.modellix.ai/console/api-key" data-cta="login_tag" data-cta-target="api-key" target="_blank" rel="noopener noreferrer"><span>Get API Key </span><i data-lucide="arrow-right"></i></a></div></section>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Get a GPT-6 Astra API key</h3><p class="view-docs-tag-desc">Test Astra on a long, multi-step task with reviewable results, then check the per-call cost before routing more work to the flagship tier.</p><a class="btn view-docs-tag-btn" href="https://www.modellix.ai/console/api-key" data-cta="login_tag" data-cta-target="api-key" target="_blank" rel="noopener noreferrer"><span>Get API Key </span><i data-lucide="arrow-right"></i></a></div></section>
 
         </div>
 
@@ -239,18 +243,7 @@
         </div>
 
         
-<section class="post-cta">
-  <div class="post-cta-glow"></div>
-  <div class="post-cta-content">
-    <h2 class="post-cta-title">Ready to Get Started?</h2>
-    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
-    <a href="https://www.modellix.ai/console" class="btn post-cta-btn">
-      <span>Start for Free</span>
-      <i data-lucide="arrow-right"></i>
-    </a>
-  </div>
-</section>
-
+        
         
 
 

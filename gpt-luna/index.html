@@ -59,7 +59,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://img.modellix.ai/en/article/cover-gpt-luna.webp">
 <meta property="article:published_time" content="2026-09-24T02:30:00.000Z">
-<meta property="article:modified_time" content="2026-09-24T02:30:00.000Z">
+<meta property="article:modified_time" content="2026-09-24T03:44:40.000Z">
 <meta property="article:author" content="Alen Hu">
 <meta property="article:tag" content="LLM API">
 <meta property="article:tag" content="Model Launch">
@@ -68,7 +68,7 @@
 <meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-gpt-luna.webp">
   
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"GPT-6 Luna Is Now Available on Modellix","description":"GPT-6 Luna is now available on Modellix. See what the low-cost GPT-6 tier is built for, what it costs, and try it through the Modellix LLM gateway.","datePublished":"2026-09-24T02:30:00.000Z","dateModified":"2026-09-24T02:30:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/gpt-luna/","image":"https://img.modellix.ai/en/article/cover-gpt-luna.webp"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"GPT-6 Luna Is Now Available on Modellix","description":"GPT-6 Luna is now available on Modellix. See what the low-cost GPT-6 tier is built for, what it costs, and try it through the Modellix LLM gateway.","datePublished":"2026-09-24T02:30:00.000Z","dateModified":"2026-09-24T03:44:40.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/gpt-luna/","image":"https://img.modellix.ai/en/article/cover-gpt-luna.webp"}]}</script>
 
   <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -213,15 +213,19 @@
 <h2 id="What-Can-You-Build-with-GPT-6-Luna"><a href="#What-Can-You-Build-with-GPT-6-Luna" class="headerlink" title="What Can You Build with GPT-6 Luna"></a>What Can You Build with GPT-6 Luna</h2><p>A natural fit is a <strong>support-ticket triage step</strong>: every incoming ticket goes to Luna with a fixed label set (billing, bug, feature request, other) and a one-word answer. Only the tickets that need a drafted reply move on to Sol. The triage call is short in and short out, which is the shape Luna is priced for.</p>
 <p>We tested that step through the gateway on September 24, 2026, using <code>openai/gpt-6-luna</code> and the prompt in the request below. We wrote 12 tickets with known labels (four bugs, three billing questions, three feature requests, two general questions), including a few that could go either way, such as “My card was declined but the payment still shows as pending” and “Webhook retries stop after the first 500 error instead of backing off.” Luna matched all 12 labels and answered each one in five or six output tokens, with no extra explanation to strip.</p>
 <p>Twelve hand-written tickets are a smoke test, not an accuracy rate. Before routing real traffic, run a few hundred tickets your team has already labeled and track agreement and cost per thousand tickets. If one label slips, tighten its definition in the prompt before you escalate that label to Sol.</p>
-<h2 id="What-This-Means-for-Modellix-Users"><a href="#What-This-Means-for-Modellix-Users" class="headerlink" title="What This Means for Modellix Users"></a>What This Means for Modellix Users</h2><p>With a three-tier family, the practical pattern is routing, not picking. Send bulk traffic to Luna, escalate the calls that need more reasoning to Sol, and reserve Astra for the work that justifies it. On Modellix that routing needs no extra integration: one key, one base URL, and per-call cost logs that show whether an escalation was worth it.</p>
-<p>If you want to stay on the newest Luna release automatically, use the alias <code>~openai/gpt-luna-latest</code>. For evaluations, pin the fixed ID <code>openai/gpt-6-luna</code> so a future release does not change what you are measuring. The <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/api/api?utm_source=blog&utm_medium=article_link&utm_campaign=gpt-luna">API guide</a> covers request paths and logs.</p>
+<h2 id="What-This-Means-for-Modellix-Users"><a href="#What-This-Means-for-Modellix-Users" class="headerlink" title="What This Means for Modellix Users"></a>What This Means for Modellix Users</h2><p>With a three-tier family, the practical pattern is routing: send bulk traffic to Luna, escalate calls that need more reasoning to Sol, and reserve Astra for work that justifies it. The Modellix LLM gateway uses one API key and one base URL across the family, with per-call costs available in request logs.</p>
+<p>For one comparable call, we entered 8,000 input tokens, 8,000 output tokens, and zero cached tokens in the <a href="https://www.modellix.ai/llm#pricing">live LLM price calculator</a>. It estimated $0.00432 on Modellix against a displayed original price of about $0.0048, a $0.00048 difference per call. At 1,000 calls with the same token mix, that is about $0.48. The estimate is within the displayed 272K input-context tier; actual billing follows successful usage and current rates.</p>
+<figure style="margin: 24px 0;">
+  <img src="/blog/assets/gpt-6-luna-price-calculator.png" alt="Modellix LLM cost calculator with GPT-6 Luna selected: 8,000 input tokens, 8,000 output tokens, no cached tokens, $0.00432 estimated cost versus about $0.0048 original price" width="1150" height="590" loading="lazy" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" />
+  <figcaption style="font-size:13px; color:#64748B; margin-top:6px;">Modellix LLM calculator, checked September 24, 2026. Prices can change; enter your own token mix on the live page.</figcaption>
+</figure>
+
+<p>If you want to follow the newest Luna release automatically, use <code>~openai/gpt-luna-latest</code>. Pin <code>openai/gpt-6-luna</code> for evaluations so a future release does not change the model under test. The <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/api/api?utm_source=blog&utm_medium=article_link&utm_campaign=gpt-luna">API guide</a> covers request paths and logs.</p>
 <h3 id="Try-GPT-6-Luna-on-Modellix"><a href="#Try-GPT-6-Luna-on-Modellix" class="headerlink" title="Try GPT-6 Luna on Modellix"></a>Try GPT-6 Luna on Modellix</h3><p>Here is a minimal Chat Completions request. Set <code>MODELLIX_API_KEY</code> to your Modellix key before running it:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">curl -sS <span class="string">&quot;https://llm.modellix.ai/v1/chat/completions&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$&#123;MODELLIX_API_KEY&#125;</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;model&quot;: &quot;openai/gpt-6-luna&quot;,</span></span><br><span class="line"><span class="string">    &quot;max_tokens&quot;: 16,</span></span><br><span class="line"><span class="string">    &quot;messages&quot;: [&#123;</span></span><br><span class="line"><span class="string">      &quot;role&quot;: &quot;user&quot;,</span></span><br><span class="line"><span class="string">      &quot;content&quot;: &quot;Classify this support ticket as billing, bug, feature request, or other. Reply with the label only. Ticket: I was charged twice for my September invoice.&quot;</span></span><br><span class="line"><span class="string">    &#125;]</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
 
 <p>Chat Completions and Responses use <code>https://llm.modellix.ai/v1</code>. The Anthropic Messages protocol uses <code>https://llm.modellix.ai</code> without <code>/v1</code>.</p>
-<h2 id="Start-Building-with-GPT-6-Luna"><a href="#Start-Building-with-GPT-6-Luna" class="headerlink" title="Start Building with GPT-6 Luna"></a>Start Building with GPT-6 Luna</h2><p>The best way to size up Luna is on traffic you already run. Point a slice of your high-volume calls at <code>openai/gpt-6-luna</code>, compare the output and the cost against your current model, and move the rest once the numbers hold.</p>
-<p>👉 <a href="https://www.modellix.ai/llm">Explore GPT-6 Luna on Modellix</a> to see current model IDs, context windows, and per-token rates.</p>
-<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Get your Modellix API key</h3><p class="view-docs-tag-desc">One key covers GPT-6 Luna, Sol, and Astra. Create it in the console and route between tiers without a second integration.</p><a class="btn view-docs-tag-btn" href="https://www.modellix.ai/console/api-key" data-cta="login_tag" data-cta-target="api-key" target="_blank" rel="noopener noreferrer"><span>Get API Key </span><i data-lucide="arrow-right"></i></a></div></section>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Get a GPT-6 Luna API key</h3><p class="view-docs-tag-desc">Run a labeled sample of your own support tickets, then compare classification agreement and cost before routing production volume.</p><a class="btn view-docs-tag-btn" href="https://www.modellix.ai/console/api-key" data-cta="login_tag" data-cta-target="api-key" target="_blank" rel="noopener noreferrer"><span>Get API Key </span><i data-lucide="arrow-right"></i></a></div></section>
 
         </div>
 
@@ -238,18 +242,7 @@
         </div>
 
         
-<section class="post-cta">
-  <div class="post-cta-glow"></div>
-  <div class="post-cta-content">
-    <h2 class="post-cta-title">Ready to Get Started?</h2>
-    <p class="post-cta-desc">Join us in reshaping the future of multimedia creation with AI.</p>
-    <a href="https://www.modellix.ai/console" class="btn post-cta-btn">
-      <span>Start for Free</span>
-      <i data-lucide="arrow-right"></i>
-    </a>
-  </div>
-</section>
-
+        
         
 
 

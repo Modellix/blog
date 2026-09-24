@@ -268,7 +268,7 @@
 <h2 id="Axis-3-—-Billing-where-the-money-flows"><a href="#Axis-3-—-Billing-where-the-money-flows" class="headerlink" title="Axis 3 — Billing: where the money flows"></a>Axis 3 — Billing: where the money flows</h2><p>Pricing is where the marketing gets loudest and official wording matters most, because the two sides are not charging for the same thing.</p>
 <p><strong>LiteLLM is free software, not a free gateway.</strong> The core is MIT-licensed (the repository LICENSE covers everything outside its <code>enterprise/</code> directory under MIT). You pay each provider its list price through the keys you brought, pay the infrastructure bill for the proxy, its database, and its cache, and pay your engineers’ time to run it. The enterprise tier is a commercial license priced through sales with a 30-day trial. The honest answer to “does LiteLLM cost money”: the software is free; the gateway isn’t.</p>
 <p><strong>OpenRouter is a pass-through with a fee on the way in.</strong> Its <a target="_blank" rel="noopener" href="https://openrouter.ai/docs/faq">FAQ</a> is explicit: “We pass through the pricing of the underlying model providers without any markup, so you pay the same rate as you would directly with the provider.” The cost shows up when you fund your account: “OpenRouter charges a 5.5% ($0.80 minimum) fee when you purchase credits,” and crypto payments run 5%; the <a target="_blank" rel="noopener" href="https://openrouter.ai/pricing">pricing page</a> also lists 5% BYOK fees above the free allowance. So the “openrouter markup” question has a precise answer: no per-token markup, and a payment-channel fee. That is why OpenRouter’s own comparison post frames self-hosting as arithmetic: at roughly $200&#x2F;month of infrastructure, a proxy gets cheaper than the fee once inference spend passes about $3,600&#x2F;month. Run that math on your numbers, not theirs.</p>
-<p><strong>Modellix prices in the opposite direction, and we should say exactly how.</strong> The Modellix LLM <a href="https://www.modellix.ai/llm">pricing page</a> shows each model with the official list price struck through next to the Modellix rate; on most models the Modellix rate is below that listed price—the Anthropic rows read, verbatim, <code>3% OFF</code>, and other families carry larger discounts. Top-ups go through Stripe with no published purchase fee, and successful responses are billed from token usage. Honest caveats, because this is a young product: not every model is discounted, prices drift and are worth checking on the day you commit, and there is no automatic signup credit—the $1 registration credit was retired in August 2026, with trial credit available by request. Nor is this a claim that Modellix is the cheapest gateway; fee structure and volume matter more than the per-token list price, and we do not price-rank ourselves.</p>
+<p><strong>Modellix lists the upstream rate beside the billed rate.</strong> The LLM <a href="https://www.modellix.ai/llm">pricing page</a> shows a discount only where the billed rate is lower; not every model is discounted, and prices can change. Top-ups use Stripe, and successful responses are billed from token usage. Modellix has no automatic signup credit; compare live rates and estimate cost from your own token mix before choosing a gateway.</p>
 <p>The three forms differ structurally in who you pay and what the price includes: with a self-hosted proxy you pay providers at list price plus your own infrastructure; with OpenRouter you pay list price through a credit channel with a purchase fee; with Modellix you pay a hosted rate that sits below the listed price on most models. That is not “who is cheapest”—it is the billing axis of a form decision.</p>
 <h2 id="When-to-self-host-an-LLM-proxy"><a href="#When-to-self-host-an-LLM-proxy" class="headerlink" title="When to self-host an LLM proxy"></a>When to self-host an LLM proxy</h2><p>Choose the self-hosted form when the constraints are yours to own. The strongest cases, in order:</p>
 <ul>
@@ -354,6 +354,8 @@
         </div>
 
         
+        
+          
 <section class="post-cta">
   <div class="post-cta-glow"></div>
   <div class="post-cta-content">
@@ -366,6 +368,7 @@
   </div>
 </section>
 
+        
         
 
 

@@ -59,7 +59,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://img.modellix.ai/en/article/cover-talking-avatar-api.webp">
 <meta property="article:published_time" content="2026-08-03T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-03T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-24T03:52:00.000Z">
 <meta property="article:author" content="Alen Hu">
 <meta property="article:tag" content="AI Video API">
 <meta property="article:tag" content="Developer Guide">
@@ -71,7 +71,7 @@
 <meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-talking-avatar-api.webp">
   
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Talking Avatar API: Integration Guide, Pricing & Code","description":"Talking avatar APIs split into three input families: photo-to-video, video lip-sync, and real-time streaming. Compare current pricing, code, and failure modes.","datePublished":"2026-08-03T16:00:00.000Z","dateModified":"2026-08-03T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/talking-avatar-api/","image":"https://img.modellix.ai/en/article/cover-talking-avatar-api.webp"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Talking Avatar API: Integration Guide, Pricing & Code","description":"Talking avatar APIs split into three input families: photo-to-video, video lip-sync, and real-time streaming. Compare current pricing, code, and failure modes.","datePublished":"2026-08-03T16:00:00.000Z","dateModified":"2026-09-24T03:52:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/talking-avatar-api/","image":"https://img.modellix.ai/en/article/cover-talking-avatar-api.webp"}]}</script>
 
   <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -167,15 +167,15 @@
             
               <a href="/blog/tags/ai-video-api/" class="tag-pill tag-pill--sm">AI Video API</a>
             
+              <a href="/blog/tags/talking-avatar/" class="tag-pill tag-pill--sm">Talking Avatar</a>
+            
               <a href="/blog/tags/Digital-Human/" class="tag-pill tag-pill--sm">Digital Human</a>
             
-              <a href="/blog/tags/talking-avatar/" class="tag-pill tag-pill--sm">Talking Avatar</a>
+              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
             
               <a href="/blog/tags/kling/" class="tag-pill tag-pill--sm">Kling</a>
             
               <a href="/blog/tags/pixverse/" class="tag-pill tag-pill--sm">PixVerse</a>
-            
-              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
             
           </div>
         
@@ -214,8 +214,7 @@
   <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-talking-avatar-api.png" alt="Editorial Modellix cover for the talking avatar API guide, showing three digital-human input routes feeding a lip-synced presenter, with amber key and cyan rim lighting" />
 </picture>
 
-<p>Search for “talking avatar api” and you get a wall of vendor pages: Akool’s API docs at the top, then ElevenLabs, Microsoft’s Azure TTS avatar, Creatify, Synthesia — each explaining its own endpoint as if it were the only one that exists. None of them tells you the part that decides your whole integration: <strong>a talking avatar API is not one product but three families defined by their input contract.</strong> Photo-to-video APIs animate a portrait image into a talking presenter. Video lip-sync APIs re-time the lips of a video you already have. Real-time streaming APIs run a live conversational avatar. The same three words — talking avatar API — map to completely different fields, limits, and billing units depending on the family.</p>
-<p>This guide separates the three families, matches their pricing units instead of comparing them blindly, and walks a working request with the failure modes that cost money. Modellix is an API aggregator with a commercial interest in this topic; vendor documentation is the neutral baseline here, and the Modellix route appears as one integration option among several — not as a claim that the aggregator is cheaper. Contract and pricing facts were read from the vendors’ official pages on August 4, 2026.</p>
+<p>Choose a talking-avatar API by the input you have: a portrait, an existing video, or a live audio&#x2F;text stream. That choice determines the request fields, delivery path, and billing unit. This guide compares those three routes, lists the Modellix endpoints that are live as of September 24, 2026, and shows a documented async request. Modellix has a commercial interest in its listed routes; prices and availability are dated, not a claim that the aggregator is cheapest.</p>
 <h2 id="What-a-talking-avatar-API-actually-takes-as-input"><a href="#What-a-talking-avatar-API-actually-takes-as-input" class="headerlink" title="What a talking avatar API actually takes as input"></a>What a talking avatar API actually takes as input</h2><p>The input contract is the fastest way to classify any talking avatar API, because it tells you what you must already have before you call it. Three families cover almost everything in this space:</p>
 <table>
 <thead>
@@ -230,13 +229,13 @@
 <td>Photo-to-video (image avatar)</td>
 <td>A portrait image + a voice source (audio file or TTS script)</td>
 <td>A new video of that person speaking</td>
-<td>PixVerse Image Avatar, Kling Avatar, Skywork Single-Actor Avatar, Synthesia personal avatars, D-ID</td>
+<td>Kling Avatar on Modellix, PixVerse Platform, Synthesia, D-ID</td>
 </tr>
 <tr>
 <td>Video lip-sync (retiming)</td>
 <td>An existing talking video + an audio track or TTS script</td>
 <td>The same video with re-synced lips</td>
-<td>PixVerse Speech (LipSync), Skywork Sky-Lipsync, Vidu lip-sync</td>
+<td>PixVerse and Vidu on Modellix; PixVerse Platform</td>
 </tr>
 <tr>
 <td>Real-time streaming (live avatar)</td>
@@ -245,15 +244,14 @@
 <td>HeyGen LiveAvatar, Azure real-time synthesis</td>
 </tr>
 </tbody></table>
-<p>The boundary matters because the capabilities are not interchangeable. Photo-to-video is the family most search results actually mean when they say “AI avatar generator”: <a target="_blank" rel="noopener" href="https://www.synthesia.io/features/avatars">Synthesia describes personal avatars</a> turned into talking presenters from a single photo, and <a target="_blank" rel="noopener" href="https://www.d-id.com/api/">D-ID’s API</a> generates talking videos from image and audio inputs. Video lip-sync is a different job — you already have footage and you want the mouth to match new audio, which is what PixVerse’s Speech (LipSync) service and SkyReels lip sync do. Real-time streaming is a third architecture entirely: <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/ai-services/speech-service/text-to-speech-avatar/what-is-text-to-speech-avatar">Microsoft’s text to speech avatar page</a> documents both asynchronous batch synthesis and real-time synthesis, the latter for interactive avatar conversations.</p>
-<p>If your use case is “turn a headshot into a presenter,” you need a photo-to-video API. If your use case is “re-voice a video I already recorded,” you need video lip-sync. Choosing the wrong family means fighting the wrong input fields and the wrong limits from the first request.</p>
+<p>Photo-to-video animates a portrait; <a target="_blank" rel="noopener" href="https://www.synthesia.io/features/avatars">Synthesia’s personal avatars</a> and <a target="_blank" rel="noopener" href="https://www.d-id.com/api/">D-ID’s API</a> are examples. Lip-sync retimes existing footage; Modellix currently lists PixVerse and Vidu routes for it. Real-time streaming runs a live session; <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/ai-services/speech-service/text-to-speech-avatar/what-is-text-to-speech-avatar">Microsoft’s avatar service</a> supports interactive and batch synthesis. These inputs and delivery models are not interchangeable.</p>
 <picture style="aspect-ratio: 4 / 3; width:100%; max-width: 1200px;">
   <source type="image/webp" srcset="https://img.modellix.ai/en/article/talking-avatar-api-families.webp" />
   <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/talking-avatar-api-families.png" alt="Three talking avatar API families: photo-to-video, video lip-sync, and real-time streaming" loading="lazy" />
 </picture>
 
 <p><em>The three talking avatar API families defined by input contract: photo-to-video, video lip-sync, and real-time streaming. Illustrative Modellix artwork for this guide; the request shapes in this article follow the vendors’ official API references.</em></p>
-<h2 id="Talking-avatar-API-pricing-with-units-matched"><a href="#Talking-avatar-API-pricing-with-units-matched" class="headerlink" title="Talking avatar API pricing, with units matched"></a>Talking avatar API pricing, with units matched</h2><p>Pricing is where talking avatar API comparisons go wrong, because every page quotes a different unit. The same capability family is billed per second of output, per credit, per character of TTS text, or per video, depending on the route. Read each figure with its unit, accessed August 4, 2026:</p>
+<h2 id="Talking-avatar-API-pricing-with-units-matched"><a href="#Talking-avatar-API-pricing-with-units-matched" class="headerlink" title="Talking avatar API pricing, with units matched"></a>Talking avatar API pricing, with units matched</h2><p>Pricing is where talking avatar API comparisons go wrong, because platforms use different billing units. These figures were checked on September 24, 2026:</p>
 <table>
 <thead>
 <tr>
@@ -273,29 +271,24 @@
 <td>per second at 360p &#x2F; 540p &#x2F; 720p &#x2F; 1080p</td>
 </tr>
 <tr>
+<td>Modellix <code>vidu/lip-sync</code></td>
+<td>$0.0200</td>
+<td>per second</td>
+</tr>
+<tr>
 <td>Modellix <code>pixverse/lipsync</code></td>
-<td>$0.0460</td>
+<td>$0.0400</td>
 <td>per second</td>
 </tr>
 <tr>
 <td>Modellix <code>kling/kling-avatar</code></td>
-<td>$0.0386 (std) &#x2F; $0.0773 (pro)</td>
-<td>per second</td>
-</tr>
-<tr>
-<td>Modellix <code>skywork/single-actor-avatar</code></td>
-<td>$0.0460 (std) &#x2F; $0.0690 (pro)</td>
-<td>per second</td>
-</tr>
-<tr>
-<td>Modellix <code>skywork/sky-lipsync</code></td>
-<td>$0.0115</td>
-<td>per second</td>
+<td>$0.0448–$0.0896</td>
+<td>per second, depending on settings</td>
 </tr>
 </tbody></table>
-<p>Sources: <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/pricing-796039m0">PixVerse Platform pricing</a> and the <a href="https://www.modellix.ai/models/pixverse/lipsync">Modellix model pages for pixverse&#x2F;lipsync</a>, <a href="https://www.modellix.ai/models/kling/kling-avatar">kling-avatar</a>, <a href="https://www.modellix.ai/models/skywork/single-actor-avatar">single-actor-avatar</a>, and <a href="https://www.modellix.ai/models/skywork/sky-lipsync">sky-lipsync</a>, all accessed August 4, 2026.</p>
-<p>These numbers are not directly comparable, and saying so is the point. PixVerse Platform bills in <strong>credits</strong> — a package currency whose dollar value depends on the credit pack you bought; its own pricing page shows the credit cost per second, not a dollar rate. Modellix bills in dollars per second of output. A 10-second talking clip on Modellix’s <code>pixverse/lipsync</code> route costs 10 × $0.0460 &#x3D; $0.46 as displayed; the same job on PixVerse Platform costs 10 × 4 &#x3D; 40 credits under the per-second rule, whose dollar value depends on your pack. Convert both to the same output specification and the same billing conditions before comparing — never divide credits by a dollar guess you invented.</p>
-<p>Note that pricing drifts: PixVerse’s July 2026 product briefing recorded Image Avatar at 3&#x2F;6&#x2F;9&#x2F;12 credits per second, but the live pricing page on August 4, 2026 shows 5&#x2F;10&#x2F;15&#x2F;20 at 360p&#x2F;540p&#x2F;720p&#x2F;1080p. This is a normal example of why every figure in this article carries an access date. Our <a href="https://www.modellix.ai/blog/pixverse-pricing/">PixVerse pricing guide</a> keeps the full API’s unit distinctions explicit.</p>
+<p>Sources: <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/pricing-796039m0">PixVerse Platform pricing</a>, <a href="https://www.modellix.ai/models/kling/kling-avatar">Kling Avatar</a>, <a href="https://www.modellix.ai/models/pixverse/lipsync">PixVerse Lip Sync</a>, and <a href="https://www.modellix.ai/models/vidu/lip-sync">Vidu Lip Sync</a>, checked September 24, 2026.</p>
+<p>The units still need to match before you compare. PixVerse Platform bills Lip Sync in credits, while the Modellix routes above show dollars per second. At the listed Modellix rates, a 10-second job is about $0.20 on <code>vidu/lip-sync</code> or $0.40 on <code>pixverse/lipsync</code>; a Kling Avatar clip has a displayed range because its settings change the rate. PixVerse Platform currently lists Lip Sync at 4 credits per rounded-up second, or 4 credits per 15 UTF-8 bytes of TTS text. Convert credits using the price of the plan you would actually buy, not an assumed exchange rate.</p>
+<p>PixVerse Platform’s current pricing page lists Image Avatar at 5, 10, 15, or 20 credits per second at 360p, 540p, 720p, or 1080p. Its <a href="https://www.modellix.ai/blog/pixverse-pricing/">pricing guide</a> explains how the credit units differ from Modellix’s dollar-per-second prices.</p>
 <h2 id="A-working-talking-avatar-API-call"><a href="#A-working-talking-avatar-API-call" class="headerlink" title="A working talking avatar API call"></a>A working talking avatar API call</h2><p>The photo-to-video family is the most common starting point, so here is a minimal working flow against Modellix’s <code>kling/kling-avatar</code> route, whose documented input is a portrait image plus exactly one audio source (an audio file URL, or an <code>audio_id</code> from a TTS API). The snippet follows the model page’s documented request shape; it has not been executed against a live account.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create a talking avatar video from a portrait + audio</span></span><br><span class="line">curl -X POST <span class="string">&quot;https://api.modellix.ai/api/v1/kling/kling-avatar&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$MODELLIX_API_KEY</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;input&quot;: &#123;</span></span><br><span class="line"><span class="string">      &quot;image&quot;: &quot;https://your-cdn.example.com/presenter.jpg&quot;,</span></span><br><span class="line"><span class="string">      &quot;sound_file&quot;: &quot;https://your-cdn.example.com/voiceover.mp3&quot;,</span></span><br><span class="line"><span class="string">      &quot;prompt&quot;: &quot;The presenter speaks naturally to camera with a calm expression&quot;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br><span class="line"><span class="comment"># → task_id; poll GET /api/v1/tasks/&#123;task_id&#125; until it completes</span></span><br></pre></td></tr></table></figure>
 
@@ -321,12 +314,12 @@
 <tr>
 <td>Image file too large or wrong format</td>
 <td>Photo-to-video</td>
-<td>Kling avatar documents JPG&#x2F;JPEG&#x2F;PNG up to 10 MB; Skywork accepts portrait URLs in jpg&#x2F;jpeg&#x2F;png&#x2F;gif&#x2F;bmp</td>
+<td>Check the current <a href="https://www.modellix.ai/models/kling/kling-avatar/api_schema">Kling Avatar schema</a> for supported image formats and size limits</td>
 </tr>
 <tr>
 <td>Audio outside duration limits</td>
 <td>Both</td>
-<td>Kling avatar documents 2–300 seconds; Skywork Single-Actor Avatar up to 200 seconds; PixVerse lip-sync up to 60 seconds</td>
+<td>Kling Avatar accepts 2–300 seconds; PixVerse Platform Lip Sync caps its input video and audio at 60 seconds</td>
 </tr>
 <tr>
 <td>TTS script over the character cap</td>
@@ -340,10 +333,10 @@
 </tr>
 </tbody></table>
 <p>One more gotcha is documented repeatedly across this space: reusing the same request trace ID. PixVerse’s official troubleshooting notes a reused <code>Ai-Trace-Id</code> as the most common cause of jobs stuck in “Generating” — generate a unique trace ID per request. Vendor docs are the reference for their own codes; Akool’s <a target="_blank" rel="noopener" href="https://docs.akool.com/ai-tools-suite/talking-avatar">Talking Avatar API documentation</a>, for example, documents a callback-or-poll pattern with resource links valid for 7 days, which matters if you queue long-running jobs.</p>
-<h2 id="What-Modellix’s-talking-avatar-routes-are-—-and-are-not"><a href="#What-Modellix’s-talking-avatar-routes-are-—-and-are-not" class="headerlink" title="What Modellix’s talking avatar routes are — and are not"></a>What Modellix’s talking avatar routes are — and are not</h2><p>Modellix is an API aggregator: one key and one billing account across image and video models from multiple providers. The four talking-avatar-relevant routes covered in this guide, all billed per second as of August 4, 2026, are two photo-to-video routes (Kling Avatar, Skywork Single-Actor Avatar) and two video lip-sync routes (PixVerse Lip Sync, Skywork Sky-Lipsync). The catalog also lists adjacent routes such as Vidu’s lip-sync and digital-human models; this guide scopes its pricing comparison to the four routes above.</p>
+<h2 id="What-Modellix’s-talking-avatar-routes-are-—-and-are-not"><a href="#What-Modellix’s-talking-avatar-routes-are-—-and-are-not" class="headerlink" title="What Modellix’s talking avatar routes are — and are not"></a>What Modellix’s talking avatar routes are — and are not</h2><p>Modellix is an API aggregator: one key and one billing account across image and video models from multiple providers. As of September 24, 2026, the live talking-avatar routes covered here are Kling Avatar for photo-to-video, plus PixVerse and Vidu for video lip-sync. The former Skywork avatar and lip-sync schemas return 404 on Modellix and are excluded from the comparison. Use the <a target="_blank" rel="noopener" href="https://www.skyreels.ai/api-platform">official SkyReels API</a> if your integration specifically requires Skywork’s video models.</p>
 <p>It is <strong>not</strong> several things that look similar in search results:</p>
 <ul>
-<li><strong>Not PixVerse Image Avatar.</strong> PixVerse Platform’s <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/avatar-2266777m0">Image Avatar API</a> generates a talking video from a still portrait (<code>img_id</code>) plus a voice source — a photo-to-digital-human pipeline with its own 5&#x2F;10&#x2F;15&#x2F;20 credits-per-second billing. Modellix does not carry <strong>PixVerse Platform’s</strong> Image Avatar API; its <code>pixverse/lipsync</code> requires an existing video. (Photo-to-video on Modellix is covered by the Kling Avatar and Skywork routes above, and the catalog also lists Vidu digital-human models.)</li>
+<li><strong>Not PixVerse Image Avatar.</strong> PixVerse Platform’s <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/avatar-2266777m0">Image Avatar API</a> creates a talking video from a still portrait plus a voice source, billed at 5&#x2F;10&#x2F;15&#x2F;20 credits per second by resolution. Modellix does not carry that endpoint; its <code>pixverse/lipsync</code> route requires existing footage. Kling Avatar is the photo-to-video route compared here.</li>
 <li><strong>Not arbitrary voice cloning.</strong> PixVerse Platform lets you upload a short sample and create a custom <code>speaker_id</code>. Modellix’s <code>pixverse/lipsync</code> accepts preset speaker codes for TTS — no clone upload.</li>
 <li><strong>Not audio generation.</strong> Talking avatar APIs consume audio as input (a track or a TTS script); neither the vendors nor this article claim audio-generation capability.</li>
 <li><strong>Not Growth Studio.</strong> PixVerse’s marketing-video workspace is a separate PixVerse product, not an aggregator capability.</li>
@@ -351,28 +344,28 @@
 <p>None of this asserts that Modellix is the cheapest talking avatar route — the unit mismatch alone makes that claim easy to fake and hard to make real. The honest framing is narrower: official vendors give you the newest model surface and their own billing; an aggregator gives you several of these routes behind one key, billed in dollars per second, alongside the rest of an image-and-video API catalog. That is a workflow argument, not a price argument.</p>
 <h2 id="How-to-choose-a-talking-avatar-API"><a href="#How-to-choose-a-talking-avatar-API" class="headerlink" title="How to choose a talking avatar API"></a>How to choose a talking avatar API</h2><p>Start with the input you can actually produce at scale, then match the family:</p>
 <ul>
-<li><strong>You have portraits, not footage</strong> → photo-to-video. Compare Kling Avatar and Skywork Single-Actor Avatar on per-second price, resolution (Skywork <code>mode=pro</code> outputs 1080p), and audio limits; Synthesia and D-ID are the consumer-grade studio alternatives with their own API tiers.</li>
-<li><strong>You have recorded talking video and want to re-voice or localize it</strong> → video lip-sync. Within the four routes covered here, <code>skywork/sky-lipsync</code> at $0.0115&#x2F;second is the cheapest displayed per-second route; PixVerse Lip Sync adds a TTS path. Our <a href="https://www.modellix.ai/blog/pixverse-alternative/">PixVerse alternatives guide</a> compares the surrounding video-API ecosystem.</li>
+<li><strong>You have portraits, not footage</strong> → photo-to-video. Start with the live <a href="https://www.modellix.ai/models/kling/kling-avatar">Kling Avatar route</a>, then compare its input limits and price at your target settings with provider platforms such as Synthesia or D-ID.</li>
+<li><strong>You have recorded talking video and want to re-voice or localize it</strong> → video lip-sync. Modellix currently lists <a href="https://www.modellix.ai/models/vidu/lip-sync"><code>vidu/lip-sync</code></a> at $0.0200 per second and <a href="https://www.modellix.ai/models/pixverse/lipsync"><code>pixverse/lipsync</code></a> at $0.0400 per second. PixVerse also accepts a TTS path. Our <a href="https://www.modellix.ai/blog/pixverse-alternative/">PixVerse alternatives guide</a> compares the surrounding video-API ecosystem.</li>
 <li><strong>You need a live conversational avatar</strong> → real-time streaming. This is a different architecture (<a target="_blank" rel="noopener" href="https://www.heygen.com/">HeyGen’s live avatar line</a> and <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/ai-services/speech-service/text-to-speech-avatar/what-is-text-to-speech-avatar">Azure’s real-time synthesis</a>); evaluate latency and session billing, not per-second video pricing.</li>
 <li><strong>You want several of these behind one integration</strong> → an aggregator route makes sense as a workflow choice: one key, one bill, consistent submit-poll semantics. It is not automatically cheaper per unit — verify the specific model and output spec.</li>
 </ul>
-<p>Before committing, price a representative task on the exact route: same model, same resolution, same duration, same billing condition. Then check the free-trial path — most vendors in this space offer a free tier or credits, which is how you validate lip-sync quality on your own faces before paying.</p>
+<p>Before automating, test one representative clip on the exact route. Check its required inputs, output quality, limits, and live price, then set a cost ceiling for retries.</p>
 <h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>What is a talking avatar API?</strong></p>
 <p>A talking avatar API turns a voice source into video of a person speaking: it can animate a portrait photo (photo-to-video), re-sync the lips of an existing video to new audio (video lip-sync), or drive a live conversational avatar in real time. The three families have different input fields, limits, and billing units.</p>
 <p><strong>What is the difference between a talking avatar API and lip-sync?</strong></p>
 <p>Lip-sync is one of the three families. A talking avatar API is the general category; photo-to-video APIs create new talking videos from images, while video lip-sync APIs only re-time the mouth of footage you already have. Choosing the wrong one means supplying the wrong input (an image instead of a video, or vice versa).</p>
 <p><strong>How much does a talking avatar API cost?</strong></p>
-<p>As of August 4, 2026, for the four routes covered in this guide: PixVerse Platform bills Lip sync at 4 credits per second and Image Avatar at 5&#x2F;10&#x2F;15&#x2F;20 credits per second by resolution; Modellix displays per-second dollar prices from $0.0115 (sky-lipsync) to $0.0773 (kling-avatar pro). Credits and dollars are not directly comparable without knowing your credit pack’s value.</p>
+<p>As of September 24, 2026, the Modellix routes listed here show $0.0200&#x2F;sec for Vidu Lip Sync, $0.0400&#x2F;sec for PixVerse Lip Sync, and $0.0448–$0.0896&#x2F;sec for Kling Avatar. PixVerse Platform quotes credits instead: 4 credits per rounded-up second for Lip Sync and 5–20 credits per second for Image Avatar, depending on resolution. Convert credits using the plan you would buy before comparing dollar cost.</p>
 <p><strong>What inputs do I need for a photo-to-video talking avatar API?</strong></p>
-<p>A portrait image plus exactly one voice source — an audio file or a TTS script with a selected voice. Kling Avatar documents JPG&#x2F;JPEG&#x2F;PNG images up to 10 MB with audio of 2–300 seconds; Skywork Single-Actor Avatar takes a portrait URL plus one audio segment up to 200 seconds.</p>
+<p>A portrait image plus exactly one voice source, either an audio file or a TTS script with a selected voice. Kling Avatar accepts a 2–300-second audio source; see its live schema for image formats and size limits.</p>
 <p><strong>Can I use a talking avatar API with just text?</strong></p>
 <p>Yes — through the TTS path. Both photo-to-video and lip-sync families accept a script plus a speaker ID and synthesize the speech before animating. Modellix’s <code>pixverse/lipsync</code> caps the script at 140 characters; PixVerse Platform’s Speech (LipSync) documents 200. If you need arbitrary voice cloning rather than preset voices, that is a separate capability on the vendor platform.</p>
 <p><strong>Which talking avatar API is the cheapest?</strong></p>
-<p>There is no honest single answer, because credits, per-second dollars, resolution, and output length are different units. Within the four routes covered in this guide, <code>skywork/sky-lipsync</code> at $0.0115&#x2F;second is the lowest displayed per-second price, but it only re-times existing video at fixed 720p. Price the exact task on the exact route before deciding.</p>
+<p>Among the live Modellix lip-sync routes compared here, Vidu currently has the lower listed price at $0.0200 per second; PixVerse lists $0.0400. That price comparison does not measure output quality or retry rate, so test the same clip and audio on the route you plan to ship.</p>
 <p><strong>Does Modellix support PixVerse Image Avatar or voice cloning?</strong></p>
 <p>No. Modellix’s <code>pixverse/lipsync</code> requires an existing talking video plus <code>audio_url</code> or <code>speaker_id</code>+<code>tts_content</code>; it does not generate a talking video from a photo (that is PixVerse Platform’s Image Avatar API) and does not accept arbitrary voice-clone uploads.</p>
 <hr>
-<p><em>Talking avatar API details and pricing reflect public documentation and model pages accessed August 4, 2026, and change frequently. Validate against each provider’s live pricing and docs before committing volume or budget. Modellix is an API aggregator for image and video models; this guide is not a claim that the aggregator route is cheaper or that it accepts every vendor parameter.</em></p>
+<p><em>Talking avatar API details and prices reflect public provider documentation and Modellix model pages checked September 24, 2026. Prices and schemas change; confirm the live route before committing volume. Modellix is an API aggregator, and its request fields do not include every parameter from upstream provider APIs.</em></p>
 <p><em>Cover image: illustrative Modellix artwork; it is not a vendor product screenshot or source evidence.</em></p>
 
         </div>
@@ -382,20 +375,22 @@
             
               <a href="/blog/tags/ai-video-api/" class="tag-pill tag-pill--sm">AI Video API</a>
             
+              <a href="/blog/tags/talking-avatar/" class="tag-pill tag-pill--sm">Talking Avatar</a>
+            
               <a href="/blog/tags/Digital-Human/" class="tag-pill tag-pill--sm">Digital Human</a>
             
-              <a href="/blog/tags/talking-avatar/" class="tag-pill tag-pill--sm">Talking Avatar</a>
+              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
             
               <a href="/blog/tags/kling/" class="tag-pill tag-pill--sm">Kling</a>
             
               <a href="/blog/tags/pixverse/" class="tag-pill tag-pill--sm">PixVerse</a>
             
-              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
-            
           
         </div>
 
         
+        
+          
 <section class="post-cta">
   <div class="post-cta-glow"></div>
   <div class="post-cta-content">
@@ -408,6 +403,7 @@
   </div>
 </section>
 
+        
         
 
 

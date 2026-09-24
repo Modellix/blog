@@ -59,7 +59,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://img.modellix.ai/en/article/cover-deepseek-api-pricing.webp">
 <meta property="article:published_time" content="2026-09-14T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-09-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-23T16:00:00.000Z">
 <meta property="article:author" content="Alen Hu">
 <meta property="article:tag" content="API Cost">
 <meta property="article:tag" content="Cache">
@@ -70,7 +70,7 @@
 <meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-deepseek-api-pricing.webp">
   
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"DeepSeek API Pricing (2026): Four Rows, Peak and Cache","description":"DeepSeek API pricing on September 15, 2026: the official peak and off-peak card, all four gateway rows with cache rates, and how to verify what caching saved.","datePublished":"2026-09-14T16:00:00.000Z","dateModified":"2026-09-14T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/deepseek-api-pricing/","image":"https://img.modellix.ai/en/article/cover-deepseek-api-pricing.webp"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"DeepSeek API Pricing (2026): Four Rows, Peak and Cache","description":"DeepSeek API pricing on September 15, 2026: the official peak and off-peak card, all four gateway rows with cache rates, and how to verify what caching saved.","datePublished":"2026-09-14T16:00:00.000Z","dateModified":"2026-09-23T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/deepseek-api-pricing/","image":"https://img.modellix.ai/en/article/cover-deepseek-api-pricing.webp"}]}</script>
 
   <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -348,7 +348,7 @@
 <h2 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h2><p><strong>How much does the DeepSeek API cost?</strong></p>
 <p>On DeepSeek’s own card, captured September 15, 2026: <code>deepseek-flash</code> (V4.1-Flash) bills <strong>$0.30 per million input tokens on a cache miss and $1.20 per million output tokens at peak</strong>, halving to <strong>$0.15 and $0.60 off-peak</strong>, with cache hits at $0.006 and $0.003. <code>deepseek-v4-pro</code> bills $1.32 and $3.96 at peak, $0.66 and $1.98 off-peak, with cache hits at $0.044 and $0.022. On the Modellix gateway the <code>deepseek/deepseek-v4.1-flash</code> row is $0.30 &#x2F; $1.20 &#x2F; $0.006, and the two older Flash rows carry 10% discounts on their listed rates.</p>
 <p><strong>Is the DeepSeek API fully free?</strong></p>
-<p>No. The hosted API is pay-per-token, and DeepSeek’s pricing page describes deductions from a topped-up or granted balance without publishing a signup allowance. On the Modellix side there is no signup credit either — the $1 registration credit ended on August 19, 2026, and trial credit is now by request. Two rows in the gateway catalog are priced at $0 across all four dimensions, but those are specific model rows, not an account-level free tier.</p>
+<p>No. The hosted API is pay-per-token, and DeepSeek’s pricing page describes deductions from a topped-up or granted balance without publishing a signup allowance. Modellix ended its $1 registration credit on August 19, 2026. Two gateway rows are priced at $0 across all four dimensions, but they are model-specific rows, not an account-level free tier.</p>
 <p><strong>How is the DeepSeek API so cheap?</strong></p>
 <p>Two structural choices, and neither is a discount. Cache hits bill about 50× below cache misses, so workloads whose prompts repeat a long stable prefix pay close to nothing for the repeated part. And the rate card splits by clock: every hour outside Monday-to-Friday 01:00–04:00 and 06:00–10:00 UTC bills at half the peak rate. A workload that is both cache-heavy and schedulable is where the low effective rates come from.</p>
 <p><strong>How much does the DeepSeek R1 API cost?</strong></p>
@@ -381,6 +381,8 @@
         </div>
 
         
+        
+          
 <section class="post-cta">
   <div class="post-cta-glow"></div>
   <div class="post-cta-content">
@@ -393,6 +395,7 @@
   </div>
 </section>
 
+        
         
 
 
@@ -441,7 +444,7 @@
       <a href="/blog/ai-video-model-api-pricing-comparison/" class="related-article-card">
         
           <div class="related-article-cover">
-            <img src="https://img.modellix.ai/en/article/cover-ai-video-model-api-pricing-comparison.webp" alt="AI Video Model API Pricing Comparison: 112 Models (2026)" loading="lazy">
+            <img src="https://img.modellix.ai/en/article/cover-ai-video-model-api-pricing-comparison.webp" alt="AI Video API Pricing: September 15 Snapshot of 112 Models" loading="lazy">
           </div>
         
         <div class="related-article-body">
@@ -452,7 +455,7 @@
               
             </div>
           
-          <h3 class="related-article-name">AI Video Model API Pricing Comparison: 112 Models (2026)</h3>
+          <h3 class="related-article-name">AI Video API Pricing: September 15 Snapshot of 112 Models</h3>
           <time class="related-article-date" datetime="2026-09-14T16:00:00.000Z">September 15, 2026</time>
         </div>
       </a>

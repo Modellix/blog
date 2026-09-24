@@ -59,7 +59,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://img.modellix.ai/en/article/cover-pixverse-c1-api.webp">
 <meta property="article:published_time" content="2026-08-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-05T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-24T03:21:00.000Z">
 <meta property="article:author" content="Alen Hu">
 <meta property="article:tag" content="AI Video">
 <meta property="article:tag" content="API">
@@ -70,7 +70,7 @@
 <meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-pixverse-c1-api.webp">
   
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"PixVerse C1 API: Models, Pricing & Integration Guide","description":"PixVerse C1 API explained: c1-t2v, c1-i2v and c1-r2v endpoints, official per-second credit pricing, C1 vs V6 differences, plus copy-paste Python skeletons","datePublished":"2026-08-05T16:00:00.000Z","dateModified":"2026-08-05T16:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/pixverse-c1-api/","image":"https://img.modellix.ai/en/article/cover-pixverse-c1-api.webp"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"PixVerse C1 API: Models, Pricing & Integration Guide","description":"PixVerse C1 API explained: c1-t2v, c1-i2v and c1-r2v endpoints, official per-second credit pricing, C1 vs V6 differences, plus copy-paste Python skeletons","datePublished":"2026-08-05T16:00:00.000Z","dateModified":"2026-09-24T03:21:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/pixverse-c1-api/","image":"https://img.modellix.ai/en/article/cover-pixverse-c1-api.webp"}]}</script>
 
   <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -454,7 +454,7 @@
 <p><strong>How much does the PixVerse C1 API cost?</strong><br>On the official platform, C1 consumes 6–24 credits per second depending on quality (360p–1080p) and whether audio is enabled, with $1 ≈ 5 videos (V6, 720p, 5s, no audio, Starter pack) as the anchor. On Modellix, C1 models are billed per second in USD at $0.0690–$0.2760&#x2F;sec. The two systems are separate; see the <a target="_blank" rel="noopener" href="https://docs.platform.pixverse.ai/pricing-796039m0">official pricing page</a> for credit packs and the Modellix model pages for current USD rates.</p>
 <p><strong>PixVerse C1 vs V6 — which should I use?</strong><br>C1 is one credit per second more expensive, has no video extension, and no video-reference (omni) support. It is positioned for film-style, storyboard-driven single-clip generation. V6 is the general-purpose default with extension, parameter-driven multi-clip, and video references. If you need extension or footage-driven reference, choose V6.</p>
 <p><strong>Does C1 support multi-clip generation?</strong><br>The official capability matrix marks C1’s inline multi-clip as “supported with prompt” and V6’s as “supported with parameters.” The official C1 model documentation does not expose a multi-clip parameter, and Modellix’s C1 model cards do not include one — if you need parameter-driven multi-clip, validate against V6.</p>
-<p><strong>Can I use the PixVerse C1 API through Modellix?</strong><br>Yes — Modellix carries c1-t2v, c1-i2v, c1-r2v, and c1-fl2v with pay-as-you-go per-second USD billing and a single API key. New accounts get a free trial credit allowance on signup, which is one way to test C1 before committing budget; the official platform sells credit packs on its <a target="_blank" rel="noopener" href="https://platform.pixverse.ai/billing">billing page</a>.</p>
+<p><strong>Can I use the PixVerse C1 API through Modellix?</strong><br>Yes. Modellix carries c1-t2v, c1-i2v, c1-r2v, and c1-fl2v with pay-as-you-go per-second USD billing under one API key. Fund a short test before committing budget; the official platform sells credit packs on its <a target="_blank" rel="noopener" href="https://platform.pixverse.ai/billing">billing page</a>.</p>
 <p><strong>What is the maximum video length and resolution for C1?</strong><br>15 seconds at up to 1080p, across all four generation endpoints.</p>
 <p><strong>Does the C1 API generate audio?</strong><br>Yes — all four C1 endpoints accept <code>generate_audio_switch</code>; enabling audio raises the per-second credit cost by 2–5 credits (or $0.0230–$0.0575&#x2F;sec on Modellix) depending on quality. Note the boundary on the Modellix side: audio is accepted as input (for example, in lip-sync workflows), but Modellix does not offer audio generation models.</p>
 <p><strong>Where can I see honest hands-on verdicts on C1 output quality?</strong><br>This guide is an API contract and pricing reference, not a quality review — we have not run a C1 output benchmark here. The official C1 launch post and model documentation describe the model’s strengths, and independent reviews of the PixVerse platform are the better source for output-quality judgment.</p>
@@ -464,6 +464,7 @@
   <a href="https://www.modellix.ai/console/api-key" class="btn btn-primary" target="_blank" rel="noopener" style="color:#ffffff; text-decoration:none;">Run a Multi-Model Test</a>
   <a href="https://docs.modellix.ai/get-started/pricing" class="btn btn-secondary" target="_blank" rel="noopener" style="color:#1a1a2e; text-decoration:none;">Compare Live Pricing</a>
 </div>
+
         </div>
 
         <div class="post-tags-bottom">
@@ -483,6 +484,8 @@
         </div>
 
         
+        
+          
 <section class="post-cta">
   <div class="post-cta-glow"></div>
   <div class="post-cta-content">
@@ -495,6 +498,7 @@
   </div>
 </section>
 
+        
         
 
 
