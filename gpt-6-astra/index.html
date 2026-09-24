@@ -351,6 +351,56 @@
 <p>Astra leads on agentic and coding work. Fable 5.1 leads on broad knowledge and the composite index.</p>
 <p>A second chart points the same way. In SpaceXAI’s Grok 4.7 launch post, GDPval puts Fable 5.1 at 1,735 Elo and Astra at 1,542, below both Grok models tested.</p>
 <p>Price is not identical either. Cached reads cost $1.00 per million on Astra and $0.25 on Fable 5.1, so cache-heavy agents pay up to four times more for reused context on Astra. Our <a href="https://www.modellix.ai/blog/gpt-6-astra-pricing/">GPT-6 Astra pricing breakdown</a> works through that math.</p>
+<h3 id="What-the-gateway-discount-adds-up-to"><a href="#What-the-gateway-discount-adds-up-to" class="headerlink" title="What the gateway discount adds up to"></a>What the gateway discount adds up to</h3><p>On Modellix, all three GPT-6 models bill 10% under OpenAI’s list price. At small volumes that is pocket change. At production volume it is not:</p>
+<table>
+<thead>
+<tr>
+<th>Monthly volume</th>
+<th>Model</th>
+<th align="right">OpenAI list</th>
+<th align="right">Modellix</th>
+<th align="right"><span style="color:#5145D8;">Saved per year</span></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>100M input + 20M output</td>
+<td>Luna</td>
+<td align="right">$20</td>
+<td align="right">$18</td>
+<td align="right"><span style="display:inline-block; padding:2px 8px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800;">$24</span></td>
+</tr>
+<tr>
+<td>100M input + 20M output</td>
+<td>Sol</td>
+<td align="right">$400</td>
+<td align="right">$360</td>
+<td align="right"><span style="display:inline-block; padding:2px 8px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800;">$480</span></td>
+</tr>
+<tr>
+<td>100M input + 20M output</td>
+<td>Astra</td>
+<td align="right">$2,000</td>
+<td align="right">$1,800</td>
+<td align="right"><span style="display:inline-block; padding:2px 8px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800;">$2,400</span></td>
+</tr>
+<tr>
+<td>1B input + 200M output</td>
+<td>Sol</td>
+<td align="right">$4,000</td>
+<td align="right">$3,600</td>
+<td align="right"><span style="display:inline-block; padding:2px 8px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800;">$4,800</span></td>
+</tr>
+<tr>
+<td>1B input + 200M output</td>
+<td>Astra</td>
+<td align="right">$20,000</td>
+<td align="right">$18,000</td>
+<td align="right"><span style="display:inline-block; padding:2px 8px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800;">$24,000</span></td>
+</tr>
+</tbody></table>
+<p>Our calculations at base-tier rates with no caching, using the rate card checked September 24, 2026. The discount applies to cached and long-context tiers too.</p>
+<div class="llm-gateway-benefits" style="border:1px solid #D7DEFF; border-left:5px solid #6A5BFF; background:#F8FAFF; border-radius:8px; padding:22px 24px; margin:24px 0 30px; box-shadow:0 10px 24px rgba(50, 60, 140, 0.06);"><p style="margin:0 0 6px; color:#5B5EEB; font-size:12px; font-weight:900; letter-spacing:0.08em; text-transform:uppercase;">One API for every model</p><p style="margin:0 0 10px; font-size:21px; line-height:1.35; font-weight:800; color:#111827;">Run GPT-6 Astra next to every other model on one key</p><p style="margin:0 0 16px; color:#374151; line-height:1.6;">Call GPT-6 Astra as <code>openai/gpt-6-astra</code> at <code>https://llm.modellix.ai/v1</code>.</p><div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; margin:0 0 18px;"><div style="border:1px solid #E4E1FF; background:#FFFFFF; border-radius:8px; padding:14px 16px;"><p style="margin:0 0 4px; font-weight:800; color:#111827;">One key, every model</p><p style="margin:0; color:#4B5563; font-size:15px; line-height:1.6;">GPT-6 Astra, Sol, and Luna, plus Claude, Gemini, Grok, DeepSeek, and Qwen. Switching models is a change to the <code>model</code> string.</p></div><div style="border:1px solid #E4E1FF; background:#FFFFFF; border-radius:8px; padding:14px 16px;"><p style="margin:0 0 4px; font-weight:800; color:#111827;">Drop-in for your client</p><p style="margin:0; color:#4B5563; font-size:15px; line-height:1.6;">OpenAI Chat Completions and Responses, plus Anthropic Messages. Works with the OpenAI and Anthropic SDKs, Codex, Claude Code, Cursor, and OpenCode.</p></div><div style="border:1px solid #E4E1FF; background:#FFFFFF; border-radius:8px; padding:14px 16px;"><p style="margin:0 0 4px; font-weight:800; color:#111827;">Below list price</p><p style="margin:0; color:#4B5563; font-size:15px; line-height:1.6;">GPT-6 and Claude models bill 10% under the vendor list price on the current rate card. Pay as you go, no subscription.</p></div><div style="border:1px solid #E4E1FF; background:#FFFFFF; border-radius:8px; padding:14px 16px;"><p style="margin:0 0 4px; font-weight:800; color:#111827;">Cost per request, in the logs</p><p style="margin:0; color:#4B5563; font-size:15px; line-height:1.6;">Every call is logged with tokens and cost, and can be tagged by end user, so you can see what an escalation actually cost.</p></div><div style="border:1px solid #E4E1FF; background:#FFFFFF; border-radius:8px; padding:14px 16px;"><p style="margin:0 0 4px; font-weight:800; color:#111827;">Pin or follow</p><p style="margin:0; color:#4B5563; font-size:15px; line-height:1.6;">Pin a fixed model ID for evaluations, or use a <code>-latest</code> alias that moves to the newest release.</p></div><div style="border:1px solid #E4E1FF; background:#FFFFFF; border-radius:8px; padding:14px 16px;"><p style="margin:0 0 4px; font-weight:800; color:#111827;">Media on the same key</p><p style="margin:0; color:#4B5563; font-size:15px; line-height:1.6;">The same account also calls image, video, and audio generation models through the Modellix media API.</p></div></div><div style="display:flex; gap:12px; flex-wrap:wrap;"><a class="btn btn-primary" href="https://www.modellix.ai/console/api-key" data-cta="gateway_benefits" data-cta-target="api-key" target="_blank" rel="noopener noreferrer">Get an API key</a><a class="btn btn-secondary" href="https://www.modellix.ai/llm" data-cta="gateway_benefits" data-cta-target="llm-pricing" target="_blank" rel="noopener noreferrer">See all LLM prices</a></div></div>
+
 <h2 id="When-Is-Astra-Worth-It-Over-Sol"><a href="#When-Is-Astra-Worth-It-Over-Sol" class="headerlink" title="When Is Astra Worth It Over Sol?"></a>When Is Astra Worth It Over Sol?</h2><p>Astra costs five times as much as <a href="https://www.modellix.ai/blog/gpt-sol/">GPT-6 Sol</a> per token. Its lead is largest where a task runs long and a mistake is expensive.</p>
 <ul>
 <li><strong>Computer use:</strong> 72.6% on OSWorld 2.0 against Sol’s 60.5%.</li>
@@ -371,9 +421,8 @@
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openai <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">client = OpenAI(base_url=<span class="string">&quot;https://llm.modellix.ai/v1&quot;</span>, api_key=<span class="string">&quot;YOUR_MODELLIX_KEY&quot;</span>)</span><br><span class="line"></span><br><span class="line">resp = client.responses.create(</span><br><span class="line">    model=<span class="string">&quot;openai/gpt-6-astra&quot;</span>,</span><br><span class="line">    reasoning=&#123;<span class="string">&quot;effort&quot;</span>: <span class="string">&quot;high&quot;</span>&#125;,</span><br><span class="line">    <span class="built_in">input</span>=<span class="string">&quot;Plan the migration from our monolith&#x27;s orders module to a separate service. &quot;</span></span><br><span class="line">          <span class="string">&quot;State every assumption that could change the plan.&quot;</span>,</span><br><span class="line">)</span><br><span class="line"><span class="built_in">print</span>(resp.output_text)</span><br></pre></td></tr></table></figure>
 
-<h2 id="Using-GPT-6-Astra-on-Modellix"><a href="#Using-GPT-6-Astra-on-Modellix" class="headerlink" title="Using GPT-6 Astra on Modellix"></a>Using GPT-6 Astra on Modellix</h2><p>On Modellix, Astra is <code>openai/gpt-6-astra</code> and bills at $9 in and $45 out per million tokens (10% below OpenAI’s list, checked September 24, 2026).</p>
-<p>Astra, Sol, and Luna share one key and one base URL. That makes “Sol first, Astra for the failures” a change to the <code>model</code> string, with per-request cost in the logs.</p>
-<p>Pin <code>openai/gpt-6-astra</code> for evaluations. <code>~openai/gpt-astra-latest</code> follows future Astra releases, and <code>~openai/gpt-latest</code> follows whatever OpenAI’s flagship is.</p>
+<h2 id="Using-GPT-6-Astra-on-Modellix"><a href="#Using-GPT-6-Astra-on-Modellix" class="headerlink" title="Using GPT-6 Astra on Modellix"></a>Using GPT-6 Astra on Modellix</h2><p>On Modellix, Astra bills at $9 in and $45 out per million tokens. Pin <code>openai/gpt-6-astra</code> for evaluations. <code>~openai/gpt-astra-latest</code> follows future Astra releases, and <code>~openai/gpt-latest</code> follows whatever OpenAI’s flagship is.</p>
+<p>That makes “Sol first, Astra for the failures” a change to the <code>model</code> string, with per-request cost in the logs.</p>
 <section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Try GPT-6 Astra</h3><p class="view-docs-tag-desc">Create a Modellix key, run Astra on the task that fails on Sol, and compare cost per request in the logs.</p><a class="btn view-docs-tag-btn" href="https://www.modellix.ai/console/api-key" data-cta="login_tag" data-cta-target="api-key" target="_blank" rel="noopener noreferrer"><span>Get API Key </span><i data-lucide="arrow-right"></i></a></div></section>
 
         </div>
@@ -402,7 +451,7 @@
       <a href="/blog/grok-4-7/" class="related-article-card">
         
           <div class="related-article-cover">
-            <img src="https://img.modellix.ai/en/article/cover-grok-4-7.webp" alt="Grok 4.7: Release Date, Pricing, Benchmarks &amp; How to Use It" loading="lazy">
+            <img src="https://img.modellix.ai/en/article/cover-grok-4-7.webp" alt="Grok 4.7: Release Date, Pricing &amp; How to Use It" loading="lazy">
           </div>
         
         <div class="related-article-body">
@@ -413,7 +462,7 @@
               
             </div>
           
-          <h3 class="related-article-name">Grok 4.7: Release Date, Pricing, Benchmarks &amp; How to Use It</h3>
+          <h3 class="related-article-name">Grok 4.7: Release Date, Pricing &amp; How to Use It</h3>
           <time class="related-article-date" datetime="2026-09-24T03:00:00.000Z">September 24, 2026</time>
         </div>
       </a>
