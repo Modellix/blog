@@ -203,7 +203,7 @@
 
         <div class="post-content">
           <p>GPT-6 Astra is OpenAI’s flagship model, released on September 3, 2026. OpenAI calls it “the most intelligent and aligned model in the world,” and it is the top tier above GPT-6 Sol and GPT-6 Luna.</p>
-<p>It is built for “the hardest end-to-end work”: computer use, long coding sessions, research, and document work. It lists at $10 per million input tokens and $50 per million output tokens.</p>
+<p>It is built for “the hardest end-to-end work”: <span style="background:linear-gradient(transparent 40%, #E6E1FF 40%); padding:0 3px; border-radius:2px;">computer use, long coding sessions, research, and document work</span>. It lists at $10 per million input tokens and $50 per million output tokens.</p>
 <p>Astra wins most of OpenAI’s own charts, but not all of them. Claude Fable 5.1 costs the same and still leads on some knowledge benchmarks. This page covers where the lead is real, and how to call the model.</p>
 <h2 id="GPT-6-Astra-at-a-Glance"><a href="#GPT-6-Astra-at-a-Glance" class="headerlink" title="GPT-6 Astra at a Glance"></a>GPT-6 Astra at a Glance</h2><table>
 <thead>
@@ -213,12 +213,12 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>Released</td>
-<td>September 3, 2026</td>
-</tr>
-<tr>
 <td>Position</td>
 <td>First and top GPT-6 model; Sol and Luna followed as cheaper tiers</td>
+</tr>
+<tr>
+<td>Released</td>
+<td>September 3, 2026</td>
 </tr>
 <tr>
 <td>Best for</td>
@@ -258,7 +258,7 @@
 </tr>
 </tbody></table>
 <p>Specs and prices from OpenAI’s model page.</p>
-<h2 id="GPT-6-Astra-Benchmarks"><a href="#GPT-6-Astra-Benchmarks" class="headerlink" title="GPT-6 Astra Benchmarks"></a>GPT-6 Astra Benchmarks</h2><p>All scores are OpenAI’s, at maximum reasoning effort. We did not rerun them.</p>
+<h2 id="GPT-6-Astra-Benchmarks"><a href="#GPT-6-Astra-Benchmarks" class="headerlink" title="GPT-6 Astra Benchmarks"></a>GPT-6 Astra Benchmarks</h2><p>Scores are from OpenAI’s launch post, at maximum reasoning effort.</p>
 <table>
 <thead>
 <tr>
@@ -373,7 +373,7 @@
 </ul>
 <h3 id="What-we-saw-in-a-small-test"><a href="#What-we-saw-in-a-small-test" class="headerlink" title="What we saw in a small test"></a>What we saw in a small test</h3><p>We gave <code>openai/gpt-6-astra</code> a PostgreSQL 16 <code>orders</code> table with <code>paid_at</code>, <code>shipped_at</code>, and <code>cancelled_at</code> columns, and asked it to add and backfill a <code>status</code> column.</p>
 <p>Astra opened with one line stating its assumption: cancelled beats shipped, shipped beats paid, and new rows default to pending. It then returned one transaction with the column, a <code>CASE</code> backfill, a default, <code>NOT NULL</code>, and a <code>CHECK</code> constraint.</p>
-<p>We checked the backfill logic on five sample rows and each landed on the expected status. We did not run the full migration on PostgreSQL. The call took about 46 seconds, most of it reasoning.</p>
+<p>We checked the backfill logic on five sample rows and each landed on the expected status. Run the full migration on a copy of your data before production. The call took about 46 seconds, most of it reasoning.</p>
 <h2 id="How-to-Use-GPT-6-Astra"><a href="#How-to-Use-GPT-6-Astra" class="headerlink" title="How to Use GPT-6 Astra"></a>How to Use GPT-6 Astra</h2><p>In ChatGPT, Astra is on Plus, Pro, Business, and Enterprise plans. Enterprise admins have to switch it on.</p>
 <p>In the API, the model is <code>gpt-6-astra</code>. Three things to plan for:</p>
 <ol>
