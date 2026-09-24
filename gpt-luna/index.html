@@ -202,8 +202,8 @@
         
 
         <div class="post-content">
-          <p>GPT-6 Luna is the smallest and cheapest model in OpenAI’s GPT-6 family, released on September 22, 2026 alongside GPT-6 Sol. It costs <span style="display:inline-block; padding:2px 8px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800;">$0.10 per million input tokens</span> and $0.50 per million output tokens, <strong>twenty times less than Sol</strong> on both sides.</p>
-<p>OpenAI describes it as its most efficient model “for focused, high-volume tasks.” In practice that means <span style="background:linear-gradient(transparent 40%, #E6E1FF 40%); padding:0 3px; border-radius:2px;">classification, extraction, routing, and the short repeated calls inside an agent</span>.</p>
+          <p>GPT-6 Luna is the smallest and cheapest model in OpenAI’s GPT-6 family, released on September 22, 2026 alongside GPT-6 Sol. It costs $0.10 per million input tokens and $0.50 per million output tokens, twenty times less than Sol on both sides.</p>
+<p>OpenAI describes it as its most efficient model “for focused, high-volume tasks.” In practice that means <span style="display:inline; padding:2px 6px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800; -webkit-box-decoration-break:clone; box-decoration-break:clone;">classification, extraction, routing, and the short repeated calls inside an agent</span>.</p>
 <p>If the task needs several steps of real reasoning, Sol is usually the better buy. The rest of this page is about finding that line.</p>
 <h2 id="GPT-6-Luna-at-a-Glance"><a href="#GPT-6-Luna-at-a-Glance" class="headerlink" title="GPT-6 Luna at a Glance"></a>GPT-6 Luna at a Glance</h2><table>
 <thead>
@@ -287,8 +287,8 @@
 <td>At higher effort, matches GPT-5.6 Sol at about 1&#x2F;100 of the cost</td>
 </tr>
 </tbody></table>
-<p>The output price is the bigger change. Output dropped by <span style="display:inline-block; padding:2px 8px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800;">58%</span>, and output tokens are usually what dominate a Luna bill when answers are longer than a label.</p>
-<p>If you are on GPT-5.6 Sol only because Luna was not accurate enough, rerun those tasks on GPT-6 Luna first. That is the migration with the most room to save.</p>
+<p>The output price is the bigger change. Output dropped by 58%, and output tokens are usually what dominate a Luna bill when answers are longer than a label.</p>
+<p>If you are on GPT-5.6 Sol only because Luna was not accurate enough, <span style="display:inline; padding:2px 6px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800; -webkit-box-decoration-break:clone; box-decoration-break:clone;">rerun those tasks on GPT-6 Luna first</span>. That is the migration with the most room to save.</p>
 <h2 id="GPT-6-Luna-Pricing"><a href="#GPT-6-Luna-Pricing" class="headerlink" title="GPT-6 Luna Pricing"></a>GPT-6 Luna Pricing</h2><p>The list price is simple. The bill depends on three things: output length, cache hits, and whether a prompt crosses 272K tokens.</p>
 <table>
 <thead>
@@ -350,10 +350,10 @@
 </tr>
 </tbody></table>
 <p>These are our calculations from OpenAI list prices, excluding cache-write charges. The last row is billed at the &gt;272K rates for every token, so it costs about twice what the same prompt would below the line.</p>
-<p>A support queue of 100,000 tickets, each around 300 tokens in and 5 tokens out with reasoning off, costs about <span style="display:inline-block; padding:2px 8px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800;">$3.25</span> on Luna. That is the kind of job the model exists for.</p>
+<p>A support queue of 100,000 tickets, each around 300 tokens in and 5 tokens out with reasoning off, costs about $3.25 on Luna. That is the kind of job the model exists for.</p>
 <h2 id="GPT-6-Luna-Context-Window"><a href="#GPT-6-Luna-Context-Window" class="headerlink" title="GPT-6 Luna Context Window"></a>GPT-6 Luna Context Window</h2><p>Luna reads up to 1,050,000 tokens and writes up to 128,000. That is the same window as Sol and Astra.</p>
-<p>The number that matters for cost is 272K. Below it, you pay the base rate. <strong>One token above it, the whole request moves to 2x input and 1.5x output.</strong></p>
-<p>So the useful rule is to keep repeated calls under 272K and cache the shared prefix. Save the long prompts for the occasional whole-document pass, where Luna’s low base price still keeps a 400K read under ten cents.</p>
+<p>The number that matters for cost is 272K. Below it, you pay the base rate. One token above it, the whole request moves to 2x input and 1.5x output.</p>
+<p>So the useful rule is to <span style="display:inline; padding:2px 6px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800; -webkit-box-decoration-break:clone; box-decoration-break:clone;">keep repeated calls under 272K and cache the shared prefix</span>. Save the long prompts for the occasional whole-document pass, where Luna’s low base price still keeps a 400K read under ten cents.</p>
 <h2 id="What-Can-You-Build-with-GPT-6-Luna"><a href="#What-Can-You-Build-with-GPT-6-Luna" class="headerlink" title="What Can You Build with GPT-6 Luna"></a>What Can You Build with GPT-6 Luna</h2><p>Luna earns its place in products where the model makes thousands of small, checkable decisions a day.</p>
 <ul>
 <li><strong>Support inbox triage.</strong> Every new ticket gets a label and a priority before a person opens it, and only the unclear ones reach a bigger model.</li>
@@ -362,7 +362,7 @@
 <li><strong>Agent routers.</strong> Inside a coding or research assistant, Luna decides which tool or model handles the next step.</li>
 </ul>
 <h3 id="What-we-saw-in-a-small-test"><a href="#What-we-saw-in-a-small-test" class="headerlink" title="What we saw in a small test"></a>What we saw in a small test</h3><p>We sent 12 hand-written support tickets to <code>openai/gpt-6-luna</code> through the Modellix gateway, each with a fixed label set: billing, bug, feature request, or other.</p>
-<p><strong>Luna labeled all 12 correctly</strong>, including two that could go either way (“My card was declined but the payment still shows as pending” and “Webhook retries stop after the first 500 error instead of backing off”). Each answer was five or six output tokens with nothing to strip.</p>
+<p>Luna labeled all 12 correctly, including two that could go either way (“My card was declined but the payment still shows as pending” and “Webhook retries stop after the first 500 error instead of backing off”). Each answer was five or six output tokens with nothing to strip.</p>
 <p>Twelve tickets is a smoke test, not an accuracy rate. Before you route real traffic, run a few hundred tickets your team has already labeled.</p>
 <h3 id="When-Luna-is-probably-the-wrong-choice"><a href="#When-Luna-is-probably-the-wrong-choice" class="headerlink" title="When Luna is probably the wrong choice"></a>When Luna is probably the wrong choice</h3><ul>
 <li>Multi-file code changes or long debugging sessions.</li>
@@ -399,8 +399,8 @@
 <td>Multi-step work that needs judgment</td>
 </tr>
 </tbody></table>
-<p><strong>The coding numbers are close. The price is not.</strong></p>
-<p>That makes a two-tier setup the default for most teams: Luna handles the bulk, and only the uncertain or high-stakes cases escalate to Sol. The <a href="https://www.modellix.ai/blog/gpt-sol/">GPT-6 Sol guide</a> covers where Sol earns its price.</p>
+<p>The coding numbers are close. The price is not.</p>
+<p>That makes a two-tier setup the default for most teams: <span style="display:inline; padding:2px 6px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800; -webkit-box-decoration-break:clone; box-decoration-break:clone;">Luna handles the bulk, and only the uncertain or high-stakes cases escalate to Sol</span>. The <a href="https://www.modellix.ai/blog/gpt-sol/">GPT-6 Sol guide</a> covers where Sol earns its price.</p>
 <h2 id="How-to-Use-GPT-6-Luna"><a href="#How-to-Use-GPT-6-Luna" class="headerlink" title="How to Use GPT-6 Luna"></a>How to Use GPT-6 Luna</h2><p>The model ID is <code>gpt-6-luna</code> on OpenAI. Two details save debugging time:</p>
 <ol>
 <li><strong>Use the Responses API for tools.</strong> OpenAI’s Chat Completions supports function calling on Luna only with <code>reasoning_effort</code> set to <code>none</code>.</li>
