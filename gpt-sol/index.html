@@ -203,7 +203,7 @@
 
         <div class="post-content">
           <p>GPT-6 Sol is the middle model in OpenAI’s GPT-6 family, released on September 22, 2026. It sits between Luna, the cheap volume tier, and Astra, the flagship.</p>
-<p>It costs $2 per million input tokens and $10 per million output tokens. That is half the price of GPT-5.6 Sol and one fifth of Astra.</p>
+<p>It costs $2 per million input tokens and $10 per million output tokens. That is <span style="display:inline-block; padding:2px 8px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800;">half the price of GPT-5.6 Sol</span> and one fifth of Astra.</p>
 <p>OpenAI built it “to power complex coding and agentic workflows.” The short answer for most teams: use Sol as the default for work that needs judgment, and treat Astra as the exception you have to justify.</p>
 <h2 id="GPT-6-Sol-at-a-Glance"><a href="#GPT-6-Sol-at-a-Glance" class="headerlink" title="GPT-6 Sol at a Glance"></a>GPT-6 Sol at a Glance</h2><table>
 <thead>
@@ -287,7 +287,7 @@
 </tr>
 </tbody></table>
 <p>The price cut applies to every token, so an unchanged workload costs half as much.</p>
-<p>One number does not move in Sol’s favor. OpenAI’s Astra launch table lists GPT-5.6 Sol at 72.7% on DeepSWE 1.1, while the Sol post reports GPT-6 Sol at 68.8% at max effort. The two posts may not use the same setup, but it is a reason to test coding-heavy workloads before switching blind.</p>
+<p>One number does not move in Sol’s favor. <strong>OpenAI’s Astra launch table lists GPT-5.6 Sol at 72.7% on DeepSWE 1.1, while the Sol post reports GPT-6 Sol at 68.8% at max effort.</strong> The two posts may not use the same setup, but it is a reason to test coding-heavy workloads before switching blind.</p>
 <p>If you run GPT-5.6 Sol today, switching is mostly a model-ID change. Rerun your own evaluation anyway, because shorter answers can break parsers that expect the old format.</p>
 <h2 id="GPT-6-Sol-Pricing"><a href="#GPT-6-Sol-Pricing" class="headerlink" title="GPT-6 Sol Pricing"></a>GPT-6 Sol Pricing</h2><table>
 <thead>
@@ -348,7 +348,7 @@
 </tr>
 </tbody></table>
 <p>These are our calculations from OpenAI list prices, excluding cache-write charges.</p>
-<p>Caching matters more on Sol than on Luna in absolute terms. Agents that resend the same system prompt and tool definitions every turn can cut a third off the bill at an 80% hit rate, and OpenAI says GPT-6 caching now holds across changes in reasoning effort and tool availability.</p>
+<p>Caching matters more on Sol than on Luna in absolute terms. Agents that resend the same system prompt and tool definitions every turn can <span style="display:inline-block; padding:2px 8px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800;">cut a third off the bill</span> at an 80% hit rate, and OpenAI says GPT-6 caching now holds across changes in reasoning effort and tool availability.</p>
 <p>For Astra’s full rate card, including cache and long-context tiers, see our <a href="https://www.modellix.ai/blog/gpt-6-astra-pricing/">GPT-6 Astra pricing breakdown</a>.</p>
 <h2 id="GPT-6-Sol-Benchmarks"><a href="#GPT-6-Sol-Benchmarks" class="headerlink" title="GPT-6 Sol Benchmarks"></a>GPT-6 Sol Benchmarks</h2><p>All numbers below are OpenAI’s, from its launch post. We did not rerun them.</p>
 <table>
@@ -393,7 +393,7 @@
 </tbody></table>
 <p>Two things to keep in mind when reading this table.</p>
 <p>First, every Sol score is at xhigh or max effort. Those settings produce more reasoning tokens, and reasoning tokens bill as output.</p>
-<p>Second, the comparisons are cost-per-task claims as much as score claims. Sol’s case is “close to the frontier for much less,” not “best in class.”</p>
+<p>Second, the comparisons are cost-per-task claims as much as score claims. <strong>Sol’s case is “close to the frontier for much less,” not “best in class.”</strong></p>
 <h2 id="What-Can-You-Build-with-GPT-6-Sol"><a href="#What-Can-You-Build-with-GPT-6-Sol" class="headerlink" title="What Can You Build with GPT-6 Sol"></a>What Can You Build with GPT-6 Sol</h2><p>Sol fits products where the model has to reason over several steps and the output goes to a customer or a codebase.</p>
 <ul>
 <li><strong>Pull request reviewer.</strong> A bot that reads a diff, flags breaking changes, and explains why, before a human approves the merge.</li>
@@ -444,13 +444,13 @@
 <td>When depth decides the outcome</td>
 </tr>
 </tbody></table>
-<p>The pattern: Sol is the default whenever the model has to decide something, and Luna takes the jobs where the answer is already constrained.</p>
+<p>The pattern: <strong>Sol is the default whenever the model has to decide something</strong>, and Luna takes the jobs where the answer is already constrained.</p>
 <h2 id="GPT-6-Sol-vs-Luna-When-Is-Sol-Worth-20x"><a href="#GPT-6-Sol-vs-Luna-When-Is-Sol-Worth-20x" class="headerlink" title="GPT-6 Sol vs Luna: When Is Sol Worth 20x?"></a>GPT-6 Sol vs Luna: When Is Sol Worth 20x?</h2><p>Pay for Sol when a wrong step costs more than the tokens. A mislabeled ticket is cheap to fix. A wrong migration or a broken agent run is not.</p>
 <p>On pure coding benchmarks the two are closer than the price suggests: 68.8% versus 66.6% on DeepSWE 1.1 at max effort. The difference shows up in positioning and judgment, not in that one score.</p>
 <p>A common setup is Luna first, Sol on escalation. See the <a href="https://www.modellix.ai/blog/gpt-luna/">GPT-6 Luna guide</a> for where Luna holds up on its own.</p>
 <h2 id="GPT-6-Sol-vs-Astra-When-Is-Astra-Worth-5x"><a href="#GPT-6-Sol-vs-Astra-When-Is-Astra-Worth-5x" class="headerlink" title="GPT-6 Sol vs Astra: When Is Astra Worth 5x?"></a>GPT-6 Sol vs Astra: When Is Astra Worth 5x?</h2><p>Astra’s lead is largest in computer use and long, open-ended work. On OSWorld 2.0, Astra scores 72.6% against Sol’s 60.5%.</p>
 <p>On AutomationBench, the gap runs the other way on cost: Sol at xhigh beats Astra at low effort, at about a quarter of the price per task.</p>
-<p>So the question is not “which is smarter” but “which task fails on Sol.” Run the task on Sol first, and move only the failures to Astra. The <a href="https://www.modellix.ai/blog/gpt-6-astra/">GPT-6 Astra guide</a> covers what the flagship adds.</p>
+<p>So the question is not “which is smarter” but “which task fails on Sol.” <strong>Run the task on Sol first, and move only the failures to Astra.</strong> The <a href="https://www.modellix.ai/blog/gpt-6-astra/">GPT-6 Astra guide</a> covers what the flagship adds.</p>
 <h2 id="How-to-Access-and-Use-GPT-6-Sol"><a href="#How-to-Access-and-Use-GPT-6-Sol" class="headerlink" title="How to Access and Use GPT-6 Sol"></a>How to Access and Use GPT-6 Sol</h2><p>Sol is available in the OpenAI API as <code>gpt-6-sol</code>, and in ChatGPT Work and Codex on paid plans.</p>
 <p>For API use, two details matter:</p>
 <ol>
