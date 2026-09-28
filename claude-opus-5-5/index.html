@@ -1,0 +1,528 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Production analytics start after the page load has settled. -->
+  <script>
+    (function (document, window) {
+      if (window.location.hostname !== 'www.modellix.ai') return;
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-4DECHYKQVT');
+
+      var loaded = false;
+      function appendScript(src, crossOrigin) {
+        var script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        if (crossOrigin) script.crossOrigin = crossOrigin;
+        document.head.appendChild(script);
+      }
+      function loadAnalytics() {
+        if (loaded) return;
+        loaded = true;
+        appendScript('https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT');
+        appendScript('https://t.contentsquare.net/uxa/f39399cd2e27e.js', 'anonymous');
+        appendScript('https://app.rybbit.io/api/script.js?siteId=8a6874a918d7');
+      }
+      function scheduleAnalytics() {
+        window.setTimeout(function () {
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(loadAnalytics, { timeout: 3000 });
+          } else {
+            loadAnalytics();
+          }
+        }, 1500);
+      }
+
+      if (document.readyState === 'complete') scheduleAnalytics();
+      else window.addEventListener('load', scheduleAnalytics, { once: true });
+    })(document, window);
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Opus 5.5: Release Date, Pricing &amp; How to Use It</title>
+  <meta name="keywords" content="Claude Opus 5.5, Opus 5.5, Claude 5.5, Claude Opus 5.5 pricing, Claude Opus 5.5 release date, anthropic/claude-opus-5.5">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/claude-opus-5-5/">
+  
+  
+  <meta name="description" content="Explore Claude Opus 5.5 release details, pricing, 1M-token context, adaptive thinking, and key API changes, plus a first-use example on Modellix.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Claude Opus 5.5: Release Date, Pricing &amp; How to Use It">
+<meta property="og:url" content="https://www.modellix.ai/blog/claude-opus-5-5/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Explore Claude Opus 5.5 release details, pricing, 1M-token context, adaptive thinking, and key API changes, plus a first-use example on Modellix.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/opus-5-5-on-modellix-cover.webp">
+<meta property="article:published_time" content="2026-09-28T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-28T02:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="Anthropic">
+<meta property="article:tag" content="Claude">
+<meta property="article:tag" content="LLM API">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/opus-5-5-on-modellix-cover.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Claude Opus 5.5: Release Date, Pricing & How to Use It","description":"Explore Claude Opus 5.5 release details, pricing, 1M-token context, adaptive thinking, and key API changes, plus a first-use example on Modellix.","datePublished":"2026-09-28T02:00:00.000Z","dateModified":"2026-09-28T02:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/claude-opus-5-5/","image":"https://img.modellix.ai/en/article/opus-5-5-on-modellix-cover.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://img.modellix.ai" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="https://www.modellix.ai/" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started" class="nav-link">Documentation</a>
+      
+        <a href="https://www.modellix.ai/about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="https://www.modellix.ai/console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="https://www.modellix.ai/console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Claude Opus 5.5: Release Date, Pricing &amp; How to Use It</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Claude Opus 5.5: Release Date, Pricing &amp; How to Use It</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-09-28T02:00:00.000Z">September 28, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/Anthropic/" class="tag-pill tag-pill--sm">Anthropic</a>
+            
+              <a href="/blog/tags/LLM-API/" class="tag-pill tag-pill--sm">LLM API</a>
+            
+              <a href="/blog/tags/Claude/" class="tag-pill tag-pill--sm">Claude</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+          <div class="post-cover">
+            <img src="https://img.modellix.ai/en/article/opus-5-5-on-modellix-cover.webp" alt="Claude Opus 5.5: Release Date, Pricing &amp; How to Use It" loading="eager" fetchpriority="high">
+          </div>
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>Claude Opus 5.5 launched on September 22, 2026 at $4/$20 per 1M tokens with a 1M context window and always-on adaptive thinking. Here is what changed from Opus 5 and how to try it on Modellix.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <p>Claude Opus 5.5 launched on September 22, 2026, and it is now listed on Modellix as <code>anthropic/claude-opus-5.5</code>, currently priced at $3.60 per million input tokens and $18 per million output tokens.</p>
+<p>When you’re running complex agentic workflows (like fixing a tricky multi-service bug), lower token rates are nice, but what actually moves the needle is efficiency: how many turns does the model need to land on a working fix?</p>
+<p>Here’s a quick breakdown of what’s new in Opus 5.5 and how to start testing it via the gateway.</p>
+<h2 id="Claude-Opus-5-5-at-a-Glance"><a href="#Claude-Opus-5-5-at-a-Glance" class="headerlink" title="Claude Opus 5.5 at a Glance"></a>Claude Opus 5.5 at a Glance</h2><p>According to <a target="_blank" rel="noopener nofollow" href="https://www.anthropic.com/claude-opus-5-5">Anthropic’s release announcement</a>, Opus 5.5 reduces typical token-billed workload costs by about 40% compared with Opus 5 at default settings. Your mileage may vary depending on your setup, so <span style="display:inline; padding:2px 6px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800; -webkit-box-decoration-break:clone; box-decoration-break:clone;">try it on the day-to-day tasks your team already knows well</span>.</p>
+<p>Here’s a quick snapshot of the key specs and pricing before you swap out your current model ID:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Release details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Release date</td>
+<td>September 22, 2026</td>
+</tr>
+<tr>
+<td>Primary workloads</td>
+<td>Extended agentic coding and knowledge work</td>
+</tr>
+<tr>
+<td>Context window</td>
+<td>1M tokens</td>
+</tr>
+<tr>
+<td>Maximum standard output</td>
+<td>128K tokens</td>
+</tr>
+<tr>
+<td>Input → output</td>
+<td>Text and images → text</td>
+</tr>
+<tr>
+<td>Thinking</td>
+<td>Adaptive, always on</td>
+</tr>
+<tr>
+<td>Default effort</td>
+<td><code>medium</code></td>
+</tr>
+<tr>
+<td>Anthropic API model ID</td>
+<td><code>claude-opus-5-5</code></td>
+</tr>
+<tr>
+<td>Modellix gateway model ID</td>
+<td><code>anthropic/claude-opus-5.5</code></td>
+</tr>
+<tr>
+<td>Anthropic input &#x2F; output price</td>
+<td>$4 &#x2F; $20 per million tokens</td>
+</tr>
+<tr>
+<td>Current gateway input &#x2F; output price</td>
+<td>$3.60 &#x2F; $18 per million tokens</td>
+</tr>
+</tbody></table>
+<p>Specifications and upstream rates are documented in <a target="_blank" rel="noopener nofollow" href="https://platform.claude.com/docs/en/models/opus-5-5/overview">Claude Platform’s model overview</a>. Gateway rates follow the current Modellix catalog; recheck them before deployment.</p>
+<p>The context window and output limit serve different purposes. A large context window provides room for source material, while the output limit caps a response. Neither establishes that an agent will finish a complex project correctly without external checks.</p>
+<h2 id="What’s-New-in-Claude-Opus-5-5"><a href="#What’s-New-in-Claude-Opus-5-5" class="headerlink" title="What’s New in Claude Opus 5.5"></a>What’s New in Claude Opus 5.5</h2><h3 id="Lower-Prices-and-Better-Task-Efficiency"><a href="#Lower-Prices-and-Better-Task-Efficiency" class="headerlink" title="Lower Prices and Better Task Efficiency"></a>Lower Prices and Better Task Efficiency</h3><p>Anthropic’s standard input and output rates are 20% below Opus 5’s $5&#x2F;$25 per million tokens. Cache reads fall from $0.50 to $0.20 per million tokens, a 60% reduction. The release announcement also reports output generation more than 30% faster than Opus 5.</p>
+<p>Anthropic’s 40% savings estimate comes from lower rates and fewer tokens per task. For your own workflow, it helps to look at what it costs to get a working result. A cheap call can lose its appeal when you have to keep retrying it.</p>
+<h3 id="Reasoning-Is-Always-On"><a href="#Reasoning-Is-Always-On" class="headerlink" title="Reasoning Is Always On"></a>Reasoning Is Always On</h3><p>According to <a target="_blank" rel="noopener nofollow" href="https://platform.claude.com/docs/en/models/opus-5-5/whats-new-opus-5-5">Claude Platform’s technical release notes</a>, adaptive thinking cannot be disabled. The default effort is now <code>medium</code>, rather than Opus 5’s <code>high</code>.</p>
+<p>Since thinking is now always active, it’s worth trying your existing prompts with the new default effort. <span style="display:inline; padding:2px 6px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800; -webkit-box-decoration-break:clone; box-decoration-break:clone;">Give the output budget enough headroom for both the reasoning and the final answer</span>, then adjust effort based on how the results look.</p>
+<h3 id="Clearer-Communication-During-Complex-Work"><a href="#Clearer-Communication-During-Complex-Work" class="headerlink" title="Clearer Communication During Complex Work"></a>Clearer Communication During Complex Work</h3><p>Anthropic reports clearer writing and more natural communication from Opus 5.5. For engineering teams, evaluate this through the output you actually review: a patch explanation, an investigation report, or a list of unresolved questions.</p>
+<p>Pro tip: <span style="display:inline; padding:2px 6px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800; -webkit-box-decoration-break:clone; box-decoration-break:clone;">Ask the model to lay out what changed, why, and which tests it actually ran.</span> That gives reviewers something concrete to work with, and you can run the suite yourself to check the result.</p>
+<h3 id="API-Changes-to-Check-Before-Switching"><a href="#API-Changes-to-Check-Before-Switching" class="headerlink" title="API Changes to Check Before Switching"></a>API Changes to Check Before Switching</h3><p>The technical release notes identify several compatibility changes:</p>
+<ul>
+<li>Disabled thinking and manual thinking budgets are rejected.</li>
+<li>Forced tool choices using <code>any</code> or a named <code>tool</code> are rejected.</li>
+<li>Thinking blocks are bound to the model and conversation, affecting replay and model switching.</li>
+<li>The older <code>computer_20251124</code> tool is rejected on the Claude API and Google Cloud.</li>
+</ul>
+<p>These are upstream API behaviors. Verify how your gateway and client handle the features you use. An existing agent may need changes beyond replacing its model ID.</p>
+<h2 id="What-Can-You-Build-with-Opus-5-5"><a href="#What-Can-You-Build-with-Opus-5-5" class="headerlink" title="What Can You Build with Opus 5.5?"></a>What Can You Build with Opus 5.5?</h2><p>A repository migration assistant is a useful starting application. Give it the relevant files, the new interface contract, and a clear boundary for edits. Ask it to identify affected callers, propose a patch, and explain which checks would establish that behavior remains correct.</p>
+<p>Begin with a smaller component before granting broader repository access. For example, an inclusive upper bound can produce an off-by-one error:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_item</span>(<span class="params">items, index</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="number">0</span> &lt;= index &lt;= <span class="built_in">len</span>(items):</span><br><span class="line">        <span class="keyword">return</span> items[index]</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="What-We-Saw-in-a-Small-Test"><a href="#What-We-Saw-in-a-Small-Test" class="headerlink" title="What We Saw in a Small Test"></a>What We Saw in a Small Test</h3><p>We tested this function using <code>anthropic/claude-opus-5.5</code>, requesting a repair and four assertions without claiming execution.</p>
+<p>Opus 5.5 identified that <code>index == len(items)</code> raises <code>IndexError</code>, changed the upper comparison to <code>&lt;</code>, and kept negative indices returning <code>None</code>. Its corrected function was:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_item</span>(<span class="params">items, index</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="number">0</span> &lt;= index &lt; <span class="built_in">len</span>(items):</span><br><span class="line">        <span class="keyword">return</span> items[index]</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+
+<p>The model stated that it had not run the tests. We independently executed its assertions for an empty list, a valid index, an index equal to the list length, and a negative index. All four passed, alongside 45 additional integer boundary cases. We also reproduced both original <code>IndexError</code> cases.</p>
+<table>
+<thead>
+<tr>
+<th>Measurement</th>
+<th>Observed result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Runs &#x2F; outcome</td>
+<td>One non-streaming request; HTTP 200</td>
+</tr>
+<tr>
+<td>Client elapsed time</td>
+<td>11.08 seconds, including connection and response transfer</td>
+</tr>
+<tr>
+<td>Gateway processing duration</td>
+<td>10.598 seconds, as reported in the request log</td>
+</tr>
+<tr>
+<td>Input &#x2F; output usage</td>
+<td>145 &#x2F; 745 tokens</td>
+</tr>
+<tr>
+<td>Cache reads &#x2F; writes</td>
+<td>0 &#x2F; 0 tokens</td>
+</tr>
+<tr>
+<td>Estimated token cost</td>
+<td>$0.013932, about 1.39 US cents</td>
+</tr>
+</tbody></table>
+<p>The estimate uses the listed $3.60&#x2F;$18 per million input&#x2F;output tokens: <code>(145 × 3.60 + 745 × 18) / 1,000,000</code>. Output usage includes 80 reported thinking tokens; these are already included in the 745 output tokens. The dollar figure is calculated from returned usage and published rates, rather than a verified invoice amount.</p>
+<p>This small boundary-check test gives us a clear, verifiable example of how Opus 5.5 handled these edge cases. Trying it on your own repo will give you a better feel for how it handles larger tasks.</p>
+<h2 id="How-to-Try-Claude-Opus-5-5-on-Modellix"><a href="#How-to-Try-Claude-Opus-5-5-on-Modellix" class="headerlink" title="How to Try Claude Opus 5.5 on Modellix"></a>How to Try Claude Opus 5.5 on Modellix</h2><p>Use a platform-issued API key and the Anthropic Messages endpoint. The <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/api/api?utm_source=blog&utm_medium=article_link&utm_campaign=claude-opus-5-5">LLM API guide</a> documents <code>POST /v1/messages</code>, Bearer authentication, and the required <code>max_tokens</code> field. The following request body and protocol headers match the successful test above; the recorded run also used a log-filtering header to isolate its billing record.</p>
+<p>Set <code>MODELLIX_API_KEY</code> in your local environment, then send:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">curl -sS <span class="string">&quot;https://llm.modellix.ai/v1/messages&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$&#123;MODELLIX_API_KEY&#125;</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;anthropic-version: 2023-06-01&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;model&quot;: &quot;anthropic/claude-opus-5.5&quot;,</span></span><br><span class="line"><span class="string">    &quot;max_tokens&quot;: 4096,</span></span><br><span class="line"><span class="string">    &quot;messages&quot;: [&#123;</span></span><br><span class="line"><span class="string">      &quot;role&quot;: &quot;user&quot;,</span></span><br><span class="line"><span class="string">      &quot;content&quot;: &quot;Review this Python function for a boundary bug. Return a corrected function and four assert statements covering an empty list, a valid index, an index equal to the list length, and a negative index. Preserve its other behavior. Do not claim to have executed the tests.\n\ndef get_item(items, index):\n    if 0 &lt;= index &lt;= len(items):\n        return items[index]\n    return None&quot;</span></span><br><span class="line"><span class="string">    &#125;]</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><span style="display:inline; padding:2px 6px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800; -webkit-box-decoration-break:clone; box-decoration-break:clone;">Use the fixed ID for repeatable evaluations.</span> The currently listed alias, <code>~anthropic/claude-opus-latest</code>, routes to Opus 5.5 but can change target with future releases. When reading Messages responses, select blocks by their <code>type</code>, since thinking may precede text.</p>
+<h3 id="Same-tokens-lower-bill"><a href="#Same-tokens-lower-bill" class="headerlink" title="Same tokens, lower bill"></a>Same tokens, lower bill</h3><p>Anthropic lists Opus 5.5 at $4 per million input tokens and $20 per million output tokens. For one call with 8,000 input tokens, 8,000 output tokens, and no cache, that is about <strong>$0.192 on Anthropic</strong> and <strong>$0.1728 on Modellix</strong>.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Calls at 8,000 in + 8,000 out</th>
+<th align="right">Anthropic direct</th>
+<th align="right">Modellix</th>
+<th align="right">Saved</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">1,000</td>
+<td align="right">$192</td>
+<td align="right">$172.80</td>
+<td align="right"><span style="display:inline-block; padding:2px 8px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800;">$19.20</span></td>
+</tr>
+<tr>
+<td align="right">10,000</td>
+<td align="right">$1,920</td>
+<td align="right">$1,728</td>
+<td align="right"><span style="display:inline-block; padding:2px 8px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800;">$192</span></td>
+</tr>
+<tr>
+<td align="right">100,000</td>
+<td align="right">$19,200</td>
+<td align="right">$17,280</td>
+<td align="right"><span style="display:inline-block; padding:2px 8px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800;">$1,920</span></td>
+</tr>
+<tr>
+<td align="right">1,000,000</td>
+<td align="right">$192,000</td>
+<td align="right">$172,800</td>
+<td align="right"><span style="display:inline-block; padding:2px 8px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800;">$19,200</span></td>
+</tr>
+</tbody></table>
+<p>At 1,000 calls with that mix, Modellix bills <span style="display:inline-block; padding:2px 8px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800;">$19.20 less</span> than Anthropic direct. This is a price comparison at the same billed token counts, not a quality benchmark.</p>
+<div class="llm-gateway-benefits" style="border:1px solid #D7DEFF; border-left:5px solid #6A5BFF; background:#F8FAFF; border-radius:8px; padding:22px 24px; margin:24px 0 30px; box-shadow:0 10px 24px rgba(50, 60, 140, 0.06);"><p style="margin:0 0 6px; color:#5B5EEB; font-size:12px; font-weight:900; letter-spacing:0.08em; text-transform:uppercase;">One API for every model</p><p style="margin:0 0 16px; font-size:21px; line-height:1.35; font-weight:800; color:#111827;">Run Claude Opus 5.5 next to every other model on one key</p><div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; margin:0 0 18px;"><div style="border:1px solid #E4E1FF; background:#FFFFFF; border-radius:8px; padding:14px 16px;"><p style="margin:0 0 4px; font-weight:800; color:#111827;">One key, every model</p><p style="margin:0; color:#4B5563; font-size:15px; line-height:1.6;">GPT-6 Astra, Sol, and Luna, plus Claude, Gemini, Grok, DeepSeek, and Qwen. Switching models is a change to the <code>model</code> string.</p></div><div style="border:1px solid #E4E1FF; background:#FFFFFF; border-radius:8px; padding:14px 16px;"><p style="margin:0 0 4px; font-weight:800; color:#111827;">Drop-in for your client</p><p style="margin:0; color:#4B5563; font-size:15px; line-height:1.6;">OpenAI Chat Completions and Responses, plus Anthropic Messages. Works with the OpenAI and Anthropic SDKs, Codex, Claude Code, Cursor, and OpenCode.</p></div><div style="border:1px solid #E4E1FF; background:#FFFFFF; border-radius:8px; padding:14px 16px;"><p style="margin:0 0 4px; font-weight:800; color:#111827;">Below list price</p><p style="margin:0; color:#4B5563; font-size:15px; line-height:1.6;">GPT-6 and Claude models bill 10% under the vendor list price on the current rate card. Pay as you go, no subscription.</p></div><div style="border:1px solid #E4E1FF; background:#FFFFFF; border-radius:8px; padding:14px 16px;"><p style="margin:0 0 4px; font-weight:800; color:#111827;">Cost per request, in the logs</p><p style="margin:0; color:#4B5563; font-size:15px; line-height:1.6;">Every call is logged with tokens and cost, and can be tagged by end user, so you can see what an escalation actually cost.</p></div><div style="border:1px solid #E4E1FF; background:#FFFFFF; border-radius:8px; padding:14px 16px;"><p style="margin:0 0 4px; font-weight:800; color:#111827;">Pin or follow</p><p style="margin:0; color:#4B5563; font-size:15px; line-height:1.6;">Pin a fixed model ID for evaluations, or use a <code>-latest</code> alias that moves to the newest release.</p></div><div style="border:1px solid #E4E1FF; background:#FFFFFF; border-radius:8px; padding:14px 16px;"><p style="margin:0 0 4px; font-weight:800; color:#111827;">Media on the same key</p><p style="margin:0; color:#4B5563; font-size:15px; line-height:1.6;">The same account also calls image, video, and audio generation models through the Modellix media API.</p></div></div><div style="display:flex; gap:12px; flex-wrap:wrap;"><a class="btn btn-primary" href="https://www.modellix.ai/console/api-key" data-cta="gateway_benefits" data-cta-target="api-key" target="_blank" rel="noopener noreferrer">Get an API key</a><a class="btn btn-secondary" href="https://www.modellix.ai/llm" data-cta="gateway_benefits" data-cta-target="llm-pricing" target="_blank" rel="noopener noreferrer">See all LLM prices</a></div></div>
+
+<h3 id="Ready-to-give-it-a-spin"><a href="#Ready-to-give-it-a-spin" class="headerlink" title="Ready to give it a spin?"></a>Ready to give it a spin?</h3><p>The best way to judge Opus 5.5 is to run it on a task your team already knows inside out and compare the results.</p>
+<p>👉 <a href="https://www.modellix.ai/llm"><strong>Explore Claude Opus 5.5 on Modellix</strong></a> to check current pricing and grab your API endpoint.</p>
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Try Claude Opus 5.5</h3><p class="view-docs-tag-desc">Create a Modellix key, run Opus 5.5 on a task your team already knows, and compare cost per request in the logs.</p><a class="btn view-docs-tag-btn" href="https://www.modellix.ai/console/api-key" data-cta="login_tag" data-cta-target="api-key" target="_blank" rel="noopener noreferrer"><span>Get API Key </span><i data-lucide="arrow-right"></i></a></div></section>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/Anthropic/" class="tag-pill tag-pill--sm">Anthropic</a>
+            
+              <a href="/blog/tags/LLM-API/" class="tag-pill tag-pill--sm">LLM API</a>
+            
+              <a href="/blog/tags/Claude/" class="tag-pill tag-pill--sm">Claude</a>
+            
+          
+        </div>
+
+        
+        
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/grok-4-7/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-grok-4-7.webp" alt="Grok 4.7: Release Date, Pricing &amp; How to Use It" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Grok 4.7: Release Date, Pricing &amp; How to Use It</h3>
+          <time class="related-article-date" datetime="2026-09-24T03:00:00.000Z">September 24, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/gpt-luna/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-gpt-luna.webp" alt="GPT-6 Luna: Pricing, Context Window &amp; How to Use It" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">GPT-6 Luna: Pricing, Context Window &amp; How to Use It</h3>
+          <time class="related-article-date" datetime="2026-09-24T02:30:00.000Z">September 24, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/gpt-sol/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-gpt-sol.webp" alt="GPT-6 Sol: Pricing, Benchmarks &amp; When to Use It" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">GPT-6 Sol: Pricing, Benchmarks &amp; When to Use It</h3>
+          <time class="related-article-date" datetime="2026-09-24T02:00:00.000Z">September 24, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="https://www.modellix.ai/console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/claude-opus-5-5/&text=Claude%20Opus%205.5%3A%20Release%20Date%2C%20Pricing%20%26%20How%20to%20Use%20It" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/claude-opus-5-5/" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/claude-opus-5-5/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener nofollow" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener nofollow" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener nofollow" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener nofollow" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script defer src="https://unpkg.com/lucide@1.47.0/dist/umd/lucide.min.js" onload="window.lucide && window.lucide.createIcons();"></script>
+  
+    
+      <script src="/blog/js/modellix.js"></script>
+    
+  
+  
+</body>
+</html>
