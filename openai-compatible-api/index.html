@@ -311,8 +311,6 @@
 <p><strong>Can I use the official OpenAI SDK with any compatible API?</strong><br>Yes, for the core chat exchange: set <code>base_url</code> and <code>api_key</code> and the SDK’s chat calls reach the compatible endpoint. Beyond the core fields, what a given provider honors is per-provider—check its field table and verify against a working call before relying on anything outside the documented core.</p>
 <p><strong>When should I use the Responses API instead of Chat Completions?</strong><br>On OpenAI’s own platform, OpenAI recommends Responses for new applications. Against a third-party compatible endpoint, first confirm the provider documents Responses at all, then match your client to the documented surface. If both are supported, Responses is worth adopting for new OpenAI-hosted code; Chat Completions remains the safest default for portability.</p>
 <p><strong>Is Anthropic’s Messages API OpenAI-compatible?</strong><br>Not in the protocol sense. It is a separate family with its own path (<code>/v1/messages</code>), body shape, and base-URL convention—that is why the same gateway exposes it as a third protocol rather than as a variant of the OpenAI ones. The Anthropic-side configuration, including the no-<code>/v1</code> base URL, is covered in the Anthropic Base URL guide linked in the introduction.</p>
-<hr>
-<p><em>Protocol definitions, endpoint shapes, and provider policies change frequently; the details above reflect documentation and official pages as of September 2, 2026, so verify against each provider’s live docs before committing. Access image, video, and text-generation models through a single API key at <a href="https://www.modellix.ai/">modellix.ai</a>.</em></p>
 
         </div>
 

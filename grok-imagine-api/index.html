@@ -164,15 +164,15 @@
         
           <div class="post-header-tags">
             
-              <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
-            
               <a href="/blog/tags/ai-video-api/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
             
               <a href="/blog/tags/integration/" class="tag-pill tag-pill--sm">Integration</a>
             
-              <a href="/blog/tags/xAI/" class="tag-pill tag-pill--sm">xAI</a>
-            
               <a href="/blog/tags/Grok/" class="tag-pill tag-pill--sm">Grok</a>
+            
+              <a href="/blog/tags/xAI/" class="tag-pill tag-pill--sm">xAI</a>
             
           </div>
         
@@ -212,7 +212,7 @@
 </picture>
 
 <p>The <strong>Grok Imagine API</strong> is xAI’s endpoint for generating images and video from code. It is not the Grok chatbot, and it has nothing to do with the same-named crypto token that shows up in search results. If you have decided to build with Grok Imagine and now need to wire it into a product or script, the one thing to internalize up front is this: Imagine exposes <a target="_blank" rel="noopener nofollow" href="https://docs.x.ai/developers/model-capabilities/imagine"><strong>two request patterns</strong></a>. Image generation and editing are <strong>synchronous</strong>: you POST a prompt and get an image URL back in the same response. Video is <strong>asynchronous</strong>: you POST a prompt, get a <code>request_id</code>, and poll a second endpoint until the video is ready. Everything else is just parameters.</p>
-<p>This guide walks the whole path from a single API key to a finished image and a finished video, using only xAI’s first-party documentation (as of July 2026). It covers authentication, the image endpoint, the asynchronous video endpoint and its polling loop, image-to-video, and rate limits. Pricing has its own dedicated breakdown and alternatives have theirs, so both are linked rather than repeated here; this page is about <em>how you call it</em>.</p>
+<p>This guide walks the whole path from a single API key to a finished image and a finished video, using only xAI’s first-party documentation. It covers authentication, the image endpoint, the asynchronous video endpoint and its polling loop, image-to-video, and rate limits. Pricing has its own dedicated breakdown and alternatives have theirs, so both are linked rather than repeated here; this page is about <em>how you call it</em>.</p>
 <h2 id="What-the-Grok-Imagine-API-does"><a href="#What-the-Grok-Imagine-API-does" class="headerlink" title="What the Grok Imagine API does"></a>What the Grok Imagine API does</h2><p>Grok Imagine is xAI’s media-generation product, and its API surface is small and predictable. There are <a target="_blank" rel="noopener nofollow" href="https://docs.x.ai/developers/models">two families of models</a>:</p>
 <table>
 <thead>
@@ -245,7 +245,7 @@
 </tbody></table>
 <p>On top of plain generation, the API also supports <strong>image editing</strong> (modify an image with up to three reference images), <strong>image-to-video</strong> (animate a still), and video workflows like reference-to-video and extending an existing clip. The consumer-facing capability ceiling is up to 2K resolution for images and 15-second videos.</p>
 <p>One clarification that saves debugging time: these are <em>media</em> endpoints, not the Grok chat model. If you have used <code>grok-4.5</code> through <code>/v1/responses</code>, Imagine is a different surface (<code>/v1/images</code> and <code>/v1/videos</code>), even though it lives under the same base URL and uses the same key.</p>
-<h2 id="Grok-Imagine-API-pricing-at-a-glance"><a href="#Grok-Imagine-API-pricing-at-a-glance" class="headerlink" title="Grok Imagine API pricing at a glance"></a>Grok Imagine API pricing at a glance</h2><p>The short version, so you can size a bill before writing any code: the standard image model is <strong>$0.02 per image</strong> (at both 1K and 2K) and standard video starts at <strong>$0.05 per second</strong> at 480p, as of July 2026, with higher tiers for the quality image model and the 1.5 video model. Two constraints matter for architecture: image and video are billed at standard rates even inside the Batch API, and Priority Processing is not offered, so there is no volume-discount lever to pull. For the full per-tier ladder (every model, every resolution), see the <a href="https://www.modellix.ai/providers/xai">full xAI pricing on Modellix’s provider page</a>; this page keeps pricing to a summary on purpose.</p>
+<h2 id="Grok-Imagine-API-pricing-at-a-glance"><a href="#Grok-Imagine-API-pricing-at-a-glance" class="headerlink" title="Grok Imagine API pricing at a glance"></a>Grok Imagine API pricing at a glance</h2><p>The short version, so you can size a bill before writing any code: the standard image model is <strong>$0.02 per image</strong> (at both 1K and 2K) and standard video starts at <strong>$0.05 per second</strong> at 480p, with higher tiers for the quality image model and the 1.5 video model. Two constraints matter for architecture: image and video are billed at standard rates even inside the Batch API, and Priority Processing is not offered, so there is no volume-discount lever to pull. For the full per-tier ladder (every model, every resolution), see the <a href="https://www.modellix.ai/providers/xai">full xAI pricing on Modellix’s provider page</a>; this page keeps pricing to a summary on purpose.</p>
 <p>For video specifically, xAI’s pricing page listed these rates on August 28, 2026:</p>
 <table>
 <thead>
@@ -388,7 +388,7 @@
 </tbody></table>
 <h2 id="Image-to-video-editing-and-reference-inputs"><a href="#Image-to-video-editing-and-reference-inputs" class="headerlink" title="Image-to-video, editing, and reference inputs"></a>Image-to-video, editing, and reference inputs</h2><p>Animating a still image runs through the same <code>POST /v1/videos/generations</code> endpoint and the same polling loop; the difference is that you supply an <a target="_blank" rel="noopener nofollow" href="https://docs.x.ai/developers/model-capabilities/video/image-to-video">input image</a>, and you choose a model that supports it (<code>grok-imagine-video-1.5</code> also unlocks 1080p output). The API accepts an input image in three forms: a public URL, a base64-encoded data URI (e.g. <code>data:image/jpeg;base64,...</code>), or a <code>file_id</code> from the Files API.</p>
 <p>If you are on the Vercel AI SDK, the <code>prompt</code> parameter takes an object with <code>image</code> and <code>text</code> fields, where the image can be a URL, a base64 string, a <code>Uint8Array</code>, an <code>ArrayBuffer</code>, or a <code>Buffer</code>. Because reference-to-video and video extension reuse the same asynchronous contract, once you have the polling loop above, adding these workflows is a matter of swapping the model and payload, not learning a new endpoint.</p>
-<h2 id="Rate-limits-and-error-handling"><a href="#Rate-limits-and-error-handling" class="headerlink" title="Rate limits and error handling"></a>Rate limits and error handling</h2><p>Imagine models are throttled by <strong>requests per second</strong>, not tokens per minute. As of July 2026, the <a target="_blank" rel="noopener nofollow" href="https://docs.x.ai/developers/rate-limits">published limits</a> are:</p>
+<h2 id="Rate-limits-and-error-handling"><a href="#Rate-limits-and-error-handling" class="headerlink" title="Rate limits and error handling"></a>Rate limits and error handling</h2><p>Imagine models are throttled by <strong>requests per second</strong>, not tokens per minute. The <a target="_blank" rel="noopener nofollow" href="https://docs.x.ai/developers/rate-limits">published limits</a> are:</p>
 <table>
 <thead>
 <tr>
@@ -422,7 +422,7 @@
 <p>Exceed them and you get an HTTP <code>429</code>; the recommended response is to catch the rate-limit error and back off exponentially before retrying:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time, requests</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">with_backoff</span>(<span class="params">call, retries=<span class="number">5</span></span>):</span><br><span class="line">    <span class="keyword">for</span> attempt <span class="keyword">in</span> <span class="built_in">range</span>(retries):</span><br><span class="line">        resp = call()</span><br><span class="line">        <span class="keyword">if</span> resp.status_code != <span class="number">429</span>:</span><br><span class="line">            <span class="keyword">return</span> resp</span><br><span class="line">        time.sleep(<span class="number">2</span> ** attempt)   <span class="comment"># 1s, 2s, 4s, 8s, ...</span></span><br><span class="line">    <span class="keyword">return</span> resp</span><br></pre></td></tr></table></figure>
 
-<p>One important note if you are planning for scale: rate-limit tier upgrades apply to text and embedding models, but increases to <strong>Imagine limits are handled by contacting <a href="mailto:&#x73;&#97;&#108;&#101;&#115;&#64;&#x78;&#46;&#x61;&#x69;">sales@x.ai</a></strong>, not through automatic tier bumps. Combined with the absence of Batch or Priority discounts on image and video, that means capacity and cost for high-volume Imagine workloads are worth confirming with xAI before you commit.</p>
+<p>One important note if you are planning for scale: rate-limit tier upgrades apply to text and embedding models, but increases to <strong>Imagine limits are handled by contacting <a href="mailto:&#115;&#x61;&#x6c;&#x65;&#x73;&#x40;&#120;&#46;&#97;&#x69;">sales@x.ai</a></strong>, not through automatic tier bumps. Combined with the absence of Batch or Priority discounts on image and video, that means capacity and cost for high-volume Imagine workloads are worth confirming with xAI before you commit.</p>
 <h2 id="Access-Grok-Imagine-and-other-models-through-one-API-key"><a href="#Access-Grok-Imagine-and-other-models-through-one-API-key" class="headerlink" title="Access Grok Imagine (and other models) through one API key"></a>Access Grok Imagine (and other models) through one API key</h2><p>If Grok Imagine is one of several models you are calling, you may not want a separate integration for each provider. Modellix is an aggregation layer that carries the full Grok Imagine family (ten Imagine models in all; this guide details the four workhorse IDs above) behind one API key, using a <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api">single asynchronous contract</a>: <code>POST /api/v1/xai/&lt;model&gt;/async</code> returns a <code>task_id</code>, and <code>GET /api/v1/tasks/{task_id}</code> retrieves the result. On the video side, Modellix exposes six routes (<code>grok-imagine-video</code>, <code>grok-imagine-video-i2v</code>, <code>-r2v</code>, <code>-edit</code>, <code>-extend</code>, and <code>grok-imagine-video-1.5-i2v</code>); the 1.5 text-to-video model is not a standalone route there, so for 1080p from a text prompt alone, xAI direct is the path. The same key and the same submit-poll lifecycle reach image and <a href="https://www.modellix.ai/collections/ai-video-generator">video models</a> from other providers too, and every call is logged with its per-request cost, which makes running the same prompt across models an apples-to-apples comparison.</p>
 <p>To be straight about the trade-off: <strong>this is not a claim that routing Grok Imagine through Modellix is cheaper.</strong> Its per-tier markup means the direct xAI API is the lower-cost path if Grok is all you need: the standard image tier is roughly $0.023 versus xAI’s $0.02, and standard video roughly $0.0575 versus $0.05. The aggregator earns its keep only when you want one key across many image and video models plus per-call cost logs, not when you are optimizing a single-provider bill. If you are still deciding which model to build on at all, the honest <a href="https://www.modellix.ai/blog/grok-imagine-alternative/">Grok Imagine alternatives comparison</a> covers the strongest image and video substitutes.</p>
 <h2 id="Frequently-Asked-Questions-about-the-Grok-Imagine-API"><a href="#Frequently-Asked-Questions-about-the-Grok-Imagine-API" class="headerlink" title="Frequently Asked Questions about the Grok Imagine API"></a>Frequently Asked Questions about the Grok Imagine API</h2><p><strong>How do I get a Grok Imagine API key?</strong> Create a key on the API Keys page in the xAI console, then set it as the <code>XAI_API_KEY</code> environment variable. The same key works for both image and video endpoints.</p>
@@ -430,26 +430,24 @@
 <p><strong>Is the image API synchronous and the video API asynchronous?</strong> Yes. Image generation and editing return the result in the same response. Video generation returns a <code>request_id</code> that you poll until <code>status</code> is <code>done</code>. Building around that difference is the main thing to get right.</p>
 <p><strong>How much does the Grok Imagine API cost?</strong> It is usage-based: priced per image and per second of video, with higher tiers for the quality and 1.5 models, and no Batch or Priority discount. The full per-resolution ladder is on the <a href="https://www.modellix.ai/providers/xai">Modellix xAI provider page</a>.</p>
 <p><strong>Can I generate video from an image?</strong> Yes. Image-to-video uses the same <code>/v1/videos/generations</code> endpoint and polling loop; you pass the input image as a public URL, a base64 data URI, or a Files API <code>file_id</code>, and use a model that supports it (<code>grok-imagine-video-1.5</code> also reaches 1080p).</p>
-<p><strong>What are the rate limits?</strong> Image models are capped at 5 requests per second and video models at 10, as of July 2026. Exceeding them returns HTTP 429; retry with exponential backoff, and contact <a href="mailto:&#115;&#x61;&#108;&#x65;&#115;&#64;&#x78;&#x2e;&#97;&#x69;">sales@x.ai</a> for higher Imagine limits.</p>
+<p><strong>What are the rate limits?</strong> Image models are capped at 5 requests per second and video models at 10,. Exceeding them returns HTTP 429; retry with exponential backoff, and contact <a href="mailto:&#115;&#97;&#108;&#x65;&#115;&#64;&#x78;&#x2e;&#x61;&#105;">sales@x.ai</a> for higher Imagine limits.</p>
 <p><strong>Can I use the OpenAI SDK with it?</strong> Yes. The API is OpenAI-compatible, so you can point the OpenAI client at <code>https://api.x.ai/v1</code> and pass your <code>XAI_API_KEY</code>, or use xAI’s native <code>xai-sdk</code>.</p>
 <p><strong>Is the Grok Imagine API the same as the crypto token or the Grok chatbot?</strong> No. The crypto token that shares the name is unrelated to xAI’s product. And Grok Imagine is a media-generation API on <code>/v1/images</code> and <code>/v1/videos</code>, separate from the <code>grok-4.5</code> chat model on <code>/v1/responses</code>.</p>
-<hr>
-<p><em>Endpoint behavior, model IDs, rate limits, and pricing reflect xAI’s public documentation as of July 2026 and change frequently. Validate against the live docs before shipping. Access image and video models, including the leading Chinese models, through a single API key at <a href="https://www.modellix.ai/">modellix.ai</a>.</em></p>
 
         </div>
 
         <div class="post-tags-bottom">
           
             
-              <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
-            
               <a href="/blog/tags/ai-video-api/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
+              <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
             
               <a href="/blog/tags/integration/" class="tag-pill tag-pill--sm">Integration</a>
             
-              <a href="/blog/tags/xAI/" class="tag-pill tag-pill--sm">xAI</a>
-            
               <a href="/blog/tags/Grok/" class="tag-pill tag-pill--sm">Grok</a>
+            
+              <a href="/blog/tags/xAI/" class="tag-pill tag-pill--sm">xAI</a>
             
           
         </div>

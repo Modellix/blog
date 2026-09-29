@@ -424,14 +424,11 @@
 <p><strong>What is the difference between an image upscale API and an image enhance API?</strong></p>
 <p>Upscaling increases resolution and reconstructs detail; enhancement is a broader category that includes sharpening, denoising, color correction, and artifact removal. Some providers (Claid, Kie&#x2F;Topaz) sell them together, but the endpoints are distinct capabilities. If your images are already high-resolution but noisy, enhancement is the relevant tool, not upscaling.</p>
 <p><strong>What is the best image upscaler API?</strong></p>
-<p>There is no single best — it depends on volume, output size, and whether you need batch processing. For published per-image pricing and flat rates, the aggregator route (Seedream 5.0 Lite Edit at $0.0362&#x2F;image) is the cheapest verifiable figure in this comparison as of August 2026. For the highest published output ceiling, Clipdrop’s async endpoint (16k×16k) wins. For pro-grade restoration, Topaz has the reputation. Match the provider to the workload, not the brand.</p>
+<p>There is no single best — it depends on volume, output size, and whether you need batch processing. For published per-image pricing and flat rates, the aggregator route (Seedream 5.0 Lite Edit at $0.0362&#x2F;image) is the cheapest verifiable figure in this comparison. For the highest published output ceiling, Clipdrop’s async endpoint (16k×16k) wins. For pro-grade restoration, Topaz has the reputation. Match the provider to the workload, not the brand.</p>
 <p><strong>Can I upscale images via API with Python?</strong></p>
 <p>Yes — every provider in this guide has an HTTP API you can call from Python with <code>requests</code>. The async pattern with a polling loop (the <code>wait_for_task</code> function above) is the standard approach; sync routes like Clipdrop’s <code>/upscale</code> return the image bytes directly in the response.</p>
 <p><strong>What input formats do image upscale APIs accept?</strong></p>
 <p>Clipdrop documents PNG, JPEG, and WebP with a 16 MP &#x2F; 30 MB input cap. Most providers accept standard image formats and a publicly accessible URL; Modellix also supports direct file upload through its File API, which returns a URL you can pass into the model call.</p>
-<hr>
-<p><em>Provider details and pricing reflect public information as of August 23, 2026, and change frequently. Validate against each provider’s live pricing before committing — several vendors in this category do not publish per-image rates at all. Access image and video models, including the leading Chinese models, through a single API key at <a href="https://www.modellix.ai/">www.modellix.ai</a>.</em></p>
-<p><em>Cover image: illustrative Modellix artwork; it is not a vendor product screenshot or source evidence.</em></p>
 
         </div>
 

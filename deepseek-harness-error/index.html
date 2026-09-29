@@ -356,8 +356,6 @@
 <p><strong>Can I send images to the Modellix LLM gateway from the harness?</strong><br>No. Modellix LLM is a text gateway—use text-only prompts; do not attach images. A request that carries an image is rejected regardless of the model selected, even when the model card lists image modality.</p>
 <p><strong>How do I update an environment-sourced MODELLIX_API_KEY?</strong><br>The UI cannot override it. Update the variable in the harness launch environment and restart Harness; environment-sourced keys are read-only in the UI, so the change happens outside the harness.</p>
 <p><strong>Will I get one credential dialog per failed request?</strong><br>No. Concurrent 401 responses are coalesced into one credential dialog. If a key editor is already open, it upgrades in place; if another dialog is open, the recovery prompt waits for it to close instead of stacking another modal.</p>
-<hr>
-<p><em>The four-row troubleshooting table and the 401 recovery semantics reflect the Modellix DeepSeek Harness documentation and the dsh-modellix README as of September 1, 2026, and both change as the harness and plugin evolve; the live <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/overview">Models &amp; Pricing page</a> is the source of truth for model IDs. Modellix operates the gateway described here and has a commercial interest in it. Access image and video models, including the leading Chinese models, through a single API key at <a href="https://www.modellix.ai/">modellix.ai</a>.</em></p>
 
         </div>
 

@@ -262,7 +262,7 @@
 </picture>
 
 <p><em>The MiniMax text model ladder from legacy M2.5 to the current M3 flagship — no prices, because they drift. Diagram generated August 28, 2026.</em></p>
-<p>Two other pricing systems exist and are worth naming so you do not confuse them. <strong>Token Plan</strong> is MiniMax’s subscription-style quota system, billed monthly with a separate Subscription Key — it is a different billing universe from pay-as-you-go, not a discount applied to it. And <strong>marketplace routes</strong> set their own prices: the <a target="_blank" rel="noopener nofollow" href="https://openrouter.ai/minimax/minimax-m2.5">OpenRouter route for <code>minimax/minimax-m2.5</code></a> lists $0.27&#x2F;M input and $1.08&#x2F;M output as of August 28, 2026 (read from its models API, not the page), marginally below official direct rates — the usual marketplace pattern of a few percent off in exchange for an extra hop. For the full breakdown of MiniMax’s pricing family across models and media, our <a href="https://www.modellix.ai/blog/minimax-pricing/">MiniMax pricing guide</a> has the complete table.</p>
+<p>Two other pricing systems exist and are worth naming so you do not confuse them. <strong>Token Plan</strong> is MiniMax’s subscription-style quota system, billed monthly with a separate Subscription Key — it is a different billing universe from pay-as-you-go, not a discount applied to it. And <strong>marketplace routes</strong> set their own prices: the <a target="_blank" rel="noopener nofollow" href="https://openrouter.ai/minimax/minimax-m2.5">OpenRouter route for <code>minimax/minimax-m2.5</code></a> lists $0.27&#x2F;M input and $1.08&#x2F;M output (read from its models API, not the page), marginally below official direct rates — the usual marketplace pattern of a few percent off in exchange for an extra hop. For the full breakdown of MiniMax’s pricing family across models and media, our <a href="https://www.modellix.ai/blog/minimax-pricing/">MiniMax pricing guide</a> has the complete table.</p>
 <h2 id="Getting-a-MiniMax-2-5-API-key-and-which-key-type-you-need"><a href="#Getting-a-MiniMax-2-5-API-key-and-which-key-type-you-need" class="headerlink" title="Getting a MiniMax 2.5 API key (and which key type you need)"></a>Getting a MiniMax 2.5 API key (and which key type you need)</h2><p>Keys live in the MiniMax platform console at <code>platform.minimax.io</code>. Sign in, open <strong>API Keys</strong>, and click <strong>Create new secret key</strong> — the key is displayed exactly once, so copy it before closing the dialog. Creating a key does not require a credit card; you top up billing only when you start spending.</p>
 <p>The critical distinction is which <em>billing system</em> your key belongs to, because it changes the key itself:</p>
 <ul>
@@ -346,7 +346,7 @@
 <li><strong>Caching only saves money if you structure requests for it.</strong> Cache hits require identical prefix content — put your system prompt and tool definitions first and keep them byte-stable, or you will never see the $0.03&#x2F;M cache rate.</li>
 <li><strong>Prices and model status change fast.</strong> This article’s numbers are frozen at August 28, 2026; MiniMax has already moved models in and out of “legacy” within a single quarter. Re-pull the <a target="_blank" rel="noopener nofollow" href="https://platform.minimax.io/docs/guides/pricing-paygo">official pricing page</a> before committing budget.</li>
 </ol>
-<h2 id="MiniMax-2-5-vs-M2-7-vs-M3-which-model-should-you-call"><a href="#MiniMax-2-5-vs-M2-7-vs-M3-which-model-should-you-call" class="headerlink" title="MiniMax 2.5 vs M2.7 vs M3: which model should you call?"></a>MiniMax 2.5 vs M2.7 vs M3: which model should you call?</h2><p>Three-way selection, as of August 2026:</p>
+<h2 id="MiniMax-2-5-vs-M2-7-vs-M3-which-model-should-you-call"><a href="#MiniMax-2-5-vs-M2-7-vs-M3-which-model-should-you-call" class="headerlink" title="MiniMax 2.5 vs M2.7 vs M3: which model should you call?"></a>MiniMax 2.5 vs M2.7 vs M3: which model should you call?</h2><p>Three-way selection,:</p>
 <ul>
 <li><strong>MiniMax-M2.5</strong> — pick it when your pipeline already targets it, your prompts are tuned against its quirks, and you are optimizing for stability over new features. At $0.30&#x2F;$1.20 it is not cheaper than M2.7, so the argument is “it works and we know it,” not “it’s the budget option.”</li>
 <li><strong>MiniMax-M2.7</strong> — the sensible default for new integrations that want the same 204,800-token context and the same price, with current-model support. If you are starting from scratch today, this is usually the answer.</li>
@@ -366,17 +366,15 @@
 <p><strong>What is the MiniMax 2.5 API base URL?</strong></p>
 <p>Two options: <code>https://api.minimax.io/v1</code> (OpenAI-compatible) and <code>https://api.minimax.io/anthropic</code> (Anthropic-compatible, recommended by MiniMax). The model string is <code>MiniMax-M2.5</code>.</p>
 <p><strong>How much does the MiniMax 2.5 API cost per million tokens?</strong></p>
-<p>As of August 28, 2026: $0.30&#x2F;M input and $1.20&#x2F;M output on pay-as-you-go, with cached input at $0.03&#x2F;M. The <code>MiniMax-M2.5-highspeed</code> variant is $0.60&#x2F;$2.40. MiniMax M2.7 is priced identically to M2.5.</p>
+<p>$0.30&#x2F;M input and $1.20&#x2F;M output on pay-as-you-go, with cached input at $0.03&#x2F;M. The <code>MiniMax-M2.5-highspeed</code> variant is $0.60&#x2F;$2.40. MiniMax M2.7 is priced identically to M2.5.</p>
 <p><strong>Is there a free MiniMax 2.5 API?</strong></p>
-<p>No official free tier exists for MiniMax text models — no signup credits, no free quota. OpenRouter hosts rate-limited <code>:free</code> variants of newer models (M3, M2.7) but not M2.5 as of August 28, 2026.</p>
+<p>No official free tier exists for MiniMax text models — no signup credits, no free quota. OpenRouter hosts rate-limited <code>:free</code> variants of newer models (M3, M2.7) but not M2.5.</p>
 <p><strong>Is MiniMax M2.5 still supported?</strong></p>
 <p>Yes. It is listed as a Legacy Model — MiniMax has stopped adding features but still serves it, documents it, and bills it on the standard pricing table. The supported model strings include <code>MiniMax-M2.5</code> and <code>MiniMax-M2.5-highspeed</code>.</p>
 <p><strong>What is MiniMax M2.5’s context window?</strong></p>
 <p>204,800 tokens (input and output combined), with ~60 tokens&#x2F;second output throughput; the highspeed variant roughly doubles output speed at 2× the token price.</p>
 <p><strong>Can I call MiniMax 2.5 through Modellix?</strong></p>
-<p>Not the text model — as of August 28, 2026, MiniMax LLMs are not on Modellix’s LLM gateway. Modellix does serve MiniMax’s media models (Hailuo video, image, speech) through a single API key.</p>
-<hr>
-<p><em>MiniMax model status and pricing reflect public information as of August 28, 2026 and change frequently; MiniMax has moved models in and out of its legacy list within a single quarter. Re-validate against the official pricing and model pages before committing budget. This article was written by Modellix, an API aggregator with a commercial interest in MiniMax media models — the M2.5 integration material above is vendor-neutral. Access 210+ image and video models, including MiniMax’s media family, through one API key at <a href="https://www.modellix.ai/">modellix.ai</a>.</em></p>
+<p>Not the text model —, MiniMax LLMs are not on Modellix’s LLM gateway. Modellix does serve MiniMax’s media models (Hailuo video, image, speech) through a single API key.</p>
 
         </div>
 

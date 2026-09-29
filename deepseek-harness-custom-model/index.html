@@ -329,7 +329,7 @@
 <li><strong>The <code>models</code> list replaces the route’s catalog—it does not append to it.</strong> Every model the route should serve must appear in the list; an entry with only <code>id</code> is enough, and <code>name</code> is optional (it is what selectors show). Add or remove entries as needed. <strong>A model the route does not configure fails with <code>UNKNOWN_MODEL</code>.</strong></li>
 <li><strong>Each <code>id</code> must be the full Modellix model ID, including the <code>provider/</code> prefix</strong>—<code>openai/gpt-5.6-sol</code>, not <code>gpt-5.6-sol</code>. The harness sends the string unchanged in the request body, and the gateway routes on the full ID. The full list of valid IDs is the next section.</li>
 </ul>
-<h2 id="The-28-model-IDs-you-can-select"><a href="#The-28-model-IDs-you-can-select" class="headerlink" title="The 28 model IDs you can select"></a>The 28 model IDs you can select</h2><p>The Modellix LLM gateway currently exposes <strong>28 language models across 9 provider labels</strong>. This is the full deepseek harness model list for the gateway as of August 30, 2026—these are the IDs you put in the form’s model list or in <code>models[].id</code>:</p>
+<h2 id="The-28-model-IDs-you-can-select"><a href="#The-28-model-IDs-you-can-select" class="headerlink" title="The 28 model IDs you can select"></a>The 28 model IDs you can select</h2><p>The Modellix LLM gateway currently exposes <strong>28 language models across 9 provider labels</strong>. This is the full deepseek harness model list for the gateway—these are the IDs you put in the form’s model list or in <code>models[].id</code>:</p>
 <table>
 <thead>
 <tr>
@@ -379,12 +379,12 @@
   <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/modellix-llm-model-catalog.png" alt="Modellix LLM model catalog with 28 model IDs grouped by nine provider labels for the DeepSeek Harness model list" loading="lazy" />
 </picture>
 
-<p><em>The full Modellix LLM catalog: 28 model IDs in <code>provider/name</code> form, grouped by their nine provider labels, as of August 30, 2026.</em></p>
+<p><em>The full Modellix LLM catalog: 28 model IDs in <code>provider/name</code> form, grouped by their nine provider labels,.</em></p>
 <p>Three notes on the list:</p>
 <ul>
 <li><strong>Every ID is <code>provider/name</code>.</strong> Copy them verbatim. The harness sends exactly what you type, and the gateway’s <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/overview">Models &amp; Pricing reference</a> is the canonical list to check when this table ages.</li>
 <li><strong>Prices are per 1M tokens and change.</strong> Billing is in USD per 1M tokens for input, output, and cache reads&#x2F;writes, with per-model rates shown on the live <a href="https://www.modellix.ai/llm">Modellix LLM page</a>. This article intentionally does not quote rates—they move, and the live table is the source of truth.</li>
-<li><strong>Latest aliases exist, with a naming asymmetry.</strong> The gateway supports <code>~provider/series-latest</code> stable aliases. As of August 30, 2026, <code>~anthropic/claude-opus-latest</code> routes to <code>anthropic/claude-opus-5</code>, while <code>~anthropic/sonnet-latest</code> and <code>~anthropic/haiku-latest</code> route to <code>anthropic/claude-sonnet-5</code> and <code>anthropic/claude-haiku-4.5</code>—note that one carries the <code>claude-</code> prefix and the other two do not. That asymmetry is real, so don’t “fix” it. <strong>DeepSeek and <code>modellix-ai</code> have no latest aliases.</strong> Targets change as each family evolves, so treat any alias mapping as dated.</li>
+<li><strong>Latest aliases exist, with a naming asymmetry.</strong> The gateway supports <code>~provider/series-latest</code> stable aliases. <code>~anthropic/claude-opus-latest</code> routes to <code>anthropic/claude-opus-5</code>, while <code>~anthropic/sonnet-latest</code> and <code>~anthropic/haiku-latest</code> route to <code>anthropic/claude-sonnet-5</code> and <code>anthropic/claude-haiku-4.5</code>—note that one carries the <code>claude-</code> prefix and the other two do not. That asymmetry is real, so don’t “fix” it. <strong>DeepSeek and <code>modellix-ai</code> have no latest aliases.</strong> Targets change as each family evolves, so treat any alias mapping as dated.</li>
 </ul>
 <h3 id="Which-models-should-you-put-in-the-list"><a href="#Which-models-should-you-put-in-the-list" class="headerlink" title="Which models should you put in the list?"></a>Which models should you put in the list?</h3><p>There is no rule that says you must add all 28. The list is your route’s catalog, and a smaller list means fewer models to audit when the gateway’s catalog changes. Three practical defaults:</p>
 <ul>
@@ -439,9 +439,6 @@
 </ul>
 <p>If those capabilities matter to your setup, the Modellix plugin for DeepSeek Harness article (linked in the first section) walks through installing the bundle, storing the key, and what each module does. If you only need a different model source, you are already done—the form or the YAML block above is the whole change. For context on why a single key and one integration path exist at all, the <a href="https://www.modellix.ai/blog/unified-ai-api/">unified AI API guide</a> explains the aggregator model behind it.</p>
 <section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Open the Modellix Console</h3><p class="view-docs-tag-desc">Log in to generate your Modellix API key and check live per-million-token pricing for all 28 models.</p><a class="btn view-docs-tag-btn" href="https://www.modellix.ai/console/login" data-cta="login_tag" data-cta-target="login" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
-
-<hr>
-<p><em>Configuration instructions verified against the Modellix DeepSeek Harness documentation and the official Harness providers guide on August 30, 2026. Model catalogs, prices, and alias targets change as providers evolve; check the live Models &amp; Pricing page before relying on a specific ID. Modellix operates the gateway described in this article and has a commercial interest in it. The Modellix LLM gateway is a text gateway—use text-only prompts; do not attach images.</em></p>
 
         </div>
 

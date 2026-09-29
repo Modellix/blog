@@ -162,11 +162,11 @@
         
           <div class="post-header-tags">
             
-              <a href="/blog/tags/api-integration/" class="tag-pill tag-pill--sm">API Integration</a>
-            
               <a href="/blog/tags/ai-video-api/" class="tag-pill tag-pill--sm">AI Video API</a>
             
               <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
+            
+              <a href="/blog/tags/api-integration/" class="tag-pill tag-pill--sm">API Integration</a>
             
               <a href="/blog/tags/Async-Tasks/" class="tag-pill tag-pill--sm">Async Tasks</a>
             
@@ -447,7 +447,7 @@
 </tr>
 </tbody></table>
 <p><code>402</code> deserves its own branch because it will not fix itself: the balance is empty and retries only add noise. <code>429</code> deserves care because two limits share it: concurrency caps how many async tasks run at once, RPM caps request rate, and both scale with the largest single top-up that funded the account, from 2 concurrent tasks and 100 RPM below $10 up to 100 and 1,000 at a $1,000 top-up, per the published <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started/entitlements">entitlements table</a>. Beyond the top tier it is a vendor conversation, not a config flag.</p>
-<h2 id="Past-the-first-request-webhooks-batch-runs-and-reconciliation"><a href="#Past-the-first-request-webhooks-batch-runs-and-reconciliation" class="headerlink" title="Past the first request: webhooks, batch runs and reconciliation"></a>Past the first request: webhooks, batch runs and reconciliation</h2><p>Everything above gets one task back. A run of hundreds needs four more pieces, all documented as of September 16, 2026.</p>
+<h2 id="Past-the-first-request-webhooks-batch-runs-and-reconciliation"><a href="#Past-the-first-request-webhooks-batch-runs-and-reconciliation" class="headerlink" title="Past the first request: webhooks, batch runs and reconciliation"></a>Past the first request: webhooks, batch runs and reconciliation</h2><p>Everything above gets one task back. A run of hundreds needs four more pieces, all documented.</p>
 <p><strong>Webhooks instead of polling.</strong> Add an <code>X-Webhook-URL</code> header to the submit call (it is set per task, not per account) and the platform POSTs to that public HTTPS endpoint when the task succeeds, fails or is canceled. The callback body is identical to the task-result response, so one parser serves both paths. Deduplicate on <code>X-Modellix-Delivery-ID</code>, which is unique per delivery attempt, and answer <code>200</code> or <code>204</code> immediately. Only <code>429</code>, <code>5xx</code> and network timeouts are retried; a <code>404</code> from a renamed route or a DNS failure mid-deploy is not, and it looks exactly like a task that never finished. No signature scheme is documented, so put a secret token in the callback path. The rule of thumb: callbacks for runs, polling for single jobs.</p>
 <p><strong>Batch submission.</strong> <code>modellix-cli model batch tasks.jsonl --max-tasks 200 --concurrency 4</code> validates every line before the first POST, refuses to run without <code>--max-tasks</code> or <code>--yes</code> because each line is a paid task, and caps one invocation at 1,000 tasks with CLI concurrency of 1 to 10. <code>task history</code> records submissions locally, so a crashed submitter does not lose track of what landed.</p>
 <p><strong>Sizing the run.</strong> Wall time is roughly N tasks ÷ C concurrent × T per task. Read T from the task-level <code>duration</code> (milliseconds), not the clip-length <code>duration</code> inside <code>result.resources[]</code> (seconds). At an illustrative 45 seconds per task, 400 tasks take about 15 minutes at 20 concurrent and about 2.5 hours at 2. On reference-heavy runs the File API binds first: 16 MB per file, 10 live files per team, two concurrent uploads, and about 7 days of retention.</p>
@@ -461,19 +461,16 @@
 <p><strong>Can I generate video from Python?</strong><br>Yes. The API is plain JSON over HTTPS, so <code>requests</code> is enough and no vendor SDK is required. Any client that can set an <code>Authorization</code> header, POST a body and read a nested status field will work; the loop above is 15 lines.</p>
 <section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Run the Schema Check on a Real Model</h3><p class="view-docs-tag-desc">Log in to submit one video task on your own key and read the per-task amount and expiry from the response.</p><a class="btn view-docs-tag-btn" href="https://www.modellix.ai/console/login" data-cta="login_tag" data-cta-target="login" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
 
-<hr>
-<p><em>Provider details, endpoint behaviour and pricing reflect public information as of September 2026 and change frequently. Validate against the live documentation and each provider’s current pricing before committing. Access image and video models, including the leading Chinese models, through a single API key at <a href="https://www.modellix.ai/">modellix.ai</a>.</em></p>
-
         </div>
 
         <div class="post-tags-bottom">
           
             
-              <a href="/blog/tags/api-integration/" class="tag-pill tag-pill--sm">API Integration</a>
-            
               <a href="/blog/tags/ai-video-api/" class="tag-pill tag-pill--sm">AI Video API</a>
             
               <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
+            
+              <a href="/blog/tags/api-integration/" class="tag-pill tag-pill--sm">API Integration</a>
             
               <a href="/blog/tags/Async-Tasks/" class="tag-pill tag-pill--sm">Async Tasks</a>
             

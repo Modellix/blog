@@ -160,9 +160,9 @@
         
           <div class="post-header-tags">
             
-              <a href="/blog/tags/ai-video/" class="tag-pill tag-pill--sm">AI Video</a>
-            
               <a href="/blog/tags/Alibaba/" class="tag-pill tag-pill--sm">Alibaba</a>
+            
+              <a href="/blog/tags/ai-video/" class="tag-pill tag-pill--sm">AI Video</a>
             
               <a href="/blog/tags/api/" class="tag-pill tag-pill--sm">API</a>
             
@@ -199,7 +199,7 @@
 
         <div class="post-content">
           <p>Alibaba’s Tongyi Lab shipped the full Wan 2.7 suite on April 6, 2026, and the spec sheet reads like a direct shot at the closed-source video leaders: a 27B Mixture-of-Experts model, a new Thinking Mode that plans a shot before rendering it, native audio, and 1080p clips up to 15 seconds, all under an Apache 2.0 license. Within weeks the model was live across nearly every major inference provider, with public per-second prices starting around $0.06 for 720p.</p>
-<p>This guide covers everything verified as of May 2026: what Wan 2.7 actually adds over Wan 2.6, when to call the text-to-video endpoint versus image-to-video, how the async job lifecycle works with real request examples, how per-second pricing compares across providers, and how to integrate it through a single Modellix key. Can you put it into a production pipeline today, and which endpoint should that pipeline actually call?</p>
+<p>This guide covers everything verified: what Wan 2.7 actually adds over Wan 2.6, when to call the text-to-video endpoint versus image-to-video, how the async job lifecycle works with real request examples, how per-second pricing compares across providers, and how to integrate it through a single Modellix key. Can you put it into a production pipeline today, and which endpoint should that pipeline actually call?</p>
 <picture style="aspect-ratio: 1200 / 900; width:100%; max-width: 1200px;">
   <source type="image/webp" srcset="https://img.modellix.ai/en/article/cover-wan-2-7-api.webp" />
   <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/cover-wan-2-7-api.png" alt="Wan 2.7 API Guide cover: Alibaba text-to-video and image-to-video" />
@@ -301,7 +301,7 @@
 </tbody></table>
 <p>A workable cadence for 1080p clips: first check at 20 seconds, then exponential backoff starting at 5s, capped at 30s, with a maximum of 12 attempts. Add roughly 20% jitter when you run concurrent jobs so your polls do not stampede.</p>
 <h3 id="Step-3-Retrieve-and-Validate-Results"><a href="#Step-3-Retrieve-and-Validate-Results" class="headerlink" title="Step 3: Retrieve and Validate Results"></a>Step 3: Retrieve and Validate Results</h3><p>On a terminal <code>success</code>, the result payload carries the output video URL. Log at minimum the <code>task_id</code>, your own correlation ID, the input hash, the output URL, the estimated cost, and wall-clock time from submit to terminal state. Store the output URL immediately if it feeds a downstream edit or stitch step.</p>
-<h2 id="Wan-2-7-API-Pricing-Per-Second-Billing-and-How-Providers-Compare-May-2026"><a href="#Wan-2-7-API-Pricing-Per-Second-Billing-and-How-Providers-Compare-May-2026" class="headerlink" title="Wan 2.7 API Pricing: Per-Second Billing and How Providers Compare (May 2026)"></a>Wan 2.7 API Pricing: Per-Second Billing and How Providers Compare (May 2026)</h2><p>Because Wan 2.7 is open-weight, no single vendor sets the price. Most providers bill text-to-video per second of output, while image-to-video and reference-to-video are often billed per run because of the added conditioning work. The table below compares per-second rates across the providers most teams evaluate, as public list prices in May 2026. They change frequently, so treat them as a snapshot, not a contract.</p>
+<h2 id="Wan-2-7-API-Pricing-Per-Second-Billing-and-How-Providers-Compare-May-2026"><a href="#Wan-2-7-API-Pricing-Per-Second-Billing-and-How-Providers-Compare-May-2026" class="headerlink" title="Wan 2.7 API Pricing: Per-Second Billing and How Providers Compare (May 2026)"></a>Wan 2.7 API Pricing: Per-Second Billing and How Providers Compare (May 2026)</h2><p>Because Wan 2.7 is open-weight, no single vendor sets the price. Most providers bill text-to-video per second of output, while image-to-video and reference-to-video are often billed per run because of the added conditioning work. The table below compares per-second rates across the providers most teams evaluate, as public list prices in May 2026. </p>
 <table>
 <thead>
 <tr>
@@ -336,9 +336,9 @@
 <td>$1.50</td>
 </tr>
 </tbody></table>
-<p>Modellix rates are from modellix.ai; reseller rates are public list prices, May 2026. At these rates, a 10-second 1080p text-to-video clip runs roughly $0.95 to $1.50. Image-to-video typically costs more per equivalent output: Segmind, for example, lists Wan 2.7 reference-to-video at $0.625 for 720p and $0.9375 for 1080p per request as of May 2026.</p>
+<p>Modellix rates are from modellix.ai; reseller rates are public list prices, May 2026. At these rates, a 10-second 1080p text-to-video clip runs roughly $0.95 to $1.50. Image-to-video typically costs more per equivalent output: Segmind, for example, lists Wan 2.7 reference-to-video at $0.625 for 720p and $0.9375 for 1080p per request.</p>
 <p>Two things drive your actual bill more than the headline rate. First, you pay for output seconds, so your discard rate (failed or rejected jobs) directly shapes monthly cost. Second, resolution: 1080p runs materially more than 720p across every provider, so default to 720p for development and reserve 1080p for final renders.</p>
-<p>On Modellix, Wan 2.7 text-to-video lists at <mark>$0.065 to $0.095 per second (720p to 1080p), roughly 60% of Alibaba Cloud’s official rate</mark> as of May 2026, billed per request with full job-level cost logging. As the matrix shows, that is the lowest per-second rate among the providers most teams evaluate, and the platform value sits beyond the headline number: one API key, one billing surface, and the same async pattern whether you call Wan 2.7, Seedance, or Kling. Current per-model rates are listed at <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started/pricing">docs.modellix.ai&#x2F;get-started&#x2F;pricing</a>.</p>
+<p>On Modellix, Wan 2.7 text-to-video lists at <mark>$0.065 to $0.095 per second (720p to 1080p), roughly 60% of Alibaba Cloud’s official rate</mark>, billed per request with full job-level cost logging. As the matrix shows, that is the lowest per-second rate among the providers most teams evaluate, and the platform value sits beyond the headline number: one API key, one billing surface, and the same async pattern whether you call Wan 2.7, Seedance, or Kling. Current per-model rates are listed at <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started/pricing">docs.modellix.ai&#x2F;get-started&#x2F;pricing</a>.</p>
 <picture style="aspect-ratio: 1280 / 720; width:100%; max-width: 1280px;">
   <source type="image/webp" srcset="https://img.modellix.ai/en/article/wan-2-7-api-pricing-matrix.webp" />
   <img style="width: 100%; height: 100%;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/wan-2-7-api-pricing-matrix.png" alt="wan 2.7 api pricing matrix comparing per-second text-to-video rates across leading providers" />
@@ -441,7 +441,7 @@
 <h2 id="Frequently-Asked-Questions-About-the-Wan-2-7-API-2026"><a href="#Frequently-Asked-Questions-About-the-Wan-2-7-API-2026" class="headerlink" title="Frequently Asked Questions About the Wan 2.7 API (2026)"></a>Frequently Asked Questions About the Wan 2.7 API (2026)</h2><p><strong>What is the difference between Wan 2.7 text-to-video and image-to-video?</strong></p>
 <p>Text-to-video generates a clip from a prompt alone, with no source frame. Image-to-video animates one or more reference images using the prompt for motion direction. Use text-to-video for synthetic scenes and concept work, and image-to-video when the first frame is fixed, such as product or character-consistent content. Both share the same request schema and async lifecycle.</p>
 <p><strong>How much does the Wan 2.7 API cost?</strong></p>
-<p>Most providers bill text-to-video per second of output. As of May 2026, public list prices run from roughly $0.06 per second at the low end (720p) to $0.15 per second at premium 1080p tiers, so a 10-second clip lands around $0.90 to $1.50. Image-to-video and reference-to-video are often billed per run and cost more. Prices change frequently because Wan 2.7 is open-weight and hosted by many providers.</p>
+<p>Most providers bill text-to-video per second of output. Public list prices run from roughly $0.06 per second at the low end (720p) to $0.15 per second at premium 1080p tiers, so a 10-second clip lands around $0.90 to $1.50. Image-to-video and reference-to-video are often billed per run and cost more. 7 is open-weight and hosted by many providers.</p>
 <p><strong>Is Wan 2.7 better than Wan 2.6?</strong></p>
 <p>For complex prompts, dialogue with synchronized audio, and longer single-call clips, yes. Wan 2.7 adds Thinking Mode, native audio, and clips up to 15 seconds at 1080p. For short, simple, high-volume text-to-video, Wan 2.6 remains the faster and cheaper baseline.</p>
 <p><strong>Is Wan 2.7 open source?</strong></p>
@@ -451,18 +451,16 @@
 <p><strong>How do I access Wan 2.7 on Modellix?</strong></p>
 <p>Get an API key at <a href="https://www.modellix.ai/console/api-key">modellix.ai&#x2F;console&#x2F;api-key</a>. Both endpoints are available under the <code>alibaba/</code> namespace: <code>https://api.modellix.ai/api/v1/alibaba/wan-2.7-t2v/async</code> for text-to-video and <code>wan-2.7-i2v</code> for image-to-video. <mark>No separate Alibaba Cloud account required.</mark> The full Wan 2.7 family, including image models, is listed on the <a href="https://www.modellix.ai/series/wan">Wan 2.7 series page</a>.</p>
 <p><strong>How does Modellix pricing compare to going direct to Alibaba Cloud?</strong></p>
-<p>As of May 2026, Modellix prices Wan 2.7 access at roughly 60% of Alibaba Cloud’s official rate, billed per request with transparent per-model pricing at <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started/pricing">docs.modellix.ai&#x2F;get-started&#x2F;pricing</a>. Beyond price, the value is one API key, one billing dashboard, and the same async pattern across Wan 2.7, Seedance, Kling, and Hailuo.</p>
-<hr>
-<p><em>Wan 2.7 specifications are based on Alibaba Tongyi Lab’s April 6, 2026 announcement. Provider pricing reflects public list prices as of May 2026 and changes frequently. Access Wan 2.7 text-to-video and image-to-video alongside Seedance, Kling, Seedream, and Hailuo through a single API key at <a href="https://www.modellix.ai/">modellix.ai</a>.</em></p>
+<p>Modellix prices Wan 2.7 access at roughly 60% of Alibaba Cloud’s official rate, billed per request with transparent per-model pricing at <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started/pricing">docs.modellix.ai&#x2F;get-started&#x2F;pricing</a>. Beyond price, the value is one API key, one billing dashboard, and the same async pattern across Wan 2.7, Seedance, Kling, and Hailuo.</p>
 
         </div>
 
         <div class="post-tags-bottom">
           
             
-              <a href="/blog/tags/ai-video/" class="tag-pill tag-pill--sm">AI Video</a>
-            
               <a href="/blog/tags/Alibaba/" class="tag-pill tag-pill--sm">Alibaba</a>
+            
+              <a href="/blog/tags/ai-video/" class="tag-pill tag-pill--sm">AI Video</a>
             
               <a href="/blog/tags/api/" class="tag-pill tag-pill--sm">API</a>
             

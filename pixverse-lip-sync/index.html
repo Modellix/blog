@@ -162,13 +162,13 @@
         
           <div class="post-header-tags">
             
-              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
-            
-              <a href="/blog/tags/pixverse/" class="tag-pill tag-pill--sm">PixVerse</a>
-            
               <a href="/blog/tags/Lip-Sync/" class="tag-pill tag-pill--sm">Lip Sync</a>
             
               <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
+            
+              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
+            
+              <a href="/blog/tags/pixverse/" class="tag-pill tag-pill--sm">PixVerse</a>
             
               <a href="/blog/tags/TTS/" class="tag-pill tag-pill--sm">TTS</a>
             
@@ -218,7 +218,7 @@
 <tr>
 <th>Input</th>
 <th>Accepted forms</th>
-<th>Official limits (as of August 3, 2026)</th>
+<th>Official limits</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -392,9 +392,9 @@
 <p><strong>What is the difference between audio_url and speaker_id + tts_content?</strong></p>
 <p><code>audio_url</code> (official: <code>audio_media_id</code>) drives lip movement from a finished audio file you supply. <code>speaker_id</code> + <code>tts_content</code> (official: <code>lip_sync_tts_speaker_id</code> + <code>lip_sync_tts_content</code>) makes the API synthesize speech from your script with a selected voice before syncing. The two are mutually exclusive — sending both or neither returns an error.</p>
 <p><strong>What are the PixVerse lip sync video and audio limits?</strong></p>
-<p>As of August 3, 2026, the official docs list: video <code>mp4</code>&#x2F;<code>mov</code>&#x2F;<code>webm</code>, max resolution 1920, max 100 MB, max 60 seconds; audio <code>mp3</code>&#x2F;<code>wav</code>&#x2F;<code>m4a</code>&#x2F;<code>aac</code>, max 100 MB, max 60 seconds. TTS scripts must stay within 200 characters on the Speech (LipSync) endpoint (the Image Avatar documentation specifies 30–200 characters for its <code>lip_sync_tts_content</code>; Modellix’s route documents 140 characters for its <code>tts_content</code> — verify per route).</p>
+<p>The official docs list: video <code>mp4</code>&#x2F;<code>mov</code>&#x2F;<code>webm</code>, max resolution 1920, max 100 MB, max 60 seconds; audio <code>mp3</code>&#x2F;<code>wav</code>&#x2F;<code>m4a</code>&#x2F;<code>aac</code>, max 100 MB, max 60 seconds. TTS scripts must stay within 200 characters on the Speech (LipSync) endpoint (the Image Avatar documentation specifies 30–200 characters for its <code>lip_sync_tts_content</code>; Modellix’s route documents 140 characters for its <code>tts_content</code> — verify per route).</p>
 <p><strong>How much does PixVerse lip sync cost?</strong></p>
-<p>The official pricing page bills lip sync at <strong>4 credits per second of audio</strong> (round up), or 4 credits per 15 bytes of TTS text after UTF-8 encoding; Image Avatar is 3&#x2F;6&#x2F;9&#x2F;12 credits per second at 360p&#x2F;540p&#x2F;720p&#x2F;1080p. Aggregators bill differently — Replicate shows $0.04&#x2F;second, Modellix shows $0.0460&#x2F;second as of August 3, 2026. Units do not convert directly; price a concrete job on one route at a time.</p>
+<p>The official pricing page bills lip sync at <strong>4 credits per second of audio</strong> (round up), or 4 credits per 15 bytes of TTS text after UTF-8 encoding; Image Avatar is 3&#x2F;6&#x2F;9&#x2F;12 credits per second at 360p&#x2F;540p&#x2F;720p&#x2F;1080p. Aggregators bill differently — Replicate shows $0.04&#x2F;second, Modellix shows $0.0460&#x2F;second. Units do not convert directly; price a concrete job on one route at a time.</p>
 <p><strong>What do PixVerse lip sync status codes mean?</strong></p>
 <p>1 &#x3D; generation succeeded, 5 &#x3D; waiting for generation, 7 &#x3D; content moderation failure (credits are auto-refunded), 8 &#x3D; generation failed. Poll while status is 5, then stop on 7 or 8 and handle the input.</p>
 <p><strong>Why is my lip sync video stuck in “Generating”?</strong></p>
@@ -402,23 +402,20 @@
 <p><strong>Does Modellix support PixVerse Image Avatar or voice cloning?</strong></p>
 <p>No. Modellix’s <code>pixverse/lipsync</code> requires an existing talking video plus <code>audio_url</code> or <code>speaker_id</code>+<code>tts_content</code>; it does not generate a talking video from a photo (Image Avatar) and does not accept arbitrary voice-clone uploads. Those are PixVerse Platform capabilities documented on the official Avatar API page.</p>
 <p><strong>Can I use PixVerse lip sync through Replicate or other aggregators?</strong></p>
-<p>Yes — Replicate hosts <code>pixverse/lipsync</code> ($0.04&#x2F;second as of August 3, 2026), and Eachlabs, Runware, and Segmind list PixVerse lip sync variants with their own billing units (fal.ai is another aggregator that carries PixVerse models generally). Check each route’s model version and current price; aggregator cards can lag the official model generation (for example, Eachlabs still labels its route v4.5).</p>
-<hr>
-<p><em>PixVerse capability and pricing details reflect official documentation and model pages accessed August 3, 2026 and change frequently. Validate against the live provider documentation and billing pages before committing volume or budget. Modellix is an API aggregator for image and video models, not the PixVerse vendor; this guide is not a claim that the aggregator route is cheaper or that it accepts every official parameter.</em></p>
-<p><em>Cover image: illustrative Modellix artwork; it is not a PixVerse product screenshot or source evidence.</em></p>
+<p>Yes — Replicate hosts <code>pixverse/lipsync</code> ($0.04&#x2F;second), and Eachlabs, Runware, and Segmind list PixVerse lip sync variants with their own billing units (fal.ai is another aggregator that carries PixVerse models generally). Check each route’s model version and current price; aggregator cards can lag the official model generation (for example, Eachlabs still labels its route v4.5).</p>
 
         </div>
 
         <div class="post-tags-bottom">
           
             
-              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
-            
-              <a href="/blog/tags/pixverse/" class="tag-pill tag-pill--sm">PixVerse</a>
-            
               <a href="/blog/tags/Lip-Sync/" class="tag-pill tag-pill--sm">Lip Sync</a>
             
               <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
+            
+              <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
+            
+              <a href="/blog/tags/pixverse/" class="tag-pill tag-pill--sm">PixVerse</a>
             
               <a href="/blog/tags/TTS/" class="tag-pill tag-pill--sm">TTS</a>
             

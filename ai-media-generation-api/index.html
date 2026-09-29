@@ -161,11 +161,11 @@
         
           <div class="post-header-tags">
             
+              <a href="/blog/tags/ai-video-api/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
               <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
             
               <a href="/blog/tags/AI-Media-API/" class="tag-pill tag-pill--sm">AI Media API</a>
-            
-              <a href="/blog/tags/ai-video-api/" class="tag-pill tag-pill--sm">AI Video API</a>
             
               <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
             
@@ -336,7 +336,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests, time</span><br><span class="line"></span><br><span class="line">BASE = <span class="string">&quot;https://api.modellix.ai/api/v1&quot;</span></span><br><span class="line">API_KEY = <span class="string">&quot;YOUR_API_KEY&quot;</span>   <span class="comment"># from the Modellix dashboard</span></span><br><span class="line"></span><br><span class="line">headers = &#123;<span class="string">&quot;Authorization&quot;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;API_KEY&#125;</span>&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. Start an async image-to-video job</span></span><br><span class="line">resp = requests.post(</span><br><span class="line">    <span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/alibaba/wan2.2-i2v-flash/async&quot;</span>,</span><br><span class="line">    headers=headers,</span><br><span class="line">    json=&#123;<span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;A pair of white sneakers on a light-gray studio background, product photography&quot;</span>&#125;,</span><br><span class="line">)</span><br><span class="line">resp.raise_for_status()</span><br><span class="line">task_id = resp.json()[<span class="string">&quot;task_id&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. Poll until the job reaches a terminal state</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    data = requests.get(<span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/tasks/<span class="subst">&#123;task_id&#125;</span>&quot;</span>, headers=headers).json()</span><br><span class="line">    <span class="keyword">if</span> data[<span class="string">&quot;status&quot;</span>] == <span class="string">&quot;succeeded&quot;</span>:</span><br><span class="line">        <span class="built_in">print</span>(data[<span class="string">&quot;output_url&quot;</span>])   <span class="comment"># CDN-hosted file</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span> data[<span class="string">&quot;status&quot;</span>] == <span class="string">&quot;failed&quot;</span>:</span><br><span class="line">        <span class="keyword">raise</span> RuntimeError(data.get(<span class="string">&quot;error&quot;</span>, <span class="string">&quot;generation failed&quot;</span>))</span><br><span class="line">    time.sleep(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
 
 <p>For production, skip the polling loop: send the <code>X-Webhook-URL</code> header and let the service push the result. This is where orchestration layers earn their keep — <a target="_blank" rel="noopener nofollow" href="https://trigger.dev/docs/guides/use-cases/media-generation">Trigger.dev’s media generation guide</a> shows retries, human-approval gates, and batch coordination for exactly this pipeline. Working Python and JS examples are also what most people hunt for under “ai media generation api github”, so treat the snippet above as a starting point, not the finished integration.</p>
-<h2 id="Free-tiers-and-testing-paths"><a href="#Free-tiers-and-testing-paths" class="headerlink" title="Free tiers and testing paths"></a>Free tiers and testing paths</h2><p>“Can I get an AI API for free?” is one of the most common follow-ups on this keyword, so here is the map as of September 2026:</p>
+<h2 id="Free-tiers-and-testing-paths"><a href="#Free-tiers-and-testing-paths" class="headerlink" title="Free tiers and testing paths"></a>Free tiers and testing paths</h2><p>“Can I get an AI API for free?” is one of the most common follow-ups on this keyword, so here is the map:</p>
 <ul>
 <li><strong>fal</strong> advertises a free tier on its pricing page for getting started with pay-per-use billing.</li>
 <li><strong>xAI (Grok Imagine)</strong> publishes no free tier on its API page — assume paid, verify in the console.</li>
@@ -354,7 +354,7 @@
 <p><strong>Can I get an AI API for free?</strong></p>
 <p>fal advertises a free tier on its pricing page. Modellix has no automatic signup credit; model calls are billed from your balance. Its docs list a 10% first-top-up discount. OpenAI’s image APIs and xAI’s Imagine API are paid and pay-as-you-go.</p>
 <p><strong>Can I use the Grok API for free?</strong></p>
-<p>As of August 2026, xAI’s public API pages do not advertise a free tier. Sign up, check your console for any signup credit, and assume usage-based pricing.</p>
+<p>xAI’s public API pages do not advertise a free tier. Sign up, check your console for any signup credit, and assume usage-based pricing.</p>
 <p><strong>Do I need a separate API key for each model?</strong></p>
 <p>Not on an aggregator: one Modellix API key authenticates every model in the catalog, so the same <code>Authorization: Bearer &lt;key&gt;</code> header works for image calls, video calls, and every provider behind the single endpoint. Separate keys only appear when you integrate several single-vendor platforms directly.</p>
 <p><strong>What is the difference between an image API and a video API?</strong></p>
@@ -365,11 +365,11 @@
         <div class="post-tags-bottom">
           
             
+              <a href="/blog/tags/ai-video-api/" class="tag-pill tag-pill--sm">AI Video API</a>
+            
               <a href="/blog/tags/AI-Image-API/" class="tag-pill tag-pill--sm">AI Image API</a>
             
               <a href="/blog/tags/AI-Media-API/" class="tag-pill tag-pill--sm">AI Media API</a>
-            
-              <a href="/blog/tags/ai-video-api/" class="tag-pill tag-pill--sm">AI Video API</a>
             
               <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
             

@@ -337,7 +337,7 @@
 <li>A fresh profile may first show Harness’s own DeepSeek initialization dialog before the plugin presents its “Connect Modellix” dialog. Complete or handle the first one before the second appears.</li>
 <li>The plugin’s first-run dialog asks for the API key and confirms three default-on switches (Design, LLM, Web). “Configure later” is a real option, but it does not mark the plugin usable; the next explicit use of a capability that needs a credential will ask again.</li>
 </ul>
-<p>One honest caveat: this article cannot promise “works after install.” Harness and this plugin use prerelease interfaces, and the versions above are the ones verified against each other as of September 1, 2026. If you are upgrading either side, re-check peer dependencies and the CHANGELOG before trusting a previously verified install.</p>
+<p>One honest caveat: this article cannot promise “works after install.” Harness and this plugin use prerelease interfaces, and the versions above are the ones verified against each other. If you are upgrading either side, re-check peer dependencies and the CHANGELOG before trusting a previously verified install.</p>
 <h2 id="Removing-a-bundle-dsh-plugin-remove-and-what-it-does-not-clean-up"><a href="#Removing-a-bundle-dsh-plugin-remove-and-what-it-does-not-clean-up" class="headerlink" title="Removing a bundle: dsh plugin remove, and what it does not clean up"></a>Removing a bundle: dsh plugin remove, and what it does not clean up</h2><p>Uninstall is the same three-command shape, inverted:</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dsh plugin --profile web remove dsh-modellix</span><br><span class="line">dsh --profile web --dump-config</span><br><span class="line">dsh --profile web</span><br></pre></td></tr></table></figure>
 
@@ -365,9 +365,6 @@
 <p><strong>Is it safe to install third-party dsh plugins?</strong><br>There is no official marketplace, so “safe” is your judgment call. Check that peer dependencies are pinned to your Harness version, that the package ships a real release-verification gate, and that you can audit the source. For anything sensitive, use the local-tarball flow so you install exactly the artifact you verified.</p>
 <p><strong>What is the difference between –dump-config and –dump-default-config?</strong><br><code>--dump-config</code> prints the composed tree for the named profile: what the next boot will actually load. <code>--dump-default-config</code> prints the default template a fresh profile starts from. Diffing them isolates exactly what your installs and patches contributed.</p>
 <section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Open the Modellix Console</h3><p class="view-docs-tag-desc">Log in to generate your Modellix API key and check live per-model pricing for the whole catalog.</p><a class="btn view-docs-tag-btn" href="https://www.modellix.ai/console/login" data-cta="login_tag" data-cta-target="login" target="_blank" rel="noopener noreferrer"><span>Login </span><i data-lucide="arrow-right"></i></a></div></section>
-
-<hr>
-<p><em>Command syntax, pinned versions, and release information reflect public sources as of September 1, 2026 and change frequently; DeepSeek Harness is in developer preview and iterating rapidly. Validate versions against the official repository before relying on them. Modellix maintains the dsh-modellix plugin used as the worked example and has a commercial interest in it.</em></p>
 
         </div>
 

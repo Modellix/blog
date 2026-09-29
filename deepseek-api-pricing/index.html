@@ -168,9 +168,9 @@
             
               <a href="/blog/tags/DeepSeek/" class="tag-pill tag-pill--sm">DeepSeek</a>
             
-              <a href="/blog/tags/API-Cost/" class="tag-pill tag-pill--sm">API Cost</a>
-            
               <a href="/blog/tags/Cache/" class="tag-pill tag-pill--sm">Cache</a>
+            
+              <a href="/blog/tags/API-Cost/" class="tag-pill tag-pill--sm">API Cost</a>
             
           </div>
         
@@ -211,7 +211,7 @@
 
 <p>Search results for DeepSeek API pricing disagree with each other right now, and the disagreement is not cosmetic. DeepSeek changed two things in the past month: on <strong>August 16, 2026</strong> it moved to peak and off-peak billing with off-peak at half the peak rate, and on <strong>September 10, 2026</strong> it shipped DeepSeek-V4.1-Flash, retired the previous Flash generation, and cut API prices again (<a target="_blank" rel="noopener nofollow" href="https://api-docs.deepseek.com/updates">DeepSeek API changelog</a>). Pages updated in between quote numbers that were correct when they were written and are not on the rate card today.</p>
 <p>So this guide does one thing: it sets the current card down with a capture date on every figure, then adds what most pricing posts leave out — how to find out whether the caching discount you were promised actually landed on your bill. Every number below was read from first-party pages on <strong>September 15, 2026</strong>, not from a planning document. We run Modellix, an API gateway that carries DeepSeek models, so we have a commercial interest in the gateway rows further down; where our listed figure and DeepSeek’s differ, both are printed.</p>
-<h2 id="DeepSeek-API-pricing-as-of-September-15-2026"><a href="#DeepSeek-API-pricing-as-of-September-15-2026" class="headerlink" title="DeepSeek API pricing as of September 15, 2026"></a>DeepSeek API pricing as of September 15, 2026</h2><p>DeepSeek’s own pricing page now lists <strong>two model rows</strong> — <code>deepseek-flash</code> (DeepSeek-V4.1-Flash) and <code>deepseek-v4-pro</code> (DeepSeek-V4-Pro-0813) — and each row carries <strong>two prices</strong>, because billing is split by time of day. All figures are USD per 1 million tokens, captured September 15, 2026:</p>
+<h2 id="DeepSeek-API-pricing"><a href="#DeepSeek-API-pricing" class="headerlink" title="DeepSeek API pricing"></a>DeepSeek API pricing</h2><p>DeepSeek’s own pricing page now lists <strong>two model rows</strong> — <code>deepseek-flash</code> (DeepSeek-V4.1-Flash) and <code>deepseek-v4-pro</code> (DeepSeek-V4-Pro-0813) — and each row carries <strong>two prices</strong>, because billing is split by time of day. All figures are USD per 1 million tokens, captured September 15, 2026:</p>
 <table>
 <thead>
 <tr>
@@ -302,7 +302,7 @@
 <p>A fourth column on that page lists <strong>cached writes</strong>, and for all four DeepSeek rows it reads exactly <strong>$0</strong>. The page’s own documentation does not say whether that means cache writes are not charged or not supported — so neither will we; that column is the one figure on the table we cannot explain, and it should be verified with the provider before it is planned around. The <strong>Discount</strong> column is the second thing to read carefully: <code>deepseek-v4-flash</code> and <code>deepseek-v4-pro</code> show <strong>10% OFF</strong>, while <code>deepseek-v4-flash-vision</code> and <code>deepseek-v4.1-flash</code> show a literal <code>—</code>, which means the billed figure equals the list figure. Two rows have a discount, two do not. On the rows that do not, the gateway price is the vendor price.</p>
 <h3 id="Where-the-two-cards-agree-and-the-one-cent-where-they-do-not"><a href="#Where-the-two-cards-agree-and-the-one-cent-where-they-do-not" class="headerlink" title="Where the two cards agree, and the one cent where they do not"></a>Where the two cards agree, and the one cent where they do not</h3><p>Line the tables up and the reconciliation is exact on the newest row. Modellix’s <code>deepseek/deepseek-v4.1-flash</code> figures — <strong>$0.30 input, $1.20 output, $0.006 cached read</strong> — match DeepSeek’s <strong>peak</strong> numbers for <code>deepseek-flash</code> to the cent: $0.30 cache-miss input, $1.20 output, $0.006 cache-hit input. On <code>deepseek/deepseek-v4-pro</code> the output ($3.96) and cache-read ($0.044) figures also match DeepSeek’s peak row exactly, while the listed <strong>input figure is one cent higher — $1.33 against DeepSeek’s published $1.32</strong>.</p>
 <p>The two older rows have no counterpart on DeepSeek’s card at all, because the pricing page no longer lists them: <code>deepseek-v4-flash</code> and its vision variant were retired on September 10 and now route to V4.1-Flash upstream, while the gateway catalog keeps a separate row and a separate rate for each name. Which upstream model the gateway’s older-name row is served by is not stated on either page, and a request log can answer it — the log names the model that actually served each call, which is the last section of this guide. Whether to move production from the older Flash name to V4.1-Flash is a separate decision about model choice, not about pricing, and this guide does not make it.</p>
-<p>There is also a one-line note worth having while reading either table: the gateway page lists the stable alias <code>~deepseek/deepseek-flash-latest</code>, and as of September 15, 2026 it routes to <code>deepseek/deepseek-v4.1-flash</code> — so a client calling the alias is billed at that row’s rate, not the older Flash row’s.</p>
+<p>There is also a one-line note worth having while reading either table: the gateway page lists the stable alias <code>~deepseek/deepseek-flash-latest</code>, and it routes to <code>deepseek/deepseek-v4.1-flash</code> — so a client calling the alias is billed at that row’s rate, not the older Flash row’s.</p>
 <h2 id="Why-the-DeepSeek-pricing-you-read-elsewhere-does-not-match"><a href="#Why-the-DeepSeek-pricing-you-read-elsewhere-does-not-match" class="headerlink" title="Why the DeepSeek pricing you read elsewhere does not match"></a>Why the DeepSeek pricing you read elsewhere does not match</h2><p>Three separate changes explain almost every stale number in circulation, and all three are dated on DeepSeek’s own changelog:</p>
 <ul>
 <li><strong>April 24, 2026</strong> — the V4 generation arrives, and DeepSeek announces that the two legacy names <code>deepseek-chat</code> and <code>deepseek-reasoner</code> will be discontinued in three months. That deadline passed on <strong>July 24, 2026</strong>.</li>
@@ -359,8 +359,6 @@
 <p>From the request log. <code>GET /v1/logs</code> returns each request’s <code>prompt_tokens</code>, <code>cached_tokens</code> and <code>cost</code>, and <code>model.model_name</code> names the model that served it — which is how you confirm a legacy model name or a stable alias resolved to the row you expected. Divide <code>cost</code> by 10,000 for dollars.</p>
 <p><strong>What does the $0 in the Cached Write column mean?</strong></p>
 <p>Only what it says: the column shows $0 for DeepSeek rows. The documentation does not state whether cache writes are unsupported or simply not charged, so do not treat the $0 as a confirmed rate. DeepSeek’s own card has no cache-write line to cross-check against — it prices cache hits and cache misses and nothing else on the input side.</p>
-<hr>
-<p><em>Pricing, model availability and rate cards change without notice. Every figure in this guide was captured on September 15, 2026 from <a target="_blank" rel="noopener nofollow" href="https://api-docs.deepseek.com/quick_start/pricing/">DeepSeek’s Models &amp; Pricing page</a>, the <a target="_blank" rel="noopener nofollow" href="https://api-docs.deepseek.com/updates">DeepSeek API changelog</a>, the <a href="https://www.modellix.ai/llm">Modellix LLM price page</a>, and the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/llm/get-llm-logs">Modellix Get LLM logs reference</a>; a full 28-model snapshot of the same catalog as it stood on September 3, 2026 is available in our <a href="https://www.modellix.ai/blog/llm-api-pricing-comparison/">cross-vendor LLM API pricing comparison</a>, and the catalog has grown since. DeepSeek rate cards have moved twice in the past month, so verify current figures against the live sources before committing spend. Modellix is an API aggregator with a commercial interest in the gateway rows above and is not affiliated with DeepSeek; for two of the four DeepSeek rows its billed price equals the vendor’s peak rate. Calling a model through DeepSeek Harness and setting the model string is covered in its own guide.</em></p>
 
         </div>
 
@@ -373,9 +371,9 @@
             
               <a href="/blog/tags/DeepSeek/" class="tag-pill tag-pill--sm">DeepSeek</a>
             
-              <a href="/blog/tags/API-Cost/" class="tag-pill tag-pill--sm">API Cost</a>
-            
               <a href="/blog/tags/Cache/" class="tag-pill tag-pill--sm">Cache</a>
+            
+              <a href="/blog/tags/API-Cost/" class="tag-pill tag-pill--sm">API Cost</a>
             
           
         </div>

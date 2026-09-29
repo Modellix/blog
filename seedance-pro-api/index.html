@@ -165,13 +165,13 @@
         
           <div class="post-header-tags">
             
+              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
+            
               <a href="/blog/tags/api-integration/" class="tag-pill tag-pill--sm">API Integration</a>
             
               <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
             
               <a href="/blog/tags/seedance/" class="tag-pill tag-pill--sm">Seedance</a>
-            
-              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
             
               <a href="/blog/tags/bytedance/" class="tag-pill tag-pill--sm">ByteDance</a>
             
@@ -215,7 +215,7 @@
 </picture>
 
 <p><strong>What is the Seedance Pro API?</strong> The Seedance Pro API is ByteDance’s programmatic interface to its Pro-tier video generation models (Seedance 1.0 Pro and 1.5 Pro), available through the official BytePlus ModelArk cloud or third-party aggregators. It supports text-to-video and image-to-video with async task submission and polling.</p>
-<p>Search for “seedance pro api” and you’ll get eleven model pages from eleven platforms, each showing its own parameters and its own price per second. What none of them tell you is that there are two fundamentally different ways to reach ByteDance’s Seedance Pro models — the official cloud (Volcengine Ark domestically, BytePlus ModelArk internationally) and aggregator platforms — and they don’t share a billing unit, an activation process, or an endpoint shape. The official route charges per token and asks you to activate models; aggregators charge per second of output and hand you a key in minutes. This guide gives you both paths with real endpoints, real code, and a side-by-side cost comparison, current as of August 2026.</p>
+<p>Search for “seedance pro api” and you’ll get eleven model pages from eleven platforms, each showing its own parameters and its own price per second. What none of them tell you is that there are two fundamentally different ways to reach ByteDance’s Seedance Pro models — the official cloud (Volcengine Ark domestically, BytePlus ModelArk internationally) and aggregator platforms — and they don’t share a billing unit, an activation process, or an endpoint shape. The official route charges per token and asks you to activate models; aggregators charge per second of output and hand you a key in minutes. This guide gives you both paths with real endpoints, real code, and a side-by-side cost comparison,.</p>
 <h2 id="What-“Pro”-Means-in-ByteDance’s-Seedance-Lineup"><a href="#What-“Pro”-Means-in-ByteDance’s-Seedance-Lineup" class="headerlink" title="What “Pro” Means in ByteDance’s Seedance Lineup"></a>What “Pro” Means in ByteDance’s Seedance Lineup</h2><p>Seedance Pro is not one model — it’s a tier inside a family. ByteDance’s official naming breaks down as:</p>
 <ul>
 <li><strong>Seedance 1.0 Pro</strong> — the multi-shot generation model that made Seedance a name: text-to-video and image-to-video (including first-and-last-frame control), up to 1080p, with strong prompt adherence and multi-shot scene consistency.</li>
@@ -361,7 +361,7 @@
 *Figure: the submit → poll → retrieve state machine shared by both the official BytePlus ModelArk API and aggregator endpoints.*
 
 <h2 id="Seedance-Pro-Pricing-Token-Billing-vs-Per-Second-Rates"><a href="#Seedance-Pro-Pricing-Token-Billing-vs-Per-Second-Rates" class="headerlink" title="Seedance Pro Pricing: Token Billing vs Per-Second Rates"></a>Seedance Pro Pricing: Token Billing vs Per-Second Rates</h2><p>Here’s where most comparisons go wrong, and why you can’t just compare two price cards. The official route bills in <strong>tokens</strong>; aggregators bill in <strong>dollars per second of generated video</strong>. Those units don’t convert by a fixed ratio — token consumption depends on resolution, duration, and (for 1.5 Pro) whether audio is generated.</p>
-<p><strong>Official token pricing</strong> (from the <a target="_blank" rel="noopener nofollow" href="https://docs.byteplus.com/en/docs/ModelArk/1544106">BytePlus billing page</a>, current as of August 2026):</p>
+<p><strong>Official token pricing</strong> (from the <a target="_blank" rel="noopener nofollow" href="https://docs.byteplus.com/en/docs/ModelArk/1544106">BytePlus billing page</a>, current):</p>
 <table>
 <thead>
 <tr>
@@ -425,7 +425,7 @@
 <li><strong>Modellix</strong>: 5 s × $0.0598&#x2F;s &#x3D; <strong>$0.299 per job</strong> (flat, predictable).</li>
 <li><strong>Official</strong>: token estimate ≈ (0 + 5) × 1280 × 720 × 24 &#x2F; 1024 ≈ 108,000 tokens, × 1.2 (silent, upper tier) ≈ 129,600 → priced in their token billing; the exact dollar figure depends on the tier mapping on the <a target="_blank" rel="noopener nofollow" href="https://docs.byteplus.com/en/docs/ModelArk/1544106">billing page</a>.</li>
 </ul>
-<p>Honest caveat: we’re not going to declare a flat “which is cheaper” winner, because the official token math depends on the tier mapping and your input mix, and it rewards volume in ways a per-second card can’t show. What we can say: aggregator pricing is predictable per job and includes no activation barrier; official pricing can beat it at scale if you’re generating constantly, especially for silent 480p&#x2F;720p work. Model both against your actual duration mix before committing — and re-check the billing pages, because ByteDance rotates pricing (the 2.0 mini&#x2F;fast models are on limited-time discounts as of August 2026).</p>
+<p>Honest caveat: we’re not going to declare a flat “which is cheaper” winner, because the official token math depends on the tier mapping and your input mix, and it rewards volume in ways a per-second card can’t show. What we can say: aggregator pricing is predictable per job and includes no activation barrier; official pricing can beat it at scale if you’re generating constantly, especially for silent 480p&#x2F;720p work. Model both against your actual duration mix before committing — and re-check the billing pages, because ByteDance rotates pricing (the 2.0 mini&#x2F;fast models are on limited-time discounts).</p>
 <h2 id="Seedance-1-0-Pro-vs-1-5-Pro-Which-to-Integrate"><a href="#Seedance-1-0-Pro-vs-1-5-Pro-Which-to-Integrate" class="headerlink" title="Seedance 1.0 Pro vs 1.5 Pro: Which to Integrate"></a>Seedance 1.0 Pro vs 1.5 Pro: Which to Integrate</h2><p>Three questions decide it:</p>
 <ol>
 <li><strong>Do you need generated audio?</strong> If the output must include speech, effects, or ambient sound, 1.5 Pro is the only Pro-tier answer — it’s the joint audio-video model. If you handle audio separately (TTS, music beds), 1.0 Pro keeps the pipeline simpler — there’s no audio branch to manage — but it isn’t the cheaper pick: at comparable settings, 1.5 Pro silent is cheaper on both routes (official silent unit price 1.2 vs 1.0 Pro’s 1.25; on Modellix, 1.5 Pro T2V at 480p is $0.0276&#x2F;s vs 1.0 Pro’s $0.0345&#x2F;s).</li>
@@ -454,13 +454,13 @@
         <div class="post-tags-bottom">
           
             
+              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
+            
               <a href="/blog/tags/api-integration/" class="tag-pill tag-pill--sm">API Integration</a>
             
               <a href="/blog/tags/API-Guide/" class="tag-pill tag-pill--sm">API Guide</a>
             
               <a href="/blog/tags/seedance/" class="tag-pill tag-pill--sm">Seedance</a>
-            
-              <a href="/blog/tags/developer-guide/" class="tag-pill tag-pill--sm">Developer Guide</a>
             
               <a href="/blog/tags/bytedance/" class="tag-pill tag-pill--sm">ByteDance</a>
             
