@@ -296,6 +296,78 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // Model showcase: play videos only while visible; one unmuted at a time; copy prompt
+  var showcaseVideos = document.querySelectorAll('.model-showcase .ms-video');
+  if (showcaseVideos.length) {
+    if ('IntersectionObserver' in window) {
+      var showcaseObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var v = entry.target;
+          if (entry.isIntersecting) {
+            var p = v.play();
+            if (p && p.catch) p.catch(function () {});
+          } else {
+            v.pause();
+          }
+        });
+      }, { threshold: 0.35 });
+      showcaseVideos.forEach(function (v) { showcaseObserver.observe(v); });
+    }
+    document.querySelectorAll('.model-showcase .ms-sound').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var video = btn.parentElement.querySelector('.ms-video');
+        var unmute = video.muted;
+        showcaseVideos.forEach(function (other) {
+          other.muted = true;
+          var b = other.parentElement.querySelector('.ms-sound');
+          if (b) { b.innerHTML = '<i data-lucide="volume-x"></i>'; b.setAttribute('aria-label', 'Unmute video'); }
+        });
+        video.muted = !unmute;
+        if (unmute) {
+          var p = video.play();
+          if (p && p.catch) p.catch(function () {});
+          btn.innerHTML = '<i data-lucide="volume-2"></i>';
+          btn.setAttribute('aria-label', 'Mute video');
+        }
+        if (window.lucide) lucide.createIcons();
+      });
+    });
+  }
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).catch(function () { return legacyCopy(text); });
+    }
+    return legacyCopy(text);
+  }
+  function legacyCopy(text) {
+    return new Promise(function (resolve, reject) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+      document.body.removeChild(ta);
+      ok ? resolve() : reject();
+    });
+  }
+  document.querySelectorAll('.model-showcase .ms-copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      copyText(btn.getAttribute('data-prompt')).then(function () {
+        var label = btn.querySelector('span');
+        btn.classList.add('is-copied');
+        if (label) label.textContent = 'Copied';
+        setTimeout(function () {
+          btn.classList.remove('is-copied');
+          if (label) label.textContent = 'Copy Prompt';
+        }, 1800);
+      });
+    });
+  });
+
   // Table of contents
   var toc = document.getElementById('post-toc');
   if (toc) {
