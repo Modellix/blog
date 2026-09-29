@@ -281,6 +281,21 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // Prompt cards (```prompt): copy button only
+  document.querySelectorAll('.post-content pre.prompt-block').forEach(function (pre) {
+    var text = pre.textContent;
+    var btn = document.createElement('button');
+    btn.className = 'code-copy-btn';
+    btn.setAttribute('aria-label', 'Copy prompt');
+    btn.innerHTML = '<i data-lucide="clipboard"></i>';
+    pre.appendChild(btn);
+    btn.addEventListener('click', function () {
+      navigator.clipboard.writeText(text).then(function () {
+        swapIcon(btn, 'check', 'clipboard', 'is-copied');
+      });
+    });
+  });
+
   // Table of contents
   var toc = document.getElementById('post-toc');
   if (toc) {

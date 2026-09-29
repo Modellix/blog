@@ -243,10 +243,17 @@
 .post-content figure.highlight {
   position: relative;
   margin: 1.5em 0;
-  border-radius: var(--radius-md);
+  padding-top: 36px;
+  border-radius: 10px;
   overflow: hidden;
-  background: var(--color-bg-dark);
-  border: none;
+  background: #12141c;
+  border: 1px solid #262a36;
+  box-shadow: 0 10px 28px rgba(17, 24, 39, 0.10);
+}
+
+/* 只有一行的代码块不显示行号 */
+.post-content figure.highlight:not(:has(.gutter .line ~ .line)) .gutter {
+  display: none;
 }
 
 .post-content figure.highlight pre {
@@ -269,28 +276,30 @@
 }
 
 .post-content figure.highlight .gutter {
-  width: 40px;
-  background: rgba(255, 255, 255, 0.04);
-  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  width: 36px;
+  background: none;
+  border-right: none;
   user-select: none;
 }
 
 .post-content figure.highlight .gutter pre {
-  padding: 16px 10px;
+  padding: 16px 0 18px 12px;
   text-align: right;
-  color: rgba(255, 255, 255, 0.25);
-  font-size: 0.8rem;
-  line-height: 1.65;
+  color: #454b60;
+  font-size: 0.86rem;
+  line-height: 1.7;
   background: none;
 }
 
 .post-content figure.highlight .code pre {
-  padding: 16px 20px;
-  color: #e2e8f0;
-  font-size: 0.85rem;
-  line-height: 1.65;
+  padding: 16px 20px 18px;
+  color: #e4e7ef;
+  font-size: 0.86rem;
+  line-height: 1.7;
   background: none;
   overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #3a3f52 transparent;
 }
 
 .post-content figure.highlight .line {
@@ -303,22 +312,43 @@
 }
 
 .post-content figure.highlight.text .code pre {
-  padding-right: 88px;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
   overflow-x: visible;
 }
 
-/* Code block toolbar */
+/* Code block toolbar：通栏顶栏，语言在左、复制在右，不再压住第一行代码 */
 .code-toolbar {
   position: absolute;
   top: 0;
+  left: 0;
   right: 0;
+  height: 36px;
   display: flex;
   align-items: center;
-  gap: 2px;
-  padding: 6px 8px;
+  justify-content: space-between;
+  padding: 0 6px 0 16px;
+  background: #181b25;
+  border-bottom: 1px solid #262a36;
   z-index: 1;
+}
+
+.code-toolbar .code-lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  color: #9aa0b5;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.code-toolbar .code-lang::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #7c73ff;
 }
 
 .code-lang {
@@ -1117,4 +1147,45 @@
 @keyframes image-lightbox-zoom-in {
   from { opacity: 0; transform: scale(0.96); }
   to { opacity: 1; transform: scale(1); }
+}
+
+/* Prompt 卡片（```prompt）：给读者复制给 AI 的自然语言，浅色、正文字体、自动换行 */
+.post-content pre.prompt-block {
+  position: relative;
+  margin: 1.5em 0;
+  padding: 44px 20px 18px;
+  background: #F8F7FF;
+  border: 1px solid #E4E1FF;
+  border-left: 4px solid #5145D8;
+  border-radius: 10px;
+  color: #1F2937;
+  font-family: inherit;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.post-content pre.prompt-block::before {
+  content: 'Prompt';
+  position: absolute;
+  top: 12px;
+  left: 20px;
+  color: #5145D8;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.post-content pre.prompt-block .code-copy-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  color: #6B7280;
+}
+
+.post-content pre.prompt-block .code-copy-btn:hover {
+  color: #5145D8;
+  background: #EFEDFF;
 }
