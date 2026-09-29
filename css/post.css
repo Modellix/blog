@@ -297,6 +297,18 @@
   height: auto;
 }
 
+/* 纯文本块（如给 agent 的 prompt）：自动换行、不显示行号，读者不用横向滚动 */
+.post-content figure.highlight.text .gutter {
+  display: none;
+}
+
+.post-content figure.highlight.text .code pre {
+  padding-right: 88px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  overflow-x: visible;
+}
+
 /* Code block toolbar */
 .code-toolbar {
   position: absolute;
@@ -775,14 +787,16 @@
 
 .collection-cta--wide .collection-cta-media {
   min-height: 0;
-  height: clamp(250px, 36vw, 340px);
-  border-bottom: 1px solid #e6e8ee;
+  height: auto;
+  aspect-ratio: 12 / 5;
+  background: #111827;
 }
 
 .collection-cta--wide .collection-cta-media img {
   min-height: 0;
   aspect-ratio: auto;
-  padding: 18px 22px;
+  padding: 0;
+  object-fit: cover;
 }
 
 .collection-cta-content {
@@ -910,11 +924,7 @@
   }
 
   .collection-cta--wide .collection-cta-media {
-    height: clamp(210px, 58vw, 290px);
-  }
-
-  .collection-cta--wide .collection-cta-media img {
-    padding: 12px;
+    aspect-ratio: 16 / 9;
   }
 
   .collection-cta-content,
