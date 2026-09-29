@@ -324,61 +324,35 @@
 <section class="collection-cta collection-cta--wide" aria-labelledby="collection-cta-image-editing"><a class="collection-cta-media" href="https://www.modellix.ai/category/image-to-image" data-cta="collection_cta" data-cta-campaign="image-editing" aria-label="Open Test Image Editing Models on Real Assets"><img src="https://img.modellix.ai/en/article/seedream-character-consistency-demo.webp" alt="The same character kept consistent across studio, street, and cafe scenes" width="1672" height="941" style="object-position:center 78%;" loading="lazy" decoding="async" data-no-zoom></a><div class="collection-cta-content"><div class="collection-cta-copy"><p class="collection-cta-eyebrow"><i data-lucide="layers-3" aria-hidden="true"></i> Modellix collection</p><h3 id="collection-cta-image-editing" class="collection-cta-title">Test Image Editing Models on Real Assets</h3><p class="collection-cta-description">Compare instruction following, subject preservation, and production controls across image editing models.</p></div><div class="collection-cta-actions"><p class="collection-cta-models"><strong>Good first tests:</strong> <a href="https://www.modellix.ai/models/bytedance/seedream-5.0-pro-edit" data-cta="collection_cta" data-cta-campaign="image-editing">Seedream 5.0 Pro Edit</a><span aria-hidden="true">/</span><a href="https://www.modellix.ai/models/openai/gpt-image-2-edit" data-cta="collection_cta" data-cta-campaign="image-editing">GPT Image 2 Edit</a><span aria-hidden="true">/</span><a href="https://www.modellix.ai/models/google/nano-banana-2-lite-edit" data-cta="collection_cta" data-cta-campaign="image-editing">Nano Banana 2 Lite Edit</a></p><a class="collection-cta-button" href="https://www.modellix.ai/category/image-to-image" data-cta="collection_cta" data-cta-campaign="image-editing"><span>Explore the collection</span><i data-lucide="arrow-right" aria-hidden="true"></i></a></div></div></section>
 
 <!-- modellix-how-to-start -->
-<h2 id="How-to-Test-Image-Manipulation-on-Modellix"><a href="#How-to-Test-Image-Manipulation-on-Modellix" class="headerlink" title="How to Test Image Manipulation on Modellix"></a>How to Test Image Manipulation on Modellix</h2><p>Most users should test one real edit before writing integration code. Start in the Modellix Playground, verify preservation, change accuracy, cost, and output format, then move to API, Skill, or CLI only after the result is good enough to repeat.</p>
-<div style="border:1px solid #8B7CF6; background:#F8F7FF; border-radius:8px; padding:20px; margin:24px 0; box-sizing:border-box;">
-  <p style="margin:0 0 12px; color:#111827; font-weight:900;">Quick start guide</p>
-  <p style="margin:0 0 8px; color:#374151;"><strong>Playground:</strong> Browse the <a href="https://www.modellix.ai/models" target="_blank" rel="noopener noreferrer">image editing model catalog</a> and start with one representative asset.</p>
-  <p style="margin:0 0 8px; color:#374151;"><strong>API docs:</strong> Use the <a href="https://docs.modellix.ai/ways-to-use/api" target="_blank" rel="noopener noreferrer">API guide</a> for backend, product, and batch workflows.</p>
-  <p style="margin:0 0 8px; color:#374151;"><strong>Skill:</strong> Use the <a href="https://docs.modellix.ai/ways-to-use/skill" target="_blank" rel="noopener noreferrer">Modellix Skill</a> when an AI agent edits workspace media.</p>
-  <p style="margin:0; color:#374151;"><strong>CLI:</strong> Use the <a href="https://docs.modellix.ai/ways-to-use/cli" target="_blank" rel="noopener noreferrer">Modellix CLI</a> for terminal scripts and scheduled jobs.</p>
-</div>
-
-<p>The entry point is simple. The important part is using a test that reflects the real production risk.</p>
-<h3 id="Step-1-Create-an-Account-and-Add-Credit"><a href="#Step-1-Create-an-Account-and-Add-Credit" class="headerlink" title="Step 1: Create an Account and Add Credit"></a>Step 1: Create an Account and Add Credit</h3><p>Open the <a href="https://www.modellix.ai/console">Modellix console</a>. Add credit before testing. Choose one asset that represents the editing work your business expects to scale.</p>
+<h2 id="How-to-Test-an-Image-Editing-API-in-30-Seconds"><a href="#How-to-Test-an-Image-Editing-API-in-30-Seconds" class="headerlink" title="How to Test an Image Editing API in 30 Seconds"></a>How to Test an Image Editing API in 30 Seconds</h2><p>Every method starts with a Modellix account. Sign in with email, Google, or GitHub, add credit, and pay only for what you generate. There is no subscription.</p>
 <figure style="margin:20px 0;">
-  <picture style="aspect-ratio:1440 / 818; width:100%; max-width:1440px;">
-    <img width="1440" height="818" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="https://img.modellix.ai/en/article/modellix-login-free-credit.png" alt="Modellix sign in screen for creating an account before a funded model test" />
+  <picture style="aspect-ratio: 1440 / 818; width:100%; max-width:1440px;">
+    <img width="1440" height="818" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="https://img.modellix.ai/en/article/modellix-login-free-credit.png" alt="Modellix sign-in screen with email, Google, and GitHub options" />
   </picture>
-  <figcaption style="font-size:13px; color:#64748B; margin-top:6px;">Sign in before the first edit so credit use, billing, and request history are visible during evaluation.</figcaption>
 </figure>
 
-<h3 id="Step-2-Open-an-Editing-Model-and-Run-One-Prompt"><a href="#Step-2-Open-an-Editing-Model-and-Run-One-Prompt" class="headerlink" title="Step 2: Open an Editing Model and Run One Prompt"></a>Step 2: Open an Editing Model and Run One Prompt</h3><p>Use the model catalog to compare an editing endpoint such as Seedream, Nano Banana, or Qwen. Upload a clean source image and write one instruction that separates protected elements from the requested change.</p>
-<figure style="margin:20px 0;">
-  <picture style="aspect-ratio:1440 / 735; width:100%; max-width:1440px;">
-    <img width="1440" height="735" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="https://img.modellix.ai/en/article/modellix-dashboard-free-credit.png" alt="Modellix dashboard with model shortcuts, account balance, API key, documentation, Skill, and CLI access" />
-  </picture>
-  <figcaption style="font-size:13px; color:#64748B; margin-top:6px;">Open an image editing model from the dashboard and complete one manual Playground test before integration.</figcaption>
-</figure>
+<p style="margin:0 0 28px;"><a href="https://www.modellix.ai/console/login" data-cta="signup" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding:10px 16px; border-radius:7px; font-weight:900; text-decoration:none; background:#111827; color:#FFFFFF;">Create your Modellix account &rarr;</a></p>
 
-<h3 id="Step-3-Optimize-the-Prompt-and-Review-the-Output"><a href="#Step-3-Optimize-the-Prompt-and-Review-the-Output" class="headerlink" title="Step 3: Optimize the Prompt and Review the Output"></a>Step 3: Optimize the Prompt and Review the Output</h3><p>Use Prompt Enhance when more visual detail is needed. Review the result side by side with the source. Check identity, labels, geometry, edges, shadows, color, and unintended changes outside the edit area.</p>
-<figure style="margin:20px 0;">
-  <picture style="aspect-ratio:1556 / 1011; width:100%; max-width:1556px;">
-    <img width="1556" height="1011" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="https://img.modellix.ai/en/article/seedream-overview.png" alt="Seedream image editing examples showing before and after furniture replacement plus multi-image fusion" />
-  </picture>
-  <figcaption style="font-size:13px; color:#64748B; margin-top:6px;">Compare the source and edited result closely, including protected objects, text, geometry, and changes outside the requested area.</figcaption>
-</figure>
+<h3 id="Method-1-Playground"><a href="#Method-1-Playground" class="headerlink" title="Method 1: Playground"></a>Method 1: Playground</h3><p>No code. Open the <a href="https://www.modellix.ai/models/google/nano-banana-2-edit">Nano Banana 2 Edit model page</a>, paste a prompt, and review the result in your browser.</p>
+<picture style="display: block; aspect-ratio: 1440 / 745; width: 100%; max-width: 1440px;">
+  <source type="image/webp" srcset="https://img.modellix.ai/en/article/vidu-q3-mix-r2v-result.webp" />
+  <img width="1440" height="745" style="display: block; width: 100%; height: auto; border:1px solid #E5E7EB; border-radius:8px;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/vidu-q3-mix-r2v-result.png" alt="Generated result preview in the Modellix Playground" />
+</picture>
 
-<h3 id="Step-4-Create-an-API-Key-Only-When-the-Test-Needs-to-Repeat"><a href="#Step-4-Create-an-API-Key-Only-When-the-Test-Needs-to-Repeat" class="headerlink" title="Step 4: Create an API Key Only When the Test Needs to Repeat"></a>Step 4: Create an API Key Only When the Test Needs to Repeat</h3><p>Once one model and prompt pass review, create an API key for repeated jobs. Keep it on the server and preserve the validated prompt as a versioned template.</p>
-<figure style="margin:20px 0;">
-  <picture style="aspect-ratio:1440 / 744; width:100%; max-width:1440px;">
-    <img width="1440" height="744" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="https://img.modellix.ai/en/article/modellix-create-api-key.png" alt="Modellix create API key dialog for repeated image editing, product, batch, agent, and CLI workflows" />
-  </picture>
-  <figcaption style="font-size:13px; color:#64748B; margin-top:6px;">Create the API key after the source and edited output pass the preservation and change review.</figcaption>
-</figure>
+<h3 id="Method-2-API-Through-Your-Coding-Agent"><a href="#Method-2-API-Through-Your-Coding-Agent" class="headerlink" title="Method 2: API, Through Your Coding Agent"></a>Method 2: API, Through Your Coding Agent</h3><p>Paste this into Claude Code, Codex, or Cursor. <span style="display:inline; padding:2px 6px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800; -webkit-box-decoration-break:clone; box-decoration-break:clone;">One sentence and one API key are all your agent needs</span>: change the model name and docs link, and the same prompt batch-generates assets with any model on Modellix.</p>
+<pre class="prompt-block">My Modellix API key is mdlx-••••••••••••••••••••••••. Read https://docs.modellix.ai/get-started/index.md and https://docs.modellix.ai/google/nano-banana-2-edit.md, then use Nano Banana 2 Edit to generate one edited version of each image in ./inputs, following the instruction in prompt.txt. Poll each task until it finishes and save the edited images to ./outputs.</pre>
 
-<h3 id="Step-5-Check-Logs-and-Save-the-Result-Before-Scaling"><a href="#Step-5-Check-Logs-and-Save-the-Result-Before-Scaling" class="headerlink" title="Step 5: Check Logs and Save the Result Before Scaling"></a>Step 5: Check Logs and Save the Result Before Scaling</h3><p>Review request history, model ID, task status, cost, and result. Save the approved image to durable storage, then increase batch size gradually.</p>
-<figure style="margin:20px 0;">
-  <picture style="aspect-ratio:1440 / 743; width:100%; max-width:1440px;">
-    <img width="1440" height="743" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="https://img.modellix.ai/en/article/modellix-request-history.png" alt="Modellix request history showing editing model slugs, API key names, task status, request time, and result retention" />
-  </picture>
-  <figcaption style="font-size:13px; color:#64748B; margin-top:6px;">Verify task status and model details in request history, then save the approved edit before its result URL expires.</figcaption>
-</figure>
+<p>Swap the masked key for your own from the <a href="https://www.modellix.ai/console/api-key">Modellix console</a>. Treat it like a password and share it only with agents you trust. The <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=article_link&utm_campaign=image-manipulation-api-guide">API guide</a> covers the raw request format.</p>
+<h3 id="Method-3-Skill"><a href="#Method-3-Skill" class="headerlink" title="Method 3: Skill"></a>Method 3: Skill</h3><p>Install the Modellix skill once. After that, your agent finds the right model and request fields by itself.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx skills add https://github.com/Modellix/modellix-plugin --skill modellix</span><br></pre></td></tr></table></figure>
 
-<h3 id="Try-Image-Editing-Next"><a href="#Try-Image-Editing-Next" class="headerlink" title="Try Image Editing Next"></a>Try Image Editing Next</h3><div style="border:1px solid #8B7CF6; background:#F8F7FF; border-radius:8px; padding:20px; margin:24px 0; box-sizing:border-box;">
-  <p style="margin:0 0 8px; color:#111827; font-weight:900;">Test the edit before you automate the catalog</p>
-  <p style="margin:0 0 14px; color:#374151; line-height:1.65;">Run one funded edit, check that protected elements remain intact, and create an API key only when the result is reliable enough to repeat.</p>
-  <a href="https://www.modellix.ai/models" target="_blank" rel="noopener noreferrer" style="display:inline-block; background:#6857F5; color:#FFFFFF; padding:10px 14px; border-radius:7px; font-weight:900; text-decoration:none;">Compare editing models</a>
-</div>
+<pre class="prompt-block">Use the Modellix skill to generate an edited image with Nano Banana 2 Edit, then download it to ./outputs.</pre>
+
+<p>Setup for each agent host is in the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/skill?utm_source=blog&utm_medium=article_link&utm_campaign=image-manipulation-api-guide">Skill guide</a>.</p>
+<h3 id="Method-4-CLI"><a href="#Method-4-CLI" class="headerlink" title="Method 4: CLI"></a>Method 4: CLI</h3><p>For scripts and scheduled jobs. One command submits the task, waits, and prints the result URL.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">npm install --global modellix-cli</span><br><span class="line"><span class="built_in">export</span> MODELLIX_API_KEY=<span class="string">&quot;your_api_key&quot;</span></span><br><span class="line"></span><br><span class="line">modellix-cli model run --model-slug google/nano-banana-2-edit \</span><br><span class="line">  --body <span class="string">&#x27;&#123;&quot;prompt&quot;:&quot;Replace the background with a clean white studio backdrop and keep the product unchanged&quot;,&quot;image&quot;:[&quot;https://example.com/your-image.jpg&quot;]&#125;&#x27;</span> \</span><br><span class="line">  --<span class="built_in">wait</span> --<span class="built_in">timeout</span> 15m --quiet</span><br></pre></td></tr></table></figure>
+
+<p>For batches, put one request per line in a JSONL file and run <code>modellix-cli model batch</code>. See the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/cli?utm_source=blog&utm_medium=article_link&utm_campaign=image-manipulation-api-guide">CLI guide</a>.</p>
 <!-- modellix-how-to-end -->
 
 <h2 id="Frequently-Asked-Questions-About-Image-Manipulation-APIs"><a href="#Frequently-Asked-Questions-About-Image-Manipulation-APIs" class="headerlink" title="Frequently Asked Questions About Image Manipulation APIs"></a>Frequently Asked Questions About Image Manipulation APIs</h2><h3 id="What-is-an-image-manipulation-API"><a href="#What-is-an-image-manipulation-API" class="headerlink" title="What is an image manipulation API?"></a>What is an image manipulation API?</h3><p>It is an API that changes an image through deterministic operations, generative editing, or both. Common jobs include resizing, compression, background replacement, object removal, style transfer, product variation, and localization.</p>
