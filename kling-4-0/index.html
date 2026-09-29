@@ -1,0 +1,571 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Production analytics start after the page load has settled. -->
+  <script>
+    (function (document, window) {
+      if (window.location.hostname !== 'www.modellix.ai') return;
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-4DECHYKQVT');
+
+      var loaded = false;
+      function appendScript(src, crossOrigin) {
+        var script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        if (crossOrigin) script.crossOrigin = crossOrigin;
+        document.head.appendChild(script);
+      }
+      function loadAnalytics() {
+        if (loaded) return;
+        loaded = true;
+        appendScript('https://www.googletagmanager.com/gtag/js?id=G-4DECHYKQVT');
+        appendScript('https://t.contentsquare.net/uxa/f39399cd2e27e.js', 'anonymous');
+        appendScript('https://app.rybbit.io/api/script.js?siteId=8a6874a918d7');
+      }
+      function scheduleAnalytics() {
+        window.setTimeout(function () {
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(loadAnalytics, { timeout: 3000 });
+          } else {
+            loadAnalytics();
+          }
+        }, 1500);
+      }
+
+      if (document.readyState === 'complete') scheduleAnalytics();
+      else window.addEventListener('load', scheduleAnalytics, { once: true });
+    })(document, window);
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kling 4.0: Release Date, Features &amp; What to Use Now</title>
+  <meta name="keywords" content="Kling 4.0, Kling 4, Kling 4.0 release date, Kling 4.0 features, Kling 4.0 vs Kling 3.0, Kling V3 API">
+  
+  <link rel="canonical" href="https://www.modellix.ai/blog/kling-4-0/">
+  
+  
+  <meta name="description" content="Kling 4.0 launches in October with native 30-second video, 4K HDR, and 15 multimodal references. See what is confirmed and which Kling models to use now.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kling 4.0: Release Date, Features &amp; What to Use Now">
+<meta property="og:url" content="https://www.modellix.ai/blog/kling-4-0/">
+<meta property="og:site_name" content="Modellix Blog">
+<meta property="og:description" content="Kling 4.0 launches in October with native 30-second video, 4K HDR, and 15 multimodal references. See what is confirmed and which Kling models to use now.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.modellix.ai/en/article/cover-kling-4-0.webp">
+<meta property="article:published_time" content="2026-09-29T04:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-29T04:00:00.000Z">
+<meta property="article:author" content="Alen Hu">
+<meta property="article:tag" content="AI Video">
+<meta property="article:tag" content="Kling">
+<meta property="article:tag" content="Video Generation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.modellix.ai/en/article/cover-kling-4-0.webp">
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},{"@type":"WebSite","name":"Modellix Blog","url":"https://www.modellix.ai/blog/","publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/"}},{"@type":"BlogPosting","headline":"Kling 4.0: Release Date, Features & What to Use Now","description":"Kling 4.0 launches in October with native 30-second video, 4K HDR, and 15 multimodal references. See what is confirmed and which Kling models to use now.","datePublished":"2026-09-29T04:00:00.000Z","dateModified":"2026-09-29T04:00:00.000Z","author":{"@type":"Organization","name":"Modellix Team","url":"https://www.modellix.ai/"},"publisher":{"@type":"Organization","name":"Modellix","url":"https://www.modellix.ai/","logo":{"@type":"ImageObject","url":"https://www.modellix.ai/blog/assets/public/logo.svg"}},"mainEntityOfPage":"https://www.modellix.ai/blog/kling-4-0/","image":"https://img.modellix.ai/en/article/cover-kling-4-0.webp"}]}</script>
+
+  <link rel="alternate" href="/blog/atom.xml" title="Modellix Blog" type="application/atom+xml"><link rel="alternate" href="/blog/rss2.xml" title="Modellix Blog" type="application/rss+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://img.modellix.ai" crossorigin>
+  <link rel="icon" href="/blog/assets/public/favicon.svg" type="image/svg+xml">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+    
+      <link rel="stylesheet" href="/blog/css/modellix.css?v=20260929">
+    
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-logo">
+      <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+    </a>
+    <nav class="header-nav">
+      
+        <a href="https://www.modellix.ai/" class="nav-link">Home</a>
+      
+        <a target="_blank" rel="noopener" href="https://docs.modellix.ai/get-started" class="nav-link">Documentation</a>
+      
+        <a href="https://www.modellix.ai/about" class="nav-link">About Us</a>
+      
+    </nav>
+    <div class="header-actions">
+      
+        <a href="https://www.modellix.ai/console" class="btn btn-secondary">Console</a>
+      
+      
+        <a href="https://www.modellix.ai/console/api-key" class="btn btn-primary">Get API Key</a>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main>
+    
+<div class="post-page">
+  <div class="section-container">
+    
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    
+      <li class="breadcrumb-item">
+        
+          <a href="/blog/" class="breadcrumb-link">Blog</a>
+        
+      </li>
+      
+        <li class="breadcrumb-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+      
+    
+      <li class="breadcrumb-item">
+        
+          <span class="breadcrumb-current">Kling 4.0: Release Date, Features &amp; What to Use Now</span>
+        
+      </li>
+      
+    
+  </ol>
+</nav>
+
+
+
+    <div class="post-header">
+      
+      <div class="post-header-meta">
+        
+          
+            <a href="/blog/categories/Guides/" class="category-tag category-tag--sm">Guides</a>
+          
+        
+      </div>
+      <h1 class="post-title">Kling 4.0: Release Date, Features &amp; What to Use Now</h1>
+      <div class="post-header-bottom">
+        <time class="post-date" datetime="2026-09-29T04:00:00.000Z">September 29, 2026</time>
+        
+          <div class="post-header-tags">
+            
+              <a href="/blog/tags/ai-video/" class="tag-pill tag-pill--sm">AI Video</a>
+            
+              <a href="/blog/tags/kling/" class="tag-pill tag-pill--sm">Kling</a>
+            
+              <a href="/blog/tags/video-generation/" class="tag-pill tag-pill--sm">Video Generation</a>
+            
+          </div>
+        
+      </div>
+    </div>
+
+    
+<div class="post-author-card">
+  
+    <img src="https://img.modellix.ai/en/article/modellix-blog-author-official-2x.webp" alt="Modellix Team" class="post-author-avatar">
+  
+  <div class="post-author-info">
+    <span class="post-author-name">Modellix Team</span>
+    
+      <span class="post-author-title">Official</span>
+    
+  </div>
+</div>
+
+
+    <div class="post-layout">
+      <article class="post-main">
+        
+        
+          <div class="post-cover">
+            <img src="https://img.modellix.ai/en/article/cover-kling-4-0.webp" alt="Kling 4.0: Release Date, Features &amp; What to Use Now" loading="eager" fetchpriority="high">
+          </div>
+        
+
+        
+          <div class="post-excerpt">
+            <div class="post-excerpt-label"><i data-lucide="sparkles"></i> <span>Summary</span></div>
+            <p>Kling 4.0 is coming in October with native 30-second generation, 4K HDR, stereo audio, and up to 15 multimodal references. Here is what Kling has confirmed, what is still unknown, and how to build on Kling V3 today.</p>
+          </div>
+        
+
+        <div class="post-content">
+          <p>Kling 4.0 is Kuaishou’s next flagship video model. Kling announced it on September 28, 2026: the full model arrives in October, and a lighter Kling 4.0 Flash is already open to Ultra Yearly subscribers in the Kling app.</p>
+<p>The headline change is length. Kling 4.0 generates <span style="display:inline; padding:2px 6px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800; -webkit-box-decoration-break:clone; box-decoration-break:clone;">native 30-second clips, twice Kling V3’s 15-second ceiling</span>, with 4K HDR output, stereo audio, and up to 15 multimodal references.</p>
+<p>There is no public API yet. Modellix will add Kling 4.0 once its API ships. Until then, the Kling V3 family covers most of the same work, and this page shows which route to use for what.</p>
+<h2 id="Kling-4-0-at-a-Glance"><a href="#Kling-4-0-at-a-Glance" class="headerlink" title="Kling 4.0 at a Glance"></a>Kling 4.0 at a Glance</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>Kling 4.0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Position</td>
+<td>Next Kling flagship after Kling V3; Flash is the lighter early-access tier</td>
+</tr>
+<tr>
+<td>Announced</td>
+<td>September 28, 2026</td>
+</tr>
+<tr>
+<td>Full release</td>
+<td>October 2026</td>
+</tr>
+<tr>
+<td>Available now</td>
+<td>Kling 4.0 Flash, for Ultra Yearly subscribers in the Kling app</td>
+</tr>
+<tr>
+<td>Clip length</td>
+<td>Native 30-second generation, plus video extension</td>
+</tr>
+<tr>
+<td>Output</td>
+<td>Up to 4K, 10-bit HDR</td>
+</tr>
+<tr>
+<td>Audio</td>
+<td>High-quality stereo, more accurate lip sync</td>
+</tr>
+<tr>
+<td>References</td>
+<td>Up to 15 multimodal references (“Omni Reference”)</td>
+</tr>
+<tr>
+<td>Shot control</td>
+<td>Up to 10 keyframes</td>
+</tr>
+<tr>
+<td>Languages</td>
+<td>Multiple languages, accents, and dialects</td>
+</tr>
+<tr>
+<td>API, pricing, model IDs</td>
+<td>Not published yet</td>
+</tr>
+</tbody></table>
+<p>Specs from Kling AI’s <a target="_blank" rel="noopener nofollow" href="https://x.com/Kling_ai/status/2104596718067257458">official announcement on X</a>.</p>
+<h2 id="Kling-4-0-vs-Kling-V3"><a href="#Kling-4-0-vs-Kling-V3" class="headerlink" title="Kling 4.0 vs Kling V3"></a>Kling 4.0 vs Kling V3</h2><p>Kling V3 is the current generation, and it is live on Modellix today. Here is how the announced 4.0 specs compare.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Kling V3 (on Modellix now)</th>
+<th>Kling 4.0 (announced)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Longest single clip</td>
+<td><span style="color:#9CA3AF;">15 s</span></td>
+<td><strong style="color:#5145D8;">30 s</strong> <span style="display:inline-block; margin-left:4px; padding:1px 7px; border-radius:10px; background:#E7F6EC; color:#15803D; font-size:12px; font-weight:800; line-height:1.6;">2x</span></td>
+</tr>
+<tr>
+<td>Resolution</td>
+<td>Up to 4K</td>
+<td>Up to 4K, 10-bit HDR</td>
+</tr>
+<tr>
+<td>Audio</td>
+<td>Native audio, on or off</td>
+<td>Stereo audio, more accurate lip sync</td>
+</tr>
+<tr>
+<td>References</td>
+<td>Image and video references on the V3 Omni routes</td>
+<td>Up to 15 multimodal references</td>
+</tr>
+<tr>
+<td>Shot control</td>
+<td>Multi-shot prompts, up to 6 shots</td>
+<td>Up to 10 keyframes</td>
+</tr>
+<tr>
+<td>Extending a clip</td>
+<td>Separate generations</td>
+<td>Built-in video extension</td>
+</tr>
+</tbody></table>
+<p>The two changes that matter most are length and references. A 30-second native shot removes most of the stitching that short-drama and ad teams do today. Fifteen references make it easier to keep one character, product, or set consistent across a series.</p>
+<p>The V3 column comes from the Modellix model docs for <code>kling/kling-v3-t2v</code> and the V3 Omni routes. For V3 prices by resolution and duration, see our <a href="https://www.modellix.ai/blog/kling-3-0-cost/">Kling 3.0 cost breakdown</a>.</p>
+<h2 id="Kling-4-0-Release-Date-and-Access"><a href="#Kling-4-0-Release-Date-and-Access" class="headerlink" title="Kling 4.0 Release Date and Access"></a>Kling 4.0 Release Date and Access</h2><p>Kling says the full model launches in October 2026. The exact day has not been announced.</p>
+<p>Kling 4.0 Flash went live the same day as the announcement, but only for Ultra Yearly subscribers in the Kling app. Kling has not announced API access for Flash.</p>
+<p>Three things are still unpublished: API access, per-second pricing, and model IDs. <span style="display:inline; padding:2px 6px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800; -webkit-box-decoration-break:clone; box-decoration-break:clone;">Keep duration, resolution, and audio configurable in your code</span>, so the 4.0 limits can slot in without a rewrite.</p>
+<h2 id="What-to-Use-Before-Kling-4-0-Ships"><a href="#What-to-Use-Before-Kling-4-0-Ships" class="headerlink" title="What to Use Before Kling 4.0 Ships"></a>What to Use Before Kling 4.0 Ships</h2><p>Each headline 4.0 feature already has a live route you can build on today.</p>
+<table>
+<thead>
+<tr>
+<th>If you need…</th>
+<th>Use now on Modellix</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Cinematic text-to-video with sound, up to 4K</td>
+<td><a href="https://www.modellix.ai/models/kling/kling-v3-t2v">Kling V3 T2V</a></td>
+<td>3 to 15 s, native audio, multi-shot prompts</td>
+</tr>
+<tr>
+<td>Fast, lower-cost drafts</td>
+<td><a href="https://www.modellix.ai/models/kling/kling-v3-turbo-t2v">Kling V3 Turbo T2V</a></td>
+<td>Cheaper per second, 1080p</td>
+</tr>
+<tr>
+<td>Consistent characters, reference images, or editing existing footage</td>
+<td><a href="https://www.modellix.ai/models/kling/kling-v3-omni-video">Kling V3 Omni</a></td>
+<td>Image and video references, video-to-video edits</td>
+</tr>
+<tr>
+<td>One continuous 30-second shot</td>
+<td><a href="https://www.modellix.ai/models/bytedance/seedance-2.5-t2v">Seedance 2.5 T2V</a> or <a href="https://www.modellix.ai/models/alibaba/wan3.0-t2v">Wan 3.0 T2V</a></td>
+<td>Both publish a 30-second ceiling today</td>
+</tr>
+<tr>
+<td>A premium 8-second baseline</td>
+<td><a href="https://www.modellix.ai/models/google/veo-3.1-t2v">Veo 3.1</a></td>
+<td>4K at 8 s, native audio</td>
+</tr>
+</tbody></table>
+<p>For a wider comparison of live video routes, see our guide to the <a href="https://www.modellix.ai/blog/best-ai-video-generation-apis/">best AI video generation APIs</a>.</p>
+<h2 id="What-Can-You-Build-with-Kling"><a href="#What-Can-You-Build-with-Kling" class="headerlink" title="What Can You Build with Kling"></a>What Can You Build with Kling</h2><p>Kling 4.0’s feature list reads like a brief for serialized video. These are the products it will make easier, and the ones you can start on Kling V3 now.</p>
+<ul>
+<li><strong>AI short-drama and anime series.</strong> Episodes with a recurring character. V3 handles 15-second scenes today; 4.0 doubles the scene length and adds keyframes for tighter storyboards.</li>
+<li><strong>Product ads from brand assets.</strong> Packshots and lifestyle photos as references, turned into short spots. V3 Omni takes references now; 4.0 raises the limit to 15.</li>
+<li><strong>Localized ad variants.</strong> One concept voiced in several languages. 4.0 adds accents and dialects to native audio.</li>
+<li><strong>Talking-character clips.</strong> Mascots or presenters with lip sync, where V3 Turbo is the fast, cheaper draft route.</li>
+</ul>
+<h3 id="What-we-saw-in-a-small-test"><a href="#What-we-saw-in-a-small-test" class="headerlink" title="What we saw in a small test"></a>What we saw in a small test</h3><p>We sent one short anime-drama prompt to Kling V3 T2V and Kling V3 Turbo T2V through the Modellix API: a silver tabby cat detective in a trench coat on a rain-soaked neon rooftop, turning to camera as lightning flashes. Both runs asked for 6 seconds, 1080p, 16:9.</p>
+<video controls preload="metadata" title="kling v3 t2v cat anime drama" aria-label="kling v3 t2v cat anime drama" poster="https://img.modellix.ai/en/video/kling-v3-t2v-cat-anime-drama/preview.jpg" class="table-video" style="aspect-ratio: 1920 / 1080; width:100%; max-width: 1920px;">
+  <source type="video/mp4" src="https://img.modellix.ai/en/video/kling-v3-t2v-cat-anime-drama.mp4" />
+  <a href="https://img.modellix.ai/en/video/kling-v3-t2v-cat-anime-drama.mp4" target="_blank">MP4</a>
+</video>
+
+<video controls preload="metadata" title="kling v3 turbo t2v cat anime drama" aria-label="kling v3 turbo t2v cat anime drama" poster="https://img.modellix.ai/en/video/kling-v3-turbo-t2v-cat-anime-drama/preview.jpg" class="table-video" style="aspect-ratio: 1920 / 1080; width:100%; max-width: 1920px;">
+  <source type="video/mp4" src="https://img.modellix.ai/en/video/kling-v3-turbo-t2v-cat-anime-drama.mp4" />
+  <a href="https://img.modellix.ai/en/video/kling-v3-turbo-t2v-cat-anime-drama.mp4" target="_blank">MP4</a>
+</video>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Kling V3 T2V</th>
+<th>Kling V3 Turbo T2V</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Output</td>
+<td>1920 x 1080, 6.04 s, with audio</td>
+<td>1920 x 1080, 6.04 s, with audio</td>
+</tr>
+<tr>
+<td>Gateway processing time</td>
+<td>102.9 s</td>
+<td>601.6 s</td>
+</tr>
+<tr>
+<td>Billed</td>
+<td>$0.8064 ($0.1344 per second)</td>
+<td>$0.672 ($0.112 per second)</td>
+</tr>
+<tr>
+<td>Style</td>
+<td>Polished, closer to 3D rendering</td>
+<td>Closer to the 2D cel-anime look we asked for</td>
+</tr>
+<tr>
+<td>Request fields</td>
+<td>Accepts <code>audio: native</code></td>
+<td>Rejects <code>audio</code>; returned an audio track anyway</td>
+</tr>
+</tbody></table>
+<p>Both models followed the scene: the cat, the trench coat, the rain, and the neon rim light. Turbo matched the anime-drama style better and cost 17% less, but took about ten minutes to return in this run.</p>
+<p>This is one prompt and one run per model, not a benchmark. Once Kling 4.0 is available by API, we will run the same brief across V3, 4.0, and 4.0 Flash side by side.</p>
+<h2 id="How-to-Get-Your-Pipeline-Ready-for-Kling-4-0"><a href="#How-to-Get-Your-Pipeline-Ready-for-Kling-4-0" class="headerlink" title="How to Get Your Pipeline Ready for Kling 4.0"></a>How to Get Your Pipeline Ready for Kling 4.0</h2><p>Kling video on Modellix is an async task: submit, poll, then download before the result URL expires. In our runs, result URLs expired seven days after the task completed. Three habits make the 4.0 switch painless:</p>
+<ol>
+<li><strong>Read field support per route.</strong> Kling V3 accepts <code>audio</code>; V3 Turbo rejects it. Expect 4.0 to add new fields rather than reuse every V3 one.</li>
+<li><strong>Treat duration as a setting, not a constant.</strong> V3 stops at 15 seconds; 4.0 goes to 30.</li>
+<li><strong>Save outputs on completion.</strong> Store the MP4 before the result URL expires.</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST <span class="string">&quot;https://api.modellix.ai/api/v1/kling/kling-v3-t2v&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$MODELLIX_API_KEY</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;prompt&quot;: &quot;Premium anime short-drama shot, a silver tabby cat detective on a rain-soaked neon rooftop turns to camera as lightning flashes&quot;,</span></span><br><span class="line"><span class="string">    &quot;resolution&quot;: &quot;1080p&quot;,</span></span><br><span class="line"><span class="string">    &quot;audio&quot;: &quot;native&quot;,</span></span><br><span class="line"><span class="string">    &quot;aspect_ratio&quot;: &quot;16:9&quot;,</span></span><br><span class="line"><span class="string">    &quot;duration&quot;: 6</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br><span class="line"></span><br><span class="line">curl <span class="string">&quot;https://api.modellix.ai/api/v1/tasks/&lt;task_id&gt;&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$MODELLIX_API_KEY</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>Get a key from the <a href="https://www.modellix.ai/console/api-key">Modellix console</a>. The <a target="_blank" rel="noopener" href="https://docs.modellix.ai/kling/kling-v3-t2v?utm_source=blog&utm_medium=article_link&utm_campaign=kling-4-0">Kling V3 T2V docs</a> list every field.</p>
+<h2 id="Try-Kling-V3-Now-with-One-API-Key-for-Every-Model"><a href="#Try-Kling-V3-Now-with-One-API-Key-for-Every-Model" class="headerlink" title="Try Kling V3 Now with One API Key for Every Model"></a>Try Kling V3 Now with One API Key for Every Model</h2><p>Video teams rarely stay on one model. A short-drama pipeline might use Kling for character scenes, Seedance for long takes, and Veo for a premium hero shot, each with its own account and request format.</p>
+<p>However, on Modellix one key reaches Kling V3, V3 Turbo, and V3 Omni, plus Seedance, Veo, Wan, and Hailuo, all through the same submit-and-poll workflow. When Kling 4.0’s API ships and Modellix adds it, <span style="display:inline; padding:2px 6px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800; -webkit-box-decoration-break:clone; box-decoration-break:clone;">moving from V3 to 4.0 is a change to the model path, not a new integration</span>.</p>
+<section class="collection-cta collection-cta--wide" aria-labelledby="collection-cta-text-to-video"><a class="collection-cta-media" href="https://www.modellix.ai/category/text-to-video" data-cta="collection_cta" data-cta-campaign="text-to-video" aria-label="Open Compare Text-to-Video Models With One Brief"><img src="https://img.modellix.ai/en/article/wan-2-7-api-capabilities.webp" alt="AI video model capabilities for business production workflows" width="2400" height="1800" loading="lazy" decoding="async" data-no-zoom></a><div class="collection-cta-content"><div class="collection-cta-copy"><p class="collection-cta-eyebrow"><i data-lucide="layers-3" aria-hidden="true"></i> Modellix collection</p><h3 id="collection-cta-text-to-video" class="collection-cta-title">Compare Text-to-Video Models With One Brief</h3><p class="collection-cta-description">Run the same campaign concept across text-to-video models and review motion, prompt adherence, and usable cost.</p></div><div class="collection-cta-actions"><p class="collection-cta-models"><strong>Good first tests:</strong> <a href="https://www.modellix.ai/models/bytedance/seedance-2.0-t2v" data-cta="collection_cta" data-cta-campaign="text-to-video">Seedance 2.0 T2V</a><span aria-hidden="true">/</span><a href="https://www.modellix.ai/models/alibaba/wan2.7-t2v" data-cta="collection_cta" data-cta-campaign="text-to-video">Wan 2.7 T2V</a><span aria-hidden="true">/</span><a href="https://www.modellix.ai/models/google/veo-3.1-lite-t2v" data-cta="collection_cta" data-cta-campaign="text-to-video">Veo 3.1 Lite T2V</a></p><a class="collection-cta-button" href="https://www.modellix.ai/category/text-to-video" data-cta="collection_cta" data-cta-campaign="text-to-video"><span>Explore the collection</span><i data-lucide="arrow-right" aria-hidden="true"></i></a></div></div></section>
+
+<section class="view-docs-tag"><div class="view-docs-tag-glow"></div><div class="view-docs-tag-content"><h3 class="view-docs-tag-title">Try Kling V3</h3><p class="view-docs-tag-desc">Create a Modellix key, run your own brief on Kling V3 and V3 Turbo today, and switch to Kling 4.0 when it arrives.</p><a class="btn view-docs-tag-btn" href="https://www.modellix.ai/console/api-key" data-cta="login_tag" data-cta-target="api-key" target="_blank" rel="noopener noreferrer"><span>Get API Key </span><i data-lucide="arrow-right"></i></a></div></section>
+
+        </div>
+
+        <div class="post-tags-bottom">
+          
+            
+              <a href="/blog/tags/ai-video/" class="tag-pill tag-pill--sm">AI Video</a>
+            
+              <a href="/blog/tags/kling/" class="tag-pill tag-pill--sm">Kling</a>
+            
+              <a href="/blog/tags/video-generation/" class="tag-pill tag-pill--sm">Video Generation</a>
+            
+          
+        </div>
+
+        
+        
+        
+
+
+<section class="related-articles">
+  <h2 class="related-articles-title">Related Articles</h2>
+  <div class="related-articles-grid">
+    
+      <a href="/blog/claude-opus-5-5/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/opus-5-5-on-modellix-cover.webp" alt="Claude Opus 5.5: Release Date, Pricing &amp; How to Use It" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Claude Opus 5.5: Release Date, Pricing &amp; How to Use It</h3>
+          <time class="related-article-date" datetime="2026-09-28T02:00:00.000Z">September 28, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/grok-4-7/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-grok-4-7.webp" alt="Grok 4.7: Release Date, Pricing &amp; How to Use It" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">Grok 4.7: Release Date, Pricing &amp; How to Use It</h3>
+          <time class="related-article-date" datetime="2026-09-24T03:00:00.000Z">September 24, 2026</time>
+        </div>
+      </a>
+    
+      <a href="/blog/gpt-luna/" class="related-article-card">
+        
+          <div class="related-article-cover">
+            <img src="https://img.modellix.ai/en/article/cover-gpt-luna.webp" alt="GPT-6 Luna: Pricing, Context Window &amp; How to Use It" loading="lazy">
+          </div>
+        
+        <div class="related-article-body">
+          
+            <div class="related-article-meta">
+              
+                <span class="category-tag category-tag--sm">Guides</span>
+              
+            </div>
+          
+          <h3 class="related-article-name">GPT-6 Luna: Pricing, Context Window &amp; How to Use It</h3>
+          <time class="related-article-date" datetime="2026-09-24T02:30:00.000Z">September 24, 2026</time>
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+
+      </article>
+
+      
+<aside class="post-sidebar">
+  <div class="post-sidebar-sticky">
+    <nav class="post-toc" id="post-toc" style="display:none;">
+      <span class="post-toc-label">On this page</span>
+      <ul class="post-toc-list"></ul>
+    </nav>
+
+    <a href="https://www.modellix.ai/console" class="sidebar-cta">
+      <span class="sidebar-cta-text">
+        <span class="sidebar-cta-title">Try Modellix</span>
+        <span class="sidebar-cta-desc">Start creating with AI</span>
+      </span>
+      <i data-lucide="arrow-right" class="sidebar-cta-icon"></i>
+    </a>
+
+    <div class="post-share">
+      <span class="post-share-label">Share this article</span>
+      <div class="post-share-links">
+        <a href="https://x.com/intent/post?url=https://www.modellix.ai/blog/kling-4-0/&text=Kling%204.0%3A%20Release%20Date%2C%20Features%20%26%20What%20to%20Use%20Now" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.modellix.ai/blog/kling-4-0/" target="_blank" rel="noopener nofollow" class="social-link" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <button class="social-link post-copy-link" aria-label="Copy link" data-url="https://www.modellix.ai/blog/kling-4-0/"><i class="fa-solid fa-link"></i></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/blog/" class="footer-logo">
+        <img src="/blog/assets/public/logo.svg" alt="Modellix Blog">
+      </a>
+      
+      <div class="footer-social">
+        
+          <a href="mailto:support@modellix.ai" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        
+        
+          <a href="https://github.com/Modellix" class="social-link" target="_blank" rel="noopener nofollow" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+        
+          <a href="https://discord.com/invite/N2FbcB2cZT" class="social-link" target="_blank" rel="noopener nofollow" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+        
+          <a href="https://x.com/ModellixAI" class="social-link" target="_blank" rel="noopener nofollow" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        
+        
+          <a href="https://www.linkedin.com/company/modellix-ai/about/?viewAsMember=true" class="social-link" target="_blank" rel="noopener nofollow" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Modellix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script defer src="https://unpkg.com/lucide@1.47.0/dist/umd/lucide.min.js" onload="window.lucide && window.lucide.createIcons();"></script>
+  
+    
+      <script src="/blog/js/modellix.js?v=20260929"></script>
+    
+  
+  
+</body>
+</html>
