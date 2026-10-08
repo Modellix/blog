@@ -266,10 +266,89 @@
 </tr>
 </tbody></table>
 <p>Specs from Google’s <a target="_blank" rel="noopener nofollow" href="https://ai.google.dev/gemini-api/docs/models/gemini-nano-banana-2.1">Gemini API model page</a>, <a target="_blank" rel="noopener nofollow" href="https://ai.google.dev/gemini-api/docs/changelog">changelog</a>, and <a target="_blank" rel="noopener nofollow" href="https://deepmind.google/models/model-cards/nano-banana-2-1/">Nano Banana 2.1 model card</a>. The model card lists a 1M token window for the underlying model; the API caps each request at the limits above.</p>
-<h2 id="Nano-Banana-2-1-Release-Date-and-Access"><a href="#Nano-Banana-2-1-Release-Date-and-Access" class="headerlink" title="Nano Banana 2.1 Release Date and Access"></a>Nano Banana 2.1 Release Date and Access</h2><p>Google released Nano Banana 2.1 on October 6, 2026. Its model card lists seven places to use it: the Gemini app, Google AI Studio, the Gemini API, AI Mode in Search, Google Ads, Flow, and Stitch.</p>
+<h3 id="Release-Date-and-Access"><a href="#Release-Date-and-Access" class="headerlink" title="Release Date and Access"></a>Release Date and Access</h3><p>Google released Nano Banana 2.1 on October 6, 2026. Its model card lists seven places to use it: the Gemini app, Google AI Studio, the Gemini API, AI Mode in Search, Google Ads, Flow, and Stitch.</p>
 <p>In the Gemini app, free users stay on Nano Banana 2. Nano Banana 2.1 needs a Google AI Pro, Plus, or Ultra plan.</p>
 <p>The Gemini API changelog marks <code>gemini-3.1-flash-image</code> (Nano Banana 2) as deprecated with no shutdown date announced, and names 2.1 as the replacement. A deprecated model can still get a shutdown date at short notice, so <span style="display:inline; padding:2px 6px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800; -webkit-box-decoration-break:clone; box-decoration-break:clone;">plan the move to 2.1 now instead of waiting for the date</span>.</p>
-<h2 id="Nano-Banana-2-1-vs-Nano-Banana-2-What-Changed"><a href="#Nano-Banana-2-1-vs-Nano-Banana-2-What-Changed" class="headerlink" title="Nano Banana 2.1 vs Nano Banana 2: What Changed"></a>Nano Banana 2.1 vs Nano Banana 2: What Changed</h2><table>
+<h2 id="Nano-Banana-2-1-Pricing"><a href="#Nano-Banana-2-1-Pricing" class="headerlink" title="Nano Banana 2.1 Pricing"></a>Nano Banana 2.1 Pricing</h2><table>
+<thead>
+<tr>
+<th>Per image, Gemini API</th>
+<th>1K</th>
+<th>2K</th>
+<th>4K</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Nano Banana 2.1</td>
+<td>$0.0336</td>
+<td>$0.0504</td>
+<td>$0.113</td>
+</tr>
+<tr>
+<td>Nano Banana 2.1, Batch API</td>
+<td>$0.0168</td>
+<td>$0.0252</td>
+<td>$0.0567</td>
+</tr>
+<tr>
+<td>Nano Banana 2</td>
+<td>$0.067</td>
+<td>$0.101</td>
+<td>$0.151</td>
+</tr>
+<tr>
+<td>Nano Banana 2 Lite</td>
+<td>$0.0336</td>
+<td>Not offered</td>
+<td>Not offered</td>
+</tr>
+<tr>
+<td>Nano Banana Pro</td>
+<td>$0.134</td>
+<td>$0.134</td>
+<td>$0.24</td>
+</tr>
+</tbody></table>
+<p>At 1K, Nano Banana 2.1 now costs the same per image as Nano Banana 2 Lite, the budget model. Lite still wins on token prices: $0.25 per 1M input and $1.50 per 1M thinking output.</p>
+<h3 id="What-1-000-Images-Cost"><a href="#What-1-000-Images-Cost" class="headerlink" title="What 1,000 Images Cost"></a>What 1,000 Images Cost</h3><table>
+<thead>
+<tr>
+<th>1,000 images</th>
+<th>1K</th>
+<th>2K</th>
+<th>4K</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Nano Banana 2.1</td>
+<td>$33.60</td>
+<td>$50.40</td>
+<td>$113</td>
+</tr>
+<tr>
+<td>Nano Banana 2.1, Batch API</td>
+<td>$16.80</td>
+<td>$25.20</td>
+<td>$56.70</td>
+</tr>
+<tr>
+<td>Nano Banana 2</td>
+<td>$67</td>
+<td>$101</td>
+<td>$151</td>
+</tr>
+<tr>
+<td>Nano Banana Pro</td>
+<td>$134</td>
+<td>$134</td>
+<td>$240</td>
+</tr>
+</tbody></table>
+<p>Our calculations from Google’s list prices. A 10,000-image catalog refresh at 2K drops from $1,010 on Nano Banana 2 to $504 on 2.1, or $252 through the Batch API.</p>
+<h3 id="The-Costs-the-Per-Image-Price-Leaves-Out"><a href="#The-Costs-the-Per-Image-Price-Leaves-Out" class="headerlink" title="The Costs the Per-Image Price Leaves Out"></a>The Costs the Per-Image Price Leaves Out</h3><p>The per-image price covers the image output tokens only. Your prompt and reference images bill as input at $1.50 per 1M tokens, and thinking bills as text output at $7.50 per 1M. Every 1,000 thinking tokens adds $0.0075 to an image, about 22% of the 1K price (our calculation).</p>
+<p>Google’s own numbers show when thinking pays for itself: infographic factuality drops from 0.521 to 0.328 with thinking off. <span style="display:inline; padding:2px 6px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800; -webkit-box-decoration-break:clone; box-decoration-break:clone;">Set thinking to minimal for bulk thumbnails and keep it on for infographics</span>. Even with thinking off, 2.1 still beats Nano Banana 2 on every row below.</p>
+<h2 id="Nano-Banana-2-1-vs-Nano-Banana-2-and-Pro-Benchmarks"><a href="#Nano-Banana-2-1-vs-Nano-Banana-2-and-Pro-Benchmarks" class="headerlink" title="Nano Banana 2.1 vs Nano Banana 2 and Pro: Benchmarks"></a>Nano Banana 2.1 vs Nano Banana 2 and Pro: Benchmarks</h2><p>Google’s model card scores 2.1 against both models it replaces. Here is what changed, how the scores line up, and whether Pro still earns its price.</p>
+<h3 id="What-Changed-from-Nano-Banana-2"><a href="#What-Changed-from-Nano-Banana-2" class="headerlink" title="What Changed from Nano Banana 2"></a>What Changed from Nano Banana 2</h3><table>
 <thead>
 <tr>
 <th></th>
@@ -325,85 +404,7 @@
 </tbody></table>
 <p>The biggest change is factual accuracy in infographics: Google’s autorater scores 2.1 nearly three times higher. That matters for anything with numbers, labels, or diagrams in the image.</p>
 <p>Two things got more expensive. Input costs 3x more per token, which adds up on edit jobs that send many reference images. Thinking output costs 2.5x more, and thinking is on by default. Prices from the <a target="_blank" rel="noopener nofollow" href="https://ai.google.dev/gemini-api/docs/pricing">Gemini API pricing page</a>, standard tier.</p>
-<h2 id="Nano-Banana-2-1-Pricing"><a href="#Nano-Banana-2-1-Pricing" class="headerlink" title="Nano Banana 2.1 Pricing"></a>Nano Banana 2.1 Pricing</h2><table>
-<thead>
-<tr>
-<th>Per image, Gemini API</th>
-<th>1K</th>
-<th>2K</th>
-<th>4K</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Nano Banana 2.1</td>
-<td>$0.0336</td>
-<td>$0.0504</td>
-<td>$0.113</td>
-</tr>
-<tr>
-<td>Nano Banana 2.1, Batch API</td>
-<td>$0.0168</td>
-<td>$0.0252</td>
-<td>$0.0567</td>
-</tr>
-<tr>
-<td>Nano Banana 2</td>
-<td>$0.067</td>
-<td>$0.101</td>
-<td>$0.151</td>
-</tr>
-<tr>
-<td>Nano Banana 2 Lite</td>
-<td>$0.0336</td>
-<td>Not offered</td>
-<td>Not offered</td>
-</tr>
-<tr>
-<td>Nano Banana Pro</td>
-<td>$0.134</td>
-<td>$0.134</td>
-<td>$0.24</td>
-</tr>
-</tbody></table>
-<p>At 1K, Nano Banana 2.1 now costs the same per image as Nano Banana 2 Lite, the budget model. Lite still wins on token prices: $0.25 per 1M input and $1.50 per 1M thinking output.</p>
-<h3 id="What-1-000-images-cost"><a href="#What-1-000-images-cost" class="headerlink" title="What 1,000 images cost"></a>What 1,000 images cost</h3><table>
-<thead>
-<tr>
-<th>1,000 images</th>
-<th>1K</th>
-<th>2K</th>
-<th>4K</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Nano Banana 2.1</td>
-<td>$33.60</td>
-<td>$50.40</td>
-<td>$113</td>
-</tr>
-<tr>
-<td>Nano Banana 2.1, Batch API</td>
-<td>$16.80</td>
-<td>$25.20</td>
-<td>$56.70</td>
-</tr>
-<tr>
-<td>Nano Banana 2</td>
-<td>$67</td>
-<td>$101</td>
-<td>$151</td>
-</tr>
-<tr>
-<td>Nano Banana Pro</td>
-<td>$134</td>
-<td>$134</td>
-<td>$240</td>
-</tr>
-</tbody></table>
-<p>Our calculations from Google’s list prices. A 10,000-image catalog refresh at 2K drops from $1,010 on Nano Banana 2 to $504 on 2.1, or $252 through the Batch API.</p>
-<h3 id="The-costs-the-per-image-price-leaves-out"><a href="#The-costs-the-per-image-price-leaves-out" class="headerlink" title="The costs the per-image price leaves out"></a>The costs the per-image price leaves out</h3><p>The per-image price covers the image output tokens only. Your prompt and reference images bill as input at $1.50 per 1M tokens, and thinking bills as text output at $7.50 per 1M. Every 1,000 thinking tokens adds $0.0075 to an image, about 22% of the 1K price (our calculation).</p>
-<p>Google’s own numbers show when thinking pays for itself: infographic factuality drops from 0.521 to 0.328 with thinking off. <span style="display:inline; padding:2px 6px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800; -webkit-box-decoration-break:clone; box-decoration-break:clone;">Set thinking to minimal for bulk thumbnails and keep it on for infographics</span>. Even with thinking off, 2.1 still beats Nano Banana 2 on every row below.</p>
-<h2 id="Nano-Banana-2-1-Benchmarks"><a href="#Nano-Banana-2-1-Benchmarks" class="headerlink" title="Nano Banana 2.1 Benchmarks"></a>Nano Banana 2.1 Benchmarks</h2><table>
+<h3 id="Benchmark-Scores"><a href="#Benchmark-Scores" class="headerlink" title="Benchmark Scores"></a>Benchmark Scores</h3><table>
 <thead>
 <tr>
 <th>Benchmark</th>
@@ -497,7 +498,7 @@
 </tbody></table>
 <p>Scores from Google DeepMind’s <a target="_blank" rel="noopener nofollow" href="https://deepmind.google/models/model-cards/nano-banana-2-1/">Nano Banana 2.1 model card</a>. Nano Banana 2 was scored with thinking on.</p>
 <p>Two caveats. Elo scores come from Google’s own human raters and only compare models inside this table; they say nothing about GPT Image or Seedream. And the gaps are often small: on product consistency, 2.1 without thinking sits within the margin of error of Pro.</p>
-<h2 id="Nano-Banana-2-1-vs-Nano-Banana-Pro-Is-Pro-Still-Worth-4x"><a href="#Nano-Banana-2-1-vs-Nano-Banana-Pro-Is-Pro-Still-Worth-4x" class="headerlink" title="Nano Banana 2.1 vs Nano Banana Pro: Is Pro Still Worth 4x?"></a>Nano Banana 2.1 vs Nano Banana Pro: Is Pro Still Worth 4x?</h2><table>
+<h3 id="Is-Nano-Banana-Pro-Still-Worth-4x"><a href="#Is-Nano-Banana-Pro-Still-Worth-4x" class="headerlink" title="Is Nano Banana Pro Still Worth 4x?"></a>Is Nano Banana Pro Still Worth 4x?</h3><table>
 <thead>
 <tr>
 <th></th>
@@ -533,14 +534,37 @@
 </tbody></table>
 <p>On Google’s numbers, Pro is now the pricier and lower-scoring choice for new work. The one reason to stay is a tuned pipeline: prompts, seeds, and review steps built around Pro’s look.</p>
 <p><strong>Decision rule: start new projects on 2.1; move existing Pro traffic only after your own prompts pass on 2.1.</strong> For older Pro and Nano Banana comparisons, see <a href="https://www.modellix.ai/blog/nano-banana-vs/">Nano Banana vs Nano Banana 2 vs Pro</a> and the <a href="https://www.modellix.ai/blog/nano-banana-pro-pricing/">Nano Banana Pro pricing breakdown</a>.</p>
-<h2 id="What-Can-You-Build-with-Nano-Banana-2-1"><a href="#What-Can-You-Build-with-Nano-Banana-2-1" class="headerlink" title="What Can You Build with Nano Banana 2.1"></a>What Can You Build with Nano Banana 2.1</h2><p>Google’s model card points at four kinds of product, each tied to a row it improved most.</p>
-<ul>
-<li><strong>Localized infographics and posters.</strong> Diagrams, menus, and explainers with correct labels in several languages. Factuality is the biggest jump over Nano Banana 2.</li>
-<li><strong>Product catalogs.</strong> One product shot across dozens of scenes, with up to 10 objects held consistent from your references.</li>
-<li><strong>Comics and storyboards.</strong> Up to 4 recurring characters across panels; multi-character consistency gained 128 Elo over Nano Banana 2.</li>
-<li><strong>Retouching with masks and doodles.</strong> Mark an area, describe the change, keep the rest untouched.</li>
-</ul>
-<h3 id="What-we-saw-in-a-small-test"><a href="#What-we-saw-in-a-small-test" class="headerlink" title="What we saw in a small test"></a>What we saw in a small test</h3><p>Since 2.1 is not on Modellix yet, we tested the bar it has to clear. We sent one infographic prompt, with exact captions, to <a href="https://www.modellix.ai/models/google/nano-banana-2">Nano Banana 2</a>, <a href="https://www.modellix.ai/models/google/nano-banana-pro">Nano Banana Pro</a>, and <a href="https://www.modellix.ai/models/openai/gpt-image-2.5-sunburst">GPT Image 2.5 Sunburst</a> through the <a href="https://www.modellix.ai/">Modellix unified API for image, video, and LLM models</a>.</p>
+<h2 id="Nano-Banana-2-1-vs-GPT-Image-2-5-vs-Seedream-5-0"><a href="#Nano-Banana-2-1-vs-GPT-Image-2-5-vs-Seedream-5-0" class="headerlink" title="Nano Banana 2.1 vs GPT Image 2.5 vs Seedream 5.0"></a>Nano Banana 2.1 vs GPT Image 2.5 vs Seedream 5.0</h2><p>Google’s model card does not score GPT Image or Seedream, so prices and the test below are the fair comparison.</p>
+<table>
+<thead>
+<tr>
+<th>Per image</th>
+<th>1K</th>
+<th>2K</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Nano Banana 2.1 (Gemini API)</td>
+<td>$0.0336</td>
+<td>$0.0504</td>
+<td>Thinking on by default; 14 references</td>
+</tr>
+<tr>
+<td>GPT Image 2.5 Sunburst, high (Modellix)</td>
+<td>$0.0474</td>
+<td>$0.0963</td>
+<td>Medium quality: $0.0124 &#x2F; $0.0241; transparent backgrounds</td>
+</tr>
+<tr>
+<td>Seedream 5.0 Pro (Modellix)</td>
+<td>$0.081 flat</td>
+<td>$0.081 flat</td>
+<td>One price per image</td>
+</tr>
+</tbody></table>
+<p>At 2K, 2.1 costs about half of GPT Image 2.5 on high quality. GPT Image 2.5 on medium is cheaper still, which suits drafts. For the older generations, see our <a href="https://www.modellix.ai/blog/gpt-image-2-api/">GPT Image 2 API guide</a> and <a href="https://www.modellix.ai/blog/seedream-api/">Seedream API guide</a>.</p>
+<h3 id="What-We-Saw-in-a-Small-Test"><a href="#What-We-Saw-in-a-Small-Test" class="headerlink" title="What We Saw in a Small Test"></a>What We Saw in a Small Test</h3><p>Since 2.1 is not on Modellix yet, we tested the bar it has to clear. We sent one infographic prompt, with exact captions, to <a href="https://www.modellix.ai/models/google/nano-banana-2">Nano Banana 2</a>, <a href="https://www.modellix.ai/models/google/nano-banana-pro">Nano Banana Pro</a>, and <a href="https://www.modellix.ai/models/openai/gpt-image-2.5-sunburst">GPT Image 2.5 Sunburst</a> through the <a href="https://www.modellix.ai/">Modellix unified API for image, video, and LLM models</a>.</p>
 <div style="border:1px solid #E5E7EB; border-left:4px solid #5145D8; background:#F8F7FF; border-radius:8px; padding:16px 18px; margin:16px 0 24px;">
   <p style="margin:0 0 8px; font-size:12px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; color:#5145D8;">Prompt used for all three models</p>
   <p style="margin:0 0 12px; color:#111827; line-height:1.7;">A clean, modern 16:9 infographic titled "How Espresso Is Made" on a warm cream background. Five numbered steps from left to right, each with a flat illustrated icon and a short caption: 1 "Grind 18 g of beans", 2 "Tamp evenly", 3 "Brew at 93°C", 4 "Extract for 25 to 30 seconds", 5 "Serve 36 g of espresso". Thin arrows connect the steps. Brown and orange palette, crisp sans-serif typography, generous spacing. No other text.</p>
@@ -614,42 +638,20 @@
 </tbody></table>
 <p>All three spelled every word correctly, so short labels are no longer the hard part. The differences were layout and judgment, which is exactly where Google says 2.1 improved most: infographic design and factuality.</p>
 <p>This is one prompt and one run per model, not a benchmark. When Modellix adds Nano Banana 2.1, we will run the same prompt on it and add the result here.</p>
-<h3 id="When-Nano-Banana-2-1-is-probably-the-wrong-choice"><a href="#When-Nano-Banana-2-1-is-probably-the-wrong-choice" class="headerlink" title="When Nano Banana 2.1 is probably the wrong choice"></a>When Nano Banana 2.1 is probably the wrong choice</h3><ul>
+<h2 id="What-Can-You-Build-with-Nano-Banana-2-1"><a href="#What-Can-You-Build-with-Nano-Banana-2-1" class="headerlink" title="What Can You Build with Nano Banana 2.1"></a>What Can You Build with Nano Banana 2.1</h2><p>Google’s model card points at four kinds of product, each tied to a row it improved most.</p>
+<ul>
+<li><strong>Localized infographics and posters.</strong> Diagrams, menus, and explainers with correct labels in several languages. Factuality is the biggest jump over Nano Banana 2.</li>
+<li><strong>Product catalogs.</strong> One product shot across dozens of scenes, with up to 10 objects held consistent from your references.</li>
+<li><strong>Comics and storyboards.</strong> Up to 4 recurring characters across panels; multi-character consistency gained 128 Elo over Nano Banana 2.</li>
+<li><strong>Retouching with masks and doodles.</strong> Mark an area, describe the change, keep the rest untouched.</li>
+</ul>
+<h3 id="When-Nano-Banana-2-1-Is-Probably-the-Wrong-Choice"><a href="#When-Nano-Banana-2-1-Is-Probably-the-Wrong-Choice" class="headerlink" title="When Nano Banana 2.1 Is Probably the Wrong Choice"></a>When Nano Banana 2.1 Is Probably the Wrong Choice</h3><ul>
 <li><strong>Small text or long paragraphs.</strong> Google’s model card says small text is often blurry at 1K. Render at 2K or 4K, or set the copy in your layout tool.</li>
 <li><strong>512px drafts or transparent backgrounds.</strong> 2.1 starts at 1K and has no transparent output. GPT Image 2.5 supports transparent backgrounds.</li>
 <li><strong>A tuned Pro pipeline that already passes review.</strong> Rerun your own prompts before switching.</li>
 </ul>
-<h2 id="Nano-Banana-2-1-vs-GPT-Image-2-5-vs-Seedream-5-0"><a href="#Nano-Banana-2-1-vs-GPT-Image-2-5-vs-Seedream-5-0" class="headerlink" title="Nano Banana 2.1 vs GPT Image 2.5 vs Seedream 5.0"></a>Nano Banana 2.1 vs GPT Image 2.5 vs Seedream 5.0</h2><p>Google’s model card does not score GPT Image or Seedream, so prices and the test above are the fair comparison.</p>
-<table>
-<thead>
-<tr>
-<th>Per image</th>
-<th>1K</th>
-<th>2K</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Nano Banana 2.1 (Gemini API)</td>
-<td>$0.0336</td>
-<td>$0.0504</td>
-<td>Thinking on by default; 14 references</td>
-</tr>
-<tr>
-<td>GPT Image 2.5 Sunburst, high (Modellix)</td>
-<td>$0.0474</td>
-<td>$0.0963</td>
-<td>Medium quality: $0.0124 &#x2F; $0.0241; transparent backgrounds</td>
-</tr>
-<tr>
-<td>Seedream 5.0 Pro (Modellix)</td>
-<td>$0.081 flat</td>
-<td>$0.081 flat</td>
-<td>One price per image</td>
-</tr>
-</tbody></table>
-<p>At 2K, 2.1 costs about half of GPT Image 2.5 on high quality. GPT Image 2.5 on medium is cheaper still, which suits drafts. For the older generations, see our <a href="https://www.modellix.ai/blog/gpt-image-2-api/">GPT Image 2 API guide</a> and <a href="https://www.modellix.ai/blog/seedream-api/">Seedream API guide</a>.</p>
-<h2 id="What-to-Use-Before-Nano-Banana-2-1-Lands-on-Modellix"><a href="#What-to-Use-Before-Nano-Banana-2-1-Lands-on-Modellix" class="headerlink" title="What to Use Before Nano Banana 2.1 Lands on Modellix"></a>What to Use Before Nano Banana 2.1 Lands on Modellix</h2><table>
+<h2 id="Nano-Banana-2-1-API-What-to-Use-Now-and-How-to-Switch"><a href="#Nano-Banana-2-1-API-What-to-Use-Now-and-How-to-Switch" class="headerlink" title="Nano Banana 2.1 API: What to Use Now and How to Switch"></a>Nano Banana 2.1 API: What to Use Now and How to Switch</h2><p>Modellix has not added Nano Banana 2.1 yet. Here is what to run today, how to test it in 30 seconds, and how to make the move to 2.1 a one-line change.</p>
+<h3 id="What-to-Use-Before-Nano-Banana-2-1-Lands-on-Modellix"><a href="#What-to-Use-Before-Nano-Banana-2-1-Lands-on-Modellix" class="headerlink" title="What to Use Before Nano Banana 2.1 Lands on Modellix"></a>What to Use Before Nano Banana 2.1 Lands on Modellix</h3><table>
 <thead>
 <tr>
 <th>If you need…</th>
@@ -690,7 +692,7 @@
 </tr>
 </tbody></table>
 <p>“From” is the lowest price each model page lists. Every Nano Banana route on Modellix lists about 10% below Google’s per-image price. If 2.1 follows the same pattern, a 1K image would land near $0.030 (our estimate).</p>
-<h2 id="How-to-Test-Nano-Banana-in-30-Seconds"><a href="#How-to-Test-Nano-Banana-in-30-Seconds" class="headerlink" title="How to Test Nano Banana in 30 Seconds"></a>How to Test Nano Banana in 30 Seconds</h2><p>Setup takes about 30 seconds: sign in with email, Google, or GitHub, add credit, and open a model page. You pay per image, with no subscription. A 2K Nano Banana 2 image came back in 14 seconds in our test.</p>
+<h3 id="How-to-Test-Nano-Banana-in-30-Seconds"><a href="#How-to-Test-Nano-Banana-in-30-Seconds" class="headerlink" title="How to Test Nano Banana in 30 Seconds"></a>How to Test Nano Banana in 30 Seconds</h3><p>Setup takes about 30 seconds: sign in with email, Google, or GitHub, add credit, and open a model page. You pay per image, with no subscription. A 2K Nano Banana 2 image came back in 14 seconds in our test.</p>
 <figure style="margin:20px 0;">
   <picture style="aspect-ratio: 1440 / 818; width:100%; max-width:1440px;">
     <img width="1440" height="818" style="display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px;" src="https://img.modellix.ai/en/article/modellix-login-free-credit.png" alt="Modellix sign-in screen with email, Google, and GitHub options" />
@@ -699,27 +701,27 @@
 
 <p style="margin:0 0 28px;"><a href="https://www.modellix.ai/console/login" data-cta="signup" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding:10px 16px; border-radius:7px; font-weight:900; text-decoration:none; background:#111827; color:#FFFFFF;">Create your Modellix account &rarr;</a></p>
 
-<h3 id="Method-1-Playground"><a href="#Method-1-Playground" class="headerlink" title="Method 1: Playground"></a>Method 1: Playground</h3><p>No code. Open the <a href="https://www.modellix.ai/models/google/nano-banana-2">Nano Banana 2 model page</a>, paste a prompt, pick the aspect ratio and size, and review the image in your browser.</p>
+<h4 id="Method-1-Playground"><a href="#Method-1-Playground" class="headerlink" title="Method 1: Playground"></a>Method 1: Playground</h4><p>No code. Open the <a href="https://www.modellix.ai/models/google/nano-banana-2">Nano Banana 2 model page</a>, paste a prompt, pick the aspect ratio and size, and review the image in your browser.</p>
 <picture style="display: block; aspect-ratio: 1440 / 745; width: 100%; max-width: 1440px;">
   <source type="image/webp" srcset="https://img.modellix.ai/en/article/vidu-q3-mix-r2v-result.webp" />
   <img width="1440" height="745" style="display: block; width: 100%; height: auto; border:1px solid #E5E7EB; border-radius:8px;" class="blm-img blm-img-2" src="https://img.modellix.ai/en/article/vidu-q3-mix-r2v-result.png" alt="Generated result preview in the Modellix Playground" />
 </picture>
 
-<h3 id="Method-2-API-Through-Your-Coding-Agent"><a href="#Method-2-API-Through-Your-Coding-Agent" class="headerlink" title="Method 2: API, Through Your Coding Agent"></a>Method 2: API, Through Your Coding Agent</h3><p>Paste this into Claude Code, Codex, or Cursor. One sentence and one API key are all your agent needs: change the model name and docs link, and the same prompt batch-generates assets with any model on Modellix.</p>
+<h4 id="Method-2-API-Through-Your-Coding-Agent"><a href="#Method-2-API-Through-Your-Coding-Agent" class="headerlink" title="Method 2: API, Through Your Coding Agent"></a>Method 2: API, Through Your Coding Agent</h4><p>Paste this into Claude Code, Codex, or Cursor. One sentence and one API key are all your agent needs: change the model name and docs link, and the same prompt batch-generates assets with any model on Modellix.</p>
 <pre class="prompt-block">My Modellix API key is mdlx-••••••••••••••••••••••••. Read https://docs.modellix.ai/get-started/index.md and https://docs.modellix.ai/google/nano-banana-2.md, then use Nano Banana 2 to generate one 2K 16:9 image for each prompt in prompts.txt. Poll each task until it finishes and save the PNG files to ./images.</pre>
 
 <p>Swap the masked key for your own from the <a href="https://www.modellix.ai/console/api-key">Modellix console</a>. Treat it like a password and share it only with agents you trust. The raw request format is in the next section and the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/api?utm_source=blog&utm_medium=article_link&utm_campaign=nano-banana-2-1">API guide</a>.</p>
-<h3 id="Method-3-Skill"><a href="#Method-3-Skill" class="headerlink" title="Method 3: Skill"></a>Method 3: Skill</h3><p>Install the Modellix skill once. After that, your agent finds the right model and request fields by itself.</p>
+<h4 id="Method-3-Skill"><a href="#Method-3-Skill" class="headerlink" title="Method 3: Skill"></a>Method 3: Skill</h4><p>Install the Modellix skill once. After that, your agent finds the right model and request fields by itself.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx skills add https://github.com/Modellix/modellix-plugin --skill modellix</span><br></pre></td></tr></table></figure>
 
 <pre class="prompt-block">Use the Modellix skill to generate a 2K 16:9 Nano Banana 2 infographic titled &quot;How Espresso Is Made&quot; with five numbered steps, then download it to ./images.</pre>
 
 <p>Setup for each agent host is in the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/skill?utm_source=blog&utm_medium=article_link&utm_campaign=nano-banana-2-1">Skill guide</a>.</p>
-<h3 id="Method-4-CLI"><a href="#Method-4-CLI" class="headerlink" title="Method 4: CLI"></a>Method 4: CLI</h3><p>For scripts and scheduled jobs. One command submits the task, waits, and prints the result URL.</p>
+<h4 id="Method-4-CLI"><a href="#Method-4-CLI" class="headerlink" title="Method 4: CLI"></a>Method 4: CLI</h4><p>For scripts and scheduled jobs. One command submits the task, waits, and prints the result URL.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">npm install --global modellix-cli</span><br><span class="line"><span class="built_in">export</span> MODELLIX_API_KEY=<span class="string">&quot;your_api_key&quot;</span></span><br><span class="line"></span><br><span class="line">modellix-cli model run --model-slug google/nano-banana-2 \</span><br><span class="line">  --body <span class="string">&#x27;&#123;&quot;prompt&quot;:&quot;A clean 16:9 infographic titled How Espresso Is Made&quot;,&quot;aspectRatio&quot;:&quot;16:9&quot;,&quot;imageSize&quot;:&quot;2K&quot;&#125;&#x27;</span> \</span><br><span class="line">  --<span class="built_in">wait</span> --<span class="built_in">timeout</span> 5m --quiet</span><br></pre></td></tr></table></figure>
 
 <p>For batches, put one request per line in a JSONL file and run <code>modellix-cli model batch</code>. See the <a target="_blank" rel="noopener" href="https://docs.modellix.ai/ways-to-use/cli?utm_source=blog&utm_medium=article_link&utm_campaign=nano-banana-2-1">CLI guide</a>.</p>
-<h2 id="How-to-Get-Your-Pipeline-Ready-for-Nano-Banana-2-1"><a href="#How-to-Get-Your-Pipeline-Ready-for-Nano-Banana-2-1" class="headerlink" title="How to Get Your Pipeline Ready for Nano Banana 2.1"></a>How to Get Your Pipeline Ready for Nano Banana 2.1</h2><p>Nano Banana on Modellix is an async task: submit, poll, then download before the result URL expires. Result URLs expire seven days after the task completes. Three habits make the 2.1 switch a one-line change:</p>
+<h3 id="How-to-Get-Your-Pipeline-Ready-for-Nano-Banana-2-1"><a href="#How-to-Get-Your-Pipeline-Ready-for-Nano-Banana-2-1" class="headerlink" title="How to Get Your Pipeline Ready for Nano Banana 2.1"></a>How to Get Your Pipeline Ready for Nano Banana 2.1</h3><p>Nano Banana on Modellix is an async task: submit, poll, then download before the result URL expires. Result URLs expire seven days after the task completes. Three habits make the 2.1 switch a one-line change:</p>
 <ol>
 <li><strong>Keep the model path in config.</strong> Moving from <code>google/nano-banana-2</code> to the 2.1 route should not touch your code.</li>
 <li><strong>Stop relying on 512px.</strong> 2.1 starts at 1K, so make 1K your draft size now.</li>
@@ -728,7 +730,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST <span class="string">&quot;https://api.modellix.ai/api/v1/google/nano-banana-2&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$MODELLIX_API_KEY</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;prompt&quot;: &quot;A clean, modern 16:9 infographic titled \&quot;How Espresso Is Made\&quot; with five numbered steps&quot;,</span></span><br><span class="line"><span class="string">    &quot;aspectRatio&quot;: &quot;16:9&quot;,</span></span><br><span class="line"><span class="string">    &quot;imageSize&quot;: &quot;2K&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br><span class="line"></span><br><span class="line">curl <span class="string">&quot;https://api.modellix.ai/api/v1/tasks/&lt;task_id&gt;&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$MODELLIX_API_KEY</span>&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>Get a key from the <a href="https://www.modellix.ai/console/api-key">Modellix console</a>. The <a target="_blank" rel="noopener" href="https://docs.modellix.ai/google/nano-banana-2?utm_source=blog&utm_medium=article_link&utm_campaign=nano-banana-2-1">Nano Banana 2 docs</a> list every field.</p>
-<h2 id="Try-Nano-Banana-Now-with-One-API-Key-for-Every-Model"><a href="#Try-Nano-Banana-Now-with-One-API-Key-for-Every-Model" class="headerlink" title="Try Nano Banana Now with One API Key for Every Model"></a>Try Nano Banana Now with One API Key for Every Model</h2><p>Image teams rarely stay on one model. A catalog pipeline might use Nano Banana for product scenes, GPT Image 2.5 for transparent assets, and Seedream for stylized art, each with its own account, key, and request format.</p>
+<h3 id="One-API-Key-for-Every-Image-Model"><a href="#One-API-Key-for-Every-Image-Model" class="headerlink" title="One API Key for Every Image Model"></a>One API Key for Every Image Model</h3><p>Image teams rarely stay on one model. A catalog pipeline might use Nano Banana for product scenes, GPT Image 2.5 for transparent assets, and Seedream for stylized art, each with its own account, key, and request format.</p>
 <p>However, on Modellix one key reaches Nano Banana 2, Pro, Lite, and their Edit routes, plus GPT Image 2.5, Seedream, and the video models, all through the same submit-and-poll workflow. When Nano Banana 2.1 lands, <span style="display:inline; padding:2px 6px; border-radius:4px; background:#EFEDFF; color:#5145D8; font-weight:800; -webkit-box-decoration-break:clone; box-decoration-break:clone;">moving to it is a change to the model path, not a new integration</span>.</p>
 <p>The same images also cost less than Google’s list price:</p>
 <table>
